@@ -23,11 +23,17 @@ private slots:
     void on_pbAdd_clicked();
     void on_pbRemove_clicked();
     void slotTimeout();
+
+    void slotExit(bool checked);
     
 private:
     Ui::MainWindow *ui;
     QTimer m_Timer;
     CTasksList m_lstTasks;
+    
+    QMenu m_TrayIconMenu;
+    QSystemTrayIcon m_TrayIcon;
+    
 };
 
 #endif // MAINWINDOW_H

@@ -38,7 +38,7 @@ int CTaskTrayIconPrompt::Init()
                 QIcon(":/icons/close"),
                 tr("Exit"));*/
 
-    m_TrayIcon.setContextMenu(&m_TrayIconMenu);
+    //m_TrayIcon.setContextMenu(&m_TrayIconMenu);
     m_TrayIcon.setIcon(m_Icon);
     
     return 0;

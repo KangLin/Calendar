@@ -12,6 +12,15 @@ MainWindow::MainWindow(QWidget *parent) :
     check = connect(&m_Timer, SIGNAL(timeout()),
                     this, SLOT(slotTimeout()));
     Q_ASSERT(check);
+      
+    QAction* pExit = m_TrayIconMenu.addAction(
+                QIcon(":/icon/close"),
+                tr("Exit"),
+                this,
+                SLOT(slotExit(bool)));
+
+    m_TrayIcon.setContextMenu(&m_TrayIconMenu);
+    m_TrayIcon.setIcon(this->windowIcon());
 }
 
 MainWindow::~MainWindow()
@@ -47,4 +56,9 @@ void MainWindow::on_pbAdd_clicked()
 void MainWindow::on_pbRemove_clicked()
 {
     m_lstTasks.RemoveAll();
+}
+
+void MainWindow::slotExit(bool checked)
+{
+    qApp->quit();
 }

@@ -2,9 +2,10 @@
 #define TASKPROMPT_H
 
 #include "Task.h"
-#include "QSystemTrayIcon"
+
 #include <QTimer>
 #include <QIcon>
+#include <QSystemTrayIcon>
 #include <QMenu>
 #include <QTime>
 
