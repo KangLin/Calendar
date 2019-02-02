@@ -29,16 +29,24 @@ SOURCES += \
     Task.cpp \
     Tasks.cpp \
     TasksList.cpp \
-    TaskWork.cpp \
-    TaskPrompt.cpp
+    FrmFullScreen.cpp \
+    TaskLockScreen.cpp \
+    TaskTrayIconPrompt.cpp
 
 HEADERS += \
         mainwindow.h \
     Task.h \
     Tasks.h \
     TasksList.h \
-    TaskWork.h \
-    TaskPrompt.h
+    FrmFullScreen.h \
+    TaskLockScreen.h \
+    TaskTrayIconPrompt.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    FrmFullScreen.ui
+
+RESOURCES += \
+    Resource/Resource.qrc
+
+win32: LIBS += User32.lib

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "TaskWork.h"
+#include "TaskTrayIconPrompt.h"
+#include "TaskLockScreen.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,8 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     bool check = false;
     check = connect(&m_Timer, SIGNAL(timeout()),
-                    &m_lstTasks, SLOT(slotCheck()));
-    Q_ASSERT(check);    
+                    this, SLOT(slotTimeout()));
+    Q_ASSERT(check);
 }
 
 MainWindow::~MainWindow()
@@ -18,13 +19,28 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::slotTimeout()
+{
+    m_lstTasks.Check();
+}
+
 void MainWindow::on_pbAdd_clicked()
 {
-    QSharedPointer<CTask> task(new CTaskWork());
-    task->SetInterval(2*1000);
     QSharedPointer<CTasks> tasks(new CTasks());
-    tasks->Add(task);
+    QSharedPointer<CTask> work(new CTask(5 * 1000, 1000));
+    tasks->Add(work);
+    QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(tr("Lock screen rest"),
+                                                 tr("Prompt"),
+                                                 QIcon(":/icon/app"),
+                                                 5 * 1000,
+                                                 1 * 1000));
+
+    tasks->Add(prompt);
+    QSharedPointer<CTask> lock(new CTaskLockScreen(5 * 1000, 1 * 1000));
+    tasks->Add(lock);
+     
     m_lstTasks.Add(tasks);
+    m_lstTasks.Start();
     m_Timer.start(1000);
 }
 

@@ -12,19 +12,19 @@ class CTasks : public QObject
 public:
     explicit CTasks(QObject *parent = nullptr);
     virtual ~CTasks();
-    
+
     int GetId();
     int SetId(int id);
     QString GetName();
     int SetName(QString szName);
     bool End();
-    
+
     virtual int Add(QSharedPointer<CTask> task);
     virtual int Remove(QSharedPointer<CTask> task);
-public slots:
-    virtual int slotStart();
-    virtual int slotCheck();
-    
+
+    virtual int Start();
+    virtual int Check();
+
 protected:
     /**
      * @brief Get current task

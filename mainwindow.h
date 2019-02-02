@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QTimer>
 #include "TasksList.h"
+#include <QMenu>
+#include <QSystemTrayIcon>
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +22,7 @@ public:
 private slots:
     void on_pbAdd_clicked();
     void on_pbRemove_clicked();
+    void slotTimeout();
     
 private:
     Ui::MainWindow *ui;

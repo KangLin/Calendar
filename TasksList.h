@@ -16,9 +16,8 @@ public:
     int Remove(QSharedPointer<CTasks> tasks);
     int RemoveAll();
 
-public slots:
-    int slotStart();
-    int slotCheck();
+    int Start();
+    int Check();
     
 private:
     QList<QSharedPointer<CTasks>> m_lstTasks;

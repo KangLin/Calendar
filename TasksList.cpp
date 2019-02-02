@@ -34,21 +34,21 @@ int CTasksList::RemoveAll()
     return 0;
 }
 
-int CTasksList::slotStart()
+int CTasksList::Start()
 {
-    foreach (QSharedPointer<CTasks> task, m_lstTasks)
+    foreach (QSharedPointer<CTasks> tasks, m_lstTasks)
     {
-        task->slotStart();
+        tasks->Start();
     }
     return 0;
 }
 
-int CTasksList::slotCheck()
+int CTasksList::Check()
 {
     int nRet = 0;
     foreach (QSharedPointer<CTasks> task, m_lstTasks)
     {
-        nRet = task->slotCheck();
+        nRet = task->Check();
         if(task->End())
             Remove(task);//TODO: 检查是否会出错  
     }

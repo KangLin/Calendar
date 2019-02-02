@@ -37,19 +37,6 @@ int CTasks::Remove(QSharedPointer<CTask> task)
     return nRet;
 }
 
-int CTasks::slotStart()
-{
-    QSharedPointer<CTask> task = Get();
-    if(task.get())
-        task->slotStart();
-    return 0;
-}
-
-bool CTasks::End()
-{
-    return m_vTask.isEmpty();
-}
-
 QSharedPointer<CTask> CTasks::Get()
 {
     if(m_nCurrent >= m_vTask.size() || m_nCurrent < 0)
@@ -79,7 +66,20 @@ int CTasks::SetName(QString szName)
     return 0;
 }
 
-int CTasks::slotCheck()
+bool CTasks::End()
+{
+    return m_vTask.isEmpty();
+}
+
+int CTasks::Start()
+{
+    QSharedPointer<CTask> task = Get();
+    if(task.get())
+        task->Start();
+    return 0;
+}
+
+int CTasks::Check()
 {
     int nRet = 0;
     QSharedPointer<CTask> task = Get();
@@ -89,7 +89,7 @@ int CTasks::slotCheck()
         return 0;
     }
     
-    nRet = task->slotCheck();
+    nRet = task->Check();
     if(nRet)
         return nRet;
     
@@ -101,7 +101,7 @@ int CTasks::slotCheck()
     if(m_nCurrent >= m_vTask.size())
         m_nCurrent = 0;
     
-    slotStart();
+    Start();
     
     return nRet;
 }

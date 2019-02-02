@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTime>
+#include <QTimer>
 
 class CTask : public QObject
 {
@@ -11,10 +12,13 @@ public:
     explicit CTask(QObject *parent = nullptr);
     /**
      * @brief CTask
-     * @param nInterval: milliseconds
+     * @param nInterval: The interval between Start() and onRun(), in milliseconds
+     * @param nPromptInterval: if is 0, don't prompt
      * @param parent
      */
-    explicit CTask(int nInterval, QObject *parent = nullptr);
+    explicit CTask(int nInterval,
+                   int nPromptInterval = 0,
+                   QObject *parent = nullptr);
     virtual ~CTask();
     
     virtual int GetId();
@@ -27,14 +31,16 @@ public:
     virtual int LoadSettings();
     virtual int SaveSettings();
     
-public slots:
-    virtual int slotStart();
+    virtual int Start();
 
     /**
      * @brief Check if the task can run
      * @return 
      */
-    virtual int slotCheck();
+    virtual int Check();
+    
+protected slots:
+    virtual void slotPrompt();
     
 protected:
     /**
@@ -42,12 +48,21 @@ protected:
      * @return 
      */
     virtual int onRun();
-   
+    virtual int onStart();
+
+protected:
+    int Elapsed();
+    int Remaining();
+    
 private:
     int m_nId;
     QString m_szName;
     QTime m_Time;
     int m_nInterval;
+    QTimer m_PromptTimer;
+    int m_nPromptInterval;
+    
+    int Init();    
 };
 
 #endif // TASK_H
