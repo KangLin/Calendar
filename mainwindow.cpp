@@ -21,6 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_TrayIcon.setContextMenu(&m_TrayIconMenu);
     m_TrayIcon.setIcon(this->windowIcon());
+    
+    VisionProtectionTasks(m_lstTasks);
+    m_lstTasks.Start();
+    m_Timer.start(1000);
 }
 
 MainWindow::~MainWindow()
@@ -35,22 +39,6 @@ void MainWindow::slotTimeout()
 
 void MainWindow::on_pbAdd_clicked()
 {
-    QSharedPointer<CTasks> tasks(new CTasks());
-    QSharedPointer<CTask> work(new CTask(5 * 1000, 1000));
-    tasks->Add(work);
-    QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(tr("Lock screen rest"),
-                                                 tr("Prompt"),
-                                                 QIcon(":/icon/app"),
-                                                 5 * 1000,
-                                                 1 * 1000));
-
-    tasks->Add(prompt);
-    QSharedPointer<CTask> lock(new CTaskLockScreen(5 * 1000, 1 * 1000));
-    tasks->Add(lock);
-     
-    m_lstTasks.Add(tasks);
-    m_lstTasks.Start();
-    m_Timer.start(1000);
 }
 
 void MainWindow::on_pbRemove_clicked()
@@ -61,4 +49,22 @@ void MainWindow::on_pbRemove_clicked()
 void MainWindow::slotExit(bool checked)
 {
     qApp->quit();
+}
+
+QSharedPointer<CTasks> MainWindow::VisionProtectionTasks(CTasksList &taskList)
+{
+    QSharedPointer<CTasks> tasks(new CTasks());
+    QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
+    task->SetName(tr("Work"));
+    tasks->Add(task);
+    QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(
+                                     tr("Lock screen and rest"),
+                                     tr("Rest")));
+    prompt->SetName(tr("Will want to lock the screen prompt"));
+    tasks->Add(prompt);
+    QSharedPointer<CTask> lock(new CTaskLockScreen());
+    lock->SetName(tr("Lock"));
+    tasks->Add(lock);
+    taskList.Add(tasks);
+    return tasks;
 }

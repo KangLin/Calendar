@@ -34,6 +34,7 @@ private:
     QMenu m_TrayIconMenu;
     QSystemTrayIcon m_TrayIcon;
     
+    QSharedPointer<CTasks> VisionProtectionTasks(CTasksList &taskList);
 };
 
 #endif // MAINWINDOW_H

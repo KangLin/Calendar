@@ -5,7 +5,6 @@ CTaskTrayIconPrompt::CTaskTrayIconPrompt(QObject *parent)
     : CTask(parent),
       m_TrayIcon(this)
 {
-    m_szTitle = tr("Prompt");
     m_Icon = QIcon(":/icon/app");
     Init();
 }
@@ -27,7 +26,7 @@ CTaskTrayIconPrompt::CTaskTrayIconPrompt(const QString szMessage,
 
 int CTaskTrayIconPrompt::Init()
 {
-    SetName(tr("Prompt"));
+    SetName(tr("Tray icon prompt"));
     
     /*bool check = connect(&m_TrayIcon,
               SIGNAL(activated(QSystemTrayIcon::ActivationReason)),

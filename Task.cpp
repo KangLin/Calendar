@@ -4,7 +4,7 @@
 CTask::CTask(QObject *parent) : QObject(parent)
 {
     SetInterval(0);
-    m_nPromptInterval = 60 * 1000;
+    m_nPromptInterval = 0;
     Init();
 }
 
@@ -28,7 +28,7 @@ int CTask::Init()
 
 CTask::~CTask()
 {
-    qDebug() << "CTask::~CTask(), id: " << m_nId << " name:" <<m_szName;
+    qDebug() << "CTask::~CTask(), id: " << GetId() << " name:" << GetName();
 }
 
 int CTask::Start()
