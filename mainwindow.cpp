@@ -55,15 +55,15 @@ QSharedPointer<CTasks> MainWindow::VisionProtectionTasks(CTasksList &taskList)
 {
     QSharedPointer<CTasks> tasks(new CTasks());
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
-    task->SetName(tr("Work"));
+    task->SetName("Work");
     tasks->Add(task);
     QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(
-                                     tr("Lock screen and rest"),
-                                     tr("Rest")));
-    prompt->SetName(tr("Will want to lock the screen prompt"));
+                                     "Lock screen and rest",
+                                     "Rest"));
+    prompt->SetName("Will want to lock the screen");
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen());
-    lock->SetName(tr("Lock"));
+    lock->SetName("Lock");
     tasks->Add(lock);
     taskList.Add(tasks);
     return tasks;

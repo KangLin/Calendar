@@ -50,3 +50,5 @@ RESOURCES += \
     Resource/Resource.qrc
 
 win32: LIBS += User32.lib
+
+include(Resource/Translations/Translations.pri)
