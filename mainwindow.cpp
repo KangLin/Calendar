@@ -39,6 +39,17 @@ void MainWindow::slotTimeout()
 
 void MainWindow::on_pbAdd_clicked()
 {
+    QSharedPointer<CTasks> tasks(new CTasks());
+ 
+    QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(
+                                     "Lock screen and rest",
+                                     "Rest", QIcon(":/icon/app"),5000));
+    prompt->SetName("Will want to lock the screen");
+    tasks->Add(prompt);
+    QSharedPointer<CTask> lock(new CTaskLockScreen(3000, 1000));
+    lock->SetName("Lock");
+    tasks->Add(lock);
+    m_lstTasks.Add(tasks);
 }
 
 void MainWindow::on_pbRemove_clicked()

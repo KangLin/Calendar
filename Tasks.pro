@@ -52,3 +52,7 @@ RESOURCES += \
 win32: LIBS += User32.lib
 
 include(Resource/Translations/Translations.pri)
+
+OTHER_FILES += appveyor.yml \
+    ci/* \
+    tag.sh
