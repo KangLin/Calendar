@@ -1,6 +1,8 @@
 #ifndef TASKS_H
 #define TASKS_H
 
+#pragma once
+
 #include <QObject>
 #include "Task.h"
 #include <QVector>

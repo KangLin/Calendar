@@ -105,6 +105,13 @@ int CTask::Remaining()
     return GetInterval() - Elapsed();
 }
 
+QString CTask::szRemaining()
+{
+    QTime tm(0, 0);
+    tm = tm.addMSecs(Remaining());
+    return tm.toString("HH:mm:ss");
+}
+
 int CTask::GetInterval()
 {
     return m_nInterval;

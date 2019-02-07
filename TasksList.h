@@ -1,6 +1,8 @@
 #ifndef TASLIST_H
 #define TASLIST_H
 
+#pragma once
+
 #include <QObject>
 #include "Tasks.h"
 #include <QList>

@@ -1,6 +1,7 @@
 #ifndef FRMLOCKSCREEN_H
 #define FRMLOCKSCREEN_H
 
+#pragma once
 #include <QWidget>
 
 namespace Ui {

@@ -2,11 +2,16 @@
 #include "ui_FrmFullScreen.h"
 
 CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
-    QWidget(parent),
+    QWidget(parent,
+            Qt::FramelessWindowHint
+            | Qt::X11BypassWindowManagerHint  //这个标志是在x11下有用,查看帮助QWidget::showFullScreen()  
+            | Qt::Tool
+            | Qt::WindowStaysOnTopHint
+            | Qt::CustomizeWindowHint),
     ui(new Ui::CFrmFullScreen)
 {
-    setWindowFlags(Qt::FramelessWindowHint);    // 设置窗口标志
     ui->setupUi(this);
+    setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
 }
 
 CFrmFullScreen::~CFrmFullScreen()

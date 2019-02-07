@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "TaskTrayIconPrompt.h"
 #include "TaskLockScreen.h"
+#include "TaskPrompt.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -41,15 +42,17 @@ void MainWindow::on_pbAdd_clicked()
 {
     QSharedPointer<CTasks> tasks(new CTasks());
  
-    QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(
+    QSharedPointer<CTaskPrompt> prompt(new CTaskPrompt(
                                      "Lock screen and rest",
-                                     "Rest", QIcon(":/icon/app"),5000));
+                                     5000, 1000));
     prompt->SetName("Will want to lock the screen");
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen(3000, 1000));
     lock->SetName("Lock");
     tasks->Add(lock);
+    tasks->Start();
     m_lstTasks.Add(tasks);
+
 }
 
 void MainWindow::on_pbRemove_clicked()
@@ -68,9 +71,9 @@ QSharedPointer<CTasks> MainWindow::VisionProtectionTasks(CTasksList &taskList)
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
     task->SetName("Work");
     tasks->Add(task);
-    QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(
-                                     "Lock screen and rest",
-                                     "Rest"));
+    QSharedPointer<CTask> prompt(new CTaskPrompt(
+                                     "Lock screen and rest"
+                                     ));
     prompt->SetName("Will want to lock the screen");
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen());

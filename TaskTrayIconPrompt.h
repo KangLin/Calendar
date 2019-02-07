@@ -1,5 +1,7 @@
-#ifndef TASKPROMPT_H
-#define TASKPROMPT_H
+#ifndef TASKTRAYICONPROMPT_H
+#define TASKTRAYICONPROMPT_H
+
+#pragma once
 
 #include "Task.h"
 
@@ -39,4 +41,4 @@ private:
     int Init();
 };
 
-#endif // TASKPROMPT_H
+#endif // TASKTRAYICONPROMPT_H

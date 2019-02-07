@@ -31,7 +31,9 @@ SOURCES += \
     TasksList.cpp \
     FrmFullScreen.cpp \
     TaskLockScreen.cpp \
-    TaskTrayIconPrompt.cpp
+    TaskTrayIconPrompt.cpp \
+    FrmTop.cpp \
+    TaskPrompt.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,11 +42,14 @@ HEADERS += \
     TasksList.h \
     FrmFullScreen.h \
     TaskLockScreen.h \
-    TaskTrayIconPrompt.h
+    TaskTrayIconPrompt.h \
+    FrmTop.h \
+    TaskPrompt.h
 
 FORMS += \
         mainwindow.ui \
-    FrmFullScreen.ui
+    FrmFullScreen.ui \
+    FrmTop.ui
 
 RESOURCES += \
     Resource/Resource.qrc
