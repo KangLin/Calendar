@@ -33,7 +33,8 @@ SOURCES += \
     TaskLockScreen.cpp \
     TaskTrayIconPrompt.cpp \
     FrmTop.cpp \
-    TaskPrompt.cpp
+    TaskPrompt.cpp \
+    FrmStickyNotes.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,12 +45,14 @@ HEADERS += \
     TaskLockScreen.h \
     TaskTrayIconPrompt.h \
     FrmTop.h \
-    TaskPrompt.h
+    TaskPrompt.h \
+    FrmStickyNotes.h
 
 FORMS += \
         mainwindow.ui \
     FrmFullScreen.ui \
-    FrmTop.ui
+    FrmTop.ui \
+    FrmStickyNotes.ui
 
 RESOURCES += \
     Resource/Resource.qrc

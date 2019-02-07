@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QTranslator>
 #include <QLocale>
+#include "FrmStickyNotes.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,8 +10,9 @@ int main(int argc, char *argv[])
     QTranslator t;
     t.load(":/Translations/app_" + QLocale::system().name());
     a.installTranslator(&t);
-    
-    MainWindow w;
-    w.show();
+    CFrmStickyNotes fs;
+    fs.show();
+    //MainWindow w;
+    //w.show();
     return a.exec();
 }
