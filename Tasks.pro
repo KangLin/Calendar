@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui 
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 
 TARGET = Tasks
 TEMPLATE = app
@@ -34,7 +34,8 @@ SOURCES += \
     TaskTrayIconPrompt.cpp \
     FrmTop.cpp \
     TaskPrompt.cpp \
-    FrmStickyNotes.cpp
+    FrmStickyNotes.cpp \
+    FrmUpdater.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,13 +47,15 @@ HEADERS += \
     TaskTrayIconPrompt.h \
     FrmTop.h \
     TaskPrompt.h \
-    FrmStickyNotes.h
+    FrmStickyNotes.h \
+    FrmUpdater.h
 
 FORMS += \
         mainwindow.ui \
     FrmFullScreen.ui \
     FrmTop.ui \
-    FrmStickyNotes.ui
+    FrmStickyNotes.ui \
+    FrmUpdater.ui
 
 RESOURCES += \
     Resource/Resource.qrc
