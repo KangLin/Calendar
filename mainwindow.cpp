@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "TaskTrayIconPrompt.h"
 #include "TaskLockScreen.h"
+#include "TaskPrompt.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,18 +46,18 @@ void MainWindow::slotTimeout()
 void MainWindow::on_pbAdd_clicked()
 {
     QSharedPointer<CTasks> tasks(new CTasks());
-    QSharedPointer<CTask> task(new CTask(5 *1000));
-    tasks->Add(task);
-    QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(
-                                     tr("Lock screen and rest"),
-                                     tr("Rest"),
-                                     3 * 1000,
-                                     1 * 1000));
+
+    QSharedPointer<CTaskPrompt> prompt(new CTaskPrompt(
+                                     "Lock screen and rest",
+                                     5000, 1000));
+    prompt->SetName("Will want to lock the screen");
     tasks->Add(prompt);
-    QSharedPointer<CTask> lock(new CTaskLockScreen(3 * 1000, 500));
-    lock->SetName(tr("Lock"));
+    QSharedPointer<CTask> lock(new CTaskLockScreen(3000, 1000));
+    lock->SetName("Lock");
     tasks->Add(lock);
+    tasks->Start();
     m_lstTasks.Add(tasks);
+
 }
 
 void MainWindow::on_pbRemove_clicked()
@@ -85,15 +86,15 @@ QSharedPointer<CTasks> MainWindow::VisionProtectionTasks(CTasksList &taskList)
 {
     QSharedPointer<CTasks> tasks(new CTasks());
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
-    task->SetName(tr("Work"));
+    task->SetName("Work");
     tasks->Add(task);
-    QSharedPointer<CTask> prompt(new CTaskTrayIconPrompt(
-                                     tr("Lock screen and rest"),
-                                     tr("Rest")));
-    prompt->SetName(tr("Will want to lock the screen prompt"));
+    QSharedPointer<CTask> prompt(new CTaskPrompt(
+                                     "Lock screen and rest"
+                                     ));
+    prompt->SetName("Will want to lock the screen");
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen());
-    lock->SetName(tr("Lock"));
+    lock->SetName("Lock");
     tasks->Add(lock);
     taskList.Add(tasks);
     return tasks;

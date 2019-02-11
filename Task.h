@@ -1,6 +1,8 @@
 #ifndef TASK_H
 #define TASK_H
 
+#pragma once
+
 #include <QObject>
 #include <QTime>
 #include <QTimer>
@@ -25,12 +27,12 @@ public:
     virtual int SetId(int id);
     virtual QString GetName();
     virtual int SetName(QString szName);
-    virtual int SetInterval(int nInterval);
     virtual int GetInterval();
-    virtual bool End();
+    virtual int SetInterval(int nInterval);
+
     virtual int LoadSettings();
     virtual int SaveSettings();
-    
+
     virtual int Start();
 
     /**
@@ -38,21 +40,23 @@ public:
      * @return 
      */
     virtual int Check();
-    
+    virtual bool End();
+
 protected slots:
     virtual void slotPrompt();
     
 protected:
+    virtual int onStart();
     /**
      * @brief Run the task
      * @return 
      */
     virtual int onRun();
-    virtual int onStart();
 
 protected:
     int Elapsed();
     int Remaining();
+    QString szRemaining();
     
 private:
     int m_nId;

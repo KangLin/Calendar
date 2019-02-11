@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui 
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 
 TARGET = Tasks
 TEMPLATE = app
@@ -32,7 +32,11 @@ SOURCES += \
     TasksList.cpp \
     FrmFullScreen.cpp \
     TaskLockScreen.cpp \
-    TaskTrayIconPrompt.cpp
+    TaskTrayIconPrompt.cpp \
+    FrmTop.cpp \
+    TaskPrompt.cpp \
+    FrmStickyNotes.cpp \
+    FrmUpdater.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,11 +45,18 @@ HEADERS += \
     TasksList.h \
     FrmFullScreen.h \
     TaskLockScreen.h \
-    TaskTrayIconPrompt.h
+    TaskTrayIconPrompt.h \
+    FrmTop.h \
+    TaskPrompt.h \
+    FrmStickyNotes.h \
+    FrmUpdater.h
 
 FORMS += \
         mainwindow.ui \
-    FrmFullScreen.ui
+    FrmFullScreen.ui \
+    FrmTop.ui \
+    FrmStickyNotes.ui \
+    FrmUpdater.ui
 
 RESOURCES += \
     Resource/Resource.qrc
@@ -83,4 +94,9 @@ win32 : equals(QMAKE_HOST.os, Windows){
 }
 
 OTHER_FILES += Install/* \
-    License.md
+    License.md \
+    appveyor.yml \
+    ci/* \
+    tag.sh
+
+include(Resource/Translations/Translations.pri)

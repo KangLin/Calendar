@@ -86,10 +86,6 @@ void CTaskLockScreen::slotPrompt()
 {
     QTime tm(0, 0);
     tm = tm.addMSecs(Remaining());
-    qDebug() << "CTaskLockScreen::slotPrompt() "
-             << tm.toString("HH:mm:ss")
-             <<" Remaining: " << Remaining()
-            << " Interval: " << GetInterval();
     m_FullScreen.Prompt(tr("Remaining: %1")
                          .arg(tm.toString("HH:mm:ss")),
                         0, Remaining(), GetInterval(),

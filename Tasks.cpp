@@ -16,7 +16,7 @@ CTasks::~CTasks()
 int CTasks::Add(QSharedPointer<CTask> task)
 {
     int nRet = 0;
-    if(NULL == task.get())
+    if(nullptr == task.data())
         return -1;
     
     task->SetId(m_vTask.size());
@@ -74,7 +74,7 @@ bool CTasks::End()
 int CTasks::Start()
 {
     QSharedPointer<CTask> task = Get();
-    if(task.get())
+    if(task.data())
         task->Start();
     return 0;
 }
@@ -83,7 +83,7 @@ int CTasks::Check()
 {
     int nRet = 0;
     QSharedPointer<CTask> task = Get();
-    if(nullptr == task.get())
+    if(nullptr == task.data())
     {
         qWarning() << "task pointer is null";
         return 0;

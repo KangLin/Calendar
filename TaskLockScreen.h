@@ -1,6 +1,8 @@
 #ifndef TASKLOCKSCEEN_H
 #define TASKLOCKSCEEN_H
 
+#pragma once
+
 #include "Task.h"
 #include "FrmFullScreen.h"
 
@@ -32,7 +34,6 @@ protected slots:
     virtual void slotPrompt();
     
 private:
-    QTimer m_Timer;
     int Init();
 
 #if defined(Q_OS_WIN)
