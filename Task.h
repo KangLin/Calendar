@@ -15,7 +15,8 @@ class CTask : public QObject
     Q_PROPERTY(QString content READ GetContent WRITE SetContent)
     Q_PROPERTY(int id READ GetId WRITE SetId)
     Q_PROPERTY(int interval READ GetInterval WRITE SetInterval)
-
+    Q_PROPERTY(int promptInterval READ GetPromptInterval WRITE SetPromptInterval)
+    
 public:
     explicit CTask(QObject *parent = nullptr);
     /**
@@ -39,7 +40,8 @@ public:
     virtual QString GetContent();
     virtual int GetInterval();
     virtual int SetInterval(int nInterval);
-
+    virtual int GetPromptInterval();
+    virtual int SetPromptInterval(int interval);
     virtual int LoadSettings();
     virtual int SaveSettings();
 

@@ -24,7 +24,8 @@ environment:
     TOOLCHAIN_VERSION: 15
     QT_ROOT: C:\Qt\5.11\msvc2017_64
     AUTOBUILD_ARCH: x64
-    
+  
+  ##### msvc 2015 ########
   - BUILD_TARGERT: windows_msvc
     GENERATORS: "Visual Studio 14 2015"
     TOOLCHAIN_VERSION: 14
@@ -36,13 +37,7 @@ environment:
     TOOLCHAIN_VERSION: 14
     QT_ROOT: C:\Qt\5.9\msvc2015_64
     AUTOBUILD_ARCH: x64
-   
-  - BUILD_TARGERT: windows_msvc
-    GENERATORS: "Visual Studio 12 2013"
-    TOOLCHAIN_VERSION: 12
-    QT_ROOT: C:\Qt\5.9\msvc2013_64
-    AUTOBUILD_ARCH: x64
-
+  
   - BUILD_TARGERT: windows_msvc
     GENERATORS: "Visual Studio 14 2015"
     TOOLCHAIN_VERSION: 14
@@ -54,6 +49,13 @@ environment:
     TOOLCHAIN_VERSION: 14
     QT_ROOT: C:\Qt\5.6\msvc2015_64
     AUTOBUILD_ARCH: x64
+    
+  ##### msvc 2013 ########
+  - BUILD_TARGERT: windows_msvc
+    GENERATORS: "Visual Studio 12 2013"
+    TOOLCHAIN_VERSION: 12
+    QT_ROOT: C:\Qt\5.9\msvc2013_64
+    AUTOBUILD_ARCH: x64
 
   - BUILD_TARGERT: windows_msvc
     GENERATORS: "Visual Studio 12 2013"
@@ -61,6 +63,7 @@ environment:
     QT_ROOT: C:\Qt\5.6\msvc2013
     AUTOBUILD_ARCH: x86
 
+  ##### mingw ########
   - BUILD_TARGERT: windows_mingw
     TOOLCHAIN_VERSION: 530
     QT_ROOT: C:\Qt\5.9\mingw53_32
@@ -79,8 +82,6 @@ init:
   - set varch=%AUTOBUILD_ARCH%
   - if "%AUTOBUILD_ARCH%" == "x64" set varch=amd64
   - if "%BUILD_TARGERT%" == "windows_msvc" if %TOOLCHAIN_VERSION% LSS 15 (call "C:\Program Files (x86)\Microsoft Visual Studio %TOOLCHAIN_VERSION%.0\VC\vcvarsall.bat" %varch%) else (call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %varch%)  
-  #- if "%BUILD_TARGERT%"=="windows_mingw" set PATH=C:\Qt\Tools\mingw%TOOLCHAIN_VERSION%_32\bin;%PATH%
-  - if "%BUILD_TARGERT%" == "windows_mingw" set MSYSTEM=MINGW32  #设置编译系统为MINGW32
   - echo NUMBER_OF_PROCESSORS=%NUMBER_OF_PROCESSORS%
   - echo PROCESSOR_IDENTIFIER=%PROCESSOR_IDENTIFIER%
   - if NOT "%QT_ROOT%" == "NO" for /f "delims=" %%i in ('%QT_ROOT%/bin/qmake -query QT_VERSION') do (set QT_VERSION=%%i) 
@@ -90,6 +91,8 @@ init:
 
 install:
   - C:\msys64\autorebase.bat
+  #- if "%BUILD_TARGERT%"=="windows_mingw" set PATH=C:\Qt\Tools\mingw%TOOLCHAIN_VERSION%_32\bin;%PATH%
+  - if "%BUILD_TARGERT%" == "windows_mingw" set MSYSTEM=MINGW32  #设置编译系统为MINGW32
 
 before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
@@ -100,8 +103,8 @@ build_script:
   - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build.sh
 
 artifacts:
-  - path: build_${BUILD_TARGERT}/SerialPortAssistant-Setup-*.exe
-    #name: SerialPortAssistant_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
+  - path: build_${BUILD_TARGERT}/Tasks-Setup-*.exe
+    #name: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
     type: zip
 
 test: off
@@ -109,12 +112,12 @@ test: off
 #See:https://www.appveyor.com/docs/deployment/github/
 deploy:
   - provider: GitHub
-    #release: SerialPortAssistant_v$(appveyor_build_version)
-    description: 'Release SerialPortAssistant_$(APPVEYOR_REPO_TAG_NAME) on windows'
+    #release: Tasksv$(appveyor_build_version)
+    description: 'Release Tasks$(APPVEYOR_REPO_TAG_NAME) on windows'
     #token : https://github.com/settings/tokens password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
       secure: xgIFN2iAfgj1gsWabdHrmFXvj0rce/ZWtKUwm3aDUNfLGu+kO/q94MYD8a46AbDL
-    #artifact: SerialPortAssistant_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
+    #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
     #draft: true
     #prerelease: true
     on:

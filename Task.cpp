@@ -142,6 +142,22 @@ int CTask::GetInterval()
     return m_nInterval;
 }
 
+int CTask::GetPromptInterval()
+{
+    return m_nPromptInterval;
+}
+
+int CTask::SetPromptInterval(int interval)
+{
+    m_nPromptInterval = interval;
+    if(m_PromptTimer.isActive())
+    {
+        m_PromptTimer.stop();
+        m_PromptTimer.start(m_nPromptInterval);
+    }
+    return 0;
+}
+
 bool CTask::End()
 {
     return false;
