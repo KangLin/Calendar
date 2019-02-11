@@ -1,5 +1,6 @@
 #include "FrmFullScreen.h"
 #include "ui_FrmFullScreen.h"
+#include <QDebug>
 
 CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
     QWidget(parent,
@@ -23,8 +24,15 @@ int CFrmFullScreen::Prompt(const QString szPrompt, int nValue, int nMin, int nMa
 {
     ui->lbText->setText(szPrompt);
     ui->progressBar->reset();
-    ui->progressBar->setInvertedAppearance(bInverted);
+    //ui->progressBar->setInvertedAppearance(bInverted);
     ui->progressBar->setRange(nMin, nMax);
-    ui->progressBar->setValue(nValue);
+    if(bInverted)
+    {
+        int n = nMax - nValue;
+        qDebug() << "Max:" << nMax << "value:" << nValue << "n:" << n;
+        ui->progressBar->setValue(n);
+    }
+    else
+        ui->progressBar->setValue(nValue);
     return 0;
 }

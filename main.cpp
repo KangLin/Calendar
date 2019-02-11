@@ -11,10 +11,10 @@ int main(int argc, char *argv[])
     QTranslator t;
     t.load(":/Translations/app_" + QLocale::system().name());
     a.installTranslator(&t);
-    CFrmUpdater u;
+    /*CFrmUpdater u;
     u.show();
-    u.StartDownload("https://github.com/qTox/qTox/blob/master/updater/update.cpp");
-    //MainWindow w;
-    //w.show();
+    u.StartDownload("https://github.com/qTox/qTox/blob/master/updater/update.cpp");//*/
+    MainWindow w;
+    w.show();
     return a.exec();
 }

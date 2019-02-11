@@ -27,6 +27,10 @@ public:
     virtual int SetId(int id);
     virtual QString GetName();
     virtual int SetName(QString szName);
+    virtual int SetTitle(QString szTitle);
+    virtual QString GetTitle();
+    virtual int SetContent(QString szContent);
+    virtual QString GetContent();
     virtual int GetInterval();
     virtual int SetInterval(int nInterval);
 
@@ -61,6 +65,8 @@ protected:
 private:
     int m_nId;
     QString m_szName;
+    QString m_szTitle;
+    QString m_szContent;
     QTime m_Time;
     int m_nInterval;
     QTimer m_PromptTimer;

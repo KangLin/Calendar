@@ -89,6 +89,28 @@ int CTask::SetName(QString szName)
     return 0;
 }
 
+int CTask::SetTitle(QString szTitle)
+{
+    m_szTitle = szTitle;
+    return 0;
+}
+
+QString CTask::GetTitle()
+{
+    return m_szTitle;
+}
+
+int CTask::SetContent(QString szContent)
+{
+    m_szContent = szContent;
+    return 0;
+}
+
+QString CTask::GetContent()
+{
+    return m_szContent;
+}
+
 int CTask::SetInterval(int nInterval)
 {
     m_nInterval = nInterval;

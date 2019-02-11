@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    m_lstTasks.RemoveAll();
 }
 
 void MainWindow::slotTimeout()
@@ -57,7 +58,6 @@ void MainWindow::on_pbAdd_clicked()
     tasks->Add(lock);
     tasks->Start();
     m_lstTasks.Add(tasks);
-
 }
 
 void MainWindow::on_pbRemove_clicked()
