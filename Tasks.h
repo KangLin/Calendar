@@ -11,6 +11,10 @@
 class CTasks : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int id READ GetId WRITE SetId)
+    Q_PROPERTY(QString name READ GetName WRITE SetName)
+    Q_PROPERTY(bool end READ End)
+    
 public:
     explicit CTasks(QObject *parent = nullptr);
     virtual ~CTasks();

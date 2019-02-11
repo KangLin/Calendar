@@ -10,6 +10,12 @@
 class CTask : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString name READ GetName WRITE SetName)
+    Q_PROPERTY(QString title READ GetTitle WRITE SetTitle)
+    Q_PROPERTY(QString content READ GetContent WRITE SetContent)
+    Q_PROPERTY(int id READ GetId WRITE SetId)
+    Q_PROPERTY(int interval READ GetInterval WRITE SetInterval)
+
 public:
     explicit CTask(QObject *parent = nullptr);
     /**

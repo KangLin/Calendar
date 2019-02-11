@@ -25,11 +25,11 @@ public:
     explicit CTaskLockScreen(int nInterval = 15 * 60 * 1000,
                              int nPromptInterval = 60 * 1000,
                              QObject *parent = nullptr);
-    
+
 protected:
     virtual int onStart();
     virtual int onRun();
-    
+
 protected slots:
     virtual void slotPrompt();
     
