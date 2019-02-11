@@ -16,9 +16,9 @@ public:
     CTaskTrayIconPrompt(QObject *parent = nullptr);
     CTaskTrayIconPrompt(const QString szMessage,
                 const QString szTitle = tr("Prompt"),
-                const QIcon icon = QIcon(":/icon/app"),
                 int nInterval = 5 * 60 * 1000,
                 int nPromptInterval = 60 * 1000,
+                const QIcon icon = QIcon(":/icon/App"),
                 QObject *parent = nullptr);
 
 protected:

@@ -102,7 +102,10 @@ int CTask::Elapsed()
 
 int CTask::Remaining()
 {
-    return GetInterval() - Elapsed();
+    int nRet = GetInterval() - Elapsed();
+    if(nRet < 0)
+        return 0;
+    return nRet;
 }
 
 int CTask::GetInterval()

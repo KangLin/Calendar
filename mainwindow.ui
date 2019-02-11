@@ -11,11 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Tasks</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resource/Resource.qrc">
-    <normaloff>:/icon/app</normaloff>:/icon/app</iconset>
+    <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pbAdd">

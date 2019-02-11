@@ -11,9 +11,9 @@ CTaskTrayIconPrompt::CTaskTrayIconPrompt(QObject *parent)
 
 CTaskTrayIconPrompt::CTaskTrayIconPrompt(const QString szMessage,
                          const QString szTitle,
-                         const QIcon icon,
                          int nInterval,
                          int nPromptInterval,
+                         const QIcon icon,
                          QObject *parent) 
     : CTask(nInterval, nPromptInterval, parent),
       m_TrayIcon(this)
@@ -65,7 +65,7 @@ int CTaskTrayIconPrompt::onStart()
     int nRet = 0;
     if(QSystemTrayIcon::isSystemTrayAvailable())
     {
-        m_TrayIcon.show();
+        //m_TrayIcon.show();
         slotPrompt();
     }
     return nRet;

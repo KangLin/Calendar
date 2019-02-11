@@ -1,11 +1,12 @@
 <RCC>
     <qresource prefix="/icon">
-        <file alias="app">image/app.png</file>
-        <file alias="weixinpay">image/weixinpay.png</file>
-        <file alias="weixinpay20">image/weixinpay20.png</file>
-        <file alias="zhifubao">image/zhifubao.png</file>
-        <file alias="zhifubao20">image/zhifubao20.png</file>
-        <file alias="china">image/china.png</file>
-        <file alias="close">image/close.png</file>
+        <file alias="App">image/app.png</file>
+        <file alias="WeiXinPay">image/weixinpay.png</file>
+        <file alias="WeiXinPay20">image/weixinpay20.png</file>
+        <file alias="ZhiFuBao">image/zhifubao.png</file>
+        <file alias="ZhiFuBao20">image/zhifubao20.png</file>
+        <file alias="China">image/china.png</file>
+        <file alias="Close">image/close.png</file>
+        <file alias="Settings">image/settings16x16.png</file>
     </qresource>
 </RCC>
