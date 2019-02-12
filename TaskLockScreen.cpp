@@ -43,7 +43,12 @@ int CTaskLockScreen::onStart()
 {
     int nRet = 0;
 
-    m_FullScreen.showFullScreen();
+    if(nullptr == m_FullScreen.data())
+    {
+        m_FullScreen = QSharedPointer<CFrmFullScreen>(new CFrmFullScreen());
+    }
+    if(m_FullScreen)
+        m_FullScreen->showFullScreen();
    
 #if defined(Q_OS_WIN)
     if(NULL == m_hKeyboardHook)
@@ -78,7 +83,11 @@ int CTaskLockScreen::onRun()
     }
 #endif
 
-    m_FullScreen.close();
+    if(m_FullScreen)
+    {
+        m_FullScreen->close();
+        m_FullScreen.clear();
+    }
     return nRet;
 }
 
@@ -86,7 +95,8 @@ void CTaskLockScreen::slotPrompt()
 {
     QTime tm(0, 0);
     tm = tm.addMSecs(Remaining());
-    m_FullScreen.Prompt(tr("Lock screen and reset\nRemaining: %1")
+    if(m_FullScreen)
+        m_FullScreen->Prompt(tr("Lock screen and reset\nRemaining: %1")
                          .arg(tm.toString("HH:mm:ss")),
                         Remaining(),
                         0,

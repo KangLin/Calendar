@@ -24,6 +24,7 @@ public:
 private slots:
     void slotExit(bool checked);
     void slotShow(bool checked);
+    void slotAbout(bool checked);
     
     void on_pbOK_clicked();
     void on_bpCancle_clicked();

@@ -1,6 +1,7 @@
 #include "FrmFullScreen.h"
 #include "ui_FrmFullScreen.h"
 #include <QDebug>
+#include <QPainter>
 
 CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
     QWidget(parent,
@@ -12,12 +13,32 @@ CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
     ui(new Ui::CFrmFullScreen)
 {
     ui->setupUi(this);
-    setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
+    setAttribute(Qt::WA_DeleteOnClose);
+    //setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
+    bool check = connect(&m_Timer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
+    Q_ASSERT(check);
+    m_Timer.start(1000);
+    this->setCursor(Qt::BlankCursor);
 }
 
 CFrmFullScreen::~CFrmFullScreen()
 {
+    qDebug() << "CFrmFullScreen::~CFrmFullScreen()";
+    m_Timer.stop();
     delete ui;
+}
+
+void CFrmFullScreen::slotTimeout()
+{
+    ui->timeEdit->setTime(QTime::currentTime());
+}
+
+void CFrmFullScreen::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    /*QPainter painter(this);
+    if(!m_bpBackgroup.isNull())
+        painter.drawImage(this->geometry(), m_bpBackgroup);*/
 }
 
 int CFrmFullScreen::Prompt(const QString szPrompt, int nValue, int nMin, int nMax, bool bInverted)
@@ -34,5 +55,16 @@ int CFrmFullScreen::Prompt(const QString szPrompt, int nValue, int nMin, int nMa
     }
     else
         ui->progressBar->setValue(nValue);
+    return 0;
+}
+
+int CFrmFullScreen::SetBackgroupImage(const QString szImage)
+{
+    m_bpBackgroup.load(szImage);
+
+    QPalette palette;
+    palette.setBrush(QPalette::Window, QBrush(m_bpBackgroup.scaled(this->geometry().size())));
+    setPalette(palette);
+    
     return 0;
 }

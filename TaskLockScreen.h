@@ -7,6 +7,7 @@
 #include "FrmFullScreen.h"
 
 #include <QTimer>
+#include <QSharedPointer>
 
 #if defined(Q_OS_WIN)
     #include <Windows.h>
@@ -23,7 +24,7 @@ public:
      * @param parent
      */
     explicit CTaskLockScreen(int nInterval = 15 * 60 * 1000,
-                             int nPromptInterval = 60 * 1000,
+                             int nPromptInterval = 1000,
                              QObject *parent = nullptr);
 
 protected:
@@ -40,7 +41,7 @@ private:
     HHOOK m_hKeyboardHook;
     HHOOK m_hMouseHook;
 #endif
-    CFrmFullScreen m_FullScreen;
+    QSharedPointer<CFrmFullScreen> m_FullScreen;
 };
 
 #endif // TASKLOCKSCEEN_H

@@ -11,6 +11,28 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 TARGET = Tasks
 TEMPLATE = app
 
+
+#Get app version use git, please set git path to environment variable PATH
+isEmpty(BUILD_VERSION) {
+    isEmpty(GIT) : GIT=$$(GIT)
+    isEmpty(GIT) : GIT=git
+    isEmpty(GIT_DESCRIBE) {
+        GIT_DESCRIBE = $$system(cd $$system_path($$PWD) && $$GIT describe --tags)
+        isEmpty(BUILD_VERSION) {
+            BUILD_VERSION = $$GIT_DESCRIBE
+        }
+    }
+    isEmpty(BUILD_VERSION) {
+        BUILD_VERSION = $$system(cd $$system_path($$PWD) && $$GIT rev-parse --short HEAD)
+    }
+    
+    isEmpty(BUILD_VERSION){
+        error("Built without git, please add BUILD_VERSION to DEFINES or add git path to environment variable GIT or qmake parameter GIT")
+    }
+}
+message("BUILD_VERSION:$$BUILD_VERSION")
+DEFINES += BUILD_VERSION=\"\\\"$$quote($$BUILD_VERSION)\\\"\"
+
 RC_FILE = AppIcon.rc
 
 # The following define makes your compiler emit warnings if you use
@@ -38,7 +60,10 @@ SOURCES += \
     TaskPrompt.cpp \
     FrmStickyNotes.cpp \
     FrmUpdater.cpp \
-    FrmEyeNurse.cpp
+    FrmEyeNurse.cpp \
+    Global/GlobalDir.cpp \
+    Global/Log.cpp \
+    DlgAbout/DlgAbout.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +77,10 @@ HEADERS += \
     TaskPrompt.h \
     FrmStickyNotes.h \
     FrmUpdater.h \
-    FrmEyeNurse.h
+    FrmEyeNurse.h \
+    Global/GlobalDir.h \
+    Global/Log.h \
+    DlgAbout/DlgAbout.h
 
 FORMS += \
         mainwindow.ui \
@@ -60,10 +88,11 @@ FORMS += \
     FrmTop.ui \
     FrmStickyNotes.ui \
     FrmUpdater.ui \
-    FrmEyeNurse.ui
+    FrmEyeNurse.ui \
+    DlgAbout/DlgAbout.ui
 
 RESOURCES += \
-    Resource/Resource.qrc
+    Resource/Resource.qrc \
 
 msvc : LIBS += User32.lib
 

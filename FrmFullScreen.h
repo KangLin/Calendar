@@ -3,6 +3,8 @@
 
 #pragma once
 #include <QWidget>
+#include <QTimer>
+#include <QImage>
 
 namespace Ui {
 class CFrmFullScreen;
@@ -17,9 +19,18 @@ public:
     ~CFrmFullScreen();
     
     int Prompt(const QString szPrompt, int nValue = 0, int nMin = 0,  int nMax = 100, bool bInverted = false);
+    int SetBackgroupImage(const QString szImage);
+    
+protected:
+    virtual void paintEvent(QPaintEvent *event);
+    
+private slots:
+    void slotTimeout();
     
 private:
     Ui::CFrmFullScreen *ui;
+    QTimer m_Timer;
+    QImage m_bpBackgroup;
 };
 
 #endif // FRMLOCKSCREEN_H

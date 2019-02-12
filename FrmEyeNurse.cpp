@@ -5,6 +5,7 @@
 #include "TaskLockScreen.h"
 
 #include <QMessageBox>
+#include "DlgAbout/DlgAbout.h"
 
 CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     QWidget(parent),
@@ -18,6 +19,10 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
                 this,
                 SLOT(slotExit(bool)));
     m_pShow = m_TrayIconMenu.addAction(tr("Show"), this, SLOT(slotShow(bool)));
+    m_TrayIconMenu.addAction(QIcon(":/icon/App"),
+                             tr("About"),
+                             this,
+                             SLOT(slotAbout(bool)));
     m_TrayIcon.setContextMenu(&m_TrayIconMenu);
     m_TrayIcon.setIcon(this->windowIcon());
     m_TrayIcon.setToolTip(this->windowTitle());
@@ -61,6 +66,13 @@ int CFrmEyeNurse::VisionProtectionTasks()
     m_TaskList.Add(tasks);
     m_TaskList.Start();
     return 0;
+}
+
+void CFrmEyeNurse::slotAbout(bool checked)
+{
+    Q_UNUSED(checked);
+    CDlgAbout dlg(this);
+    dlg.exec();
 }
 
 void CFrmEyeNurse::slotExit(bool checked)

@@ -13,20 +13,70 @@
   <property name="windowTitle">
    <string>FullScreen</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
-    <widget class="QLabel" name="lbText">
+   <item row="5" column="0">
+    <widget class="QTimeEdit" name="timeEdit">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="text">
-      <string>TextLabel</string>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="frame">
+      <bool>false</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="keyboardTracking">
+      <bool>false</bool>
+     </property>
+     <property name="displayFormat">
+      <string notr="true">HH:mm:ss</string>
+     </property>
+     <property name="calendarPopup">
+      <bool>false</bool>
+     </property>
+     <property name="time">
+      <time>
+       <hour>1</hour>
+       <minute>30</minute>
+       <second>30</second>
+      </time>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QProgressBar" name="progressBar">
+     <property name="value">
+      <number>24</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="invertedAppearance">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
@@ -56,16 +106,19 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="0">
-    <widget class="QProgressBar" name="progressBar">
-     <property name="value">
-      <number>24</number>
+   <item row="1" column="0">
+    <widget class="QLabel" name="lbText">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-     </property>
-     <property name="invertedAppearance">
-      <bool>false</bool>
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
