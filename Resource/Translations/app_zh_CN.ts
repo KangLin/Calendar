@@ -14,17 +14,17 @@
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="67"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="121"/>
         <source>Home page: https://github.com/KangLin/Tasks.git</source>
         <translation>主页： https://github.com/KangLin/Tasks.git</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="102"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="80"/>
         <source>Version: 1.0.0.0</source>
         <translation>版本： 1.0.0.0</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="124"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="102"/>
         <source>Build Date:</source>
         <translation>编译日期：</translation>
     </message>
@@ -34,32 +34,32 @@
         <translation>捐赠</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="230"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="243"/>
         <source>License</source>
         <translation>许可协议</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="244"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="257"/>
         <source>Change log</source>
         <translation>修改日志</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="258"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="271"/>
         <source>Thanks</source>
         <translation>感谢</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="283"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="296"/>
         <source> Copyright (C) 2018 KangLin Studio</source>
         <translation>版权(C) 2018 康林工作室</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="308"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="321"/>
         <source>Author:KangLin</source>
         <translation>作者： 康林</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="405"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="418"/>
         <source>Tasks</source>
         <translation>任务</translation>
     </message>
@@ -151,6 +151,11 @@ Email:kl222@126.com</source>
         <translation>关于</translation>
     </message>
     <message>
+        <location filename="../../FrmEyeNurse.cpp" line="56"/>
+        <source>Lock screen and rest</source>
+        <translation>锁屏休息</translation>
+    </message>
+    <message>
         <location filename="../../FrmEyeNurse.cpp" line="90"/>
         <source>Hide</source>
         <translation>隐藏</translation>
@@ -176,7 +181,7 @@ Email:kl222@126.com</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreen.ui" line="26"/>
+        <location filename="../../FrmFullScreen.ui" line="118"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
@@ -201,18 +206,22 @@ Email:kl222@126.com</source>
     <name>CFrmUpdater</name>
     <message>
         <location filename="../../FrmUpdater.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
+        <source>Updater</source>
+        <translation>更新</translation>
     </message>
 </context>
 <context>
     <name>CTaskLockScreen</name>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="89"/>
-        <source>Lock screen and reset
+        <location filename="../../TaskLockScreen.cpp" line="29"/>
+        <source>Lock screen and reset</source>
+        <translation>锁定屏幕并休息</translation>
+    </message>
+    <message>
+        <location filename="../../TaskLockScreen.cpp" line="99"/>
+        <source>
 Remaining: %1</source>
-        <translation type="unfinished">锁定屏幕并休息
-剩余时间： %1</translation>
+        <translation>剩余时间： %1</translation>
     </message>
 </context>
 <context>

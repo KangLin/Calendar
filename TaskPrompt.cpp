@@ -10,18 +10,7 @@ CTaskPrompt::CTaskPrompt(const QString szText,
                          QObject *parent)
     : CTask (nInterval, nPromptInterval, parent)
 {
-    SetText(szText);
-}
-
-int CTaskPrompt::SetText(QString szText)
-{
-    m_szText = szText;
-    return 0;
-}
-
-QString CTaskPrompt::GetText()
-{
-    return m_szText;
+    SetContent(szText);
 }
 
 int CTaskPrompt::onStart()
@@ -39,5 +28,5 @@ int CTaskPrompt::onRun()
 
 void CTaskPrompt::slotPrompt()
 {
-    m_Top.SetText(GetText() + "\n" + tr("Remaining: ") + szRemaining());
+    m_Top.SetText(GetContent() + "\n" + tr("Remaining: ") + szRemaining());
 }

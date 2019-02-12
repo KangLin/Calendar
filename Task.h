@@ -16,6 +16,8 @@ class CTask : public QObject
     Q_PROPERTY(int id READ GetId WRITE SetId)
     Q_PROPERTY(int interval READ GetInterval WRITE SetInterval)
     Q_PROPERTY(int promptInterval READ GetPromptInterval WRITE SetPromptInterval)
+    Q_PROPERTY(QString StartSound WRITE SetStartSound)
+    Q_PROPERTY(QString RunSound WRITE SetRunSound)
     
 public:
     explicit CTask(QObject *parent = nullptr);
@@ -42,6 +44,8 @@ public:
     virtual int SetInterval(int nInterval);
     virtual int GetPromptInterval();
     virtual int SetPromptInterval(int interval);
+    virtual int SetStartSound(const QString & szSound = QString());
+    virtual int SetRunSound(const QString & szSound = QString());
     virtual int SetSound(const QString &szStartSound = QString(), const QString &szRunSound = QString());
     virtual int LoadSettings();
     virtual int SaveSettings();

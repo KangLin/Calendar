@@ -14,17 +14,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="67"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="121"/>
         <source>Home page: https://github.com/KangLin/Tasks.git</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="102"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="80"/>
         <source>Version: 1.0.0.0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="124"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="102"/>
         <source>Build Date:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -34,32 +34,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="230"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="243"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="244"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="257"/>
         <source>Change log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="258"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="271"/>
         <source>Thanks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="283"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="296"/>
         <source> Copyright (C) 2018 KangLin Studio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="308"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="321"/>
         <source>Author:KangLin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="405"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="418"/>
         <source>Tasks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -150,6 +150,11 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmEyeNurse.cpp" line="56"/>
+        <source>Lock screen and rest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../FrmEyeNurse.cpp" line="90"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
@@ -175,7 +180,7 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreen.ui" line="26"/>
+        <location filename="../../FrmFullScreen.ui" line="118"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -200,15 +205,20 @@ Email:kl222@126.com</source>
     <name>CFrmUpdater</name>
     <message>
         <location filename="../../FrmUpdater.ui" line="14"/>
-        <source>Form</source>
+        <source>Updater</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CTaskLockScreen</name>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="89"/>
-        <source>Lock screen and reset
+        <location filename="../../TaskLockScreen.cpp" line="29"/>
+        <source>Lock screen and reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../TaskLockScreen.cpp" line="99"/>
+        <source>
 Remaining: %1</source>
         <translation type="unfinished"></translation>
     </message>

@@ -53,7 +53,7 @@ int CFrmEyeNurse::VisionProtectionTasks()
     task->SetInterval(nWork);
     tasks->Add(task);
     QSharedPointer<CTask> prompt(new CTaskPrompt(
-                                     "Lock screen and rest"
+                                     tr("Lock screen and rest")
                                      ));
     prompt->SetName("Will want to lock the screen");
     prompt->SetInterval(ui->sbPrompTime->value() * 60 * 1000);

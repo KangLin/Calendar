@@ -163,6 +163,18 @@ int CTask::SetPromptInterval(int interval)
     return 0;
 }
 
+int CTask::SetStartSound(const QString &szSound)
+{
+    m_szStartSound = szSound;
+    return 0;
+}
+
+int CTask::SetRunSound(const QString &szSound)
+{
+    m_szRunSound = szSound;
+    return 0;
+}
+
 int CTask::SetSound(const QString &szStartSound, const QString &szRunSound)
 {
     m_szStartSound = szStartSound;
