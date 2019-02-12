@@ -3,6 +3,16 @@
 
 CTasksList::CTasksList(QObject *parent) : QObject(parent)
 {
+    bool check = false;
+    check = connect(&m_Timer, SIGNAL(timeout()),
+                    this, SLOT(slotTimeout()));
+    Q_ASSERT(check);
+    m_nTimerInterval = 1000;
+}
+
+CTasksList::~CTasksList()
+{
+    m_Timer.stop();
 }
 
 int CTasksList::Add(QSharedPointer<CTasks> tasks)
@@ -18,6 +28,8 @@ int CTasksList::Add(QSharedPointer<CTasks> tasks)
         return 0;
     }
     m_lstTasks.push_back(tasks);
+    //TODO: Add the maximum common divisor
+    //m_nTimerInterval =
     return nRet;
 }
 
@@ -40,6 +52,7 @@ int CTasksList::Start()
     {
         tasks->Start();
     }
+    m_Timer.start(m_nTimerInterval);
     return 0;
 }
 
@@ -50,7 +63,19 @@ int CTasksList::Check()
     {
         nRet = task->Check();
         if(task->End())
+        {
             Remove(task);//TODO: 检查是否会出错  
+            //TODO: Modify the maximum common divisor
+        }
     }
+    
+    if(m_lstTasks.empty())
+        m_Timer.stop();
+    
     return nRet;
+}
+
+void CTasksList::slotTimeout()
+{
+    Check();
 }

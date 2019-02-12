@@ -27,6 +27,12 @@ private slots:
     
     void on_pbOK_clicked();
     void on_bpCancle_clicked();
+    void on_sbRestInterval_editingFinished();
+    void on_sbPrompTime_editingFinished();
+    void on_sbPromptInterval_editingFinished();
+    
+protected:
+    virtual void closeEvent(QCloseEvent *event);
     
 private:
     Ui::CFrmEyeNurse *ui;

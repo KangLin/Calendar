@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>255</width>
+    <width>275</width>
     <height>230</height>
    </rect>
   </property>
@@ -35,6 +35,12 @@
      </item>
      <item>
       <widget class="QSpinBox" name="sbRestInterval">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="maximum">
+        <number>999999999</number>
+       </property>
        <property name="value">
         <number>45</number>
        </property>
@@ -59,6 +65,12 @@
      </item>
      <item>
       <widget class="QSpinBox" name="sbPrompTime">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="maximum">
+        <number>999999999</number>
+       </property>
        <property name="value">
         <number>5</number>
        </property>
@@ -77,14 +89,20 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Prompt interval(minutes):</string>
+        <string>Prompt interval(seconds):</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QSpinBox" name="sbPromptInterval">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="maximum">
+        <number>999999999</number>
+       </property>
        <property name="value">
-        <number>1</number>
+        <number>60</number>
        </property>
       </widget>
      </item>
@@ -107,6 +125,12 @@
      </item>
      <item>
       <widget class="QSpinBox" name="sbRestTime">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="maximum">
+        <number>999999999</number>
+       </property>
        <property name="value">
         <number>15</number>
        </property>

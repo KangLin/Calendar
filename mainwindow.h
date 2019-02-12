@@ -24,7 +24,6 @@ public:
 private slots:
     void on_pbAdd_clicked();
     void on_pbRemove_clicked();
-    void slotTimeout();
 
     void slotExit(bool checked);
     void slotSettings(bool checked);
@@ -34,7 +33,7 @@ protected:
 
 private:
     Ui::MainWindow *ui;
-    QTimer m_Timer;
+
     CTasksList m_lstTasks;
 
     QMenu m_TrayIconMenu;

@@ -40,7 +40,9 @@ int CTasks::Remove(QSharedPointer<CTask> task)
 QSharedPointer<CTask> CTasks::Get()
 {
     if(m_nCurrent >= m_vTask.size() || m_nCurrent < 0)
-        return nullptr;
+    {
+        return QSharedPointer<CTask>();
+    }
     return m_vTask.at(m_nCurrent);
 }
 

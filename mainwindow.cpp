@@ -10,11 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    bool check = false;
-    check = connect(&m_Timer, SIGNAL(timeout()),
-                    this, SLOT(slotTimeout()));
-    Q_ASSERT(check);
-
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
                 tr("Exit"),
@@ -29,19 +24,12 @@ MainWindow::MainWindow(QWidget *parent) :
     m_TrayIcon.setToolTip(this->windowTitle());
     VisionProtectionTasks(m_lstTasks);
     m_lstTasks.Start();
-    //TODO: Add the maximum common divisor
-    m_Timer.start(1000);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     m_lstTasks.RemoveAll();
-}
-
-void MainWindow::slotTimeout()
-{
-    m_lstTasks.Check();
 }
 
 void MainWindow::on_pbAdd_clicked()
@@ -74,11 +62,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 void MainWindow::slotExit(bool checked)
 {
+    Q_UNUSED(checked);
     qApp->quit();
 }
 
 void MainWindow::slotSettings(bool checked)
 {
+    Q_UNUSED(checked);
     this->show();
 }
 
