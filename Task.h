@@ -42,6 +42,7 @@ public:
     virtual int SetInterval(int nInterval);
     virtual int GetPromptInterval();
     virtual int SetPromptInterval(int interval);
+    virtual int SetSound(const QString &szStartSound = QString(), const QString &szRunSound = QString());
     virtual int LoadSettings();
     virtual int SaveSettings();
 
@@ -79,6 +80,7 @@ private:
     int m_nInterval;
     QTimer m_PromptTimer;
     int m_nPromptInterval;
+    QString m_szStartSound, m_szRunSound;
     
     int Init();    
 };

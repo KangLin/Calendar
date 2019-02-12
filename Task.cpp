@@ -1,5 +1,6 @@
 #include "Task.h"
 #include <QDebug>
+#include <QSound>
 
 CTask::CTask(QObject *parent) : QObject(parent)
 {
@@ -33,6 +34,8 @@ CTask::~CTask()
 
 int CTask::Start()
 {
+    if(!m_szStartSound.isEmpty())
+        QSound::play(m_szStartSound);
     m_Time.restart();
     if(m_nPromptInterval > 0)
         m_PromptTimer.start(m_nPromptInterval);
@@ -55,6 +58,8 @@ int CTask::Check()
     if(m_nInterval < Elapsed())
     {
         m_PromptTimer.stop();
+        if(!m_szRunSound.isEmpty())
+            QSound::play(m_szRunSound);
         nRet = onRun();
     }
     return nRet;
@@ -155,6 +160,13 @@ int CTask::SetPromptInterval(int interval)
         m_PromptTimer.stop();
         m_PromptTimer.start(m_nPromptInterval);
     }
+    return 0;
+}
+
+int CTask::SetSound(const QString &szStartSound, const QString &szRunSound)
+{
+    m_szStartSound = szStartSound;
+    m_szRunSound = szRunSound;
     return 0;
 }
 

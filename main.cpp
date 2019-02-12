@@ -3,7 +3,6 @@
 #include <QTranslator>
 #include <QLocale>
 #include "FrmEyeNurse.h"
-#include "FrmFullScreen.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,10 +18,6 @@ int main(int argc, char *argv[])
     /*MainWindow w;
     w.show();*/
     CFrmEyeNurse en;
-
-    CFrmFullScreen f;
-    f.SetBackgroupImage("d:/temp/5.jpg");
-    f.show();
     
     return a.exec();
 }
