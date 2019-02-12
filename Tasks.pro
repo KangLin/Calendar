@@ -98,7 +98,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
 }
 
 OTHER_FILES += Install/* \
-    License.md \
+    LICENSE.md \
     appveyor.yml \
     ci/* \
     tag.sh
