@@ -26,7 +26,7 @@ LRESULT CALLBACK LowLevelMouseProc(
 #endif
 
 CTaskLockScreen::CTaskLockScreen(int nInterval, int nPromptInterval, QObject *parent)
-    : CTask(nInterval, nPromptInterval, parent)
+    : CTaskPrompt(tr("Lock screen and reset"), nInterval, nPromptInterval, parent)
 {
     Init();
 }
@@ -96,7 +96,7 @@ void CTaskLockScreen::slotPrompt()
     QTime tm(0, 0);
     tm = tm.addMSecs(Remaining());
     if(m_FullScreen)
-        m_FullScreen->Prompt(tr("Lock screen and reset\nRemaining: %1")
+        m_FullScreen->Prompt(GetText() + tr("\nRemaining: %1")
                          .arg(tm.toString("HH:mm:ss")),
                         Remaining(),
                         0,

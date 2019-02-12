@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "Task.h"
+#include "TaskPrompt.h"
 #include "FrmFullScreen.h"
 
 #include <QTimer>
@@ -13,7 +13,7 @@
     #include <Windows.h>
 #endif
 
-class CTaskLockScreen : public CTask
+class CTaskLockScreen : public CTaskPrompt
 {
     Q_OBJECT
 public:

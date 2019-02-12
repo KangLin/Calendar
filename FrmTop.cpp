@@ -75,3 +75,16 @@ void CFrmTop::SetText(const QString szText)
 {
     ui->lbPrompt->setText(szText);
 }
+
+int CFrmTop::SetBackgroupImage(const QString szImage)
+{
+    m_bpBackgroup.load(szImage);
+
+    QPalette palette;
+    palette.setBrush(QPalette::Window, QBrush(m_bpBackgroup.scaled(this->geometry().size())));
+    setPalette(palette);
+    
+    setStyleSheet("");
+    
+    return 0;
+}

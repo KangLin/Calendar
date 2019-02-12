@@ -53,7 +53,6 @@ SOURCES += \
     Task.cpp \
     Tasks.cpp \
     TasksList.cpp \
-    FrmFullScreen.cpp \
     TaskLockScreen.cpp \
     TaskTrayIconPrompt.cpp \
     FrmTop.cpp \
@@ -63,14 +62,14 @@ SOURCES += \
     FrmEyeNurse.cpp \
     Global/GlobalDir.cpp \
     Global/Log.cpp \
-    DlgAbout/DlgAbout.cpp
+    DlgAbout/DlgAbout.cpp \
+    FrmFullScreen.cpp
 
 HEADERS += \
         mainwindow.h \
     Task.h \
     Tasks.h \
     TasksList.h \
-    FrmFullScreen.h \
     TaskLockScreen.h \
     TaskTrayIconPrompt.h \
     FrmTop.h \
@@ -80,7 +79,8 @@ HEADERS += \
     FrmEyeNurse.h \
     Global/GlobalDir.h \
     Global/Log.h \
-    DlgAbout/DlgAbout.h
+    DlgAbout/DlgAbout.h \
+    FrmFullScreen.h
 
 FORMS += \
         mainwindow.ui \

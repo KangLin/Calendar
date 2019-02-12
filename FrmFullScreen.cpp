@@ -14,7 +14,7 @@ CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-    //setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
+    setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
     bool check = connect(&m_Timer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
     Q_ASSERT(check);
     m_Timer.start(1000);
@@ -65,6 +65,8 @@ int CFrmFullScreen::SetBackgroupImage(const QString szImage)
     QPalette palette;
     palette.setBrush(QPalette::Window, QBrush(m_bpBackgroup.scaled(this->geometry().size())));
     setPalette(palette);
+    
+    setStyleSheet("");
     
     return 0;
 }
