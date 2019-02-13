@@ -23,7 +23,7 @@ public:
     int Start();
     int Check();
     
-private slots:
+private Q_SLOTS:
     void slotTimeout();
     
 private:

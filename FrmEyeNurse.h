@@ -21,7 +21,7 @@ public:
     explicit CFrmEyeNurse(QWidget *parent = nullptr);
     ~CFrmEyeNurse();
     
-private slots:
+private Q_SLOTS:
     void slotExit(bool checked);
     void slotShow(bool checked);
     void slotAbout(bool checked);

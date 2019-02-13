@@ -27,7 +27,7 @@ protected:
     virtual int onRun();
     virtual int onStart();
 
-protected slots:
+protected Q_SLOTS:
     virtual void slotPrompt();
     void slotTrayIconActive(QSystemTrayIcon::ActivationReason reason);
 

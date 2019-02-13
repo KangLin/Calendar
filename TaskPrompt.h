@@ -14,14 +14,14 @@ public:
     explicit CTaskPrompt(QObject *parent = nullptr);
     explicit CTaskPrompt(const QString szText,
                          int nInterval = 5 * 60 * 1000,
-                         int nPromptInterval = 60 * 1000,
+                         int nPromptInterval = 1000,
                          QObject *parent = nullptr);
 
 protected:
     virtual int onStart();
     virtual int onRun();
         
-protected slots:
+protected Q_SLOTS:
     virtual void slotPrompt();
     
 private:

@@ -16,20 +16,20 @@ class CTasks : public QObject
     Q_PROPERTY(bool end READ End)
     
 public:
-    explicit CTasks(QObject *parent = nullptr);
+    Q_INVOKABLE explicit CTasks(QObject *parent = nullptr);
     virtual ~CTasks();
 
-    int GetId();
-    int SetId(int id);
-    QString GetName();
-    int SetName(QString szName);
-    bool End();
+    Q_INVOKABLE int GetId();
+    Q_INVOKABLE int SetId(int id);
+    Q_INVOKABLE QString GetName();
+    Q_INVOKABLE int SetName(QString szName);
+    Q_INVOKABLE bool End();
 
-    virtual int Add(QSharedPointer<CTask> task);
-    virtual int Remove(QSharedPointer<CTask> task);
+    Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
+    Q_INVOKABLE virtual int Remove(QSharedPointer<CTask> task);
 
-    virtual int Start();
-    virtual int Check();
+    Q_INVOKABLE virtual int Start();
+    Q_INVOKABLE virtual int Check();
 
 protected:
     /**
@@ -38,7 +38,6 @@ protected:
      */
     virtual QSharedPointer<CTask> Get();
 
-signals:
 private:
     int m_nCurrent;
     QVector<QSharedPointer<CTask>> m_vTask;

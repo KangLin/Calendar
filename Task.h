@@ -16,36 +16,37 @@ class CTask : public QObject
     Q_PROPERTY(int id READ GetId WRITE SetId)
     Q_PROPERTY(int interval READ GetInterval WRITE SetInterval)
     Q_PROPERTY(int promptInterval READ GetPromptInterval WRITE SetPromptInterval)
-    Q_PROPERTY(QString StartSound WRITE SetStartSound)
-    Q_PROPERTY(QString RunSound WRITE SetRunSound)
+    Q_PROPERTY(QString startSound WRITE SetStartSound)
+    Q_PROPERTY(QString runSound WRITE SetRunSound)
     
 public:
-    explicit CTask(QObject *parent = nullptr);
+    Q_INVOKABLE explicit CTask(QObject *parent = nullptr);
+
     /**
      * @brief CTask
      * @param nInterval: The interval between Start() and onRun(), in milliseconds
      * @param nPromptInterval: if is 0, don't prompt
      * @param parent
      */
-    explicit CTask(int nInterval,
+    Q_INVOKABLE explicit CTask(int nInterval,
                    int nPromptInterval = 0,
                    QObject *parent = nullptr);
     virtual ~CTask();
     
-    virtual int GetId();
-    virtual int SetId(int id);
-    virtual QString GetName();
-    virtual int SetName(QString szName);
-    virtual int SetTitle(QString szTitle);
-    virtual QString GetTitle();
-    virtual int SetContent(QString szContent);
-    virtual QString GetContent();
-    virtual int GetInterval();
-    virtual int SetInterval(int nInterval);
-    virtual int GetPromptInterval();
-    virtual int SetPromptInterval(int interval);
-    virtual int SetStartSound(const QString & szSound = QString());
-    virtual int SetRunSound(const QString & szSound = QString());
+    Q_INVOKABLE virtual int GetId();
+    Q_INVOKABLE virtual int SetId(int id);
+    Q_INVOKABLE virtual QString GetName();
+    Q_INVOKABLE virtual int SetName(QString szName);
+    Q_INVOKABLE virtual int SetTitle(QString szTitle);
+    Q_INVOKABLE virtual QString GetTitle();
+    Q_INVOKABLE virtual int SetContent(QString szContent);
+    Q_INVOKABLE virtual QString GetContent();
+    Q_INVOKABLE virtual int GetInterval();
+    Q_INVOKABLE virtual int SetInterval(int nInterval);
+    Q_INVOKABLE virtual int GetPromptInterval();
+    Q_INVOKABLE virtual int SetPromptInterval(int interval);
+    Q_INVOKABLE virtual int SetStartSound(const QString & szSound = QString());
+    Q_INVOKABLE virtual int SetRunSound(const QString & szSound = QString());
     virtual int SetSound(const QString &szStartSound = QString(), const QString &szRunSound = QString());
     virtual int LoadSettings();
     virtual int SaveSettings();
@@ -59,7 +60,7 @@ public:
     virtual int Check();
     virtual bool End();
 
-protected slots:
+protected Q_SLOTS:
     virtual void slotPrompt();
     
 protected:

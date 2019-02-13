@@ -80,7 +80,8 @@ HEADERS += \
     Global/GlobalDir.h \
     Global/Log.h \
     DlgAbout/DlgAbout.h \
-    FrmFullScreen.h
+    FrmFullScreen.h \
+    ObjectFactory.h
 
 FORMS += \
         mainwindow.ui \

@@ -20,7 +20,7 @@ public:
     
     int StartDownload(const QString szUrl);
     
-private slots:
+private Q_SLOTS:
     void slotReadyRead();
     void slotError(QNetworkReply::NetworkError e);
     void slotSslError(const QList<QSslError> e);

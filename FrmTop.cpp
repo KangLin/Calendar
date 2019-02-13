@@ -2,6 +2,7 @@
 #include "ui_FrmTop.h"
 #include <QGuiApplication>
 #include <QScreen>
+#include <QDebug>
 
 CFrmTop::CFrmTop(QWidget *parent) :
     QWidget(parent,
@@ -69,6 +70,25 @@ void CFrmTop::mouseReleaseEvent(QMouseEvent *e)
 {
     if(e->button() == Qt::LeftButton)
         m_bMoveable = false;
+}
+
+void CFrmTop::contextMenuEvent(QContextMenuEvent *event)
+{
+    if(m_popupMenu.data() == nullptr)
+    {
+        SetPopupMenu(QSharedPointer<QMenu>(new QMenu()));
+    }
+    m_popupMenu->exec(event->globalPos());
+}
+
+int CFrmTop::SetPopupMenu(QSharedPointer<QMenu> menu)
+{
+    if(nullptr == menu.data())
+        return -1;
+    m_popupMenu = menu;
+    m_popupMenu->addAction(QIcon(":/icon/Close"),
+                           tr("Close"), this, SLOT(close()));
+    return 0;
 }
 
 void CFrmTop::SetText(const QString szText)

@@ -4,16 +4,16 @@
 
 CTask::CTask(QObject *parent) : QObject(parent)
 {
-    SetInterval(0);
-    m_nPromptInterval = 0;
     Init();
+    SetInterval(0);
+    SetPromptInterval(0);
 }
 
 CTask::CTask(int nInterval, int nPromptInterval, QObject *parent)
 {
-    SetInterval(nInterval);
-    m_nPromptInterval = nPromptInterval;
     Init();
+    SetInterval(nInterval);
+    SetPromptInterval(nPromptInterval);
 }
 
 int CTask::Init()
@@ -21,8 +21,8 @@ int CTask::Init()
     bool check = connect(&m_PromptTimer, SIGNAL(timeout()),
                          this, SLOT(slotPrompt()));
     Q_ASSERT(check);
-    m_nId = -1;
-    m_szName = "Task";
+    SetId(-1);
+    SetName("Task");
     m_Time.start();
     return 0;
 }

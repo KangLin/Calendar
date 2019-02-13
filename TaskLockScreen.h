@@ -31,7 +31,7 @@ protected:
     virtual int onStart();
     virtual int onRun();
 
-protected slots:
+protected Q_SLOTS:
     virtual void slotPrompt();
     
 private:
