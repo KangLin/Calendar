@@ -31,6 +31,9 @@ public:
     explicit CDlgAbout(QWidget *parent = 0);
     ~CDlgAbout();
 
+private slots:
+    void on_pushButton_clicked();
+    
 private:
     Ui::CDlgAbout *ui;
 

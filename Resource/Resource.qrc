@@ -8,5 +8,7 @@
         <file alias="China">image/china.png</file>
         <file alias="Close">image/close.png</file>
         <file alias="Settings">image/settings16x16.png</file>
+        <file alias="EyeNurse">image/EyeNurse.png</file>
+        <file alias="EyeCharts">image/EyeCharts.png</file>
     </qresource>
 </RCC>

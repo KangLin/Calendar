@@ -20,7 +20,7 @@
    <item row="5" column="0">
     <widget class="QTimeEdit" name="timeEdit">
      <property name="enabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -36,6 +36,9 @@
      </property>
      <property name="autoFillBackground">
       <bool>false</bool>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
      </property>
      <property name="frame">
       <bool>false</bool>
@@ -114,6 +117,12 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>TextLabel</string>
      </property>
@@ -124,6 +133,9 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>timeEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

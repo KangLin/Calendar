@@ -78,3 +78,7 @@ int CDlgAbout::AppendFile(QTextEdit* pEdit, const QString &szFile)
     return 0;
 }
 
+void CDlgAbout::on_pushButton_clicked()
+{
+    close();
+}

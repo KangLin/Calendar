@@ -1,11 +1,8 @@
 #include "FrmEyeNurse.h"
 #include "ui_FrmEyeNurse.h"
-
-#include "TaskPrompt.h"
 #include "TaskLockScreen.h"
-
-#include <QMessageBox>
 #include "DlgAbout/DlgAbout.h"
+#include <QMessageBox>
 
 CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     QWidget(parent),
@@ -18,7 +15,7 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
                 tr("Exit"),
                 this,
                 SLOT(slotExit(bool)));
-    m_pShow = m_TrayIconMenu.addAction(tr("Show"), this, SLOT(slotShow(bool)));
+    m_pShow = m_TrayIconMenu.addAction(QIcon(":/icon/EyeNurse"), tr("Show"), this, SLOT(slotShow(bool)));
     m_TrayIconMenu.addAction(QIcon(":/icon/App"),
                              tr("About"),
                              this,

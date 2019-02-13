@@ -1,5 +1,6 @@
 #include "TaskLockScreen.h"
 #include <QDebug>
+#include <QCoreApplication>
 
 #if defined(Q_OS_WIN)
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
@@ -81,8 +82,17 @@ int CTaskLockScreen::onRun()
         BOOL bFlag = UnhookWindowsHookEx(m_hMouseHook);
         if(bFlag) m_hMouseHook = NULL;
     }
+#elif defined(Q_OS_LINUX)
+    //TODO: linux
+    //https://www.x.org/releases/X11R7.7/doc/libX11/XKB/xkblib.html#Core_X_Protocol_Support_for_Keyboards
 #endif
 
+    //TODO: Add sound
+    
+    //如果是屏保，则结束
+    QKeyEvent enter(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
+    qApp->sendEvent(this, &enter);
+    
     if(m_FullScreen)
     {
         m_FullScreen->close();
