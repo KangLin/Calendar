@@ -63,7 +63,8 @@ SOURCES += \
     Global/GlobalDir.cpp \
     Global/Log.cpp \
     DlgAbout/DlgAbout.cpp \
-    FrmFullScreen.cpp
+    FrmFullScreen.cpp \
+    Global/Tool.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -81,7 +82,8 @@ HEADERS += \
     Global/Log.h \
     DlgAbout/DlgAbout.h \
     FrmFullScreen.h \
-    ObjectFactory.h
+    ObjectFactory.h \
+    Global/Tool.h
 
 FORMS += \
         mainwindow.ui \
@@ -105,7 +107,7 @@ isEmpty(PREFIX) {
     } 
 }
 
-other.files = License.md
+other.files = License.md Authors.md AppIcon.ico
 other.path = $$PREFIX
 other.CONFIG += no_check_exist 
 target.path = $$PREFIX
@@ -128,9 +130,12 @@ win32 : equals(QMAKE_HOST.os, Windows){
 }
 
 OTHER_FILES += Install/* \
-    LICENSE.md \
     appveyor.yml \
     ci/* \
     tag.sh
 
 include(Resource/Translations/Translations.pri)
+
+DISTFILES += \
+    LICENSE.md \
+    Authors.md

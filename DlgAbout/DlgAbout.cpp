@@ -53,7 +53,7 @@ CDlgAbout::CDlgAbout(QWidget *parent) :
             + "LICENSE.md";
     AppendFile(ui->txtLicense, szFile);
     szFile = qApp->applicationDirPath() + QDir::separator()
-            + "Authors.txt";
+            + "Authors.md";
     AppendFile(ui->txtThinks, szFile);
 #endif
 }

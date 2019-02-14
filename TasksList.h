@@ -20,6 +20,10 @@ public:
     int Remove(QSharedPointer<CTasks> tasks);
     int RemoveAll();
 
+    /**
+     * @brief Start: Initialize here
+     * @return 
+     */
     int Start();
     int Check();
     

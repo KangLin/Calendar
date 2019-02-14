@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Tasks"
-!define PRODUCT_VERSION "v0.1.0-312-gbbf45f4"
+!define PRODUCT_VERSION "7c1d674"
 !define PRODUCT_PUBLISHER "KangLin studio"
 !define PRODUCT_WEB_SITE "https://github.com/KangLin/Tasks"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\KangLinStudio\Tasks.exe"
@@ -17,8 +17,8 @@ SetCompressor lzma
 
 ; MUI Settings
 !define MUI_ABORTWARNING
-!define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\modern-install.ico"
-!define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
+!define MUI_ICON "install\AppIcon.ico"
+!define MUI_UNICON "install\AppIcon.ico"
 
 ; Language Selection Dialog Settings
 !define MUI_LANGDLL_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
@@ -36,9 +36,11 @@ SetCompressor lzma
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
-!define MUI_FINISHPAGE_RUN "$INSTDIR\Tasks.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\${PRODUCT_NAME}.exe"
+!define MUI_FINISHPAGE_SHOWREADME
+!define MUI_FINISHPAGE_SHOWREADME_Function AutoBoot
+!define MUI_FINISHPAGE_SHOWREADME_TEXT "Start from boot"
 !insertmacro MUI_PAGE_FINISH
-
 ; Uninstaller pages
 !insertmacro MUI_UNPAGE_INSTFILES
 
@@ -54,6 +56,9 @@ LangString LANG_UNINSTALL_CONFIRM ${LANG_SIMPCHINESE} "非常感謝您的使用�
 
 LangString LANG_REMOVE_COMPONENT ${LANG_ENGLISH} "You sure you want to completely remove $ (^ Name), and all of its components?"
 LangString LANG_REMOVE_COMPONENT ${LANG_SIMPCHINESE} "你确实要完全移除 $(^Name) ，其及所有的组件？"
+
+LangString LANG_AUTO_BOOT ${LANG_ENGLISH} "Start from reboot"
+LangString LANG_AUTO_BOOT ${LANG_SIMPCHINESE} "开机自启动"
 
 ; MUI end ------
 
@@ -110,14 +115,6 @@ Function InstallRuntime
   ${EndIf}
 FunctionEnd
 
-Function InstallFont
-  StrCmp $LANGUAGE "2052" 0 +3
-  ;Modify environment variable for default font to simsun.ttc
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Session Manager\Environment" "OSGEARTH_DEFAULT_FONT" "simsun.ttc"
-  ;Reflash environment variable
-  SendMessage ${HWND_BROADCAST} ${WM_WININICHANGE} 0 "STR:Environment"
-FunctionEnd
-
 Function .onInit
 ;  !insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
@@ -128,9 +125,9 @@ Section "${PRODUCT_NAME}" SEC01
   File /r "install\*"
   SetShellVarContext all
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe"
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\${PRODUCT_NAME}.exe"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\uninst.exe"
-  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe"
+  CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\${PRODUCT_NAME}.exe"
   SetShellVarContext current
   call InstallRuntime
 SectionEnd
@@ -146,7 +143,6 @@ SectionEnd
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
   WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\${PRODUCT_NAME}.exe"
-  call InstallFont
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\${PRODUCT_NAME}.exe"
@@ -171,6 +167,10 @@ Function un.onInit
   Abort
 FunctionEnd
 
+Function AutoBoot
+    WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\RunOnce" "${PRODUCT_NAME}" "$INSTDIR\${PRODUCT_NAME}.exe"
+FunctionEnd
+
 Section Uninstall
   SetShellVarContext all
   RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
@@ -178,10 +178,10 @@ Section Uninstall
   SetOutPath "$SMPROGRAMS"
   SetShellVarContext current
   RMDir /r "$INSTDIR"
-
+  
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
-  DeleteRegValue HKLM "SYSTEM\CurrentControlSet\Control\Session Manager\Environment" "OSGEARTH_DEFAULT_FONT"
+  DeleteRegValue  HKCU "Software\Microsoft\Windows\CurrentVersion\RunOnce" "${PRODUCT_NAME}"
   SendMessage ${HWND_BROADCAST} ${WM_WININICHANGE} 0 "STR:Environment"
   SetAutoClose true
 SectionEnd

@@ -12,7 +12,8 @@ CTasksList::CTasksList(QObject *parent) : QObject(parent)
 
 CTasksList::~CTasksList()
 {
-    m_Timer.stop();
+    if(m_Timer.isActive())
+        m_Timer.stop();
 }
 
 int CTasksList::Add(QSharedPointer<CTasks> tasks)
@@ -52,7 +53,8 @@ int CTasksList::Start()
     {
         tasks->Start();
     }
-    m_Timer.start(m_nTimerInterval);
+    if(m_nTimerInterval)
+        m_Timer.start(m_nTimerInterval);
     return 0;
 }
 
@@ -70,8 +72,10 @@ int CTasksList::Check()
     }
     
     if(m_lstTasks.empty())
-        m_Timer.stop();
-    
+    {
+        if(m_Timer.isActive())
+            m_Timer.stop();
+    }
     return nRet;
 }
 

@@ -28,7 +28,15 @@ public:
     Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
     Q_INVOKABLE virtual int Remove(QSharedPointer<CTask> task);
 
+    /**
+     * @brief Start: Initialize here
+     * @return 
+     */
     Q_INVOKABLE virtual int Start();
+    /**
+     * @brief Check the current task is run
+     * @return 
+     */
     Q_INVOKABLE virtual int Check();
 
 protected:

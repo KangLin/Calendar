@@ -2,11 +2,25 @@
 #include <QDebug>
 #include <QSound>
 
+int gTypeIdCTask = qRegisterMetaType<CTask>();
+
 CTask::CTask(QObject *parent) : QObject(parent)
 {
     Init();
     SetInterval(0);
     SetPromptInterval(0);
+}
+
+CTask::CTask(const CTask &task)
+{
+    m_nId = task.m_nId;
+    m_szName = task.m_szName;
+    m_szTitle = task.m_szTitle;
+    m_szContent = task.m_szContent;
+    m_szRunSound = task.m_szRunSound;
+    m_szStartSound = task.m_szStartSound;
+    m_nInterval = task.m_nInterval;
+    m_nPromptInterval = task.m_nPromptInterval;
 }
 
 CTask::CTask(int nInterval, int nPromptInterval, QObject *parent)

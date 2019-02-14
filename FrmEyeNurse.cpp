@@ -3,6 +3,7 @@
 #include "TaskLockScreen.h"
 #include "DlgAbout/DlgAbout.h"
 #include <QMessageBox>
+#include "Global/Tool.h"
 
 CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     QWidget(parent),
@@ -20,6 +21,13 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
                              tr("About"),
                              this,
                              SLOT(slotAbout(bool)));
+    QString szStartRun = tr("Enable run from boot");
+    if(CTool::IsStartRunOnceCurrentUser())
+        szStartRun = tr("Disable run from boot");
+    m_pStartRun = m_TrayIconMenu.addAction(szStartRun, this, SLOT(slotStartRun(bool)));
+    m_pStartRun->setCheckable(true);
+    m_pStartRun->setChecked(CTool::IsStartRunOnceCurrentUser());
+    
     m_TrayIcon.setContextMenu(&m_TrayIconMenu);
     m_TrayIcon.setIcon(this->windowIcon());
     m_TrayIcon.setToolTip(this->windowTitle());
@@ -88,6 +96,20 @@ void CFrmEyeNurse::slotShow(bool checked)
     }else {
         hide();
         m_pShow->setText(tr("Show"));
+    }
+}
+
+void CFrmEyeNurse::slotStartRun(bool checked)
+{
+    if(checked)
+    {
+        CTool::InstallStartRunOnceCurrentUser();
+        m_pStartRun->setText(tr("Disable run from boot"));
+    }
+    else
+    {
+        CTool::RemoveStartRunOnceCurrentUser();
+        m_pStartRun->setText(tr("Enable run from boot"));
     }
 }
 

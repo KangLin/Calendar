@@ -21,7 +21,7 @@ class CTask : public QObject
     
 public:
     Q_INVOKABLE explicit CTask(QObject *parent = nullptr);
-
+    CTask(const CTask &task);
     /**
      * @brief CTask
      * @param nInterval: The interval between Start() and onRun(), in milliseconds
@@ -51,13 +51,21 @@ public:
     virtual int LoadSettings();
     virtual int SaveSettings();
 
-    virtual int Start();
-
     /**
-     * @brief Check if the task can run
+     * @brief Start task, Initialize here
      * @return 
      */
+    virtual int Start();
+    /**
+     * @brief Check if the task can run
+     * @return : 0, The task is finished. other, The task is continue.
+     */
     virtual int Check();
+    /**
+     * @brief End
+     * @return : true: The task is remove from tasks list
+     *           false: The task remain in tasks list 
+     */
     virtual bool End();
 
 protected Q_SLOTS:
@@ -81,13 +89,17 @@ private:
     QString m_szName;
     QString m_szTitle;
     QString m_szContent;
+    
     QTime m_Time;
     int m_nInterval;
     QTimer m_PromptTimer;
     int m_nPromptInterval;
+    
     QString m_szStartSound, m_szRunSound;
     
     int Init();    
 };
+
+Q_DECLARE_METATYPE(CTask)
 
 #endif // TASK_H
