@@ -4,15 +4,19 @@
 !define PRODUCT_NAME "Tasks"
 !define PRODUCT_VERSION "7c1d674"
 !define PRODUCT_PUBLISHER "KangLin studio"
-!define PRODUCT_WEB_SITE "https://github.com/KangLin/Tasks"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\KangLinStudio\Tasks.exe"
-!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\KangLinStudio\Tasks"
+!define PRODUCT_WEB_SITE "https://github.com/KangLin/${PRODUCT_NAME}"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_NAME}.exe"
+!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
 SetCompressor lzma
 
+;InstType "Full"
+;InstType "Lite"
+;InstType "Minimal"
+
 ; MUI 1.67 compatible ------
-!include "MUI.nsh"
+!include "MUI2.nsh"
 !include "x64.nsh"
 
 ; MUI Settings
@@ -52,7 +56,7 @@ LangString LANG_PRODUCT_NAME ${LANG_ENGLISH} "Tasks"
 LangString LANG_PRODUCT_NAME ${LANG_SIMPCHINESE} "任务"
 
 LangString LANG_UNINSTALL_CONFIRM ${LANG_ENGLISH} "Thank you very much! $(^Name) has been successfully removed."
-LangString LANG_UNINSTALL_CONFIRM ${LANG_SIMPCHINESE} "非常感謝您的使用！ $(^Name) 已成功地从您的计算机中移除。"
+LangString LANG_UNINSTALL_CONFIRM ${LANG_SIMPCHINESE} "非常感谢您的使用！ $(^Name) 已成功地从您的计算机中移除。"
 
 LangString LANG_REMOVE_COMPONENT ${LANG_ENGLISH} "You sure you want to completely remove $ (^ Name), and all of its components?"
 LangString LANG_REMOVE_COMPONENT ${LANG_SIMPCHINESE} "你确实要完全移除 $(^Name) ，其及所有的组件？"
@@ -62,7 +66,8 @@ LangString LANG_AUTO_BOOT ${LANG_SIMPCHINESE} "开机自启动"
 
 ; MUI end ------
 
-Name "$(LANG_PRODUCT_NAME) ${PRODUCT_VERSION}"
+Name "$(LANG_PRODUCT_NAME)-${PRODUCT_VERSION}"
+Caption "$(LANG_PRODUCT_NAME)-${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}-Setup-${PRODUCT_VERSION}.exe"
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
@@ -116,7 +121,7 @@ Function InstallRuntime
 FunctionEnd
 
 Function .onInit
-;  !insertmacro MUI_LANGDLL_DISPLAY
+  !insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
 Section "${PRODUCT_NAME}" SEC01

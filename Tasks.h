@@ -17,6 +17,7 @@ class CTasks : public QObject
     
 public:
     Q_INVOKABLE explicit CTasks(QObject *parent = nullptr);
+    CTasks(const CTasks &tasks);
     virtual ~CTasks();
 
     Q_INVOKABLE int GetId();
@@ -53,5 +54,7 @@ private:
     int m_nId;
     QString m_szName;
 };
+
+Q_DECLARE_METATYPE(CTasks)
 
 #endif // TASKS_H

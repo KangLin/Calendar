@@ -1,11 +1,21 @@
 #include "Tasks.h"
 #include <QDebug>
 
+int gTypeIdCTasks = qRegisterMetaType<CTasks>();
+
 CTasks::CTasks(QObject *parent) : QObject(parent)
 {
     m_nCurrent = 0;
     m_nId = -1;
     m_szName = "Tasks";
+}
+
+CTasks::CTasks(const CTasks &tasks)
+{
+    m_nCurrent = tasks.m_nCurrent;
+    m_nId = tasks.m_nId;
+    m_szName = tasks.m_szName;
+    m_vTask = tasks.m_vTask;
 }
 
 CTasks::~CTasks()

@@ -5,6 +5,7 @@
 #include <QByteArray>
 #include <QMetaObject>
 #include <QHash>
+#include <QDebug>
 
 class CObjectFactory
 {
@@ -21,11 +22,18 @@ public:
     {
         int type = QMetaType::type(className);
         if(QMetaType::UnknownType == type)
-            return NULL;
-        const QMetaObject *metaObj = QMetaType::metaObjectForType(type);
-        if(NULL == metaObj)
-            return NULL;
-        QObject *obj = metaObj->newInstance(Q_ARG(QObject*, parent));
+        {
+            qCritical() << className << " is QMetaType::UnknownType";
+            return nullptr;
+        }
+        QObject *obj = (QObject*)QMetaType::create(type);
+        if(nullptr == obj)
+        {
+            qCritical() << "QMetaType::create fail: " << type;
+            return nullptr;
+        }
+        //const QMetaObject* metaObj = QMetaType::metaObjectForType(type);
+        //QObject *obj = metaObj->newInstance(Q_ARG(QObject*, parent));
         return obj;
     }
 };
