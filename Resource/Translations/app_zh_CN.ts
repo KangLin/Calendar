@@ -54,12 +54,17 @@
         <translation>版权(C) 2018 康林工作室</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="321"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="303"/>
+        <source>OK</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="312"/>
         <source>Author:KangLin</source>
         <translation>作者： 康林</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="418"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="409"/>
         <source>Tasks</source>
         <translation>任务</translation>
     </message>
@@ -95,10 +100,10 @@ Email:kl222@126.com</source>
     <name>CFrmEyeNurse</name>
     <message>
         <location filename="../../FrmEyeNurse.ui" line="14"/>
-        <location filename="../../FrmEyeNurse.cpp" line="118"/>
-        <location filename="../../FrmEyeNurse.cpp" line="129"/>
-        <location filename="../../FrmEyeNurse.cpp" line="136"/>
-        <location filename="../../FrmEyeNurse.cpp" line="147"/>
+        <location filename="../../FrmEyeNurse.cpp" line="137"/>
+        <location filename="../../FrmEyeNurse.cpp" line="148"/>
+        <location filename="../../FrmEyeNurse.cpp" line="155"/>
+        <location filename="../../FrmEyeNurse.cpp" line="166"/>
         <source>Eye nurse</source>
         <translation>眼睛护士</translation>
     </message>
@@ -133,42 +138,54 @@ Email:kl222@126.com</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="18"/>
+        <location filename="../../FrmEyeNurse.cpp" line="16"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="21"/>
-        <location filename="../../FrmEyeNurse.cpp" line="93"/>
-        <location filename="../../FrmEyeNurse.cpp" line="103"/>
-        <location filename="../../FrmEyeNurse.cpp" line="109"/>
+        <location filename="../../FrmEyeNurse.cpp" line="19"/>
+        <location filename="../../FrmEyeNurse.cpp" line="98"/>
+        <location filename="../../FrmEyeNurse.cpp" line="122"/>
+        <location filename="../../FrmEyeNurse.cpp" line="128"/>
         <source>Show</source>
         <translation>显示</translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="23"/>
+        <location filename="../../FrmEyeNurse.cpp" line="21"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="56"/>
+        <location filename="../../FrmEyeNurse.cpp" line="24"/>
+        <location filename="../../FrmEyeNurse.cpp" line="112"/>
+        <source>Enable run from boot</source>
+        <translation>允许开户自启动</translation>
+    </message>
+    <message>
+        <location filename="../../FrmEyeNurse.cpp" line="26"/>
+        <location filename="../../FrmEyeNurse.cpp" line="107"/>
+        <source>Disable run from boot</source>
+        <translation>禁止开机自启动</translation>
+    </message>
+    <message>
+        <location filename="../../FrmEyeNurse.cpp" line="61"/>
         <source>Lock screen and rest</source>
         <translation>锁屏休息</translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="90"/>
+        <location filename="../../FrmEyeNurse.cpp" line="95"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="119"/>
-        <location filename="../../FrmEyeNurse.cpp" line="130"/>
+        <location filename="../../FrmEyeNurse.cpp" line="138"/>
+        <location filename="../../FrmEyeNurse.cpp" line="149"/>
         <source>Reset interval must greate then prompt time</source>
         <translation>休息间隔必须大于提示时长</translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="137"/>
-        <location filename="../../FrmEyeNurse.cpp" line="148"/>
+        <location filename="../../FrmEyeNurse.cpp" line="156"/>
+        <location filename="../../FrmEyeNurse.cpp" line="167"/>
         <source>Prompt time muse greate then prompt interval</source>
         <translation>提示时长必须大于提示间隔</translation>
     </message>
@@ -181,7 +198,7 @@ Email:kl222@126.com</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreen.ui" line="118"/>
+        <location filename="../../FrmFullScreen.ui" line="127"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
@@ -201,6 +218,11 @@ Email:kl222@126.com</source>
         <source>Prompt</source>
         <translation>提示</translation>
     </message>
+    <message>
+        <location filename="../../FrmTop.cpp" line="90"/>
+        <source>Close</source>
+        <translation>关闭</translation>
+    </message>
 </context>
 <context>
     <name>CFrmUpdater</name>
@@ -213,12 +235,12 @@ Email:kl222@126.com</source>
 <context>
     <name>CTaskLockScreen</name>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="29"/>
+        <location filename="../../TaskLockScreen.cpp" line="30"/>
         <source>Lock screen and reset</source>
         <translation>锁定屏幕并休息</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="99"/>
+        <location filename="../../TaskLockScreen.cpp" line="109"/>
         <source>
 Remaining: %1</source>
         <translation>剩余时间： %1</translation>
