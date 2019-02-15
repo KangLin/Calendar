@@ -136,23 +136,31 @@ bool CTool::IsStartRunServicesOnce()
     return IsStartRun(gRunServicesOnce);
 }
 
-int CTool::InstallStartRun(const QString &reg)
+int CTool::InstallStartRun(const QString &szReg, const QString &szName, const QString &szPath)
 {
     QString appName = QApplication::applicationName();
     QString appPath = QApplication::applicationFilePath();
-    return SetRegister(reg, appName, appPath);
+    if(!szName.isEmpty())
+        appName = szName;
+    if(!szPath.isEmpty())
+        appPath = szPath;
+    return SetRegister(szReg, appName, appPath);
 }
 
-int CTool::RemoveStartRun(const QString &reg)
+int CTool::RemoveStartRun(const QString &szReg, const QString &szName)
 {
     QString appName = QApplication::applicationName();
-    return RemoveRegister(reg, appName);
+    if(!szName.isEmpty())
+        appName = szName;
+    return RemoveRegister(szReg, appName);
 }
 
-bool CTool::IsStartRun(const QString &reg)
+bool CTool::IsStartRun(const QString &szReg, const QString &szName)
 {
     QString appName = QApplication::applicationName();
-    return IsRegister(reg, appName);
+    if(!szName.isEmpty())
+        appName = szName;
+    return IsRegister(szReg, appName);
 }
 
 int CTool::SetRegister(const QString &reg, const QString &name, const QString &path)

@@ -1,6 +1,9 @@
 #include "Task.h"
 #include <QDebug>
 #include <QSound>
+#include <ObjectFactory.h>
+#include <QtXml>
+#include <QMetaProperty>
 
 int gTypeIdCTask = qRegisterMetaType<CTask>();
 
@@ -201,16 +204,60 @@ bool CTask::End()
     return false;
 }
 
-int CTask::LoadSettings()
+int CTask::LoadSettings(const QDomElement &e)
 {
     int nRet = 0;
-    
+    if("class" != e.tagName())
+    {
+        qCritical() << "CTask::LoadSettings faile: tagName:"
+                    << e.tagName() << " name:" << e.attribute("name");
+        return -1;
+    }
+    const QMetaObject* pObj = metaObject();
+    QDomElement de = e.firstChildElement();
+    while(!de.isNull())
+    {
+        QString szName = de.nodeName();
+        QString szValue = de.attribute("value");
+        int type = de.attribute("type").toInt();
+        int nIndex = pObj->indexOfProperty(szName.toStdString().c_str());
+        QMetaProperty property = pObj->property(nIndex);
+        QVariant v(szValue);
+        
+        if(!property.write(this, szValue))
+            qCritical() << "Write propery fail: " << pObj->className() << szName;
+        
+        de = de.nextSiblingElement();
+    }
     return nRet;
 }
 
-int CTask::SaveSettings()
+int CTask::SaveSettings(QDomElement &e)
 {
     int nRet = 0;
+
+    const QMetaObject* pObj = metaObject();
+    
+    QDomDocument doc;
+    QDomElement task = doc.createElement("class");
+    task.setAttribute("name", pObj->className());    
+    
+    int nAttr = pObj->propertyCount();
+    for(int i = 0; i < nAttr; i++)
+    {
+        QMetaProperty p = pObj->property(i);
+        if(!(p.isReadable() && p.isWritable()))
+            continue;
+        QString szName = p.name();
+        QVariant value = p.read(this);
+        //qDebug() << "propery name: " << szName << " value: " << value.toString();
+        QDomElement domProperty = doc.createElement(szName);
+        domProperty.setAttribute("type", QString::number(value.type()));
+        domProperty.setAttribute("value", value.toString());
+        
+        task.appendChild(domProperty);
+    }
+    e.appendChild(task);
     
     return nRet;
 }

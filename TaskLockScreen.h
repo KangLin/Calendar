@@ -26,7 +26,8 @@ public:
     explicit CTaskLockScreen(int nInterval = 15 * 60 * 1000,
                              int nPromptInterval = 1000,
                              QObject *parent = nullptr);
-
+    CTaskLockScreen(const CTaskLockScreen &t);
+    
 protected:
     virtual int onStart();
     virtual int onRun();
@@ -43,5 +44,7 @@ private:
 #endif
     QSharedPointer<CFrmFullScreen> m_FullScreen;
 };
+
+Q_DECLARE_METATYPE(CTaskLockScreen)
 
 #endif // TASKLOCKSCEEN_H

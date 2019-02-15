@@ -1,5 +1,6 @@
 #include "Tasks.h"
 #include <QDebug>
+#include "ObjectFactory.h"
 
 int gTypeIdCTasks = qRegisterMetaType<CTasks>();
 
@@ -115,5 +116,58 @@ int CTasks::Check()
     
     Start();
     
+    return nRet;
+}
+
+int CTasks::LoadSettings(const QDomElement &e)
+{
+    int nRet = 0;
+    if("class" != e.tagName())
+    {
+        qCritical() << "CTasks::LoadSettings faile: tagName:"
+                    << e.tagName() << " name:" << e.attribute("name");
+        return -1;
+    }
+    
+    m_nId = e.firstChildElement("id").attribute("value").toInt();
+    m_szName = e.firstChildElement("name").attribute("value");
+    QDomElement task = e.firstChildElement("class");
+    while (!task.isNull()) {
+        QSharedPointer<CTask> t((CTask*)CObjectFactory::createObject(
+                       task.attribute("name").toStdString().c_str()));
+        if(!t.data())
+        {
+            qCritical() << "CTasksList::LoadSettings fail: the pointer is null"
+                           << task.attribute("name");;
+            continue;
+        }
+        t->LoadSettings(task);
+        m_vTask.push_back(t);
+        task = task.nextSiblingElement("class");
+    }
+    return nRet;
+}
+
+int CTasks::SaveSettings(QDomElement &e)
+{
+    int nRet = 0;
+    const QMetaObject* pObj = metaObject();
+    QDomDocument doc;
+    QDomElement de = doc.createElement("class");
+    de.setAttribute("name", pObj->className());
+
+    QDomElement id = doc.createElement("id");
+    id.setAttribute("value", m_nId);
+    de.appendChild(id);
+    QDomElement name = doc.createElement("name");
+    name.setAttribute("value", m_szName);
+    de.appendChild(name);
+    
+    foreach(QSharedPointer<CTask> t, m_vTask)
+    {
+        t->SaveSettings(de);
+    }
+    
+    e.appendChild(de);
     return nRet;
 }

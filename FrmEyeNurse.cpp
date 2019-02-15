@@ -4,13 +4,20 @@
 #include "DlgAbout/DlgAbout.h"
 #include <QMessageBox>
 #include "Global/Tool.h"
+#include "Global/GlobalDir.h"
+#include <QDir>
 
 CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmEyeNurse)
 {
     ui->setupUi(this);
-    
+    m_szFile = CGlobalDir::Instance()->GetDirDocument()
+            + QDir::separator()
+            + "EyeNurse.conf";
+    QDir d;
+    d.mkpath(CGlobalDir::Instance()->GetDirDocument());
+                 
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
                 tr("Exit"),
@@ -33,9 +40,12 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     m_TrayIcon.setToolTip(this->windowTitle());
     m_TrayIcon.show();
     
-    //TODO: Load configure
-    
-    VisionProtectionTasks();
+    // Load configure
+    int nRet = m_TaskList.LoadSettings(CGlobalDir::Instance()->GetDirDocument()
+                                       + QDir::separator()
+                                       + "EyeNurse.conf");
+    if(nRet)
+        VisionProtectionTasks();
 }
 
 CFrmEyeNurse::~CFrmEyeNurse()
@@ -116,8 +126,8 @@ void CFrmEyeNurse::slotStartRun(bool checked)
 void CFrmEyeNurse::on_pbOK_clicked()
 {
     VisionProtectionTasks();
-    //TODO: Save configure
-
+    // Save configure
+    m_TaskList.SaveSettings(m_szFile);
     hide();
     m_pShow->setText(tr("Show"));
 }

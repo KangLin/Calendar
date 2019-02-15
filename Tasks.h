@@ -39,6 +39,9 @@ public:
      * @return 
      */
     Q_INVOKABLE virtual int Check();
+    
+    virtual int LoadSettings(const QDomElement &e);
+    virtual int SaveSettings(QDomElement &e);    
 
 protected:
     /**

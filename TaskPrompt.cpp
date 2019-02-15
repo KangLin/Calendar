@@ -1,5 +1,7 @@
 #include "TaskPrompt.h"
 
+int gTypeIdCTaskPrompt = qRegisterMetaType<CTaskPrompt>();
+
 CTaskPrompt::CTaskPrompt(QObject *parent) : CTask(parent)
 {
 }
@@ -11,6 +13,10 @@ CTaskPrompt::CTaskPrompt(const QString szText,
     : CTask (nInterval, nPromptInterval, parent)
 {
     SetContent(szText);
+}
+
+CTaskPrompt::CTaskPrompt(const CTaskPrompt &t)
+{
 }
 
 int CTaskPrompt::onStart()

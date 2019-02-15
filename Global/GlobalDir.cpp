@@ -44,14 +44,14 @@ QString CGlobalDir::GetDirDocument()
         szPath = m_szDocumentPath;
     szPath += QDir::separator();
     szPath = szPath + "Rabbit"
-             + QDir::separator() + "GIS";
+             + QDir::separator() + QApplication::applicationName();
     return szPath;
 }
 
 int CGlobalDir::SetDirDocument(QString szPath)
 {
     m_szDocumentPath = szPath + QDir::separator() + "Rabbit"
-            + QDir::separator() + "GIS";
+            + QDir::separator() + QApplication::applicationName();
     return 0;
 }
 
@@ -76,5 +76,5 @@ QString CGlobalDir::GetDirTranslate()
 
 QString CGlobalDir::GetApplicationConfigureFile()
 {
-    return GetDirDocument() + QDir::separator() + "App.conf";
+    return GetDirDocument() + QDir::separator() + QApplication::applicationName() + ".conf";
 }

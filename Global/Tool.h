@@ -41,9 +41,13 @@ public:
     static int RemoveStartRunServicesOnce();
     static bool IsStartRunServicesOnce();
     
-    static int InstallStartRun(const QString &reg);
-    static int RemoveStartRun(const QString &reg);
-    static bool IsStartRun(const QString &reg);
+    static int InstallStartRun(const QString &szReg,
+                               const QString &szName = QString(),
+                               const QString &szPath = QString());
+    static int RemoveStartRun(const QString &szReg,
+                              const QString &szName = QString());
+    static bool IsStartRun(const QString &szReg,
+                           const QString &szName = QString());
 
 private:
     static int SetRegister(const QString &reg, const QString &name, const QString &path);

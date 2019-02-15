@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QTime>
 #include <QTimer>
+#include <QDomElement>
 
 class CTask : public QObject
 {
@@ -47,12 +48,13 @@ public:
     Q_INVOKABLE virtual int SetPromptInterval(int interval);
     Q_INVOKABLE virtual int SetStartSound(const QString & szSound = QString());
     Q_INVOKABLE virtual int SetRunSound(const QString & szSound = QString());
-    virtual int SetSound(const QString &szStartSound = QString(), const QString &szRunSound = QString());
-    virtual int LoadSettings();
-    virtual int SaveSettings();
+    Q_INVOKABLE virtual int SetSound(const QString &szStartSound = QString(), const QString &szRunSound = QString());
+    
+    Q_INVOKABLE virtual int LoadSettings(const QDomElement &e);
+    Q_INVOKABLE virtual int SaveSettings(QDomElement &e);
 
     /**
-     * @brief Start task, Initialize here
+     * @brief Start task, Initialize here. Note: first clean
      * @return 
      */
     virtual int Start();

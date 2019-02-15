@@ -5,6 +5,8 @@
 #include "FrmEyeNurse.h"
 #include "ObjectFactory.h"
 #include <QDebug>
+#include "FrmTop.h"
+#include "TaskLockScreen.h"
 
 int main(int argc, char *argv[])
 {

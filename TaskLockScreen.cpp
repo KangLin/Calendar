@@ -26,10 +26,16 @@ LRESULT CALLBACK LowLevelMouseProc(
 }
 #endif
 
+int gTypeIdCTaskLockScreen = qRegisterMetaType<CTaskLockScreen>();
+
 CTaskLockScreen::CTaskLockScreen(int nInterval, int nPromptInterval, QObject *parent)
     : CTaskPrompt(tr("Lock screen and reset"), nInterval, nPromptInterval, parent)
 {
     Init();
+}
+
+CTaskLockScreen::CTaskLockScreen(const CTaskLockScreen &t)
+{
 }
 
 int CTaskLockScreen::Init()

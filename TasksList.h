@@ -27,6 +27,11 @@ public:
     int Start();
     int Check();
     
+    virtual int LoadSettings(const QDomElement &e);
+    virtual int LoadSettings(const QString &szFile);
+    virtual int SaveSettings(QDomElement &e);
+    virtual int SaveSettings(const QString &szFile);
+    
 private Q_SLOTS:
     void slotTimeout();
     
