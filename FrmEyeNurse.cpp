@@ -43,7 +43,7 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     // Load configure
     int nRet = m_TaskList.LoadSettings(CGlobalDir::Instance()->GetDirDocument()
                                        + QDir::separator()
-                                       + "EyeNurse.conf");
+                                       + "EyeNurse.xml");
     if(nRet)
         VisionProtectionTasks();
 }
