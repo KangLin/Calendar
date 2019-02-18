@@ -160,7 +160,7 @@
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="../Resource/Resource.qrc">:/icon/WeiXinPay</pixmap>
+              <pixmap resource="../Resource/Resource.qrc">:/icon/Contribute</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -174,16 +174,6 @@
             </widget>
            </item>
           </layout>
-         </item>
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap resource="../Resource/Resource.qrc">:/icon/ZhiFuBao</pixmap>
-           </property>
-          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_12">

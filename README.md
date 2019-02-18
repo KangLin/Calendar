@@ -29,11 +29,9 @@
 
 ## 捐赠
 
-![Alipay contribute( More than ￥20 )](Resource/image/zhifubao.png  "Alipay contribute( More than ￥20 )")
-![WeChat payment( More than ￥20 )](Resource/image/weixinpay.png "WeChat payment( More than ￥20 )")
+![Contribute( More than ￥20 )](Resource/image/Contribute.png  "Alipay contribute( More than ￥20 )")
 
-![Alipay contribute](Resource/image/zhifubao20.png  "Alipay contribute")
-![WeChat payment](Resource/image/weixinpay20.png "WeChat payment")
+![Contribute ￥20](Resource/image/Contribute20.png  "Alipay contribute")
 
 ------------------------------------------------
 
