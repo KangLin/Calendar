@@ -8,6 +8,9 @@
 #include <QVector>
 #include <QSharedPointer>
 
+/**
+ * @brief Define a serial task
+ */
 class CTasks : public QObject
 {
     Q_OBJECT
@@ -15,7 +18,7 @@ class CTasks : public QObject
     Q_PROPERTY(QString title READ GetTitle WRITE SetTitle)
     Q_PROPERTY(QString content READ GetContent WRITE SetContent)
     Q_PROPERTY(bool end READ End)
-    
+
 public:
     Q_INVOKABLE explicit CTasks(QObject *parent = nullptr);
     CTasks(const CTasks &tasks);
@@ -31,7 +34,8 @@ public:
 
     Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
     Q_INVOKABLE virtual int Remove(QSharedPointer<CTask> task);
-
+    Q_INVOKABLE virtual QSharedPointer<CTask> Get(int index);
+    
     /**
      * @brief Start: Initialize here
      * @return 
@@ -42,7 +46,7 @@ public:
      * @return 
      */
     Q_INVOKABLE virtual int Check();
-    
+
     virtual int LoadSettings(const QDomElement &e);
     virtual int SaveSettings(QDomElement &e);    
 

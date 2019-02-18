@@ -43,7 +43,7 @@ CTaskLockScreen::CTaskLockScreen(const CTaskLockScreen &t)
 
 int CTaskLockScreen::Init()
 {
-    setObjectName("Lock screen");
+    setObjectName("LockScreen");
     m_hKeyboardHook = NULL;
     m_hMouseHook = NULL;
     return 0;

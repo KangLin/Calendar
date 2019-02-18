@@ -6,15 +6,13 @@
 #include "Global/Tool.h"
 #include "Global/GlobalDir.h"
 #include <QDir>
+#include "FrmTaskPropery.h"
 
 CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmEyeNurse)
 {
     ui->setupUi(this);
-    m_szFile = CGlobalDir::Instance()->GetDirDocument()
-            + QDir::separator()
-            + "EyeNurse.xml";
     QDir d;
     d.mkpath(CGlobalDir::Instance()->GetDirDocument());
                  
@@ -41,9 +39,8 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     m_TrayIcon.show();
     
     // Load configure
-    int nRet = m_TaskList.LoadSettings(CGlobalDir::Instance()->GetDirDocument()
-                                       + QDir::separator()
-                                       + "EyeNurse.xml");
+    m_TaskList.setObjectName("EyeNurse");
+    int nRet = m_TaskList.LoadSettings();
     if(nRet)
         VisionProtectionTasks();
 }
@@ -57,6 +54,7 @@ CFrmEyeNurse::~CFrmEyeNurse()
 int CFrmEyeNurse::VisionProtectionTasks()
 {
     m_TaskList.RemoveAll();
+    m_TaskList.setObjectName("EyeNurse");
     QSharedPointer<CTasks> tasks(new CTasks());
     tasks->SetTitle(tr("Eye nurse"));
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
@@ -100,6 +98,12 @@ void CFrmEyeNurse::slotExit(bool checked)
 void CFrmEyeNurse::slotShow(bool checked)
 {
     Q_UNUSED(checked);
+    
+    CFrmTaskProperty *taskProperty = new CFrmTaskProperty(&m_TaskList);
+    taskProperty->show();
+    
+    return;
+    
     if(this->isHidden())
     {
         show();
@@ -128,7 +132,7 @@ void CFrmEyeNurse::on_pbOK_clicked()
 {
     VisionProtectionTasks();
     // Save configure
-    m_TaskList.SaveSettings(m_szFile);
+    m_TaskList.SaveSettings();
     hide();
     m_pShow->setText(tr("Show"));
 }

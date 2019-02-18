@@ -51,13 +51,16 @@ int CTasks::Remove(QSharedPointer<CTask> task)
     return nRet;
 }
 
+QSharedPointer<CTask> CTasks::Get(int index)
+{
+    if(index >= m_vTask.size() || index < 0)
+        return QSharedPointer<CTask>();
+    return m_vTask.at(index);
+}
+
 QSharedPointer<CTask> CTasks::Get()
 {
-    if(m_nCurrent >= m_vTask.size() || m_nCurrent < 0)
-    {
-        return QSharedPointer<CTask>();
-    }
-    return m_vTask.at(m_nCurrent);
+    return Get(m_nCurrent);
 }
 
 int CTasks::GetId()

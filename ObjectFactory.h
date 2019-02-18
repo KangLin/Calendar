@@ -55,12 +55,13 @@ public:
         {
             QString szName = de.nodeName();
             QString szValue = de.attribute("value");
-            int nIndex = pObj->indexOfProperty(szName.toStdString().c_str());
+            pThis->setProperty(szName.toStdString().c_str(), szValue);
+            /*int nIndex = pObj->indexOfProperty(szName.toStdString().c_str());
             QMetaProperty property = pObj->property(nIndex);
             QVariant v(szValue);
             if(!property.write(pThis, szValue))
                 qCritical() << "Write propery fail: " << pObj->className() << szName;
-            
+            */
             de = de.nextSiblingElement();
         }
         return nRet;
@@ -86,7 +87,7 @@ public:
                 continue;
             QString szName = p.name();
             QVariant value = p.read(pThis);
-            qDebug() << "propery name: " << szName << " value: " << value.toString();
+            //qDebug() << "propery name: " << szName << " value: " << value.toString();
             QDomElement domProperty = doc.createElement(szName);
             domProperty.setAttribute("value", value.toString());
             e.appendChild(domProperty);

@@ -64,7 +64,9 @@ SOURCES += \
     Global/Log.cpp \
     DlgAbout/DlgAbout.cpp \
     FrmFullScreen.cpp \
-    Global/Tool.cpp
+    Global/Tool.cpp \
+    FrmTaskPropery.cpp \
+    ViewTaskProperty.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -83,7 +85,9 @@ HEADERS += \
     DlgAbout/DlgAbout.h \
     FrmFullScreen.h \
     ObjectFactory.h \
-    Global/Tool.h
+    Global/Tool.h \
+    FrmTaskPropery.h \
+    ViewTaskProperty.h
 
 FORMS += \
         mainwindow.ui \
@@ -92,7 +96,8 @@ FORMS += \
     FrmStickyNotes.ui \
     FrmUpdater.ui \
     FrmEyeNurse.ui \
-    DlgAbout/DlgAbout.ui
+    DlgAbout/DlgAbout.ui \
+    FrmTaskProperty.ui
 
 RESOURCES += \
     Resource/Resource.qrc \

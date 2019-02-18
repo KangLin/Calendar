@@ -12,7 +12,7 @@ CTaskPrompt::CTaskPrompt(const QString szText, const QString szTitle,
                          QObject *parent)
     : CTask (nInterval, nPromptInterval, parent)
 {
-    setObjectName("Task prompt");
+    setObjectName("TaskPrompt");
     SetTitle(szTitle);
     SetContent(szText);
 }

@@ -18,6 +18,7 @@ class CTask : public QObject
     Q_PROPERTY(int promptInterval READ GetPromptInterval WRITE SetPromptInterval)
     Q_PROPERTY(QString startSound WRITE SetStartSound)
     Q_PROPERTY(QString runSound WRITE SetRunSound)
+    Q_PROPERTY(bool end READ End)
     
 public:
     Q_INVOKABLE explicit CTask(QObject *parent = nullptr);

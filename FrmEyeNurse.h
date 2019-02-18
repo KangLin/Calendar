@@ -46,7 +46,6 @@ private:
     
     CTasksList m_TaskList;
     int VisionProtectionTasks();
-    QString m_szFile;
 };
 
 #endif // FRMEYENURSE_H

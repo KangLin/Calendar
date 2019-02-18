@@ -2,6 +2,8 @@
 #include <QDebug>
 #include "ObjectFactory.h"
 #include <QFile>
+#include <QDir>
+#include "Global/GlobalDir.h"
 
 CTasksList::CTasksList(QObject *parent) : QObject(parent)
 {
@@ -10,6 +12,7 @@ CTasksList::CTasksList(QObject *parent) : QObject(parent)
                     this, SLOT(slotTimeout()));
     Q_ASSERT(check);
     m_nTimerInterval = 1000;
+    setObjectName("TasksList");
 }
 
 CTasksList::~CTasksList()
@@ -23,7 +26,10 @@ int CTasksList::Add(QSharedPointer<CTasks> tasks)
     int nRet = 0;
     if(NULL == tasks)
         return -1;
-    tasks->SetId(m_lstTasks.size());
+    if(m_lstTasks.empty())
+        tasks->SetId(0);
+    else
+        tasks->SetId(m_lstTasks.last()->GetId() + 1);
     int nIdex = m_lstTasks.indexOf(tasks);
     if(nIdex > -1)
     {
@@ -47,6 +53,13 @@ int CTasksList::RemoveAll()
 {
     m_lstTasks.clear();
     return 0;
+}
+
+QSharedPointer<CTasks> CTasksList::Get(int index)
+{
+    if(index >= m_lstTasks.length() || index < 0)
+        return QSharedPointer<CTasks>();
+    return m_lstTasks.at(index);
 }
 
 int CTasksList::Start()
@@ -100,6 +113,8 @@ int CTasksList::LoadSettings(const QDomElement &e)
                     << e.tagName() << " name:" << e.attribute("name");
         return -1;
     }
+
+    CObjectFactory::LoadSettings(e, this);
     QDomElement tasks = e.firstChildElement("class");
     while (!tasks.isNull()) {
         QSharedPointer<CTasks> t((CTasks*)CObjectFactory::createObject(
@@ -110,6 +125,7 @@ int CTasksList::LoadSettings(const QDomElement &e)
                         << tasks.attribute("name");
             continue;
         }
+
         t->LoadSettings(tasks);
         m_lstTasks.push_back(t);
         tasks = tasks.nextSiblingElement("class");
@@ -125,6 +141,8 @@ int CTasksList::SaveSettings(QDomElement &e)
     QDomElement de = doc.createElement("class");
     de.setAttribute("name", pObj->className());
     
+    CObjectFactory::SaveSettings(de, this);
+    
     foreach(QSharedPointer<CTasks> t, m_lstTasks)
     {
         t->SaveSettings(de);
@@ -137,10 +155,16 @@ int CTasksList::SaveSettings(QDomElement &e)
 int CTasksList::LoadSettings(const QString &szFile)
 {
     int nRet = 0;
-    QFile f(szFile);
+    QString file = szFile;
+    if(szFile.isEmpty())
+        file = CGlobalDir::Instance()->GetDirDocument()
+                + QDir::separator()
+                + objectName()
+                + ".xml";
+    QFile f(file);
     if(!f.open(QIODevice::ReadOnly))
     {
-        qCritical() << "CTasksList::LoadSeetings open file fail: " << szFile;
+        qCritical() << "CTasksList::LoadSeetings open file fail: " << file;
         return -1;
     }
     QDomDocument doc;
@@ -156,10 +180,16 @@ int CTasksList::LoadSettings(const QString &szFile)
 int CTasksList::SaveSettings(const QString &szFile)
 {
     int nRet = 0;
-    QFile f(szFile);
+    QString file = szFile;
+    if(szFile.isEmpty())
+        file = CGlobalDir::Instance()->GetDirDocument()
+                + QDir::separator()
+                + objectName()
+                + ".xml";
+    QFile f(file);
     if(!f.open(QIODevice::WriteOnly))
     {
-        qCritical() << "CTasksList::SaveSettings open file fail: " << szFile;
+        qCritical() << "CTasksList::SaveSettings open file fail: " << file;
         return -1;
     }
     
@@ -168,9 +198,9 @@ int CTasksList::SaveSettings(const QString &szFile)
     //<?xml version='1.0' encoding='UTF-8'?>
     ins = doc.createProcessingInstruction("xml", "version=\'1.0\' encoding=\'UTF-8\'");
     doc.appendChild(ins);
-    QDomElement e = doc.createElement("Root");
-    doc.appendChild(e);
-    nRet = SaveSettings(e);
+    QDomElement root = doc.createElement("Root");
+    doc.appendChild(root);
+    nRet = SaveSettings(root);
     if(nRet)
         return nRet;
     QTextStream stream(&f);
@@ -178,5 +208,4 @@ int CTasksList::SaveSettings(const QString &szFile)
     doc.save(stream, 4);//4个空格缩进  
     f.close();
     return nRet;
-    
 }
