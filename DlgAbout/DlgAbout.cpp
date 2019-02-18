@@ -29,7 +29,7 @@ CDlgAbout::CDlgAbout(QWidget *parent) :
     ui->setupUi(this);
 
     setAttribute(Qt::WA_QuitOnClose, false);
-    ui->lbVersion->setText(tr("Version: ") + BUILD_VERSION);
+    ui->lbVersion->setText(tr(" Version: ") + BUILD_VERSION + tr(" Arch:") + BUILD_ARCH);
     ui->lbDate->setText(tr("Build date:%1 %2").arg(__DATE__, __TIME__));
     ui->lbAuthor->setText(tr("Author: KangLin\nEmail:kl222@126.com"));
     ui->lbHome->setOpenExternalLinks(true);

@@ -25,7 +25,6 @@ SOURCES += \
     TaskPrompt.cpp \
     FrmStickyNotes.cpp \
     FrmUpdater.cpp \
-    FrmEyeNurse.cpp \
     Global/GlobalDir.cpp \
     Global/Log.cpp \
     FrmFullScreen.cpp \
@@ -44,7 +43,6 @@ HEADERS += \
     TaskPrompt.h \
     FrmStickyNotes.h \
     FrmUpdater.h \
-    FrmEyeNurse.h \
     Global/GlobalDir.h \
     Global/Log.h \
     FrmFullScreen.h \
@@ -59,7 +57,6 @@ FORMS += \
     FrmTop.ui \
     FrmStickyNotes.ui \
     FrmUpdater.ui \
-    FrmEyeNurse.ui \
     FrmTaskProperty.ui
 
 RESOURCES += \

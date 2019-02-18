@@ -85,8 +85,9 @@ int CFrmEyeNurse::VisionProtectionTasks()
 void CFrmEyeNurse::slotAbout(bool checked)
 {
     Q_UNUSED(checked);
-    CDlgAbout dlg(this);
-    dlg.exec();
+    static CDlgAbout dlg(this);
+    if(dlg.isHidden())
+        dlg.exec();
 }
 
 void CFrmEyeNurse::slotExit(bool checked)

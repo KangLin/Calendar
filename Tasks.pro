@@ -28,14 +28,23 @@ isEmpty(BUILD_VERSION) {
 message("BUILD_VERSION:$$BUILD_VERSION")
 DEFINES += BUILD_VERSION=\"\\\"$$quote($$BUILD_VERSION)\\\"\"
 
+contains(QMAKE_TARGET.arch, x86_64) {
+    DEFINES += BUILD_ARCH=\"\\\"x86_64\\\"\"
+} else {
+    DEFINES += BUILD_ARCH=\"\\\"x86\\\"\"
+}
+
 RC_FILE = AppIcon.rc
 
 include(Tasks.pri)
 
 SOURCES += DlgAbout/DlgAbout.cpp \
+        FrmEyeNurse.cpp \
         main.cpp 
-HEADERS += DlgAbout/DlgAbout.h
-FORMS += DlgAbout/DlgAbout.ui
+HEADERS += DlgAbout/DlgAbout.h \
+        FrmEyeNurse.h 
+FORMS += DlgAbout/DlgAbout.ui \
+        FrmEyeNurse.ui 
 
 other.files = License.md Authors.md AppIcon.ico
 other.path = $$PREFIX
