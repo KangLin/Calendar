@@ -116,7 +116,7 @@ build_script:
 
 artifacts:
   - path: build_${BUILD_TARGERT}/Tasks-Setup-*.exe
-    #name: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
+    name: Tasks_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
     type: zip
 
 test: off
