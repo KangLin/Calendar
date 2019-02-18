@@ -38,7 +38,7 @@ fi
 
 if [ "$BUILD_TARGERT" = "windows_mingw" \
     -a -n "$APPVEYOR" ]; then
-    export PATH=/C/Qt/Tools/mingw${TOOLCHAIN_VERSION}_32/bin:$PATH    
+    export PATH=/C/Qt/Tools/mingw${TOOLCHAIN_VERSION}/bin:$PATH    
 fi
 TARGET_OS=`uname -s`
 case $TARGET_OS in

@@ -72,17 +72,17 @@ environment:
 
   ##### mingw ########
   - BUILD_TARGERT: windows_mingw
-    TOOLCHAIN_VERSION: 730
+    TOOLCHAIN_VERSION: 730_64
     QT_ROOT: C:\Qt\5.12\mingw73_64
     AUTOBUILD_ARCH: x64
     
   - BUILD_TARGERT: windows_mingw
-    TOOLCHAIN_VERSION: 530
+    TOOLCHAIN_VERSION: 530_32
     QT_ROOT: C:\Qt\5.10\mingw53_32
     AUTOBUILD_ARCH: x86
 
   - BUILD_TARGERT: windows_mingw
-    TOOLCHAIN_VERSION: 492
+    TOOLCHAIN_VERSION: 492_32
     QT_ROOT: C:\Qt\5.6\mingw49_32
     AUTOBUILD_ARCH: x86
 

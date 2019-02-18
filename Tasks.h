@@ -35,7 +35,11 @@ public:
     Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
     Q_INVOKABLE virtual int Remove(QSharedPointer<CTask> task);
     Q_INVOKABLE virtual QSharedPointer<CTask> Get(int index);
-    
+    /**
+     * @brief Get current task
+     * @return 
+     */
+    Q_INVOKABLE virtual QSharedPointer<CTask> Get();
     /**
      * @brief Start: Initialize here
      * @return 
@@ -49,13 +53,6 @@ public:
 
     virtual int LoadSettings(const QDomElement &e);
     virtual int SaveSettings(QDomElement &e);    
-
-protected:
-    /**
-     * @brief Get current task
-     * @return 
-     */
-    virtual QSharedPointer<CTask> Get();
 
 private:
     int m_nCurrent;
