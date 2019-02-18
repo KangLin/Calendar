@@ -42,35 +42,55 @@ public:
     static int LoadSettings(const QDomElement &e, QObject* pThis)
     {
         int nRet = 0;
-        if(e.isNull())
+        const QMetaObject* pObj = pThis->metaObject();
+        if("class" != e.tagName())
         {
-            qCritical() << "CTask::LoadSettings e is null";
+            qCritical() << pObj->className() << "::LoadSettings faile: tagName:"
+                        << e.tagName() << " name:" << e.attribute("name");
             return -1;
         }
-        if(!e.hasAttributes())
-        {
-            qCritical() << "CTask::LoadSettings has not attributes";
-            return -2;
-        }
-        const QMetaObject* pObj = pThis->metaObject();
         
-        int nAttr = e.attributes().length();
-        for(int i = 0; i < nAttr; i++)
+        QDomElement de = e.firstChildElement();
+        while(!de.isNull())
         {
-            QString szName = e.attributes().item(i).nodeName();
-            QString szValue = e.attributes().item(i).nodeValue();
+            QString szName = de.nodeName();
+            QString szValue = de.attribute("value");
             int nIndex = pObj->indexOfProperty(szName.toStdString().c_str());
             QMetaProperty property = pObj->property(nIndex);
+            QVariant v(szValue);
             if(!property.write(pThis, szValue))
                 qCritical() << "Write propery fail: " << pObj->className() << szName;
+            
+            de = de.nextSiblingElement();
         }
         return nRet;
     }
     
-    static int SaveSettings(const QDomElement &e, QObject* pThis)
+    static int SaveSettings(QDomElement &e, QObject* pThis)
     {
         int nRet = 0;
+        const QMetaObject* pObj = pThis->metaObject();
+        QDomDocument doc;
+
+        if(e.isNull())
+        {
+            qCritical() << "CObjectFactory::SaveSettings e is null";
+            return -1;  
+        }
         
+        int nAttr = pObj->propertyCount();
+        for(int i = 0; i < nAttr; i++)
+        {
+            QMetaProperty p = pObj->property(i);
+            if(!(p.isReadable() && p.isWritable()))
+                continue;
+            QString szName = p.name();
+            QVariant value = p.read(pThis);
+            qDebug() << "propery name: " << szName << " value: " << value.toString();
+            QDomElement domProperty = doc.createElement(szName);
+            domProperty.setAttribute("value", value.toString());
+            e.appendChild(domProperty);
+        } 
         return nRet;
     }
     

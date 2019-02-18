@@ -9,12 +9,15 @@ CTasks::CTasks(QObject *parent) : QObject(parent)
     m_nCurrent = 0;
     m_nId = -1;
     setObjectName("Tasks");
+    SetTitle(objectName());
 }
 
 CTasks::CTasks(const CTasks &tasks)
 {
     m_nCurrent = tasks.m_nCurrent;
     m_nId = tasks.m_nId;
+    m_szTitle = tasks.m_szTitle;
+    m_szContent = tasks.m_szContent;
     setObjectName(tasks.objectName());
     m_vTask = tasks.m_vTask;
 }
@@ -68,6 +71,28 @@ int CTasks::SetId(int id)
     return m_nId;
 }
 
+QString CTasks::GetTitle()
+{
+    return m_szTitle;
+}
+
+int CTasks::SetTitle(const QString &szTitle)
+{
+    m_szTitle = szTitle;
+    return 0;
+}
+
+QString CTasks::GetContent()
+{
+    return m_szContent;
+}
+
+int CTasks::SetContent(const QString &szContent)
+{
+    m_szContent = szContent;
+    return 0;
+}
+
 bool CTasks::End()
 {
     return m_vTask.isEmpty();
@@ -111,15 +136,7 @@ int CTasks::Check()
 int CTasks::LoadSettings(const QDomElement &e)
 {
     int nRet = 0;
-    if("class" != e.tagName())
-    {
-        qCritical() << "CTasks::LoadSettings faile: tagName:"
-                    << e.tagName() << " name:" << e.attribute("name");
-        return -1;
-    }
-    
-    m_nId = e.firstChildElement("id").attribute("value").toInt();
-    setObjectName(e.firstChildElement("objectName").attribute("value"));
+    CObjectFactory::LoadSettings(e, this);
     QDomElement task = e.firstChildElement("class");
     while (!task.isNull()) {
         QSharedPointer<CTask> t((CTask*)CObjectFactory::createObject(
@@ -140,23 +157,20 @@ int CTasks::LoadSettings(const QDomElement &e)
 int CTasks::SaveSettings(QDomElement &e)
 {
     int nRet = 0;
+    if(e.isNull())
+    {
+        qCritical() << "CTask::SaveSettings： e is null";
+        return -1;
+    }
     const QMetaObject* pObj = metaObject();
     QDomDocument doc;
-    QDomElement de = doc.createElement("class");
-    de.setAttribute("name", pObj->className());
-
-    QDomElement id = doc.createElement("id");
-    id.setAttribute("value", m_nId);
-    de.appendChild(id);
-    QDomElement name = doc.createElement("objectName");
-    name.setAttribute("value", objectName());
-    de.appendChild(name);
-    
+    QDomElement tasks = doc.createElement("class");
+    tasks.setAttribute("name", pObj->className());;
+    CObjectFactory::SaveSettings(tasks, this);
     foreach(QSharedPointer<CTask> t, m_vTask)
     {
-        t->SaveSettings(de);
+        t->SaveSettings(tasks);
     }
-    
-    e.appendChild(de);
+    e.appendChild(tasks);
     return nRet;
 }

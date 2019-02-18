@@ -37,7 +37,8 @@ void MainWindow::on_pbAdd_clicked()
     QSharedPointer<CTasks> tasks(new CTasks());
 
     QSharedPointer<CTaskPrompt> prompt(new CTaskPrompt(
-                                     "Lock screen and rest",
+                                     tr("Lock screen and rest"),
+                                     tr("Reset"),
                                      5000, 1000));
     prompt->setObjectName("Will want to lock the screen");
     tasks->Add(prompt);

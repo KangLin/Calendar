@@ -58,9 +58,9 @@ int CFrmEyeNurse::VisionProtectionTasks()
 {
     m_TaskList.RemoveAll();
     QSharedPointer<CTasks> tasks(new CTasks());
-    tasks->setObjectName(tr("Eye nurse"));
+    tasks->SetTitle(tr("Eye nurse"));
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
-    task->setObjectName("Work");
+    task->SetTitle(tr("Work"));
     int nWork = ui->sbRestInterval->value() - ui->sbPrompTime->value();
     if(nWork <= 0)
         nWork = 0;
@@ -69,14 +69,14 @@ int CFrmEyeNurse::VisionProtectionTasks()
     task->SetInterval(nWork);
     tasks->Add(task);
     QSharedPointer<CTask> prompt(new CTaskPrompt(
+                                     tr("Will want to lock the screen"),
                                      tr("Lock screen and rest")
                                      ));
-    prompt->setObjectName("Will want to lock the screen");
     prompt->SetInterval(ui->sbPrompTime->value() * 60 * 1000);
     prompt->SetPromptInterval(ui->sbPromptInterval->value() * 1000);
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen());
-    lock->setObjectName("Lock");
+    lock->SetTitle("Lock");
     lock->SetInterval(ui->sbRestTime->value() * 60 * 1000);
     tasks->Add(lock);
     m_TaskList.Add(tasks);

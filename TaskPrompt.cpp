@@ -6,12 +6,14 @@ CTaskPrompt::CTaskPrompt(QObject *parent) : CTask(parent)
 {
 }
 
-CTaskPrompt::CTaskPrompt(const QString szText,
+CTaskPrompt::CTaskPrompt(const QString szText, const QString szTitle,
                          int nInterval,
                          int nPromptInterval,
                          QObject *parent)
     : CTask (nInterval, nPromptInterval, parent)
 {
+    setObjectName("Task prompt");
+    SetTitle(szTitle);
     SetContent(szText);
 }
 
