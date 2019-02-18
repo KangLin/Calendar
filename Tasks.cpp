@@ -8,20 +8,20 @@ CTasks::CTasks(QObject *parent) : QObject(parent)
 {
     m_nCurrent = 0;
     m_nId = -1;
-    m_szName = "Tasks";
+    setObjectName("Tasks");
 }
 
 CTasks::CTasks(const CTasks &tasks)
 {
     m_nCurrent = tasks.m_nCurrent;
     m_nId = tasks.m_nId;
-    m_szName = tasks.m_szName;
+    setObjectName(tasks.objectName());
     m_vTask = tasks.m_vTask;
 }
 
 CTasks::~CTasks()
 {
-    qDebug() << "CTasks::~CTasks()" << "id: " << m_nId << " name: " << m_szName;
+    qDebug() << "CTasks::~CTasks()" << "id: " << m_nId << " name: " << objectName();
 }
 
 int CTasks::Add(QSharedPointer<CTask> task)
@@ -66,17 +66,6 @@ int CTasks::SetId(int id)
 {
     m_nId = id;
     return m_nId;
-}
-
-QString CTasks::GetName()
-{
-    return m_szName;
-}
-
-int CTasks::SetName(QString szName)
-{
-    m_szName = szName;
-    return 0;
 }
 
 bool CTasks::End()
@@ -130,7 +119,7 @@ int CTasks::LoadSettings(const QDomElement &e)
     }
     
     m_nId = e.firstChildElement("id").attribute("value").toInt();
-    m_szName = e.firstChildElement("name").attribute("value");
+    setObjectName(e.firstChildElement("objectName").attribute("value"));
     QDomElement task = e.firstChildElement("class");
     while (!task.isNull()) {
         QSharedPointer<CTask> t((CTask*)CObjectFactory::createObject(
@@ -159,8 +148,8 @@ int CTasks::SaveSettings(QDomElement &e)
     QDomElement id = doc.createElement("id");
     id.setAttribute("value", m_nId);
     de.appendChild(id);
-    QDomElement name = doc.createElement("name");
-    name.setAttribute("value", m_szName);
+    QDomElement name = doc.createElement("objectName");
+    name.setAttribute("value", objectName());
     de.appendChild(name);
     
     foreach(QSharedPointer<CTask> t, m_vTask)

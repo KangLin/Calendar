@@ -39,10 +39,10 @@ void MainWindow::on_pbAdd_clicked()
     QSharedPointer<CTaskPrompt> prompt(new CTaskPrompt(
                                      "Lock screen and rest",
                                      5000, 1000));
-    prompt->SetName("Will want to lock the screen");
+    prompt->setObjectName("Will want to lock the screen");
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen(3000, 1000));
-    lock->SetName("Lock");
+    lock->setObjectName("Lock");
     tasks->Add(lock);
     tasks->Start();
     m_lstTasks.Add(tasks);
@@ -76,15 +76,15 @@ QSharedPointer<CTasks> MainWindow::VisionProtectionTasks(CTasksList &taskList)
 {
     QSharedPointer<CTasks> tasks(new CTasks());
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
-    task->SetName("Work");
+    task->setObjectName("Work");
     tasks->Add(task);
     QSharedPointer<CTask> prompt(new CTaskPrompt(
                                      "Lock screen and rest"
                                      ));
-    prompt->SetName("Will want to lock the screen");
+    prompt->setObjectName("Will want to lock the screen");
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen());
-    lock->SetName("Lock");
+    lock->setObjectName("Lock");
     tasks->Add(lock);
     taskList.Add(tasks);
     return tasks;

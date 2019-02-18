@@ -17,7 +17,7 @@ CTask::CTask(QObject *parent) : QObject(parent)
 CTask::CTask(const CTask &task)
 {
     m_nId = task.m_nId;
-    m_szName = task.m_szName;
+    setObjectName(task.objectName());
     m_szTitle = task.m_szTitle;
     m_szContent = task.m_szContent;
     m_szRunSound = task.m_szRunSound;
@@ -39,14 +39,14 @@ int CTask::Init()
                          this, SLOT(slotPrompt()));
     Q_ASSERT(check);
     SetId(-1);
-    SetName("Task");
+    setObjectName("Task");
     m_Time.start();
     return 0;
 }
 
 CTask::~CTask()
 {
-    qDebug() << "CTask::~CTask(), id: " << GetId() << " name:" << GetName();
+    qDebug() << "CTask::~CTask(), id: " << GetId() << " name:" << objectName();
 }
 
 int CTask::Start()
@@ -98,17 +98,6 @@ int CTask::SetId(int id)
 {
     m_nId = id;
     return m_nId;
-}
-
-QString CTask::GetName()
-{
-    return m_szName;
-}
-
-int CTask::SetName(QString szName)
-{
-    m_szName = szName;
-    return 0;
 }
 
 int CTask::SetTitle(QString szTitle)

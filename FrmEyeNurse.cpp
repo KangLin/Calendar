@@ -14,7 +14,7 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     ui->setupUi(this);
     m_szFile = CGlobalDir::Instance()->GetDirDocument()
             + QDir::separator()
-            + "EyeNurse.conf";
+            + "EyeNurse.xml";
     QDir d;
     d.mkpath(CGlobalDir::Instance()->GetDirDocument());
                  
@@ -58,8 +58,9 @@ int CFrmEyeNurse::VisionProtectionTasks()
 {
     m_TaskList.RemoveAll();
     QSharedPointer<CTasks> tasks(new CTasks());
+    tasks->setObjectName(tr("Eye nurse"));
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
-    task->SetName("Work");
+    task->setObjectName("Work");
     int nWork = ui->sbRestInterval->value() - ui->sbPrompTime->value();
     if(nWork <= 0)
         nWork = 0;
@@ -70,12 +71,12 @@ int CFrmEyeNurse::VisionProtectionTasks()
     QSharedPointer<CTask> prompt(new CTaskPrompt(
                                      tr("Lock screen and rest")
                                      ));
-    prompt->SetName("Will want to lock the screen");
+    prompt->setObjectName("Will want to lock the screen");
     prompt->SetInterval(ui->sbPrompTime->value() * 60 * 1000);
     prompt->SetPromptInterval(ui->sbPromptInterval->value() * 1000);
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen());
-    lock->SetName("Lock");
+    lock->setObjectName("Lock");
     lock->SetInterval(ui->sbRestTime->value() * 60 * 1000);
     tasks->Add(lock);
     m_TaskList.Add(tasks);

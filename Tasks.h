@@ -12,7 +12,6 @@ class CTasks : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int id READ GetId WRITE SetId)
-    Q_PROPERTY(QString name READ GetName WRITE SetName)
     Q_PROPERTY(bool end READ End)
     
 public:
@@ -22,8 +21,6 @@ public:
 
     Q_INVOKABLE int GetId();
     Q_INVOKABLE int SetId(int id);
-    Q_INVOKABLE QString GetName();
-    Q_INVOKABLE int SetName(QString szName);
     Q_INVOKABLE bool End();
 
     Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
@@ -55,7 +52,6 @@ private:
     QVector<QSharedPointer<CTask>> m_vTask;
 
     int m_nId;
-    QString m_szName;
 };
 
 Q_DECLARE_METATYPE(CTasks)

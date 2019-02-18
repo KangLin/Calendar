@@ -11,7 +11,6 @@
 class CTask : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ GetName WRITE SetName)
     Q_PROPERTY(QString title READ GetTitle WRITE SetTitle)
     Q_PROPERTY(QString content READ GetContent WRITE SetContent)
     Q_PROPERTY(int id READ GetId WRITE SetId)
@@ -36,8 +35,6 @@ public:
     
     Q_INVOKABLE virtual int GetId();
     Q_INVOKABLE virtual int SetId(int id);
-    Q_INVOKABLE virtual QString GetName();
-    Q_INVOKABLE virtual int SetName(QString szName);
     Q_INVOKABLE virtual int SetTitle(QString szTitle);
     Q_INVOKABLE virtual QString GetTitle();
     Q_INVOKABLE virtual int SetContent(QString szContent);
@@ -88,7 +85,6 @@ protected:
     
 private:
     int m_nId;
-    QString m_szName;
     QString m_szTitle;
     QString m_szContent;
     

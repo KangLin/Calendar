@@ -26,7 +26,7 @@ CTaskTrayIconPrompt::CTaskTrayIconPrompt(const QString szMessage,
 
 int CTaskTrayIconPrompt::Init()
 {
-    SetName(tr("Tray icon prompt"));
+    setObjectName(tr("Tray icon prompt"));
     
     /*bool check = connect(&m_TrayIcon,
               SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
