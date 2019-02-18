@@ -4,13 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network multimedia
-
 TARGET = Tasks
 TEMPLATE = app
-
 
 #Get app version use git, please set git path to environment variable PATH
 isEmpty(BUILD_VERSION) {
@@ -35,82 +30,12 @@ DEFINES += BUILD_VERSION=\"\\\"$$quote($$BUILD_VERSION)\\\"\"
 
 RC_FILE = AppIcon.rc
 
-# The following define makes your compiler emit warnings if you use
-# any feature of Qt which has been marked as deprecated (the exact warnings
-# depend on your compiler). Please consult the documentation of the
-# deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
-CONFIG *= C++11
+include(Tasks.pri)
 
-# You can also make your code fail to compile if you use deprecated APIs.
-# In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
-SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    Task.cpp \
-    Tasks.cpp \
-    TasksList.cpp \
-    TaskLockScreen.cpp \
-    TaskTrayIconPrompt.cpp \
-    FrmTop.cpp \
-    TaskPrompt.cpp \
-    FrmStickyNotes.cpp \
-    FrmUpdater.cpp \
-    FrmEyeNurse.cpp \
-    Global/GlobalDir.cpp \
-    Global/Log.cpp \
-    DlgAbout/DlgAbout.cpp \
-    FrmFullScreen.cpp \
-    Global/Tool.cpp \
-    FrmTaskPropery.cpp \
-    ViewTaskProperty.cpp
-
-HEADERS += \
-        mainwindow.h \
-    Task.h \
-    Tasks.h \
-    TasksList.h \
-    TaskLockScreen.h \
-    TaskTrayIconPrompt.h \
-    FrmTop.h \
-    TaskPrompt.h \
-    FrmStickyNotes.h \
-    FrmUpdater.h \
-    FrmEyeNurse.h \
-    Global/GlobalDir.h \
-    Global/Log.h \
-    DlgAbout/DlgAbout.h \
-    FrmFullScreen.h \
-    ObjectFactory.h \
-    Global/Tool.h \
-    FrmTaskPropery.h \
-    ViewTaskProperty.h
-
-FORMS += \
-        mainwindow.ui \
-    FrmFullScreen.ui \
-    FrmTop.ui \
-    FrmStickyNotes.ui \
-    FrmUpdater.ui \
-    FrmEyeNurse.ui \
-    DlgAbout/DlgAbout.ui \
-    FrmTaskProperty.ui
-
-RESOURCES += \
-    Resource/Resource.qrc \
-
-msvc : LIBS += User32.lib
-
-isEmpty(PREFIX) {
-    android {
-        PREFIX = /.
-    } else {
-        PREFIX = $$OUT_PWD/install
-    } 
-}
+SOURCES += DlgAbout/DlgAbout.cpp \
+        main.cpp 
+HEADERS += DlgAbout/DlgAbout.h
+FORMS += DlgAbout/DlgAbout.ui
 
 other.files = License.md Authors.md AppIcon.ico
 other.path = $$PREFIX
@@ -139,8 +64,7 @@ OTHER_FILES += Install/* \
     ci/* \
     tag.sh
 
-include(Resource/Translations/Translations.pri)
-
 DISTFILES += \
     LICENSE.md \
-    Authors.md
+    Authors.md \
+    README.md
