@@ -29,10 +29,11 @@
 ------------------------------------------------
 
 ## 捐赠
+- 捐赠(大于￥20)：  
+![捐赠( 大于 ￥20 )](Resource/image/Contribute.png  "捐赠(大于￥20)")
 
-![Contribute( More than ￥20 )](Resource/image/Contribute.png  "Alipay contribute( More than ￥20 )")
-
-![Contribute ￥20](Resource/image/Contribute20.png  "Alipay contribute")
+- 捐赠￥20  
+![捐赠￥20](Resource/image/Contribute20.png  "捐赠￥20")
 
 ------------------------------------------------
 
