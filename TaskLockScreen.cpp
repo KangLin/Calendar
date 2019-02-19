@@ -39,6 +39,7 @@ CTaskLockScreen::CTaskLockScreen(int nInterval,
 
 CTaskLockScreen::CTaskLockScreen(const CTaskLockScreen &t)
 {
+    Q_UNUSED(t);
 }
 
 int CTaskLockScreen::Init()

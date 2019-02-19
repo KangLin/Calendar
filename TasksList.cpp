@@ -17,6 +17,7 @@ CTasksList::CTasksList(QObject *parent) : QObject(parent)
 
 CTasksList::~CTasksList()
 {
+    m_lstTasks.clear();
     if(m_Timer.isActive())
         m_Timer.stop();
 }
@@ -154,7 +155,6 @@ int CTasksList::SaveSettings(QDomElement &e)
 
 int CTasksList::LoadSettings(const QString &szFile)
 {
-    int nRet = 0;
     QString file = szFile;
     if(szFile.isEmpty())
         file = CGlobalDir::Instance()->GetDirDocument()

@@ -22,6 +22,7 @@ public:
 
     static QObject* createObject(const QByteArray& className, QObject* parent = NULL)
     {
+        Q_UNUSED(parent);
         int type = QMetaType::type(className);
         if(QMetaType::UnknownType == type)
         {

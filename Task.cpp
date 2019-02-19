@@ -28,6 +28,7 @@ CTask::CTask(const CTask &task)
 
 CTask::CTask(int nInterval, int nPromptInterval, QObject *parent)
 {
+    Q_UNUSED(parent);
     Init();
     SetInterval(nInterval);
     SetPromptInterval(nPromptInterval);

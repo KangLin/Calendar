@@ -18,6 +18,8 @@ class CTasks : public QObject
     Q_PROPERTY(QString title READ GetTitle WRITE SetTitle)
     Q_PROPERTY(QString content READ GetContent WRITE SetContent)
     Q_PROPERTY(bool end READ End)
+    Q_PROPERTY(int length READ Length)
+    Q_PROPERTY(int currentIndex READ GetCurrentIndex)
 
 public:
     Q_INVOKABLE explicit CTasks(QObject *parent = nullptr);
@@ -33,8 +35,11 @@ public:
     Q_INVOKABLE bool End();
 
     Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
+    Q_INVOKABLE virtual int Insert(QSharedPointer<CTask> task, int nIndex);
     Q_INVOKABLE virtual int Remove(QSharedPointer<CTask> task);
     Q_INVOKABLE virtual QSharedPointer<CTask> Get(int index);
+    Q_INVOKABLE virtual int Length();
+    Q_INVOKABLE virtual int GetCurrentIndex();
     /**
      * @brief Get current task
      * @return 

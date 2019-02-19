@@ -74,6 +74,7 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
 CFrmTaskProperty::~CFrmTaskProperty()
 {
     delete ui;
+    qDebug() << "CFrmTaskProperty::~CFrmTaskProperty";
 }
 
 void CFrmTaskProperty::on_pbSave_clicked()

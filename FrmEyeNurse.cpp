@@ -7,15 +7,19 @@
 #include "Global/GlobalDir.h"
 #include <QDir>
 #include "FrmTaskPropery.h"
+#include <QDebug>
+#include "FrmTasks.h"
 
 CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmEyeNurse)
 {
     ui->setupUi(this);
-    QDir d;
-    d.mkpath(CGlobalDir::Instance()->GetDirDocument());
-                 
+    m_pAbout = NULL;
+    bool check = connect(&m_frmTasks, SIGNAL(Change()),
+                         this, SLOT(slotChange()));
+    Q_ASSERT(check);
+    
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
                 tr("Exit"),
@@ -33,14 +37,19 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     m_pStartRun->setCheckable(true);
     m_pStartRun->setChecked(CTool::IsStartRunOnceCurrentUser());
     
+    check = connect(&m_TrayIcon,
+                    SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                    this,
+                    SLOT(slotActivated(QSystemTrayIcon::ActivationReason)));
+    Q_ASSERT(check);
     m_TrayIcon.setContextMenu(&m_TrayIconMenu);
     m_TrayIcon.setIcon(this->windowIcon());
     m_TrayIcon.setToolTip(this->windowTitle());
     m_TrayIcon.show();
     
     // Load configure
-    m_TaskList.setObjectName("EyeNurse");
-    int nRet = m_TaskList.LoadSettings();
+    m_TasksList.setObjectName("EyeNurse");
+    int nRet = m_TasksList.LoadSettings();
     if(nRet)
         VisionProtectionTasks();
 }
@@ -48,44 +57,34 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
 CFrmEyeNurse::~CFrmEyeNurse()
 {
     delete ui;
-    m_TaskList.RemoveAll();
 }
 
 int CFrmEyeNurse::VisionProtectionTasks()
 {
-    m_TaskList.RemoveAll();
-    m_TaskList.setObjectName("EyeNurse");
+    m_TasksList.RemoveAll();
+    m_TasksList.setObjectName("EyeNurse");
     QSharedPointer<CTasks> tasks(new CTasks());
     tasks->SetTitle(tr("Eye nurse"));
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
     task->SetTitle(tr("Work"));
-    int nWork = ui->sbRestInterval->value() - ui->sbPrompTime->value();
-    if(nWork <= 0)
-        nWork = 0;
-    else
-        nWork = nWork * 60 * 1000;
-    task->SetInterval(nWork);
     tasks->Add(task);
     QSharedPointer<CTask> prompt(new CTaskPrompt(
                                      tr("Will want to lock the screen"),
                                      tr("Lock screen and rest")
                                      ));
-    prompt->SetInterval(ui->sbPrompTime->value() * 60 * 1000);
-    prompt->SetPromptInterval(ui->sbPromptInterval->value() * 1000);
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen());
     lock->SetTitle("Lock");
-    lock->SetInterval(ui->sbRestTime->value() * 60 * 1000);
     tasks->Add(lock);
-    m_TaskList.Add(tasks);
-    m_TaskList.Start();
+    m_TasksList.Add(tasks);
+    m_TasksList.Start();
     return 0;
 }
 
 void CFrmEyeNurse::slotAbout(bool checked)
 {
     Q_UNUSED(checked);
-    static CDlgAbout dlg(this);
+    static CDlgAbout dlg;
     if(dlg.isHidden())
         dlg.exec();
 }
@@ -100,19 +99,10 @@ void CFrmEyeNurse::slotShow(bool checked)
 {
     Q_UNUSED(checked);
     
-    CFrmTaskProperty *taskProperty = new CFrmTaskProperty(&m_TaskList);
-    taskProperty->show();
-    
-    return;
-    
-    if(this->isHidden())
-    {
-        show();
-        m_pShow->setText(tr("Hide"));
-    }else {
-        hide();
-        m_pShow->setText(tr("Show"));
-    }
+    if(!m_frmTasks.isHidden())
+        return;
+    m_frmTasks.SetTasks(m_TasksList.Get(0));
+    m_frmTasks.show();
 }
 
 void CFrmEyeNurse::slotStartRun(bool checked)
@@ -129,59 +119,15 @@ void CFrmEyeNurse::slotStartRun(bool checked)
     }
 }
 
-void CFrmEyeNurse::on_pbOK_clicked()
+void CFrmEyeNurse::slotActivated(QSystemTrayIcon::ActivationReason r)
 {
-    VisionProtectionTasks();
-    // Save configure
-    m_TaskList.SaveSettings();
-    hide();
-    m_pShow->setText(tr("Show"));
+    if(QSystemTrayIcon::ActivationReason::Trigger == r)
+        slotShow(true);
 }
 
-void CFrmEyeNurse::on_bpCancle_clicked()
+void CFrmEyeNurse::slotChange()
 {
-    hide();
-    m_pShow->setText(tr("Show"));
-}
-
-void CFrmEyeNurse::on_sbRestInterval_editingFinished()
-{
-    if(ui->sbPrompTime->value() <= ui->sbRestInterval->value())
-        return;
-
-    QMessageBox::critical(this,
-                          tr("Eye nurse"),
-                          tr("Reset interval must greate then prompt time"));
-    ui->sbRestInterval->setValue(ui->sbPrompTime->value());
-}
-
-void CFrmEyeNurse::on_sbPrompTime_editingFinished()
-{
-    int v = ui->sbPrompTime->value();
-    if(ui->sbRestInterval->value() < v)
-    {
-        QMessageBox::critical(this,
-                              tr("Eye nurse"),
-                              tr("Reset interval must greate then prompt time"));
-        ui->sbPrompTime->setValue(ui->sbRestInterval->value());
-    }
-
-    if(ui->sbPromptInterval->value() > v * 60)
-    {
-        QMessageBox::critical(this, tr("Eye nurse"),
-                              tr("Prompt time muse greate then prompt interval"));
-        ui->sbPrompTime->setValue(ui->sbPromptInterval->value() / 60 + 1);
-    }
-}
-
-void CFrmEyeNurse::on_sbPromptInterval_editingFinished()
-{
-    if(ui->sbPrompTime->value() * 60 >= ui->sbPromptInterval->value())
-        return;
-
-    QMessageBox::critical(this, tr("Eye nurse"),
-                          tr("Prompt time muse greate then prompt interval"));
-    ui->sbPromptInterval->setValue(ui->sbPrompTime->value() * 60);
+    m_TasksList.SaveSettings();
 }
 
 void CFrmEyeNurse::closeEvent(QCloseEvent *event)

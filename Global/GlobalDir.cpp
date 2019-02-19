@@ -45,6 +45,9 @@ QString CGlobalDir::GetDirDocument()
     szPath += QDir::separator();
     szPath = szPath + "Rabbit"
              + QDir::separator() + QApplication::applicationName();
+    QDir d;
+    if(!d.exists(szPath))
+        d.mkpath(szPath);
     return szPath;
 }
 
@@ -57,12 +60,20 @@ int CGlobalDir::SetDirDocument(QString szPath)
 
 QString CGlobalDir::GetDirData()
 {
-    return GetDirApplication() + QDir::separator() + "Data";
+    QString szPath = GetDirApplication() + QDir::separator() + "Data";
+    QDir d;
+    if(!d.exists(szPath))
+        d.mkpath(szPath);
+    return szPath;
 }
 
 QString CGlobalDir::GetDirImage()
 {
-    return GetDirData() + QDir::separator() + "Image";
+    QString szPath = GetDirData() + QDir::separator() + "Image";
+    QDir d;
+    if(!d.exists(szPath))
+        d.mkpath(szPath);
+    return szPath;
 }
 
 QString CGlobalDir::GetDirTranslate()

@@ -5,9 +5,10 @@
 
 #include <QWidget>
 #include "TasksList.h"
-
+#include "FrmTasks.h"
 #include <QMenu>
 #include <QSystemTrayIcon>
+#include "DlgAbout/DlgAbout.h"
 
 namespace Ui {
 class CFrmEyeNurse;
@@ -27,11 +28,8 @@ private Q_SLOTS:
     void slotAbout(bool checked);
     void slotStartRun(bool checked);
     
-    void on_pbOK_clicked();
-    void on_bpCancle_clicked();
-    void on_sbRestInterval_editingFinished();
-    void on_sbPrompTime_editingFinished();
-    void on_sbPromptInterval_editingFinished();
+    void slotActivated(QSystemTrayIcon::ActivationReason reason);
+    void slotChange();
     
 protected:
     virtual void closeEvent(QCloseEvent *event);
@@ -44,8 +42,11 @@ private:
     QAction* m_pShow;
     QAction* m_pStartRun;
     
-    CTasksList m_TaskList;
+    CTasksList m_TasksList;
     int VisionProtectionTasks();
+    
+    CFrmTasks m_frmTasks;
+    CDlgAbout *m_pAbout;
 };
 
 #endif // FRMEYENURSE_H

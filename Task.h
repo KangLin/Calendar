@@ -16,8 +16,6 @@ class CTask : public QObject
     Q_PROPERTY(int id READ GetId WRITE SetId)
     Q_PROPERTY(int interval READ GetInterval WRITE SetInterval)
     Q_PROPERTY(int promptInterval READ GetPromptInterval WRITE SetPromptInterval)
-    Q_PROPERTY(QString startSound WRITE SetStartSound)
-    Q_PROPERTY(QString runSound WRITE SetRunSound)
     Q_PROPERTY(bool end READ End)
     
 public:

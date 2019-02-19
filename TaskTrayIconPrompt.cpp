@@ -80,4 +80,5 @@ int CTaskTrayIconPrompt::onRun()
 
 void CTaskTrayIconPrompt::slotTrayIconActive(QSystemTrayIcon::ActivationReason reason)
 {
+    Q_UNUSED(reason);
 }
