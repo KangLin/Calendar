@@ -14,8 +14,9 @@ class CFrmTasks : public QWidget
 
 public:
     explicit CFrmTasks(QSharedPointer<CTasks> tasks = QSharedPointer<CTasks>(),
-                       bool readOnly = false, QWidget *parent = nullptr);
-    ~CFrmTasks();
+                       bool readOnly = true,
+                       QWidget *parent = nullptr);
+    virtual ~CFrmTasks();
 
     int SetTasks(QSharedPointer<CTasks> tasks = QSharedPointer<CTasks>());
 
@@ -36,7 +37,9 @@ protected:
     
 private:
     int SetTask(QSharedPointer<CTask> task);
-
+    int InitTaskComboBox();
+    int SetSlider(int value);
+    
 private:
     Ui::CFrmTasks *ui;
     QSharedPointer<CTasks> m_Tasks;

@@ -1,5 +1,5 @@
-#ifndef __TASKPROMPT_H_KL__
-#define __TASKPROMPT_H_KL__
+#ifndef TASKPROMPT_H_KL
+#define TASKPROMPT_H_KL
 
 #pragma once
 
@@ -18,17 +18,18 @@ public:
                          int nPromptInterval = 1000,
                          QObject *parent = nullptr);
     CTaskPrompt(const CTaskPrompt &t);
+    virtual QString GetDescription() const override;
     
 protected:
-    virtual int onStart();
-    virtual int onRun();
+    virtual int onStart() override;
+    virtual int onRun() override;
         
 protected Q_SLOTS:
-    virtual void slotPrompt();
+    virtual void slotPrompt() override;
     
-private:
+protected:
     CFrmTop m_Top;
 };
 
 Q_DECLARE_METATYPE(CTaskPrompt)
-#endif // __TASKPROMPT_H_KL__
+#endif // TASKPROMPT_H_KL

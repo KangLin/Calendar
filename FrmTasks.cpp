@@ -1,20 +1,28 @@
 #include "FrmTasks.h"
 #include "ui_FrmTasks.h"
+#include "ObjectFactory.h"
 
-CFrmTasks::CFrmTasks(QSharedPointer<CTasks> tasks, bool readOnly, QWidget *parent) :
+CFrmTasks::CFrmTasks(QSharedPointer<CTasks> tasks,
+                     bool readOnly, 
+                     QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmTasks)
 {
     setAttribute(Qt::WA_QuitOnClose, false);
     ui->setupUi(this);
-    m_Tasks = tasks;
-    SetTasks(m_Tasks);
+    
+    InitTaskComboBox();
+    
     if(readOnly)
     {
-        ui->pbAdd->hide();
+        ui->pbAdd->setVisible(false);
         ui->pbRemove->setVisible(false);
-        ui->pbApply->setVisible(false);
+        ui->cbTask->setVisible(false);
+        //ui->pbApply->setVisible(false);
     }
+    
+    m_Tasks = tasks;
+    SetTasks(m_Tasks);    
 }
 
 CFrmTasks::~CFrmTasks()
@@ -30,14 +38,13 @@ int CFrmTasks::SetTasks(QSharedPointer<CTasks> tasks)
     if(!tasks)
         return -1;
     m_Tasks = tasks;
+
+    ui->leTasksTitle->setText(m_Tasks->GetTitle());
+    ui->leTasksID->setText(QString::number(m_Tasks->GetId()));
+    ui->teTasksContent->setText(m_Tasks->GetContent());
     
-    ui->vsLength->setRange(0, tasks->Length() - 1);
-    ui->vsLength->setValue(tasks->GetCurrentIndex());
-    ui->leTasksTitle->setText(tasks->GetTitle());
-    ui->leTasksID->setText(QString::number(tasks->GetId()));
-    ui->teTasksContent->setText(tasks->GetContent());
+    SetSlider(m_Tasks->GetCurrentIndex());
     
-    SetTask(tasks->Get());
     return nRet;
 }
 
@@ -65,20 +72,43 @@ int CFrmTasks::SetTask(QSharedPointer<CTask> task)
     return 0;
 }
 
+int CFrmTasks::InitTaskComboBox()
+{
+    //TODO: Add task derived class
+    ui->cbTask->addItem("CTask");
+    ui->cbTask->addItem("CTaskPrompt");
+    ui->cbTask->addItem("CTaskLockScreen");
+    ui->cbTask->addItem("CTaskPromptDelay");
+    return 0;
+}
+
+int CFrmTasks::SetSlider(int value)
+{
+    ui->vsLength->setRange(0, m_Tasks->Length() - 1);
+    if(value > m_Tasks->Length() - 1)
+        value = m_Tasks->Length() - 1;
+    ui->vsLength->setValue(value);
+    on_vsLength_valueChanged(value);
+    return 0;
+}
+
 void CFrmTasks::on_pbAdd_clicked()
 {
-    QSharedPointer<CTask> task(new CTask());
-    task->SetTitle(tr("New task"));
+    QSharedPointer<CTask> task(qobject_cast<CTask*>(
+                                   CObjectFactory::createObject(
+              ui->cbTask->currentText().toStdString().c_str())));
+    task->SetTitle(tr("New ") + task->objectName());
     m_Tasks->Add(task);
     SetTask(task);
-    ui->vsLength->setRange(0, m_Tasks->Length() - 1);
-    ui->vsLength->setValue(m_Tasks->Length() - 1);
+    SetSlider(m_Tasks->Length() - 1);
 }
 
 void CFrmTasks::on_pbRemove_clicked()
 {
-    m_Tasks->Remove(m_Tasks->Get(ui->vsLength->value()));
+    int nPos = ui->vsLength->value();
+    m_Tasks->Remove(m_Tasks->Get(nPos));
     SetTasks();
+    SetSlider(nPos);
     emit Change();
 }
 

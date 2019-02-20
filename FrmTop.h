@@ -23,7 +23,7 @@ public:
 
     void SetText(const QString szText);
     int SetBackgroupImage(const QString szImage);
-    int SetPopupMenu(QSharedPointer<QMenu> menu);
+    int SetPopupMenu(QMenu* pMenu);
     
 protected:
     virtual void mousePressEvent(QMouseEvent *e);
@@ -31,6 +31,8 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *e);
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
+    virtual void closeEvent(QCloseEvent *event);
+    
 private:
     Ui::CFrmTop *ui;
 
@@ -40,7 +42,7 @@ private:
     QRect m_rtDesktop;
 
     QImage m_bpBackgroup;
-    QSharedPointer<QMenu> m_popupMenu;
+    QMenu* m_pPopupMenu;
 };
 
 #endif // FRMTOP_H

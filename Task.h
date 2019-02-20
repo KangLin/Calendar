@@ -17,10 +17,10 @@ class CTask : public QObject
     Q_PROPERTY(int interval READ GetInterval WRITE SetInterval)
     Q_PROPERTY(int promptInterval READ GetPromptInterval WRITE SetPromptInterval)
     Q_PROPERTY(bool end READ End)
+    Q_PROPERTY(QString description READ GetDescription)
     
 public:
     Q_INVOKABLE explicit CTask(QObject *parent = nullptr);
-    CTask(const CTask &task);
     /**
      * @brief CTask
      * @param nInterval: The interval between Start() and onRun(), in milliseconds
@@ -30,17 +30,19 @@ public:
     Q_INVOKABLE explicit CTask(int nInterval,
                    int nPromptInterval = 0,
                    QObject *parent = nullptr);
+    CTask(const CTask &task);
     virtual ~CTask();
     
-    Q_INVOKABLE virtual int GetId();
+    Q_INVOKABLE virtual int GetId() const;
     Q_INVOKABLE virtual int SetId(int id);
+    Q_INVOKABLE virtual QString GetDescription() const;
     Q_INVOKABLE virtual int SetTitle(QString szTitle);
-    Q_INVOKABLE virtual QString GetTitle();
+    Q_INVOKABLE virtual QString GetTitle() const;
     Q_INVOKABLE virtual int SetContent(QString szContent);
-    Q_INVOKABLE virtual QString GetContent();
-    Q_INVOKABLE virtual int GetInterval();
+    Q_INVOKABLE virtual QString GetContent() const;
+    Q_INVOKABLE virtual int GetInterval() const;
     Q_INVOKABLE virtual int SetInterval(int nInterval);
-    Q_INVOKABLE virtual int GetPromptInterval();
+    Q_INVOKABLE virtual int GetPromptInterval() const;
     Q_INVOKABLE virtual int SetPromptInterval(int interval);
     Q_INVOKABLE virtual int SetStartSound(const QString & szSound = QString());
     Q_INVOKABLE virtual int SetRunSound(const QString & szSound = QString());
@@ -82,6 +84,10 @@ protected:
     int Remaining();
     QString szRemaining();
     
+    QTimer m_PromptTimer;
+    int m_nPromptInterval;
+    QString m_szStartSound, m_szRunSound;
+
 private:
     int m_nId;
     QString m_szTitle;
@@ -89,10 +95,6 @@ private:
     
     QTime m_Time;
     int m_nInterval;
-    QTimer m_PromptTimer;
-    int m_nPromptInterval;
-    
-    QString m_szStartSound, m_szRunSound;
     
     int Init();    
 };

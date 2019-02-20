@@ -5,7 +5,7 @@
 #include <QtXml>
 #include <QMetaProperty>
 
-int gTypeIdCTask = qRegisterMetaType<CTask>();
+static int gTypeIdCTask = qRegisterMetaType<CTask>();
 
 CTask::CTask(QObject *parent) : QObject(parent)
 {
@@ -74,7 +74,7 @@ int CTask::onRun()
 int CTask::Check()
 {
     int nRet = -1;
-    if(m_nInterval < Elapsed())
+    if(GetInterval() < Elapsed())
     {
         m_PromptTimer.stop();
         if(!m_szRunSound.isEmpty())
@@ -91,7 +91,7 @@ void CTask::slotPrompt()
     qDebug() << "CTask::slotPrompt() " << tm.toString("HH:mm:ss");
 }
 
-int CTask::GetId()
+int CTask::GetId() const
 {
     return m_nId;
 }
@@ -102,13 +102,20 @@ int CTask::SetId(int id)
     return m_nId;
 }
 
+QString CTask::GetDescription() const
+{
+    return tr("Task is base unit. Is a minimal execution unit.\n"
+              "Start with the Start function and run the Run function after the interval.\n"
+              "If PromptInterval isn't 0, then interval PromptInterval time prompt.");
+}
+
 int CTask::SetTitle(QString szTitle)
 {
     m_szTitle = szTitle;
     return 0;
 }
 
-QString CTask::GetTitle()
+QString CTask::GetTitle() const
 {
     return m_szTitle;
 }
@@ -119,7 +126,7 @@ int CTask::SetContent(QString szContent)
     return 0;
 }
 
-QString CTask::GetContent()
+QString CTask::GetContent() const
 {
     return m_szContent;
 }
@@ -127,6 +134,11 @@ QString CTask::GetContent()
 int CTask::SetInterval(int nInterval)
 {
     m_nInterval = nInterval;
+    return m_nInterval;
+}
+
+int CTask::GetInterval() const
+{
     return m_nInterval;
 }
 
@@ -150,12 +162,7 @@ QString CTask::szRemaining()
     return tm.toString("HH:mm:ss");
 }
 
-int CTask::GetInterval()
-{
-    return m_nInterval;
-}
-
-int CTask::GetPromptInterval()
+int CTask::GetPromptInterval() const
 {
     return m_nPromptInterval;
 }

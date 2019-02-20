@@ -26,7 +26,7 @@ LRESULT CALLBACK LowLevelMouseProc(
 }
 #endif
 
-int gTypeIdCTaskLockScreen = qRegisterMetaType<CTaskLockScreen>();
+static int gTypeIdCTaskLockScreen = qRegisterMetaType<CTaskLockScreen>();
 
 CTaskLockScreen::CTaskLockScreen(int nInterval,
                                  int nPromptInterval,
@@ -44,7 +44,7 @@ CTaskLockScreen::CTaskLockScreen(const CTaskLockScreen &t)
 
 int CTaskLockScreen::Init()
 {
-    setObjectName("LockScreen");
+    setObjectName("TaskLockScreen");
     m_hKeyboardHook = NULL;
     m_hMouseHook = NULL;
     return 0;
@@ -123,4 +123,9 @@ void CTaskLockScreen::slotPrompt()
                         GetInterval(),
                         true
                         );
+}
+
+QString CTaskLockScreen::GetDescription() const
+{
+    return tr("Lock screen");
 }

@@ -35,16 +35,19 @@ public:
     Q_INVOKABLE bool End();
 
     Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
-    Q_INVOKABLE virtual int Insert(QSharedPointer<CTask> task, int nIndex);
+    /*Q_INVOKABLE virtual int Insert(QSharedPointer<CTask> task, int nIndex);
+    Q_INVOKABLE virtual int InsertAfter(QSharedPointer<CTask> newTask,
+                          QSharedPointer<CTask> task = QSharedPointer<CTask>());//*/
     Q_INVOKABLE virtual int Remove(QSharedPointer<CTask> task);
-    Q_INVOKABLE virtual QSharedPointer<CTask> Get(int index);
-    Q_INVOKABLE virtual int Length();
-    Q_INVOKABLE virtual int GetCurrentIndex();
     /**
      * @brief Get current task
      * @return 
      */
     Q_INVOKABLE virtual QSharedPointer<CTask> Get();
+    Q_INVOKABLE virtual QSharedPointer<CTask> Get(int index);
+    Q_INVOKABLE virtual int Length();
+    Q_INVOKABLE virtual int GetCurrentIndex();
+    
     /**
      * @brief Start: Initialize here
      * @return 
@@ -57,8 +60,9 @@ public:
     Q_INVOKABLE virtual int Check();
 
     virtual int LoadSettings(const QDomElement &e);
-    virtual int SaveSettings(QDomElement &e);    
+    virtual int SaveSettings(QDomElement &e);
 
+    
 private:
     int m_nCurrent;
     QVector<QSharedPointer<CTask>> m_vTask;

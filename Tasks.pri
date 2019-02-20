@@ -31,7 +31,8 @@ SOURCES += \
     Global/Tool.cpp \
     FrmTaskPropery.cpp \
     ViewTaskProperty.cpp \ 
-    FrmTasks.cpp
+    FrmTasks.cpp \
+    $$PWD/TaskPromptDelay.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -51,7 +52,8 @@ HEADERS += \
     Global/Tool.h \
     FrmTaskPropery.h \
     ViewTaskProperty.h \ 
-    FrmTasks.h
+    FrmTasks.h \
+    $$PWD/TaskPromptDelay.h
 
 FORMS += \
         mainwindow.ui \

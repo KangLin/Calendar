@@ -118,8 +118,9 @@ int CTasksList::LoadSettings(const QDomElement &e)
     CObjectFactory::LoadSettings(e, this);
     QDomElement tasks = e.firstChildElement("class");
     while (!tasks.isNull()) {
-        QSharedPointer<CTasks> t((CTasks*)CObjectFactory::createObject(
-                       tasks.attribute("name").toStdString().c_str()));
+        QSharedPointer<CTasks> t(qobject_cast<CTasks*>(
+                                     CObjectFactory::createObject(
+                       tasks.attribute("name").toStdString().c_str())));
         if(!t.data())
         {
             qCritical() << "CTasksList::LoadSettings fail: the pointer is null:"

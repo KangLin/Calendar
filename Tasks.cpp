@@ -40,15 +40,18 @@ int CTasks::Add(QSharedPointer<CTask> task)
         return 0;
     }
     //TODO: Whether the id is automatically adjusted
-    task->SetId(m_vTask.last()->GetId() + 1);
+    int nId = 0;
+    if(!m_vTask.isEmpty())
+        nId = m_vTask.last()->GetId() + 1;
+    task->SetId(nId);
     m_vTask.push_back(task);
     return nRet;
 }
-
+/*
 int CTasks::Insert(QSharedPointer<CTask> task, int nIndex)
 {
-    if(nullptr == task.data() || nIndex < 0 || nIndex >= m_vTask.length())
-        return -1;  
+    if(nullptr == task.data() || nIndex < 0 || nIndex > m_vTask.length())
+        return -1;
     
     int i = m_vTask.indexOf(task);
     if(i > -1)
@@ -57,15 +60,27 @@ int CTasks::Insert(QSharedPointer<CTask> task, int nIndex)
         return 0;
     }
     //TODO: Whether the id is automatically adjusted
-    task->SetId(m_vTask.last()->GetId() + 1);
+    int nId = 0;
+    if(!m_vTask.isEmpty())
+        nId = m_vTask.last()->GetId() + 1;
+    task->SetId(nId);
     m_vTask.insert(nIndex, task);
     return 0;
 }
 
+int CTasks::InsertAfter(QSharedPointer<CTask> newTask,
+                        QSharedPointer<CTask> task)
+{
+    int nIndex = m_vTask.indexOf(task);
+    return Insert(newTask, nIndex + 1);
+}
+*/
 int CTasks::Remove(QSharedPointer<CTask> task)
 {
     int nRet = 0;
     m_vTask.removeOne(task);
+    if(m_nCurrent >= m_vTask.size())
+        m_nCurrent = m_vTask.size() - 1;
     return nRet;
 }
 
@@ -170,8 +185,9 @@ int CTasks::LoadSettings(const QDomElement &e)
     CObjectFactory::LoadSettings(e, this);
     QDomElement task = e.firstChildElement("class");
     while (!task.isNull()) {
-        QSharedPointer<CTask> t((CTask*)CObjectFactory::createObject(
-                       task.attribute("name").toStdString().c_str()));
+        QSharedPointer<CTask> t(qobject_cast<CTask*>(
+                                    CObjectFactory::createObject(
+                       task.attribute("name").toStdString().c_str())));
         if(!t.data())
         {
             qCritical() << "CTasksList::LoadSettings fail: the pointer is null"

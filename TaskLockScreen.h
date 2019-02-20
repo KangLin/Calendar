@@ -27,13 +27,14 @@ public:
                              int nPromptInterval = 1000,
                              QObject *parent = nullptr);
     CTaskLockScreen(const CTaskLockScreen &t);
+    virtual QString GetDescription() const override;
     
 protected:
-    virtual int onStart();
-    virtual int onRun();
+    virtual int onStart() override;
+    virtual int onRun() override;
 
 protected Q_SLOTS:
-    virtual void slotPrompt();
+    virtual void slotPrompt() override;
     
 private:
     int Init();

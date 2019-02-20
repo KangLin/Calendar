@@ -14,6 +14,7 @@ CFrmTop::CFrmTop(QWidget *parent) :
     ui(new Ui::CFrmTop)
 {
     ui->setupUi(this);
+    m_pPopupMenu = nullptr;
     m_bMoveable = false;
     QRect rect = this->geometry();
     rect.setX((QGuiApplication::primaryScreen()->availableGeometry().width()
@@ -31,6 +32,11 @@ CFrmTop::CFrmTop(QWidget *parent) :
 CFrmTop::~CFrmTop()
 {
     delete ui;
+}
+
+void CFrmTop::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event);
 }
 
 void CFrmTop::mouseMoveEvent(QMouseEvent *e)
@@ -74,20 +80,20 @@ void CFrmTop::mouseReleaseEvent(QMouseEvent *e)
 
 void CFrmTop::contextMenuEvent(QContextMenuEvent *event)
 {
-    if(m_popupMenu.data() == nullptr)
+    if(nullptr == m_pPopupMenu)
     {
-        SetPopupMenu(QSharedPointer<QMenu>(new QMenu()));
+        return;
     }
-    m_popupMenu->exec(event->globalPos());
+    m_pPopupMenu->exec(event->globalPos());
 }
 
-int CFrmTop::SetPopupMenu(QSharedPointer<QMenu> menu)
+int CFrmTop::SetPopupMenu(QMenu* pMenu)
 {
-    if(nullptr == menu.data())
+    if(nullptr == pMenu)
         return -1;
-    m_popupMenu = menu;
-    m_popupMenu->addAction(QIcon(":/icon/Close"),
-                           tr("Close"), this, SLOT(close()));
+    m_pPopupMenu = pMenu;
+    /*m_pPopupMenu->addAction(QIcon(":/icon/Close"),
+                           tr("Close"), this, SLOT(close()));*/
     return 0;
 }
 
@@ -103,8 +109,8 @@ int CFrmTop::SetBackgroupImage(const QString szImage)
     QPalette palette;
     palette.setBrush(QPalette::Window, QBrush(m_bpBackgroup.scaled(this->geometry().size())));
     setPalette(palette);
-    
+
     setStyleSheet("");
-    
+
     return 0;
 }

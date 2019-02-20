@@ -1,9 +1,11 @@
 #include "TaskPrompt.h"
 
-int gTypeIdCTaskPrompt = qRegisterMetaType<CTaskPrompt>();
+static int gTypeIdCTaskPrompt = qRegisterMetaType<CTaskPrompt>();
 
 CTaskPrompt::CTaskPrompt(QObject *parent) : CTask(parent)
 {
+    setObjectName("TaskPrompt");
+    SetTitle(objectName());
 }
 
 CTaskPrompt::CTaskPrompt(const QString szText, const QString szTitle,
@@ -20,6 +22,11 @@ CTaskPrompt::CTaskPrompt(const QString szText, const QString szTitle,
 CTaskPrompt::CTaskPrompt(const CTaskPrompt &t)
 {
     Q_UNUSED(t);
+}
+
+QString CTaskPrompt::GetDescription() const
+{
+    return tr("Prompt task, Only prompt.");
 }
 
 int CTaskPrompt::onStart()
