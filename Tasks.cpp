@@ -47,7 +47,7 @@ int CTasks::Add(QSharedPointer<CTask> task)
     m_vTask.push_back(task);
     return nRet;
 }
-/*
+
 int CTasks::Insert(QSharedPointer<CTask> task, int nIndex)
 {
     if(nullptr == task.data() || nIndex < 0 || nIndex > m_vTask.length())
@@ -67,7 +67,7 @@ int CTasks::Insert(QSharedPointer<CTask> task, int nIndex)
     m_vTask.insert(nIndex, task);
     return 0;
 }
-
+/*
 int CTasks::InsertAfter(QSharedPointer<CTask> newTask,
                         QSharedPointer<CTask> task)
 {

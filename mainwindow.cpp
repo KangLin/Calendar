@@ -43,7 +43,7 @@ void MainWindow::on_pbAdd_clicked()
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen(3000, 1000));
     lock->setObjectName("Lock");
-    tasks->Add(lock);
+    //tasks->Add(lock);
     tasks->Start();
     m_lstTasks.Add(tasks);
     

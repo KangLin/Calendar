@@ -98,9 +98,9 @@ void CFrmTasks::on_pbAdd_clicked()
                                    CObjectFactory::createObject(
               ui->cbTask->currentText().toStdString().c_str())));
     task->SetTitle(tr("New ") + task->objectName());
-    m_Tasks->Add(task);
-    SetTask(task);
-    SetSlider(m_Tasks->Length() - 1);
+    m_Tasks->Insert(task, ui->vsLength->value() + 1);
+    //SetTask(task);
+    SetSlider(ui->vsLength->value() + 1);
 }
 
 void CFrmTasks::on_pbRemove_clicked()

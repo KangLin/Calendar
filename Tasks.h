@@ -35,8 +35,8 @@ public:
     Q_INVOKABLE bool End();
 
     Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
-    /*Q_INVOKABLE virtual int Insert(QSharedPointer<CTask> task, int nIndex);
-    Q_INVOKABLE virtual int InsertAfter(QSharedPointer<CTask> newTask,
+    Q_INVOKABLE virtual int Insert(QSharedPointer<CTask> task, int nIndex);
+    /*Q_INVOKABLE virtual int InsertAfter(QSharedPointer<CTask> newTask,
                           QSharedPointer<CTask> task = QSharedPointer<CTask>());//*/
     Q_INVOKABLE virtual int Remove(QSharedPointer<CTask> task);
     /**
