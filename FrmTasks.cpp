@@ -37,9 +37,16 @@ int CFrmTasks::SetTasks(QSharedPointer<CTasks> tasks)
     if(!tasks)
         tasks = m_Tasks;
     if(!tasks)
+    {
         return -1;
+    }
     m_Tasks = tasks;
-
+    if(!m_Tasks)
+    {
+        setEnabled(false);
+        return -2;
+    }
+    setEnabled(true);
     ui->leTasksTitle->setText(m_Tasks->GetTitle());
     ui->leTasksID->setText(QString::number(m_Tasks->GetId()));
     ui->teTasksContent->setText(m_Tasks->GetContent());

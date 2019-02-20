@@ -32,6 +32,7 @@ CTaskLockScreen::CTaskLockScreen(QObject* parent) : CTaskPrompt(parent)
 {
     Init();
     SetTitle(tr("Reset"));
+    SetInterval(15 * 60 * 1000);            
 }
 
 CTaskLockScreen::CTaskLockScreen(int nInterval,
