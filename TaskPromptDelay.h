@@ -16,7 +16,6 @@ public:
     CTaskPromptDelay(const CTaskPromptDelay &task);
     
     virtual QString GetDescription() const override;
-    virtual int SaveSettings(QDomElement &e) override;
     
     /**
      * @brief Check if the task can run

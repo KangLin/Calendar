@@ -25,12 +25,6 @@ CTaskPromptDelay::CTaskPromptDelay(const CTaskPromptDelay &task)
     Q_UNUSED(task);
 }
 
-int CTaskPromptDelay::SaveSettings(QDomElement &e)
-{
-    Q_UNUSED(e);
-    return 0;
-}
-
 QString CTaskPromptDelay::GetDescription() const
 {
     return tr("Delayable task. the task can be delayed.");

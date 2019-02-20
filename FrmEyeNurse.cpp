@@ -53,6 +53,8 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     int nRet = m_TasksList.LoadSettings();
     if(nRet)
         VisionProtectionTasks();
+    
+    m_TasksList.Start();
 }
 
 CFrmEyeNurse::~CFrmEyeNurse()
@@ -78,7 +80,7 @@ int CFrmEyeNurse::VisionProtectionTasks()
     QSharedPointer<CTask> lock(new CTaskLockScreen());
     tasks->Add(lock);
     m_TasksList.Add(tasks);
-    m_TasksList.Start();
+
     return 0;
 }
 

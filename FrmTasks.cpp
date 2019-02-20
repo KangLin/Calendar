@@ -143,7 +143,6 @@ void CFrmTasks::on_pbRemove_clicked()
     m_Tasks->Remove(m_Tasks->Get(nPos));
     SetTasks();
     SetSlider(nPos);
-    emit Change();
 }
 
 void CFrmTasks::on_pbClose_clicked()
@@ -197,4 +196,34 @@ void CFrmTasks::closeEvent(QCloseEvent *event)
         return;
     }
     m_Tasks.clear();
+}
+
+void CFrmTasks::on_leTasksTitle_editingFinished()
+{
+    m_Tasks->SetTitle(ui->leTasksTitle->text());
+}
+
+void CFrmTasks::on_teTasksContent_textChanged()
+{
+    m_Tasks->SetContent(ui->teTasksContent->toPlainText());
+}
+
+void CFrmTasks::on_leTaskTitle_editingFinished()
+{
+    m_Tasks->Get(ui->vsLength->value())->SetTitle(ui->leTaskTitle->text());
+}
+
+void CFrmTasks::on_teTaskContent_textChanged()
+{
+    m_Tasks->Get(ui->vsLength->value())->SetContent(ui->teTaskContent->toPlainText());
+}
+
+void CFrmTasks::on_spPromptInterval_valueChanged(int arg1)
+{
+    m_Tasks->Get(ui->vsLength->value())->SetPromptInterval(arg1 * 1000);
+}
+
+void CFrmTasks::on_spInterval_valueChanged(int arg1)
+{
+    m_Tasks->Get(ui->vsLength->value())->SetInterval(arg1 * 60 * 1000);
 }

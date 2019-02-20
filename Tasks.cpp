@@ -76,6 +76,7 @@ int CTasks::Remove(QSharedPointer<CTask> task)
     m_vTask.removeOne(task);
     if(m_nCurrent >= m_vTask.size())
         m_nCurrent = m_vTask.size() - 1;
+    ReSetId();
     return nRet;
 }
 

@@ -32,6 +32,13 @@ private Q_SLOTS:
     void on_pbNext_clicked();
     void on_pbApply_clicked();
     
+    void on_leTasksTitle_editingFinished();
+    void on_teTasksContent_textChanged();
+    void on_leTaskTitle_editingFinished();
+    void on_teTaskContent_textChanged();
+    void on_spInterval_valueChanged(int arg1);
+    void on_spPromptInterval_valueChanged(int arg1);
+    
 protected:
     virtual void closeEvent(QCloseEvent *event);
     
