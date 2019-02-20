@@ -1,6 +1,7 @@
 #include "FrmTasks.h"
 #include "ui_FrmTasks.h"
 #include "ObjectFactory.h"
+#include <QtDebug>
 
 CFrmTasks::CFrmTasks(QSharedPointer<CTasks> tasks,
                      bool readOnly, 
@@ -51,13 +52,22 @@ int CFrmTasks::SetTasks(QSharedPointer<CTasks> tasks)
 int CFrmTasks::SetTask(QSharedPointer<CTask> task)
 {
     if(!task)
+    {
+        qCritical() << "CFrmTasks::SetTask: The task is null";
         return -1;
+    }
     ui->leTaskID->setText(QString::number(task->GetId()));
     ui->leTaskTitle->setText(task->GetTitle());
     ui->teTaskContent->setText(task->GetContent());
     ui->spInterval->setValue(task->GetInterval() / 60000);
     ui->spPromptInterval->setValue(task->GetPromptInterval() / 1000);
 
+    if(!m_Tasks)
+    {
+        qCritical() << "CFrmTasks::SetTask: The m_Tasks is null";
+        Q_ASSERT(false);
+        return -1;
+    }
     if(m_Tasks->Get() == task)
     {
         ui->gpTask->setChecked(true);
@@ -84,6 +94,11 @@ int CFrmTasks::InitTaskComboBox()
 
 int CFrmTasks::SetSlider(int value)
 {
+    if(!m_Tasks)
+    {
+        qCritical() << "CFrmTasks::SetSlider: The m_Tasks is null";
+        return -1;
+    }
     ui->vsLength->setRange(0, m_Tasks->Length() - 1);
     if(value > m_Tasks->Length() - 1)
         value = m_Tasks->Length() - 1;
@@ -98,6 +113,11 @@ void CFrmTasks::on_pbAdd_clicked()
                                    CObjectFactory::createObject(
               ui->cbTask->currentText().toStdString().c_str())));
     task->SetTitle(tr("New ") + task->objectName());
+    if(!m_Tasks)
+    {
+        qCritical() << "CFrmTasks::on_pbAdd_clicked: The m_Tasks is null";
+        return;
+    }
     m_Tasks->Insert(task, ui->vsLength->value() + 1);
     //SetTask(task);
     SetSlider(ui->vsLength->value() + 1);
@@ -105,6 +125,11 @@ void CFrmTasks::on_pbAdd_clicked()
 
 void CFrmTasks::on_pbRemove_clicked()
 {
+    if(!m_Tasks)
+    {
+        qCritical() << "CFrmTasks::on_pbRemove_clicked: The m_Tasks is null";
+        return;
+    }
     int nPos = ui->vsLength->value();
     m_Tasks->Remove(m_Tasks->Get(nPos));
     SetTasks();
@@ -119,6 +144,11 @@ void CFrmTasks::on_pbClose_clicked()
 
 void CFrmTasks::on_vsLength_valueChanged(int value)
 {
+    if(!m_Tasks)
+    {
+        qCritical() << "CFrmTasks::on_vsLength_valueChanged: The m_Tasks is null";
+        return;
+    }
     SetTask(m_Tasks->Get(value));
 }
 
@@ -134,6 +164,8 @@ void CFrmTasks::on_pbNext_clicked()
 
 void CFrmTasks::on_pbApply_clicked()
 {
+    if(!m_Tasks)
+        return;
     QSharedPointer<CTask> task = m_Tasks->Get(ui->vsLength->value());
     if(!task)
         return;
@@ -150,5 +182,10 @@ void CFrmTasks::on_pbApply_clicked()
 void CFrmTasks::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
+    if(!m_Tasks)
+    {
+        qCritical() << "CFrmTasks::closeEvent the m_Tasks is null";
+        return;
+    }
     m_Tasks.clear();
 }

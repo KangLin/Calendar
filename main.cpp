@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     /*CFrmUpdater u;
     u.show();
     u.StartDownload("https://github.com/qTox/qTox/blob/master/updater/update.cpp");//*/
-    MainWindow w;
+    /*MainWindow w;
     w.show();//*/
 
     CFrmEyeNurse en;
