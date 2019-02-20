@@ -39,12 +39,9 @@ int CTasks::Add(QSharedPointer<CTask> task)
         qDebug() << "The task is exist";
         return 0;
     }
-    //TODO: Whether the id is automatically adjusted
-    int nId = 0;
-    if(!m_vTask.isEmpty())
-        nId = m_vTask.last()->GetId() + 1;
-    task->SetId(nId);
+    
     m_vTask.push_back(task);
+    nRet = ReSetId();
     return nRet;
 }
 
@@ -59,14 +56,12 @@ int CTasks::Insert(QSharedPointer<CTask> task, int nIndex)
         qDebug() << "The task is exist";
         return 0;
     }
-    //TODO: Whether the id is automatically adjusted
-    int nId = 0;
-    if(!m_vTask.isEmpty())
-        nId = m_vTask.last()->GetId() + 1;
-    task->SetId(nId);
+    
     m_vTask.insert(nIndex, task);
+    ReSetId();
     return 0;
 }
+
 /*
 int CTasks::InsertAfter(QSharedPointer<CTask> newTask,
                         QSharedPointer<CTask> task)
@@ -142,6 +137,16 @@ int CTasks::SetContent(const QString &szContent)
 bool CTasks::End()
 {
     return m_vTask.isEmpty();
+}
+
+int CTasks::ReSetId()
+{
+    int n = 0;
+    foreach(QSharedPointer<CTask> t, m_vTask)
+    {
+        t->SetId(n++);
+    }
+    return 0;
 }
 
 int CTasks::Start()

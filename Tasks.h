@@ -62,6 +62,8 @@ public:
     virtual int LoadSettings(const QDomElement &e);
     virtual int SaveSettings(QDomElement &e);
 
+private:
+    int ReSetId();
     
 private:
     int m_nCurrent;

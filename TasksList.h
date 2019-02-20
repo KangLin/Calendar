@@ -41,6 +41,9 @@ private Q_SLOTS:
     void slotTimeout();
     
 private:
+    int ReSetId();
+    
+private:
     QList<QSharedPointer<CTasks>> m_lstTasks;
     QTimer m_Timer;
     int m_nTimerInterval;

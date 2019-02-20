@@ -27,10 +27,7 @@ int CTasksList::Add(QSharedPointer<CTasks> tasks)
     int nRet = 0;
     if(NULL == tasks)
         return -1;
-    if(m_lstTasks.empty())
-        tasks->SetId(0);
-    else
-        tasks->SetId(m_lstTasks.last()->GetId() + 1);
+    
     int nIdex = m_lstTasks.indexOf(tasks);
     if(nIdex > -1)
     {
@@ -38,8 +35,7 @@ int CTasksList::Add(QSharedPointer<CTasks> tasks)
         return 0;
     }
     m_lstTasks.push_back(tasks);
-    //TODO: Add the maximum common divisor
-    //m_nTimerInterval =
+    ReSetId();
     return nRet;
 }
 
@@ -53,6 +49,16 @@ int CTasksList::Remove(QSharedPointer<CTasks> tasks)
 int CTasksList::RemoveAll()
 {
     m_lstTasks.clear();
+    return 0;
+}
+
+int CTasksList::ReSetId()
+{
+    int n = 0;
+    foreach(QSharedPointer<CTasks> t, m_lstTasks)
+    {
+        t->SetId(n++);
+    }
     return 0;
 }
 
