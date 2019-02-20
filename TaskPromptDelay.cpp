@@ -1,39 +1,28 @@
 #include "TaskPromptDelay.h"
 #include <QSound>
+#include <QInputDialog>
 
 static int gTypeIdCTaskPromptDelay = qRegisterMetaType<CTaskPromptDelay>();
 
-CTaskPromptDelay::CTaskPromptDelay(QObject* parent) : CTaskPrompt (parent)
+CTaskPromptDelay::CTaskPromptDelay(QObject *parent) : CTaskPrompt(parent)
 {
     Init();
 }
 
-CTaskPromptDelay::CTaskPromptDelay(const QString szText,
-                       const QString szTitle,
-                       int nInterval,
-                       int nPromptInterval,
-                       QObject *parent) 
-    : CTaskPrompt (szText, szTitle, nInterval, nPromptInterval, parent)
+CTaskPromptDelay::CTaskPromptDelay(const QString szContent,
+                                   const QString szTitle,
+                                   int nInterval,
+                                   int nPromptInterval,
+                                   QObject *parent)
+    : CTaskPrompt(szContent, szTitle, nInterval, nPromptInterval, parent)
 {
     Init();
+    SetTitle(szTitle);
 }
 
 CTaskPromptDelay::CTaskPromptDelay(const CTaskPromptDelay &task)
 {
     Q_UNUSED(task);
-}
-
-int CTaskPromptDelay::Init()
-{
-    m_bStop = false;
-    setObjectName("TaskPromptDelay");
-    SetTitle(objectName());
-    /*m_Menu.addAction(QIcon(":/icon/Close"), tr("Close"),
-                     &m_Top, SLOT(close()));
-    m_Menu.addAction(tr("Delay 5 Minute"),
-                  this, SLOT(slotDelay5Minute(bool)));
-    m_Top.SetPopupMenu(&m_Menu);*/
-    return 0;
 }
 
 int CTaskPromptDelay::SaveSettings(QDomElement &e)
@@ -45,6 +34,62 @@ int CTaskPromptDelay::SaveSettings(QDomElement &e)
 QString CTaskPromptDelay::GetDescription() const
 {
     return tr("Delayable task. the task can be delayed.");
+}
+
+int CTaskPromptDelay::Init()
+{
+    m_bStop = false;
+    setObjectName("TaskPromptDelay");
+    SetTitle(objectName());
+    m_Menu.addAction(QIcon(":/icon/Close"), tr("Close"),
+                     &m_Top, SLOT(close()));
+    m_Menu.addAction(tr("Delay 5 Minute"),
+                  this, SLOT(slotDelay5Minute(bool)));
+    m_Menu.addAction(tr("Customize delay"),
+                     this, SLOT(slotDelayCustomize(bool)));
+    m_Top.SetPopupMenu(&m_Menu);
+    return 0;
+}
+
+void CTaskPromptDelay::slotDelay5Minute(bool checked)
+{
+    Q_UNUSED(checked);
+    AddDelay(5);
+}
+
+void CTaskPromptDelay::slotDelayCustomize(bool checked)
+{
+    Q_UNUSED(checked);
+    bool ok = false;
+    int n = QInputDialog::getInt(&m_Top,
+                                 tr("Customize delay"),
+                                 tr("Delay minute"),
+                                 10,
+                                 1,
+                                 60 * 60 * 24,
+                                 1,
+                                 &ok);
+    if(!ok)
+        return;
+    AddDelay(n);
+}
+
+int CTaskPromptDelay::AddDelay(int nMinute)
+{
+    m_Top.close();
+    m_Delay.append(QSharedPointer<CTaskPromptDelay>(
+                       new CTaskPromptDelay(
+                           GetContent(),
+                           GetTitle(),
+                           nMinute * 60 * 1000,
+                           GetPromptInterval())));
+    return 0;
+}
+
+int CTaskPromptDelay::onStart()
+{
+    m_bStop = false;
+    return CTaskPrompt::onStart();
 }
 
 int CTaskPromptDelay::Check()
@@ -76,23 +121,4 @@ int CTaskPromptDelay::Check()
         return -1;
     }
     return nRet;
-}
-
-void CTaskPromptDelay::slotDelay5Minute(bool checked)
-{
-    Q_UNUSED(checked);
-    AddDelay(5);
-}
-
-int CTaskPromptDelay::AddDelay(int nMinute)
-{
-    m_Top.close();
-    /*CTaskPromptDelay *p =
-                new CTaskPromptDelay(
-                    GetContent(),
-                    GetTitle(),
-                    nMinute * 60 * 1000,
-                    GetPromptInterval());
-    m_Delay.append(QSharedPointer<CTaskPromptDelay>(p));*/
-    return 0;
 }

@@ -17,6 +17,7 @@ class CTaskLockScreen : public CTaskPrompt
 {
     Q_OBJECT
 public:
+    explicit CTaskLockScreen(QObject* parent);
     /**
      * @brief CTaskLockScreen
      * @param nInterval: unlocak. in milliseconds

@@ -1,6 +1,7 @@
 #include "FrmEyeNurse.h"
 #include "ui_FrmEyeNurse.h"
 #include "TaskLockScreen.h"
+#include "TaskPromptDelay.h"
 #include "DlgAbout/DlgAbout.h"
 #include <QMessageBox>
 #include "Global/Tool.h"
@@ -65,6 +66,7 @@ int CFrmEyeNurse::VisionProtectionTasks()
     m_TasksList.setObjectName("EyeNurse");
     QSharedPointer<CTasks> tasks(new CTasks());
     tasks->SetTitle(tr("Eye nurse"));
+    tasks->SetContent(tr("Protect eyesight"));
     QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
     task->SetTitle(tr("Work"));
     tasks->Add(task);

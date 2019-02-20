@@ -28,6 +28,12 @@ LRESULT CALLBACK LowLevelMouseProc(
 
 static int gTypeIdCTaskLockScreen = qRegisterMetaType<CTaskLockScreen>();
 
+CTaskLockScreen::CTaskLockScreen(QObject* parent) : CTaskPrompt(parent)
+{
+    Init();
+    SetTitle(tr("Reset"));
+}
+
 CTaskLockScreen::CTaskLockScreen(int nInterval,
                                  int nPromptInterval,
                                  QObject *parent)
@@ -116,7 +122,7 @@ void CTaskLockScreen::slotPrompt()
     QTime tm(0, 0);
     tm = tm.addMSecs(Remaining());
     if(m_FullScreen)
-        m_FullScreen->Prompt(GetContent() + tr("\nRemaining: %1")
+        m_FullScreen->Prompt(GetContent() + "\n" + tr("Remaining: %1")
                          .arg(tm.toString("HH:mm:ss")),
                         Remaining(),
                         0,

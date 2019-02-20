@@ -12,7 +12,7 @@ class CTaskPrompt : public CTask
     
 public:
     explicit CTaskPrompt(QObject *parent = nullptr);
-    explicit CTaskPrompt(const QString szText,
+    explicit CTaskPrompt(const QString szContent,
                          const QString szTitle = tr("Prompt"),
                          int nInterval = 5 * 60 * 1000,
                          int nPromptInterval = 1000,

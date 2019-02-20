@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "TaskTrayIconPrompt.h"
+#include "TaskPromptDelay.h"
 #include "TaskLockScreen.h"
 #include "TaskPrompt.h"
 
@@ -36,17 +37,17 @@ void MainWindow::on_pbAdd_clicked()
 {
     QSharedPointer<CTasks> tasks(new CTasks());
 
-    QSharedPointer<CTaskPrompt> prompt(new CTaskPrompt(
-                                     tr("Lock screen and rest"),
-                                     tr("Reset"),
-                                     5000, 1000));
-    prompt->setObjectName("Will want to lock the screen");
+    QSharedPointer<CTaskPrompt> prompt(new CTaskPromptDelay(
+                                     tr("Delay")));
+    prompt->SetInterval(10000);
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen(3000, 1000));
     lock->setObjectName("Lock");
     tasks->Add(lock);
     tasks->Start();
     m_lstTasks.Add(tasks);
+    
+    m_frmTasks.SetTasks(tasks);
 }
 
 void MainWindow::on_pbRemove_clicked()
@@ -89,4 +90,9 @@ QSharedPointer<CTasks> MainWindow::VisionProtectionTasks(CTasksList &taskList)
     tasks->Add(lock);
     taskList.Add(tasks);
     return tasks;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    m_frmTasks.show();
 }
