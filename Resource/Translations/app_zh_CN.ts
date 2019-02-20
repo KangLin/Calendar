@@ -126,13 +126,13 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="34"/>
-        <location filename="../../FrmEyeNurse.cpp" line="120"/>
+        <location filename="../../FrmEyeNurse.cpp" line="119"/>
         <source>Enable run from boot</source>
         <translation>允许开户自启动</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="36"/>
-        <location filename="../../FrmEyeNurse.cpp" line="115"/>
+        <location filename="../../FrmEyeNurse.cpp" line="114"/>
         <source>Disable run from boot</source>
         <translation>禁止开机自启动</translation>
     </message>
@@ -153,8 +153,8 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="75"/>
-        <source>Lock screen and rest</source>
-        <translation>锁屏休息</translation>
+        <source>Prompt to lock the screen and rest</source>
+        <translation>提示锁屏和休息</translation>
     </message>
 </context>
 <context>
@@ -276,7 +276,6 @@ Email:kl222@126.com</source>
         <location filename="../../FrmTasks.ui" line="198"/>
         <location filename="../../FrmTasks.ui" line="201"/>
         <location filename="../../FrmTasks.ui" line="204"/>
-        <location filename="../../FrmTasks.cpp" line="69"/>
         <source>Task</source>
         <translation>任务</translation>
     </message>
@@ -359,12 +358,12 @@ Email:kl222@126.com</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="65"/>
-        <source>There is current task in tasks</source>
-        <translation>这是任务组中的当前任务</translation>
+        <location filename="../../FrmTasks.cpp" line="76"/>
+        <source>There is current task in tasks.</source>
+        <translation>这是任务组中的当前任务.</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="100"/>
+        <location filename="../../FrmTasks.cpp" line="117"/>
         <source>New </source>
         <translation>新建</translation>
     </message>

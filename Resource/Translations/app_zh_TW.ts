@@ -125,13 +125,13 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="34"/>
-        <location filename="../../FrmEyeNurse.cpp" line="120"/>
+        <location filename="../../FrmEyeNurse.cpp" line="119"/>
         <source>Enable run from boot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="36"/>
-        <location filename="../../FrmEyeNurse.cpp" line="115"/>
+        <location filename="../../FrmEyeNurse.cpp" line="114"/>
         <source>Disable run from boot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -152,8 +152,12 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="75"/>
+        <source>Prompt to lock the screen and rest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Lock screen and rest</source>
-        <translation type="unfinished">鎖屏休息</translation>
+        <translation type="obsolete">鎖屏休息</translation>
     </message>
 </context>
 <context>
@@ -275,7 +279,6 @@ Email:kl222@126.com</source>
         <location filename="../../FrmTasks.ui" line="198"/>
         <location filename="../../FrmTasks.ui" line="201"/>
         <location filename="../../FrmTasks.ui" line="204"/>
-        <location filename="../../FrmTasks.cpp" line="69"/>
         <source>Task</source>
         <translation type="unfinished"></translation>
     </message>
@@ -358,12 +361,12 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="65"/>
-        <source>There is current task in tasks</source>
+        <location filename="../../FrmTasks.cpp" line="76"/>
+        <source>There is current task in tasks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="100"/>
+        <location filename="../../FrmTasks.cpp" line="117"/>
         <source>New </source>
         <translation type="unfinished"></translation>
     </message>

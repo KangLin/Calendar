@@ -72,11 +72,10 @@ int CFrmEyeNurse::VisionProtectionTasks()
     tasks->Add(task);
     QSharedPointer<CTask> prompt(new CTaskPrompt(
                                      tr("Will want to lock the screen"),
-                                     tr("Lock screen and rest")
+                                     tr("Prompt to lock the screen and rest")
                                      ));
     tasks->Add(prompt);
     QSharedPointer<CTask> lock(new CTaskLockScreen());
-    lock->SetTitle("Lock");
     tasks->Add(lock);
     m_TasksList.Add(tasks);
     m_TasksList.Start();

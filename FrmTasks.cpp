@@ -56,6 +56,7 @@ int CFrmTasks::SetTask(QSharedPointer<CTask> task)
         qCritical() << "CFrmTasks::SetTask: The task is null";
         return -1;
     }
+    //ui->gpTask->setTitle(tr("Task: ") + task->objectName());
     ui->leTaskID->setText(QString::number(task->GetId()));
     ui->leTaskTitle->setText(task->GetTitle());
     ui->teTaskContent->setText(task->GetContent());
@@ -72,11 +73,12 @@ int CFrmTasks::SetTask(QSharedPointer<CTask> task)
     {
         ui->gpTask->setChecked(true);
         ui->gpTask->setCheckable(true);
-        ui->gpTask->setToolTip(tr("There is current task in tasks"));
+        ui->gpTask->setToolTip(tr("There is current task in tasks.")
+                               + "\n" + task->GetDescription());
     }else{
         ui->gpTask->setChecked(false);
         ui->gpTask->setCheckable(false);
-        ui->gpTask->setToolTip(tr("Task"));
+        ui->gpTask->setToolTip(task->GetDescription());
     }
 
     return 0;
