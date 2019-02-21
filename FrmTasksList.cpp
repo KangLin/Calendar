@@ -1,22 +1,14 @@
 #include "FrmTasksList.h"
 #include "ui_FrmTasksList.h"
+#include "Global/GlobalDir.h"
 #include <QModelIndex>
+#include <QFileDialog>
 
 CFrmTasksList::CFrmTasksList(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmTasksList)
 {
     ui->setupUi(this);
-    m_TasksList = nullptr;
-    Init();
-}
-
-CFrmTasksList::CFrmTasksList(CTasksList* pTasks, QWidget *parent)
-    : QWidget(parent),
-      ui(new Ui::CFrmTasksList)
-{
-    ui->setupUi(this);
-    m_TasksList = pTasks;
     Init();
 }
 
@@ -31,23 +23,41 @@ int CFrmTasksList::Init()
     ui->tasks->hide();
     ui->lvTasks->setModel(&m_Model);
     
-    if(nullptr == m_TasksList)
-        return -1;
+    nRet = Load();
+    
+    return nRet;
+}
+
+int CFrmTasksList::Load(QString szFile)
+{
+    int nRet = m_TasksList.LoadSettings(szFile);
+    if(nRet)
+        return nRet;
     
     int nIndex = 0;
-    while(QSharedPointer<CTasks> p = m_TasksList->Get(nIndex++))
+    while(QSharedPointer<CTasks> p = m_TasksList.Get(nIndex++))
     {
         QStandardItem *title = new QStandardItem(p->GetTitle());
         title->setToolTip(p->GetContent());
         m_Model.appendRow(title);
     }
     ui->lvTasks->setCurrentIndex(m_Model.index(0, 0));
-    return nRet;
+    
+    return m_TasksList.Start();
+}
+
+void CFrmTasksList::slotLoad()
+{
+    QFileDialog fd(this, tr("Load"), CGlobalDir::Instance()->GetDirConfig(), "*.xml");
+    int n = fd.exec();
+    if(QDialog::Rejected == n)
+        return;
+    Load(fd.selectedFiles().at(0));
 }
 
 void CFrmTasksList::on_lvTasks_clicked(const QModelIndex &index)
 {
-    QSharedPointer<CTasks> p = m_TasksList->Get(index.row());
+    QSharedPointer<CTasks> p = m_TasksList.Get(index.row());
     if(nullptr == p)
         return;
     ui->tasks->SetTasks(p);
@@ -58,7 +68,7 @@ void CFrmTasksList::slotNew()
 {
     QSharedPointer<CTasks> tasks(new CTasks());
     tasks->SetTitle(tr("New tasks"));
-    m_TasksList->Add(tasks);
+    m_TasksList.Add(tasks);
     QSharedPointer<CTask> task(new CTask());
     task->SetTitle(tr("New task"));
     task->SetContent(tr("If the task is not you need, please select a task from combox, new it, and remove the task."));
@@ -72,14 +82,14 @@ void CFrmTasksList::slotNew()
 
 void CFrmTasksList::slotRemove()
 {
-    m_TasksList->Remove(m_TasksList->Get(ui->lvTasks->currentIndex().row()));
+    m_TasksList.Remove(m_TasksList.Get(ui->lvTasks->currentIndex().row()));
     m_Model.removeRow(ui->lvTasks->currentIndex().row());
     on_lvTasks_clicked(ui->lvTasks->currentIndex());
 }
 
 void CFrmTasksList::on_lvTasks_indexesMoved(const QModelIndexList &indexes)
 {
-    QSharedPointer<CTasks> p = m_TasksList->Get(indexes.at(0).row());
+    QSharedPointer<CTasks> p = m_TasksList.Get(indexes.at(0).row());
     if(nullptr == p)
         return;
     ui->tasks->SetTasks(p);

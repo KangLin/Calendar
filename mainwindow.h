@@ -28,10 +28,6 @@ private Q_SLOTS:
     
     void slotActivated(QSystemTrayIcon::ActivationReason reason);
     void on_actionExit_E_triggered();
-
-    
-private:
-    int Load(QString szFile = QString());
     
 private:
     Ui::CMainWindow *ui;
@@ -40,7 +36,6 @@ private:
     QAction* m_pShow;
     QAction* m_pStartRun;
     
-    CTasksList m_TasksList;
     CFrmTasksList *m_pFrmTasksList;
 };
 

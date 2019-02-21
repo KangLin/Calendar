@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Root>
+    <class name="CTasksList">
+        <objectName value="EyeNurse"/>
+        <class name="CTasks">
+            <objectName value="Tasks"/>
+            <id value="0"/>
+            <title value="Eye nurse"/>
+            <content value="Protect eyesight"/>
+            <class name="CTask">
+                <objectName value="Task"/>
+                <title value="Work"/>
+                <content value=""/>
+                <id value="0"/>
+                <interval value="2400000"/>
+                <promptInterval value="0"/>
+            </class>
+            <class name="CTaskPromptDelay">
+                <objectName value="TaskPromptDelay"/>
+                <title value="Prompt to lock the screen and rest"/>
+                <content value="Will want to lock the screen"/>
+                <id value="1"/>
+                <interval value="300000"/>
+                <promptInterval value="1000"/>
+            </class>
+            <class name="CTaskLockScreen">
+                <objectName value="TaskLockScreen"/>
+                <title value="Rest"/>
+                <content value="Lock the screen and rest"/>
+                <id value="2"/>
+                <interval value="900000"/>
+                <promptInterval value="1000"/>
+            </class>
+        </class>
+    </class>
+</Root>
