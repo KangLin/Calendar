@@ -1,46 +1,50 @@
-## 任务
+## Tasks
 
-================================================
+=========================================================
 
-作者：康林（kl222@126.com)
+Author: KangLin (kl222@126.com)
+
+[<img src="Resource/image/china.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
+------------------------------------------------
+
+### Features
+
+- [x] Eye Nurse
+- [ ] Custom task
+- [ ] calendar
+- [X] notes
 
 ------------------------------------------------
 
-### 功能
-
-- [x]  眼睛护士
-- [ ]  自定义任务
-- [ ]  日历
-- [X]  便签
+[![Build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/tasks)
 
 ------------------------------------------------
 
-### 编译
-- 建立并进入build目录
+### Compile
+- Create and enter the build directory
 
-        cd Tasks
-        mkdir build
+        Cd Tasks
+        Mkdir build
 
-- 编译
+- Compile
 
-        qmake Tasks.pro
-        make install
+        Qmake Tasks.pro
+        Make install
 
 ------------------------------------------------
 
-### 下载
+### Download
 https://github.com/KangLin/Tasks/releases
 
 ------------------------------------------------
 
-## 捐赠
-- 捐赠(大于￥20)：  
-![捐赠( 大于 ￥20 )](Resource/image/Contribute.png  "捐赠(大于￥20)")
+## Donation
+- Donation (greater than ¥20):  
+![donation (greater than ¥20)](Resource/image/Contribute.png "donation (greater than ¥20)")
 
-- 捐赠￥20  
-![捐赠￥20](Resource/image/Contribute20.png  "捐赠￥20")
+- Donate ¥20  
+![donation ¥20](Resource/image/Contribute20.png "donation ¥20")
 
 ------------------------------------------------
 
-
-### [许可协议](LICENSE.MD "LICENSE.MD")
+### [License Agreement](LICENSE.MD "LICENSE.MD")

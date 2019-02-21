@@ -76,4 +76,5 @@ OTHER_FILES += Install/* \
 DISTFILES += \
     LICENSE.md \
     Authors.md \
+    README_zh_CN.md \
     README.md
