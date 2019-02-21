@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>CMainWindow</class>
+ <widget class="QMainWindow" name="CMainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>600</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,68 +17,153 @@
    <iconset resource="Resource/Resource.qrc">
     <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pbAdd">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>50</y>
-      <width>80</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pbRemove">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>90</y>
-      <width>80</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>140</y>
-      <width>121</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Show property</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>600</width>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile_F">
+    <property name="title">
+     <string>File(&amp;F)</string>
+    </property>
+    <addaction name="actionLoad_L"/>
+    <addaction name="actionSave_S"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit_E"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit_E">
+    <property name="title">
+     <string>Edit(&amp;E)</string>
+    </property>
+    <addaction name="actionNew_N"/>
+    <addaction name="actionRemove_R"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp_H">
+    <property name="title">
+     <string>Help(&amp;H)</string>
+    </property>
+    <addaction name="actionAbout_A"/>
+   </widget>
+   <addaction name="menuFile_F"/>
+   <addaction name="menuEdit_E"/>
+   <addaction name="menuHelp_H"/>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNew_N"/>
+   <addaction name="actionRemove_R"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionLoad_L">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/File</normaloff>:/icon/File</iconset>
+   </property>
+   <property name="text">
+    <string>Load(&amp;L)</string>
+   </property>
+   <property name="toolTip">
+    <string>Load tasks</string>
+   </property>
+   <property name="statusTip">
+    <string>Load tasks</string>
+   </property>
+   <property name="whatsThis">
+    <string>Load tasks</string>
+   </property>
+  </action>
+  <action name="actionSave_S">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
+   </property>
+   <property name="text">
+    <string>Save(&amp;S)</string>
+   </property>
+   <property name="toolTip">
+    <string>Save tasks</string>
+   </property>
+   <property name="statusTip">
+    <string>Save tasks</string>
+   </property>
+   <property name="whatsThis">
+    <string>Save tasks</string>
+   </property>
+  </action>
+  <action name="actionNew_N">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
+   </property>
+   <property name="text">
+    <string>New(&amp;N)</string>
+   </property>
+   <property name="toolTip">
+    <string>New tasks</string>
+   </property>
+   <property name="statusTip">
+    <string>New tasks</string>
+   </property>
+   <property name="whatsThis">
+    <string>New tasks</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="actionRemove_R">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Delete</normaloff>:/icon/Delete</iconset>
+   </property>
+   <property name="text">
+    <string>Remove(&amp;R)</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove tasks</string>
+   </property>
+   <property name="statusTip">
+    <string>Remove tasks</string>
+   </property>
+   <property name="whatsThis">
+    <string>Remove tasks</string>
+   </property>
+  </action>
+  <action name="actionAbout_A">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
+   </property>
+   <property name="text">
+    <string>About(&amp;A)</string>
+   </property>
+   <property name="toolTip">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionExit_E">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Close</normaloff>:/icon/Close</iconset>
+   </property>
+   <property name="text">
+    <string>Exit(&amp;E)</string>
+   </property>
+  </action>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <resources>
   <include location="Resource/Resource.qrc"/>
  </resources>

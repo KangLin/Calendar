@@ -1,9 +1,9 @@
-#include "mainwindow.h"
 #include <QApplication>
 #include <QTranslator>
 #include <QLocale>
-#include "FrmEyeNurse.h"
 #include <QDebug>
+#include "MainWindow.h"
+#include "FrmEyeNurse.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,13 +13,15 @@ int main(int argc, char *argv[])
     t.load(":/Translations/app_" + QLocale::system().name());
     a.installTranslator(&t);
 
+    CMainWindow m;
+    m.show();
     /*CFrmUpdater u;
     u.show();
     u.StartDownload("https://github.com/qTox/qTox/blob/master/updater/update.cpp");//*/
     /*MainWindow w;
     w.show();//*/
 
-    CFrmEyeNurse en;
+    //CFrmEyeNurse en;
 
     return a.exec();
 }

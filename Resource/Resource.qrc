@@ -8,5 +8,16 @@
         <file alias="EyeCharts">image/EyeCharts.png</file>
         <file alias="Contribute">image/Contribute.png</file>
         <file alias="Contribute20">image/Contribute20.png</file>
+        <file alias="Add">image/add.png</file>
+        <file alias="Delete">image/delete.png</file>
+        <file alias="Sub">image/sub.png</file>
+        <file alias="Edit">image/edit.png</file>
+        <file alias="File">image/file.png</file>
+        <file alias="Down">image/down.png</file>
+        <file alias="Up">image/up.png</file>
+        <file alias="Right">image/right.png</file>
+        <file alias="Point">image/point.png</file>
+        <file alias="RedPoint">image/red_point.png</file>
+        <file alias="Save">image/save.png</file>
     </qresource>
 </RCC>

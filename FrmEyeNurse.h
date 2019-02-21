@@ -8,7 +8,6 @@
 #include "FrmTasks.h"
 #include <QMenu>
 #include <QSystemTrayIcon>
-#include "DlgAbout/DlgAbout.h"
 
 namespace Ui {
 class CFrmEyeNurse;
@@ -46,7 +45,6 @@ private:
     int VisionProtectionTasks();
     
     CFrmTasks m_frmTasks;
-    CDlgAbout *m_pAbout;
 };
 
 #endif // FRMEYENURSE_H

@@ -16,7 +16,7 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
     ui(new Ui::CFrmEyeNurse)
 {
     ui->setupUi(this);
-    m_pAbout = NULL;
+
     bool check = connect(&m_frmTasks, SIGNAL(Change()),
                          this, SLOT(slotChange()));
     Q_ASSERT(check);
@@ -33,7 +33,9 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
                              SLOT(slotAbout(bool)));
     QString szStartRun = tr("Enable run from boot");
     if(CTool::IsStartRunOnceCurrentUser())
+    {
         szStartRun = tr("Disable run from boot");
+    }
     m_pStartRun = m_TrayIconMenu.addAction(szStartRun, this, SLOT(slotStartRun(bool)));
     m_pStartRun->setCheckable(true);
     m_pStartRun->setChecked(CTool::IsStartRunOnceCurrentUser());

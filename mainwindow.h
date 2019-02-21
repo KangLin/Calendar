@@ -1,49 +1,39 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#pragma once
-
 #include <QMainWindow>
-#include <QTimer>
-#include "TasksList.h"
 #include <QMenu>
 #include <QSystemTrayIcon>
-#include "FrmTasks.h"
+
 
 namespace Ui {
-class MainWindow;
+class CMainWindow;
 }
 
-class MainWindow : public QMainWindow
+class CMainWindow : public QMainWindow
 {
     Q_OBJECT
-
+    
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-
-private slots:
-    void on_pbAdd_clicked();
-    void on_pbRemove_clicked();
-
+    explicit CMainWindow(QWidget *parent = nullptr);
+    ~CMainWindow();
+    
+private Q_SLOTS:
     void slotExit(bool checked);
-    void slotSettings(bool checked);
+    void slotShow(bool checked);
+    void slotAbout(bool checked);
+    void slotStartRun(bool checked);
     
-    void on_pushButton_clicked();
+    void slotActivated(QSystemTrayIcon::ActivationReason reason);
+    void on_actionExit_E_triggered();
     
-protected:
-    void closeEvent(QCloseEvent* e);
-
 private:
-    Ui::MainWindow *ui;
-
-    CTasksList m_lstTasks;
-
+    Ui::CMainWindow *ui;
     QMenu m_TrayIconMenu;
     QSystemTrayIcon m_TrayIcon;
-
-    CFrmTasks m_frmTasks;
-    QSharedPointer<CTasks> VisionProtectionTasks(CTasksList &taskList);
+    QAction* m_pShow;
+    QAction* m_pStartRun;
+    
 };
 
 #endif // MAINWINDOW_H

@@ -1,98 +1,97 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "TaskTrayIconPrompt.h"
-#include "TaskPromptDelay.h"
-#include "TaskLockScreen.h"
-#include "TaskPrompt.h"
+#include "MainWindow.h"
+#include "ui_MainWindow.h"
+#include "DlgAbout/DlgAbout.h"
+#include "Global/Tool.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::CMainWindow)
 {
     ui->setupUi(this);
-
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
                 tr("Exit"),
                 this,
                 SLOT(slotExit(bool)));
-    m_TrayIconMenu.addAction(QIcon(":/icon/Settings"),
-                             tr("Settings"),
+#if !(defined (_DEBUG) || defined(DEBUG))
+    hide();
+#endif
+    QString szShow = tr("Hide");
+    if(isHidden())
+        szShow = tr("Show");
+    m_pShow = m_TrayIconMenu.addAction(windowIcon(), szShow,
+                                       this, SLOT(slotShow(bool)));
+    m_TrayIconMenu.addAction(QIcon(":/icon/App"),
+                             tr("About"),
                              this,
-                             SLOT(slotSettings(bool)));
+                             SLOT(slotAbout(bool)));
+
+    m_pStartRun = m_TrayIconMenu.addAction(tr("Enable run from boot"), this, SLOT(slotStartRun(bool)));
+    m_pStartRun->setCheckable(true);
+    m_pStartRun->setChecked(CTool::IsStartRunOnceCurrentUser());
+    
+    bool check = connect(&m_TrayIcon,
+                    SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                    this,
+                    SLOT(slotActivated(QSystemTrayIcon::ActivationReason)));
+    Q_ASSERT(check);
     m_TrayIcon.setContextMenu(&m_TrayIconMenu);
     m_TrayIcon.setIcon(this->windowIcon());
     m_TrayIcon.setToolTip(this->windowTitle());
-    VisionProtectionTasks(m_lstTasks);
-    m_lstTasks.Start();
+    m_TrayIcon.show();
 }
 
-MainWindow::~MainWindow()
+CMainWindow::~CMainWindow()
 {
     delete ui;
-    m_lstTasks.RemoveAll();
 }
 
-void MainWindow::on_pbAdd_clicked()
+void CMainWindow::slotAbout(bool checked)
 {
-    QSharedPointer<CTasks> tasks(new CTasks());
-
-    QSharedPointer<CTaskPrompt> prompt(new CTaskPromptDelay(
-                                     tr("Delay")));
-    prompt->SetInterval(10000);
-    tasks->Add(prompt);
-    QSharedPointer<CTask> lock(new CTaskLockScreen(3000, 1000));
-    lock->setObjectName("Lock");
-    //tasks->Add(lock);
-    tasks->Start();
-    m_lstTasks.Add(tasks);
-    
-    m_frmTasks.SetTasks(tasks);
+    Q_UNUSED(checked);
+    static CDlgAbout dlg;
+    if(dlg.isHidden())
+        dlg.exec();
 }
 
-void MainWindow::on_pbRemove_clicked()
-{
-    m_lstTasks.RemoveAll();
-}
-
-void MainWindow::closeEvent(QCloseEvent *e)
-{
-    Q_UNUSED(e);
-    hide();
-    e->ignore();
-}
-
-void MainWindow::slotExit(bool checked)
+void CMainWindow::slotExit(bool checked)
 {
     Q_UNUSED(checked);
     qApp->quit();
 }
 
-void MainWindow::slotSettings(bool checked)
+void CMainWindow::slotShow(bool checked)
 {
     Q_UNUSED(checked);
-    this->show();
+    if(isHidden())
+    {   show();
+        m_pShow->setText(tr("Hide"));
+    }
+    else {
+        hide();
+        m_pShow->setText(tr("Show"));
+    }
 }
 
-QSharedPointer<CTasks> MainWindow::VisionProtectionTasks(CTasksList &taskList)
+void CMainWindow::slotStartRun(bool checked)
 {
-    QSharedPointer<CTasks> tasks(new CTasks());
-    QSharedPointer<CTask> task(new CTask(40 * 60 *1000));
-    task->setObjectName("Work");
-    tasks->Add(task);
-    QSharedPointer<CTask> prompt(new CTaskPrompt(
-                                     "Lock screen and rest"
-                                     ));
-    prompt->setObjectName("Will want to lock the screen");
-    tasks->Add(prompt);
-    QSharedPointer<CTask> lock(new CTaskLockScreen());
-    lock->setObjectName("Lock");
-    tasks->Add(lock);
-    taskList.Add(tasks);
-    return tasks;
+    if(checked)
+    {
+        CTool::InstallStartRunOnceCurrentUser();
+    }
+    else
+    {
+        CTool::RemoveStartRunOnceCurrentUser();
+    }
 }
 
-void MainWindow::on_pushButton_clicked()
+void CMainWindow::slotActivated(QSystemTrayIcon::ActivationReason r)
 {
-    m_frmTasks.show();
+    if(QSystemTrayIcon::ActivationReason::Trigger == r)
+        slotShow(true);
+}
+
+void CMainWindow::on_actionExit_E_triggered()
+{
+    qApp->quit();
 }

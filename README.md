@@ -12,7 +12,7 @@ Author: KangLin (kl222@126.com)
 - [x] Eye Nurse： Vision protection
 - [ ] Custom task
 - [ ] calendar
-- [X] Sticky
+- [x] Sticky
 
 ------------------------------------------------
 

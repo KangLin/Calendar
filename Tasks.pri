@@ -11,6 +11,7 @@ CONFIG *= C++11
 msvc {
     QMAKE_CXXFLAGS += "/utf-8"
     QMAKE_LFLAGS *= /SUBSYSTEM:WINDOWS",5.01"
+    LIBS += User32.lib
 }
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -18,7 +19,6 @@ msvc {
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        mainwindow.cpp \
     Task.cpp \
     Tasks.cpp \
     TasksList.cpp \
@@ -35,10 +35,10 @@ SOURCES += \
     FrmTaskPropery.cpp \
     ViewTaskProperty.cpp \ 
     FrmTasks.cpp \  
-    $$PWD/TaskPromptDelay.cpp
+    TaskPromptDelay.cpp \
+    MainWindow.cpp
 
 HEADERS += \
-        mainwindow.h \
     Task.h \
     Tasks.h \
     TasksList.h \
@@ -56,21 +56,20 @@ HEADERS += \
     FrmTaskPropery.h \
     ViewTaskProperty.h \ 
     FrmTasks.h \  
-    $$PWD/TaskPromptDelay.h
+    TaskPromptDelay.h \
+    MainWindow.h
 
 FORMS += \
-        mainwindow.ui \
     FrmFullScreen.ui \
     FrmTop.ui \
     FrmStickyNotes.ui \
     FrmUpdater.ui \
     FrmTaskProperty.ui \ 
-    FrmTasks.ui
+    FrmTasks.ui \
+    MainWindow.ui
 
 RESOURCES += \
     Resource/Resource.qrc \
-
-msvc : LIBS += User32.lib
 
 isEmpty(PREFIX) {
     android {
