@@ -9,10 +9,10 @@ Author: KangLin (kl222@126.com)
 
 ### Features
 
-- [x] Eye Nurse
+- [x] Eye Nurse： Vision protection
 - [ ] Custom task
 - [ ] calendar
-- [X] notes
+- [X] Sticky
 
 ------------------------------------------------
 
@@ -34,7 +34,7 @@ Author: KangLin (kl222@126.com)
 ------------------------------------------------
 
 ### Download
-https://github.com/KangLin/Tasks/releases
+https://github.com/KangLin/Tasks/releases/latest
 
 ------------------------------------------------
 
