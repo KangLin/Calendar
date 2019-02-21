@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v0.0.1.{build}'
+version: '.{build}'
 
 environment:
   matrix: 
@@ -135,6 +135,6 @@ deploy:
     on:
       BUILD_TARGERT: windows_msvc
       TOOLCHAIN_VERSION: 14
-      QT_VERSION: 5.6
+      QT_VERSION: 5.6.3
       AUTOBUILD_ARCH: x86
       appveyor_repo_tag: true        # deploy on tag push only
