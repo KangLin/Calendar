@@ -39,11 +39,35 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_TrayIcon.setIcon(this->windowIcon());
     m_TrayIcon.setToolTip(this->windowTitle());
     m_TrayIcon.show();
+    
+    Load();
+    
+    m_pFrmTasksList = new CFrmTasksList(&m_TasksList, this);
+    if(m_pFrmTasksList)
+    {
+        bool check = connect(ui->actionNew_N, SIGNAL(triggered()),
+                             m_pFrmTasksList, SLOT(slotNew()));
+        Q_ASSERT(check);
+        check = connect(ui->actionRemove_R, SIGNAL(triggered()),
+                        m_pFrmTasksList, SLOT(slotRemove()));
+        Q_ASSERT(check);
+    }
+    this->setCentralWidget(m_pFrmTasksList);
 }
 
 CMainWindow::~CMainWindow()
 {
     delete ui;
+    if(m_pFrmTasksList)
+        delete m_pFrmTasksList;
+}
+
+int CMainWindow::Load(QString szFile)
+{
+    int nRet = m_TasksList.LoadSettings(szFile);
+    if(nRet)
+        return nRet;
+    return m_TasksList.Start();
 }
 
 void CMainWindow::slotAbout(bool checked)

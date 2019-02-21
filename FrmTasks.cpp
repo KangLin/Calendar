@@ -3,6 +3,15 @@
 #include "ObjectFactory.h"
 #include <QtDebug>
 
+CFrmTasks::CFrmTasks(QWidget *parent)
+    : QWidget (parent),
+    ui(new Ui::CFrmTasks)
+{
+    setAttribute(Qt::WA_QuitOnClose, false);
+    ui->setupUi(this);
+    InitTaskComboBox();
+}
+
 CFrmTasks::CFrmTasks(QSharedPointer<CTasks> tasks,
                      bool readOnly, 
                      QWidget *parent) :

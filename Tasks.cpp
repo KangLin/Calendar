@@ -24,7 +24,9 @@ CTasks::CTasks(const CTasks &tasks)
 
 CTasks::~CTasks()
 {
-    qDebug() << "CTasks::~CTasks()" << "id: " << m_nId << " name: " << objectName();
+    qDebug() << "CTasks::~CTasks()" << "id: " << m_nId
+             << " name: " << objectName()
+             << " Title: " << GetTitle();
 }
 
 int CTasks::Add(QSharedPointer<CTask> task)
@@ -164,7 +166,7 @@ int CTasks::Check()
     QSharedPointer<CTask> task = Get();
     if(nullptr == task.data())
     {
-        qWarning() << "task pointer is null";
+        qWarning() << "CTasks::Check(): task pointer is null";
         return 0;
     }
     

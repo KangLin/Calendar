@@ -12,6 +12,7 @@ public:
      
     QString GetDirApplication();
 
+    QString GetDirConfig();
     QString GetDirDocument();
     int SetDirDocument(QString szPath);
     
@@ -21,10 +22,11 @@ public:
     QString GetDirTranslate();
 
     QString GetApplicationConfigureFile();
-
+    QString GetUserConfigureFile();
    
 private:
     QString m_szDocumentPath;
+    QString m_szConfigPath;
 };
 
 #endif // CGLOBALDIR_H

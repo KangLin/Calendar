@@ -36,7 +36,8 @@ SOURCES += \
     ViewTaskProperty.cpp \ 
     FrmTasks.cpp \  
     TaskPromptDelay.cpp \
-    MainWindow.cpp
+    MainWindow.cpp \
+    $$PWD/FrmTasksList.cpp
 
 HEADERS += \
     Task.h \
@@ -57,7 +58,8 @@ HEADERS += \
     ViewTaskProperty.h \ 
     FrmTasks.h \  
     TaskPromptDelay.h \
-    MainWindow.h
+    MainWindow.h \
+    $$PWD/FrmTasksList.h
 
 FORMS += \
     FrmFullScreen.ui \
@@ -66,7 +68,8 @@ FORMS += \
     FrmUpdater.ui \
     FrmTaskProperty.ui \ 
     FrmTasks.ui \
-    MainWindow.ui
+    MainWindow.ui \
+    $$PWD/FrmTasksList.ui
 
 RESOURCES += \
     Resource/Resource.qrc \

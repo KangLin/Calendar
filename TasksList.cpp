@@ -43,6 +43,7 @@ int CTasksList::Remove(QSharedPointer<CTasks> tasks)
 {
     int nRet = 0;
     m_lstTasks.removeOne(tasks);
+    ReSetId();
     return nRet;
 }
 

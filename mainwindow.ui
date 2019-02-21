@@ -42,6 +42,7 @@
     </property>
     <addaction name="actionNew_N"/>
     <addaction name="actionRemove_R"/>
+    <addaction name="actionModify_M"/>
    </widget>
    <widget class="QMenu" name="menuHelp_H">
     <property name="title">
@@ -66,6 +67,7 @@
    </attribute>
    <addaction name="actionNew_N"/>
    <addaction name="actionRemove_R"/>
+   <addaction name="actionModify_M"/>
   </widget>
   <action name="actionLoad_L">
    <property name="icon">
@@ -161,6 +163,24 @@
    </property>
    <property name="text">
     <string>Exit(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionModify_M">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Edit</normaloff>:/icon/Edit</iconset>
+   </property>
+   <property name="text">
+    <string>Modify(&amp;M)</string>
+   </property>
+   <property name="toolTip">
+    <string>Modify tasks</string>
+   </property>
+   <property name="statusTip">
+    <string>Modify tasks</string>
+   </property>
+   <property name="whatsThis">
+    <string>Modify tasks</string>
    </property>
   </action>
  </widget>

@@ -48,7 +48,9 @@ int CTask::Init()
 
 CTask::~CTask()
 {
-    qDebug() << "CTask::~CTask(), id: " << GetId() << " name:" << objectName();
+    qDebug() << "CTask::~CTask(), id: " << GetId()
+             << " name:" << objectName()
+             << " Title: " << GetTitle();
 }
 
 int CTask::Start()

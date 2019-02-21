@@ -9,15 +9,18 @@ CGlobalDir::CGlobalDir()
     //注意这个必须的在最前  
     m_szDocumentPath =  QStandardPaths::writableLocation(
                 QStandardPaths::DocumentsLocation);
-    if(m_szDocumentPath.isEmpty())
-    {
-        LOG_MODEL_ERROR("CGlobalDir", "document path is empty");
-    }
+    QDir d;
+    if(!d.exists(m_szDocumentPath))
+        d.mkpath(m_szDocumentPath);
+
+    m_szConfigPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+    if(!d.exists(m_szConfigPath))
+        d.mkpath(m_szConfigPath);
 }
 
 CGlobalDir* CGlobalDir::Instance()
 {
-    static CGlobalDir* p = NULL;
+    static CGlobalDir* p = nullptr;
     if(!p)
         p = new CGlobalDir;
     return p;
@@ -32,6 +35,11 @@ QString CGlobalDir::GetDirApplication()
     //LOG_MODEL_DEBUG("CGlobalDir", "GetDirApplication:%s", qApp->applicationDirPath().toStdString().c_str());
     return qApp->applicationDirPath();
 #endif
+}
+
+QString CGlobalDir::GetDirConfig()
+{
+    return m_szConfigPath;
 }
 
 QString CGlobalDir::GetDirDocument()
@@ -60,7 +68,7 @@ int CGlobalDir::SetDirDocument(QString szPath)
 
 QString CGlobalDir::GetDirData()
 {
-    QString szPath = GetDirApplication() + QDir::separator() + "Data";
+    QString szPath = GetDirDocument() + QDir::separator() + "Data";
     QDir d;
     if(!d.exists(szPath))
         d.mkpath(szPath);
@@ -78,7 +86,7 @@ QString CGlobalDir::GetDirImage()
 
 QString CGlobalDir::GetDirTranslate()
 {
-#ifdef ANDROID
+#if  defined(Q_OS_ANDROID)
     //TODO:android下应该在安装包中装好语言  
     return GetDirDocument() + QDir::separator() + "translations";
 #endif
@@ -86,6 +94,11 @@ QString CGlobalDir::GetDirTranslate()
 }
 
 QString CGlobalDir::GetApplicationConfigureFile()
+{
+    return GetDirConfig() + QDir::separator() + QApplication::applicationName() + ".conf";
+}
+
+QString CGlobalDir::GetUserConfigureFile()
 {
     return GetDirDocument() + QDir::separator() + QApplication::applicationName() + ".conf";
 }

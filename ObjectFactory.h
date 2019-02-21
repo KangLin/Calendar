@@ -43,6 +43,8 @@ public:
     static int LoadSettings(const QDomElement &e, QObject* pThis)
     {
         int nRet = 0;
+        if(!pThis)
+            return -1;
         const QMetaObject* pObj = pThis->metaObject();
         if("class" != e.tagName())
         {

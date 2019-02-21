@@ -13,7 +13,8 @@ class CFrmTasks : public QWidget
     Q_OBJECT
 
 public:
-    explicit CFrmTasks(QSharedPointer<CTasks> tasks = QSharedPointer<CTasks>(),
+    CFrmTasks(QWidget* parent = nullptr);
+    explicit CFrmTasks(QSharedPointer<CTasks> tasks,
                        bool readOnly = false,
                        QWidget *parent = nullptr);
     virtual ~CFrmTasks();
