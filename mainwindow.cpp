@@ -52,6 +52,9 @@ CMainWindow::CMainWindow(QWidget *parent) :
         check = connect(ui->actionLoad_L, SIGNAL(triggered()),
                         m_pFrmTasksList, SLOT(slotLoad()));
         Q_ASSERT(check);
+        check = connect(ui->actionSaveAs_S, SIGNAL(triggered()),
+                        m_pFrmTasksList, SLOT(slotSaveAs()));
+        Q_ASSERT(check);
     }
     this->setCentralWidget(m_pFrmTasksList);
 }

@@ -32,7 +32,7 @@
      <string>File(&amp;F)</string>
     </property>
     <addaction name="actionLoad_L"/>
-    <addaction name="actionSave_S"/>
+    <addaction name="actionSaveAs_S"/>
     <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
@@ -65,9 +65,13 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionLoad_L"/>
+   <addaction name="actionSaveAs_S"/>
+   <addaction name="separator"/>
    <addaction name="actionNew_N"/>
    <addaction name="actionRemove_R"/>
    <addaction name="actionModify_M"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionLoad_L">
    <property name="icon">
@@ -87,22 +91,25 @@
     <string>Load tasks</string>
    </property>
   </action>
-  <action name="actionSave_S">
+  <action name="actionSaveAs_S">
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
    </property>
    <property name="text">
-    <string>Save(&amp;S)</string>
+    <string>Save as(&amp;S) ......</string>
+   </property>
+   <property name="iconText">
+    <string>Save tasks as ......</string>
    </property>
    <property name="toolTip">
-    <string>Save tasks</string>
+    <string>Save tasks as ......</string>
    </property>
    <property name="statusTip">
-    <string>Save tasks</string>
+    <string>Save tasks as ......</string>
    </property>
    <property name="whatsThis">
-    <string>Save tasks</string>
+    <string>Save tasks as ......</string>
    </property>
   </action>
   <action name="actionNew_N">

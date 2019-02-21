@@ -48,11 +48,25 @@ int CFrmTasksList::Load(QString szFile)
 
 void CFrmTasksList::slotLoad()
 {
-    QFileDialog fd(this, tr("Load"), CGlobalDir::Instance()->GetDirConfig(), "*.xml");
+    QFileDialog fd(this, tr("Load"), CGlobalDir::Instance()->GetDirConfig(), tr("xml(*.xml);;All files(*.*)"));
+    fd.setFileMode(QFileDialog::ExistingFile);
     int n = fd.exec();
     if(QDialog::Rejected == n)
         return;
     Load(fd.selectedFiles().at(0));
+}
+
+void CFrmTasksList::slotSaveAs()
+{
+    QFileDialog fd(this, tr("Save as ..."), CGlobalDir::Instance()->GetDirConfig(), "*.xml");
+    fd.setFileMode(QFileDialog::AnyFile);
+    int n = fd.exec();
+    if(QDialog::Rejected == n)
+        return;
+    QString szFile = fd.selectedFiles().at(0);
+    if(szFile.lastIndexOf(".xml") == -1)
+        szFile += ".xml";
+    m_TasksList.SaveSettings(szFile);
 }
 
 void CFrmTasksList::on_lvTasks_clicked(const QModelIndex &index)

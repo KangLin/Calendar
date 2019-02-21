@@ -21,6 +21,7 @@ public Q_SLOTS:
     void slotNew();
     void slotRemove();
     void slotLoad();
+    void slotSaveAs();
         
 private Q_SLOTS:
     void on_lvTasks_clicked(const QModelIndex &index);

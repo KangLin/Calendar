@@ -192,7 +192,7 @@ int CTasksList::SaveSettings(const QString &szFile)
     if(szFile.isEmpty())
         file = CGlobalDir::Instance()->GetDirDocument()
                 + QDir::separator()
-                + objectName()
+                + objectName() + QLocale::system().name()
                 + ".xml";
     QFile f(file);
     if(!f.open(QIODevice::WriteOnly))
