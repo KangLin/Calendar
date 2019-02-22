@@ -73,6 +73,7 @@ FORMS += \
 
 RESOURCES += \
     Resource/Resource.qrc \
+    Resource/sink/dark/style.qrc
 
 isEmpty(PREFIX) {
     android {
@@ -82,9 +83,15 @@ isEmpty(PREFIX) {
     } 
 }
 
+DISTFILES += Resource/sink/* 
+
 include(Resource/Translations/Translations.pri)
 
 TasksList.files = config/TasksList_zh.xml
-TasksList.path = $$PREFIX
+TasksList.path = $$PREFIX/config/xml
 TasksList.CONFIG += no_check_exist
-INSTALLS += TasksList
+
+sink.files = Resource/sink/*
+sink.path = $$PREFIX/Resource
+sink.CONFIG += no_check_exist
+INSTALLS += TasksList sink

@@ -28,8 +28,15 @@ private Q_SLOTS:
     
     void slotActivated(QSystemTrayIcon::ActivationReason reason);
     void on_actionExit_E_triggered();
-    
     void on_actionAbout_A_triggered();
+    void on_actionCustom_C_triggered();
+    
+protected:
+    void closeEvent(QCloseEvent *event);
+    
+private:
+    int LoadStyle();
+    int LoadStyle(const QString &szFile);
     
 private:
     Ui::CMainWindow *ui;
@@ -39,6 +46,7 @@ private:
     QAction* m_pStartRun;
     
     CFrmTasksList *m_pFrmTasksList;
+
 };
 
 #endif // MAINWINDOW_H

@@ -2,6 +2,10 @@
 #include "ui_MainWindow.h"
 #include "DlgAbout/DlgAbout.h"
 #include "Global/Tool.h"
+#include "Global/GlobalDir.h"
+#include <QSettings>
+#include <QDebug>
+#include <QFileDialog>
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,9 +17,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
                 tr("Exit"),
                 this,
                 SLOT(slotExit(bool)));
-#if !(defined (_DEBUG) || defined(DEBUG))
-    hide();
-#endif
+
     QString szShow = tr("Hide");
     if(isHidden())
         szShow = tr("Show");
@@ -59,7 +61,8 @@ CMainWindow::CMainWindow(QWidget *parent) :
                         m_pFrmTasksList, SLOT(slotRefresh()));
         Q_ASSERT(check);
     }
-    this->setCentralWidget(m_pFrmTasksList);
+    
+    setCentralWidget(m_pFrmTasksList);
 }
 
 CMainWindow::~CMainWindow()
@@ -122,4 +125,46 @@ void CMainWindow::on_actionExit_E_triggered()
 void CMainWindow::on_actionAbout_A_triggered()
 {
     slotAbout(true);
+}
+
+
+void CMainWindow::closeEvent(QCloseEvent *event)
+{
+    hide();
+    event->ignore();
+}
+
+int CMainWindow::LoadStyle()
+{
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    QString szFile = set.value("Sink").toString();
+    return  LoadStyle(szFile);
+}
+
+int CMainWindow::LoadStyle(const QString &szFile)
+{
+    if(szFile.isEmpty())
+        qApp->setStyleSheet("");
+    else
+    {
+        QFile file(szFile);  
+        if(file.open(QFile::ReadOnly))
+        {
+            QString stylesheet= file.readAll();
+            qApp->setStyleSheet(stylesheet);
+            file.close();
+        }
+        else
+        {
+            qDebug() << "file open file fail:" << szFile;                       
+        }
+    }
+    return 0;
+}
+
+void CMainWindow::on_actionCustom_C_triggered()
+{
+    QString szFile = QFileDialog::getOpenFileName(this, tr("Open sink"));
+    LoadStyle(szFile);
 }

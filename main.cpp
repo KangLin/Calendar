@@ -14,7 +14,9 @@ int main(int argc, char *argv[])
     a.installTranslator(&t);
 
     CMainWindow m;
+#if defined (_DEBUG) || defined (DEBUG)
     m.show();
+#endif
     /*CFrmUpdater u;
     u.show();
     u.StartDownload("https://github.com/qTox/qTox/blob/master/updater/update.cpp");//*/

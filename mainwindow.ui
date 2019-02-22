@@ -51,8 +51,23 @@
     </property>
     <addaction name="actionAbout_A"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools(&amp;T)</string>
+    </property>
+    <widget class="QMenu" name="menuSink_S">
+     <property name="title">
+      <string>Sink(&amp;S)</string>
+     </property>
+     <addaction name="actionCustom_C"/>
+     <addaction name="actionBlack_B"/>
+    </widget>
+    <addaction name="menuSink_S"/>
+    <addaction name="actionOption_O"/>
+   </widget>
    <addaction name="menuFile_F"/>
    <addaction name="menuEdit_E"/>
+   <addaction name="menuTools"/>
    <addaction name="menuHelp_H"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -208,6 +223,48 @@
    </property>
    <property name="whatsThis">
     <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionOption_O">
+   <property name="text">
+    <string>Option(&amp;O)</string>
+   </property>
+   <property name="toolTip">
+    <string>Option</string>
+   </property>
+   <property name="statusTip">
+    <string>Option</string>
+   </property>
+   <property name="whatsThis">
+    <string>Option</string>
+   </property>
+  </action>
+  <action name="actionCustom_C">
+   <property name="text">
+    <string>Custom(&amp;C)</string>
+   </property>
+   <property name="toolTip">
+    <string>Custom sink</string>
+   </property>
+   <property name="statusTip">
+    <string>Custom sink</string>
+   </property>
+   <property name="whatsThis">
+    <string>Custom sink</string>
+   </property>
+  </action>
+  <action name="actionBlack_B">
+   <property name="text">
+    <string>Black(&amp;B)</string>
+   </property>
+   <property name="toolTip">
+    <string>Black sink</string>
+   </property>
+   <property name="statusTip">
+    <string>Black sink</string>
+   </property>
+   <property name="whatsThis">
+    <string>Black sink</string>
    </property>
   </action>
  </widget>
