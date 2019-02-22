@@ -136,7 +136,7 @@ int CTasksList::LoadSettings(const QDomElement &e)
         }
 
         t->LoadSettings(tasks);
-        m_lstTasks.push_back(t);
+        Add(t);
         tasks = tasks.nextSiblingElement("class");
     }
     return nRet;
@@ -165,7 +165,7 @@ int CTasksList::LoadSettings(const QString &szFile)
 {
     QString file = szFile;
     if(szFile.isEmpty())
-        file = CGlobalDir::Instance()->GetDirDocument()
+        file = CGlobalDir::Instance()->GetDirApplicationXml()
                 + QDir::separator()
                 + objectName() + QLocale::system().name()
                 + ".xml";

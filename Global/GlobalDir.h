@@ -13,6 +13,7 @@ public:
     QString GetDirApplication();
 
     QString GetDirConfig();
+    QString GetDirApplicationXml();
     QString GetDirDocument();
     int SetDirDocument(QString szPath);
     
@@ -22,6 +23,7 @@ public:
     QString GetDirTranslate();
 
     QString GetApplicationConfigureFile();
+    
     QString GetUserConfigureFile();
    
 private:

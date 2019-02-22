@@ -102,9 +102,11 @@ public:
                 continue;
             QString szName = p.name();
             QVariant value = p.read(pThis);
-            if("icon" == szName && value.isValid())
+            if("icon" == szName && !value.isNull())
             {
                 QIcon icon = value.value<QIcon>();
+                if(0 == icon.availableSizes().length())
+                    continue;
                 QPixmap p = icon.pixmap(icon.availableSizes().at(0));
                 QByteArray ba;
                 QBuffer buf(&ba);

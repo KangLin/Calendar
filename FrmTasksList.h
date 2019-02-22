@@ -22,7 +22,8 @@ public Q_SLOTS:
     void slotRemove();
     void slotLoad();
     void slotSaveAs();
-        
+    void slotRefresh();
+    
 private Q_SLOTS:
     void on_lvTasks_clicked(const QModelIndex &index);
     void on_lvTasks_indexesMoved(const QModelIndexList &indexes);

@@ -214,7 +214,7 @@ int CTasks::LoadSettings(const QDomElement &e)
             continue;
         }
         t->LoadSettings(task);
-        m_vTask.push_back(t);
+        Add(t);
         task = task.nextSiblingElement("class");
     }
     return nRet;

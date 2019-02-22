@@ -43,6 +43,7 @@
     <addaction name="actionNew_N"/>
     <addaction name="actionRemove_R"/>
     <addaction name="actionModify_M"/>
+    <addaction name="actionRefresh_F"/>
    </widget>
    <widget class="QMenu" name="menuHelp_H">
     <property name="title">
@@ -71,6 +72,7 @@
    <addaction name="actionNew_N"/>
    <addaction name="actionRemove_R"/>
    <addaction name="actionModify_M"/>
+   <addaction name="actionRefresh_F"/>
    <addaction name="separator"/>
   </widget>
   <action name="actionLoad_L">
@@ -188,6 +190,24 @@
    </property>
    <property name="whatsThis">
     <string>Modify tasks</string>
+   </property>
+  </action>
+  <action name="actionRefresh_F">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Refresh</normaloff>:/icon/Refresh</iconset>
+   </property>
+   <property name="text">
+    <string>Refresh(&amp;F)</string>
+   </property>
+   <property name="toolTip">
+    <string>Refresh</string>
+   </property>
+   <property name="statusTip">
+    <string>Refresh</string>
+   </property>
+   <property name="whatsThis">
+    <string>Refresh</string>
    </property>
   </action>
  </widget>

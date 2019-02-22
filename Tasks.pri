@@ -83,3 +83,8 @@ isEmpty(PREFIX) {
 }
 
 include(Resource/Translations/Translations.pri)
+
+TasksList.files = config/TasksList_zh.xml
+TasksList.path = $$PREFIX
+TasksList.CONFIG += no_check_exist
+INSTALLS += TasksList

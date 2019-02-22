@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Root>
+    <class name="CTasksList">
+        <objectName value="TasksList"/>
+        <class name="CTasks">
+            <objectName value="Tasks"/>
+            <id value="0"/>
+            <title value="眼睛护士"/>
+            <content value="保护视力"/>
+            <icon value="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"/>
+            <class name="CTask">
+                <objectName value="Task"/>
+                <title value="工作"/>
+                <content value="工作"/>
+                <id value="0"/>
+                <interval value="2700000"/>
+                <promptInterval value="0"/>
+                <icon value=""/>
+            </class>
+            <class name="CTaskPrompt">
+                <objectName value="TaskPrompt"/>
+                <title value="提示锁屏和休息"/>
+                <content value="将要锁屏"/>
+                <id value="1"/>
+                <interval value="300000"/>
+                <promptInterval value="1000"/>
+                <icon value=""/>
+            </class>
+            <class name="CTaskLockScreen">
+                <objectName value="TaskLockScreen"/>
+                <title value="休息"/>
+                <content value="锁定屏幕并休息"/>
+                <id value="2"/>
+                <interval value="900000"/>
+                <promptInterval value="1000"/>
+                <icon value=""/>
+            </class>
+        </class>
+    </class>
+</Root>

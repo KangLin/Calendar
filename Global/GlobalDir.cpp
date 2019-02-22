@@ -39,7 +39,20 @@ QString CGlobalDir::GetDirApplication()
 
 QString CGlobalDir::GetDirConfig()
 {
-    return m_szConfigPath;
+    QString szPath = GetDirApplication() + QDir::separator() + "config";
+    QDir d;
+    if(!d.exists(szPath))
+        d.mkpath(szPath);
+    return szPath;
+}
+
+QString CGlobalDir::GetDirApplicationXml()
+{
+    QString szPath = GetDirConfig() + QDir::separator() + "xml";
+    QDir d;
+    if(!d.exists(szPath))
+        d.mkpath(szPath);
+    return szPath;
 }
 
 QString CGlobalDir::GetDirDocument()

@@ -4,6 +4,7 @@
 #include <QModelIndex>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QSettings>
 
 CFrmTasksList::CFrmTasksList(QWidget *parent) :
     QWidget(parent),
@@ -28,9 +29,25 @@ int CFrmTasksList::Init()
                          this, SLOT(slotSaveAs()));
     Q_ASSERT(check);
     
-    nRet = Load();
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    QString szFile = set.value("TasksList").toString();
+    nRet = Load(szFile);
     
     return nRet;
+}
+
+void CFrmTasksList::slotRefresh()
+{
+    int nIndex = 0;
+    m_Model.clear();
+    while(QSharedPointer<CTasks> p = m_TasksList.Get(nIndex++))
+    {
+        QStandardItem *title = new QStandardItem(p->GetIcon(), p->GetTitle());
+        title->setToolTip(p->GetContent());
+        m_Model.appendRow(title);
+    }
+    ui->lvTasks->setCurrentIndex(m_Model.index(0, 0));
 }
 
 int CFrmTasksList::Load(QString szFile)
@@ -39,21 +56,14 @@ int CFrmTasksList::Load(QString szFile)
     if(nRet)
         return nRet;
     
-    int nIndex = 0;
-    while(QSharedPointer<CTasks> p = m_TasksList.Get(nIndex++))
-    {
-        QStandardItem *title = new QStandardItem(p->GetIcon(), p->GetTitle());
-        title->setToolTip(p->GetContent());
-        m_Model.appendRow(title);
-    }
-    ui->lvTasks->setCurrentIndex(m_Model.index(0, 0));
+    slotRefresh();
     
     return m_TasksList.Start();
 }
 
 void CFrmTasksList::slotLoad()
 {
-    QFileDialog fd(this, tr("Load"), CGlobalDir::Instance()->GetDirConfig(), tr("xml(*.xml);;All files(*.*)"));
+    QFileDialog fd(this, tr("Load"), QString(), tr("xml(*.xml);;All files(*.*)"));
     fd.setFileMode(QFileDialog::ExistingFile);
     int n = fd.exec();
     if(QDialog::Rejected == n)
@@ -63,7 +73,7 @@ void CFrmTasksList::slotLoad()
 
 void CFrmTasksList::slotSaveAs()
 {
-    QFileDialog fd(this, tr("Save as ..."), CGlobalDir::Instance()->GetDirConfig(), "*.xml");
+    QFileDialog fd(this, tr("Save as ..."), QString(), "*.xml");
     fd.setFileMode(QFileDialog::AnyFile);
     int n = fd.exec();
     if(QDialog::Rejected == n)
@@ -81,7 +91,13 @@ void CFrmTasksList::slotSaveAs()
         if(QMessageBox::Ok != n)
             return;        
     }
+    
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    
+    set.setValue("TasksList", szFile);
     m_TasksList.SaveSettings(szFile);
+    slotRefresh();
 }
 
 void CFrmTasksList::on_lvTasks_clicked(const QModelIndex &index)

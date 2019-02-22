@@ -475,7 +475,7 @@
          </property>
          <property name="icon">
           <iconset resource="Resource/Resource.qrc">
-           <normaloff>:/icon/Close</normaloff>:/icon/Close</iconset>
+           <normaloff>:/icon/green/Close</normaloff>:/icon/green/Close</iconset>
          </property>
         </widget>
        </item>
