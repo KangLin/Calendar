@@ -14,7 +14,7 @@
    <string>Tasks</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource/Resource.qrc">
+   <iconset>
     <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
   </property>
   <widget class="QWidget" name="centralwidget"/>
@@ -55,14 +55,7 @@
     <property name="title">
      <string>Tools(&amp;T)</string>
     </property>
-    <widget class="QMenu" name="menuSink_S">
-     <property name="title">
-      <string>Sink(&amp;S)</string>
-     </property>
-     <addaction name="actionCustom_C"/>
-     <addaction name="actionBlack_B"/>
-    </widget>
-    <addaction name="menuSink_S"/>
+    <addaction name="actionSink_S"/>
     <addaction name="actionOption_O"/>
    </widget>
    <addaction name="menuFile_F"/>
@@ -92,7 +85,7 @@
   </widget>
   <action name="actionLoad_L">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset>
      <normaloff>:/icon/File</normaloff>:/icon/File</iconset>
    </property>
    <property name="text">
@@ -110,7 +103,7 @@
   </action>
   <action name="actionSaveAs_S">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset>
      <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
    </property>
    <property name="text">
@@ -131,7 +124,7 @@
   </action>
   <action name="actionNew_N">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset>
      <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
    </property>
    <property name="text">
@@ -152,7 +145,7 @@
   </action>
   <action name="actionRemove_R">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset>
      <normaloff>:/icon/Delete</normaloff>:/icon/Delete</iconset>
    </property>
    <property name="text">
@@ -170,7 +163,7 @@
   </action>
   <action name="actionAbout_A">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset>
      <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
    </property>
    <property name="text">
@@ -182,7 +175,7 @@
   </action>
   <action name="actionExit_E">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset>
      <normaloff>:/icon/Close</normaloff>:/icon/Close</iconset>
    </property>
    <property name="text">
@@ -191,7 +184,7 @@
   </action>
   <action name="actionModify_M">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset>
      <normaloff>:/icon/Edit</normaloff>:/icon/Edit</iconset>
    </property>
    <property name="text">
@@ -209,7 +202,7 @@
   </action>
   <action name="actionRefresh_F">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset>
      <normaloff>:/icon/Refresh</normaloff>:/icon/Refresh</iconset>
    </property>
    <property name="text">
@@ -226,6 +219,10 @@
    </property>
   </action>
   <action name="actionOption_O">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icon/Option</normaloff>:/icon/Option</iconset>
+   </property>
    <property name="text">
     <string>Option(&amp;O)</string>
    </property>
@@ -239,37 +236,22 @@
     <string>Option</string>
    </property>
   </action>
-  <action name="actionCustom_C">
-   <property name="text">
-    <string>Custom(&amp;C)</string>
+  <action name="actionSink_S">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icon/Sink</normaloff>:/icon/Sink</iconset>
    </property>
-   <property name="toolTip">
-    <string>Custom sink</string>
+   <property name="text">
+    <string>Sink(&amp;S)</string>
    </property>
    <property name="statusTip">
-    <string>Custom sink</string>
+    <string>Sink(S)</string>
    </property>
    <property name="whatsThis">
-    <string>Custom sink</string>
-   </property>
-  </action>
-  <action name="actionBlack_B">
-   <property name="text">
-    <string>Black(&amp;B)</string>
-   </property>
-   <property name="toolTip">
-    <string>Black sink</string>
-   </property>
-   <property name="statusTip">
-    <string>Black sink</string>
-   </property>
-   <property name="whatsThis">
-    <string>Black sink</string>
+    <string>Sink(S)</string>
    </property>
   </action>
  </widget>
- <resources>
-  <include location="Resource/Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

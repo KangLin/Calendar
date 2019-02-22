@@ -28,8 +28,8 @@ private Q_SLOTS:
     
     void slotActivated(QSystemTrayIcon::ActivationReason reason);
     void on_actionExit_E_triggered();
-    void on_actionAbout_A_triggered();
-    void on_actionCustom_C_triggered();
+    void on_actionAbout_A_triggered();   
+    void on_actionSink_S_triggered();
     
 protected:
     void closeEvent(QCloseEvent *event);

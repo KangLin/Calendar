@@ -167,7 +167,7 @@ int CMainWindow::LoadStyle(const QString &szFile)
     return 0;
 }
 
-void CMainWindow::on_actionCustom_C_triggered()
+void CMainWindow::on_actionSink_S_triggered()
 {
     QString szFile = QFileDialog::getOpenFileName(this, tr("Open sink"));
     LoadStyle(szFile);

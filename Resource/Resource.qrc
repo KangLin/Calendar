@@ -21,6 +21,8 @@
         <file alias="Option">image/option.png</file>
         <file alias="Task">image/task.png</file>
         <file alias="Refresh">image/refresh.png</file>
+        <file alias="Sink">image/skin.png</file>
+        <file alias="Eye">image/eye.png</file>
     </qresource>
     <qresource prefix="/icon/green">
         <file alias="Close">image/green_close.png</file>
