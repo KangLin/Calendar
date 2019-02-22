@@ -167,7 +167,7 @@ int CTasksList::LoadSettings(const QString &szFile)
     if(szFile.isEmpty())
         file = CGlobalDir::Instance()->GetDirApplicationXml()
                 + QDir::separator()
-                + objectName() + QLocale::system().name()
+                + objectName() + "_" + QLocale::system().name()
                 + ".xml";
     QFile f(file);
     if(!f.open(QIODevice::ReadOnly))
@@ -190,9 +190,9 @@ int CTasksList::SaveSettings(const QString &szFile)
     int nRet = 0;
     QString file = szFile;
     if(szFile.isEmpty())
-        file = CGlobalDir::Instance()->GetDirDocument()
+        file = CGlobalDir::Instance()->GetDirApplicationXml()
                 + QDir::separator()
-                + objectName() + QLocale::system().name()
+                + objectName() + "_" + QLocale::system().name()
                 + ".xml";
     QFile f(file);
     if(!f.open(QIODevice::WriteOnly))

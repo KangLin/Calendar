@@ -12,10 +12,6 @@ CGlobalDir::CGlobalDir()
     QDir d;
     if(!d.exists(m_szDocumentPath))
         d.mkpath(m_szDocumentPath);
-
-    m_szConfigPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
-    if(!d.exists(m_szConfigPath))
-        d.mkpath(m_szConfigPath);
 }
 
 CGlobalDir* CGlobalDir::Instance()
@@ -39,7 +35,7 @@ QString CGlobalDir::GetDirApplication()
 
 QString CGlobalDir::GetDirConfig()
 {
-    QString szPath = GetDirApplication() + QDir::separator() + "config";
+    QString szPath = GetDirApplication() + QDir::separator() + "etc";
     QDir d;
     if(!d.exists(szPath))
         d.mkpath(szPath);

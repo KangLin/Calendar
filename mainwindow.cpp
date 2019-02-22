@@ -11,6 +11,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::CMainWindow)
 {
+    LoadStyle();
     ui->setupUi(this);
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
@@ -138,7 +139,10 @@ int CMainWindow::LoadStyle()
 {
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
-    QString szFile = set.value("Sink").toString();
+    QString szFile = set.value("Sink",
+                     CGlobalDir::Instance()->GetDirApplication()
+                     + QDir::separator()
+                     + "Resource/dark/style.qss").toString();
     return  LoadStyle(szFile);
 }
 
@@ -167,4 +171,7 @@ void CMainWindow::on_actionCustom_C_triggered()
 {
     QString szFile = QFileDialog::getOpenFileName(this, tr("Open sink"));
     LoadStyle(szFile);
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    set.setValue("Sink", szFile);
 }

@@ -92,11 +92,13 @@ void CFrmTasksList::slotSaveAs()
             return;        
     }
     
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
-                  QSettings::IniFormat);
-    
-    set.setValue("TasksList", szFile);
-    m_TasksList.SaveSettings(szFile);
+    int nRet = m_TasksList.SaveSettings(szFile);
+    if(0 == nRet)
+    {
+        QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                      QSettings::IniFormat);
+        set.setValue("TasksList", szFile);
+    }
     slotRefresh();
 }
 

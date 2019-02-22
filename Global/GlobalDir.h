@@ -28,7 +28,6 @@ public:
    
 private:
     QString m_szDocumentPath;
-    QString m_szConfigPath;
 };
 
 #endif // CGLOBALDIR_H

@@ -87,8 +87,8 @@ DISTFILES += Resource/sink/*
 
 include(Resource/Translations/Translations.pri)
 
-TasksList.files = config/TasksList_zh.xml
-TasksList.path = $$PREFIX/config/xml
+TasksList.files = etc/*.xml
+TasksList.path = $$PREFIX/etc/xml
 TasksList.CONFIG += no_check_exist
 
 sink.files = Resource/sink/*
