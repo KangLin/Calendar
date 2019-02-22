@@ -14,7 +14,7 @@
    <string>Tasks</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="Resource/Resource.qrc">
     <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
   </property>
   <widget class="QWidget" name="centralwidget"/>
@@ -85,7 +85,7 @@
   </widget>
   <action name="actionLoad_L">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/File</normaloff>:/icon/File</iconset>
    </property>
    <property name="text">
@@ -103,7 +103,7 @@
   </action>
   <action name="actionSaveAs_S">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
    </property>
    <property name="text">
@@ -124,7 +124,7 @@
   </action>
   <action name="actionNew_N">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
    </property>
    <property name="text">
@@ -145,7 +145,7 @@
   </action>
   <action name="actionRemove_R">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Delete</normaloff>:/icon/Delete</iconset>
    </property>
    <property name="text">
@@ -163,7 +163,7 @@
   </action>
   <action name="actionAbout_A">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
    </property>
    <property name="text">
@@ -175,7 +175,7 @@
   </action>
   <action name="actionExit_E">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Close</normaloff>:/icon/Close</iconset>
    </property>
    <property name="text">
@@ -184,7 +184,7 @@
   </action>
   <action name="actionModify_M">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Edit</normaloff>:/icon/Edit</iconset>
    </property>
    <property name="text">
@@ -202,7 +202,7 @@
   </action>
   <action name="actionRefresh_F">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Refresh</normaloff>:/icon/Refresh</iconset>
    </property>
    <property name="text">
@@ -220,7 +220,7 @@
   </action>
   <action name="actionOption_O">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Option</normaloff>:/icon/Option</iconset>
    </property>
    <property name="text">
@@ -238,20 +238,28 @@
   </action>
   <action name="actionSink_S">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource/Resource.qrc">
      <normaloff>:/icon/Sink</normaloff>:/icon/Sink</iconset>
    </property>
    <property name="text">
     <string>Sink(&amp;S)</string>
    </property>
+   <property name="iconText">
+    <string>Sink</string>
+   </property>
+   <property name="toolTip">
+    <string>Sink</string>
+   </property>
    <property name="statusTip">
-    <string>Sink(S)</string>
+    <string>Sink</string>
    </property>
    <property name="whatsThis">
-    <string>Sink(S)</string>
+    <string>Sink</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resource/Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

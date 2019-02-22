@@ -104,7 +104,7 @@ Email:kl222@126.com</source>
     <name>CFrmEyeNurse</name>
     <message>
         <location filename="../../FrmEyeNurse.ui" line="14"/>
-        <location filename="../../FrmEyeNurse.cpp" line="68"/>
+        <location filename="../../FrmEyeNurse.cpp" line="72"/>
         <source>Eye nurse</source>
         <translation type="unfinished"></translation>
     </message>
@@ -125,33 +125,33 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="34"/>
-        <location filename="../../FrmEyeNurse.cpp" line="119"/>
+        <location filename="../../FrmEyeNurse.cpp" line="123"/>
         <source>Enable run from boot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="36"/>
-        <location filename="../../FrmEyeNurse.cpp" line="114"/>
+        <location filename="../../FrmEyeNurse.cpp" line="37"/>
+        <location filename="../../FrmEyeNurse.cpp" line="118"/>
         <source>Disable run from boot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="69"/>
+        <location filename="../../FrmEyeNurse.cpp" line="73"/>
         <source>Protect eyesight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="71"/>
+        <location filename="../../FrmEyeNurse.cpp" line="75"/>
         <source>Work</source>
         <translation type="unfinished">工作</translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="74"/>
+        <location filename="../../FrmEyeNurse.cpp" line="78"/>
         <source>Will want to lock the screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmEyeNurse.cpp" line="75"/>
+        <location filename="../../FrmEyeNurse.cpp" line="79"/>
         <source>Prompt to lock the screen and rest</source>
         <translation type="unfinished"></translation>
     </message>
@@ -218,7 +218,7 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="59"/>
-        <location filename="../../FrmTasks.ui" line="218"/>
+        <location filename="../../FrmTasks.ui" line="246"/>
         <source>ID:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -231,7 +231,7 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="82"/>
-        <location filename="../../FrmTasks.ui" line="241"/>
+        <location filename="../../FrmTasks.ui" line="269"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -243,131 +243,191 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="110"/>
-        <location filename="../../FrmTasks.ui" line="342"/>
+        <location filename="../../FrmTasks.ui" line="130"/>
+        <location filename="../../FrmTasks.ui" line="381"/>
         <source>Content:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="123"/>
-        <location filename="../../FrmTasks.ui" line="126"/>
-        <location filename="../../FrmTasks.ui" line="129"/>
+        <location filename="../../FrmTasks.ui" line="143"/>
+        <location filename="../../FrmTasks.ui" line="146"/>
+        <location filename="../../FrmTasks.ui" line="149"/>
         <source>Tasks content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="157"/>
+        <location filename="../../FrmTasks.ui" line="177"/>
         <source>Previous task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="160"/>
+        <location filename="../../FrmTasks.ui" line="180"/>
         <source>Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="173"/>
+        <location filename="../../FrmTasks.ui" line="197"/>
         <source>Next task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="176"/>
+        <location filename="../../FrmTasks.ui" line="200"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="198"/>
-        <location filename="../../FrmTasks.ui" line="201"/>
-        <location filename="../../FrmTasks.ui" line="204"/>
+        <location filename="../../FrmTasks.ui" line="226"/>
+        <location filename="../../FrmTasks.ui" line="229"/>
+        <location filename="../../FrmTasks.ui" line="232"/>
         <source>Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="231"/>
+        <location filename="../../FrmTasks.ui" line="259"/>
         <source>Task ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="254"/>
+        <location filename="../../FrmTasks.ui" line="282"/>
         <source>Task title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="265"/>
+        <location filename="../../FrmTasks.ui" line="304"/>
         <source>Interval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="278"/>
+        <location filename="../../FrmTasks.ui" line="317"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="291"/>
+        <location filename="../../FrmTasks.ui" line="330"/>
         <source>M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="304"/>
+        <location filename="../../FrmTasks.ui" line="343"/>
         <source>PromptInterval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="317"/>
-        <location filename="../../FrmTasks.ui" line="320"/>
+        <location filename="../../FrmTasks.ui" line="356"/>
+        <location filename="../../FrmTasks.ui" line="359"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="333"/>
+        <location filename="../../FrmTasks.ui" line="372"/>
         <source>S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="355"/>
-        <location filename="../../FrmTasks.ui" line="358"/>
-        <location filename="../../FrmTasks.ui" line="361"/>
+        <location filename="../../FrmTasks.ui" line="394"/>
+        <location filename="../../FrmTasks.ui" line="397"/>
+        <location filename="../../FrmTasks.ui" line="400"/>
         <source>Task content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="383"/>
+        <location filename="../../FrmTasks.ui" line="422"/>
         <source> New add task into tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="386"/>
+        <location filename="../../FrmTasks.ui" line="425"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="393"/>
+        <location filename="../../FrmTasks.ui" line="436"/>
         <source>Remove the task from tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="396"/>
+        <location filename="../../FrmTasks.ui" line="439"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="403"/>
-        <source>Apply</source>
+        <location filename="../../FrmTasks.ui" line="450"/>
+        <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="423"/>
+        <location filename="../../FrmTasks.ui" line="474"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="76"/>
+        <location filename="../../FrmTasks.cpp" line="103"/>
         <source>There is current task in tasks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="117"/>
+        <location filename="../../FrmTasks.cpp" line="144"/>
         <source>New </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasks.cpp" line="253"/>
+        <location filename="../../FrmTasks.cpp" line="263"/>
+        <source>Open file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasks.cpp" line="253"/>
+        <location filename="../../FrmTasks.cpp" line="263"/>
+        <source>png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CFrmTasksList</name>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="66"/>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="66"/>
+        <source>xml(*.xml);;All files(*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="76"/>
+        <source>Save as ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="88"/>
+        <source>File exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="89"/>
+        <source>%1 is existed, replace it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="117"/>
+        <source>New tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="121"/>
+        <source>New task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="122"/>
+        <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -388,9 +448,183 @@ Email:kl222@126.com</source>
     </message>
 </context>
 <context>
+    <name>CMainWindow</name>
+    <message>
+        <location filename="../../MainWindow.ui" line="14"/>
+        <source>Tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="32"/>
+        <source>File(&amp;F)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="41"/>
+        <source>Edit(&amp;E)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="50"/>
+        <source>Help(&amp;H)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="56"/>
+        <source>Tools(&amp;T)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="69"/>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="92"/>
+        <source>Load(&amp;L)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="95"/>
+        <location filename="../../MainWindow.ui" line="98"/>
+        <location filename="../../MainWindow.ui" line="101"/>
+        <source>Load tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="110"/>
+        <source>Save as(&amp;S) ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="113"/>
+        <location filename="../../MainWindow.ui" line="116"/>
+        <location filename="../../MainWindow.ui" line="119"/>
+        <location filename="../../MainWindow.ui" line="122"/>
+        <source>Save tasks as ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="131"/>
+        <source>New(&amp;N)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="134"/>
+        <location filename="../../MainWindow.ui" line="137"/>
+        <location filename="../../MainWindow.ui" line="140"/>
+        <source>New tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="152"/>
+        <source>Remove(&amp;R)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="155"/>
+        <location filename="../../MainWindow.ui" line="158"/>
+        <location filename="../../MainWindow.ui" line="161"/>
+        <source>Remove tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="170"/>
+        <source>About(&amp;A)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="173"/>
+        <location filename="../../MainWindow.cpp" line="28"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="182"/>
+        <source>Exit(&amp;E)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="191"/>
+        <source>Modify(&amp;M)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="194"/>
+        <location filename="../../MainWindow.ui" line="197"/>
+        <location filename="../../MainWindow.ui" line="200"/>
+        <source>Modify tasks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="209"/>
+        <source>Refresh(&amp;F)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="212"/>
+        <location filename="../../MainWindow.ui" line="215"/>
+        <location filename="../../MainWindow.ui" line="218"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="227"/>
+        <source>Option(&amp;O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="230"/>
+        <location filename="../../MainWindow.ui" line="233"/>
+        <location filename="../../MainWindow.ui" line="236"/>
+        <source>Option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="245"/>
+        <source>Sink(&amp;S)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="248"/>
+        <location filename="../../MainWindow.ui" line="251"/>
+        <location filename="../../MainWindow.ui" line="254"/>
+        <location filename="../../MainWindow.ui" line="257"/>
+        <source>Sink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="18"/>
+        <source>Exit</source>
+        <translation type="unfinished">退出</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="22"/>
+        <location filename="../../MainWindow.cpp" line="95"/>
+        <source>Hide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="24"/>
+        <location filename="../../MainWindow.cpp" line="99"/>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="32"/>
+        <source>Enable run from boot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="172"/>
+        <source>Open sink</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CTask</name>
     <message>
-        <location filename="../../Task.cpp" line="107"/>
+        <location filename="../../Task.cpp" line="110"/>
         <source>Task is base unit. Is a minimal execution unit.
 Start with the Start function and run the Run function after the interval.
 If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</source>
@@ -400,23 +634,23 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskLockScreen</name>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="125"/>
+        <location filename="../../TaskLockScreen.cpp" line="126"/>
         <source>Remaining: %1</source>
         <translation>剩余時間：%1</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="40"/>
+        <location filename="../../TaskLockScreen.cpp" line="41"/>
         <source>Lock screen and reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../TaskLockScreen.cpp" line="34"/>
-        <location filename="../../TaskLockScreen.cpp" line="41"/>
+        <location filename="../../TaskLockScreen.cpp" line="42"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="136"/>
+        <location filename="../../TaskLockScreen.cpp" line="137"/>
         <source>Lock screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -424,12 +658,12 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskPrompt</name>
     <message>
-        <location filename="../../TaskPrompt.cpp" line="29"/>
+        <location filename="../../TaskPrompt.cpp" line="32"/>
         <source>Prompt task, Only prompt.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPrompt.cpp" line="47"/>
+        <location filename="../../TaskPrompt.cpp" line="50"/>
         <source>Remaining: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -442,28 +676,28 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskPromptDelay</name>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="36"/>
+        <location filename="../../TaskPromptDelay.cpp" line="30"/>
         <source>Delayable task. the task can be delayed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="44"/>
+        <location filename="../../TaskPromptDelay.cpp" line="38"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="46"/>
+        <location filename="../../TaskPromptDelay.cpp" line="40"/>
         <source>Delay 5 Minute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="48"/>
-        <location filename="../../TaskPromptDelay.cpp" line="65"/>
+        <location filename="../../TaskPromptDelay.cpp" line="42"/>
+        <location filename="../../TaskPromptDelay.cpp" line="59"/>
         <source>Customize delay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="66"/>
+        <location filename="../../TaskPromptDelay.cpp" line="60"/>
         <source>Delay minute</source>
         <translation type="unfinished"></translation>
     </message>
@@ -502,39 +736,8 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../mainwindow.ui" line="14"/>
-        <source>Tasks</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="31"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="44"/>
-        <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="57"/>
-        <source>Show property</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="16"/>
         <source>Exit</source>
-        <translation>退出</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="20"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="41"/>
-        <source>Delay</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">退出</translation>
     </message>
     <message>
         <source>Work</source>
