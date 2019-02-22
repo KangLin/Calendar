@@ -28,7 +28,7 @@ private Q_SLOTS:
     void slotStartRun(bool checked);
     
     void slotActivated(QSystemTrayIcon::ActivationReason reason);
-    void slotChange();
+    void slotChanged();
     
 protected:
     virtual void closeEvent(QCloseEvent *event);

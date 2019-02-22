@@ -56,6 +56,8 @@ int CFrmTasks::SetTasks(QSharedPointer<CTasks> tasks)
         return -2;
     }
     setEnabled(true);
+    if(!tasks->GetIcon().isNull())
+        setWindowIcon(tasks->GetIcon());
     ui->leTasksTitle->setText(m_Tasks->GetTitle());
     ui->leTasksID->setText(QString::number(m_Tasks->GetId()));
     ui->teTasksContent->setText(m_Tasks->GetContent());
@@ -193,7 +195,7 @@ void CFrmTasks::on_pbApply_clicked()
     task->SetContent(ui->teTaskContent->toPlainText());
     task->SetInterval(ui->spInterval->value() * 60 * 1000);
     task->SetPromptInterval(ui->spPromptInterval->value() * 1000);
-    emit Change();
+    emit Changed();
 }
 
 void CFrmTasks::closeEvent(QCloseEvent *event)

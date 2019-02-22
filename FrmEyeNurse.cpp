@@ -17,8 +17,8 @@ CFrmEyeNurse::CFrmEyeNurse(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    bool check = connect(&m_frmTasks, SIGNAL(Change()),
-                         this, SLOT(slotChange()));
+    bool check = connect(&m_frmTasks, SIGNAL(Changed()),
+                         this, SLOT(slotChanged()));
     Q_ASSERT(check);
     
     m_TrayIconMenu.addAction(
@@ -130,7 +130,7 @@ void CFrmEyeNurse::slotActivated(QSystemTrayIcon::ActivationReason r)
         slotShow(true);
 }
 
-void CFrmEyeNurse::slotChange()
+void CFrmEyeNurse::slotChanged()
 {
     m_TasksList.SaveSettings();
 }

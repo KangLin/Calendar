@@ -29,6 +29,8 @@ private Q_SLOTS:
     void slotActivated(QSystemTrayIcon::ActivationReason reason);
     void on_actionExit_E_triggered();
     
+    void on_actionAbout_A_triggered();
+    
 private:
     Ui::CMainWindow *ui;
     QMenu m_TrayIconMenu;

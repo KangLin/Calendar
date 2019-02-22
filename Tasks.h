@@ -7,6 +7,7 @@
 #include "Task.h"
 #include <QVector>
 #include <QSharedPointer>
+#include <QIcon>
 
 /**
  * @brief Define a serial task
@@ -32,6 +33,8 @@ public:
     Q_INVOKABLE QString GetTitle();
     Q_INVOKABLE int SetContent(const QString &szContent);
     Q_INVOKABLE QString GetContent();
+    Q_INVOKABLE int SetIcon(QIcon icon);
+    Q_INVOKABLE QIcon GetIcon();
     Q_INVOKABLE bool End();
 
     Q_INVOKABLE virtual int Add(QSharedPointer<CTask> task);
@@ -72,6 +75,7 @@ private:
     int m_nId;
     QString m_szTitle;
     QString m_szContent;
+    QIcon m_Icon;
 };
 
 Q_DECLARE_METATYPE(CTasks)

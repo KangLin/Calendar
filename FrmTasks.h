@@ -22,7 +22,7 @@ public:
     int SetTasks(QSharedPointer<CTasks> tasks = QSharedPointer<CTasks>());
 
 Q_SIGNALS:
-    void Change();
+    void Changed();
     
 private Q_SLOTS:
     void on_pbAdd_clicked();

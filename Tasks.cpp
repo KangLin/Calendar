@@ -137,6 +137,17 @@ int CTasks::SetContent(const QString &szContent)
     return 0;
 }
 
+QIcon CTasks::GetIcon()
+{
+    return m_Icon;
+}
+
+int CTasks::SetIcon(QIcon icon)
+{
+    m_Icon = icon;
+    return 0;
+}
+
 bool CTasks::End()
 {
     return m_vTask.isEmpty();

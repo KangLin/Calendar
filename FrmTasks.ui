@@ -102,6 +102,22 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="pbIcon">
+         <property name="text">
+          <string>Icon</string>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -159,6 +175,10 @@
          <property name="text">
           <string>Previous</string>
          </property>
+         <property name="icon">
+          <iconset resource="Resource/Resource.qrc">
+           <normaloff>:/icon/Up</normaloff>:/icon/Up</iconset>
+         </property>
         </widget>
        </item>
        <item>
@@ -174,6 +194,10 @@
          </property>
          <property name="text">
           <string>Next</string>
+         </property>
+         <property name="icon">
+          <iconset resource="Resource/Resource.qrc">
+           <normaloff>:/icon/Down</normaloff>:/icon/Down</iconset>
          </property>
         </widget>
        </item>
@@ -252,6 +276,13 @@
             </property>
             <property name="toolTip">
              <string>Task title</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pbTaskIcon">
+            <property name="text">
+             <string>Icon</string>
             </property>
            </widget>
           </item>
@@ -385,6 +416,10 @@
          <property name="text">
           <string>Add</string>
          </property>
+         <property name="icon">
+          <iconset resource="Resource/Resource.qrc">
+           <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
+         </property>
         </widget>
        </item>
        <item>
@@ -395,12 +430,20 @@
          <property name="text">
           <string>Remove</string>
          </property>
+         <property name="icon">
+          <iconset resource="Resource/Resource.qrc">
+           <normaloff>:/icon/Sub</normaloff>:/icon/Sub</iconset>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pbApply">
          <property name="text">
-          <string>Apply</string>
+          <string>Save</string>
+         </property>
+         <property name="icon">
+          <iconset resource="Resource/Resource.qrc">
+           <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
          </property>
         </widget>
        </item>
@@ -421,6 +464,10 @@
         <widget class="QPushButton" name="pbClose">
          <property name="text">
           <string>Close</string>
+         </property>
+         <property name="icon">
+          <iconset resource="Resource/Resource.qrc">
+           <normaloff>:/icon/Close</normaloff>:/icon/Close</iconset>
          </property>
         </widget>
        </item>

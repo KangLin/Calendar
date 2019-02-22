@@ -115,3 +115,8 @@ void CMainWindow::on_actionExit_E_triggered()
 {
     qApp->quit();
 }
+
+void CMainWindow::on_actionAbout_A_triggered()
+{
+    slotAbout(true);
+}

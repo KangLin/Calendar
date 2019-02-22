@@ -3,6 +3,7 @@
 #include "Global/GlobalDir.h"
 #include <QModelIndex>
 #include <QFileDialog>
+#include <QMessageBox>
 
 CFrmTasksList::CFrmTasksList(QWidget *parent) :
     QWidget(parent),
@@ -22,6 +23,10 @@ int CFrmTasksList::Init()
     int nRet = 0;
     ui->tasks->hide();
     ui->lvTasks->setModel(&m_Model);
+
+    bool check = connect(ui->tasks, SIGNAL(Changed()),
+                         this, SLOT(slotSaveAs()));
+    Q_ASSERT(check);
     
     nRet = Load();
     
@@ -37,7 +42,7 @@ int CFrmTasksList::Load(QString szFile)
     int nIndex = 0;
     while(QSharedPointer<CTasks> p = m_TasksList.Get(nIndex++))
     {
-        QStandardItem *title = new QStandardItem(p->GetTitle());
+        QStandardItem *title = new QStandardItem(p->GetIcon(), p->GetTitle());
         title->setToolTip(p->GetContent());
         m_Model.appendRow(title);
     }
@@ -66,6 +71,16 @@ void CFrmTasksList::slotSaveAs()
     QString szFile = fd.selectedFiles().at(0);
     if(szFile.lastIndexOf(".xml") == -1)
         szFile += ".xml";
+    QDir d;
+    if(d.exists(szFile))
+    {
+        QMessageBox::StandardButton n = QMessageBox::warning(this,
+                          tr("File exist"),
+                          tr("%1 is existed, replace it?").arg(szFile),
+                          QMessageBox::Ok | QMessageBox::Cancel);
+        if(QMessageBox::Ok != n)
+            return;        
+    }
     m_TasksList.SaveSettings(szFile);
 }
 
@@ -82,12 +97,13 @@ void CFrmTasksList::slotNew()
 {
     QSharedPointer<CTasks> tasks(new CTasks());
     tasks->SetTitle(tr("New tasks"));
+    tasks->SetIcon(QIcon(":/icon/App"));
     m_TasksList.Add(tasks);
     QSharedPointer<CTask> task(new CTask());
     task->SetTitle(tr("New task"));
     task->SetContent(tr("If the task is not you need, please select a task from combox, new it, and remove the task."));
     tasks->Add(task);
-    QStandardItem *title = new QStandardItem(tasks->GetTitle());
+    QStandardItem *title = new QStandardItem(tasks->GetIcon(), tasks->GetTitle());
     title->setToolTip(tasks->GetContent());
     m_Model.appendRow(title);
     ui->lvTasks->setCurrentIndex(m_Model.index(m_Model.rowCount() - 1, 0));
