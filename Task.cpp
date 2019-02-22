@@ -42,6 +42,7 @@ int CTask::Init()
     SetId(-1);
     setObjectName("Task");
     SetTitle(objectName());
+    SetContent(GetTitle());
     m_Time.start();
     return 0;
 }

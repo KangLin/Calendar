@@ -36,14 +36,14 @@ QToolTip
 {
     border: 1px solid #3A3939;
     background-color: rgb(90, 102, 117);;
-    color: white;
+    color: #1afa29;
     padding: 1px;
     opacity: 200;
 }
 
 QWidget
 {
-    color: silver;
+    color: #1afa29;
     background-color: #302F2F;
     selection-background-color:#78879b;
     selection-color: black;
@@ -68,7 +68,7 @@ QWidget:item:selected
 QMenuBar
 {
     background-color: #302F2F;
-    color: silver;
+    color: #1afa29;
 }
 
 QMenuBar::item
@@ -94,7 +94,7 @@ QMenuBar::item:pressed
 QMenu
 {
     border: 1px solid #3A3939;
-    color: silver;
+    color: #1afa29;
     margin: 2px;
 }
 
@@ -128,7 +128,7 @@ QWidget:disabled
 QAbstractItemView
 {
     alternate-background-color: #3A3939;
-    color: silver;
+    color: #1afa29;
     border: 1px solid 3A3939;
     border-radius: 3px;
     padding: 1px;
@@ -151,7 +151,7 @@ QLineEdit
     border-style: solid;
     border: 1px solid #3A3939;
     border-radius: 3px;
-    color: silver;
+    color: #1afa29;
 }
 
 QGroupBox {
@@ -310,14 +310,14 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
 QTextEdit
 {
     background-color: #201F1F;
-    color: silver;
+    color: #1afa29;
     border: 1px solid #3A3939;
 }
 
 QPlainTextEdit
 {
     background-color: #201F1F;;
-    color: silver;
+    color: #1afa29;
     border-radius: 3px;
     border: 1px solid #3A3939;
 }
@@ -325,7 +325,7 @@ QPlainTextEdit
 QHeaderView::section
 {
     background-color: #3A3939;
-    color: silver;
+    color: #1afa29;
     padding-left: 4px;
     border: 1px solid #6c6c6c;
 }
@@ -467,7 +467,7 @@ QToolBar::separator:vertical {
 
 QPushButton
 {
-    color: silver;
+    color: #1afa29;
     background-color: QLinearGradient( x1: 0, y1: 1, x2: 0, y2: 0,
     stop: 0 #302F2F, stop: 1 #484846);
     border-width: 1px;
@@ -564,7 +564,7 @@ QAbstractSpinBox {
     padding-bottom: 2px;
     border: 1px solid #3A3939;
     background-color: #201F1F;
-    color: silver;
+    color: #1afa29;
     border-radius: 3px;
     min-width: 75px;
 }

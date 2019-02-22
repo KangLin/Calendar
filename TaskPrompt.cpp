@@ -6,6 +6,7 @@ CTaskPrompt::CTaskPrompt(QObject *parent) : CTask(parent)
 {
     setObjectName("TaskPrompt");
     SetTitle(objectName());
+    SetTitle(GetTitle());
     SetInterval(5 * 60 * 1000);
     SetPromptInterval(1000);
 }
