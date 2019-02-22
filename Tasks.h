@@ -7,7 +7,6 @@
 #include "Task.h"
 #include <QVector>
 #include <QSharedPointer>
-#include <QIcon>
 
 /**
  * @brief Define a serial task
@@ -21,7 +20,8 @@ class CTasks : public QObject
     Q_PROPERTY(bool end READ End)
     Q_PROPERTY(int length READ Length)
     Q_PROPERTY(int currentIndex READ GetCurrentIndex)
-
+    Q_PROPERTY(QIcon icon READ GetIcon WRITE SetIcon)
+    
 public:
     Q_INVOKABLE explicit CTasks(QObject *parent = nullptr);
     CTasks(const CTasks &tasks);

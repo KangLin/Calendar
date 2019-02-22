@@ -19,6 +19,7 @@
         <file alias="RedPoint">image/red_point.png</file>
         <file alias="Save">image/save.png</file>
         <file alias="Option">image/option.png</file>
+        <file alias="Task">image/task.png</file>
     </qresource>
     <qresource prefix="/icon/green">
         <file alias="Close">image/green_close.png</file>

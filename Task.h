@@ -7,6 +7,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QDomElement>
+#include <QIcon>
 
 class CTask : public QObject
 {
@@ -18,6 +19,7 @@ class CTask : public QObject
     Q_PROPERTY(int promptInterval READ GetPromptInterval WRITE SetPromptInterval)
     Q_PROPERTY(bool end READ End)
     Q_PROPERTY(QString description READ GetDescription)
+    Q_PROPERTY(QIcon icon READ GetIcon WRITE SetIcon)
     
 public:
     Q_INVOKABLE explicit CTask(QObject *parent = nullptr);
@@ -40,6 +42,8 @@ public:
     Q_INVOKABLE virtual QString GetTitle() const;
     Q_INVOKABLE virtual int SetContent(QString szContent);
     Q_INVOKABLE virtual QString GetContent() const;
+    Q_INVOKABLE virtual int SetIcon(QIcon icon);
+    Q_INVOKABLE QIcon GetIcon();
     Q_INVOKABLE virtual int GetInterval() const;
     Q_INVOKABLE virtual int SetInterval(int nInterval);
     Q_INVOKABLE virtual int GetPromptInterval() const;
@@ -92,6 +96,7 @@ private:
     int m_nId;
     QString m_szTitle;
     QString m_szContent;
+    QIcon m_Icon;
     
     QTime m_Time;
     int m_nInterval;

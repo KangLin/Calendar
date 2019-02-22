@@ -8,6 +8,9 @@
 #include <QDebug>
 #include <QDomElement>
 #include <QMetaProperty>
+#include <QIcon>
+#include <QPixmap>
+#include <QBuffer>
 
 class CObjectFactory
 {
@@ -57,8 +60,17 @@ public:
         while(!de.isNull())
         {
             QString szName = de.nodeName();
-            QString szValue = de.attribute("value");
-            pThis->setProperty(szName.toStdString().c_str(), szValue);
+            QVariant value = de.attribute("value");
+            if("icon" == szName && value.isValid())
+            {
+                QPixmap p;
+                QByteArray ba = QByteArray::fromBase64(value.toByteArray());
+                bool b = p.loadFromData(ba);
+                if(b)
+                    value = QIcon(p);
+            }
+            if(value.isValid())
+                pThis->setProperty(szName.toStdString().c_str(), value);
             /*int nIndex = pObj->indexOfProperty(szName.toStdString().c_str());
             QMetaProperty property = pObj->property(nIndex);
             QVariant v(szValue);
@@ -90,10 +102,24 @@ public:
                 continue;
             QString szName = p.name();
             QVariant value = p.read(pThis);
+            if("icon" == szName && value.isValid())
+            {
+                QIcon icon = value.value<QIcon>();
+                QPixmap p = icon.pixmap(icon.availableSizes().at(0));
+                QByteArray ba;
+                QBuffer buf(&ba);
+                if(buf.open(QIODevice::WriteOnly))
+                    p.save(&buf, "PNG");
+                if(!ba.isEmpty())
+                    value = ba.toBase64();
+            }
             //qDebug() << "propery name: " << szName << " value: " << value.toString();
-            QDomElement domProperty = doc.createElement(szName);
-            domProperty.setAttribute("value", value.toString());
-            e.appendChild(domProperty);
+            if(value.isValid())
+            {
+                QDomElement domProperty = doc.createElement(szName);
+                domProperty.setAttribute("value", value.toString());
+                e.appendChild(domProperty);
+            }
         } 
         return nRet;
     }

@@ -133,6 +133,17 @@ QString CTask::GetContent() const
     return m_szContent;
 }
 
+QIcon CTask::GetIcon()
+{
+    return m_Icon;
+}
+
+int CTask::SetIcon(QIcon icon)
+{
+    m_Icon = icon;
+    return 0;
+}
+
 int CTask::SetInterval(int nInterval)
 {
     m_nInterval = nInterval;

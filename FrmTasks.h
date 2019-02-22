@@ -40,6 +40,10 @@ private Q_SLOTS:
     void on_spInterval_valueChanged(int arg1);
     void on_spPromptInterval_valueChanged(int arg1);
     
+    void on_pbTasksIcon_clicked();
+    
+    void on_pbTaskIcon_clicked();
+    
 protected:
     virtual void closeEvent(QCloseEvent *event);
     

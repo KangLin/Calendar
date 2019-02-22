@@ -2,6 +2,7 @@
 #include "ui_FrmTasks.h"
 #include "ObjectFactory.h"
 #include <QtDebug>
+#include <QFileDialog>
 
 CFrmTasks::CFrmTasks(QWidget *parent)
     : QWidget (parent),
@@ -57,7 +58,10 @@ int CFrmTasks::SetTasks(QSharedPointer<CTasks> tasks)
     }
     setEnabled(true);
     if(!tasks->GetIcon().isNull())
+    {
+        ui->pbTasksIcon->setIcon(tasks->GetIcon());
         setWindowIcon(tasks->GetIcon());
+    }
     ui->leTasksTitle->setText(m_Tasks->GetTitle());
     ui->leTasksID->setText(QString::number(m_Tasks->GetId()));
     ui->teTasksContent->setText(m_Tasks->GetContent());
@@ -73,6 +77,11 @@ int CFrmTasks::SetTask(QSharedPointer<CTask> task)
     {
         qCritical() << "CFrmTasks::SetTask: The task is null";
         return -1;
+    }
+    if(!task->GetIcon().isNull())
+    {
+        ui->pbTaskIcon->setIcon(task->GetIcon());
+        ui->gpTask->setWindowIcon(task->GetIcon());
     }
     //ui->gpTask->setTitle(tr("Task: ") + task->objectName());
     ui->leTaskID->setText(QString::number(task->GetId()));
@@ -237,4 +246,28 @@ void CFrmTasks::on_spPromptInterval_valueChanged(int arg1)
 void CFrmTasks::on_spInterval_valueChanged(int arg1)
 {
     m_Tasks->Get(ui->vsLength->value())->SetInterval(arg1 * 60 * 1000);
+}
+
+void CFrmTasks::on_pbTasksIcon_clicked()
+{
+    QFileDialog fd(this, tr("Open file"), QString(), tr("png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)"));
+    int n = fd.exec();
+    if(QDialog::Rejected == n)
+        return;
+    m_Tasks->SetIcon(QIcon(fd.selectedFiles().at(0)));
+    ui->pbTasksIcon->setIcon(m_Tasks->GetIcon());    
+}
+
+void CFrmTasks::on_pbTaskIcon_clicked()
+{
+    QFileDialog fd(this, tr("Open file"), QString(), tr("png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)"));
+    int n = fd.exec();
+    if(QDialog::Rejected == n)
+        return;
+    int v = ui->vsLength->value();
+    QSharedPointer<CTask> t = m_Tasks->Get(v);
+    if(!t)
+        return;
+    t->SetIcon(QPixmap(fd.selectedFiles().at(0)));
+    ui->pbTaskIcon->setIcon(t->GetIcon());
 }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>475</width>
-    <height>388</height>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -103,9 +103,13 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pbIcon">
+        <widget class="QPushButton" name="pbTasksIcon">
          <property name="text">
-          <string>Icon</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Resource/Resource.qrc">
+           <normaloff>:/icon/Task</normaloff>:/icon/Task</iconset>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -282,7 +286,11 @@
           <item>
            <widget class="QPushButton" name="pbTaskIcon">
             <property name="text">
-             <string>Icon</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Resource/Resource.qrc">
+              <normaloff>:/icon/Task</normaloff>:/icon/Task</iconset>
             </property>
            </widget>
           </item>

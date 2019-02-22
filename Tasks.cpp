@@ -232,6 +232,7 @@ int CTasks::SaveSettings(QDomElement &e)
     QDomDocument doc;
     QDomElement tasks = doc.createElement("class");
     tasks.setAttribute("name", pObj->className());;
+        
     CObjectFactory::SaveSettings(tasks, this);
     foreach(QSharedPointer<CTask> t, m_vTask)
     {
