@@ -36,7 +36,6 @@ SOURCES += \
     ViewTaskProperty.cpp \ 
     FrmTasks.cpp \  
     TaskPromptDelay.cpp \
-    MainWindow.cpp \
     $$PWD/FrmTasksList.cpp
 
 HEADERS += \
@@ -58,7 +57,6 @@ HEADERS += \
     ViewTaskProperty.h \ 
     FrmTasks.h \  
     TaskPromptDelay.h \
-    MainWindow.h \
     $$PWD/FrmTasksList.h
 
 FORMS += \
@@ -68,7 +66,6 @@ FORMS += \
     FrmUpdater.ui \
     FrmTaskProperty.ui \ 
     FrmTasks.ui \
-    MainWindow.ui \
     $$PWD/FrmTasksList.ui
 
 RESOURCES += \

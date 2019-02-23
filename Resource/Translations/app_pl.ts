@@ -101,6 +101,24 @@ Email:kl222@126.com</source>
     </message>
 </context>
 <context>
+    <name>CDlgOption</name>
+    <message>
+        <location filename="../../DlgOption.ui" line="14"/>
+        <source>Option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="30"/>
+        <source>Enable run from boot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="37"/>
+        <source>Show windows in application start</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CFrmEyeNurse</name>
     <message>
         <location filename="../../FrmEyeNurse.ui" line="14"/>
@@ -412,17 +430,17 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="117"/>
+        <location filename="../../FrmTasksList.cpp" line="120"/>
         <source>New tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="121"/>
+        <location filename="../../FrmTasksList.cpp" line="124"/>
         <source>New task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="122"/>
+        <location filename="../../FrmTasksList.cpp" line="125"/>
         <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -476,138 +494,140 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="92"/>
+        <location filename="../../MainWindow.ui" line="93"/>
         <source>Load(&amp;L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="95"/>
-        <location filename="../../MainWindow.ui" line="98"/>
-        <location filename="../../MainWindow.ui" line="101"/>
+        <location filename="../../MainWindow.ui" line="96"/>
+        <location filename="../../MainWindow.ui" line="99"/>
+        <location filename="../../MainWindow.ui" line="102"/>
         <source>Load tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="110"/>
+        <location filename="../../MainWindow.ui" line="111"/>
         <source>Save as(&amp;S) ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="113"/>
-        <location filename="../../MainWindow.ui" line="116"/>
-        <location filename="../../MainWindow.ui" line="119"/>
-        <location filename="../../MainWindow.ui" line="122"/>
+        <location filename="../../MainWindow.ui" line="114"/>
+        <location filename="../../MainWindow.ui" line="117"/>
+        <location filename="../../MainWindow.ui" line="120"/>
+        <location filename="../../MainWindow.ui" line="123"/>
         <source>Save tasks as ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="131"/>
+        <location filename="../../MainWindow.ui" line="132"/>
         <source>New(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="134"/>
-        <location filename="../../MainWindow.ui" line="137"/>
-        <location filename="../../MainWindow.ui" line="140"/>
+        <location filename="../../MainWindow.ui" line="135"/>
+        <location filename="../../MainWindow.ui" line="138"/>
+        <location filename="../../MainWindow.ui" line="141"/>
         <source>New tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="152"/>
+        <location filename="../../MainWindow.ui" line="153"/>
         <source>Remove(&amp;R)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="155"/>
-        <location filename="../../MainWindow.ui" line="158"/>
-        <location filename="../../MainWindow.ui" line="161"/>
+        <location filename="../../MainWindow.ui" line="156"/>
+        <location filename="../../MainWindow.ui" line="159"/>
+        <location filename="../../MainWindow.ui" line="162"/>
         <source>Remove tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="170"/>
+        <location filename="../../MainWindow.ui" line="171"/>
         <source>About(&amp;A)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="173"/>
-        <location filename="../../MainWindow.cpp" line="28"/>
+        <location filename="../../MainWindow.ui" line="174"/>
+        <location filename="../../MainWindow.ui" line="177"/>
+        <location filename="../../MainWindow.ui" line="180"/>
+        <location filename="../../MainWindow.cpp" line="29"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="182"/>
+        <location filename="../../MainWindow.ui" line="189"/>
         <source>Exit(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="191"/>
+        <location filename="../../MainWindow.ui" line="198"/>
         <source>Modify(&amp;M)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="194"/>
-        <location filename="../../MainWindow.ui" line="197"/>
-        <location filename="../../MainWindow.ui" line="200"/>
+        <location filename="../../MainWindow.ui" line="201"/>
+        <location filename="../../MainWindow.ui" line="204"/>
+        <location filename="../../MainWindow.ui" line="207"/>
         <source>Modify tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="209"/>
+        <location filename="../../MainWindow.ui" line="216"/>
         <source>Refresh(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="212"/>
-        <location filename="../../MainWindow.ui" line="215"/>
-        <location filename="../../MainWindow.ui" line="218"/>
+        <location filename="../../MainWindow.ui" line="219"/>
+        <location filename="../../MainWindow.ui" line="222"/>
+        <location filename="../../MainWindow.ui" line="225"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="227"/>
+        <location filename="../../MainWindow.ui" line="234"/>
         <source>Option(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="230"/>
-        <location filename="../../MainWindow.ui" line="233"/>
-        <location filename="../../MainWindow.ui" line="236"/>
+        <location filename="../../MainWindow.ui" line="237"/>
+        <location filename="../../MainWindow.ui" line="240"/>
+        <location filename="../../MainWindow.ui" line="243"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="245"/>
+        <location filename="../../MainWindow.ui" line="252"/>
         <source>Sink(&amp;S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="248"/>
-        <location filename="../../MainWindow.ui" line="251"/>
-        <location filename="../../MainWindow.ui" line="254"/>
-        <location filename="../../MainWindow.ui" line="257"/>
+        <location filename="../../MainWindow.ui" line="255"/>
+        <location filename="../../MainWindow.ui" line="258"/>
+        <location filename="../../MainWindow.ui" line="261"/>
+        <location filename="../../MainWindow.ui" line="264"/>
         <source>Sink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="18"/>
+        <location filename="../../MainWindow.cpp" line="19"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="22"/>
-        <location filename="../../MainWindow.cpp" line="95"/>
+        <location filename="../../MainWindow.cpp" line="23"/>
+        <location filename="../../MainWindow.cpp" line="96"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="24"/>
-        <location filename="../../MainWindow.cpp" line="99"/>
+        <location filename="../../MainWindow.cpp" line="25"/>
+        <location filename="../../MainWindow.cpp" line="100"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="32"/>
+        <location filename="../../MainWindow.cpp" line="33"/>
         <source>Enable run from boot</source>
         <translation type="unfinished"></translation>
     </message>

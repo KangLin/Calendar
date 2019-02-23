@@ -6,98 +6,117 @@
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="20"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>關於</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="55"/>
         <source>Informatioin</source>
-        <translation type="unfinished"></translation>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="121"/>
         <source>Home page: https://github.com/KangLin/Tasks.git</source>
-        <translation type="unfinished"></translation>
+        <translation>主頁： https://github.com/KangLin/Tasks.git</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="80"/>
         <source>Version: 1.0.0.0</source>
-        <translation type="unfinished"></translation>
+        <translation>版本： 1.0.0.0</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="102"/>
         <source>Build Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯日期：</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="216"/>
         <source>Donation</source>
-        <translation type="unfinished"></translation>
+        <translation>捐贈</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="240"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>許可協議</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="254"/>
         <source>Change log</source>
-        <translation type="unfinished"></translation>
+        <translation>修改日誌</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="268"/>
         <source>Thanks</source>
-        <translation type="unfinished"></translation>
+        <translation>感謝</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="293"/>
         <source> Copyright (C) 2018 KangLin Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>版權(C) 2018 康林工作室</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="300"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>確定</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="309"/>
         <source>Author:KangLin</source>
-        <translation type="unfinished"></translation>
+        <translation>作者： 康林</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.ui" line="406"/>
         <source>Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.cpp" line="32"/>
         <source> Version: </source>
-        <translation type="unfinished"></translation>
+        <translation>版本：</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.cpp" line="32"/>
         <source> Arch:</source>
-        <translation type="unfinished"></translation>
+        <translation>架構：</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.cpp" line="33"/>
         <source>Build date:%1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯日期：%1 %2</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.cpp" line="34"/>
         <source>Author: KangLin
 Email:kl222@126.com</source>
-        <translation type="unfinished"></translation>
+        <translation>作者： 康林
+郵件:kl222@126.com</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.cpp" line="37"/>
         <source>Home page:</source>
-        <translation type="unfinished"></translation>
+        <translation>主頁：</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.cpp" line="39"/>
         <source> Copyright (C) 2018 - %1 KangLin Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>版權 (C) 2018 - %1 康林工作室</translation>
+    </message>
+</context>
+<context>
+    <name>CDlgOption</name>
+    <message>
+        <location filename="../../DlgOption.ui" line="14"/>
+        <source>Option</source>
+        <translation>選項</translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="30"/>
+        <source>Enable run from boot</source>
+        <translation>允許開戶自啟動</translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="37"/>
+        <source>Show windows in application start</source>
+        <translation>應用啟動時，顯示窗口</translation>
     </message>
 </context>
 <context>
@@ -106,58 +125,54 @@ Email:kl222@126.com</source>
         <location filename="../../FrmEyeNurse.ui" line="14"/>
         <location filename="../../FrmEyeNurse.cpp" line="72"/>
         <source>Eye nurse</source>
-        <translation type="unfinished"></translation>
+        <translation>眼睛護士</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="26"/>
         <source>Exit</source>
-        <translation type="unfinished">退出</translation>
+        <translation>退出</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="29"/>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="31"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>關於</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="34"/>
         <location filename="../../FrmEyeNurse.cpp" line="123"/>
         <source>Enable run from boot</source>
-        <translation type="unfinished"></translation>
+        <translation>允許開戶自啟動</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="37"/>
         <location filename="../../FrmEyeNurse.cpp" line="118"/>
         <source>Disable run from boot</source>
-        <translation type="unfinished"></translation>
+        <translation>禁止開機自啟動</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="73"/>
         <source>Protect eyesight</source>
-        <translation type="unfinished"></translation>
+        <translation>保護視力</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="75"/>
         <source>Work</source>
-        <translation type="unfinished">工作</translation>
+        <translation>工作</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="78"/>
         <source>Will want to lock the screen</source>
-        <translation type="unfinished"></translation>
+        <translation>將要鎖屏</translation>
     </message>
     <message>
         <location filename="../../FrmEyeNurse.cpp" line="79"/>
         <source>Prompt to lock the screen and rest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lock screen and rest</source>
-        <translation type="obsolete">鎖屏休息</translation>
+        <translation>提示鎖屏和休息</translation>
     </message>
 </context>
 <context>
@@ -170,7 +185,7 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmFullScreen.ui" line="127"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -178,7 +193,7 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmStickyNotes.ui" line="14"/>
         <source>Sticky Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>便簽</translation>
     </message>
 </context>
 <context>
@@ -186,27 +201,27 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmTaskProperty.ui" line="14"/>
         <source>Task property</source>
-        <translation type="unfinished"></translation>
+        <translation>任務屬性</translation>
     </message>
     <message>
         <location filename="../../FrmTaskProperty.ui" line="45"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../../FrmTaskProperty.ui" line="52"/>
         <source>Cancle</source>
-        <translation type="unfinished"></translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../../FrmTaskPropery.cpp" line="37"/>
         <source>Tasks: %1; Id: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>任務: %1; Id: %2</translation>
     </message>
     <message>
         <location filename="../../FrmTaskPropery.cpp" line="63"/>
-        <source>Id: %1 标题: %2</source>
-        <translation type="unfinished"></translation>
+        <source>Id: %1 標題: %2</source>
+        <translation>Id :%1 標題： %2</translation>
     </message>
 </context>
 <context>
@@ -214,173 +229,173 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmTasks.ui" line="14"/>
         <source>Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="59"/>
         <location filename="../../FrmTasks.ui" line="246"/>
         <source>ID:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="66"/>
         <location filename="../../FrmTasks.ui" line="69"/>
         <location filename="../../FrmTasks.ui" line="72"/>
         <source>Tasks ID</source>
-        <translation type="unfinished"></translation>
+        <translation>任務組 ID</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="82"/>
         <location filename="../../FrmTasks.ui" line="269"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>標題</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="95"/>
         <location filename="../../FrmTasks.ui" line="98"/>
         <location filename="../../FrmTasks.ui" line="101"/>
         <source>Tasks title</source>
-        <translation type="unfinished"></translation>
+        <translation>任務組標題</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="130"/>
         <location filename="../../FrmTasks.ui" line="381"/>
         <source>Content:</source>
-        <translation type="unfinished"></translation>
+        <translation>內容：</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="143"/>
         <location filename="../../FrmTasks.ui" line="146"/>
         <location filename="../../FrmTasks.ui" line="149"/>
         <source>Tasks content</source>
-        <translation type="unfinished"></translation>
+        <translation>任務組內容</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="177"/>
         <source>Previous task</source>
-        <translation type="unfinished"></translation>
+        <translation>前壹個任務</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="180"/>
         <source>Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>前壹個</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="197"/>
         <source>Next task</source>
-        <translation type="unfinished"></translation>
+        <translation>下壹個任務</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="200"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>下壹個</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="226"/>
         <location filename="../../FrmTasks.ui" line="229"/>
         <location filename="../../FrmTasks.ui" line="232"/>
         <source>Task</source>
-        <translation type="unfinished"></translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="259"/>
         <source>Task ID</source>
-        <translation type="unfinished"></translation>
+        <translation>任務ID</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="282"/>
         <source>Task title</source>
-        <translation type="unfinished"></translation>
+        <translation>任務標題</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="304"/>
         <source>Interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>間隔：</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="317"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
-        <translation type="unfinished"></translation>
+        <translation>任務間隔（單位：分鐘）。如果是0，則立即運行。</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="330"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation>分</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="343"/>
         <source>PromptInterval:</source>
-        <translation type="unfinished"></translation>
+        <translation>提示間隔：</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="356"/>
         <location filename="../../FrmTasks.ui" line="359"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
-        <translation type="unfinished"></translation>
+        <translation>提示間隔（單位：秒）。如果是0，則不提示。</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="372"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation>秒</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="394"/>
         <location filename="../../FrmTasks.ui" line="397"/>
         <location filename="../../FrmTasks.ui" line="400"/>
         <source>Task content</source>
-        <translation type="unfinished"></translation>
+        <translation>任務內容</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="422"/>
         <source> New add task into tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>新建任務到任務組中</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="425"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>增加</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="436"/>
         <source>Remove the task from tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>從任務組中移除此任務</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="439"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>移除</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="450"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="474"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.cpp" line="103"/>
         <source>There is current task in tasks.</source>
-        <translation type="unfinished"></translation>
+        <translation>這是任務組中的當前任務.</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.cpp" line="144"/>
         <source>New </source>
-        <translation type="unfinished"></translation>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.cpp" line="253"/>
         <location filename="../../FrmTasks.cpp" line="263"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>打開文件</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.cpp" line="253"/>
         <location filename="../../FrmTasks.cpp" line="263"/>
         <source>png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>png(*.png);;圖標(*.icon);;jpg(*.jpg);;位圖(*.bmp);;所有文件(*.*)</translation>
     </message>
 </context>
 <context>
@@ -388,47 +403,47 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmTasksList.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../FrmTasksList.cpp" line="66"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>加載</translation>
     </message>
     <message>
         <location filename="../../FrmTasksList.cpp" line="66"/>
         <source>xml(*.xml);;All files(*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
         <location filename="../../FrmTasksList.cpp" line="76"/>
         <source>Save as ...</source>
-        <translation type="unfinished"></translation>
+        <translation>另存為……</translation>
     </message>
     <message>
         <location filename="../../FrmTasksList.cpp" line="88"/>
         <source>File exist</source>
-        <translation type="unfinished"></translation>
+        <translation>文件已存在</translation>
     </message>
     <message>
         <location filename="../../FrmTasksList.cpp" line="89"/>
         <source>%1 is existed, replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 已存在,是否替換?</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="117"/>
+        <location filename="../../FrmTasksList.cpp" line="120"/>
         <source>New tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>新建任務組</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="121"/>
+        <location filename="../../FrmTasksList.cpp" line="124"/>
         <source>New task</source>
-        <translation type="unfinished"></translation>
+        <translation>新建任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="122"/>
+        <location filename="../../FrmTasksList.cpp" line="125"/>
         <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果此任務不是妳需要的，請從下面組合框中選擇妳需要的任務建立它，並刪除此任務。</translation>
     </message>
 </context>
 <context>
@@ -436,7 +451,7 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmTop.ui" line="26"/>
         <source>Prompt</source>
-        <translation type="unfinished">提示</translation>
+        <translation>提示</translation>
     </message>
 </context>
 <context>
@@ -444,7 +459,7 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmUpdater.ui" line="14"/>
         <source>Updater</source>
-        <translation type="unfinished"></translation>
+        <translation>更新</translation>
     </message>
 </context>
 <context>
@@ -452,173 +467,175 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../MainWindow.ui" line="14"/>
         <source>Tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>任務</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="32"/>
         <source>File(&amp;F)</source>
-        <translation type="unfinished"></translation>
+        <translation>文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="41"/>
         <source>Edit(&amp;E)</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯(&amp;E)</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="50"/>
         <source>Help(&amp;H)</source>
-        <translation type="unfinished"></translation>
+        <translation>幫助(&amp;H)</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="56"/>
         <source>Tools(&amp;T)</source>
-        <translation type="unfinished"></translation>
+        <translation>工具(&amp;T)</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="69"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="92"/>
+        <location filename="../../MainWindow.ui" line="93"/>
         <source>Load(&amp;L)</source>
-        <translation type="unfinished"></translation>
+        <translation>加載(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="95"/>
-        <location filename="../../MainWindow.ui" line="98"/>
-        <location filename="../../MainWindow.ui" line="101"/>
+        <location filename="../../MainWindow.ui" line="96"/>
+        <location filename="../../MainWindow.ui" line="99"/>
+        <location filename="../../MainWindow.ui" line="102"/>
         <source>Load tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>加載任務組</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="110"/>
+        <location filename="../../MainWindow.ui" line="111"/>
         <source>Save as(&amp;S) ......</source>
-        <translation type="unfinished"></translation>
+        <translation>另存為(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="113"/>
-        <location filename="../../MainWindow.ui" line="116"/>
-        <location filename="../../MainWindow.ui" line="119"/>
-        <location filename="../../MainWindow.ui" line="122"/>
+        <location filename="../../MainWindow.ui" line="114"/>
+        <location filename="../../MainWindow.ui" line="117"/>
+        <location filename="../../MainWindow.ui" line="120"/>
+        <location filename="../../MainWindow.ui" line="123"/>
         <source>Save tasks as ......</source>
-        <translation type="unfinished"></translation>
+        <translation>任務組另存為……</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="131"/>
+        <location filename="../../MainWindow.ui" line="132"/>
         <source>New(&amp;N)</source>
-        <translation type="unfinished"></translation>
+        <translation>新建(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="134"/>
-        <location filename="../../MainWindow.ui" line="137"/>
-        <location filename="../../MainWindow.ui" line="140"/>
+        <location filename="../../MainWindow.ui" line="135"/>
+        <location filename="../../MainWindow.ui" line="138"/>
+        <location filename="../../MainWindow.ui" line="141"/>
         <source>New tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>新建(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="152"/>
+        <location filename="../../MainWindow.ui" line="153"/>
         <source>Remove(&amp;R)</source>
-        <translation type="unfinished"></translation>
+        <translation>移除(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="155"/>
-        <location filename="../../MainWindow.ui" line="158"/>
-        <location filename="../../MainWindow.ui" line="161"/>
+        <location filename="../../MainWindow.ui" line="156"/>
+        <location filename="../../MainWindow.ui" line="159"/>
+        <location filename="../../MainWindow.ui" line="162"/>
         <source>Remove tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>移除任務組</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="170"/>
+        <location filename="../../MainWindow.ui" line="171"/>
         <source>About(&amp;A)</source>
-        <translation type="unfinished"></translation>
+        <translation>關於(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="173"/>
-        <location filename="../../MainWindow.cpp" line="28"/>
+        <location filename="../../MainWindow.ui" line="174"/>
+        <location filename="../../MainWindow.ui" line="177"/>
+        <location filename="../../MainWindow.ui" line="180"/>
+        <location filename="../../MainWindow.cpp" line="29"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="182"/>
+        <location filename="../../MainWindow.ui" line="189"/>
         <source>Exit(&amp;E)</source>
-        <translation type="unfinished"></translation>
+        <translation>即出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="191"/>
+        <location filename="../../MainWindow.ui" line="198"/>
         <source>Modify(&amp;M)</source>
-        <translation type="unfinished"></translation>
+        <translation>修改(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="194"/>
-        <location filename="../../MainWindow.ui" line="197"/>
-        <location filename="../../MainWindow.ui" line="200"/>
+        <location filename="../../MainWindow.ui" line="201"/>
+        <location filename="../../MainWindow.ui" line="204"/>
+        <location filename="../../MainWindow.ui" line="207"/>
         <source>Modify tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>修改任務組</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="209"/>
+        <location filename="../../MainWindow.ui" line="216"/>
         <source>Refresh(&amp;F)</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="212"/>
-        <location filename="../../MainWindow.ui" line="215"/>
-        <location filename="../../MainWindow.ui" line="218"/>
+        <location filename="../../MainWindow.ui" line="219"/>
+        <location filename="../../MainWindow.ui" line="222"/>
+        <location filename="../../MainWindow.ui" line="225"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="227"/>
+        <location filename="../../MainWindow.ui" line="234"/>
         <source>Option(&amp;O)</source>
-        <translation type="unfinished"></translation>
+        <translation>選項(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="230"/>
-        <location filename="../../MainWindow.ui" line="233"/>
-        <location filename="../../MainWindow.ui" line="236"/>
+        <location filename="../../MainWindow.ui" line="237"/>
+        <location filename="../../MainWindow.ui" line="240"/>
+        <location filename="../../MainWindow.ui" line="243"/>
         <source>Option</source>
-        <translation type="unfinished"></translation>
+        <translation>選項</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="245"/>
+        <location filename="../../MainWindow.ui" line="252"/>
         <source>Sink(&amp;S)</source>
-        <translation type="unfinished"></translation>
+        <translation>換膚(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="248"/>
-        <location filename="../../MainWindow.ui" line="251"/>
-        <location filename="../../MainWindow.ui" line="254"/>
-        <location filename="../../MainWindow.ui" line="257"/>
+        <location filename="../../MainWindow.ui" line="255"/>
+        <location filename="../../MainWindow.ui" line="258"/>
+        <location filename="../../MainWindow.ui" line="261"/>
+        <location filename="../../MainWindow.ui" line="264"/>
         <source>Sink</source>
-        <translation type="unfinished"></translation>
+        <translation>換膚</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="18"/>
+        <location filename="../../MainWindow.cpp" line="19"/>
         <source>Exit</source>
-        <translation type="unfinished">退出</translation>
+        <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="22"/>
-        <location filename="../../MainWindow.cpp" line="95"/>
+        <location filename="../../MainWindow.cpp" line="23"/>
+        <location filename="../../MainWindow.cpp" line="96"/>
         <source>Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>隱藏</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="24"/>
-        <location filename="../../MainWindow.cpp" line="99"/>
+        <location filename="../../MainWindow.cpp" line="25"/>
+        <location filename="../../MainWindow.cpp" line="100"/>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="32"/>
+        <location filename="../../MainWindow.cpp" line="33"/>
         <source>Enable run from boot</source>
-        <translation type="unfinished"></translation>
+        <translation>允許開戶自啟動</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="172"/>
         <source>Open sink</source>
-        <translation type="unfinished"></translation>
+        <translation>打開皮膚</translation>
     </message>
 </context>
 <context>
@@ -628,31 +645,33 @@ Email:kl222@126.com</source>
         <source>Task is base unit. Is a minimal execution unit.
 Start with the Start function and run the Run function after the interval.
 If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</source>
-        <translation type="unfinished"></translation>
+        <translation>任務是最基本的單位。它是最小的遠行單位。
+從Start函數開始經過間隔 Interval 時間後運行run函數。
+如果PromptInterval不為0，則間隔PromptInterval時間提示。</translation>
     </message>
 </context>
 <context>
     <name>CTaskLockScreen</name>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="126"/>
-        <source>Remaining: %1</source>
-        <translation>剩余時間：%1</translation>
-    </message>
-    <message>
         <location filename="../../TaskLockScreen.cpp" line="41"/>
         <source>Lock screen and reset</source>
-        <translation type="unfinished"></translation>
+        <translation>鎖定屏幕並休息</translation>
+    </message>
+    <message>
+        <location filename="../../TaskLockScreen.cpp" line="126"/>
+        <source>Remaining: %1</source>
+        <translation>剩余時間： %1</translation>
     </message>
     <message>
         <location filename="../../TaskLockScreen.cpp" line="34"/>
         <location filename="../../TaskLockScreen.cpp" line="42"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>休息</translation>
     </message>
     <message>
         <location filename="../../TaskLockScreen.cpp" line="137"/>
         <source>Lock screen</source>
-        <translation type="unfinished"></translation>
+        <translation>鎖屏</translation>
     </message>
 </context>
 <context>
@@ -660,17 +679,17 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
     <message>
         <location filename="../../TaskPrompt.cpp" line="32"/>
         <source>Prompt task, Only prompt.</source>
-        <translation type="unfinished"></translation>
+        <translation>提示任務，僅顯示提示</translation>
     </message>
     <message>
         <location filename="../../TaskPrompt.cpp" line="50"/>
         <source>Remaining: </source>
-        <translation type="unfinished"></translation>
+        <translation>剩余時間:</translation>
     </message>
     <message>
         <location filename="../../TaskPrompt.h" line="16"/>
         <source>Prompt</source>
-        <translation type="unfinished">提示</translation>
+        <translation>提示</translation>
     </message>
 </context>
 <context>
@@ -678,33 +697,33 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
     <message>
         <location filename="../../TaskPromptDelay.cpp" line="30"/>
         <source>Delayable task. the task can be delayed.</source>
-        <translation type="unfinished"></translation>
+        <translation>可延遲任務。它能夠由用戶推遲。</translation>
     </message>
     <message>
         <location filename="../../TaskPromptDelay.cpp" line="38"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉</translation>
     </message>
     <message>
         <location filename="../../TaskPromptDelay.cpp" line="40"/>
         <source>Delay 5 Minute</source>
-        <translation type="unfinished"></translation>
+        <translation>延遲5分鐘</translation>
     </message>
     <message>
         <location filename="../../TaskPromptDelay.cpp" line="42"/>
         <location filename="../../TaskPromptDelay.cpp" line="59"/>
         <source>Customize delay</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義延遲時間</translation>
     </message>
     <message>
         <location filename="../../TaskPromptDelay.cpp" line="60"/>
         <source>Delay minute</source>
-        <translation type="unfinished"></translation>
+        <translation>延遲分鐘</translation>
     </message>
     <message>
         <location filename="../../TaskPromptDelay.h" line="12"/>
         <source>PromptDelay</source>
-        <translation type="unfinished"></translation>
+        <translation>提示延遲</translation>
     </message>
 </context>
 <context>
@@ -725,39 +744,12 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
     <message>
         <location filename="../../ViewTaskProperty.cpp" line="13"/>
         <source>Property</source>
-        <translation type="unfinished"></translation>
+        <translation>屬性</translation>
     </message>
     <message>
         <location filename="../../ViewTaskProperty.cpp" line="14"/>
         <source>Value</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MainWindow</name>
-    <message>
-        <source>Exit</source>
-        <translation type="vanished">退出</translation>
-    </message>
-    <message>
-        <source>Work</source>
-        <translation type="vanished">工作</translation>
-    </message>
-    <message>
-        <source>Lock screen and rest</source>
-        <translation type="vanished">鎖屏休息</translation>
-    </message>
-    <message>
-        <source>Rest</source>
-        <translation type="vanished">休息</translation>
-    </message>
-    <message>
-        <source>Will want to lock the screen prompt</source>
-        <translation type="vanished">將鎖屏</translation>
-    </message>
-    <message>
-        <source>Lock</source>
-        <translation type="vanished">鎖定</translation>
+        <translation>值</translation>
     </message>
 </context>
 </TS>

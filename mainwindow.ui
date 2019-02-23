@@ -82,6 +82,7 @@
    <addaction name="actionModify_M"/>
    <addaction name="actionRefresh_F"/>
    <addaction name="separator"/>
+   <addaction name="actionExit_E"/>
   </widget>
   <action name="actionLoad_L">
    <property name="icon">
@@ -170,6 +171,12 @@
     <string>About(&amp;A)</string>
    </property>
    <property name="toolTip">
+    <string>About</string>
+   </property>
+   <property name="statusTip">
+    <string>About</string>
+   </property>
+   <property name="whatsThis">
     <string>About</string>
    </property>
   </action>

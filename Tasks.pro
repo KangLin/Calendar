@@ -39,12 +39,18 @@ RC_FILE = AppIcon.rc
 include(Tasks.pri)
 
 SOURCES += DlgAbout/DlgAbout.cpp \
-        FrmEyeNurse.cpp \
-        main.cpp 
+    FrmEyeNurse.cpp \
+    main.cpp \ 
+    MainWindow.cpp \
+    DlgOption.cpp
 HEADERS += DlgAbout/DlgAbout.h \
-        FrmEyeNurse.h 
+    FrmEyeNurse.h \
+    MainWindow.h \
+    DlgOption.h
 FORMS += DlgAbout/DlgAbout.ui \
-        FrmEyeNurse.ui 
+    FrmEyeNurse.ui \
+    MainWindow.ui \ 
+    DlgOption.ui
 
 other.files = License.md Authors.md AppIcon.ico
 other.path = $$PREFIX

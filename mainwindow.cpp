@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QDebug>
 #include <QFileDialog>
+#include <DlgOption.h>
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -175,4 +176,10 @@ void CMainWindow::on_actionSink_S_triggered()
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     set.setValue("Sink", szFile);
+}
+
+void CMainWindow::on_actionOption_O_triggered()
+{
+    CDlgOption dlg(this);
+    dlg.exec();
 }
