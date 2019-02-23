@@ -129,10 +129,10 @@ void CMainWindow::on_actionAbout_A_triggered()
 }
 
 
-void CMainWindow::closeEvent(QCloseEvent *event)
+void CMainWindow::closeEvent(QCloseEvent *e)
 {
+    e->ignore();
     hide();
-    event->ignore();
 }
 
 int CMainWindow::LoadStyle()

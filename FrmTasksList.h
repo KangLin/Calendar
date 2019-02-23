@@ -3,6 +3,7 @@
 
 #include <QStandardItemModel>
 #include <QWidget>
+#include <QCloseEvent>
 #include "TasksList.h"
 
 namespace Ui {
@@ -27,6 +28,9 @@ public Q_SLOTS:
 private Q_SLOTS:
     void on_lvTasks_clicked(const QModelIndex &index);
     void on_lvTasks_indexesMoved(const QModelIndexList &indexes);
+
+protected:
+    virtual void closeEvent(QCloseEvent *event);
     
 private:
     int Init();

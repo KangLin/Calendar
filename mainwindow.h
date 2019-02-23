@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QSystemTrayIcon>
-
+#include <QCloseEvent>
 #include "TasksList.h"
 #include "FrmTasksList.h"
 
@@ -32,7 +32,7 @@ private Q_SLOTS:
     void on_actionSink_S_triggered();
     
 protected:
-    void closeEvent(QCloseEvent *event);
+    virtual void closeEvent(QCloseEvent *e);
     
 private:
     int LoadStyle();

@@ -143,3 +143,9 @@ void CFrmTasksList::on_lvTasks_indexesMoved(const QModelIndexList &indexes)
     ui->tasks->SetTasks(p);
     ui->tasks->show();
 }
+
+void CFrmTasksList::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event);
+    m_TasksList.RemoveAll();
+}
