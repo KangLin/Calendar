@@ -645,7 +645,7 @@ QTabBar::close-button:pressed {
 
 /* TOP - BOTTOM TABS */
 QTabBar::tab:top {
-    color: #b1b1b1;
+    color: #1afa29;
     border: 1px solid #3A3939;
     background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1,
       stop:1 #302F2F, stop:0 #5A5959);
@@ -660,7 +660,7 @@ QTabBar::tab:top {
 }
 
 QTabBar::tab:bottom {
-    color: #b1b1b1;
+    color: #1afa29;
     border: 1px solid #3A3939;
     background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1,
       stop:1 #302F2F, stop:0 #5A5959);
@@ -686,7 +686,7 @@ QTabBar::tab:top:first:!selected, QTabBar::tab:bottom:first:!selected
 
 QTabBar::tab:top:!selected
 {
-    color: #b1b1b1;
+    color: #1afa29;
     margin-top: 3px;
     background-color: #302F2F;
 }
@@ -698,7 +698,7 @@ QTabBar::tab:top:selected
 
 QTabBar::tab:bottom:!selected
 {
-    color: #b1b1b1;
+    color: #1afa29;
     margin-bottom: 3px;
     background-color: #302F2F;
 }
@@ -710,7 +710,7 @@ QTabBar::tab:bottom:selected
 
 /* LEFT - RIGHT TABS */
 QTabBar::tab:left {
-    color: #b1b1b1;
+    color: #1afa29;
     border: 1px solid #3A3939;
     background-color: QLinearGradient(x1:1, y1:0, x2:0, y2:0,
       stop:1 #302F2F, stop:0 #5A5959);
@@ -725,7 +725,7 @@ QTabBar::tab:left {
 }
 
 QTabBar::tab:right {
-    color: #b1b1b1;
+    color: #1afa29;
     border: 1px solid #3A3939;
     background-color: QLinearGradient(x1:0, y1:0, x2:1, y2:0,
       stop:1 #302F2F, stop:0 #5A5959);
@@ -741,7 +741,7 @@ QTabBar::tab:right {
 
 QTabBar::tab:left:!selected
 {
-    color: #b1b1b1;
+    color: #1afa29;
     margin-right: 3px;
     background-color: #302F2F;
 }
@@ -753,7 +753,7 @@ QTabBar::tab:left:selected
 
 QTabBar::tab:right:!selected
 {
-    color: #b1b1b1;
+    color: #1afa29;
     margin-left: 3px;
         background-color: #302F2F;
 }
