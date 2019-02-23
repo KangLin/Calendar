@@ -128,7 +128,6 @@ void CMainWindow::on_actionAbout_A_triggered()
     slotAbout(true);
 }
 
-
 void CMainWindow::closeEvent(QCloseEvent *e)
 {
     e->ignore();
@@ -170,6 +169,8 @@ int CMainWindow::LoadStyle(const QString &szFile)
 void CMainWindow::on_actionSink_S_triggered()
 {
     QString szFile = QFileDialog::getOpenFileName(this, tr("Open sink"));
+    if(szFile.isEmpty())
+        return;
     LoadStyle(szFile);
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);

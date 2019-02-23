@@ -10,7 +10,7 @@ Author: KangLin (kl222@126.com)
 ### Features
 
 - [x] Eye Nurse： Vision protection
-- [ ] Custom task
+- [x] Custom task
 - [ ] calendar
 - [x] Sticky
 

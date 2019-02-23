@@ -106,7 +106,10 @@ void CFrmTasksList::on_lvTasks_clicked(const QModelIndex &index)
 {
     QSharedPointer<CTasks> p = m_TasksList.Get(index.row());
     if(nullptr == p)
+    {
+        ui->tasks->hide();
         return;
+    }
     ui->tasks->SetTasks(p);
     ui->tasks->show();
 }
