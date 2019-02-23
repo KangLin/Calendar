@@ -4,18 +4,17 @@
 #include <QDebug>
 #include <QSettings>
 #include "MainWindow.h"
-#include "FrmEyeNurse.h"
 #include "Global/GlobalDir.h"
 
 int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
+
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     
-    QApplication a(argc, argv);
-
     QTranslator t;
-    t.load(":/Translations/app_" + QLocale::system().name());
+    t.load(":/Translations/app_" + QLocale::system().name() + ".qm");
     a.installTranslator(&t);
     set.setValue("Language", QLocale::system().name());
 
@@ -29,8 +28,6 @@ int main(int argc, char *argv[])
     u.StartDownload("https://github.com/qTox/qTox/blob/master/updater/update.cpp");//*/
     /*MainWindow w;
     w.show();//*/
-
-    //CFrmEyeNurse en;
 
     return a.exec();
 }
