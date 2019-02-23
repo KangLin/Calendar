@@ -109,7 +109,7 @@
          </property>
          <property name="icon">
           <iconset resource="Resource/Resource.qrc">
-           <normaloff>:/icon/Task</normaloff>:/icon/Task</iconset>
+           <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -290,7 +290,7 @@
             </property>
             <property name="icon">
              <iconset resource="Resource/Resource.qrc">
-              <normaloff>:/icon/Task</normaloff>:/icon/Task</iconset>
+              <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
             </property>
            </widget>
           </item>

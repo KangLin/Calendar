@@ -9,16 +9,17 @@
 
 int main(int argc, char *argv[])
 {
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    
     QApplication a(argc, argv);
 
     QTranslator t;
     t.load(":/Translations/app_" + QLocale::system().name());
     a.installTranslator(&t);
+    set.setValue("Language", QLocale::system().name());
 
     CMainWindow m;
-
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
-                  QSettings::IniFormat);
     bool bShow = set.value("MainWindow/Show", false).toBool();
     if(bShow)
         m.show();
