@@ -7,7 +7,9 @@ CFrmStickyNotes::CFrmStickyNotes(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmStickyNotes)
 {
+    setAttribute(Qt::WA_QuitOnClose, false);
     ui->setupUi(this);
+    //TODO:Use qss
     setStyleSheet("background-color:rgb(255,255,128);color:rgb(0,255,0);");
     //setStyleSheet("QWidget{background-color:gray;border-top-left-radius:15px;border-top-right-radius:15px;}"); 
     setWindowFlags(windowFlags() & ~Qt::WindowMinMaxButtonsHint);

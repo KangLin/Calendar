@@ -60,7 +60,7 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
                                       lablePalette.color(QPalette::Highlight));
                 lable->setPalette(lablePalette);
             }
-            lable->setText(tr("Id: %1 标题: %2").arg(
+            lable->setText(tr("Id: %1 Title: %2").arg(
                             QString::number(task->GetId()), task->GetTitle()));
             pVbLayout->addWidget(lable);
             CViewTaskProperty *m_pProperty = new CViewTaskProperty(task, pGb);

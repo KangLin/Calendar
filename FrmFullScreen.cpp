@@ -14,7 +14,7 @@ CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-    setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
+    //setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
     bool check = connect(&m_Timer, SIGNAL(timeout()), this, SLOT(slotTimeout()));
     Q_ASSERT(check);
     m_Timer.start(1000);

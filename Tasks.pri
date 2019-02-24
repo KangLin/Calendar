@@ -27,7 +27,6 @@ SOURCES += \
     FrmTop.cpp \
     TaskPrompt.cpp \
     FrmStickyNotes.cpp \
-    FrmUpdater.cpp \
     Global/GlobalDir.cpp \
     Global/Log.cpp \
     FrmFullScreen.cpp \
@@ -47,7 +46,6 @@ HEADERS += \
     FrmTop.h \
     TaskPrompt.h \
     FrmStickyNotes.h \
-    FrmUpdater.h \
     Global/GlobalDir.h \
     Global/Log.h \
     FrmFullScreen.h \
@@ -63,7 +61,6 @@ FORMS += \
     FrmFullScreen.ui \
     FrmTop.ui \
     FrmStickyNotes.ui \
-    FrmUpdater.ui \
     FrmTaskProperty.ui \ 
     FrmTasks.ui \
     $$PWD/FrmTasksList.ui

@@ -23,6 +23,7 @@
         <file alias="Sink">image/skin.png</file>
         <file alias="Eye">image/eye.png</file>
         <file alias="CopyRight">image/copyright.png</file>
+        <file alias="Download">image/download.png</file>
     </qresource>
     <qresource prefix="/icon/green">
         <file alias="Close">image/green_close.png</file>

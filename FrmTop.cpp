@@ -13,6 +13,7 @@ CFrmTop::CFrmTop(QWidget *parent) :
             | Qt::CustomizeWindowHint),
     ui(new Ui::CFrmTop)
 {
+    setAttribute(Qt::WA_QuitOnClose, false);
     ui->setupUi(this);
     m_pPopupMenu = nullptr;
     m_bMoveable = false;
@@ -25,7 +26,7 @@ CFrmTop::CFrmTop(QWidget *parent) :
     rect.setHeight(ui->lbPrompt->geometry().height());
     setGeometry(rect);
     //setStyleSheet ("venus--TitleBar {background-color: rgb(0,0,0);color: rgb(255,255,255);}");
-    setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
+    //setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
     //setStyleSheet("border-radius:100px;");
 }
 

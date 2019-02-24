@@ -24,12 +24,13 @@ public:
     int Remove(QSharedPointer<CTasks> tasks);
     int RemoveAll();
     QSharedPointer<CTasks> Get(int index);
-    
-    /**
+    /*
      * @brief Start: Initialize here
+     * @param nInterval: Check interval.
+     *                   If is 0, disable check in the class. check by user
      * @return 
      */
-    int Start();
+    int Start(int nInterval = 1000);
     int Check();
     
     virtual int LoadSettings(const QDomElement &e);

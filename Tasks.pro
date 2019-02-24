@@ -42,14 +42,17 @@ SOURCES += DlgAbout/DlgAbout.cpp \
     FrmEyeNurse.cpp \
     main.cpp \ 
     MainWindow.cpp \
+    FrmUpdater.cpp \
     DlgOption.cpp
 HEADERS += DlgAbout/DlgAbout.h \
     FrmEyeNurse.h \
     MainWindow.h \
+    FrmUpdater.h \
     DlgOption.h
 FORMS += DlgAbout/DlgAbout.ui \
     FrmEyeNurse.ui \
     MainWindow.ui \ 
+    FrmUpdater.ui \
     DlgOption.ui
 
 other.files = License.md Authors.md AppIcon.ico
@@ -77,10 +80,11 @@ win32 : equals(QMAKE_HOST.os, Windows){
 OTHER_FILES += Install/* \
     appveyor.yml \
     ci/* \
-    tag.sh
+    tag.sh \
+    Update.xml
 
 DISTFILES += \
     LICENSE.md \
     Authors.md \
     README_zh_CN.md \
-    README.md
+    README.md 

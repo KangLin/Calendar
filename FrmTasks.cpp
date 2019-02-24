@@ -8,7 +8,6 @@ CFrmTasks::CFrmTasks(QWidget *parent)
     : QWidget (parent),
     ui(new Ui::CFrmTasks)
 {
-    setAttribute(Qt::WA_QuitOnClose, false);
     ui->setupUi(this);
     InitTaskComboBox();
 }

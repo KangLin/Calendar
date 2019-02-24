@@ -11,7 +11,7 @@ CTasksList::CTasksList(QObject *parent) : QObject(parent)
     check = connect(&m_Timer, SIGNAL(timeout()),
                     this, SLOT(slotTimeout()));
     Q_ASSERT(check);
-    m_nTimerInterval = 1000;
+    m_nTimerInterval = 0;
     setObjectName("TasksList");
 }
 
@@ -70,12 +70,13 @@ QSharedPointer<CTasks> CTasksList::Get(int index)
     return m_lstTasks.at(index);
 }
 
-int CTasksList::Start()
+int CTasksList::Start(int nInterval)
 {
     foreach (QSharedPointer<CTasks> tasks, m_lstTasks)
     {
         tasks->Start();
     }
+    m_nTimerInterval = nInterval;
     if(m_nTimerInterval)
         m_Timer.start(m_nTimerInterval);
     return 0;
