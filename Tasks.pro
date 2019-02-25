@@ -80,8 +80,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
 OTHER_FILES += Install/* \
     appveyor.yml \
     ci/* \
-    tag.sh \
-    Update.xml
+    tag.sh 
 
 DISTFILES += \
     LICENSE.md \

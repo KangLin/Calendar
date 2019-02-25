@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
     
     CFrmUpdater u;
     //u.show();
-    u.DownloadFile(QUrl("https://raw.githubusercontent.com/KangLin/Tasks/master/Update.xml"));//*/
     //u.DownloadFile(QUrl::fromLocalFile("d:\\Source\\Tasks\\update.xml"));
 
+    
     return a.exec();
 }

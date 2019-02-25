@@ -22,7 +22,7 @@ public:
     explicit CFrmUpdater(QWidget *parent = nullptr);
     virtual ~CFrmUpdater();
 
-    int DownloadFile(const QUrl &url);
+    int DownloadFile(const QUrl &url, bool bSetFile = true);
     int SetVersion(const QString &szVersion);
     int SetArch(const QString &szArch);
     int SetTitle(const QString &szTitle, QPixmap icon = QPixmap());

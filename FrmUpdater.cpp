@@ -10,6 +10,7 @@
 #include <QDomElement>
 #include <QProcess>
 #include <QDir>
+#include <QSsl>
 
 CFrmUpdater::CFrmUpdater(QWidget *parent) :
     QWidget(parent),
@@ -53,6 +54,18 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
     Q_ASSERT(check);
     m_StateMachine.setInitialState(s);
     m_StateMachine.start();
+
+    QString szUrl = "https://github.com/KangLin/"
+            + qApp->applicationName() +"/blob/master/update_";
+#if defined (Q_OS_WIN)
+    szUrl += "windows";
+#elif defined(Q_OS_ANDROID)
+    szUrl += "android";
+#elif defined (Q_OS_LINUX)
+    szUrl += "linux";
+#endif
+    szUrl += ".xml";
+    DownloadFile(QUrl(szUrl));
 }
 
 CFrmUpdater::~CFrmUpdater()
@@ -86,7 +99,7 @@ int CFrmUpdater::SetVersion(const QString &szVersion)
     return 0;
 }
 
-int CFrmUpdater::DownloadFile(const QUrl &url)
+int CFrmUpdater::DownloadFile(const QUrl &url, bool bSetFile)
 {
     int nRet = 0;
     if(!m_StateMachine.isRunning())
@@ -101,23 +114,38 @@ int CFrmUpdater::DownloadFile(const QUrl &url)
         emit sigDownloadFinished();
         return 0;
     }
-    
-    QString szTmp = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
-    szTmp = szTmp + QDir::separator() + "Rabbit" + QDir::separator() + qApp->applicationName();
-    QDir d;
-    if(!d.exists(szTmp))
-        d.mkpath(szTmp);
-    QString szPath = url.path();   
-    QString szFile = szTmp + szPath.mid(szPath.lastIndexOf("/"));
-    m_DownloadFile.setFileName(szFile);
-    if(!m_DownloadFile.open(QIODevice::WriteOnly))
+
+    if(bSetFile)
     {
-        qDebug() << "Open file fail: " << szFile;
-        return -1;
+        QString szTmp
+                = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+        szTmp = szTmp + QDir::separator() + "Rabbit"
+                + QDir::separator() + qApp->applicationName();
+        QDir d;
+        if(!d.exists(szTmp))
+            d.mkpath(szTmp);
+        QString szPath = url.path();   
+        QString szFile = szTmp + szPath.mid(szPath.lastIndexOf("/"));
+        m_DownloadFile.setFileName(szFile);
+        qDebug() << "CFrmUpdater download file: " << m_DownloadFile.fileName();
+        if(!m_DownloadFile.open(QIODevice::WriteOnly))
+        {
+            qDebug() << "Open file fail: " << szFile;
+            return -1;
+        }
     }
 
     QNetworkRequest request(url);
+    //https://blog.csdn.net/itjobtxq/article/details/8244509
+    /*QSslConfiguration config;
+    config.setPeerVerifyMode(QSslSocket::VerifyNone);
+    config.setProtocol(QSsl::AnyProtocol);
+    request.setSslConfiguration(config);
+    */
     m_pReply = m_NetManager.get(request);
+    if(!m_pReply)
+        return -1;
+    
     bool check = false;
     check = connect(m_pReply, SIGNAL(readyRead()), this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
@@ -150,9 +178,24 @@ void CFrmUpdater::slotReadyRead()
 void CFrmUpdater::slotFinished()
 {
     qDebug() << "CFrmUpdater::slotFinished()";
+    
+    QVariant redirectionTarget
+            = m_pReply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if(!redirectionTarget.isNull())
+    {
+        m_pReply->disconnect();
+        m_pReply->deleteLater();
+        m_pReply = nullptr;
+        QUrl u = redirectionTarget.toUrl();
+        if(u.isValid())
+            DownloadFile(u, false);
+        return;
+    }
+    
     if(m_pReply)
     {
         m_pReply->disconnect();
+        m_pReply->deleteLater();
         m_pReply = nullptr;
     }
     m_DownloadFile.close();
@@ -174,6 +217,7 @@ void CFrmUpdater::slotError(QNetworkReply::NetworkError e)
     if(m_pReply)
     {
         m_pReply->disconnect();
+        m_pReply->deleteLater();
         m_pReply = nullptr;
     }
     ui->progressBar->hide();
@@ -191,6 +235,7 @@ void CFrmUpdater::slotSslError(const QList<QSslError> e)
     if(m_pReply)
     {
         m_pReply->disconnect();
+        m_pReply->deleteLater();
         m_pReply = nullptr;
     }
     ui->progressBar->hide();
@@ -218,8 +263,6 @@ void CFrmUpdater::slotDownloadXmlFile()
     <MD5SUM>%RABBITIM_MD5SUM%</MD5SUM>
     <MIN_UPDATE_VERSION>%MIN_UPDATE_VERSION%</MIN_UPDATE_VERSION>
    </UPDATE>
- * 
- * 
  */
 void CFrmUpdater::slotDownload()
 {
@@ -279,13 +322,23 @@ void CFrmUpdater::slotDownload()
         emit sigFinished();
         return;
     }
-    
+#if defined (Q_OS_WIN)
+    if(!m_Info.szSystem.compare("windows", Qt::CaseInsensitive))
+        return;
+#elif defined(Q_OS_ANDROID)
+    if(!m_Info.szSystem.compare("android", Qt::CaseInsensitive))
+        return;
+#elif defined (Q_OS_LINUX)
+    if(!m_Info.szSystem.compare("linux", Qt::CaseInsensitive))
+        return;
+#endif
+
     ui->lbNewVersion->setText(tr("New version: %1").arg(m_Info.szVerion));
     ui->lbNewVersion->show();
     ui->lbNewArch->setText(tr("New architecture: %1").arg(m_Info.szArchitecture));
     ui->lbNewArch->show();
     ui->lbState->setText(tr("There is a new version, is it updated?"));
-    
+
     if(m_Info.bForce)
         DownloadFile(m_Info.szUrl);
     else

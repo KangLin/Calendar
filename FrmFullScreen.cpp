@@ -2,6 +2,8 @@
 #include "ui_FrmFullScreen.h"
 #include <QDebug>
 #include <QPainter>
+#include <QApplication>
+#include <QDesktopWidget>
 
 CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
     QWidget(parent,
@@ -12,6 +14,8 @@ CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
             | Qt::CustomizeWindowHint),
     ui(new Ui::CFrmFullScreen)
 {
+    this->setFixedSize(qApp->desktop()->size());
+    resize(qApp->desktop()->size());
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     //setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
