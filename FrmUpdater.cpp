@@ -1,6 +1,6 @@
 #include "FrmUpdater.h"
 #include "ui_FrmUpdater.h"
-#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork>
 #include <QUrl>
 #include <QDebug>
 #include <QStandardPaths>
@@ -55,8 +55,8 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
     m_StateMachine.setInitialState(s);
     m_StateMachine.start();
 
-    QString szUrl = "https://github.com/KangLin/"
-            + qApp->applicationName() +"/blob/master/update_";
+    QString szUrl = "https://raw.githubusercontent.com/KangLin/"
+            + qApp->applicationName() +"/master/Update/update_";
 #if defined (Q_OS_WIN)
     szUrl += "windows";
 #elif defined(Q_OS_ANDROID)
@@ -187,8 +187,11 @@ void CFrmUpdater::slotFinished()
         m_pReply->deleteLater();
         m_pReply = nullptr;
         QUrl u = redirectionTarget.toUrl();
+        
         if(u.isValid())
+        {
             DownloadFile(u, false);
+        }
         return;
     }
     
@@ -275,8 +278,9 @@ void CFrmUpdater::slotDownload()
     QDomDocument doc;
     if(!doc.setContent(&m_DownloadFile))
     {
-        qDebug() << "Parse file " << m_DownloadFile.fileName()
-                 << "fail. It isn't xml file";
+        QString szError = tr("Parse file %1 fail. It isn't xml file")
+                .arg(m_DownloadFile.fileName());
+        ui->lbState->setText(szError);
         m_DownloadFile.close();
         emit sigError();
         return;
@@ -319,26 +323,37 @@ void CFrmUpdater::slotDownload()
              << "minUpdateVersion: " << m_Info.szMinUpdateVersion;
     if(CompareVersion(m_Info.szVerion, m_szCurrentVersion) <= 0)
     {
+        ui->lbState->setText(tr("There is laster version"));
         emit sigFinished();
         return;
     }
-#if defined (Q_OS_WIN)
-    if(!m_Info.szSystem.compare("windows", Qt::CaseInsensitive))
-        return;
-#elif defined(Q_OS_ANDROID)
-    if(!m_Info.szSystem.compare("android", Qt::CaseInsensitive))
-        return;
-#elif defined (Q_OS_LINUX)
-    if(!m_Info.szSystem.compare("linux", Qt::CaseInsensitive))
-        return;
-#endif
-
+    
     ui->lbNewVersion->setText(tr("New version: %1").arg(m_Info.szVerion));
     ui->lbNewVersion->show();
     ui->lbNewArch->setText(tr("New architecture: %1").arg(m_Info.szArchitecture));
     ui->lbNewArch->show();
-    ui->lbState->setText(tr("There is a new version, is it updated?"));
+    
+#if defined (Q_OS_WIN)
+    if(m_Info.szSystem.compare("windows", Qt::CaseInsensitive))
+    {
+        emit sigFinished();
+        return;
+    }
+#elif defined(Q_OS_ANDROID)
+    if(m_Info.szSystem.compare("android", Qt::CaseInsensitive))
+    {
+        emit sigFinished();
+        return;
+    }
+#elif defined (Q_OS_LINUX)
+    if(m_Info.szSystem.compare("linux", Qt::CaseInsensitive))
+    {
+        emit sigFinished();
+        return;
+    }
+#endif   
 
+    ui->lbState->setText(tr("There is a new version, is it updated?"));
     if(m_Info.bForce)
         DownloadFile(m_Info.szUrl);
     else
