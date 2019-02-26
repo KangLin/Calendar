@@ -62,6 +62,7 @@ Q_SIGNALS:
 private:
     int CompareVersion(const QString &newVersion, const QString &currentVersion);
     int InitStateMachine();
+    bool IsDownLoad();
     
 private:
     Ui::CFrmUpdater *ui;

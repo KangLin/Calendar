@@ -417,7 +417,12 @@ void CFrmUpdater::slotDownload()
 
     ui->lbState->setText(tr("There is a new version, is it updated?"));
     if(m_Info.bForce)
-        DownloadFile(m_Info.szUrl);
+    {
+        if(IsDownLoad())
+            emit sigDownloadFinished();
+        else
+            DownloadFile(m_Info.szUrl);
+    }
     else
     {
         ui->pbOK->show();
@@ -457,7 +462,9 @@ void CFrmUpdater::slotUpdate()
             emit sigError();
             break;
         }
-        QProcess::execute(m_DownloadFile.fileName());
+        system(m_DownloadFile.fileName().toStdString().c_str());
+        //int nRet = QProcess::execute(m_DownloadFile.fileName());
+        //qDebug() << "QProcess::execute return: " << nRet;
         emit sigFinished();
     }while(0);
     
@@ -489,11 +496,53 @@ int CFrmUpdater::CompareVersion(const QString &newVersion, const QString &curren
     return nRet;
 }
 
+bool CFrmUpdater::IsDownLoad()
+{
+    bool bRet = false;
+    QString szTmp
+            = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+    szTmp = szTmp + QDir::separator() + "Rabbit"
+            + QDir::separator() + qApp->applicationName();
+
+    QString szPath = QUrl(m_Info.szUrl).path();   
+    QString szFile = szTmp + szPath.mid(szPath.lastIndexOf("/"));
+    
+    QFile f(szFile);
+    if(!f.open(QIODevice::ReadOnly))
+        return false;
+    
+    m_DownloadFile.setFileName(szFile);
+    do{
+        QCryptographicHash md5sum(QCryptographicHash::Md5);
+        if(!md5sum.addData(&f))
+        {
+            bRet = false;
+            break;
+        }
+        if(md5sum.result().toHex() != m_Info.szMd5sum)
+        {
+            bRet = false;
+            break;
+        }
+        else 
+        {
+            bRet = true;
+            break;
+        }
+    }while(0);
+    f.close();
+    return bRet;
+}
+
 void CFrmUpdater::on_pbOK_clicked()
 {
-    DownloadFile(m_Info.szUrl);
     ui->pbOK->hide();
     ui->lbState->setText(tr("Download ......"));
+    
+    if(IsDownLoad())
+        emit sigDownloadFinished();
+    else
+        DownloadFile(m_Info.szUrl);
 }
 
 void CFrmUpdater::on_pbClose_clicked()
