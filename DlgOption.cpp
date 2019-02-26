@@ -3,7 +3,6 @@
 #include "Global/Tool.h"
 #include "Global/GlobalDir.h"
 #include <QSettings>
-#include "FrmUpdater.h"
 
 CDlgOption::CDlgOption(QWidget *parent) :
     QDialog(parent),
@@ -17,10 +16,6 @@ CDlgOption::CDlgOption(QWidget *parent) :
                   QSettings::IniFormat);
     bool bShow = set.value("MainWindow/Show", false).toBool();
     ui->cbShowMainWindows->setChecked(bShow);
-    
-    CFrmUpdater *pUpdater = new CFrmUpdater(ui->tabWidget);
-    ui->tabWidget->addTab(pUpdater,
-                          pUpdater->windowIcon(), pUpdater->windowTitle());
 }
 
 CDlgOption::~CDlgOption()

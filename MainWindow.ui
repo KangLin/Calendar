@@ -50,6 +50,7 @@
      <string>Help(&amp;H)</string>
     </property>
     <addaction name="actionAbout_A"/>
+    <addaction name="actionUpdate_U"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -262,6 +263,15 @@
    </property>
    <property name="whatsThis">
     <string>Sink</string>
+   </property>
+  </action>
+  <action name="actionUpdate_U">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Download</normaloff>:/icon/Download</iconset>
+   </property>
+   <property name="text">
+    <string>Update(&amp;U)</string>
    </property>
   </action>
  </widget>

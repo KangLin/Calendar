@@ -3,6 +3,7 @@
 #include "DlgAbout/DlgAbout.h"
 #include "Global/Tool.h"
 #include "Global/GlobalDir.h"
+#include "FrmUpdater.h"
 #include <QSettings>
 #include <QDebug>
 #include <QFileDialog>
@@ -182,4 +183,10 @@ void CMainWindow::on_actionOption_O_triggered()
 {
     CDlgOption dlg(this);
     dlg.exec();
+}
+
+void CMainWindow::on_actionUpdate_U_triggered()
+{
+    CFrmUpdater *fu = new CFrmUpdater();
+    fu->show();
 }

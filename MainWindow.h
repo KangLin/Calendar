@@ -33,6 +33,8 @@ private Q_SLOTS:
     
     void on_actionOption_O_triggered();
     
+    void on_actionUpdate_U_triggered();
+    
 protected:
     virtual void closeEvent(QCloseEvent *e);
     
