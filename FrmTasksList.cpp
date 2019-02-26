@@ -1,4 +1,5 @@
 #include "FrmTasksList.h"
+#include "TaskPromptDelay.h"
 #include "ui_FrmTasksList.h"
 #include "Global/GlobalDir.h"
 #include <QModelIndex>
@@ -117,14 +118,21 @@ void CFrmTasksList::on_lvTasks_clicked(const QModelIndex &index)
 
 void CFrmTasksList::slotNew()
 {
+    //TODO：增加一个常用任务的组合框列表供用户选择  
     QSharedPointer<CTasks> tasks(new CTasks());
     tasks->SetTitle(tr("New tasks"));
     tasks->SetIcon(QIcon(":/icon/App"));
     m_TasksList.Add(tasks);
+    //TODO:如果这里是新的，原来没有开始过。是否增加重新开始菜单？  
+    //m_TasksList.Start();
     QSharedPointer<CTask> task(new CTask());
     task->SetTitle(tr("New task"));
     task->SetContent(tr("If the task is not you need, please select a task from combox, new it, and remove the task."));
     tasks->Add(task);
+    QSharedPointer<CTask> taskPrompt(new CTaskPromptDelay());
+    task->SetTitle(tr("New prompt task"));
+    task->SetContent(tr("If the task is not you need, please select a task from combox, new it, and remove the task."));
+    tasks->Add(taskPrompt);        
     QStandardItem *title = new QStandardItem(tasks->GetIcon(), tasks->GetTitle());
     title->setToolTip(tasks->GetContent());
     m_Model.appendRow(title);
