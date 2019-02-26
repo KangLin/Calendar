@@ -441,7 +441,7 @@ void CFrmUpdater::slotUpdate()
     {
         QString szFail;
         szFail = tr("Md5sum is different. ")
-                    + "\n" + tr("down file md5sum: ")
+                    + "\n" + tr("Download file md5sum: ")
                     + md5sum.result().toHex()
                     + "\n" + tr("md5sum in Update.xml:")
                     + m_Info.szMd5sum;

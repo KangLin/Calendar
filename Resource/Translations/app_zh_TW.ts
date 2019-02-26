@@ -9,62 +9,62 @@
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="55"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="58"/>
         <source>Informatioin</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="121"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="124"/>
         <source>Home page: https://github.com/KangLin/Tasks.git</source>
         <translation>主頁： https://github.com/KangLin/Tasks.git</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="80"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="83"/>
         <source>Version: 1.0.0.0</source>
         <translation>版本： 1.0.0.0</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="102"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="105"/>
         <source>Build Date:</source>
         <translation>編譯日期：</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="216"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="219"/>
         <source>Donation</source>
         <translation>捐贈</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="240"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="243"/>
         <source>License</source>
         <translation>許可協議</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="254"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="257"/>
         <source>Change log</source>
         <translation>修改日誌</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="268"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="271"/>
         <source>Thanks</source>
         <translation>感謝</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="293"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="468"/>
         <source> Copyright (C) 2018 KangLin Studio</source>
         <translation>版權(C) 2018 康林工作室</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="300"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="475"/>
         <source>OK</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="309"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="26"/>
         <source>Author:KangLin</source>
         <translation>作者： 康林</translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="406"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="410"/>
         <source>Tasks</source>
         <translation>任務</translation>
     </message>
@@ -109,12 +109,17 @@ Email:kl222@126.com</source>
         <translation>選項</translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="30"/>
+        <location filename="../../DlgOption.ui" line="28"/>
+        <source>General</source>
+        <translation>普通</translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="40"/>
         <source>Enable run from boot</source>
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="37"/>
+        <location filename="../../DlgOption.ui" line="60"/>
         <source>Show windows in application start</source>
         <translation>應用啟動時，顯示窗口</translation>
     </message>
@@ -220,7 +225,7 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmTaskPropery.cpp" line="63"/>
-        <source>Id: %1 標題: %2</source>
+        <source>Id: %1 Title: %2</source>
         <translation>Id :%1 標題： %2</translation>
     </message>
 </context>
@@ -376,24 +381,24 @@ Email:kl222@126.com</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="103"/>
+        <location filename="../../FrmTasks.cpp" line="102"/>
         <source>There is current task in tasks.</source>
         <translation>這是任務組中的當前任務.</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="144"/>
+        <location filename="../../FrmTasks.cpp" line="143"/>
         <source>New </source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="253"/>
-        <location filename="../../FrmTasks.cpp" line="263"/>
+        <location filename="../../FrmTasks.cpp" line="252"/>
+        <location filename="../../FrmTasks.cpp" line="262"/>
         <source>Open file</source>
         <translation>打開文件</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="253"/>
-        <location filename="../../FrmTasks.cpp" line="263"/>
+        <location filename="../../FrmTasks.cpp" line="252"/>
+        <location filename="../../FrmTasks.cpp" line="262"/>
         <source>png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)</source>
         <translation>png(*.png);;圖標(*.icon);;jpg(*.jpg);;位圖(*.bmp);;所有文件(*.*)</translation>
     </message>
@@ -418,7 +423,7 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmTasksList.cpp" line="76"/>
         <source>Save as ...</source>
-        <translation>另存為……</translation>
+        <translation>另存為 ……</translation>
     </message>
     <message>
         <location filename="../../FrmTasksList.cpp" line="88"/>
@@ -460,6 +465,158 @@ Email:kl222@126.com</source>
         <location filename="../../FrmUpdater.ui" line="14"/>
         <source>Updater</source>
         <translation>更新</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="73"/>
+        <source>Title</source>
+        <translation>標題</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="105"/>
+        <source>New version:</source>
+        <translation>新版本：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="121"/>
+        <source>New architecture:</source>
+        <translation>新架構</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="141"/>
+        <source>Current version：</source>
+        <translation>當前版本</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="157"/>
+        <source>Current architecture：</source>
+        <translation>當前架構</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="171"/>
+        <location filename="../../FrmUpdater.cpp" line="382"/>
+        <source>There is laster version</source>
+        <translation>這是最新版本</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="191"/>
+        <source>Settings</source>
+        <translation>設置</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="205"/>
+        <source>Every time</source>
+        <translation>每次</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="221"/>
+        <source>Every date</source>
+        <translation>每天</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="238"/>
+        <source>Every week</source>
+        <translation>每周</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="251"/>
+        <source>Every Month</source>
+        <translation>每月</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="284"/>
+        <source>OK(&amp;O)</source>
+        <translation>確定(&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="297"/>
+        <source>Close(&amp;C)</source>
+        <translation>關閉(&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="85"/>
+        <source>Being download xml file</source>
+        <translation>正在下載XML文件</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="86"/>
+        <source>Being download update file</source>
+        <translation>正在下載更新文件</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="87"/>
+        <source>Being install update</source>
+        <translation>正在安裝更新</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="117"/>
+        <source>Current archecture: %1</source>
+        <translation>當前架構: %1</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="125"/>
+        <source>Current version: %1</source>
+        <translation>當前版本: %1</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="248"/>
+        <source>Download network error: </source>
+        <translation>下載網絡錯誤：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="267"/>
+        <source>Download fail:</source>
+        <translation>下載失敗：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="337"/>
+        <source>Parse file %1 fail. It isn&apos;t xml file</source>
+        <translation>解析文件 %1 失敗， 它不是 XML 文件</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="387"/>
+        <source>New version: %1</source>
+        <translation>新版本: %1</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="389"/>
+        <source>New architecture: %1</source>
+        <translation>新架構: %1</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="412"/>
+        <source>There is a new version, is it updated?</source>
+        <translation>有新的版本，是否更新？</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="424"/>
+        <source>Being install update ......</source>
+        <translation>正在安裝更新 ……</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="429"/>
+        <location filename="../../FrmUpdater.cpp" line="436"/>
+        <source>Download file fail</source>
+        <translation>下載文件失敗</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="443"/>
+        <source>Md5sum is different. </source>
+        <translation>Md5校驗和不同。</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="444"/>
+        <source>Download file md5sum: </source>
+        <translation>下載文件的MD5校驗和:</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="446"/>
+        <source>md5sum in Update.xml:</source>
+        <translation>XML文件中的MD5校驗和:</translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="484"/>
+        <source>Download ......</source>
+        <translation>下載 ……</translation>
     </message>
 </context>
 <context>
@@ -517,7 +674,7 @@ Email:kl222@126.com</source>
         <location filename="../../MainWindow.ui" line="120"/>
         <location filename="../../MainWindow.ui" line="123"/>
         <source>Save tasks as ......</source>
-        <translation>任務組另存為……</translation>
+        <translation>任務組另存為 ……</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="132"/>
@@ -658,7 +815,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
         <translation>鎖定屏幕並休息</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="126"/>
+        <location filename="../../TaskLockScreen.cpp" line="128"/>
         <source>Remaining: %1</source>
         <translation>剩余時間： %1</translation>
     </message>
@@ -669,7 +826,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
         <translation>休息</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="137"/>
+        <location filename="../../TaskLockScreen.cpp" line="139"/>
         <source>Lock screen</source>
         <translation>鎖屏</translation>
     </message>

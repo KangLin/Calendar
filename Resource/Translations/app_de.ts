@@ -9,62 +9,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="55"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="58"/>
         <source>Informatioin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="121"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="124"/>
         <source>Home page: https://github.com/KangLin/Tasks.git</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="80"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="83"/>
         <source>Version: 1.0.0.0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="102"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="105"/>
         <source>Build Date:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="216"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="219"/>
         <source>Donation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="240"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="243"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="254"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="257"/>
         <source>Change log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="268"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="271"/>
         <source>Thanks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="293"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="468"/>
         <source> Copyright (C) 2018 KangLin Studio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="300"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="475"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="309"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="26"/>
         <source>Author:KangLin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgAbout/DlgAbout.ui" line="406"/>
+        <location filename="../../DlgAbout/DlgAbout.ui" line="410"/>
         <source>Tasks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -108,12 +108,17 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="30"/>
+        <location filename="../../DlgOption.ui" line="28"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="40"/>
         <source>Enable run from boot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="37"/>
+        <location filename="../../DlgOption.ui" line="60"/>
         <source>Show windows in application start</source>
         <translation type="unfinished"></translation>
     </message>
@@ -219,7 +224,7 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmTaskPropery.cpp" line="63"/>
-        <source>Id: %1 标题: %2</source>
+        <source>Id: %1 Title: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -375,24 +380,24 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="103"/>
+        <location filename="../../FrmTasks.cpp" line="102"/>
         <source>There is current task in tasks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="144"/>
+        <location filename="../../FrmTasks.cpp" line="143"/>
         <source>New </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="253"/>
-        <location filename="../../FrmTasks.cpp" line="263"/>
+        <location filename="../../FrmTasks.cpp" line="252"/>
+        <location filename="../../FrmTasks.cpp" line="262"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="253"/>
-        <location filename="../../FrmTasks.cpp" line="263"/>
+        <location filename="../../FrmTasks.cpp" line="252"/>
+        <location filename="../../FrmTasks.cpp" line="262"/>
         <source>png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -458,6 +463,158 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmUpdater.ui" line="14"/>
         <source>Updater</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="73"/>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="105"/>
+        <source>New version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="121"/>
+        <source>New architecture:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="141"/>
+        <source>Current version：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="157"/>
+        <source>Current architecture：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="171"/>
+        <location filename="../../FrmUpdater.cpp" line="382"/>
+        <source>There is laster version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="191"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="205"/>
+        <source>Every time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="221"/>
+        <source>Every date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="238"/>
+        <source>Every week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="251"/>
+        <source>Every Month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="284"/>
+        <source>OK(&amp;O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.ui" line="297"/>
+        <source>Close(&amp;C)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="85"/>
+        <source>Being download xml file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="86"/>
+        <source>Being download update file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="87"/>
+        <source>Being install update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="117"/>
+        <source>Current archecture: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="125"/>
+        <source>Current version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="248"/>
+        <source>Download network error: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="267"/>
+        <source>Download fail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="337"/>
+        <source>Parse file %1 fail. It isn&apos;t xml file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="387"/>
+        <source>New version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="389"/>
+        <source>New architecture: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="412"/>
+        <source>There is a new version, is it updated?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="424"/>
+        <source>Being install update ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="429"/>
+        <location filename="../../FrmUpdater.cpp" line="436"/>
+        <source>Download file fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="443"/>
+        <source>Md5sum is different. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="444"/>
+        <source>Download file md5sum: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="446"/>
+        <source>md5sum in Update.xml:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="484"/>
+        <source>Download ......</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -655,7 +812,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="126"/>
+        <location filename="../../TaskLockScreen.cpp" line="128"/>
         <source>Remaining: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -666,7 +823,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="137"/>
+        <location filename="../../TaskLockScreen.cpp" line="139"/>
         <source>Lock screen</source>
         <translation type="unfinished"></translation>
     </message>
