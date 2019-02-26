@@ -476,8 +476,12 @@ void CFrmUpdater::slotUpdate()
 int CFrmUpdater::CompareVersion(const QString &newVersion, const QString &currentVersion)
 {
     int nRet = 0;
-    QStringList szNew = newVersion.split(".");
-    QStringList szCur = currentVersion.split(".");
+    QString sN = newVersion;
+    sN = sN.replace("-", ".");
+    QString sC = currentVersion;
+    sC = sC.replace("-", ".");
+    QStringList szNew = sN.split(".");
+    QStringList szCur = sC.split(".");
     if(szNew.at(0).toInt() > szCur.at(0).toInt())
         return 1;
     else if(szNew.at(0).toInt() < szCur.at(0).toInt()){
