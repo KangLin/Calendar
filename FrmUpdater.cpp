@@ -60,7 +60,6 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
     DownloadFile(QUrl(szUrl));
     
     InitStateMachine();
-    GenerateUpdateXml();
 }
 
 CFrmUpdater::~CFrmUpdater()
@@ -593,6 +592,7 @@ int CFrmUpdater::GenerateUpdateXmlFile(const QString &szFile, const INFO &info)
 
 int CFrmUpdater::GenerateUpdateXml()
 {
+    int nRet = -1;
     INFO info;
     
     QString szSystem, szUrl;
@@ -600,7 +600,8 @@ int CFrmUpdater::GenerateUpdateXml()
     szSystem = "Windows";
     szUrl = "https://github.com/KangLin/"
             + qApp->applicationName()
-            + "/releases/download/v0.0.1/"
+            + "/releases/download/"
+            + m_szCurrentVersion + "/"
             + qApp->applicationName()
             + "-Setup-"
             + m_szCurrentVersion + ".exe";
@@ -628,8 +629,7 @@ int CFrmUpdater::GenerateUpdateXml()
 
     QCommandLineOption oFile(QStringList() << "f" << "file",
                              "xml file name",
-                             "xml file name",
-                             "update_" + szSystem.toLower() + ".xml");
+                             "xml file name");
     parser.addOption(oFile);
     QCommandLineOption oPackageVersion("pv",
                                 tr("Package version"),
@@ -678,7 +678,11 @@ int CFrmUpdater::GenerateUpdateXml()
     parser.addOption(oMin);
 
     parser.process(QApplication::arguments());
-
+    
+    QString szFile = parser.value(oFile);
+    if(szFile.isEmpty())
+        return nRet;
+    
     info.szVerion = parser.value(oPackageVersion);
     info.szTime = parser.value(oTime);
     info.szInfomation = parser.value(oInfo);
@@ -702,9 +706,6 @@ int CFrmUpdater::GenerateUpdateXml()
     }
     info.szUrl = parser.value(oUrl);
     info.szMinUpdateVersion = parser.value(oMin);
-
-    QString szFile = parser.value(oFile);
-    if(!szFile.isEmpty())
-        return GenerateUpdateXmlFile(szFile, info);
-    return 0;
+   
+    return GenerateUpdateXmlFile(szFile, info);
 }

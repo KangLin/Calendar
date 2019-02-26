@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
     a.setApplicationVersion(BUILD_VERSION);
     
     CFrmUpdater u;
+    if(!u.GenerateUpdateXml())
+        return 0;
     
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);

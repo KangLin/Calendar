@@ -88,6 +88,7 @@ if [ "${BUILD_TARGERT}" != "android" ]; then
     "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
     MD5=`md5sum Tasks-Setup-*.exe|awk '{print $1}'`
     echo "MD5:${MD5}"
-    ./install/Tasks.exe -f "`pwd`/update_windows.xml" --md5 ${MD5}
+    install/Tasks.exe -f "`pwd`/update_windows.xml" --md5 ${MD5}
+    
     cat update_windows.xml
 fi
