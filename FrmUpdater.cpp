@@ -1,4 +1,5 @@
 #include "FrmUpdater.h"
+#include "Global/GlobalDir.h"
 #include "ui_FrmUpdater.h"
 #include <QtNetwork>
 #include <QUrl>
@@ -15,45 +16,32 @@
 CFrmUpdater::CFrmUpdater(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmUpdater),
+    m_ButtonGroup(this),
     m_NetManager(this),
     m_pReply(nullptr)
 {
+    bool check = false;
+    m_bDownload = false;
     setAttribute(Qt::WA_QuitOnClose, false);
     ui->setupUi(this);
     ui->lbNewArch->hide();
     ui->lbNewVersion->hide();
     ui->progressBar->hide();
     ui->pbOK->hide();
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), QSettings::IniFormat);
+    int id = set.value("Update/RadioButton", -2).toInt();
+    m_ButtonGroup.addButton(ui->rbEveryTime);
+    m_ButtonGroup.addButton(ui->rbEveryDate);
+    m_ButtonGroup.addButton(ui->rbEveryWeek);
+    m_ButtonGroup.addButton(ui->rbEveryMonth);
+    m_ButtonGroup.button(id)->setChecked(true);
+    check = connect(&m_ButtonGroup, SIGNAL(buttonClicked(int)),
+                    this, SLOT(slotButtonClickd(int)));
+    Q_ASSERT(check);
     SetTitle(qApp->applicationDisplayName());
     
     SetArch(BUILD_ARCH);
     SetVersion(BUILD_VERSION);
-    
-    QFinalState *sFinal = new QFinalState();
-    QState *s = new QState();
-    s->addTransition(this, SIGNAL(sigError()), sFinal);
-    s->addTransition(this, SIGNAL(sigFinished()), sFinal);
-    m_StateMachine.addState(s);
-    m_StateMachine.addState(sFinal);
-    
-    QState *sDownloadXmlFile = new QState(s);
-    QState *sDownload = new QState(s);
-    QState *sUpdate = new QState(s);
-    s->setInitialState(sDownloadXmlFile);
-    sDownloadXmlFile->addTransition(this, SIGNAL(sigDownloadFinished()), sDownload);
-    sDownload->addTransition(this, SIGNAL(sigDownloadFinished()), sUpdate);
-    sDownloadXmlFile->assignProperty(ui->lbState, "text", tr("Being download xml file"));
-    sDownload->assignProperty(ui->lbState, "text", tr("Being download update file"));
-    sUpdate->assignProperty(ui->lbState, "text", tr("Being install update"));
-    bool check = connect(sDownloadXmlFile, SIGNAL(entered()),
-                         this, SLOT(slotDownloadXmlFile()));
-    Q_ASSERT(check);
-    check = connect(sDownload, SIGNAL(entered()), this, SLOT(slotDownload()));
-    Q_ASSERT(check);
-    check = connect(sUpdate, SIGNAL(entered()), this, SLOT(slotUpdate()));
-    Q_ASSERT(check);
-    m_StateMachine.setInitialState(s);
-    m_StateMachine.start();
 
     QString szUrl = "https://raw.githubusercontent.com/KangLin/"
             + qApp->applicationName() +"/master/Update/update_";
@@ -66,11 +54,51 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
 #endif
     szUrl += ".xml";
     DownloadFile(QUrl(szUrl));
+    
+    InitStateMachine();
 }
 
 CFrmUpdater::~CFrmUpdater()
 {
     delete ui;
+}
+
+int CFrmUpdater::InitStateMachine()
+{
+    QFinalState *sFinal = new QFinalState();
+    QState *sCheck = new QState();
+    QState *s = new QState();
+    QState *sDownloadXmlFile = new QState(s);
+    QState *sDownload = new QState(s);
+    QState *sUpdate = new QState(s);
+
+    sCheck->addTransition(this, SIGNAL(sigError()), sFinal);
+    sCheck->addTransition(this, SIGNAL(sigFinished()), s);
+    bool check = connect(sCheck, SIGNAL(entered()), this, SLOT(slotCheck()));
+
+    s->addTransition(this, SIGNAL(sigError()), sFinal);
+    s->addTransition(this, SIGNAL(sigFinished()), sFinal);
+
+    s->setInitialState(sDownloadXmlFile);
+    sDownloadXmlFile->addTransition(this, SIGNAL(sigDownloadFinished()), sDownload);
+    sDownload->addTransition(this, SIGNAL(sigDownloadFinished()), sUpdate);
+    sDownloadXmlFile->assignProperty(ui->lbState, "text", tr("Being download xml file"));
+    sDownload->assignProperty(ui->lbState, "text", tr("Being download update file"));
+    sUpdate->assignProperty(ui->lbState, "text", tr("Being install update"));
+    check = connect(sDownloadXmlFile, SIGNAL(entered()),
+                     this, SLOT(slotDownloadXmlFile()));
+    Q_ASSERT(check);
+    check = connect(sDownload, SIGNAL(entered()), this, SLOT(slotDownload()));
+    Q_ASSERT(check);
+    check = connect(sUpdate, SIGNAL(entered()), this, SLOT(slotUpdate()));
+    Q_ASSERT(check);
+    
+    m_StateMachine.addState(sCheck);    
+    m_StateMachine.addState(s);
+    m_StateMachine.addState(sFinal);
+    m_StateMachine.setInitialState(sCheck);
+    m_StateMachine.start();
+    return 0;    
 }
 
 int CFrmUpdater::SetTitle(const QString &szTitle, QPixmap icon)
@@ -99,11 +127,13 @@ int CFrmUpdater::SetVersion(const QString &szVersion)
     return 0;
 }
 
-int CFrmUpdater::DownloadFile(const QUrl &url, bool bSetFile)
+int CFrmUpdater::DownloadFile(const QUrl &url, bool bRedirection, bool bDownload)
 {
     int nRet = 0;
+
     if(!m_StateMachine.isRunning())
     {
+        m_bDownload = bDownload;        
         m_Url = url;
         return 0;
     }
@@ -115,7 +145,7 @@ int CFrmUpdater::DownloadFile(const QUrl &url, bool bSetFile)
         return 0;
     }
 
-    if(bSetFile)
+    if(!bRedirection)
     {
         QString szTmp
                 = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
@@ -244,6 +274,32 @@ void CFrmUpdater::slotSslError(const QList<QSslError> e)
     ui->progressBar->hide();
     m_DownloadFile.close();
     emit sigError();
+}
+
+void CFrmUpdater::slotCheck()
+{
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    QDateTime d = set.value("Update/DateTime").toDateTime();
+    set.setValue("Update/DateTime", QDateTime::currentDateTime());
+    if(m_bDownload)
+    {
+        emit sigFinished();
+        return;
+    }
+
+    int n = 0;
+    if(ui->rbEveryDate->isChecked())
+        n = 1;
+    else if(ui->rbEveryWeek->isChecked())
+        n = 7;
+    else if(ui->rbEveryMonth->isChecked())
+        n = 30;
+
+    if(n <= d.daysTo(QDateTime::currentDateTime()))
+        emit sigFinished();
+    else
+        emit sigError();
 }
 
 void CFrmUpdater::slotDownloadXmlFile()
@@ -384,9 +440,10 @@ void CFrmUpdater::slotUpdate()
     if(md5sum.result().toHex() != m_Info.szMd5sum)
     {
         QString szFail;
-        szFail = "md5sum fail. down file md5sum: "
+        szFail = tr("Md5sum is different. ")
+                    + "\n" + tr("down file md5sum: ")
                     + md5sum.result().toHex()
-                    + "; md5sum in Update.xml:"
+                    + "\n" + tr("md5sum in Update.xml:")
                     + m_Info.szMd5sum;
         ui->lbState->setText(szFail);
         emit sigError();
@@ -430,4 +487,10 @@ void CFrmUpdater::on_pbOK_clicked()
 void CFrmUpdater::on_pbClose_clicked()
 {
     close();
+}
+
+void CFrmUpdater::slotButtonClickd(int id)
+{
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), QSettings::IniFormat);
+    set.setValue("Update/RadioButton", id);
 }

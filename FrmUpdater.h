@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <QStateMachine>
 #include <QUrl>
+#include <QButtonGroup>
 
 namespace Ui {
 class CFrmUpdater;
@@ -22,7 +23,15 @@ public:
     explicit CFrmUpdater(QWidget *parent = nullptr);
     virtual ~CFrmUpdater();
 
-    int DownloadFile(const QUrl &url, bool bSetFile = true);
+    /**
+     * @brief DownloadFile
+     * @param url: 
+     * @param bRedirection: true: Is redirection
+     * @param bDownload: true: don't check, download immediately
+     * @return 
+     */
+    int DownloadFile(const QUrl &url, bool bRedirection = false,
+                     bool bDownload = false);
     int SetVersion(const QString &szVersion);
     int SetArch(const QString &szArch);
     int SetTitle(const QString &szTitle, QPixmap icon = QPixmap());
@@ -33,14 +42,16 @@ private Q_SLOTS:
     void slotSslError(const QList<QSslError> e);
     void slotDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     void slotFinished();
+    void slotButtonClickd(int id);
 
+    void slotCheck();
     void slotDownloadXmlFile();
     void slotDownload();
     void slotUpdate();
 
     void on_pbOK_clicked();
     void on_pbClose_clicked();
-    
+
 Q_SIGNALS:
     void sigError();
     void sigFinished();
@@ -48,15 +59,18 @@ Q_SIGNALS:
 
 private:
     int CompareVersion(const QString &newVersion, const QString &currentVersion);
-
+    int InitStateMachine();
+    
 private:
     Ui::CFrmUpdater *ui;
-
+    QButtonGroup m_ButtonGroup;
+    
     QString m_szCurrentVersion;
     QString m_szCurrentArch;
 
     QUrl m_Url;
     QFile m_DownloadFile;
+    bool m_bDownload;
     QNetworkAccessManager m_NetManager;
     QNetworkReply *m_pReply;
 
