@@ -36,6 +36,8 @@ public:
     int SetArch(const QString &szArch);
     int SetTitle(const QString &szTitle, QPixmap icon = QPixmap());
 
+    int GenerateUpdateXml();
+
 private Q_SLOTS:
     void slotReadyRead();
     void slotError(QNetworkReply::NetworkError e);
@@ -88,6 +90,8 @@ private:
         QString szMd5sum;
         QString szMinUpdateVersion;
     } m_Info;
+    
+    int GenerateUpdateXmlFile(const QString &szFile, const INFO &info);
 };
 
 #endif // FRMUPDATER_H

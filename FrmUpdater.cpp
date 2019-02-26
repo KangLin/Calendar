@@ -28,7 +28,8 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
     ui->lbNewVersion->hide();
     ui->progressBar->hide();
     ui->pbOK->hide();
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), QSettings::IniFormat);
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
     int id = set.value("Update/RadioButton", -2).toInt();
     m_ButtonGroup.addButton(ui->rbEveryTime);
     m_ButtonGroup.addButton(ui->rbEveryDate);
@@ -41,7 +42,10 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
     SetTitle(qApp->applicationDisplayName());
     
     SetArch(BUILD_ARCH);
-    SetVersion(BUILD_VERSION);
+    QString szVerion = qApp->applicationVersion();
+    if(szVerion.isEmpty())
+        szVerion = BUILD_VERSION;
+    SetVersion(szVerion);
 
     QString szUrl = "https://raw.githubusercontent.com/KangLin/"
             + qApp->applicationName() +"/master/Update/update_";
@@ -56,6 +60,7 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
     DownloadFile(QUrl(szUrl));
     
     InitStateMachine();
+    GenerateUpdateXml();
 }
 
 CFrmUpdater::~CFrmUpdater()
@@ -430,27 +435,33 @@ void CFrmUpdater::slotUpdate()
         emit sigError();
         return;
     }
-    QCryptographicHash md5sum(QCryptographicHash::Md5);
-    if(!md5sum.addData(&m_DownloadFile))
-    {
-        ui->lbState->setText(tr("Download file fail"));
-        emit sigError();
-        return;
-    }
-    if(md5sum.result().toHex() != m_Info.szMd5sum)
-    {
-        QString szFail;
-        szFail = tr("Md5sum is different. ")
+    
+    do{
+        QCryptographicHash md5sum(QCryptographicHash::Md5);
+        if(!md5sum.addData(&m_DownloadFile))
+        {
+            ui->lbState->setText(tr("Download file fail"));
+            emit sigError();
+            break;
+        }
+        if(md5sum.result().toHex() != m_Info.szMd5sum)
+        {
+            QString szFail;
+            szFail = tr("Md5sum is different. ")
                     + "\n" + tr("Download file md5sum: ")
                     + md5sum.result().toHex()
                     + "\n" + tr("md5sum in Update.xml:")
                     + m_Info.szMd5sum;
-        ui->lbState->setText(szFail);
-        emit sigError();
-        return;
-    }
-    QProcess::execute(m_DownloadFile.fileName());
-    emit sigFinished();
+            ui->lbState->setText(szFail);
+            emit sigError();
+            break;
+        }
+        QProcess::execute(m_DownloadFile.fileName());
+        emit sigFinished();
+    }while(0);
+    
+    m_DownloadFile.close();
+    
     //TODO: Wether quit application?
 }
 
@@ -493,4 +504,207 @@ void CFrmUpdater::slotButtonClickd(int id)
 {
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), QSettings::IniFormat);
     set.setValue("Update/RadioButton", id);
+}
+
+int CFrmUpdater::GenerateUpdateXmlFile(const QString &szFile, const INFO &info)
+{    
+    QDomDocument doc;
+    QDomProcessingInstruction ins;
+    //<?xml version='1.0' encoding='UTF-8'?>
+    ins = doc.createProcessingInstruction("xml", "version=\'1.0\' encoding=\'UTF-8\'");
+    doc.appendChild(ins);
+    QDomElement root = doc.createElement("UPDATE");
+    doc.appendChild(root);
+    
+    QDomText version = doc.createTextNode("VERSION");
+    version.setData(info.szVerion);
+    QDomElement eVersion = doc.createElement("VERSION");
+    eVersion.appendChild(version);
+    root.appendChild(eVersion);
+    
+    QDomText time = doc.createTextNode("TIME");
+    time.setData(info.szTime);
+    QDomElement eTime = doc.createElement("TIME");
+    eTime.appendChild(time);
+    root.appendChild(eTime);
+
+    QDomText i = doc.createTextNode("INFO");
+    i.setData(info.szInfomation);
+    QDomElement eInfo = doc.createElement("INFO");
+    eInfo.appendChild(i);
+    root.appendChild(eInfo);
+    
+    QDomText force = doc.createTextNode("FORCE");
+    force.setData(QString::number(info.bForce));
+    QDomElement eForce = doc.createElement("FORCE");
+    eForce.appendChild(force);
+    root.appendChild(eForce);
+    
+    QDomText system = doc.createTextNode("SYSTEM");
+    system.setData(info.szSystem);
+    QDomElement eSystem = doc.createElement("SYSTEM");
+    eSystem.appendChild(system);
+    root.appendChild(eSystem);
+    
+    QDomText platform = doc.createTextNode("PLATFORM");
+    platform.setData(info.szPlatform);
+    QDomElement ePlatform = doc.createElement("PLATFORM");
+    ePlatform.appendChild(platform);
+    root.appendChild(ePlatform);
+    
+    QDomText arch = doc.createTextNode("ARCHITECTURE");
+    arch.setData(info.szArchitecture);
+    QDomElement eArch = doc.createElement("ARCHITECTURE");
+    eArch.appendChild(arch);
+    root.appendChild(eArch);
+    
+    QDomText md5 = doc.createTextNode("MD5SUM");
+    md5.setData(info.szMd5sum);
+    QDomElement eMd5 = doc.createElement("MD5SUM");
+    eMd5.appendChild(md5);
+    root.appendChild(eMd5);
+    
+    QDomText url = doc.createTextNode("URL");
+    url.setData(info.szUrl);
+    QDomElement eUrl = doc.createElement("URL");
+    eUrl.appendChild(url);
+    root.appendChild(eUrl);
+    
+    QDomText min = doc.createTextNode("MIN_UPDATE_VERSION");
+    min.setData(info.szMinUpdateVersion);
+    QDomElement eMin = doc.createElement("MIN_UPDATE_VERSION");
+    eMin.appendChild(min);
+    root.appendChild(eMin);
+    
+    QFile f;
+    f.setFileName(szFile);
+    if(!f.open(QIODevice::WriteOnly))
+    {
+        qCritical() << "CFrmUpdater::GenerateUpdateXml file open file fail:"
+                    << f.fileName();
+        return -1;
+    }
+    QTextStream stream(&f);
+    stream.setCodec("UTF-8");
+    doc.save(stream, 4);
+    f.close();
+    return 0;
+}
+
+int CFrmUpdater::GenerateUpdateXml()
+{
+    INFO info;
+    
+    QString szSystem, szUrl;
+#if defined (Q_OS_WIN)
+    szSystem = "Windows";
+    szUrl = "https://github.com/KangLin/"
+            + qApp->applicationName()
+            + "/releases/download/v0.0.1/"
+            + qApp->applicationName()
+            + "-Setup-"
+            + m_szCurrentVersion + ".exe";
+#elif defined(Q_OS_ANDROID)
+    szSystem = "Android";
+    szUrl = "https://github.com/KangLin/"
+            + qApp->applicationName()
+            + "/releases/download/v0.0.1/"
+            + qApp->applicationName()
+            + "-Setup-"
+            + m_szCurrentVersion + ".apk";
+#elif defined(Q_OS_LINUX)
+    szSystem = "Linux";
+    szUrl = "https://github.com/KangLin/"
+            + qApp->applicationName()
+            + "/releases/download/v0.0.1/"
+            + qApp->applicationName()
+            + "-Setup-"
+            + m_szCurrentVersion + ".deb";
+#endif
+    
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addVersionOption();
+
+    QCommandLineOption oFile(QStringList() << "f" << "file",
+                             "xml file name",
+                             "xml file name",
+                             "update_" + szSystem.toLower() + ".xml");
+    parser.addOption(oFile);
+    QCommandLineOption oPackageVersion("pv",
+                                tr("Package version"),
+                                "",
+                                m_szCurrentVersion);
+    parser.addOption(oPackageVersion);
+    QCommandLineOption oTime(QStringList() << "t" << "time",
+                             tr("Time"),
+                             "",
+                             QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+    parser.addOption(oTime);
+    QCommandLineOption oInfo(QStringList() << "i" << "info",
+                             tr("Information"),
+                             "",
+                             qApp->applicationDisplayName() + " " + m_szCurrentVersion);
+    parser.addOption(oInfo);
+
+    QCommandLineOption oSystem(QStringList() << "s" << "system",
+                             tr("Operating system"),
+                             "",
+                             szSystem);
+    parser.addOption(oSystem);
+    QCommandLineOption oPlatform(QStringList() << "p" << "platform",
+                             tr("Platform"),
+                             "",
+                             BUILD_PLATFORM);
+    parser.addOption(oPlatform);
+    QCommandLineOption oArch(QStringList() << "a" << "arch",
+                             tr("Architecture"),
+                             "",
+                             m_szCurrentArch);
+    parser.addOption(oArch);
+    QCommandLineOption oMd5(QStringList() << "c" << "md5",
+                             tr("MD5 checksum"),
+                             "MD5 checksum");
+    parser.addOption(oMd5);
+    QCommandLineOption oUrl(QStringList() << "u" << "url",
+                             tr("Package download url"),
+                             "",
+                             szUrl);
+    parser.addOption(oUrl);
+    QCommandLineOption oMin(QStringList() << "m" << "min",
+                             tr("Min update version"),
+                             "",
+                             "v0.0.1");      
+    parser.addOption(oMin);
+
+    parser.process(QApplication::arguments());
+
+    info.szVerion = parser.value(oPackageVersion);
+    info.szTime = parser.value(oTime);
+    info.szInfomation = parser.value(oInfo);
+    info.szSystem = parser.value(oSystem);
+    info.szPlatform = parser.value(oPlatform);
+    info.szArchitecture = parser.value(oArch);
+    info.szMd5sum = parser.value(oMd5);
+    if(info.szMd5sum.isEmpty())
+    {
+        //TODO: Add package
+        QCryptographicHash md5sum(QCryptographicHash::Md5);
+        QFile app(qApp->applicationFilePath());
+        if(app.open(QIODevice::ReadOnly))
+        {
+            if(md5sum.addData(&app))
+            {
+                info.szMd5sum = md5sum.result().toHex();
+            }
+            app.close();
+        }
+    }
+    info.szUrl = parser.value(oUrl);
+    info.szMinUpdateVersion = parser.value(oMin);
+
+    QString szFile = parser.value(oFile);
+    if(!szFile.isEmpty())
+        return GenerateUpdateXmlFile(szFile, info);
+    return 0;
 }

@@ -34,6 +34,8 @@ contains(QMAKE_TARGET.arch, x86_64) {
     DEFINES += BUILD_ARCH=\"\\\"x86\\\"\"
 }
 
+DEFINES += BUILD_PLATFORM=\"\\\"$${QMAKE_PLATFORM}\\\"\"
+
 RC_FILE = AppIcon.rc
 
 include(Tasks.pri)
@@ -81,7 +83,7 @@ OTHER_FILES += Install/* \
     appveyor.yml \
     ci/* \
     tag.sh \ 
-    update_windows.xml
+    Update/*
 
 DISTFILES += \
     LICENSE.md \

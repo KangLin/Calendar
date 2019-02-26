@@ -7,11 +7,15 @@
 #include "Global/GlobalDir.h"
 #include "FrmUpdater.h"
 #include <QThread>
+#include <QCommandLineParser>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+    a.setApplicationVersion(BUILD_VERSION);
+    
+    CFrmUpdater u;
+    
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     
@@ -24,11 +28,6 @@ int main(int argc, char *argv[])
     bool bShow = set.value("MainWindow/Show", false).toBool();
     if(bShow)
         m.show();
-    
-    CFrmUpdater u;
-    //u.show();
-    //u.DownloadFile(QUrl::fromLocalFile("d:\\Source\\Tasks\\update.xml"));
-
     
     return a.exec();
 }
