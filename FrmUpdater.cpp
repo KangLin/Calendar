@@ -332,6 +332,7 @@ void CFrmUpdater::slotDownload()
     qDebug() << "CFrmUpdater::slotDownload()";
     if(!m_DownloadFile.open(QIODevice::ReadOnly))
     {
+        qDebug() << "CFrmUpdater::slotDownload: open file fail:" << m_DownloadFile.fileName();
         emit sigError();
         return;
     }
@@ -341,6 +342,7 @@ void CFrmUpdater::slotDownload()
         QString szError = tr("Parse file %1 fail. It isn't xml file")
                 .arg(m_DownloadFile.fileName());
         ui->lbState->setText(szError);
+        qDebug() << "CFrmUpdater::slotDownload:" << szError;
         m_DownloadFile.close();
         emit sigError();
         return;
@@ -686,6 +688,7 @@ int CFrmUpdater::GenerateUpdateXml()
     info.szVerion = parser.value(oPackageVersion);
     info.szTime = parser.value(oTime);
     info.szInfomation = parser.value(oInfo);
+    info.bForce = false;
     info.szSystem = parser.value(oSystem);
     info.szPlatform = parser.value(oPlatform);
     info.szArchitecture = parser.value(oArch);
