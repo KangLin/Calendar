@@ -64,7 +64,8 @@ target.path = $$PREFIX
 install.files = Install/Install.nsi
 install.path = $$OUT_PWD
 install.CONFIG += directory no_check_exist 
-!android : INSTALLS += other target install
+!android : INSTALLS += other target
+win32:  INSTALLS += install
 
 win32 : equals(QMAKE_HOST.os, Windows){
     
