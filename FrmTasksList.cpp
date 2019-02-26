@@ -74,7 +74,8 @@ void CFrmTasksList::slotLoad()
 void CFrmTasksList::slotSaveAs()
 {
     QFileDialog fd(this, tr("Save as ..."), QString(), "*.xml");
-    fd.setFileMode(QFileDialog::AnyFile);
+    //fd.setFileMode(QFileDialog::AnyFile);
+    fd.setAcceptMode(QFileDialog::AcceptSave);
     int n = fd.exec();
     if(QDialog::Rejected == n)
         return;
