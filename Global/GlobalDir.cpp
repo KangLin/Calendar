@@ -110,8 +110,5 @@ QString CGlobalDir::GetApplicationConfigureFile()
 QString CGlobalDir::GetUserConfigureFile()
 {
     QString szName = GetDirDocument() + QDir::separator() + QApplication::applicationName() + ".conf";
-    QDir d;
-    if(d.exists())
-        return szName;
-    return GetApplicationConfigureFile();
+    return szName;
 }
