@@ -81,9 +81,10 @@
    <addaction name="actionNew_N"/>
    <addaction name="actionRemove_R"/>
    <addaction name="actionModify_M"/>
-   <addaction name="actionRefresh_F"/>
    <addaction name="separator"/>
+   <addaction name="actionRefresh_F"/>
    <addaction name="actionExit_E"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionLoad_L">
    <property name="icon">

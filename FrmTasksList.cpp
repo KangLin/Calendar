@@ -49,6 +49,8 @@ void CFrmTasksList::slotRefresh()
         m_Model.appendRow(title);
     }
     ui->lvTasks->setCurrentIndex(m_Model.index(0, 0));
+    //TODO: 
+    m_TasksList.Start();
 }
 
 int CFrmTasksList::Load(QString szFile)

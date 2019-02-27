@@ -30,11 +30,9 @@ private Q_SLOTS:
     void on_actionExit_E_triggered();
     void on_actionAbout_A_triggered();   
     void on_actionSink_S_triggered();
-    
     void on_actionOption_O_triggered();
-    
     void on_actionUpdate_U_triggered();
-    
+
 protected:
     virtual void closeEvent(QCloseEvent *e);
     
