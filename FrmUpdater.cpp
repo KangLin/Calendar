@@ -41,13 +41,22 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
                     this, SLOT(slotButtonClickd(int)));
     Q_ASSERT(check);
     SetTitle(qApp->applicationDisplayName());
-    
     SetArch(BUILD_ARCH);
     QString szVerion = qApp->applicationVersion();
     if(szVerion.isEmpty())
         szVerion = BUILD_VERSION;
     SetVersion(szVerion);
 
+    if(!QSslSocket::supportsSsl())
+    {    
+        qCritical() << "Please install openssl first. openssl build version:"
+                << QSslSocket::sslLibraryBuildVersionString();
+    } else {
+        qDebug() << QSslSocket::supportsSsl()
+                 <<QSslSocket::sslLibraryBuildVersionString()
+                <<QSslSocket::sslLibraryVersionString();
+    }
+    
     QString szUrl = "https://raw.githubusercontent.com/KangLin/"
             + qApp->applicationName() +"/master/Update/update_";
 #if defined (Q_OS_WIN)

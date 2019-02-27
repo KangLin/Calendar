@@ -84,7 +84,15 @@ if [ "${BUILD_TARGERT}" != "android" ]; then
     #cd ${SOURCE_DIR}
     #cp Install/Install.nsi build_${BUILD_TARGERT}
     #"/C/Program Files (x86)/NSIS/makensis.exe" "build_${BUILD_TARGERT}/Install.nsi"
-
+    
+    if [ "${AUTOBUILD_ARCH}" = "x86" ]; then
+        cp /C/OpenSSL-Win32/bin/libeay32.dll install
+        cp /C/OpenSSL-Win32/bin/ssleay32.dll install
+    elif [ "${AUTOBUILD_ARCH}" = x64 ]; then
+        cp /C/OpenSSL-Win64/bin/libeay32.dll install
+        cp /C/OpenSSL-Win64/bin/ssleay32.dll install
+    fi
+    
     "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
     MD5=`md5sum Tasks-Setup-*.exe|awk '{print $1}'`
     echo "MD5:${MD5}"
