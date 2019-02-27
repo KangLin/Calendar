@@ -122,10 +122,11 @@ void CFrmTasksList::slotNew()
     QSharedPointer<CTasks> tasks(new CTasks());
     tasks->SetTitle(tr("New tasks"));
     tasks->SetIcon(QIcon(":/icon/App"));
+    tasks->SetContent(tr("After 5 minutes, the prompt will show 5 minutes, repeat"));
     m_TasksList.Add(tasks);
     //TODO:如果这里是新的，原来没有开始过。是否增加重新开始菜单？  
     //m_TasksList.Start();
-    QSharedPointer<CTask> task(new CTask());
+    QSharedPointer<CTask> task(new CTask(5 * 60 * 1000));
     task->SetTitle(tr("New task"));
     task->SetContent(tr("If the task is not you need, please select a task from combox, new it, and remove the task."));
     tasks->Add(task);

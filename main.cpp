@@ -31,5 +31,15 @@ int main(int argc, char *argv[])
     if(bShow)
         m.show();
     
+    qDebug() << QSslSocket::supportsSsl()
+             <<QSslSocket::sslLibraryBuildVersionString()
+            <<QSslSocket::sslLibraryVersionString();
+    if(!QSslSocket::supportsSsl())
+    {
+        
+        qInfo() << "Please install openssl first. openssl build version:"
+                << QSslSocket::sslLibraryBuildVersionString();
+    }
+
     return a.exec();
 }
