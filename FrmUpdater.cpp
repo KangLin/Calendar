@@ -12,6 +12,7 @@
 #include <QProcess>
 #include <QDir>
 #include <QSsl>
+#include <QDesktopServices>
 
 CFrmUpdater::CFrmUpdater(QWidget *parent) :
     QWidget(parent),
@@ -441,7 +442,7 @@ void CFrmUpdater::slotUpdate()
         emit sigError();
         return;
     }
-    
+
     do{
         QCryptographicHash md5sum(QCryptographicHash::Md5);
         if(!md5sum.addData(&m_DownloadFile))
@@ -462,15 +463,40 @@ void CFrmUpdater::slotUpdate()
             emit sigError();
             break;
         }
-        system(m_DownloadFile.fileName().toStdString().c_str());
+
+        //修改文件执行权限  
+        /*QFileInfo info(m_szDownLoadFile);
+        if(!info.permission(QFile::ExeUser))
+        {
+            //修改文件执行权限  
+            QString szErr = tr("Download file don't execute permissions. Please modify permission then manually  execute it.\n%1").arg(m_szDownLoadFile);
+            slotError(-2, szErr);
+            return;
+        }*/
+
+        //启动安装程序  
+        QProcess proc;
+        if(!proc.startDetached(m_DownloadFile.fileName()))
+        {
+            QUrl url(m_DownloadFile.fileName());
+            if(!QDesktopServices::openUrl(url))
+            {
+                QString szErr = tr("Execute install program error.%1")
+                        .arg(m_DownloadFile.fileName());
+                ui->lbState->setText(szErr);
+                break;
+            }
+        }
+        ui->lbState->setText(tr("The installer has started"));
+        //system(m_DownloadFile.fileName().toStdString().c_str());
         //int nRet = QProcess::execute(m_DownloadFile.fileName());
         //qDebug() << "QProcess::execute return: " << nRet;
         emit sigFinished();
     }while(0);
-    
+
     m_DownloadFile.close();
-    
-    //TODO: Wether quit application?
+
+    qApp->quit();
 }
 
 int CFrmUpdater::CompareVersion(const QString &newVersion, const QString &currentVersion)
