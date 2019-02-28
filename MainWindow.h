@@ -21,9 +21,9 @@ public:
     ~CMainWindow();
     
 private Q_SLOTS:
-    void slotExit(bool checked);
-    void slotShow(bool checked);
-    void slotAbout(bool checked);
+    void slotExit();
+    void slotShow();
+    void slotAbout();
     void slotStartRun(bool checked);
     
     void slotActivated(QSystemTrayIcon::ActivationReason reason);

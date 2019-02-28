@@ -19,19 +19,20 @@ CMainWindow::CMainWindow(QWidget *parent) :
                 QIcon(":/icon/Close"),
                 tr("Exit"),
                 this,
-                SLOT(slotExit(bool)));
+                SLOT(slotExit()));
 
     QString szShow = tr("Hide");
     if(isHidden())
         szShow = tr("Show");
     m_pShow = m_TrayIconMenu.addAction(windowIcon(), szShow,
-                                       this, SLOT(slotShow(bool)));
+                                       this, SLOT(slotShow()));
     m_TrayIconMenu.addAction(QIcon(":/icon/App"),
                              tr("About"),
                              this,
-                             SLOT(slotAbout(bool)));
+                             SLOT(slotAbout()));
 
-    m_pStartRun = m_TrayIconMenu.addAction(tr("Enable run from boot"), this, SLOT(slotStartRun(bool)));
+    m_pStartRun = m_TrayIconMenu.addAction(tr("Enable run from boot"),
+                                           this, SLOT(slotStartRun(bool)));
     m_pStartRun->setCheckable(true);
     m_pStartRun->setChecked(CTool::IsStartRunOnceCurrentUser());
     
@@ -75,23 +76,20 @@ CMainWindow::~CMainWindow()
         delete m_pFrmTasksList;
 }
 
-void CMainWindow::slotAbout(bool checked)
+void CMainWindow::slotAbout()
 {
-    Q_UNUSED(checked);
     static CDlgAbout dlg;
     if(dlg.isHidden())
         dlg.exec();
 }
 
-void CMainWindow::slotExit(bool checked)
+void CMainWindow::slotExit()
 {
-    Q_UNUSED(checked);
     qApp->quit();
 }
 
-void CMainWindow::slotShow(bool checked)
+void CMainWindow::slotShow()
 {
-    Q_UNUSED(checked);
     if(isHidden())
     {   show();
         m_pShow->setText(tr("Hide"));
@@ -117,7 +115,7 @@ void CMainWindow::slotStartRun(bool checked)
 void CMainWindow::slotActivated(QSystemTrayIcon::ActivationReason r)
 {
     if(QSystemTrayIcon::ActivationReason::Trigger == r)
-        slotShow(true);
+        slotShow();
 }
 
 void CMainWindow::on_actionExit_E_triggered()
@@ -127,7 +125,7 @@ void CMainWindow::on_actionExit_E_triggered()
 
 void CMainWindow::on_actionAbout_A_triggered()
 {
-    slotAbout(true);
+    slotAbout();
 }
 
 void CMainWindow::closeEvent(QCloseEvent *e)
