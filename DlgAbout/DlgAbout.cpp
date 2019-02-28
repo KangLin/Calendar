@@ -38,25 +38,10 @@ CDlgAbout::CDlgAbout(QWidget *parent) :
                         + szHomePage + "</a>");
     ui->lbCopyright->setText(tr(" Copyright (C) 2018 - %1 KangLin Studio").arg(
                                  QString::number(QDate::currentDate().year())));
-    QString szFile;
-#ifdef MOBILE
-    szFile = ":/file/ChangeLog";
-    AppendFile(ui->txtChange, szFile);
-    szFile = ":/file/License";
-    AppendFile(ui->txtLicense, szFile);
-    szFile = ":/file/Authors";
-    AppendFile(ui->txtThinks, szFile);
-#else
-    szFile = qApp->applicationDirPath() + QDir::separator()
-            + "ChangeLog.md";
-    AppendFile(ui->txtChange, szFile);
-    szFile = qApp->applicationDirPath() + QDir::separator()
-            + "LICENSE.md";
-    AppendFile(ui->txtLicense, szFile);
-    szFile = qApp->applicationDirPath() + QDir::separator()
-            + "Authors.md";
-    AppendFile(ui->txtThinks, szFile);
-#endif
+
+    AppendFile(ui->txtChange, "ChangeLog");
+    AppendFile(ui->txtLicense, "LICENSE");
+    AppendFile(ui->txtThinks, "Authors");
 }
 
 CDlgAbout::~CDlgAbout()
@@ -66,7 +51,19 @@ CDlgAbout::~CDlgAbout()
 
 int CDlgAbout::AppendFile(QTextEdit* pEdit, const QString &szFile)
 {
-    QFile readme(szFile);
+    QString szFileLocation;
+#if defined (Q_OS_ANDROID)
+    szFileLocation = ":/file/" + szFile + "_" + QLocale().system().name();
+#else
+    szFileLocation = qApp->applicationDirPath() + QDir::separator()
+            + szFile + "_" + QLocale().system().name() + ".md";
+    QDir d;
+    if(!d.exists(szFileLocation))
+        szFileLocation = qApp->applicationDirPath() + QDir::separator()
+                + szFile + ".md";
+#endif
+    
+    QFile readme(szFileLocation);
     if(readme.open(QFile::ReadOnly))
     {
         pEdit->append(readme.readAll());

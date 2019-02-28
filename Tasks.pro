@@ -57,7 +57,7 @@ FORMS += DlgAbout/DlgAbout.ui \
     FrmUpdater.ui \
     DlgOption.ui
 
-other.files = License.md Authors.md AppIcon.ico
+other.files = License.md Authors.md ChangeLog.md AppIcon.ico
 other.path = $$PREFIX
 other.CONFIG += no_check_exist 
 target.path = $$PREFIX
@@ -89,5 +89,8 @@ OTHER_FILES += Install/* \
 DISTFILES += \
     LICENSE.md \
     Authors.md \
+    Authors_zh_CN.md \
     README_zh_CN.md \
-    README.md 
+    README.md \ 
+    ChangeLog.md \
+    ChangeLog_zh_CN.md 

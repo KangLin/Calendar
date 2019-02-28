@@ -37,6 +37,10 @@
         qmake Tasks.pro
         make install
 
+- 安装注意  
+Qt因为版权原因，没有提供openssl动态库，所以必须自己复制openssl的动态库到安装目录下。
+    - 如果是32的，可以在Qt安装程序Tools\QtCreator\bin目录下，找到openssl的动态库（libeay32.dll、ssleay32.dll）
+    - 如果是64位，则需要自己下载openssl的二进制安装包。
 ------------------------------------------------
 
 ### 下载

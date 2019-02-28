@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setApplicationVersion(BUILD_VERSION);
-    
+
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     

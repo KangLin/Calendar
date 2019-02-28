@@ -388,7 +388,7 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../FrmTasks.cpp" line="100"/>
         <source>Start: %1</source>
-        <translation>開始於:</translation>
+        <translation>開始於: %1</translation>
     </message>
     <message>
         <location filename="../../FrmTasks.cpp" line="106"/>

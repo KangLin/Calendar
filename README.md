@@ -36,6 +36,10 @@ Author: KangLin (kl222@126.com)
         qmake Tasks.pro
         make install
 
+- Note  
+Qt does not provide openssl dynamic library for copyright reasons, so you must copy the dynamic library of openssl to the installation directory.
+     - If it is 32, you can find the dynamic library of openssl (libeay32.dll, ssleay32.dll) in the Qt installer Tools\QtCreator\bin directory.
+     - If it is 64-bit, you will need to download the binary installation package for openssl yourself.
 ------------------------------------------------
 
 ### Download
