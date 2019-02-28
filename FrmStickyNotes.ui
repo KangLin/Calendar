@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>160</width>
-    <height>300</height>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Sticky Notes</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource/Resource.qrc">
+   <iconset>
     <normaloff>:/icon/app</normaloff>:/icon/app</iconset>
   </property>
   <property name="windowOpacity">
@@ -48,8 +48,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="Resource/Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

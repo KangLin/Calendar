@@ -25,6 +25,7 @@
         <file alias="CopyRight">image/copyright.png</file>
         <file alias="Download">image/download.png</file>
         <file alias="Restart">image/restart.png</file>
+        <file alias="Sticky">image/stricky.png</file>
     </qresource>
     <qresource prefix="/icon/green">
         <file alias="Close">image/green_close.png</file>

@@ -190,3 +190,8 @@ void CMainWindow::on_actionUpdate_U_triggered()
     CFrmUpdater *fu = new CFrmUpdater();
     fu->show();
 }
+
+void CMainWindow::on_actionSticky_list_L_triggered()
+{
+    
+}

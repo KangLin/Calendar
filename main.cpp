@@ -6,8 +6,7 @@
 #include "MainWindow.h"
 #include "Global/GlobalDir.h"
 #include "FrmUpdater.h"
-#include <QThread>
-#include <QCommandLineParser>
+#include "FrmStickyNotes.h"
 
 int main(int argc, char *argv[])
 {
@@ -31,5 +30,8 @@ int main(int argc, char *argv[])
     if(bShow)
         m.show();
 
+    CFrmStickyNotes fsn;
+    fsn.show();
+    
     return a.exec();
 }

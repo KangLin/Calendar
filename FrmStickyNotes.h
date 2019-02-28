@@ -19,8 +19,13 @@ public:
     int Load(std::istream in);
     int Save(std::ostream out);
     
+protected:
+    virtual void focusInEvent(QFocusEvent *event);
+    virtual void focusOutEvent(QFocusEvent *event);
+    
 private:
     Ui::CFrmStickyNotes *ui;
+    
 };
 
 #endif // FRMSTICKYNOTES_H
