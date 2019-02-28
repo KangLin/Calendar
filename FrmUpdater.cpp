@@ -74,6 +74,7 @@ CFrmUpdater::CFrmUpdater(QWidget *parent) :
 
 CFrmUpdater::~CFrmUpdater()
 {
+    m_DownloadFile.close();
     delete ui;
 }
 
@@ -151,7 +152,7 @@ int CFrmUpdater::DownloadFile(const QUrl &url, bool bRedirection, bool bDownload
         m_Url = url;
         return 0;
     }
-    
+    m_DownloadFile.close();    
     if(url.isLocalFile())
     {
         m_DownloadFile.setFileName(url.toLocalFile());
@@ -399,7 +400,7 @@ void CFrmUpdater::slotDownload()
         emit sigFinished();
         return;
     }
-    
+
     ui->lbNewVersion->setText(tr("New version: %1").arg(m_Info.szVerion));
     ui->lbNewVersion->show();
     ui->lbNewArch->setText(tr("New architecture: %1").arg(m_Info.szArchitecture));
@@ -408,18 +409,39 @@ void CFrmUpdater::slotDownload()
 #if defined (Q_OS_WIN)
     if(m_Info.szSystem.compare("windows", Qt::CaseInsensitive))
     {
+        ui->lbState->setText(tr("System is different"));
+        emit sigFinished();
+        return;
+    }
+    if("x86" == m_szCurrentArch && "x86_64" == m_Info.szArchitecture)
+    {
+        ui->lbState->setText(tr("Architecture is different"));
         emit sigFinished();
         return;
     }
 #elif defined(Q_OS_ANDROID)
     if(m_Info.szSystem.compare("android", Qt::CaseInsensitive))
     {
+        ui->lbState->setText(tr("System is different"));
+        emit sigFinished();
+        return;
+    }
+    if(m_szCurrentArch != m_Info.szArchitecture)
+    {
+        ui->lbState->setText(tr("Architecture is different"));
         emit sigFinished();
         return;
     }
 #elif defined (Q_OS_LINUX)
     if(m_Info.szSystem.compare("linux", Qt::CaseInsensitive))
     {
+        ui->lbState->setText(tr("System is different"));
+        emit sigFinished();
+        return;
+    }
+    if("x86" == m_szCurrentArch && "x86_64" == m_Info.szArchitecture)
+    {
+        ui->lbState->setText(tr("Architecture is different"));
         emit sigFinished();
         return;
     }
@@ -473,6 +495,8 @@ void CFrmUpdater::slotUpdate()
             break;
         }
 
+        m_DownloadFile.close();
+
         //修改文件执行权限  
         /*QFileInfo info(m_szDownLoadFile);
         if(!info.permission(QFile::ExeUser))
@@ -496,7 +520,7 @@ void CFrmUpdater::slotUpdate()
                 break;
             }
         }
-        ui->lbState->setText(tr("The installer has started"));
+        ui->lbState->setText(tr("The installer has started, Please close the application"));
         //system(m_DownloadFile.fileName().toStdString().c_str());
         //int nRet = QProcess::execute(m_DownloadFile.fileName());
         //qDebug() << "QProcess::execute return: " << nRet;
@@ -531,6 +555,18 @@ int CFrmUpdater::CompareVersion(const QString &newVersion, const QString &curren
         return 1;
     else if(szNew.at(2).toInt() < szCur.at(2).toInt()){
         return -1;
+    }
+    if(szNew.length() >=4 && szCur.isEmpty())
+        return 1;
+    else if(szNew.isEmpty() && szCur.length() >= 4)
+        return -1;
+    else if(szNew.length() >= 4 && szCur.length() >= 4)
+    {
+        if(szNew.at(3).toInt() > szCur.at(3).toInt())
+            return 1;
+        else if(szNew.at(3).toInt() < szCur.at(3).toInt()){
+            return -1;
+        }
     }
     return nRet;
 }

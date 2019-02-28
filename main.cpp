@@ -14,10 +14,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setApplicationVersion(BUILD_VERSION);
     
-    CFrmUpdater u;
-    if(!u.GenerateUpdateXml())
-        return 0;
-    
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     
@@ -26,6 +22,10 @@ int main(int argc, char *argv[])
     a.installTranslator(&t);
     set.setValue("Language", QLocale::system().name());
 
+    CFrmUpdater u;
+    if(!u.GenerateUpdateXml())
+        return 0;
+    
     CMainWindow m;
     bool bShow = set.value("MainWindow/Show", false).toBool();
     if(bShow)

@@ -263,7 +263,7 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="130"/>
-        <location filename="../../FrmTasks.ui" line="381"/>
+        <location filename="../../FrmTasks.ui" line="388"/>
         <source>Content:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -313,91 +313,101 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="304"/>
+        <source>Start time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasks.ui" line="311"/>
         <source>Interval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="317"/>
+        <location filename="../../FrmTasks.ui" line="324"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="330"/>
+        <location filename="../../FrmTasks.ui" line="337"/>
         <source>M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="343"/>
+        <location filename="../../FrmTasks.ui" line="350"/>
         <source>PromptInterval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="356"/>
-        <location filename="../../FrmTasks.ui" line="359"/>
+        <location filename="../../FrmTasks.ui" line="363"/>
+        <location filename="../../FrmTasks.ui" line="366"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="372"/>
+        <location filename="../../FrmTasks.ui" line="379"/>
         <source>S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="394"/>
-        <location filename="../../FrmTasks.ui" line="397"/>
-        <location filename="../../FrmTasks.ui" line="400"/>
+        <location filename="../../FrmTasks.ui" line="401"/>
+        <location filename="../../FrmTasks.ui" line="404"/>
+        <location filename="../../FrmTasks.ui" line="407"/>
         <source>Task content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="422"/>
+        <location filename="../../FrmTasks.ui" line="429"/>
         <source> New add task into tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="425"/>
+        <location filename="../../FrmTasks.ui" line="432"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="436"/>
+        <location filename="../../FrmTasks.ui" line="443"/>
         <source>Remove the task from tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="439"/>
+        <location filename="../../FrmTasks.ui" line="446"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="450"/>
+        <location filename="../../FrmTasks.ui" line="457"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="474"/>
+        <location filename="../../FrmTasks.ui" line="481"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="102"/>
+        <location filename="../../FrmTasks.cpp" line="100"/>
+        <source>Start: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasks.cpp" line="106"/>
         <source>There is current task in tasks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="143"/>
+        <location filename="../../FrmTasks.cpp" line="148"/>
         <source>New </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="252"/>
-        <location filename="../../FrmTasks.cpp" line="262"/>
+        <location filename="../../FrmTasks.cpp" line="257"/>
+        <location filename="../../FrmTasks.cpp" line="267"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="252"/>
-        <location filename="../../FrmTasks.cpp" line="262"/>
+        <location filename="../../FrmTasks.cpp" line="257"/>
+        <location filename="../../FrmTasks.cpp" line="267"/>
         <source>png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -410,43 +420,54 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="66"/>
+        <location filename="../../FrmTasksList.cpp" line="69"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="66"/>
+        <location filename="../../FrmTasksList.cpp" line="69"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="76"/>
+        <location filename="../../FrmTasksList.cpp" line="79"/>
         <source>Save as ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="88"/>
+        <location filename="../../FrmTasksList.cpp" line="92"/>
         <source>File exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="89"/>
+        <location filename="../../FrmTasksList.cpp" line="93"/>
         <source>%1 is existed, replace it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="120"/>
+        <location filename="../../FrmTasksList.cpp" line="125"/>
         <source>New tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="124"/>
+        <location filename="../../FrmTasksList.cpp" line="127"/>
+        <source>After 5 minutes, the prompt will show 5 minutes, repeat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="132"/>
         <source>New task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="125"/>
+        <location filename="../../FrmTasksList.cpp" line="133"/>
+        <location filename="../../FrmTasksList.cpp" line="137"/>
         <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="136"/>
+        <source>New prompt task</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -492,7 +513,7 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmUpdater.ui" line="171"/>
-        <location filename="../../FrmUpdater.cpp" line="382"/>
+        <location filename="../../FrmUpdater.cpp" line="399"/>
         <source>There is laster version</source>
         <translation type="unfinished"></translation>
     </message>
@@ -532,89 +553,158 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="85"/>
+        <location filename="../../FrmUpdater.cpp" line="100"/>
         <source>Being download xml file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="86"/>
+        <location filename="../../FrmUpdater.cpp" line="101"/>
         <source>Being download update file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="87"/>
+        <location filename="../../FrmUpdater.cpp" line="102"/>
         <source>Being install update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="117"/>
+        <location filename="../../FrmUpdater.cpp" line="132"/>
         <source>Current archecture: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="125"/>
+        <location filename="../../FrmUpdater.cpp" line="140"/>
         <source>Current version: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="248"/>
+        <location filename="../../FrmUpdater.cpp" line="263"/>
         <source>Download network error: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="267"/>
+        <location filename="../../FrmUpdater.cpp" line="282"/>
         <source>Download fail:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="337"/>
+        <location filename="../../FrmUpdater.cpp" line="353"/>
         <source>Parse file %1 fail. It isn&apos;t xml file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="387"/>
+        <location filename="../../FrmUpdater.cpp" line="404"/>
         <source>New version: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="389"/>
+        <location filename="../../FrmUpdater.cpp" line="406"/>
         <source>New architecture: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmUpdater.cpp" line="412"/>
+        <location filename="../../FrmUpdater.cpp" line="425"/>
+        <location filename="../../FrmUpdater.cpp" line="438"/>
+        <source>System is different</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="418"/>
+        <location filename="../../FrmUpdater.cpp" line="431"/>
+        <location filename="../../FrmUpdater.cpp" line="444"/>
+        <source>Architecture is different</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="450"/>
         <source>There is a new version, is it updated?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="424"/>
+        <location filename="../../FrmUpdater.cpp" line="467"/>
         <source>Being install update ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="429"/>
-        <location filename="../../FrmUpdater.cpp" line="436"/>
+        <location filename="../../FrmUpdater.cpp" line="472"/>
+        <location filename="../../FrmUpdater.cpp" line="481"/>
         <source>Download file fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="443"/>
+        <location filename="../../FrmUpdater.cpp" line="488"/>
         <source>Md5sum is different. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="444"/>
+        <location filename="../../FrmUpdater.cpp" line="489"/>
         <source>Download file md5sum: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="446"/>
+        <location filename="../../FrmUpdater.cpp" line="491"/>
         <source>md5sum in Update.xml:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="484"/>
+        <location filename="../../FrmUpdater.cpp" line="517"/>
+        <source>Execute install program error.%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="523"/>
+        <source>The installer has started, Please close the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="615"/>
         <source>Download ......</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="761"/>
+        <source>Package version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="766"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="771"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="777"/>
+        <source>Operating system</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="782"/>
+        <source>Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="787"/>
+        <source>Architecture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="792"/>
+        <source>MD5 checksum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="796"/>
+        <source>Package download url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmUpdater.cpp" line="801"/>
+        <source>Min update version</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -641,155 +731,160 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="56"/>
+        <location filename="../../MainWindow.ui" line="57"/>
         <source>Tools(&amp;T)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="69"/>
+        <location filename="../../MainWindow.ui" line="70"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="93"/>
+        <location filename="../../MainWindow.ui" line="95"/>
         <source>Load(&amp;L)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="96"/>
-        <location filename="../../MainWindow.ui" line="99"/>
-        <location filename="../../MainWindow.ui" line="102"/>
+        <location filename="../../MainWindow.ui" line="98"/>
+        <location filename="../../MainWindow.ui" line="101"/>
+        <location filename="../../MainWindow.ui" line="104"/>
         <source>Load tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="111"/>
+        <location filename="../../MainWindow.ui" line="113"/>
         <source>Save as(&amp;S) ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="114"/>
-        <location filename="../../MainWindow.ui" line="117"/>
-        <location filename="../../MainWindow.ui" line="120"/>
-        <location filename="../../MainWindow.ui" line="123"/>
+        <location filename="../../MainWindow.ui" line="116"/>
+        <location filename="../../MainWindow.ui" line="119"/>
+        <location filename="../../MainWindow.ui" line="122"/>
+        <location filename="../../MainWindow.ui" line="125"/>
         <source>Save tasks as ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="132"/>
+        <location filename="../../MainWindow.ui" line="134"/>
         <source>New(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="135"/>
-        <location filename="../../MainWindow.ui" line="138"/>
-        <location filename="../../MainWindow.ui" line="141"/>
+        <location filename="../../MainWindow.ui" line="137"/>
+        <location filename="../../MainWindow.ui" line="140"/>
+        <location filename="../../MainWindow.ui" line="143"/>
         <source>New tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="153"/>
+        <location filename="../../MainWindow.ui" line="155"/>
         <source>Remove(&amp;R)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="156"/>
-        <location filename="../../MainWindow.ui" line="159"/>
-        <location filename="../../MainWindow.ui" line="162"/>
+        <location filename="../../MainWindow.ui" line="158"/>
+        <location filename="../../MainWindow.ui" line="161"/>
+        <location filename="../../MainWindow.ui" line="164"/>
         <source>Remove tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="171"/>
+        <location filename="../../MainWindow.ui" line="173"/>
         <source>About(&amp;A)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="174"/>
-        <location filename="../../MainWindow.ui" line="177"/>
-        <location filename="../../MainWindow.ui" line="180"/>
-        <location filename="../../MainWindow.cpp" line="29"/>
+        <location filename="../../MainWindow.ui" line="176"/>
+        <location filename="../../MainWindow.ui" line="179"/>
+        <location filename="../../MainWindow.ui" line="182"/>
+        <location filename="../../MainWindow.cpp" line="30"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="189"/>
+        <location filename="../../MainWindow.ui" line="191"/>
         <source>Exit(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="198"/>
+        <location filename="../../MainWindow.ui" line="200"/>
         <source>Modify(&amp;M)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="201"/>
-        <location filename="../../MainWindow.ui" line="204"/>
-        <location filename="../../MainWindow.ui" line="207"/>
+        <location filename="../../MainWindow.ui" line="203"/>
+        <location filename="../../MainWindow.ui" line="206"/>
+        <location filename="../../MainWindow.ui" line="209"/>
         <source>Modify tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="216"/>
+        <location filename="../../MainWindow.ui" line="218"/>
         <source>Refresh(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="219"/>
-        <location filename="../../MainWindow.ui" line="222"/>
-        <location filename="../../MainWindow.ui" line="225"/>
+        <location filename="../../MainWindow.ui" line="221"/>
+        <location filename="../../MainWindow.ui" line="224"/>
+        <location filename="../../MainWindow.ui" line="227"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="234"/>
+        <location filename="../../MainWindow.ui" line="236"/>
         <source>Option(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="237"/>
-        <location filename="../../MainWindow.ui" line="240"/>
-        <location filename="../../MainWindow.ui" line="243"/>
+        <location filename="../../MainWindow.ui" line="239"/>
+        <location filename="../../MainWindow.ui" line="242"/>
+        <location filename="../../MainWindow.ui" line="245"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="252"/>
+        <location filename="../../MainWindow.ui" line="254"/>
         <source>Sink(&amp;S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="255"/>
-        <location filename="../../MainWindow.ui" line="258"/>
-        <location filename="../../MainWindow.ui" line="261"/>
-        <location filename="../../MainWindow.ui" line="264"/>
+        <location filename="../../MainWindow.ui" line="257"/>
+        <location filename="../../MainWindow.ui" line="260"/>
+        <location filename="../../MainWindow.ui" line="263"/>
+        <location filename="../../MainWindow.ui" line="266"/>
         <source>Sink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="19"/>
+        <location filename="../../MainWindow.ui" line="275"/>
+        <source>Update(&amp;U)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="20"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="23"/>
-        <location filename="../../MainWindow.cpp" line="96"/>
+        <location filename="../../MainWindow.cpp" line="24"/>
+        <location filename="../../MainWindow.cpp" line="97"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="25"/>
-        <location filename="../../MainWindow.cpp" line="100"/>
+        <location filename="../../MainWindow.cpp" line="26"/>
+        <location filename="../../MainWindow.cpp" line="101"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="33"/>
+        <location filename="../../MainWindow.cpp" line="34"/>
         <source>Enable run from boot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="172"/>
+        <location filename="../../MainWindow.cpp" line="173"/>
         <source>Open sink</source>
         <translation type="unfinished"></translation>
     </message>

@@ -97,11 +97,16 @@ int CFrmTasks::SetTask(QSharedPointer<CTask> task)
     }
     if(m_Tasks->Get() == task)
     {
+        ui->lbStartTime->setText(tr("Start: %1").arg(
+                                     QTime::currentTime().addMSecs(
+                                         -1 * task->Elapsed()).toString()));
+        ui->lbStartTime->show();
         ui->gpTask->setChecked(true);
         ui->gpTask->setCheckable(true);
         ui->gpTask->setToolTip(tr("There is current task in tasks.")
                                + "\n" + task->GetDescription());
     }else{
+        ui->lbStartTime->hide();
         ui->gpTask->setChecked(false);
         ui->gpTask->setCheckable(false);
         ui->gpTask->setToolTip(task->GetDescription());

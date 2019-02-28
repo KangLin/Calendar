@@ -72,6 +72,7 @@ public:
      */
     virtual bool End();
 
+    int Elapsed();
 protected Q_SLOTS:
     virtual void slotPrompt();
     
@@ -84,7 +85,6 @@ protected:
     virtual int onRun();
 
 protected:
-    int Elapsed();
     int Remaining();
     QString szRemaining();
     
