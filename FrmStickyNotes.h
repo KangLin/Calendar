@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <iostream>
+#include <QToolBar>
 
 namespace Ui {
 class CFrmStickyNotes;
@@ -19,13 +20,21 @@ public:
     int Load(std::istream in);
     int Save(std::ostream out);
     
+private Q_SLOTS:
+    void slotBold();
+    void slotItalic();
+    void slotUnderline();
+    void slotStrikethrough();
+    void slotDelet();
+    
 protected:
-    virtual void focusInEvent(QFocusEvent *event);
-    virtual void focusOutEvent(QFocusEvent *event);
+    void enterEvent(QEvent *event);
+    void leaveEvent(QEvent *event);
     
 private:
     Ui::CFrmStickyNotes *ui;
     
+    QToolBar m_ToolBar;
 };
 
 #endif // FRMSTICKYNOTES_H

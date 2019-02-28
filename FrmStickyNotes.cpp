@@ -3,17 +3,29 @@
 #include <QDebug>
 #include <string>
 
+#include <QHBoxLayout>
+
 CFrmStickyNotes::CFrmStickyNotes(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::CFrmStickyNotes)
+    QWidget(parent, 
+            Qt::Drawer
+            | Qt::CustomizeWindowHint),
+    ui(new Ui::CFrmStickyNotes),
+    m_ToolBar(this)
 {
-    setWindowFlags(Qt::ToolTip|windowFlags());
+    setFocusPolicy(Qt::StrongFocus);
     setAttribute(Qt::WA_QuitOnClose, false);
     ui->setupUi(this);
     //TODO:Use qss
     setStyleSheet("background-color:rgb(255,255,128);color:rgb(0,255,0);");
     //setStyleSheet("QWidget{background-color:gray;border-top-left-radius:15px;border-top-right-radius:15px;}"); 
-    setWindowFlags(windowFlags() & ~Qt::WindowMinMaxButtonsHint);
+    
+    m_ToolBar.addAction(tr("Bold"), this, SLOT(slotBold()));
+    m_ToolBar.addAction(tr("Italic"), this, SLOT(slotItalic()));
+    m_ToolBar.addAction(tr("Underline"), this, SLOT(slotUnderline()));
+    m_ToolBar.addAction(tr("Strikethrough"), this, SLOT(slotStrikethrough()));
+    m_ToolBar.addAction(QIcon(":/icon/Delete"), tr("Delete"), this, SLOT(slotDelet()));
+    m_ToolBar.show();
+    this->layout()->addWidget(&m_ToolBar);
 }
 
 CFrmStickyNotes::~CFrmStickyNotes()
@@ -39,12 +51,47 @@ int CFrmStickyNotes::Save(std::ostream out)
     return nRet;
 }
 
-void CFrmStickyNotes::focusInEvent(QFocusEvent *event)
+void CFrmStickyNotes::enterEvent(QEvent *event)
 {
-    setWindowFlags(~(Qt::WindowFlags)Qt::ToolTip & windowFlags());
+    Q_UNUSED(event);
+    setWindowFlags(Qt::Drawer
+                   | Qt::WindowTitleHint
+                   | Qt::WindowCloseButtonHint
+                   | Qt::CustomizeWindowHint);
+    show();               
+    qDebug() << "CFrmStickyNotes::enterEvent";
 }
 
-void CFrmStickyNotes::focusOutEvent(QFocusEvent *event)
+void CFrmStickyNotes::leaveEvent(QEvent *event)
 {
-    setWindowFlags(Qt::ToolTip|windowFlags());
+    Q_UNUSED(event);
+    qDebug() << "CFrmStickyNotes::leaveEvent";
+    setWindowFlags(Qt::Drawer
+                   | Qt::CustomizeWindowHint);
+    show();
+}
+
+void CFrmStickyNotes::slotBold()
+{
+    
+}
+
+void CFrmStickyNotes::slotItalic()
+{
+    
+}
+
+void CFrmStickyNotes::slotUnderline()
+{
+    
+}
+
+void CFrmStickyNotes::slotStrikethrough()
+{
+    
+}
+
+void CFrmStickyNotes::slotDelet()
+{
+    
 }
