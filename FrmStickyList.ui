@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CFrmStickyList</class>
+ <widget class="QWidget" name="CFrmStickyList">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>262</width>
+    <height>468</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Sticky</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Resource/Resource.qrc">
+    <normaloff>:/icon/Sticky</normaloff>:/icon/Sticky</iconset>
+  </property>
+  <property name="toolTip">
+   <string>Sticky</string>
+  </property>
+  <property name="statusTip">
+   <string>Sticky</string>
+  </property>
+  <property name="whatsThis">
+   <string>Sticky</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QListView" name="listView"/>
+   </item>
+  </layout>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
+   </property>
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="toolTip">
+    <string>New sticky</string>
+   </property>
+   <property name="statusTip">
+    <string>New sticky</string>
+   </property>
+   <property name="whatsThis">
+    <string>New sticky</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Delete</normaloff>:/icon/Delete</iconset>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove sticky</string>
+   </property>
+   <property name="statusTip">
+    <string>Remove sticky</string>
+   </property>
+   <property name="whatsThis">
+    <string>Remove sticky</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="Resource/Resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

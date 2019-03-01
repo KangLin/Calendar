@@ -15,8 +15,8 @@ class CFrmFullScreen : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmFullScreen(QWidget *parent = 0);
-    ~CFrmFullScreen();
+    explicit CFrmFullScreen(QWidget *parent = nullptr);
+    virtual ~CFrmFullScreen();
     
     int Prompt(const QString szPrompt, int nValue = 0, int nMin = 0,  int nMax = 100, bool bInverted = false);
     int SetBackgroupImage(const QString szImage);

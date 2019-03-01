@@ -19,51 +19,58 @@ msvc {
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Task.cpp \
-    Tasks.cpp \
-    TasksList.cpp \
-    TaskLockScreen.cpp \
-    TaskTrayIconPrompt.cpp \
-    FrmTop.cpp \
-    TaskPrompt.cpp \
-    FrmStickyNotes.cpp \
-    Global/GlobalDir.cpp \
-    Global/Log.cpp \
-    FrmFullScreen.cpp \
-    Global/Tool.cpp \
-    FrmTaskPropery.cpp \
-    ViewTaskProperty.cpp \ 
-    FrmTasks.cpp \  
-    TaskPromptDelay.cpp \
-    $$PWD/FrmTasksList.cpp
+    $$PWD/Task.cpp \
+    $$PWD/Tasks.cpp \
+    $$PWD/TasksList.cpp \
+    $$PWD/TaskLockScreen.cpp \
+    $$PWD/TaskTrayIconPrompt.cpp \
+    $$PWD/FrmTop.cpp \
+    $$PWD/TaskPrompt.cpp \
+    $$PWD/FrmStickyNotes.cpp \
+    $$PWD/Global/GlobalDir.cpp \
+    $$PWD/Global/Log.cpp \
+    $$PWD/FrmFullScreen.cpp \
+    $$PWD/Global/Tool.cpp \
+    $$PWD/FrmTaskPropery.cpp \
+    $$PWD/ViewTaskProperty.cpp \ 
+    $$PWD/FrmTasks.cpp \  
+    $$PWD/TaskPromptDelay.cpp \
+    $$PWD/FrmTasksList.cpp \
+    $$PWD/Sticky.cpp \
+    $$PWD/FrmStickyList.cpp \
+    $$PWD/StickyModel.cpp
 
 HEADERS += \
-    Task.h \
-    Tasks.h \
-    TasksList.h \
-    TaskLockScreen.h \
-    TaskTrayIconPrompt.h \
-    FrmTop.h \
-    TaskPrompt.h \
-    FrmStickyNotes.h \
-    Global/GlobalDir.h \
-    Global/Log.h \
-    FrmFullScreen.h \
-    ObjectFactory.h \
-    Global/Tool.h \
-    FrmTaskPropery.h \
-    ViewTaskProperty.h \ 
-    FrmTasks.h \  
-    TaskPromptDelay.h \
-    $$PWD/FrmTasksList.h
+    $$PWD/Task.h \
+    $$PWD/Tasks.h \
+    $$PWD/TasksList.h \
+    $$PWD/TaskLockScreen.h \
+    $$PWD/TaskTrayIconPrompt.h \
+    $$PWD/FrmTop.h \
+    $$PWD/TaskPrompt.h \
+    $$PWD/FrmStickyNotes.h \
+    $$PWD/Global/GlobalDir.h \
+    $$PWD/Global/Log.h \
+    $$PWD/FrmFullScreen.h \
+    $$PWD/ObjectFactory.h \
+    $$PWD/Global/Tool.h \
+    $$PWD/FrmTaskPropery.h \
+    $$PWD/ViewTaskProperty.h \ 
+    $$PWD/FrmTasks.h \  
+    $$PWD/TaskPromptDelay.h \
+    $$PWD/FrmTasksList.h \
+    $$PWD/Sticky.h \
+    $$PWD/FrmStickyList.h \
+    $$PWD/StickyModel.h
 
 FORMS += \
-    FrmFullScreen.ui \
-    FrmTop.ui \
-    FrmStickyNotes.ui \
-    FrmTaskProperty.ui \ 
-    FrmTasks.ui \
-    $$PWD/FrmTasksList.ui
+    $$PWD/FrmFullScreen.ui \
+    $$PWD/FrmTop.ui \
+    $$PWD/FrmStickyNotes.ui \
+    $$PWD/FrmTaskProperty.ui \ 
+    $$PWD/FrmTasks.ui \
+    $$PWD/FrmTasksList.ui \
+    $$PWD/FrmStickyList.ui
 
 RESOURCES += \
     Resource/Resource.qrc \

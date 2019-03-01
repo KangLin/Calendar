@@ -16,7 +16,7 @@ class CFrmTasksList : public QWidget
     
 public:
     explicit CFrmTasksList(QWidget *parent = nullptr);
-    ~CFrmTasksList();
+    virtual ~CFrmTasksList();
 
 public Q_SLOTS:
     void slotNew();

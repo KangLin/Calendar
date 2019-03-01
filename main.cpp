@@ -7,6 +7,7 @@
 #include "Global/GlobalDir.h"
 #include "FrmUpdater.h"
 #include "FrmStickyNotes.h"
+#include "FrmStickyList.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,17 +22,20 @@ int main(int argc, char *argv[])
     a.installTranslator(&t);
     set.setValue("Language", QLocale::system().name());
 
-    CFrmUpdater u;
-    if(!u.GenerateUpdateXml())
-        return 0;
-    
-    CMainWindow m;
-    bool bShow = set.value("MainWindow/Show", false).toBool();
-    if(bShow)
-        m.show();
+//    CFrmUpdater u;
+//    if(!u.GenerateUpdateXml())
+//        return 0;
 
-    CFrmStickyNotes fsn;
-    fsn.show();
-    
+//    CMainWindow m;
+//#if defined(Q_OS_ANDROID)
+//    m.showMaximized();
+//#else
+//    bool bShow = set.value("MainWindow/Show", false).toBool();
+//    if(bShow)
+//        m.show();
+//#endif
+
+    CFrmStickyList fs;
+    fs.show();
     return a.exec();
 }

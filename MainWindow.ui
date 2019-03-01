@@ -193,7 +193,7 @@
   <action name="actionExit_E">
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/icon/Close</normaloff>:/icon/Close</iconset>
+     <normaloff>:/icon/red/Close</normaloff>:/icon/red/Close</iconset>
    </property>
    <property name="text">
     <string>Exit(&amp;E)</string>

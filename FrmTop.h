@@ -19,7 +19,7 @@ class CFrmTop : public QWidget
 
 public:
     explicit CFrmTop(QWidget *parent = nullptr);
-    ~CFrmTop();
+    virtual ~CFrmTop();
 
     void SetText(const QString szText);
     int SetBackgroupImage(const QString szImage);

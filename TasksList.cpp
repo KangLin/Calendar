@@ -183,6 +183,7 @@ int CTasksList::LoadSettings(const QString &szFile)
         return -2;
     }
     f.close();
+    //TODO: Check version
     return LoadSettings(doc.documentElement().firstChildElement());
 }
 
@@ -208,6 +209,7 @@ int CTasksList::SaveSettings(const QString &szFile)
     ins = doc.createProcessingInstruction("xml", "version=\'1.0\' encoding=\'UTF-8\'");
     doc.appendChild(ins);
     QDomElement root = doc.createElement("Root");
+    root.setAttribute("version", "1");
     doc.appendChild(root);
     nRet = SaveSettings(root);
     if(nRet)

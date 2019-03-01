@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <iostream>
 #include <QToolBar>
+#include <QTextEdit>
+#include <QComboBox>
+#include "Sticky.h"
 
 namespace Ui {
 class CFrmStickyNotes;
@@ -14,11 +17,14 @@ class CFrmStickyNotes : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmStickyNotes(QWidget *parent = nullptr);
-    ~CFrmStickyNotes();
+    explicit CFrmStickyNotes(QWidget *parent = nullptr,
+                     QSharedPointer<CSticky> sticky =QSharedPointer<CSticky>());
+    virtual ~CFrmStickyNotes() override;
     
-    int Load(std::istream in);
-    int Save(std::ostream out);
+    int SetSticky(QSharedPointer<CSticky> sticky);
+    
+Q_SIGNALS:
+    void sigNew();
     
 private Q_SLOTS:
     void slotBold();
@@ -26,15 +32,36 @@ private Q_SLOTS:
     void slotUnderline();
     void slotStrikethrough();
     void slotDelet();
+    void slotNew();
+    void slotPolicy(int policy);
+    void slotTextChanged();
+    void slotUpdate();
     
 protected:
-    void enterEvent(QEvent *event);
-    void leaveEvent(QEvent *event);
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *e) override;
+    virtual void mouseReleaseEvent(QMouseEvent *e) override;
+    virtual void mouseMoveEvent(QMouseEvent *e) override;
+    virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void moveEvent(QMoveEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override;
     
 private:
     Ui::CFrmStickyNotes *ui;
     
-    QToolBar m_ToolBar;
+    QComboBox *m_pComboBox;
+    QToolBar m_ToolBarTop;
+    QToolBar m_ToolBarButton;
+    QTextEdit m_TextEdit;
+    
+    bool m_bMoveable;
+    QPointF m_oldPos;
+    QPoint m_oldTop;
+    QRect m_rtDesktop;
+    
+    QSharedPointer<CSticky> m_Sticky;
 };
 
 #endif // FRMSTICKYNOTES_H

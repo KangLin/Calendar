@@ -16,11 +16,10 @@ class CFrmTaskProperty : public QWidget
     
 public:
     explicit CFrmTaskProperty(CTasksList *plstTasks, QWidget *parent = nullptr);
-    ~CFrmTaskProperty();
+    virtual ~CFrmTaskProperty();
     
 private slots:
     void on_pbSave_clicked();
-    
     void on_pbCancle_clicked();
     
 private:

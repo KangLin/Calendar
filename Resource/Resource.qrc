@@ -2,7 +2,6 @@
     <qresource prefix="/icon">
         <file alias="App">image/app.png</file>
         <file alias="China">image/china.png</file>
-        <file alias="Close">image/close.png</file>
         <file alias="EyeNurse">image/EyeNurse.png</file>
         <file alias="EyeCharts">image/EyeCharts.png</file>
         <file alias="Contribute">image/Contribute.png</file>
@@ -16,7 +15,6 @@
         <file alias="Up">image/up.png</file>
         <file alias="Right">image/right.png</file>
         <file alias="Point">image/point.png</file>
-        <file alias="RedPoint">image/red_point.png</file>
         <file alias="Save">image/save.png</file>
         <file alias="Option">image/option.png</file>
         <file alias="Refresh">image/refresh.png</file>
@@ -26,8 +24,15 @@
         <file alias="Download">image/download.png</file>
         <file alias="Restart">image/restart.png</file>
         <file alias="Sticky">image/stricky.png</file>
-    </qresource>
-    <qresource prefix="/icon/green">
+        <file alias="Bold">image/bold.png</file>
+        <file alias="Italic">image/italic.png</file>
+        <file alias="Stricke">image/stricke.png</file>
+        <file alias="Underline">image/underline.png</file>
+        <file alias="Move">image/move.png</file>
         <file alias="Close">image/green_close.png</file>
+    </qresource>
+    <qresource prefix="/icon/red">
+        <file alias="Point">image/red_point.png</file>
+        <file alias="Close">image/close.png</file>
     </qresource>
 </RCC>
