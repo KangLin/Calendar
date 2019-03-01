@@ -67,7 +67,7 @@ int CDlgAbout::AppendFile(QTextEdit* pEdit, const QString &szFile)
     if(readme.open(QFile::ReadOnly))
     {
         pEdit->append(readme.readAll());
-        //把光标移动文档开始处
+        //把光标移动文档开始处  
         QTextCursor cursor =   pEdit->textCursor();
         cursor.movePosition(QTextCursor::Start);
         pEdit->setTextCursor(cursor);
