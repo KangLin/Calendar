@@ -78,6 +78,42 @@ CFrmUpdater::~CFrmUpdater()
     delete ui;
 }
 
+/**
+ * @brief CFrmUpdater::InitStateMachine
+ * @return 
+ *               ________
+ * start o ----->|sCheck|--------------------------------|
+ *               --------                                |
+ *                  |                                    |
+ *                  |  sigFinished                       |
+ *                  |                                    |
+ *                  V                                    |
+ *   -----------------------------------|                |sigError
+ *   |             s                    |                |sigFinished
+ *   |----------------------------------|                |
+ *   |                                  |                |
+ *   |  |------------------|            |                |
+ *   |  |Download xml fil  |            |                |
+ *   |  |                  |            |                |
+ *   |  |(sDownloadXmlFile)|            |                |
+ *   |  |------------------|            |                |
+ *   |      |                           |                |
+ *   |      |                           |                |
+ *   |      |sigDownloadFinished        |                |
+ *   |      |                           |   sigFinished  V
+ *   |      V                           |   sigError   |------|
+ *   |  |-------------------|           |------------->|sFinal|
+ *   |  |Download setup file|           |              |------|
+ *   |  |(sDownload)        |           |
+ *   |  |-------------------|           |
+ *   |      |                           |
+ *   |      | sigDownloadFinished       |
+ *   |      V                           |
+ *   |  |-----------------|             |
+ *   |  |update(sUpdate)  |             | 
+ *   |  |-----------------|             |
+ *   |----------------------------------|
+ */
 int CFrmUpdater::InitStateMachine()
 {
     QFinalState *sFinal = new QFinalState();
