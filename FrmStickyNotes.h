@@ -48,6 +48,8 @@ protected:
     virtual void focusOutEvent(QFocusEvent *event) override;
     virtual void moveEvent(QMoveEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
     
 private:
     Ui::CFrmStickyNotes *ui;

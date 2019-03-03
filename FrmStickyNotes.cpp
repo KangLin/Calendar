@@ -263,6 +263,7 @@ void CFrmStickyNotes::focusOutEvent(QFocusEvent *event)
 
 void CFrmStickyNotes::moveEvent(QMoveEvent *event)
 {
+    Q_UNUSED(event);
     if(!m_Sticky)
         return;
     m_Sticky->SetWindowRect(frameGeometry());
@@ -270,7 +271,20 @@ void CFrmStickyNotes::moveEvent(QMoveEvent *event)
 
 void CFrmStickyNotes::resizeEvent(QResizeEvent *event)
 {
+    Q_UNUSED(event);
     if(!m_Sticky)
         return;
     m_Sticky->SetWindowRect(frameGeometry());
+}
+
+void CFrmStickyNotes::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event);
+    m_Sticky->SetWindowHide();
+}
+
+
+void CFrmStickyNotes::showEvent(QShowEvent *event)
+{
+    m_Sticky->SetWindowHide(false);
 }
