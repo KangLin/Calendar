@@ -3,6 +3,7 @@
 CStickyModel::CStickyModel(QObject *parent)
     : QAbstractListModel(parent)
 {
+    m_bModify = false;
 }
 
 QVariant CStickyModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -48,8 +49,9 @@ bool CStickyModel::setData(const QModelIndex &index, const QVariant &value, int 
         s->SetContent(value.toString());
         break;
     }
-    m_Modify = true;
-    emit dataChanged(index, index);
+    m_bModify = true;
+    emit s->sigUpdate();
+    //emit dataChanged(index, index);
     return true;
 }
 
@@ -64,36 +66,56 @@ Qt::ItemFlags CStickyModel::flags(const QModelIndex &index) const
 bool CStickyModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(QModelIndex(), row, row + count - 1);
-    m_Stickys.removeAt(row);
+    m_bModify = true;
+    QSharedPointer<CSticky> s = m_Stickys.at(row);
+    m_Stickys.removeOne(s);
+    emit s->sigRemove(s);
     endRemoveRows();
     return true;
 }
 
 bool CStickyModel::IsModify()
 {
-    return m_Modify;
+    return m_bModify;
 }
 
-int CStickyModel::Add(QSharedPointer<CSticky> s)
+QSharedPointer<CSticky> CStickyModel::Add()
 {
+    QSharedPointer<CSticky> s(new CSticky());    
     if(!s)
-        return -1;
+        return QSharedPointer<CSticky>();
     m_Stickys.push_front(s);
     insertRow(0, QModelIndex());
+    m_bModify = true;
     emit dataChanged(index(0), index(0));
-    return 0;
+    bool check = connect(s.data(), SIGNAL(sigRemove(QSharedPointer<CSticky>)),
+                    this, SLOT(slotDelete(QSharedPointer<CSticky>)));
+    Q_ASSERT(check);
+    check = connect(s.data(), SIGNAL(sigUpdate()),
+                    this, SLOT(slotModify()));
+    Q_ASSERT(check);
+    return s;
 }
 
-int CStickyModel::Delete(QSharedPointer<CSticky> s)
+void CStickyModel::slotDelete(QSharedPointer<CSticky> s)
 {
     if(!s)
-        return -1;
+        return;
     int n = m_Stickys.indexOf(s);
     if(n < 0 || n >= m_Stickys.length())
-        return -2;
+        return;
+    m_bModify = true;
     m_Stickys.removeOne(s);
     emit dataChanged(index(n), index(n));
-    return 0;
+    return;
+}
+
+void CStickyModel::slotModify()
+{
+    m_bModify = true;
+
+    emit dataChanged(index(0),
+                     index(m_Stickys.length() - 1));
 }
 
 #ifndef QT_NO_DATASTREAM

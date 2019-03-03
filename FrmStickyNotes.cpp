@@ -93,15 +93,17 @@ int CFrmStickyNotes::SetSticky(QSharedPointer<CSticky> sticky)
     bool check = connect(m_Sticky.data(), SIGNAL(sigUpdate()),
                          this, SLOT(slotUpdate()));
     Q_ASSERT(check);
+    check = connect(m_Sticky.data(), SIGNAL(sigRemove(QSharedPointer<CSticky>)),
+                    this, SLOT(slotDelet(QSharedPointer<CSticky>)));
+    Q_ASSERT(check);
     if(!m_Sticky->GetContent().isEmpty())
         m_TextEdit.setHtml(m_Sticky->GetContent());
     if(!m_Sticky->GetWindowRect().isNull())
         this->setGeometry(m_Sticky->GetWindowRect());
     m_pComboBox->setCurrentIndex(m_Sticky->GetPolicy());
-    if(m_Sticky->GetWindowHide())
-        hide();
-    else
-        show();
+    if(m_Sticky->GetWindowHide() != isHidden())
+        setHidden(m_Sticky->GetWindowHide());
+
     return 0;
 }
 
@@ -151,6 +153,11 @@ void CFrmStickyNotes::slotDelet()
     close();
     if(m_Sticky)
         emit m_Sticky->sigRemove(m_Sticky);
+}
+
+void CFrmStickyNotes::slotDelet(QSharedPointer<CSticky>)
+{
+    close();
 }
 
 void CFrmStickyNotes::slotNew()

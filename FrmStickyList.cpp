@@ -55,27 +55,19 @@ void CFrmStickyList::slotSave()
     return;
 }
 
-void CFrmStickyList::slotRomve(QSharedPointer<CSticky> s)
-{
-    m_Model.Delete(s);    
-}
-
 void CFrmStickyList::on_actionNew_triggered()
 {
-    QSharedPointer<CSticky> s(new CSticky());
+    QSharedPointer<CSticky> s = m_Model.Add();
+    if(!s)
+        return;
     s->SetContent(tr("Take notes ......"));
     CFrmStickyNotes *pSticky = new CFrmStickyNotes(nullptr, s);
     if(!pSticky)
         return;
     bool check = connect(pSticky, SIGNAL(sigNew()),
                          this, SLOT(on_actionNew_triggered()));
-    Q_ASSERT(check);
-    check = connect(s.data(), SIGNAL(sigRemove(QSharedPointer<CSticky>)),
-                    this, SLOT(slotRomve(QSharedPointer<CSticky>)));
-    Q_ASSERT(check);
-    
+    Q_ASSERT(check);    
     pSticky->show();
-    m_Model.Add(s);
 }
 
 void CFrmStickyList::on_actionRemove_triggered()

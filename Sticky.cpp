@@ -3,7 +3,7 @@
 static int gTypeCSticky = qRegisterMetaType<CSticky>();
 CSticky::CSticky(QObject *parent) : QObject(parent)
 {
-    m_bWindowHide = true;
+    m_bWindowHide = false;
     m_Policy = normal;
 }
 
@@ -33,6 +33,7 @@ QString CSticky::GetContent()
 int CSticky::SetWindowRect(const QRect &rect)
 {
     m_WindowRect = rect;
+    emit sigUpdate();
     return 0;
 }
 
@@ -44,6 +45,7 @@ QRect CSticky::GetWindowRect()
 int CSticky::SetModifyTime()
 {
     m_Time = QDateTime::currentDateTime();
+    emit sigUpdate();
     return 0;
 }
 
@@ -60,12 +62,14 @@ CSticky::POLICY CSticky::GetPolicy()
 int CSticky::SetPolicy(POLICY p)
 {
     m_Policy = p;
+    emit sigUpdate();
     return 0;
 }
 
 int CSticky::SetWindowHide(bool bHide)
 {
     m_bWindowHide = bHide;
+    emit sigUpdate();
     return 0;
 }
 

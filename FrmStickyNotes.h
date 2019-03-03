@@ -32,6 +32,7 @@ private Q_SLOTS:
     void slotUnderline();
     void slotStrikethrough();
     void slotDelet();
+    void slotDelet(QSharedPointer<CSticky>);
     void slotNew();
     void slotPolicy(int policy);
     void slotTextChanged();

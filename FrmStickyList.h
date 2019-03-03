@@ -19,7 +19,6 @@ public:
 public Q_SLOTS:
     void slotLoad();
     void slotSave();
-    void slotRomve(QSharedPointer<CSticky> s);
     
     void on_actionNew_triggered();
     void on_actionRemove_triggered();

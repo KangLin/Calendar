@@ -11,11 +11,13 @@ class CStickyModel : public QAbstractListModel
     
 public:
     explicit CStickyModel(QObject *parent = nullptr);
-    
+public Q_SLOTS:
     bool IsModify();
-    int Add(QSharedPointer<CSticky> s);
-    int Delete(QSharedPointer<CSticky> s);
-    
+    QSharedPointer<CSticky> Add();
+private Q_SLOTS:
+    void slotDelete(QSharedPointer<CSticky> s);
+    void slotModify();
+public:
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
     // Basic functionality:
@@ -32,7 +34,7 @@ public:
 
 private:
     QList<QSharedPointer<CSticky> > m_Stickys;
-    bool m_Modify;    
+    bool m_bModify;    
     
 };
 
