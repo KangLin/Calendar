@@ -137,7 +137,7 @@ QDataStream& operator>>(QDataStream &d, CStickyModel &m)
         return d;
     while(nLength--)
     {
-        QSharedPointer<CSticky> s;
+        QSharedPointer<CSticky> s(new CSticky());
         d >> *s;
         m.m_Stickys.push_front(s);
     }

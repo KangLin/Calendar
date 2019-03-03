@@ -25,7 +25,7 @@ public Q_SLOTS:
     
 private:
     int Load(const QString &szFile);
-    
+    int Save(const QString &szFile);
 private:
     Ui::CFrmStickyList *ui;
     

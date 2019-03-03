@@ -1,7 +1,10 @@
 #include "FrmStickyList.h"
 #include "ui_FrmStickyList.h"
-#include <QFileDialog>
 #include "FrmStickyNotes.h"
+#include "Global/GlobalDir.h"
+#include <QFileDialog>
+#include <QSettings>
+#include <QDebug>
 
 CFrmStickyList::CFrmStickyList(QWidget *parent) :
     QWidget(parent),
@@ -13,12 +16,26 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
     ui->listView->setContextMenuPolicy(Qt::ActionsContextMenu);
     ui->listView->addAction(ui->actionNew);
     ui->listView->addAction(ui->actionRemove);
+    
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    QString szFile = set.value("Sticky/File",
+                               CGlobalDir::Instance()->GetDirData()
+                               + QDir::separator() + "Sticky").toString();
+    Load(szFile);
 }
 
 CFrmStickyList::~CFrmStickyList()
 {
     if(m_Model.IsModify())
-        slotSave();
+    {    
+        QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                      QSettings::IniFormat);
+        QString szFile = set.value("Sticky/File",
+                                   CGlobalDir::Instance()->GetDirData()
+                                   + QDir::separator() + "Sticky").toString();
+        Save(szFile);
+    }
     delete ui;
 }
 
@@ -34,10 +51,16 @@ int CFrmStickyList::Load(const QString &szFile)
 {
     QFile f(szFile);
     if(!f.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "CFrmStickyList::Load file fail: " << szFile;
         return -1;
+    }
     QDataStream d(&f);
     d >> m_Model;
     f.close();
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    set.value("Sticky/File", szFile);
     return 0;
 }
 
@@ -46,13 +69,20 @@ void CFrmStickyList::slotSave()
     QString szFile = QFileDialog::getSaveFileName();
     if(szFile.isEmpty())
         return;
+}
+
+int CFrmStickyList::Save(const QString &szFile)
+{
     QFile f(szFile);
     if(!f.open(QIODevice::WriteOnly))
-        return;
+    {
+        qDebug() << "CFrmStickyList::Save file fail: " << szFile;
+        return -1;
+    }
     QDataStream d(&f);
     d << m_Model;
     f.close();
-    return;
+    return 0;
 }
 
 void CFrmStickyList::on_actionNew_triggered()
