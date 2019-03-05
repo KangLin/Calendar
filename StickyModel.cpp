@@ -24,7 +24,9 @@ QVariant CStickyModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
-    
+    int r = index.row();
+    if(r < 0 || r >= m_Stickys.length())
+        return QVariant();
     QSharedPointer<CSticky> s = m_Stickys.at(index.row());
     if(!s)
         return QVariant();
@@ -40,6 +42,9 @@ QVariant CStickyModel::data(const QModelIndex &index, int role) const
 bool CStickyModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (!index.isValid())
+        return false;
+    int r = index.row();
+    if(r < 0 || r >= m_Stickys.length())
         return false;
     QSharedPointer<CSticky> s = m_Stickys.at(index.row());
     if(!s)
@@ -100,6 +105,13 @@ QSharedPointer<CSticky> CStickyModel::Add()
     return s;
 }
 
+QSharedPointer<CSticky> CStickyModel::Get(int index)
+{
+    if(index < 0 || index >= m_Stickys.length())
+        return QSharedPointer<CSticky>();
+    return m_Stickys.at(index);
+}
+        
 void CStickyModel::slotDelete(QSharedPointer<CSticky> s)
 {
     if(!s)
@@ -143,6 +155,12 @@ QDataStream& operator>>(QDataStream &d, CStickyModel &m)
         QSharedPointer<CSticky> s(new CSticky());
         d >> *s;
         m.m_Stickys.push_front(s);
+        bool check = QObject::connect(s.data(), SIGNAL(sigRemove(QSharedPointer<CSticky>)),
+                        &m, SLOT(slotDelete(QSharedPointer<CSticky>)));
+        Q_ASSERT(check);
+        check = QObject::connect(s.data(), SIGNAL(sigUpdate()),
+                        &m, SLOT(slotModify()));
+        Q_ASSERT(check);
     }
     return d;
 }

@@ -21,7 +21,7 @@ CFrmStickyNotes::CFrmStickyNotes(QWidget *parent,
 {
     setFocusPolicy(Qt::StrongFocus);
     setAttribute(Qt::WA_QuitOnClose, false);
-    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_DeleteOnClose, false);
     ui->setupUi(this);
     //TODO:Use qss
     //setStyleSheet("background-color:rgb(255,255,128);color:rgb(0,255,0);");
@@ -52,7 +52,7 @@ CFrmStickyNotes::CFrmStickyNotes(QWidget *parent,
     layout()->addWidget(&m_TextEdit);
     layout()->addWidget(&m_ToolBarButton);
     
-    this->SetSticky(sticky);    
+    this->SetSticky(sticky);
 }
 
 CFrmStickyNotes::~CFrmStickyNotes()
@@ -93,9 +93,6 @@ int CFrmStickyNotes::SetSticky(QSharedPointer<CSticky> sticky)
     bool check = connect(m_Sticky.data(), SIGNAL(sigUpdate()),
                          this, SLOT(slotUpdate()));
     Q_ASSERT(check);
-    check = connect(m_Sticky.data(), SIGNAL(sigRemove(QSharedPointer<CSticky>)),
-                    this, SLOT(slotDelet(QSharedPointer<CSticky>)));
-    Q_ASSERT(check);
     if(!m_Sticky->GetContent().isEmpty())
         m_TextEdit.setHtml(m_Sticky->GetContent());
     if(!m_Sticky->GetWindowRect().isNull())
@@ -105,6 +102,11 @@ int CFrmStickyNotes::SetSticky(QSharedPointer<CSticky> sticky)
         setHidden(m_Sticky->GetWindowHide());
 
     return 0;
+}
+
+bool CFrmStickyNotes::IsSticky(QSharedPointer<CSticky> sticky)
+{
+    return m_Sticky == sticky;
 }
 
 void CFrmStickyNotes::slotBold()
@@ -150,14 +152,10 @@ void CFrmStickyNotes::slotStrikethrough()
 
 void CFrmStickyNotes::slotDelet()
 {
-    close();
     if(m_Sticky)
+    {
         emit m_Sticky->sigRemove(m_Sticky);
-}
-
-void CFrmStickyNotes::slotDelet(QSharedPointer<CSticky>)
-{
-    close();
+    }
 }
 
 void CFrmStickyNotes::slotNew()

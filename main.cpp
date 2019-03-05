@@ -22,20 +22,20 @@ int main(int argc, char *argv[])
     a.installTranslator(&t);
     set.setValue("Language", QLocale::system().name());
 
-//    CFrmUpdater u;
-//    if(!u.GenerateUpdateXml())
-//        return 0;
+    CFrmUpdater u;
+    if(!u.GenerateUpdateXml())
+        return 0;
 
-//    CMainWindow m;
-//#if defined(Q_OS_ANDROID)
-//    m.showMaximized();
-//#else
-//    bool bShow = set.value("MainWindow/Show", false).toBool();
-//    if(bShow)
-//        m.show();
-//#endif
+    CMainWindow m;
+#if defined(Q_OS_ANDROID)
+    m.showMaximized();
+#else
+    bool bShow = set.value("MainWindow/Show", false).toBool();
+    if(bShow)
+        m.show();
+#endif
 
-    CFrmStickyList fs;
-    fs.show();
+//    CFrmStickyList fs;
+//    fs.show();
     return a.exec();
 }

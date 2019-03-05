@@ -17,6 +17,7 @@ class CSticky : public QObject
 public:
     explicit CSticky(QObject *parent = nullptr);
     CSticky(const CSticky &s);
+    virtual ~CSticky();
     
 #ifndef QT_NO_DATASTREAM
     friend QDataStream& operator<<(QDataStream &d, const CSticky &s);

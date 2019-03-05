@@ -1,6 +1,5 @@
 #include "FrmStickyList.h"
 #include "ui_FrmStickyList.h"
-#include "FrmStickyNotes.h"
 #include "Global/GlobalDir.h"
 #include "StickyItemDelegate.h"
 #include <QFileDialog>
@@ -25,6 +24,16 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
                                CGlobalDir::Instance()->GetDirData()
                                + QDir::separator() + "Sticky").toString();
     Load(szFile);
+    QSharedPointer<CSticky> s;
+    int i = 0;
+    while(s = m_Model.Get(i++))
+    {
+        CFrmStickyNotes* sn = NewFrmSticky(s);
+        if(!s->GetWindowHide())
+        {
+            sn->show();            
+        }
+    }
 }
 
 CFrmStickyList::~CFrmStickyList()
@@ -38,6 +47,12 @@ CFrmStickyList::~CFrmStickyList()
                                    + QDir::separator() + "Sticky").toString();
         Save(szFile);
     }
+    foreach(CFrmStickyNotes* p, m_StickyNotes)
+    {
+        p->close();
+        p->deleteLater();
+    }
+    m_StickyNotes.clear();
     delete ui;
 }
 
@@ -93,13 +108,26 @@ void CFrmStickyList::on_actionNew_triggered()
     if(!s)
         return;
     s->SetContent(tr("Take notes ......"));
-    CFrmStickyNotes *pSticky = new CFrmStickyNotes(nullptr, s);
-    if(!pSticky)
-        return;
-    bool check = connect(pSticky, SIGNAL(sigNew()),
+    CFrmStickyNotes* sn = NewFrmSticky(s);
+    if(sn)
+    {
+        sn->show();
+    }
+}
+
+CFrmStickyNotes* CFrmStickyList::NewFrmSticky(QSharedPointer<CSticky> s)
+{
+    CFrmStickyNotes* pStickyNote = new CFrmStickyNotes(nullptr, s);
+    if(!pStickyNote)
+        return nullptr;
+    bool check = connect(pStickyNote, SIGNAL(sigNew()),
                          this, SLOT(on_actionNew_triggered()));
-    Q_ASSERT(check);    
-    pSticky->show();
+    Q_ASSERT(check);
+    check = connect(s.data(), SIGNAL(sigRemove(QSharedPointer<CSticky>)),
+                    this, SLOT(slotDelete(QSharedPointer<CSticky>)));
+    Q_ASSERT(check);
+    m_StickyNotes.push_back(pStickyNote);
+    return pStickyNote;
 }
 
 void CFrmStickyList::on_actionRemove_triggered()
@@ -110,5 +138,27 @@ void CFrmStickyList::on_actionRemove_triggered()
 
 void CFrmStickyList::on_listView_doubleClicked(const QModelIndex &index)
 {
+    ShowSticky(index.row());
+}
 
+void CFrmStickyList::ShowSticky(int i)
+{
+   if(i < 0 || i >= m_StickyNotes.length())
+       return;
+   m_StickyNotes.at(i)->show();
+   m_StickyNotes.at(i)->activateWindow();
+}
+
+void CFrmStickyList::slotDelete(QSharedPointer<CSticky> sticky)
+{
+    foreach(CFrmStickyNotes* s, m_StickyNotes)
+    {
+        if(s->IsSticky(sticky))
+        {
+            s->close();
+            m_StickyNotes.removeOne(s);
+            s->deleteLater();
+            return;
+        }
+    }
 }

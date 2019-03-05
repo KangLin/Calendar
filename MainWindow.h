@@ -7,6 +7,7 @@
 #include <QCloseEvent>
 #include "TasksList.h"
 #include "FrmTasksList.h"
+#include "FrmStickyList.h"
 
 namespace Ui {
 class CMainWindow;
@@ -50,7 +51,7 @@ private:
     QAction* m_pStartRun;
     
     CFrmTasksList *m_pFrmTasksList;
-
+    CFrmStickyList m_frmStickyList;
 };
 
 #endif // MAINWINDOW_H

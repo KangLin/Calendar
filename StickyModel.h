@@ -14,6 +14,7 @@ public:
 public Q_SLOTS:
     bool IsModify();
     QSharedPointer<CSticky> Add();
+    QSharedPointer<CSticky> Get(int index);
 private Q_SLOTS:
     void slotDelete(QSharedPointer<CSticky> s);
     void slotModify();

@@ -1,4 +1,5 @@
 #include "Sticky.h"
+#include <QtDebug>
 
 static int gTypeCSticky = qRegisterMetaType<CSticky>();
 CSticky::CSticky(QObject *parent) : QObject(parent)
@@ -15,6 +16,11 @@ CSticky::CSticky(const CSticky &s)
     m_bWindowHide = s.m_bWindowHide;
     m_szContent = s.m_szContent;
     m_Time = s.m_Time;
+}
+
+CSticky::~CSticky()
+{
+    qDebug() << "CSticky::~CSticky()";
 }
 
 int CSticky::SetContent(const QString &szContent)
@@ -110,6 +116,7 @@ QDataStream& operator>>(QDataStream &d, CSticky &s)
             >> s.m_Time 
             >> s.m_szContent
             >> s.m_szText;
+    qDebug() << "Rect:" << s.m_WindowRect;
     return d;
 }
 #endif

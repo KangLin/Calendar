@@ -22,6 +22,7 @@ public:
     virtual ~CFrmStickyNotes() override;
     
     int SetSticky(QSharedPointer<CSticky> sticky);
+    bool IsSticky(QSharedPointer<CSticky> sticky);
     
 Q_SIGNALS:
     void sigNew();
@@ -32,12 +33,11 @@ private Q_SLOTS:
     void slotUnderline();
     void slotStrikethrough();
     void slotDelet();
-    void slotDelet(QSharedPointer<CSticky>);
     void slotNew();
     void slotPolicy(int policy);
     void slotTextChanged();
     void slotUpdate();
-    
+
 protected:
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;

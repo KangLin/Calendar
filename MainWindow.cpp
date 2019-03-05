@@ -191,5 +191,5 @@ void CMainWindow::on_actionUpdate_U_triggered()
 
 void CMainWindow::on_actionSticky_list_L_triggered()
 {
-    
+    m_frmStickyList.show();
 }
