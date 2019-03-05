@@ -30,6 +30,7 @@ QVariant CStickyModel::data(const QModelIndex &index, int role) const
         return QVariant();
     switch (role) {
     case Qt::DisplayRole:
+        return s->GetText();
     case Qt::EditRole:
         return s->GetContent();
     }
@@ -45,6 +46,8 @@ bool CStickyModel::setData(const QModelIndex &index, const QVariant &value, int 
         return false;
     switch (role) {
     case Qt::DisplayRole:
+        s->SetText(value.toString());
+        break;
     case Qt::EditRole:
         s->SetContent(value.toString());
         break;

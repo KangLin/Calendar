@@ -23,6 +23,9 @@ public Q_SLOTS:
     void on_actionNew_triggered();
     void on_actionRemove_triggered();
     
+private slots:
+    void on_listView_doubleClicked(const QModelIndex &index);
+    
 private:
     int Load(const QString &szFile);
     int Save(const QString &szFile);

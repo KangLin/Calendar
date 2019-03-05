@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>505</width>
+    <width>475</width>
     <height>400</height>
    </rect>
   </property>
@@ -303,6 +303,9 @@
             <property name="text">
              <string>Start time</string>
             </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
@@ -327,7 +330,7 @@
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
             <property name="maximum">
-             <number>999999999</number>
+             <number>1440</number>
             </property>
            </widget>
           </item>
@@ -369,7 +372,7 @@
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
             <property name="maximum">
-             <number>999999999</number>
+             <number>86400</number>
             </property>
            </widget>
           </item>

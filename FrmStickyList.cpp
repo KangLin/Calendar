@@ -2,9 +2,11 @@
 #include "ui_FrmStickyList.h"
 #include "FrmStickyNotes.h"
 #include "Global/GlobalDir.h"
+#include "StickyItemDelegate.h"
 #include <QFileDialog>
 #include <QSettings>
 #include <QDebug>
+
 
 CFrmStickyList::CFrmStickyList(QWidget *parent) :
     QWidget(parent),
@@ -16,7 +18,7 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
     ui->listView->setContextMenuPolicy(Qt::ActionsContextMenu);
     ui->listView->addAction(ui->actionNew);
     ui->listView->addAction(ui->actionRemove);
-    
+    ui->listView->setItemDelegate(new CStickyItemDelegate(ui->listView));
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     QString szFile = set.value("Sticky/File",
@@ -104,4 +106,9 @@ void CFrmStickyList::on_actionRemove_triggered()
 {
     QModelIndex index = ui->listView->currentIndex();
     m_Model.removeRow(index.row());
+}
+
+void CFrmStickyList::on_listView_doubleClicked(const QModelIndex &index)
+{
+
 }

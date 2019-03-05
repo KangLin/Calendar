@@ -187,7 +187,7 @@ void CFrmStickyNotes::slotPolicy(int policy)
 {
     if(!m_Sticky)
         return;
-    m_Sticky->SetPolicy((CSticky::POLICY)policy);
+    m_Sticky->SetPolicy(static_cast<CSticky::POLICY>(policy));
     switch (policy) {
     case CSticky::normal:
         m_TextEdit.setStyleSheet("");
@@ -205,6 +205,7 @@ void CFrmStickyNotes::slotTextChanged()
 {
     if(!m_Sticky)
         return;
+    m_Sticky->SetText(m_TextEdit.toPlainText());
     m_Sticky->SetContent(m_TextEdit.toHtml());
 }
 
@@ -286,5 +287,6 @@ void CFrmStickyNotes::closeEvent(QCloseEvent *event)
 
 void CFrmStickyNotes::showEvent(QShowEvent *event)
 {
+    Q_UNUSED(event);
     m_Sticky->SetWindowHide(false);
 }

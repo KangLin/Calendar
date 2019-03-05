@@ -38,7 +38,8 @@ SOURCES += \
     $$PWD/FrmTasksList.cpp \
     $$PWD/Sticky.cpp \
     $$PWD/FrmStickyList.cpp \
-    $$PWD/StickyModel.cpp
+    $$PWD/StickyModel.cpp \
+    $$PWD/StickyItemDelegate.cpp
 
 HEADERS += \
     $$PWD/Task.h \
@@ -61,7 +62,8 @@ HEADERS += \
     $$PWD/FrmTasksList.h \
     $$PWD/Sticky.h \
     $$PWD/FrmStickyList.h \
-    $$PWD/StickyModel.h
+    $$PWD/StickyModel.h \
+    $$PWD/StickyItemDelegate.h
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \

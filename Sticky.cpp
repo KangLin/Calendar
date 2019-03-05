@@ -30,6 +30,17 @@ QString CSticky::GetContent()
     return m_szContent;
 }
 
+QString CSticky::GetText()
+{
+    return m_szText;
+}
+
+int CSticky::SetText(const QString &szText)
+{
+    m_szText = szText;
+    return 0;
+}
+
 int CSticky::SetWindowRect(const QRect &rect)
 {
     m_WindowRect = rect;
@@ -82,8 +93,11 @@ bool CSticky::GetWindowHide()
 QDataStream& operator<<(QDataStream &d, const CSticky &s)
 {
     d << (int)s.m_Policy;
-    return d << s.m_bWindowHide << s.m_WindowRect 
-             << s.m_Time << s.m_szContent;
+    return d << s.m_bWindowHide
+             << s.m_WindowRect 
+             << s.m_Time
+             << s.m_szContent
+             << s.m_szText;
 }
 
 QDataStream& operator>>(QDataStream &d, CSticky &s)
@@ -91,7 +105,11 @@ QDataStream& operator>>(QDataStream &d, CSticky &s)
     int p;
     d >> p;
     s.m_Policy = (CSticky::POLICY)p;
-    d >> s.m_bWindowHide >> s.m_WindowRect >> s.m_Time >> s.m_szContent;
+    d >> s.m_bWindowHide
+            >> s.m_WindowRect
+            >> s.m_Time 
+            >> s.m_szContent
+            >> s.m_szText;
     return d;
 }
 #endif
