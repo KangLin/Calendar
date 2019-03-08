@@ -20,9 +20,9 @@ CFrmTasks::CFrmTasks(QSharedPointer<CTasks> tasks,
 {
     setAttribute(Qt::WA_QuitOnClose, false);
     ui->setupUi(this);
-    
+
     InitTaskComboBox();
-    
+
     if(readOnly)
     {
         ui->pbAdd->setVisible(false);
@@ -30,7 +30,7 @@ CFrmTasks::CFrmTasks(QSharedPointer<CTasks> tasks,
         ui->cbTask->setVisible(false);
         //ui->pbApply->setVisible(false);
     }
-    
+
     m_Tasks = tasks;
     SetTasks(m_Tasks);    
 }

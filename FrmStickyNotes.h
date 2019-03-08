@@ -17,8 +17,7 @@ class CFrmStickyNotes : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmStickyNotes(QWidget *parent = nullptr,
-                     QSharedPointer<CSticky> sticky =QSharedPointer<CSticky>());
+    explicit CFrmStickyNotes(QWidget *parent = nullptr);
     virtual ~CFrmStickyNotes() override;
     
     int SetSticky(QSharedPointer<CSticky> sticky);

@@ -29,9 +29,14 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
     while(s = m_Model.Get(i++))
     {
         CFrmStickyNotes* sn = NewFrmSticky(s);
+        sn->SetSticky(s);
         if(!s->GetWindowHide())
         {
-            sn->show();            
+#if defined (Q_OS_ANDROID)
+            sn->showMaximized();
+#else
+            sn->show();
+#endif
         }
     }
 }
@@ -73,11 +78,16 @@ int CFrmStickyList::Load(const QString &szFile)
         return -1;
     }
     QDataStream d(&f);
-    d >> m_Model;
+    QString szVersion;
+    QRect rect;
+    QPoint pos;
+    d >> szVersion >> pos >> rect >> m_Model;
     f.close();
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     set.value("Sticky/File", szFile);
+    setGeometry(rect);
+    move(pos);
     return 0;
 }
 
@@ -97,6 +107,9 @@ int CFrmStickyList::Save(const QString &szFile)
         return -1;
     }
     QDataStream d(&f);
+    d << "1.0";
+    d << this->pos();
+    d << geometry();
     d << m_Model;
     f.close();
     return 0;
@@ -109,6 +122,7 @@ void CFrmStickyList::on_actionNew_triggered()
         return;
     s->SetContent(tr("Take notes ......"));
     CFrmStickyNotes* sn = NewFrmSticky(s);
+    sn->SetSticky(s);
     if(sn)
     {
         sn->show();
@@ -117,7 +131,7 @@ void CFrmStickyList::on_actionNew_triggered()
 
 CFrmStickyNotes* CFrmStickyList::NewFrmSticky(QSharedPointer<CSticky> s)
 {
-    CFrmStickyNotes* pStickyNote = new CFrmStickyNotes(nullptr, s);
+    CFrmStickyNotes* pStickyNote = new CFrmStickyNotes(nullptr);
     if(!pStickyNote)
         return nullptr;
     bool check = connect(pStickyNote, SIGNAL(sigNew()),

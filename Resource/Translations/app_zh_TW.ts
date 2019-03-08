@@ -194,11 +194,101 @@ Email:kl222@126.com</source>
     </message>
 </context>
 <context>
+    <name>CFrmStickyList</name>
+    <message>
+        <location filename="../../FrmStickyList.ui" line="14"/>
+        <location filename="../../FrmStickyList.ui" line="21"/>
+        <location filename="../../FrmStickyList.ui" line="24"/>
+        <location filename="../../FrmStickyList.ui" line="27"/>
+        <source>Sticky</source>
+        <translation>便簽</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyList.ui" line="40"/>
+        <source>New</source>
+        <translation>新建</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyList.ui" line="43"/>
+        <location filename="../../FrmStickyList.ui" line="46"/>
+        <location filename="../../FrmStickyList.ui" line="49"/>
+        <source>New sticky</source>
+        <translation>新建便簽</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyList.ui" line="58"/>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyList.ui" line="61"/>
+        <location filename="../../FrmStickyList.ui" line="64"/>
+        <location filename="../../FrmStickyList.ui" line="67"/>
+        <source>Remove sticky</source>
+        <translation>移除便簽</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyList.cpp" line="123"/>
+        <source>Take notes ......</source>
+        <translation>記筆記……</translation>
+    </message>
+</context>
+<context>
     <name>CFrmStickyNotes</name>
     <message>
-        <location filename="../../FrmStickyNotes.ui" line="14"/>
+        <location filename="../../FrmStickyNotes.ui" line="20"/>
         <source>Sticky Notes</source>
         <translation>便簽</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="29"/>
+        <source>Bold</source>
+        <translation>粗體</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="30"/>
+        <source>Italic</source>
+        <translation>斜體</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="31"/>
+        <source>Underline</source>
+        <translation>下劃線</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="32"/>
+        <source>Strikethrough</source>
+        <translation>刪除線</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="34"/>
+        <source>Delete</source>
+        <translation>刪除</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="35"/>
+        <source>New</source>
+        <translation>新建</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="36"/>
+        <source>Close</source>
+        <translation>關閉</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="38"/>
+        <source>Normal</source>
+        <translation>正常</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="39"/>
+        <source>Priority</source>
+        <translation>緊急</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyNotes.cpp" line="40"/>
+        <source>Delay</source>
+        <translation>延遲</translation>
     </message>
 </context>
 <context>
@@ -264,7 +354,7 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="130"/>
-        <location filename="../../FrmTasks.ui" line="388"/>
+        <location filename="../../FrmTasks.ui" line="391"/>
         <source>Content:</source>
         <translation>內容：</translation>
     </message>
@@ -318,70 +408,70 @@ Email:kl222@126.com</source>
         <translation>開始時間:</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="311"/>
+        <location filename="../../FrmTasks.ui" line="314"/>
         <source>Interval:</source>
         <translation>間隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="324"/>
+        <location filename="../../FrmTasks.ui" line="327"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
         <translation>任務間隔（單位：分鐘）。如果是0，則立即運行。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="337"/>
+        <location filename="../../FrmTasks.ui" line="340"/>
         <source>M</source>
         <translation>分</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="350"/>
+        <location filename="../../FrmTasks.ui" line="353"/>
         <source>PromptInterval:</source>
         <translation>提示間隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="363"/>
         <location filename="../../FrmTasks.ui" line="366"/>
+        <location filename="../../FrmTasks.ui" line="369"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
         <translation>提示間隔（單位：秒）。如果是0，則不提示。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="379"/>
+        <location filename="../../FrmTasks.ui" line="382"/>
         <source>S</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="401"/>
         <location filename="../../FrmTasks.ui" line="404"/>
         <location filename="../../FrmTasks.ui" line="407"/>
+        <location filename="../../FrmTasks.ui" line="410"/>
         <source>Task content</source>
         <translation>任務內容</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="429"/>
+        <location filename="../../FrmTasks.ui" line="432"/>
         <source> New add task into tasks</source>
         <translation>新建任務到任務組中</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="432"/>
+        <location filename="../../FrmTasks.ui" line="435"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="443"/>
+        <location filename="../../FrmTasks.ui" line="446"/>
         <source>Remove the task from tasks</source>
         <translation>從任務組中移除此任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="446"/>
+        <location filename="../../FrmTasks.ui" line="449"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="457"/>
+        <location filename="../../FrmTasks.ui" line="460"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="481"/>
+        <location filename="../../FrmTasks.ui" line="484"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
@@ -514,7 +604,7 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../FrmUpdater.ui" line="171"/>
-        <location filename="../../FrmUpdater.cpp" line="399"/>
+        <location filename="../../FrmUpdater.cpp" line="435"/>
         <source>There is laster version</source>
         <translation>這是最新版本</translation>
     </message>
@@ -554,157 +644,157 @@ Email:kl222@126.com</source>
         <translation>關閉(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="100"/>
+        <location filename="../../FrmUpdater.cpp" line="136"/>
         <source>Being download xml file</source>
         <translation>正在下載XML文件</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="101"/>
+        <location filename="../../FrmUpdater.cpp" line="137"/>
         <source>Being download update file</source>
         <translation>正在下載更新文件</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="102"/>
+        <location filename="../../FrmUpdater.cpp" line="138"/>
         <source>Being install update</source>
         <translation>正在安裝更新</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="132"/>
+        <location filename="../../FrmUpdater.cpp" line="168"/>
         <source>Current archecture: %1</source>
         <translation>當前架構: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="140"/>
+        <location filename="../../FrmUpdater.cpp" line="176"/>
         <source>Current version: %1</source>
         <translation>當前版本: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="263"/>
+        <location filename="../../FrmUpdater.cpp" line="299"/>
         <source>Download network error: </source>
         <translation>下載網絡錯誤：</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="282"/>
+        <location filename="../../FrmUpdater.cpp" line="318"/>
         <source>Download fail:</source>
         <translation>下載失敗：</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="353"/>
+        <location filename="../../FrmUpdater.cpp" line="389"/>
         <source>Parse file %1 fail. It isn&apos;t xml file</source>
         <translation>解析文件 %1 失敗， 它不是 XML 文件</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="404"/>
+        <location filename="../../FrmUpdater.cpp" line="440"/>
         <source>New version: %1</source>
         <translation>新版本: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="406"/>
+        <location filename="../../FrmUpdater.cpp" line="442"/>
         <source>New architecture: %1</source>
         <translation>新架構: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="412"/>
-        <location filename="../../FrmUpdater.cpp" line="425"/>
-        <location filename="../../FrmUpdater.cpp" line="438"/>
+        <location filename="../../FrmUpdater.cpp" line="448"/>
+        <location filename="../../FrmUpdater.cpp" line="461"/>
+        <location filename="../../FrmUpdater.cpp" line="474"/>
         <source>System is different</source>
         <translation>系統不同</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="418"/>
-        <location filename="../../FrmUpdater.cpp" line="431"/>
-        <location filename="../../FrmUpdater.cpp" line="444"/>
+        <location filename="../../FrmUpdater.cpp" line="454"/>
+        <location filename="../../FrmUpdater.cpp" line="467"/>
+        <location filename="../../FrmUpdater.cpp" line="480"/>
         <source>Architecture is different</source>
         <translation>架構不同</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="450"/>
+        <location filename="../../FrmUpdater.cpp" line="486"/>
         <source>There is a new version, is it updated?</source>
         <translation>有新的版本，是否更新？</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="467"/>
+        <location filename="../../FrmUpdater.cpp" line="503"/>
         <source>Being install update ......</source>
         <translation>正在安裝更新 ……</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="472"/>
-        <location filename="../../FrmUpdater.cpp" line="481"/>
+        <location filename="../../FrmUpdater.cpp" line="508"/>
+        <location filename="../../FrmUpdater.cpp" line="517"/>
         <source>Download file fail</source>
         <translation>下載文件失敗</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="488"/>
+        <location filename="../../FrmUpdater.cpp" line="524"/>
         <source>Md5sum is different. </source>
         <translation>Md5校驗和不同。</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="489"/>
+        <location filename="../../FrmUpdater.cpp" line="525"/>
         <source>Download file md5sum: </source>
         <translation>下載文件的MD5校驗和:</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="491"/>
+        <location filename="../../FrmUpdater.cpp" line="527"/>
         <source>md5sum in Update.xml:</source>
         <translation>XML文件中的MD5校驗和:</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="517"/>
+        <location filename="../../FrmUpdater.cpp" line="553"/>
         <source>Execute install program error.%1</source>
         <translation>執行安裝錯誤：%1</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="523"/>
+        <location filename="../../FrmUpdater.cpp" line="559"/>
         <source>The installer has started, Please close the application</source>
         <translation>開始安裝，請先關閉本程序</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="615"/>
+        <location filename="../../FrmUpdater.cpp" line="651"/>
         <source>Download ......</source>
         <translation>下載 ……</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="761"/>
+        <location filename="../../FrmUpdater.cpp" line="797"/>
         <source>Package version</source>
         <translation>包版本</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="766"/>
+        <location filename="../../FrmUpdater.cpp" line="802"/>
         <source>Time</source>
         <translation>時間</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="771"/>
+        <location filename="../../FrmUpdater.cpp" line="807"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="777"/>
+        <location filename="../../FrmUpdater.cpp" line="813"/>
         <source>Operating system</source>
         <translation>操作系統</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="782"/>
+        <location filename="../../FrmUpdater.cpp" line="818"/>
         <source>Platform</source>
         <translation>平臺</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="787"/>
+        <location filename="../../FrmUpdater.cpp" line="823"/>
         <source>Architecture</source>
         <translation>架構</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="792"/>
+        <location filename="../../FrmUpdater.cpp" line="828"/>
         <source>MD5 checksum</source>
         <translation>MD5校驗和</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="796"/>
+        <location filename="../../FrmUpdater.cpp" line="832"/>
         <source>Package download url</source>
         <translation>包下載URL</translation>
     </message>
     <message>
-        <location filename="../../FrmUpdater.cpp" line="801"/>
+        <location filename="../../FrmUpdater.cpp" line="837"/>
         <source>Min update version</source>
         <translation>最小更新版本</translation>
     </message>
@@ -737,130 +827,140 @@ Email:kl222@126.com</source>
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="70"/>
+        <location filename="../../MainWindow.ui" line="64"/>
+        <source>Sticky(&amp;S)</source>
+        <translation>便簽(&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="77"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="95"/>
+        <location filename="../../MainWindow.ui" line="103"/>
         <source>Load(&amp;L)</source>
         <translation>加載(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="98"/>
-        <location filename="../../MainWindow.ui" line="101"/>
-        <location filename="../../MainWindow.ui" line="104"/>
+        <location filename="../../MainWindow.ui" line="106"/>
+        <location filename="../../MainWindow.ui" line="109"/>
+        <location filename="../../MainWindow.ui" line="112"/>
         <source>Load tasks</source>
         <translation>加載任務組</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="113"/>
+        <location filename="../../MainWindow.ui" line="121"/>
         <source>Save as(&amp;S) ......</source>
         <translation>另存為(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="116"/>
-        <location filename="../../MainWindow.ui" line="119"/>
-        <location filename="../../MainWindow.ui" line="122"/>
-        <location filename="../../MainWindow.ui" line="125"/>
+        <location filename="../../MainWindow.ui" line="124"/>
+        <location filename="../../MainWindow.ui" line="127"/>
+        <location filename="../../MainWindow.ui" line="130"/>
+        <location filename="../../MainWindow.ui" line="133"/>
         <source>Save tasks as ......</source>
         <translation>任務組另存為 ……</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="134"/>
+        <location filename="../../MainWindow.ui" line="142"/>
         <source>New(&amp;N)</source>
         <translation>新建(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="137"/>
-        <location filename="../../MainWindow.ui" line="140"/>
-        <location filename="../../MainWindow.ui" line="143"/>
+        <location filename="../../MainWindow.ui" line="145"/>
+        <location filename="../../MainWindow.ui" line="148"/>
+        <location filename="../../MainWindow.ui" line="151"/>
         <source>New tasks</source>
         <translation>新建(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="155"/>
+        <location filename="../../MainWindow.ui" line="163"/>
         <source>Remove(&amp;R)</source>
         <translation>移除(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="158"/>
-        <location filename="../../MainWindow.ui" line="161"/>
-        <location filename="../../MainWindow.ui" line="164"/>
+        <location filename="../../MainWindow.ui" line="166"/>
+        <location filename="../../MainWindow.ui" line="169"/>
+        <location filename="../../MainWindow.ui" line="172"/>
         <source>Remove tasks</source>
         <translation>移除任務組</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="173"/>
+        <location filename="../../MainWindow.ui" line="181"/>
         <source>About(&amp;A)</source>
         <translation>關於(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="176"/>
-        <location filename="../../MainWindow.ui" line="179"/>
-        <location filename="../../MainWindow.ui" line="182"/>
+        <location filename="../../MainWindow.ui" line="184"/>
+        <location filename="../../MainWindow.ui" line="187"/>
+        <location filename="../../MainWindow.ui" line="190"/>
         <location filename="../../MainWindow.cpp" line="30"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="191"/>
+        <location filename="../../MainWindow.ui" line="199"/>
         <source>Exit(&amp;E)</source>
         <translation>即出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="200"/>
+        <location filename="../../MainWindow.ui" line="208"/>
         <source>Modify(&amp;M)</source>
         <translation>修改(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="203"/>
-        <location filename="../../MainWindow.ui" line="206"/>
-        <location filename="../../MainWindow.ui" line="209"/>
+        <location filename="../../MainWindow.ui" line="211"/>
+        <location filename="../../MainWindow.ui" line="214"/>
+        <location filename="../../MainWindow.ui" line="217"/>
         <source>Modify tasks</source>
         <translation>修改任務組</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="218"/>
+        <location filename="../../MainWindow.ui" line="226"/>
         <source>Refresh(&amp;F)</source>
         <translation>刷新(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="221"/>
-        <location filename="../../MainWindow.ui" line="224"/>
-        <location filename="../../MainWindow.ui" line="227"/>
+        <location filename="../../MainWindow.ui" line="229"/>
+        <location filename="../../MainWindow.ui" line="232"/>
+        <location filename="../../MainWindow.ui" line="235"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="236"/>
+        <location filename="../../MainWindow.ui" line="244"/>
         <source>Option(&amp;O)</source>
         <translation>選項(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="239"/>
-        <location filename="../../MainWindow.ui" line="242"/>
-        <location filename="../../MainWindow.ui" line="245"/>
+        <location filename="../../MainWindow.ui" line="247"/>
+        <location filename="../../MainWindow.ui" line="250"/>
+        <location filename="../../MainWindow.ui" line="253"/>
         <source>Option</source>
         <translation>選項</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="254"/>
+        <location filename="../../MainWindow.ui" line="262"/>
         <source>Sink(&amp;S)</source>
         <translation>換膚(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="257"/>
-        <location filename="../../MainWindow.ui" line="260"/>
-        <location filename="../../MainWindow.ui" line="263"/>
-        <location filename="../../MainWindow.ui" line="266"/>
+        <location filename="../../MainWindow.ui" line="265"/>
+        <location filename="../../MainWindow.ui" line="268"/>
+        <location filename="../../MainWindow.ui" line="271"/>
+        <location filename="../../MainWindow.ui" line="274"/>
         <source>Sink</source>
         <translation>換膚</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="275"/>
+        <location filename="../../MainWindow.ui" line="283"/>
         <source>Update(&amp;U)</source>
         <translation>更新(&amp;U)</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="292"/>
+        <source>Sticky list(&amp;L)</source>
+        <translation>便簽列表(&amp;L)</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="20"/>
@@ -869,13 +969,13 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="24"/>
-        <location filename="../../MainWindow.cpp" line="97"/>
+        <location filename="../../MainWindow.cpp" line="95"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="26"/>
-        <location filename="../../MainWindow.cpp" line="101"/>
+        <location filename="../../MainWindow.cpp" line="99"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
@@ -885,7 +985,7 @@ Email:kl222@126.com</source>
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="173"/>
+        <location filename="../../MainWindow.cpp" line="171"/>
         <source>Open sink</source>
         <translation>打開皮膚</translation>
     </message>

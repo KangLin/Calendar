@@ -12,7 +12,8 @@ CSticky::CSticky(const CSticky &s)
 {
     m_bWindowHide = s.m_bWindowHide;
     m_Policy = s.m_Policy;
-    m_WindowRect = s.m_WindowRect;
+    m_WindowSize = s.m_WindowSize;
+    m_WindowsPos = s.m_WindowsPos;
     m_bWindowHide = s.m_bWindowHide;
     m_szContent = s.m_szContent;
     m_Time = s.m_Time;
@@ -47,16 +48,19 @@ int CSticky::SetText(const QString &szText)
     return 0;
 }
 
-int CSticky::SetWindowRect(const QRect &rect)
+int CSticky::SetWindows(const QPoint &pos, const QSize &size)
 {
-    m_WindowRect = rect;
+    m_WindowsPos = pos;
+    m_WindowSize = size;
     emit sigUpdate();
     return 0;
 }
 
-QRect CSticky::GetWindowRect()
+int CSticky::GetWindows(QPoint &pos, QSize &size)
 {
-    return m_WindowRect;
+    pos = m_WindowsPos;
+    size = m_WindowSize;
+    return 0;
 }
 
 int CSticky::SetModifyTime()
@@ -100,7 +104,8 @@ QDataStream& operator<<(QDataStream &d, const CSticky &s)
 {
     d << (int)s.m_Policy;
     return d << s.m_bWindowHide
-             << s.m_WindowRect 
+             << s.m_WindowsPos
+             << s.m_WindowSize 
              << s.m_Time
              << s.m_szContent
              << s.m_szText;
@@ -112,11 +117,12 @@ QDataStream& operator>>(QDataStream &d, CSticky &s)
     d >> p;
     s.m_Policy = (CSticky::POLICY)p;
     d >> s.m_bWindowHide
-            >> s.m_WindowRect
+            >> s.m_WindowsPos
+            >> s.m_WindowSize
             >> s.m_Time 
             >> s.m_szContent
             >> s.m_szText;
-    qDebug() << "Rect:" << s.m_WindowRect;
+    qDebug() << s.m_WindowsPos << s.m_WindowSize;
     return d;
 }
 #endif

@@ -9,8 +9,7 @@
 #include <QSpacerItem>
 #include <QBuffer>
 
-CFrmStickyNotes::CFrmStickyNotes(QWidget *parent,
-                                 QSharedPointer<CSticky> sticky) :
+CFrmStickyNotes::CFrmStickyNotes(QWidget *parent) :
     QWidget(parent, 
             Qt::Drawer
             | Qt::CustomizeWindowHint),
@@ -51,8 +50,6 @@ CFrmStickyNotes::CFrmStickyNotes(QWidget *parent,
     layout()->addWidget(&m_ToolBarTop);
     layout()->addWidget(&m_TextEdit);
     layout()->addWidget(&m_ToolBarButton);
-    
-    this->SetSticky(sticky);
 }
 
 CFrmStickyNotes::~CFrmStickyNotes()
@@ -93,14 +90,23 @@ int CFrmStickyNotes::SetSticky(QSharedPointer<CSticky> sticky)
     bool check = connect(m_Sticky.data(), SIGNAL(sigUpdate()),
                          this, SLOT(slotUpdate()));
     Q_ASSERT(check);
-    if(!m_Sticky->GetContent().isEmpty())
+    QSize size;
+    QPoint pos;
+    m_Sticky->GetWindows(pos, size);
+    
+    if(!pos.isNull() && this->pos() != pos)
+        move(pos);
+    if(size.isValid() && this->size() != size)
+        resize(size);
+    
+    if(!m_Sticky->GetContent().isEmpty()
+            && m_Sticky->GetContent() != m_TextEdit.toHtml())
         m_TextEdit.setHtml(m_Sticky->GetContent());
-    if(!m_Sticky->GetWindowRect().isNull())
-        this->setGeometry(m_Sticky->GetWindowRect());
-    m_pComboBox->setCurrentIndex(m_Sticky->GetPolicy());
+    if(m_pComboBox->currentIndex() != m_Sticky->GetPolicy())
+        m_pComboBox->setCurrentIndex(m_Sticky->GetPolicy());
     if(m_Sticky->GetWindowHide() != isHidden())
         setHidden(m_Sticky->GetWindowHide());
-
+    
     return 0;
 }
 
@@ -167,11 +173,6 @@ void CFrmStickyNotes::slotUpdate()
 {
     if(!m_Sticky)
         return;
-    //loop signal
-    if(m_TextEdit.toHtml() != m_Sticky->GetContent())
-        m_TextEdit.setHtml(m_Sticky->GetContent());
-    if(m_Sticky->GetPolicy() != m_pComboBox->currentIndex())
-        slotPolicy(m_Sticky->GetPolicy());
     if(m_Sticky->GetWindowHide() != isHidden())
     {
         if(m_Sticky->GetWindowHide())
@@ -246,7 +247,6 @@ void CFrmStickyNotes::mouseReleaseEvent(QMouseEvent *e)
         m_bMoveable = false;
 }
 
-
 void CFrmStickyNotes::focusInEvent(QFocusEvent *event)
 {
     Q_UNUSED(event);
@@ -259,13 +259,12 @@ void CFrmStickyNotes::focusOutEvent(QFocusEvent *event)
     qDebug() << "CFrmStickyNotes::focusOutEvent";
 }
 
-
 void CFrmStickyNotes::moveEvent(QMoveEvent *event)
 {
     Q_UNUSED(event);
     if(!m_Sticky)
         return;
-    m_Sticky->SetWindowRect(frameGeometry());
+    m_Sticky->SetWindows(this->pos(), this->size());
 }
 
 void CFrmStickyNotes::resizeEvent(QResizeEvent *event)
@@ -273,18 +272,21 @@ void CFrmStickyNotes::resizeEvent(QResizeEvent *event)
     Q_UNUSED(event);
     if(!m_Sticky)
         return;
-    m_Sticky->SetWindowRect(frameGeometry());
+    m_Sticky->SetWindows(pos(), this->size());
 }
 
 void CFrmStickyNotes::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
+    if(!m_Sticky)
+        return;
     m_Sticky->SetWindowHide();
 }
-
 
 void CFrmStickyNotes::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event);
+    if(!m_Sticky)
+        return;
     m_Sticky->SetWindowHide(false);
 }

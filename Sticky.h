@@ -11,7 +11,6 @@ class CSticky : public QObject
     Q_OBJECT
     Q_PROPERTY(QString content READ GetContent WRITE SetContent)
     Q_PROPERTY(QString text READ GetText WRITE SetText)
-    Q_PROPERTY(QRect windowRect READ GetWindowRect WRITE SetWindowRect)
     Q_PROPERTY(QDateTime time READ GetModifyTime) 
     Q_PROPERTY(bool windowHide READ GetWindowHide WRITE SetWindowHide)
 public:
@@ -28,8 +27,8 @@ public:
     QString GetContent();
     int SetText(const QString &szText);
     QString GetText();
-    int SetWindowRect(const QRect &rect);
-    QRect GetWindowRect();
+    int SetWindows(const QPoint &pos, const QSize &size);
+    int GetWindows(QPoint &pos, QSize &size);
     int SetWindowHide(bool bHide = true);
     bool GetWindowHide();
     QDateTime GetModifyTime();
@@ -53,7 +52,8 @@ private:
 private:
     QString m_szContent;
     QString m_szText;
-    QRect m_WindowRect;
+    QPoint m_WindowsPos;
+    QSize m_WindowSize;
     bool m_bWindowHide;
     QDateTime m_Time;
     POLICY m_Policy;

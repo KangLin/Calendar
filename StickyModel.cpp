@@ -3,7 +3,7 @@
 CStickyModel::CStickyModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-    m_bModify = false;
+    SetModify(false);
 }
 
 QVariant CStickyModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -57,7 +57,7 @@ bool CStickyModel::setData(const QModelIndex &index, const QVariant &value, int 
         s->SetContent(value.toString());
         break;
     }
-    m_bModify = true;
+    SetModify(true);
     emit s->sigUpdate();
     //emit dataChanged(index, index);
     return true;
@@ -74,7 +74,7 @@ Qt::ItemFlags CStickyModel::flags(const QModelIndex &index) const
 bool CStickyModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(QModelIndex(), row, row + count - 1);
-    m_bModify = true;
+    SetModify(true);
     QSharedPointer<CSticky> s = m_Stickys.at(row);
     m_Stickys.removeOne(s);
     emit s->sigRemove(s);
@@ -87,6 +87,12 @@ bool CStickyModel::IsModify()
     return m_bModify;
 }
 
+int CStickyModel::SetModify(bool bModify)
+{
+    m_bModify = bModify;
+    return 0;
+}
+
 QSharedPointer<CSticky> CStickyModel::Add()
 {
     QSharedPointer<CSticky> s(new CSticky());    
@@ -94,7 +100,7 @@ QSharedPointer<CSticky> CStickyModel::Add()
         return QSharedPointer<CSticky>();
     m_Stickys.push_front(s);
     insertRow(0, QModelIndex());
-    m_bModify = true;
+    SetModify(true);
     emit dataChanged(index(0), index(0));
     bool check = connect(s.data(), SIGNAL(sigRemove(QSharedPointer<CSticky>)),
                     this, SLOT(slotDelete(QSharedPointer<CSticky>)));
@@ -119,7 +125,7 @@ void CStickyModel::slotDelete(QSharedPointer<CSticky> s)
     int n = m_Stickys.indexOf(s);
     if(n < 0 || n >= m_Stickys.length())
         return;
-    m_bModify = true;
+    SetModify(true);
     m_Stickys.removeOne(s);
     emit dataChanged(index(n), index(n));
     return;
@@ -127,7 +133,7 @@ void CStickyModel::slotDelete(QSharedPointer<CSticky> s)
 
 void CStickyModel::slotModify()
 {
-    m_bModify = true;
+    SetModify(true);
 
     emit dataChanged(index(0),
                      index(m_Stickys.length() - 1));

@@ -13,6 +13,7 @@ public:
     explicit CStickyModel(QObject *parent = nullptr);
 public Q_SLOTS:
     bool IsModify();
+    int SetModify(bool bModify =  true);
     QSharedPointer<CSticky> Add();
     QSharedPointer<CSticky> Get(int index);
 private Q_SLOTS:
