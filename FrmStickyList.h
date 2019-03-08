@@ -2,6 +2,8 @@
 #define FRMSTICKYLIST_H
 
 #include <QWidget>
+#include <QListView>
+#include <QToolBar>
 #include "StickyModel.h"
 #include "FrmStickyNotes.h"
 
@@ -38,6 +40,8 @@ private:
     
     CStickyModel m_Model;
     QList<CFrmStickyNotes*> m_StickyNotes;
+    QListView m_lvTasks;
+    QToolBar m_ToolBar;
 };
 
 #endif // FRMSTICKYLIST_H

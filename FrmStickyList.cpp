@@ -10,14 +10,20 @@
 CFrmStickyList::CFrmStickyList(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmStickyList),
-    m_Model(this)
+    m_Model(this),
+    m_lvTasks(this),
+    m_ToolBar(this)
 {
     ui->setupUi(this);
-    ui->listView->setModel(&m_Model);
-    ui->listView->setContextMenuPolicy(Qt::ActionsContextMenu);
-    ui->listView->addAction(ui->actionNew);
-    ui->listView->addAction(ui->actionRemove);
-    ui->listView->setItemDelegate(new CStickyItemDelegate(ui->listView));
+    this->layout()->addWidget(&m_ToolBar);
+    this->layout()->addWidget(&m_lvTasks);
+    m_ToolBar.addAction(ui->actionNew);
+    m_ToolBar.addAction(ui->actionRemove);
+    m_lvTasks.setModel(&m_Model);
+    m_lvTasks.setContextMenuPolicy(Qt::ActionsContextMenu);
+    m_lvTasks.addAction(ui->actionNew);
+    m_lvTasks.addAction(ui->actionRemove);
+    m_lvTasks.setItemDelegate(new CStickyItemDelegate(&m_lvTasks));
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     QString szFile = set.value("Sticky/File",
@@ -146,7 +152,7 @@ CFrmStickyNotes* CFrmStickyList::NewFrmSticky(QSharedPointer<CSticky> s)
 
 void CFrmStickyList::on_actionRemove_triggered()
 {
-    QModelIndex index = ui->listView->currentIndex();
+    QModelIndex index = m_lvTasks.currentIndex();
     m_Model.removeRow(index.row());
 }
 
