@@ -67,6 +67,11 @@ CMainWindow::CMainWindow(QWidget *parent) :
     }
     
     setCentralWidget(m_pFrmTasksList);
+    
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    if(set.value("Options/Sticky/Show", false).toBool())
+        m_frmStickyList.show();
 }
 
 CMainWindow::~CMainWindow()

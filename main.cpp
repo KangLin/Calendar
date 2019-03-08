@@ -30,12 +30,10 @@ int main(int argc, char *argv[])
 #if defined(Q_OS_ANDROID)
     m.showMaximized();
 #else
-    bool bShow = set.value("MainWindow/Show", false).toBool();
+    bool bShow = set.value("Options/MainWindow/Show", false).toBool();
     if(bShow)
         m.show();
 #endif
 
-//    CFrmStickyList fs;
-//    fs.show();
     return a.exec();
 }

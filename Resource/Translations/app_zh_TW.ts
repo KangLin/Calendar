@@ -114,12 +114,17 @@ Email:kl222@126.com</source>
         <translation>普通</translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="40"/>
+        <location filename="../../DlgOption.ui" line="60"/>
         <source>Enable run from boot</source>
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="60"/>
+        <location filename="../../DlgOption.ui" line="67"/>
+        <source>Show sticky list</source>
+        <translation>顯示便簽列表</translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="47"/>
         <source>Show windows in application start</source>
         <translation>應用啟動時，顯示窗口</translation>
     </message>
@@ -969,13 +974,13 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="24"/>
-        <location filename="../../MainWindow.cpp" line="95"/>
+        <location filename="../../MainWindow.cpp" line="100"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="26"/>
-        <location filename="../../MainWindow.cpp" line="99"/>
+        <location filename="../../MainWindow.cpp" line="104"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
@@ -985,7 +990,7 @@ Email:kl222@126.com</source>
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="171"/>
+        <location filename="../../MainWindow.cpp" line="176"/>
         <source>Open sink</source>
         <translation>打開皮膚</translation>
     </message>
