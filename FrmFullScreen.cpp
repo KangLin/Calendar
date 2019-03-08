@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QTime>
 
 CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
     QWidget(parent,
@@ -34,7 +35,7 @@ CFrmFullScreen::~CFrmFullScreen()
 
 void CFrmFullScreen::slotTimeout()
 {
-    ui->timeEdit->setTime(QTime::currentTime());
+    ui->lbTime->setText(QTime::currentTime().toString("hh:mm:ss"));
 }
 
 void CFrmFullScreen::paintEvent(QPaintEvent *event)
