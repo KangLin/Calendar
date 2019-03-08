@@ -1,4 +1,9 @@
-- v0.,0.2
+- v0.0.3
+  - Modify main window
+  - TasksList and StickyList add toolbar
+  - Library interface
+  
+- v0.0.2
   - Edit tasks
   - Updater
   - Sticky

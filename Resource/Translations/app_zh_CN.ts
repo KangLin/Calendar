@@ -193,7 +193,12 @@ Email:kl222@126.com</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreen.ui" line="127"/>
+        <location filename="../../FrmFullScreen.ui" line="41"/>
+        <source>Time</source>
+        <translation>时间</translation>
+    </message>
+    <message>
+        <location filename="../../FrmFullScreen.ui" line="63"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
@@ -209,31 +214,31 @@ Email:kl222@126.com</source>
         <translation>便签</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.ui" line="40"/>
+        <location filename="../../FrmStickyList.ui" line="36"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.ui" line="43"/>
-        <location filename="../../FrmStickyList.ui" line="46"/>
-        <location filename="../../FrmStickyList.ui" line="49"/>
+        <location filename="../../FrmStickyList.ui" line="39"/>
+        <location filename="../../FrmStickyList.ui" line="42"/>
+        <location filename="../../FrmStickyList.ui" line="45"/>
         <source>New sticky</source>
         <translation>新建便签</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.ui" line="58"/>
+        <location filename="../../FrmStickyList.ui" line="54"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.ui" line="61"/>
-        <location filename="../../FrmStickyList.ui" line="64"/>
-        <location filename="../../FrmStickyList.ui" line="67"/>
+        <location filename="../../FrmStickyList.ui" line="57"/>
+        <location filename="../../FrmStickyList.ui" line="60"/>
+        <location filename="../../FrmStickyList.ui" line="63"/>
         <source>Remove sticky</source>
         <translation>移除便签</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.cpp" line="123"/>
+        <location filename="../../FrmStickyList.cpp" line="132"/>
         <source>Take notes ......</source>
         <translation>记笔记……</translation>
     </message>
@@ -511,58 +516,115 @@ Email:kl222@126.com</source>
 <context>
     <name>CFrmTasksList</name>
     <message>
-        <location filename="../../FrmTasksList.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../FrmTasksList.cpp" line="69"/>
+        <location filename="../../FrmTasksList.cpp" line="95"/>
         <source>Load</source>
         <translation>加载</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="69"/>
+        <location filename="../../FrmTasksList.cpp" line="95"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="79"/>
+        <location filename="../../FrmTasksList.cpp" line="105"/>
         <source>Save as ...</source>
         <translation>另存为 ……</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="92"/>
+        <location filename="../../FrmTasksList.cpp" line="118"/>
         <source>File exist</source>
         <translation>文件已存在</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="93"/>
+        <location filename="../../FrmTasksList.cpp" line="119"/>
         <source>%1 is existed, replace it?</source>
         <translation>%1 已存在,是否替换?</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="125"/>
+        <location filename="../../FrmTasksList.ui" line="14"/>
+        <source>Tasks</source>
+        <translation>任务</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="27"/>
+        <source>Load(&amp;L)</source>
+        <translation>加载(&amp;L)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="30"/>
+        <location filename="../../FrmTasksList.ui" line="33"/>
+        <location filename="../../FrmTasksList.ui" line="36"/>
+        <source>Load tasks</source>
+        <translation>加载任务组</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="45"/>
+        <source>Save as(&amp;S) ......</source>
+        <translation>另存为(&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="48"/>
+        <location filename="../../FrmTasksList.ui" line="51"/>
+        <location filename="../../FrmTasksList.ui" line="54"/>
+        <location filename="../../FrmTasksList.ui" line="57"/>
+        <source>Save tasks as ......</source>
+        <translation>任务组另存为 ……</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="66"/>
+        <source>New(&amp;N)</source>
+        <translation>新建(&amp;N)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="69"/>
+        <location filename="../../FrmTasksList.ui" line="72"/>
+        <location filename="../../FrmTasksList.ui" line="75"/>
+        <location filename="../../FrmTasksList.cpp" line="151"/>
         <source>New tasks</source>
         <translation>新建任务组</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="127"/>
+        <location filename="../../FrmTasksList.ui" line="87"/>
+        <source>Remove(&amp;R)</source>
+        <translation>移除(&amp;R)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="90"/>
+        <location filename="../../FrmTasksList.ui" line="93"/>
+        <location filename="../../FrmTasksList.ui" line="96"/>
+        <source>Remove tasks</source>
+        <translation>移除任务组</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="105"/>
+        <source>Refresh(&amp;F)</source>
+        <translation>刷新(&amp;F)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.ui" line="108"/>
+        <location filename="../../FrmTasksList.ui" line="111"/>
+        <location filename="../../FrmTasksList.ui" line="114"/>
+        <source>Refresh</source>
+        <translation>刷新</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasksList.cpp" line="153"/>
         <source>After 5 minutes, the prompt will show 5 minutes, repeat</source>
         <translation>5分钟后，开始提示，提示5分钟，重复</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="132"/>
+        <location filename="../../FrmTasksList.cpp" line="158"/>
         <source>New task</source>
         <translation>新建任务</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="133"/>
-        <location filename="../../FrmTasksList.cpp" line="137"/>
+        <location filename="../../FrmTasksList.cpp" line="159"/>
+        <location filename="../../FrmTasksList.cpp" line="163"/>
         <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
         <translation>如果此任务不是你需要的，请从下面组合框中选择你需要的任务建立它，并删除此任务。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="136"/>
+        <location filename="../../FrmTasksList.cpp" line="162"/>
         <source>New prompt task</source>
         <translation>新建提示</translation>
     </message>
@@ -813,184 +875,104 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="32"/>
-        <source>File(&amp;F)</source>
-        <translation>文件(&amp;F)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="41"/>
-        <source>Edit(&amp;E)</source>
-        <translation>编辑(&amp;E)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="50"/>
         <source>Help(&amp;H)</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="57"/>
+        <location filename="../../MainWindow.ui" line="39"/>
         <source>Tools(&amp;T)</source>
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="64"/>
-        <source>Sticky(&amp;S)</source>
-        <translation>便签(&amp;S)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="77"/>
-        <source>toolBar</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="103"/>
-        <source>Load(&amp;L)</source>
-        <translation>加载(&amp;L)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="106"/>
-        <location filename="../../MainWindow.ui" line="109"/>
-        <location filename="../../MainWindow.ui" line="112"/>
-        <source>Load tasks</source>
-        <translation>加载任务组</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="121"/>
-        <source>Save as(&amp;S) ......</source>
-        <translation>另存为(&amp;S)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="124"/>
-        <location filename="../../MainWindow.ui" line="127"/>
-        <location filename="../../MainWindow.ui" line="130"/>
-        <location filename="../../MainWindow.ui" line="133"/>
-        <source>Save tasks as ......</source>
-        <translation>任务组另存为 ……</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="142"/>
-        <source>New(&amp;N)</source>
-        <translation>新建(&amp;N)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="145"/>
-        <location filename="../../MainWindow.ui" line="148"/>
-        <location filename="../../MainWindow.ui" line="151"/>
-        <source>New tasks</source>
-        <translation>新建(&amp;N)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="163"/>
-        <source>Remove(&amp;R)</source>
-        <translation>移除(&amp;R)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="166"/>
-        <location filename="../../MainWindow.ui" line="169"/>
-        <location filename="../../MainWindow.ui" line="172"/>
-        <source>Remove tasks</source>
-        <translation>移除任务组</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="181"/>
+        <location filename="../../MainWindow.ui" line="59"/>
         <source>About(&amp;A)</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="184"/>
-        <location filename="../../MainWindow.ui" line="187"/>
-        <location filename="../../MainWindow.ui" line="190"/>
-        <location filename="../../MainWindow.cpp" line="30"/>
+        <location filename="../../MainWindow.ui" line="62"/>
+        <location filename="../../MainWindow.ui" line="65"/>
+        <location filename="../../MainWindow.ui" line="68"/>
+        <location filename="../../MainWindow.cpp" line="31"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="199"/>
+        <location filename="../../MainWindow.ui" line="77"/>
         <source>Exit(&amp;E)</source>
         <translation>即出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="208"/>
-        <source>Modify(&amp;M)</source>
-        <translation>修改(&amp;M)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="211"/>
-        <location filename="../../MainWindow.ui" line="214"/>
-        <location filename="../../MainWindow.ui" line="217"/>
-        <source>Modify tasks</source>
-        <translation>修改任务组</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="226"/>
-        <source>Refresh(&amp;F)</source>
-        <translation>刷新(&amp;F)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="229"/>
-        <location filename="../../MainWindow.ui" line="232"/>
-        <location filename="../../MainWindow.ui" line="235"/>
-        <source>Refresh</source>
-        <translation>刷新</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="244"/>
+        <location filename="../../MainWindow.ui" line="86"/>
         <source>Option(&amp;O)</source>
         <translation>选项(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="247"/>
-        <location filename="../../MainWindow.ui" line="250"/>
-        <location filename="../../MainWindow.ui" line="253"/>
+        <location filename="../../MainWindow.ui" line="89"/>
+        <location filename="../../MainWindow.ui" line="92"/>
+        <location filename="../../MainWindow.ui" line="95"/>
         <source>Option</source>
         <translation>选项</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="262"/>
+        <location filename="../../MainWindow.ui" line="104"/>
         <source>Sink(&amp;S)</source>
         <translation>换肤(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="265"/>
-        <location filename="../../MainWindow.ui" line="268"/>
-        <location filename="../../MainWindow.ui" line="271"/>
-        <location filename="../../MainWindow.ui" line="274"/>
+        <location filename="../../MainWindow.ui" line="107"/>
+        <location filename="../../MainWindow.ui" line="110"/>
+        <location filename="../../MainWindow.ui" line="113"/>
+        <location filename="../../MainWindow.ui" line="116"/>
         <source>Sink</source>
         <translation>换肤</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="283"/>
+        <location filename="../../MainWindow.ui" line="125"/>
         <source>Update(&amp;U)</source>
         <translation>更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="292"/>
+        <location filename="../../MainWindow.ui" line="134"/>
         <source>Sticky list(&amp;L)</source>
         <translation>便签列表(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="20"/>
+        <location filename="../../MainWindow.ui" line="143"/>
+        <source>Tasks list(&amp;A)</source>
+        <translation>任务列表</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="146"/>
+        <location filename="../../MainWindow.ui" line="149"/>
+        <location filename="../../MainWindow.ui" line="152"/>
+        <location filename="../../MainWindow.ui" line="155"/>
+        <source>Tasks list</source>
+        <translation>任务列表</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="21"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="24"/>
-        <location filename="../../MainWindow.cpp" line="100"/>
+        <location filename="../../MainWindow.cpp" line="25"/>
+        <location filename="../../MainWindow.cpp" line="84"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="26"/>
-        <location filename="../../MainWindow.cpp" line="104"/>
+        <location filename="../../MainWindow.cpp" line="27"/>
+        <location filename="../../MainWindow.cpp" line="88"/>
         <source>Show</source>
         <translation>显示</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="34"/>
+        <location filename="../../MainWindow.cpp" line="35"/>
         <source>Enable run from boot</source>
         <translation>允许开户自启动</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="176"/>
+        <location filename="../../MainWindow.cpp" line="160"/>
         <source>Open sink</source>
         <translation>打开皮肤</translation>
     </message>

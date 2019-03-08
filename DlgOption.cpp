@@ -10,8 +10,7 @@ CDlgOption::CDlgOption(QWidget *parent) :
 {
     ui->setupUi(this);
     
-    if(CTool::IsStartRunOnceCurrentUser())
-        ui->cbRunFromBoot->setChecked(true);
+    ui->cbRunFromBoot->setChecked(CTool::IsStartRunOnceCurrentUser());
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     bool bShow = set.value("Options/MainWindow/Show", false).toBool();

@@ -38,8 +38,6 @@
     <property name="title">
      <string>Tools(&amp;T)</string>
     </property>
-    <addaction name="actionTasks_list_A"/>
-    <addaction name="actionSticky_list_L"/>
     <addaction name="separator"/>
     <addaction name="actionOption_O"/>
     <addaction name="actionSink_S"/>
@@ -123,30 +121,6 @@
    </property>
    <property name="text">
     <string>Update(&amp;U)</string>
-   </property>
-  </action>
-  <action name="actionSticky_list_L">
-   <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/icon/Sticky</normaloff>:/icon/Sticky</iconset>
-   </property>
-   <property name="text">
-    <string>Sticky list(&amp;L)</string>
-   </property>
-  </action>
-  <action name="actionTasks_list_A">
-   <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
-   </property>
-   <property name="text">
-    <string>Tasks list(&amp;A)</string>
-   </property>
-   <property name="statusTip">
-    <string>Tasks list(A)</string>
-   </property>
-   <property name="whatsThis">
-    <string>Tasks list(A)</string>
    </property>
   </action>
  </widget>

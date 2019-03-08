@@ -54,13 +54,15 @@ CMainWindow::CMainWindow(QWidget *parent) :
     
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
-    if(set.value("Options/Sticky/Show", false).toBool())
-        m_frmStickyList.show();
+    m_Table.setCurrentIndex(set.value("Options/MainWindow/TableView", 0).toInt());
 }
 
 CMainWindow::~CMainWindow()
 {
     delete ui;
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                  QSettings::IniFormat);
+    set.setValue("Options/MainWindow/TableView", m_Table.currentIndex());
 }
 
 void CMainWindow::slotAbout()

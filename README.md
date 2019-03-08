@@ -41,6 +41,12 @@ Qt does not provide openssl dynamic library for copyright reasons, so you must c
      - If it is 32, you can find the dynamic library of openssl (libeay32.dll, ssleay32.dll) in the Qt installer Tools\QtCreator\bin directory.
      - If it is 64-bit, you will need to download the binary installation package for openssl yourself.
 ------------------------------------------------
+### Use
+- Direct source code. Is a QT project, directly introduces Tasks.pri
+
+         Include(Tasks.pri)
+
+------------------------------------------------
 
 ### Download
 https://github.com/KangLin/Tasks/releases/latest
