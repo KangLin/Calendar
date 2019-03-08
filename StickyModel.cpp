@@ -73,6 +73,8 @@ Qt::ItemFlags CStickyModel::flags(const QModelIndex &index) const
 
 bool CStickyModel::removeRows(int row, int count, const QModelIndex &parent)
 {
+    if(row < 0)
+        return false;
     beginRemoveRows(QModelIndex(), row, row + count - 1);
     SetModify(true);
     QSharedPointer<CSticky> s = m_Stickys.at(row);

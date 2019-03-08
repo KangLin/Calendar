@@ -15,8 +15,6 @@ CDlgOption::CDlgOption(QWidget *parent) :
                   QSettings::IniFormat);
     bool bShow = set.value("Options/MainWindow/Show", false).toBool();
     ui->cbShowMainWindows->setChecked(bShow);
-    bShow = set.value("Options/Sticky/Show", false).toBool();
-    ui->cbStickyList->setChecked(bShow);
 }
 
 CDlgOption::~CDlgOption()
@@ -40,8 +38,4 @@ void CDlgOption::on_buttonBox_accepted()
         set.setValue("Options/MainWindow/Show", true);
     else
         set.setValue("Options/MainWindow/Show", false);
-    if(ui->cbStickyList->checkState() == Qt::Checked)
-        set.setValue("Options/Sticky/Show", true);
-    else
-        set.setValue("Options/Sticky/Show", false);
 }
