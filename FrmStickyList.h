@@ -17,7 +17,7 @@ class CFrmStickyList : public QWidget
     
 public:
     explicit CFrmStickyList(QWidget *parent = nullptr);
-    ~CFrmStickyList();
+    virtual ~CFrmStickyList();
     
 public Q_SLOTS:
     void slotLoad();

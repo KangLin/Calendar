@@ -4,7 +4,10 @@
 #include <QStandardItemModel>
 #include <QWidget>
 #include <QCloseEvent>
+#include <QToolBar>
+#include <QListView>
 #include "TasksList.h"
+#include "FrmTasks.h"
 
 namespace Ui {
 class CFrmTasksList;
@@ -40,7 +43,10 @@ private:
     Ui::CFrmTasksList *ui;
     
     CTasksList m_TasksList;
+    CFrmTasks m_FrmTasks;
     QStandardItemModel m_Model;
+    QListView m_lvTasks;
+    QToolBar m_ToolBar;
 };
 
 #endif // FRMTASKSLIST_H

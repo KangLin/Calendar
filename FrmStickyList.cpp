@@ -24,6 +24,9 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
     m_lvTasks.addAction(ui->actionNew);
     m_lvTasks.addAction(ui->actionRemove);
     m_lvTasks.setItemDelegate(new CStickyItemDelegate(&m_lvTasks));
+    bool check = connect(&m_lvTasks, SIGNAL(doubleClicked(const QModelIndex)),
+                     this, SLOT(on_listView_doubleClicked(const QModelIndex)));
+    Q_ASSERT(check);
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     QString szFile = set.value("Sticky/File",

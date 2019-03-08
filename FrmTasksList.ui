@@ -11,42 +11,112 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Tasks</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QListView" name="lvTasks">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>2</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="CFrmTasks" name="tasks" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>3</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-  </layout>
+  <property name="windowIcon">
+   <iconset resource="Resource/Resource.qrc">
+    <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout"/>
+  <action name="actionLoad_L">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/File</normaloff>:/icon/File</iconset>
+   </property>
+   <property name="text">
+    <string>Load(&amp;L)</string>
+   </property>
+   <property name="toolTip">
+    <string>Load tasks</string>
+   </property>
+   <property name="statusTip">
+    <string>Load tasks</string>
+   </property>
+   <property name="whatsThis">
+    <string>Load tasks</string>
+   </property>
+  </action>
+  <action name="actionSaveAs_S">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
+   </property>
+   <property name="text">
+    <string>Save as(&amp;S) ......</string>
+   </property>
+   <property name="iconText">
+    <string>Save tasks as ......</string>
+   </property>
+   <property name="toolTip">
+    <string>Save tasks as ......</string>
+   </property>
+   <property name="statusTip">
+    <string>Save tasks as ......</string>
+   </property>
+   <property name="whatsThis">
+    <string>Save tasks as ......</string>
+   </property>
+  </action>
+  <action name="actionNew_N">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
+   </property>
+   <property name="text">
+    <string>New(&amp;N)</string>
+   </property>
+   <property name="toolTip">
+    <string>New tasks</string>
+   </property>
+   <property name="statusTip">
+    <string>New tasks</string>
+   </property>
+   <property name="whatsThis">
+    <string>New tasks</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="actionRemove_R">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Delete</normaloff>:/icon/Delete</iconset>
+   </property>
+   <property name="text">
+    <string>Remove(&amp;R)</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove tasks</string>
+   </property>
+   <property name="statusTip">
+    <string>Remove tasks</string>
+   </property>
+   <property name="whatsThis">
+    <string>Remove tasks</string>
+   </property>
+  </action>
+  <action name="actionRefresh_F">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Refresh</normaloff>:/icon/Refresh</iconset>
+   </property>
+   <property name="text">
+    <string>Refresh(&amp;F)</string>
+   </property>
+   <property name="toolTip">
+    <string>Refresh</string>
+   </property>
+   <property name="statusTip">
+    <string>Refresh</string>
+   </property>
+   <property name="whatsThis">
+    <string>Refresh</string>
+   </property>
+  </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>CFrmTasks</class>
-   <extends>QWidget</extends>
-   <header>FrmTasks.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
- <resources/>
+ <resources>
+  <include location="Resource/Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

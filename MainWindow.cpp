@@ -11,7 +11,8 @@
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::CMainWindow)
+    ui(new Ui::CMainWindow),
+    m_Table(this)
 {
     LoadStyle();
     ui->setupUi(this);
@@ -46,27 +47,10 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_TrayIcon.setToolTip(this->windowTitle());
     m_TrayIcon.show();
 
-    m_pFrmTasksList = new CFrmTasksList(this);
-    if(m_pFrmTasksList)
-    {
-        bool check = connect(ui->actionNew_N, SIGNAL(triggered()),
-                             m_pFrmTasksList, SLOT(slotNew()));
-        Q_ASSERT(check);
-        check = connect(ui->actionRemove_R, SIGNAL(triggered()),
-                        m_pFrmTasksList, SLOT(slotRemove()));
-        Q_ASSERT(check);
-        check = connect(ui->actionLoad_L, SIGNAL(triggered()),
-                        m_pFrmTasksList, SLOT(slotLoad()));
-        Q_ASSERT(check);
-        check = connect(ui->actionSaveAs_S, SIGNAL(triggered()),
-                        m_pFrmTasksList, SLOT(slotSaveAs()));
-        Q_ASSERT(check);
-        check = connect(ui->actionRefresh_F, SIGNAL(triggered()),
-                        m_pFrmTasksList, SLOT(slotRefresh()));
-        Q_ASSERT(check);
-    }
-    
-    setCentralWidget(m_pFrmTasksList);
+    m_Table.addTab(&m_FrmTasksList, m_FrmTasksList.windowIcon(), m_FrmTasksList.windowTitle());
+    m_Table.addTab(&m_frmStickyList, m_frmStickyList.windowIcon(), m_frmStickyList.windowTitle());
+    m_Table.setTabPosition(QTabWidget::South);
+    setCentralWidget(&m_Table);
     
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
@@ -77,8 +61,6 @@ CMainWindow::CMainWindow(QWidget *parent) :
 CMainWindow::~CMainWindow()
 {
     delete ui;
-    if(m_pFrmTasksList)
-        delete m_pFrmTasksList;
 }
 
 void CMainWindow::slotAbout()
@@ -196,5 +178,14 @@ void CMainWindow::on_actionUpdate_U_triggered()
 
 void CMainWindow::on_actionSticky_list_L_triggered()
 {
+    this->takeCentralWidget();
+    setCentralWidget(&m_frmStickyList);
     m_frmStickyList.show();
+}
+
+void CMainWindow::on_actionTasks_list_A_triggered()
+{
+    this->takeCentralWidget();
+    setCentralWidget(&m_FrmTasksList);
+    m_FrmTasksList.show();
 }

@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 #include <QCloseEvent>
+#include <QTabWidget>
 #include "TasksList.h"
 #include "FrmTasksList.h"
 #include "FrmStickyList.h"
@@ -36,6 +37,8 @@ private Q_SLOTS:
 
     void on_actionSticky_list_L_triggered();
     
+    void on_actionTasks_list_A_triggered();
+    
 protected:
     virtual void closeEvent(QCloseEvent *e);
     
@@ -50,7 +53,8 @@ private:
     QAction* m_pShow;
     QAction* m_pStartRun;
     
-    CFrmTasksList *m_pFrmTasksList;
+    QTabWidget m_Table;
+    CFrmTasksList m_FrmTasksList;
     CFrmStickyList m_frmStickyList;
 };
 

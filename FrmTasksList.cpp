@@ -23,13 +23,39 @@ CFrmTasksList::~CFrmTasksList()
 int CFrmTasksList::Init()
 {
     int nRet = 0;
-    ui->tasks->hide();
-    ui->lvTasks->setModel(&m_Model);
-
-    bool check = connect(ui->tasks, SIGNAL(Changed()),
+    this->layout()->addWidget(&m_ToolBar);
+    this->layout()->addWidget(&m_lvTasks);
+    this->layout()->addWidget(&m_FrmTasks);
+    
+    m_lvTasks.setModel(&m_Model);
+    m_FrmTasks.hide();
+    bool check = connect(&m_FrmTasks, SIGNAL(Changed()),
                          this, SLOT(slotSaveAs()));
     Q_ASSERT(check);
-    
+    check = connect(&m_lvTasks, SIGNAL(doubleClicked(const QModelIndex)),
+                         this, SLOT(on_lvTasks_clicked(const QModelIndex)));
+    Q_ASSERT(check);
+    m_ToolBar.addAction(ui->actionLoad_L);
+    m_ToolBar.addAction(ui->actionSaveAs_S);
+    m_ToolBar.addSeparator();
+    m_ToolBar.addAction(ui->actionNew_N);
+    m_ToolBar.addAction(ui->actionRemove_R);
+    m_ToolBar.addAction(ui->actionRefresh_F);
+    check = connect(ui->actionNew_N, SIGNAL(triggered()),
+                         this, SLOT(slotNew()));
+    Q_ASSERT(check);
+    check = connect(ui->actionRemove_R, SIGNAL(triggered()),
+                    this, SLOT(slotRemove()));
+    Q_ASSERT(check);
+    check = connect(ui->actionLoad_L, SIGNAL(triggered()),
+                    this, SLOT(slotLoad()));
+    Q_ASSERT(check);
+    check = connect(ui->actionSaveAs_S, SIGNAL(triggered()),
+                    this, SLOT(slotSaveAs()));
+    Q_ASSERT(check);
+    check = connect(ui->actionRefresh_F, SIGNAL(triggered()),
+                    this, SLOT(slotRefresh()));
+    Q_ASSERT(check);
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     QString szFile = set.value("TasksList").toString();
@@ -48,7 +74,7 @@ void CFrmTasksList::slotRefresh()
         title->setToolTip(p->GetContent());
         m_Model.appendRow(title);
     }
-    ui->lvTasks->setCurrentIndex(m_Model.index(0, 0));
+    m_lvTasks.setCurrentIndex(m_Model.index(0, 0));
     //TODO: 
     m_TasksList.Start();
 }
@@ -111,11 +137,11 @@ void CFrmTasksList::on_lvTasks_clicked(const QModelIndex &index)
     QSharedPointer<CTasks> p = m_TasksList.Get(index.row());
     if(nullptr == p)
     {
-        ui->tasks->hide();
+        m_FrmTasks.hide();
         return;
     }
-    ui->tasks->SetTasks(p);
-    ui->tasks->show();
+    m_FrmTasks.SetTasks(p);
+    m_FrmTasks.show();
 }
 
 void CFrmTasksList::slotNew()
@@ -139,15 +165,15 @@ void CFrmTasksList::slotNew()
     QStandardItem *title = new QStandardItem(tasks->GetIcon(), tasks->GetTitle());
     title->setToolTip(tasks->GetContent());
     m_Model.appendRow(title);
-    ui->lvTasks->setCurrentIndex(m_Model.index(m_Model.rowCount() - 1, 0));
-    on_lvTasks_clicked(ui->lvTasks->currentIndex());
+    m_lvTasks.setCurrentIndex(m_Model.index(m_Model.rowCount() - 1, 0));
+    on_lvTasks_clicked(m_lvTasks.currentIndex());
 }
 
 void CFrmTasksList::slotRemove()
 {
-    m_TasksList.Remove(m_TasksList.Get(ui->lvTasks->currentIndex().row()));
-    m_Model.removeRow(ui->lvTasks->currentIndex().row());
-    on_lvTasks_clicked(ui->lvTasks->currentIndex());
+    m_TasksList.Remove(m_TasksList.Get(m_lvTasks.currentIndex().row()));
+    m_Model.removeRow(m_lvTasks.currentIndex().row());
+    on_lvTasks_clicked(m_lvTasks.currentIndex());
 }
 
 void CFrmTasksList::on_lvTasks_indexesMoved(const QModelIndexList &indexes)
@@ -155,8 +181,8 @@ void CFrmTasksList::on_lvTasks_indexesMoved(const QModelIndexList &indexes)
     QSharedPointer<CTasks> p = m_TasksList.Get(indexes.at(0).row());
     if(nullptr == p)
         return;
-    ui->tasks->SetTasks(p);
-    ui->tasks->show();
+    m_FrmTasks.SetTasks(p);
+    m_FrmTasks.show();
 }
 
 void CFrmTasksList::closeEvent(QCloseEvent *event)

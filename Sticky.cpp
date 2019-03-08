@@ -122,7 +122,6 @@ QDataStream& operator>>(QDataStream &d, CSticky &s)
             >> s.m_Time 
             >> s.m_szContent
             >> s.m_szText;
-    qDebug() << s.m_WindowsPos << s.m_WindowSize;
     return d;
 }
 #endif
