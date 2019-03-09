@@ -6,12 +6,13 @@
 #include <QToolBar>
 #include "StickyModel.h"
 #include "FrmStickyNotes.h"
+#include "tasks_export.h"
 
 namespace Ui {
 class CFrmStickyList;
 }
 
-class CFrmStickyList : public QWidget
+class TASKS_EXPORT CFrmStickyList : public QWidget
 {
     Q_OBJECT
     

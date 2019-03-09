@@ -2,8 +2,9 @@
 #define TOOL_H
 
 #include <QString>
+#include "tasks_export.h"
 
-class CTool
+class TASKS_EXPORT CTool
 {
 public:
     CTool();

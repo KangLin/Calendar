@@ -8,12 +8,13 @@
 #include <QListView>
 #include "TasksList.h"
 #include "FrmTasks.h"
+#include "tasks_export.h"
 
 namespace Ui {
 class CFrmTasksList;
 }
 
-class CFrmTasksList : public QWidget
+class TASKS_EXPORT CFrmTasksList : public QWidget
 {
     Q_OBJECT
     

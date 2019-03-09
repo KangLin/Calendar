@@ -24,13 +24,8 @@ CGlobalDir* CGlobalDir::Instance()
 
 QString CGlobalDir::GetDirApplication()
 {
-#ifdef ANDROID
     //LOG_MODEL_DEBUG("CGlobalDir", "GetDirApplication:%s", qApp->applicationDirPath().toStdString().c_str());
     return qApp->applicationDirPath() + QDir::separator() + "..";
-#else
-    //LOG_MODEL_DEBUG("CGlobalDir", "GetDirApplication:%s", qApp->applicationDirPath().toStdString().c_str());
-    return qApp->applicationDirPath();
-#endif
 }
 
 QString CGlobalDir::GetDirConfig()

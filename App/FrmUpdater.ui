@@ -14,7 +14,7 @@
    <string>Updater</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource/Resource.qrc">
+   <iconset resource="../Src/Resource/Resource.qrc">
     <normaloff>:/icon/Download</normaloff>:/icon/Download</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -54,7 +54,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="Resource/Resource.qrc">:/icon/App</pixmap>
+        <pixmap resource="../Src/Resource/Resource.qrc">:/icon/App</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -303,7 +303,8 @@
   </layout>
  </widget>
  <resources>
-  <include location="Resource/Resource.qrc"/>
+  <include location="../Src/Resource/Resource.qrc"/>
+  <include location="../Src/Resource/Resource.qrc"/>
  </resources>
  <connections/>
 </ui>

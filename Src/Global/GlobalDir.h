@@ -2,8 +2,9 @@
 #define CGLOBALDIR_H
 
 #include <QString>
+#include "tasks_export.h"
 
-class CGlobalDir
+class TASKS_EXPORT CGlobalDir
 {
 public:
     CGlobalDir();

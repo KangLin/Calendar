@@ -17,6 +17,7 @@ Abstract:
 #include "ui_DlgAbout.h"
 #include <QFile>
 #include <QDir>
+#include "Global/GlobalDir.h"
 /*
  * Author: KangLin(Email:kl222@126.com)
  */
@@ -55,12 +56,12 @@ int CDlgAbout::AppendFile(QTextEdit* pEdit, const QString &szFile)
 #if defined (Q_OS_ANDROID)
     szFileLocation = ":/file/" + szFile + "_" + QLocale().system().name();
 #else
-    szFileLocation = qApp->applicationDirPath() + QDir::separator()
+    szFileLocation = CGlobalDir::Instance()->GetDirApplication() + QDir::separator()
             + szFile + "_" + QLocale().system().name() + ".md";
     QDir d;
     if(!d.exists(szFileLocation))
-        szFileLocation = qApp->applicationDirPath() + QDir::separator()
-                + szFile + ".md";
+        szFileLocation = CGlobalDir::Instance()->GetDirApplication() 
+                + QDir::separator() + szFile + ".md";
 #endif
     
     QFile readme(szFileLocation);

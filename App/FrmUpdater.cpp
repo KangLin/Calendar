@@ -449,7 +449,8 @@ void CFrmUpdater::slotDownload()
         emit sigFinished();
         return;
     }
-    if("x86" == m_szCurrentArch && "x86_64" == m_Info.szArchitecture)
+    if(!m_szCurrentArch.compare("x86", Qt::CaseInsensitive)
+        && !m_Info.szArchitecture.compare("x86_64", Qt::CaseInsensitive))
     {
         ui->lbState->setText(tr("Architecture is different"));
         emit sigFinished();
@@ -475,7 +476,8 @@ void CFrmUpdater::slotDownload()
         emit sigFinished();
         return;
     }
-    if("x86" == m_szCurrentArch && "x86_64" == m_Info.szArchitecture)
+    if(!m_szCurrentArch.compare("x86", Qt::CaseInsensitive)
+        && !m_Info.szArchitecture.compare("x86_64", Qt::CaseInsensitive))
     {
         ui->lbState->setText(tr("Architecture is different"));
         emit sigFinished();

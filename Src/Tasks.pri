@@ -78,23 +78,6 @@ RESOURCES += \
     Resource/Resource.qrc \
     Resource/sink/dark/style.qrc
 
-isEmpty(PREFIX) {
-    android {
-        PREFIX = /.
-    } else {
-        PREFIX = $$OUT_PWD/install
-    } 
-}
-
 DISTFILES += Resource/sink/* 
 
 include(Resource/Translations/Translations.pri)
-
-TasksList.files = etc/*.xml
-TasksList.path = $$PREFIX/etc/xml
-TasksList.CONFIG += no_check_exist
-
-sink.files = Resource/sink/*
-sink.path = $$PREFIX/Resource
-sink.CONFIG += no_check_exist
-INSTALLS += TasksList sink

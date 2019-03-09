@@ -4,58 +4,13 @@
 #
 #-------------------------------------------------
 
-TARGET = Tasks
-TEMPLATE = app
+TEMPLATE = subdirs
+DESTDIR = $$OUT_PWD/bin
 
-#Get app version use git, please set git path to environment variable PATH
-isEmpty(BUILD_VERSION) {
-    isEmpty(GIT) : GIT=$$(GIT)
-    isEmpty(GIT) : GIT=git
-    isEmpty(GIT_DESCRIBE) {
-        GIT_DESCRIBE = $$system(cd $$system_path($$PWD) && $$GIT describe --tags)
-        isEmpty(BUILD_VERSION) {
-            BUILD_VERSION = $$GIT_DESCRIBE
-        }
-    }
-    isEmpty(BUILD_VERSION) {
-        BUILD_VERSION = $$system(cd $$system_path($$PWD) && $$GIT rev-parse --short HEAD)
-    }
-    
-    isEmpty(BUILD_VERSION){
-        error("Built without git, please add BUILD_VERSION to DEFINES or add git path to environment variable GIT or qmake parameter GIT")
-    }
-}
-message("BUILD_VERSION:$$BUILD_VERSION")
-DEFINES += BUILD_VERSION=\"\\\"$$quote($$BUILD_VERSION)\\\"\"
-
-contains(QMAKE_TARGET.arch, x86_64) {
-    DEFINES += BUILD_ARCH=\"\\\"x86_64\\\"\"
-} else {
-    DEFINES += BUILD_ARCH=\"\\\"x86\\\"\"
-}
-
-DEFINES += BUILD_PLATFORM=\"\\\"$${QMAKE_PLATFORM}\\\"\"
-
-RC_FILE = AppIcon.rc
-
-include(Tasks.pri)
-
-SOURCES += DlgAbout/DlgAbout.cpp \
-    FrmEyeNurse.cpp \
-    main.cpp \ 
-    MainWindow.cpp \
-    FrmUpdater.cpp \
-    DlgOption.cpp
-HEADERS += DlgAbout/DlgAbout.h \
-    FrmEyeNurse.h \
-    MainWindow.h \
-    FrmUpdater.h \
-    DlgOption.h
-FORMS += DlgAbout/DlgAbout.ui \
-    FrmEyeNurse.ui \
-    MainWindow.ui \ 
-    FrmUpdater.ui \
-    DlgOption.ui
+lib.subdir = Src
+App.depends = lib
+CONFIG *= ordered
+SUBDIRS = lib App
 
 other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
               ChangeLog_zh_CN.md  AppIcon.ico
@@ -85,7 +40,8 @@ OTHER_FILES += Install/* \
     appveyor.yml \
     ci/* \
     tag.sh \ 
-    Update/*
+    Update/* \
+    CMakeLists.txt
 
 DISTFILES += \
     LICENSE.md \
@@ -95,3 +51,8 @@ DISTFILES += \
     README.md \ 
     ChangeLog.md \
     ChangeLog_zh_CN.md 
+
+RESOURCES += \
+    Src/Resource/Resource.qrc \
+    App/Resource/Resource.qrc 
+   
