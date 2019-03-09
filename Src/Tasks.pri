@@ -63,7 +63,8 @@ HEADERS += \
     $$PWD/Sticky.h \
     $$PWD/FrmStickyList.h \
     $$PWD/StickyModel.h \
-    $$PWD/StickyItemDelegate.h
+    $$PWD/StickyItemDelegate.h \
+    $$PWD/tasks_export.h
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \
