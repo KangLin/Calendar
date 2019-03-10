@@ -32,7 +32,7 @@ FORMS += DlgAbout/DlgAbout.ui \
     MainWindow.ui \ 
     FrmUpdater.ui \
     DlgOption.ui
-LIBS += "-L$$DESTDIR" -lTasks
+LIBS *= "-L$$DESTDIR" -lTasks
 
 target.path = $$PREFIX/bin
 INSTALLS += target

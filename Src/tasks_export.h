@@ -1,7 +1,7 @@
-#ifndef TASKS_EXPORT
-#define TASKS_EXPORT
+#ifndef TASKS_EXPORT_H
+#define TASKS_EXPORT_H
 
-#if defined (Q_OS_WINDOWS)
+#if defined (Q_OS_WIN)
 	#include "tasks_export_windows.h"
 #endif
 

@@ -28,13 +28,13 @@ add_definitions(-DBUILD_PLATFORM="${BUILD_PLATFORM}")
 #    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 #endif()
 add_executable(${PROJECT_NAME}App ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} AppIcon.rc ${RCC_FILES})
+SET(APP_LIBS ${PROJECT_NAME} ${QT_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}App ${APP_LIBS})
+target_include_directories(${PROJECT_NAME}App PUBLIC "${CMAKE_SOURCE_DIR}/Src" "${CMAKE_BINARY_DIR}")
 if(WIN32)
     set_target_properties(${PROJECT_NAME}App PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 endif()
-SET(APP_LIBS ${PROJECT_NAME} ${QT_LIBRARIES})
-target_link_libraries(${PROJECT_NAME}App ${APP_LIBS})
-target_include_directories(${PROJECT_NAME}App PUBLIC "${CMAKE_SOURCE_DIR}/Src" "${CMAKE_BINARY_DIR}")
 
 # Install target
 INSTALL(TARGETS ${PROJECT_NAME}App
@@ -47,10 +47,11 @@ INSTALL(TARGETS ${PROJECT_NAME}App
 INSTALL(FILES ${OTHER_FILES} DESTINATION ".")
 
 IF(WIN32)
+    SET(RUNTIME_FILE "${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}App${CMAKE_EXECUTABLE_SUFFIX}")
     IF(CMAKE_BUILD_TYPE MATCHES Release AND MINGW)
         #windeployqt 分发时，是根据是否 strip 来判断是否是 DEBUG 版本,而用mingw编译时,qt没有自动 strip
         add_custom_command(TARGET ${PROJECT_NAME}App POST_BUILD
-            COMMAND strip "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}App${CMAKE_EXECUTABLE_SUFFIX}"
+            COMMAND strip "${RUNTIME_FILE}"
             )
     ENDIF()
 
@@ -59,7 +60,7 @@ IF(WIN32)
         COMMAND "${QT_INSTALL_DIR}/bin/windeployqt"
         --compiler-runtime
         --verbose 7
-        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}App${CMAKE_EXECUTABLE_SUFFIX}"
+         "${RUNTIME_FILE}"
         )
     INSTALL(DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/" DESTINATION "${CMAKE_INSTALL_BINDIR}")
     

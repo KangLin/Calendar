@@ -64,7 +64,9 @@ HEADERS += \
     $$PWD/FrmStickyList.h \
     $$PWD/StickyModel.h \
     $$PWD/StickyItemDelegate.h \
-    $$PWD/tasks_export.h
+    $$PWD/tasks_export.h \
+    $$PWD/tasks_export_windows.h \
+    $$PWD/tasks_export_linux
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \
