@@ -208,18 +208,19 @@ Function AutoBoot
 FunctionEnd
 
 Section Uninstall
+  ;SetShellVarContext all
+  RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
+  Delete "$DESKTOP\$(LANG_PRODUCT_NAME).lnk"
+  SetOutPath "$DESKTOP"
+  RMDir /r "$INSTDIR"
+  SetOutPath "$INSTDIR"
+  ;SetShellVarContext current
+  
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   ;DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}"
   DeleteRegValue  ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\RunOnce" "${PRODUCT_NAME}"
   
-  ;SetShellVarContext all
-  RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
-  Delete "$DESKTOP\$(LANG_PRODUCT_NAME).lnk"
-  ;SetOutPath "$SMPROGRAMS"
-  ;SetShellVarContext current
-  RMDir /r "$INSTDIR"
-
   SendMessage ${HWND_BROADCAST} ${WM_WININICHANGE} 0 "STR:Environment"
   SetAutoClose true
 SectionEnd

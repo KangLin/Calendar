@@ -2,6 +2,8 @@
   - Modify main window
   - TasksList and StickyList add toolbar
   - Library interface
+  - Modify project directory
+  - Add cmake manage project
   
 - v0.0.2
   - Edit tasks
