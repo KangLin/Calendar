@@ -76,10 +76,12 @@ case ${BUILD_TARGERT} in
 esac
 
 if [ -n "$GENERATORS" ]; then
-    cmake -G"${GENERATORS}" ${SOURCE_DIR} -DCMAKE_INSTALL_PREFIX=`pwd`/install \
-        -DCMAKE_VERBOSE=ON -DCMAKE_BUILD_TYPE=Release -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
-    cmake --build . --config Release ${RABBIT_MAKE_JOB_PARA}
-    cmake --target install --config Release
+    cmake -G"${GENERATORS}" ${SOURCE_DIR} \
+         -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+         -DCMAKE_VERBOSE=ON \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
+    cmake --build . --target install --config Release ${RABBIT_MAKE_JOB_PARA}
 else
     ${QT_ROOT}/bin/qmake ${SOURCE_DIR}/Tasks.pro "CONFIG+=release"
     $MAKE -f Makefile

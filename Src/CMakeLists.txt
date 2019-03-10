@@ -58,30 +58,15 @@ SET(RCC_FILES
     )
 
 if(WIN32)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+    #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 endif()
 add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} ${RCC_FILES})
-if(WIN32)
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-endif()
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 GENERATE_EXPORT_HEADER(${PROJECT_NAME})
 string(TOLOWER ${PROJECT_NAME} LOWER_PROJECT_NAME)
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${LOWER_PROJECT_NAME}_export.h DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
-
-if (BUILD_SHARED_LIBS)
-	add_definitions(-DBUILD_SHARED_LIBS)
-    if (CMAKE_COMPILER_IS_GNUCXX AND NOT MINGW)
-       # Just setting CMAKE_POSITION_INDEPENDENT_CODE should be enough to set
-       # -fPIC for GCC but sometimes it still doesn't get set, so make sure it
-       # does.
-       add_definitions("-fPIC")
-    endif()
-    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-endif()
 
 # Install target
 INSTALL(TARGETS ${PROJECT_NAME}
@@ -104,13 +89,11 @@ INSTALL(FILES ${HEAD_FILES} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 #    configure_file(TransformCoordinate.pc.in ${CMAKE_BINARY_DIR}/TransformCoordinate.pc @ONLY)
 #    install(FILES ${CMAKE_BINARY_DIR}/TransformCoordinate.pc DESTINATION lib/pkgconfig)
 #endif()
-
 IF(WIN32 AND BUILD_SHARED_LIBS)
-    SET(TARGET_FILE "${CMAKE_BINARY_DIR}/bin/${CMAKE_SHARED_LIBRARY_PREFIX}${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}")
     IF(CMAKE_BUILD_TYPE MATCHES Release AND MINGW)
         #windeployqt 分发时，是根据是否 strip 来判断是否是 DEBUG 版本,而用mingw编译时,qt没有自动 strip
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-            COMMAND strip "${TARGET_FILE}"
+            COMMAND strip "$<TARGET_FILE:${PROJECT_NAME}>"
             )
     ENDIF()
 
@@ -119,8 +102,7 @@ IF(WIN32 AND BUILD_SHARED_LIBS)
         COMMAND "${QT_INSTALL_DIR}/bin/windeployqt"
         --compiler-runtime
         --verbose 7
-        "${TARGET_FILE}"
+        "$<TARGET_FILE:${PROJECT_NAME}>"
         )
-    INSTALL(DIRECTORY "${LIBRARY_OUTPUT_PATH}/" DESTINATION "${CMAKE_INSTALL_BINDIR}")
-    
+    #INSTALL(DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>/" DESTINATION "${CMAKE_INSTALL_BINDIR}")
 ENDIF()
