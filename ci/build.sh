@@ -60,7 +60,6 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
 fi
 mkdir -p build_${BUILD_TARGERT}
 cd build_${BUILD_TARGERT}
-${QT_ROOT}/bin/qmake ${SOURCE_DIR}/Tasks.pro "CONFIG+=release"
 
 case ${BUILD_TARGERT} in
     windows_msvc)
@@ -76,27 +75,34 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-$MAKE -f Makefile
-echo "$MAKE install ...."
-$MAKE install
-
+if [ -n "$GENERATORS" ]; then
+    cmake -G"${GENERATORS}" ${SOURCE_DIR} -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+        -DCMAKE_VERBOSE=ON -DCMAKE_BUILD_TYPE=Release -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
+    cmake --build . --config Release ${RABBIT_MAKE_JOB_PARA}
+    cmake --target install --config Release
+else
+    ${QT_ROOT}/bin/qmake ${SOURCE_DIR}/Tasks.pro "CONFIG+=release"
+    $MAKE -f Makefile
+    echo "$MAKE install ...."
+    $MAKE install
+fi
 if [ "${BUILD_TARGERT}" != "android" ]; then
     #cd ${SOURCE_DIR}
     #cp Install/Install.nsi build_${BUILD_TARGERT}
     #"/C/Program Files (x86)/NSIS/makensis.exe" "build_${BUILD_TARGERT}/Install.nsi"
     
     if [ "${AUTOBUILD_ARCH}" = "x86" ]; then
-        cp /C/OpenSSL-Win32/bin/libeay32.dll install
-        cp /C/OpenSSL-Win32/bin/ssleay32.dll install
-    elif [ "${AUTOBUILD_ARCH}" = x64 ]; then
-        cp /C/OpenSSL-Win64/bin/libeay32.dll install
-        cp /C/OpenSSL-Win64/bin/ssleay32.dll install
+        cp /C/OpenSSL-Win32/bin/libeay32.dll install/bin
+        cp /C/OpenSSL-Win32/bin/ssleay32.dll install/bin
+    elif [ "${AUTOBUILD_ARCH}" = "x64" ]; then
+        cp /C/OpenSSL-Win64/bin/libeay32.dll install/bin
+        cp /C/OpenSSL-Win64/bin/ssleay32.dll install/bin
     fi
     
     "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
     MD5=`md5sum Tasks-Setup-*.exe|awk '{print $1}'`
     echo "MD5:${MD5}"
-    install/Tasks.exe -f "`pwd`/update_windows.xml" --md5 ${MD5}
+    install/bin/TasksApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5}
     
     cat update_windows.xml
 fi
