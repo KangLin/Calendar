@@ -216,7 +216,7 @@ Section Uninstall
   ;SetShellVarContext all
   RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
   Delete "$DESKTOP\$(LANG_PRODUCT_NAME).lnk"
-  SetOutPath "$SMPROGRAMS"
+  ;SetOutPath "$SMPROGRAMS"
   ;SetShellVarContext current
   RMDir /r "$INSTDIR"
 
