@@ -18,9 +18,11 @@ int main(int argc, char *argv[])
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     
-    QTranslator t;
-    t.load(":/Translations/app_" + QLocale::system().name() + ".qm");
-    a.installTranslator(&t);
+    QTranslator tApp, tTasks;
+    tApp.load(":/Translations/TasksApp_" + QLocale::system().name() + ".qm");
+    a.installTranslator(&tApp);
+    tTasks.load(":/Translations/Tasks_" + QLocale::system().name() + ".qm");
+    a.installTranslator(&tTasks);
     set.setValue("Language", QLocale::system().name());
 
     CFrmUpdater u;

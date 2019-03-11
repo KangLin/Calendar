@@ -1,6 +1,8 @@
 SET(TS_FILES
-    Src/Resource/Translations/app_zh_CN.ts
-    Src/Resource/Translations/app_zh_TW.ts
+    Src/Resource/Translations/Tasks_zh_CN.ts
+    Src/Resource/Translations/Tasks_zh_TW.ts
+    App/Resource/Translations/TasksApp_zh_CN.ts
+    App/Resource/Translations/TasksApp_zh_TW.ts
     )
 
 OPTION(OPTION_TRANSLATIONS "Refresh translations on compile" ON)

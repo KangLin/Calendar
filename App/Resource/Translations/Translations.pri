@@ -4,5 +4,5 @@ CONFIG *= lrelease embed_translations
 QM_FILES_RESOURCE_PREFIX = Translations
 QM_FILES_INSTALL_PATH = $$OUT_PWD/Translations
 TRANSLATIONS = \
-    $$PWD/Tasks_zh_CN.ts \
-    $$PWD/Tasks_zh_TW.ts 
+    $$PWD/TasksApp_zh_CN.ts \
+    $$PWD/TasksApp_zh_TW.ts 

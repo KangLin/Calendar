@@ -13,13 +13,14 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network multimedia
 
 RC_FILE = AppIcon.rc
 include(../pri/Common.pri)
+include(Resource/Translations/Translations.pri)
 
 #VERSION=$$BUILD_VERSION
 INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src
 DESTDIR = $$OUT_PWD/../bin
 DEPENDPATH = $$DESTDIR
 SOURCES += DlgAbout/DlgAbout.cpp \
-    main.cpp \ 
+    main.cpp \
     MainWindow.cpp \
     FrmUpdater.cpp \
     DlgOption.cpp
