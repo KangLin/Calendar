@@ -491,7 +491,10 @@ void CFrmUpdater::slotDownload()
         if(IsDownLoad())
             emit sigDownloadFinished();
         else
+        {
+            ui->lbState->setText(tr("Download ......"));
             DownloadFile(m_Info.szUrl);
+        }
     }
     else
     {
