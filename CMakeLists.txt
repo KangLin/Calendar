@@ -89,33 +89,19 @@ include(CheckFunctionExists)
 
 #check_function_exists("fabs" HAVE_FABS)
 
+set(BUILD_PLATFORM "${CMAKE_SYSTEM_NAME}")
+
 # ----------------------------------------------------------------------------
 # Detect compiler and target platform architecture
 # ----------------------------------------------------------------------------
-if(MSVC64 OR MINGW64)
-  set(BUILD_ARCH x86_64)
-elseif(MINGW OR (MSVC AND NOT CMAKE_CROSSCOMPILING))
-  set(BUILD_ARCH x86)
-elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "amd64.*|x86_64.*|AMD64.*")
-  set(X86_64 1)
-elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "i686.*|i386.*|x86.*|amd64.*|AMD64.*")
-  set(BUILD_ARCH x86)
-elseif (CMAKE_SYSTEM_PROCESSOR MATCHES "arm.*|ARM.*")
-  set(BUILD_ARCH arm)
-elseif (CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64.*|AARCH64.*")
-  set(BUILD_ARCH arm64)
-endif()
-
-set(BUILD_PLATFORM "${CMAKE_SYSTEM_NAME}")
-
-# Add these standard paths to the search paths for FIND_LIBRARY
-# to find libraries from these locations first
-if(UNIX AND NOT ANDROID)
+if(NOT ANDROID)
     if(X86_64 OR CMAKE_SIZEOF_VOID_P EQUAL 8)
         set(BUILD_ARCH x86_64)
     elseif(X86 OR CMAKE_SIZEOF_VOID_P EQUAL 4)
         set(BUILD_ARCH x86)
     endif()
+else()
+    set(BUILD_ARCH ${CMAKE_ANDROID_ARCH})
 endif()
 
 add_subdirectory(Src)

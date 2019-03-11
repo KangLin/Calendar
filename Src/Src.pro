@@ -41,3 +41,5 @@ win32 : equals(QMAKE_HOST.os, Windows){
                     "$${INSTALL_TARGET}"
     INSTALLS += Deployment_qtlib
 }
+
+OTHER_FILES += CMakeLists.txt
