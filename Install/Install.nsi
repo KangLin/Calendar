@@ -73,9 +73,7 @@ LangString LANG_DIRECTORY_PERMISSION ${LANG_SIMPCHINESE} "无目录访问权限"
 Name "$(LANG_PRODUCT_NAME)-${PRODUCT_VERSION}"
 Caption "$(LANG_PRODUCT_NAME)-${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}-Setup-${PRODUCT_VERSION}.exe"
-;InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDir "$LOCALAPPDATA\${PRODUCT_NAME}"
-;InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 InstallDirRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" ""
 
 ShowInstDetails show
@@ -158,25 +156,25 @@ Section "${PRODUCT_NAME}" SEC01
   SetOverwrite ifnewer
   File /r "install\*"
   ;SetShellVarContext all
-  CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\uninst.exe"
-  CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
+  
   ;SetShellVarContext current
   call InstallRuntime
 SectionEnd
 
 Section -AdditionalIcons
-  WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
-  ;SetShellVarContext all
+  CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\uninst.exe"
+
+  WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
-  ;SetShellVarContext current
+    
+  CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
 SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  ;WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
+
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "Path" "$INSTDIR\"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
@@ -192,28 +190,27 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC01} "$(LANG_PRODUCT_NAME)"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
+Function AutoBoot
+    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\RunOnce" "${PRODUCT_NAME}" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
+FunctionEnd
+
 Function un.onUninstSuccess
-  HideWindow
+  ;HideWindow
   MessageBox MB_ICONINFORMATION|MB_OK "$(LANG_UNINSTALL_CONFIRM)"
 FunctionEnd
 
 Function un.onInit
-!insertmacro MUI_UNGETLANGUAGE
+  !insertmacro MUI_UNGETLANGUAGE
   MessageBox MB_ICONQUESTION|MB_YESNO|MB_DEFBUTTON2 "$(LANG_REMOVE_COMPONENT)" IDYES +2
   Abort
-FunctionEnd
-
-Function AutoBoot
-    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\RunOnce" "${PRODUCT_NAME}" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
 FunctionEnd
 
 Section Uninstall
   ;SetShellVarContext all
   RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
+  SetOutPath "$SMPROGRAMS"
   Delete "$DESKTOP\$(LANG_PRODUCT_NAME).lnk"
-  SetOutPath "$DESKTOP"
-  RMDir /r "$INSTDIR"
-  SetOutPath "$INSTDIR"
+  RMDIR /r "$INSTDIR"
   ;SetShellVarContext current
   
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
@@ -221,6 +218,6 @@ Section Uninstall
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}"
   DeleteRegValue  ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\RunOnce" "${PRODUCT_NAME}"
   
-  SendMessage ${HWND_BROADCAST} ${WM_WININICHANGE} 0 "STR:Environment"
-  SetAutoClose true
+  ;SendMessage ${HWND_BROADCAST} ${WM_WININICHANGE} 0 "STR:Environment"
+  ;SetAutoClose true
 SectionEnd

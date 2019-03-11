@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <UPDATE>
-    <VERSION>v0.0.2-19-g1fba365</VERSION>
-    <TIME>2019-03-11 01:37:02</TIME>
-    <INFO>Tasks v0.0.2-18-g1fba365</INFO>
-    <FORCE>0</FORCE>
+    <VERSION>v0.0.2-21-ge72490a</VERSION>
+    <TIME>2019-03-11 07:18:03</TIME>
+    <INFO>Tasks v0.0.2-20-ge72490a</INFO>
+    <FORCE>1</FORCE>
     <SYSTEM>Windows</SYSTEM>
     <PLATFORM>win32</PLATFORM>
     <ARCHITECTURE>x86</ARCHITECTURE>
-    <MD5SUM>58f647e9969039d153e2a1d2ec803661</MD5SUM>
-    <URL>https://ci.appveyor.com/api/buildjobs/sobg2lo2xpst7051/artifacts/build_windows_msvc%2FTasks-Setup-v0.0.2-18-g1fba365.exe</URL>
+    <MD5SUM>c5b6f065320be9b521a7a2a5b85c6ef5</MD5SUM>
+    <URL>https://ci.appveyor.com/api/buildjobs/m0nxh67gnwo02591/artifacts/build_windows_msvc%2FTasks-Setup-v0.0.2-20-ge72490a.exe</URL>
     <MIN_UPDATE_VERSION>v0.0.1</MIN_UPDATE_VERSION>
 </UPDATE>
