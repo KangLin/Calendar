@@ -35,4 +35,9 @@
         <file alias="Point">image/red_point.png</file>
         <file alias="Close">image/close.png</file>
     </qresource>
+    <qresource prefix="/sound">
+        <file alias="Break">Sounds/break.mid</file>
+        <file alias="BreakPre">Sounds/breakpre.mid</file>
+        <file alias="Unlock">Sounds/unlock.mid</file>
+    </qresource>
 </RCC>

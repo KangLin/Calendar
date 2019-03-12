@@ -198,10 +198,20 @@ int CTask::SetStartSound(const QString &szSound)
     return 0;
 }
 
+QString CTask::GetStartSound()
+{
+    return m_szStartSound;
+}
+
 int CTask::SetRunSound(const QString &szSound)
 {
     m_szRunSound = szSound;
     return 0;
+}
+
+QString CTask::GetRunSound()
+{
+    return m_szRunSound;
 }
 
 int CTask::SetSound(const QString &szStartSound, const QString &szRunSound)
