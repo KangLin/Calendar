@@ -10,7 +10,7 @@ CDlgOption::CDlgOption(QWidget *parent) :
 {
     ui->setupUi(this);
     
-    ui->cbRunFromBoot->setChecked(CTool::IsStartRunOnceCurrentUser());
+    ui->cbRunFromBoot->setChecked(CTool::IsStartRunCurrentUser());
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     bool bShow = set.value("Options/MainWindow/Show", false).toBool();
@@ -26,11 +26,11 @@ void CDlgOption::on_buttonBox_accepted()
 {
     if(ui->cbRunFromBoot->checkState() == Qt::Checked)
     {
-        CTool::InstallStartRunOnceCurrentUser();
+        CTool::InstallStartRunCurrentUser();
     }
     else
     {
-        CTool::RemoveStartRunOnceCurrentUser();
+        CTool::RemoveStartRunCurrentUser();
     }
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);

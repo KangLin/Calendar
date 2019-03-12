@@ -35,7 +35,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_pStartRun = m_TrayIconMenu.addAction(tr("Enable run from boot"),
                                            this, SLOT(slotStartRun(bool)));
     m_pStartRun->setCheckable(true);
-    m_pStartRun->setChecked(CTool::IsStartRunOnceCurrentUser());
+    m_pStartRun->setChecked(CTool::IsStartRunCurrentUser());
     
     bool check = connect(&m_TrayIcon,
                     SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -93,11 +93,11 @@ void CMainWindow::slotStartRun(bool checked)
 {
     if(checked)
     {
-        CTool::InstallStartRunOnceCurrentUser();
+        CTool::InstallStartRunCurrentUser();
     }
     else
     {
-        CTool::RemoveStartRunOnceCurrentUser();
+        CTool::RemoveStartRunCurrentUser();
     }
 }
 
