@@ -21,7 +21,7 @@ public:
     QString GetDirData();
     QString GetDirImage();
     
-    QString GetDirTranslate();
+    QString GetDirTranslations();
 
     QString GetApplicationConfigureFile();
     

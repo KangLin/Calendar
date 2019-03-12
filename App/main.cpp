@@ -17,11 +17,17 @@ int main(int argc, char *argv[])
 
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
+    QString szPre;
+#if defined(Q_OS_ANDROID)
+    szPre = ":/Translations";
+#else
+    szPre = CGlobalDir::Instance()->GetDirTranslations();
+#endif
     
     QTranslator tApp, tTasks;
-    tApp.load(":/Translations/TasksApp_" + QLocale::system().name() + ".qm");
+    tApp.load(szPre + "/TasksApp_" + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
-    tTasks.load(":/Translations/Tasks_" + QLocale::system().name() + ".qm");
+    tTasks.load(szPre + "/Tasks_" + QLocale::system().name() + ".qm");
     a.installTranslator(&tTasks);
     set.setValue("Language", QLocale::system().name());
 

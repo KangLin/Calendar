@@ -88,7 +88,7 @@ QString CGlobalDir::GetDirImage()
     return szPath;
 }
 
-QString CGlobalDir::GetDirTranslate()
+QString CGlobalDir::GetDirTranslations()
 {
 #if  defined(Q_OS_ANDROID)
     //TODO:android下应该在安装包中装好语言  

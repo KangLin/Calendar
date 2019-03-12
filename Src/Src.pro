@@ -8,9 +8,8 @@ DEFINES += Tasks_EXPORTS
 
 INCLUDEPATH+=$$PWD
 
-include(Tasks.pri)
-
 include(../pri/Common.pri)
+include(Tasks.pri)
 
 #VERSION=1.0.0
 #RC_FILE = Tasks.rc
