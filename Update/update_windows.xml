@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <UPDATE>
     <VERSION>v0.0.3</VERSION>
-    <TIME>2019-03-13 07:14:11</TIME>
+    <TIME>2019-03-13 08:19:02</TIME>
     <INFO>Tasks v0.0.3</INFO>
     <FORCE>0</FORCE>
     <SYSTEM>Windows</SYSTEM>
-    <PLATFORM>Windows</PLATFORM>
+    <PLATFORM>win32</PLATFORM>
     <ARCHITECTURE>x86</ARCHITECTURE>
-    <MD5SUM>f95ab3c1e0ecfa3df5ffa16cd00f4153</MD5SUM>
+    <MD5SUM>a0140e340e102d11ed0375985ac7fa6d</MD5SUM>
     <URL>https://github.com/KangLin/Tasks/releases/download/v0.0.3/Tasks-Setup-v0.0.3.exe</URL>
     <MIN_UPDATE_VERSION>v0.0.1</MIN_UPDATE_VERSION>
 </UPDATE>
