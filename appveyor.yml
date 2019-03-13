@@ -1,11 +1,11 @@
 #TODO: Change version
-version: 'v0.0.2.{build}'
+version: 'v0.0.2-25-gdf5aa16.{build}'
 
 environment:
   matrix: 
   ##### msvc 2013 ########
   - BUILD_TARGERT: windows_msvc
-    #GENERATORS: "Visual Studio 12 2013"
+    GENERATORS: "Visual Studio 12 2013"
     TOOLCHAIN_VERSION: 12
     QT_ROOT: C:\Qt\5.6\msvc2013
     AUTOBUILD_ARCH: x86
@@ -30,7 +30,7 @@ environment:
     AUTOBUILD_ARCH: x64
   
   - BUILD_TARGERT: windows_msvc
-    GENERATORS: "Visual Studio 14 2015"
+    #GENERATORS: "Visual Studio 14 2015"
     TOOLCHAIN_VERSION: 14
     QT_ROOT: C:\Qt\5.6\msvc2015
     AUTOBUILD_ARCH: x86
