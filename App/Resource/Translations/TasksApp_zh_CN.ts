@@ -76,7 +76,7 @@
     <message>
         <location filename="../../DlgAbout/DlgAbout.cpp" line="33"/>
         <source> Arch:</source>
-        <translation>架构：</translation>
+        <translation> 架构：</translation>
     </message>
     <message>
         <location filename="../../DlgAbout/DlgAbout.cpp" line="34"/>
