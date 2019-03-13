@@ -25,7 +25,7 @@
                 <interval value="300000"/>
                 <promptInterval value="1000"/>
                 <icon value=""/>
-                <startSound value=":/sound/BreakPre"/>
+                <startSound value=":/sound/Start"/>
             </class>
             <class name="CTaskLockScreen">
                 <objectName value="TaskLockScreen"/>

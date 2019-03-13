@@ -36,8 +36,7 @@
         <file alias="Close">image/close.png</file>
     </qresource>
     <qresource prefix="/sound">
-        <file alias="Break">Sounds/break.mid</file>
-        <file alias="BreakPre">Sounds/breakpre.mid</file>
-        <file alias="Unlock">Sounds/unlock.mid</file>
+        <file alias="Start">Sounds/Alarm05.wav</file>
+        <file alias="Unlock">Sounds/Alarm08.wav</file>
     </qresource>
 </RCC>

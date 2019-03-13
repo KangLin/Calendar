@@ -16,8 +16,10 @@ set(SOURCE_UI_FILES
     DlgOption.ui)
 SET(RCC_FILES
     ${CMAKE_SOURCE_DIR}/Src/Resource/Resource.qrc
-    ${CMAKE_BINARY_DIR}/translations.qrc
     )
+if(ANDROID)
+    SET(RCC_FILES ${RCC_FILES} ${CMAKE_BINARY_DIR}/translations.qrc)
+endif()
 set(OTHER_FILES AppIcon.ico)
 
 add_definitions(-DBUILD_VERSION="${BUILD_VERSION}")

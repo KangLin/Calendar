@@ -35,7 +35,8 @@ OTHER_FILES += Install/* \
     ci/* \
     tag.sh \ 
     Update/* \
-    CMakeLists.txt
+    CMakeLists.txt \
+    etc/*
 
 DISTFILES += \
     LICENSE.md \

@@ -25,6 +25,7 @@
                 <interval value="300000"/>
                 <promptInterval value="1000"/>
                 <icon value=""/>
+                <startSound value=":/sound/Start"/>
             </class>
             <class name="CTaskLockScreen">
                 <objectName value="TaskLockScreen"/>
@@ -34,6 +35,7 @@
                 <interval value="900000"/>
                 <promptInterval value="1000"/>
                 <icon value=""/>
+                <runSound value=":/sound/Unlock"/>
             </class>
         </class>
     </class>
