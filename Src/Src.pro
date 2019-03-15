@@ -8,6 +8,9 @@ DEFINES += Tasks_EXPORTS
 
 INCLUDEPATH+=$$PWD
 
+#Support windows xp
+QMAKE_LFLAGS *= /SUBSYSTEM:WINDOWS",5.01" 
+
 include(../pri/Common.pri)
 include(Tasks.pri)
 

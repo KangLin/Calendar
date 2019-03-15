@@ -11,6 +11,9 @@ QT += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network multimedia
 
+#Support windows xp
+QMAKE_LFLAGS *= /SUBSYSTEM:WINDOWS",5.01" 
+
 RC_FILE = AppIcon.rc
 include(../pri/Common.pri)
 include(Resource/Translations/Translations.pri)
