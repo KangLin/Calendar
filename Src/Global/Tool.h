@@ -50,6 +50,9 @@ public:
     static bool IsStartRun(const QString &szReg,
                            const QString &szName = QString());
 
+    static int ScreenPower(bool bOff);
+    static int ScreenSaver(bool bSaver);
+    
 private:
     static int SetRegister(const QString &reg, const QString &name, const QString &path);
     static int RemoveRegister(const QString &reg, const QString &name);

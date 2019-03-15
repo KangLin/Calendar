@@ -1,6 +1,7 @@
 #include "TaskLockScreen.h"
 #include <QDebug>
 #include <QCoreApplication>
+#include "Global/Tool.h"
 
 #if defined(Q_OS_WIN)
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
@@ -106,11 +107,8 @@ int CTaskLockScreen::onRun()
     //https://www.x.org/releases/X11R7.7/doc/libX11/XKB/xkblib.html#Core_X_Protocol_Support_for_Keyboards
 #endif
 
-    //TODO: Add sound
-    
     //如果是屏保，则结束
-    QKeyEvent enter(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
-    qApp->sendEvent(this, &enter);
+    CTool::ScreenPower(false);
     
     if(m_FullScreen)
     {

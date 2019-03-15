@@ -1,6 +1,9 @@
 #include "Tool.h"
 #include <QSettings>
 #include <QApplication>
+#if defined(Q_OS_WIN)
+    #include <Windows.h>
+#endif
 
 const QString gCurrentUserRun = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
 const QString gCurrentUserRunOnce = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce";
@@ -187,3 +190,33 @@ bool CTool::IsRegister(const QString &reg, const QString &name)
     QString val = r.value(name).toString();
     return !val.isEmpty();
 }
+
+int CTool::ScreenPower(bool bOff)
+{
+#if defined(Q_OS_WIN)
+    if(bOff)
+        SendMessage(FindWindow(0, 0), WM_SYSCOMMAND, SC_MONITORPOWER, 2);
+    else 
+        SendMessage(FindWindow(0, 0), WM_SYSCOMMAND, SC_MONITORPOWER, -1);
+#endif
+    return 0;
+}
+
+int CTool::ScreenSaver(bool bSaver)
+{
+#if defined(Q_OS_WIN)
+    ::SystemParametersInfo( SPI_SETSCREENSAVEACTIVE, bSaver, 0, 0 );
+#endif
+    return 0;
+}
+
+/*
+取消电源管理，避免睡眠、待机：
+
+::SetThreadExecutionState( ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED );
+
+ 恢复电源管理：
+
+::SetThreadExecutionState( ES_CONTINUOUS );
+
+*/ 
