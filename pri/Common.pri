@@ -3,13 +3,13 @@ isEmpty(BUILD_VERSION) {
     isEmpty(GIT) : GIT=$$(GIT)
     isEmpty(GIT) : GIT=git
     isEmpty(GIT_DESCRIBE) {
-        GIT_DESCRIBE = $$system(cd $$system_path($$PWD) && $$GIT describe --tags)
+        GIT_DESCRIBE = $$system(cd $$system_path($$_PRO_FILE_PWD_) && $$GIT describe --tags)
         isEmpty(BUILD_VERSION) {
             BUILD_VERSION = $$GIT_DESCRIBE
         }
     }
     isEmpty(BUILD_VERSION) {
-        BUILD_VERSION = $$system(cd $$system_path($$PWD) && $$GIT rev-parse --short HEAD)
+        BUILD_VERSION = $$system(cd $$system_path($$_PRO_FILE_PWD_) && $$GIT rev-parse --short HEAD)
     }
     
     isEmpty(BUILD_VERSION){
