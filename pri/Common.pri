@@ -37,3 +37,7 @@ isEmpty(PREFIX) {
         PREFIX = $$OUT_PWD/../install
     } 
 }
+
+#Support windows xp
+msvc : QMAKE_LFLAGS *= /SUBSYSTEM:WINDOWS",5.01" 
+mingw : DEFINES += "_WIN32_WINNT=0x0501" 
