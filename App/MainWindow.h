@@ -20,7 +20,7 @@ class CMainWindow : public QMainWindow
     
 public:
     explicit CMainWindow(QWidget *parent = nullptr);
-    ~CMainWindow();
+    virtual ~CMainWindow() override;
     
 private Q_SLOTS:
     void slotExit();
@@ -36,11 +36,10 @@ private Q_SLOTS:
     void on_actionUpdate_U_triggered();
 
     void on_actionSticky_list_L_triggered();
-    
     void on_actionTasks_list_A_triggered();
     
 protected:
-    virtual void closeEvent(QCloseEvent *e);
+    virtual void closeEvent(QCloseEvent *e) override;
     
 private:
     int LoadStyle();
@@ -56,6 +55,9 @@ private:
     QTabWidget m_Table;
     CFrmTasksList m_FrmTasksList;
     CFrmStickyList m_frmStickyList;
+
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
 };
 
 #endif // MAINWINDOW_H

@@ -8,6 +8,9 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <DlgOption.h>
+#include <QScrollArea>
+#include <QSize>
+#include <QScrollBar>
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -46,11 +49,21 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_TrayIcon.setIcon(this->windowIcon());
     m_TrayIcon.setToolTip(this->windowTitle());
     m_TrayIcon.show();
-
+    
     m_Table.addTab(&m_FrmTasksList, m_FrmTasksList.windowIcon(), m_FrmTasksList.windowTitle());
     m_Table.addTab(&m_frmStickyList, m_frmStickyList.windowIcon(), m_frmStickyList.windowTitle());
     m_Table.setTabPosition(QTabWidget::South);
+    
+#if defined (Q_OS_ANDROID)
+    m_Table.setGeometry(this->geometry());
+    QScrollArea *pScrollArea = new QScrollArea(this);
+    pScrollArea->setGeometry(this->geometry());
+    pScrollArea->setWidget(&m_Table);
+    pScrollArea->show();
+    setCentralWidget(pScrollArea);
+#else
     setCentralWidget(&m_Table);
+#endif
     
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
@@ -190,4 +203,27 @@ void CMainWindow::on_actionTasks_list_A_triggered()
     this->takeCentralWidget();
     setCentralWidget(&m_FrmTasksList);
     m_FrmTasksList.show();
+}
+
+void CMainWindow::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event);
+#if defined (Q_OS_ANDROID)
+    QScrollArea *pScrollArea = dynamic_cast<QScrollArea *>(centralWidget());
+    pScrollArea->resize(event->size());
+    QSize s = m_Table.size();
+    int width = pScrollArea->width();
+    int height = pScrollArea->height();
+    if(!pScrollArea->verticalScrollBar()->isHidden())
+        width -= pScrollArea->verticalScrollBar()->frameGeometry().width();
+    if(!pScrollArea->horizontalScrollBar()->isHidden())
+        height -= pScrollArea->horizontalScrollBar()->frameGeometry().height();
+    
+    if(s.width() < width)
+        s.setWidth(width);
+    if(s.height() < height)
+        s.setHeight(height);
+    if(s != m_Table.size())
+        m_Table.resize(s);
+#endif
 }
