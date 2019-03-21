@@ -1,3 +1,7 @@
+- v0.0.4
+  - Add screen power
+  - Use QScrollArea in Android
+
 - v0.0.3
   - Modify main window
   - TasksList and StickyList add toolbar
