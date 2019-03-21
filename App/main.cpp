@@ -18,7 +18,8 @@ int main(int argc, char *argv[])
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     QString szPre;
-#if defined(Q_OS_ANDROID)
+   
+#if defined(Q_OS_ANDROID) || _DEBUG
     szPre = ":/Translations";
 #else
     szPre = CGlobalDir::Instance()->GetDirTranslations();

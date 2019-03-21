@@ -27,7 +27,7 @@ contains(QMAKE_TARGET.arch, x86_64) {
 } else {
     DEFINES += BUILD_ARCH=\"\\\"x86\\\"\"
 }
-
+CONFIG(debug, debug|release) : DEFINES += _DEBUG
 DEFINES += BUILD_PLATFORM=\"\\\"$${QMAKE_PLATFORM}\\\"\"
 
 isEmpty(PREFIX) {
