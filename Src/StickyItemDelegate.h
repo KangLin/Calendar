@@ -9,11 +9,12 @@ class CStickyItemDelegate : public QStyledItemDelegate
 public:
     explicit CStickyItemDelegate(QObject *parent = nullptr);
 
-    QWidget *createEditor(QWidget *parent,
-                          const QStyleOptionViewItem &option,
-                          const QModelIndex &index) const;
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;   
+//    virtual QWidget *createEditor(QWidget *parent,
+//                          const QStyleOptionViewItem &option,
+//                          const QModelIndex &index) const override;
+//    virtual void setEditorData(QWidget *editor, const QModelIndex &index) const override;
+//    virtual void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 };
 
 #endif // STIKYITEMDELEGATE_H
