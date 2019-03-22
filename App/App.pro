@@ -33,7 +33,13 @@ FORMS += DlgAbout/DlgAbout.ui \
     MainWindow.ui \ 
     FrmUpdater.ui \
     DlgOption.ui
-LIBS *= "-L$$DESTDIR" -lTasks
+
+android {
+    LIBS *= "-L$$OUT_PWD/../Src"
+} else {
+    LIBS *= "-L$$DESTDIR"
+}
+LIBS *= -lTasks
 
 target.path = $$PREFIX/bin
 INSTALLS += target

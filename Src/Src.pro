@@ -1,7 +1,7 @@
 TARGET = Tasks
 TEMPLATE = lib
 
-DESTDIR = $$OUT_PWD/../bin
+!android : DESTDIR = $$OUT_PWD/../bin
 #DLLDESTDIR = $$DESTDIR
 
 DEFINES += Tasks_EXPORTS
