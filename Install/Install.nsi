@@ -88,13 +88,13 @@ Function InstallVC
 
    ; check regist
    IfErrors 0 VSRedistInstalled
-   Exec "$INSTDIR\vcredist_x86.exe /q"
+   Exec "$INSTDIR\bin\vcredist_x86.exe /q"
    StrCpy $R0 "-1"
 
 VSRedistInstalled:
   ;MessageBox MB_OK  "Installed"
   Exch $R0
-  Delete "$INSTDIR\vcredist_x86.exe"
+  Delete "$INSTDIR\bin\vcredist_x86.exe"
 FunctionEnd
 
 Function InstallVC64
@@ -104,23 +104,23 @@ Function InstallVC64
     
     ; check regist
     IfErrors 0 VSRedistInstalled
-    Exec "$INSTDIR\vcredist_x64.exe /q"
+    Exec "$INSTDIR\bin\vcredist_x64.exe /q"
     StrCpy $R0 "-1"
     
     VSRedistInstalled:
     ;MessageBox MB_OK  "Installed"
     Exch $R0
-    Delete "$INSTDIR\vcredist_x64.exe"
+    Delete "$INSTDIR\bin\vcredist_x64.exe"
 FunctionEnd
 
 Function InstallRuntime
   ${If} ${RunningX64}
-    IfFileExists "$INSTDIR\vcredist_x64.exe" 0 +2
+    IfFileExists "$INSTDIR\bin\vcredist_x64.exe" 0 +2
     call InstallVC64
-    IfFileExists "$INSTDIR\vcredist_x86.exe" 0 +2
+    IfFileExists "$INSTDIR\bin\vcredist_x86.exe" 0 +2
     call InstallVC
   ${Else}
-    IfFileExists "$INSTDIR\vcredist_x86.exe" 0 +2
+    IfFileExists "$INSTDIR\bin\vcredist_x86.exe" 0 +2
     call InstallVC
   ${EndIf}
 FunctionEnd
