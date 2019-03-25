@@ -4,7 +4,7 @@
 
 作者：康林（kl222@126.com)
 
-[<img src="Resource/image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
+[<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
 
 ------------------------------------------------
 
@@ -58,12 +58,11 @@ https://github.com/KangLin/Tasks/releases/latest
 
 ## 捐赠
 - 捐赠(大于￥20)：  
-![捐赠( 大于 ￥20 )](Resource/image/Contribute.png  "捐赠(大于￥20)")
+![捐赠( 大于 ￥20 )](Src/Resource/image/Contribute.png "捐赠(大于￥20)")
 
 - 捐赠￥20  
-![捐赠￥20](Resource/image/Contribute20.png  "捐赠￥20")
+![捐赠￥20](Src/Resource/image/Contribute20.png "捐赠￥20")
 
 ------------------------------------------------
 
-
-### [许可协议](LICENSE.MD "LICENSE.MD")
+### [许可协议](License.md "License.md")

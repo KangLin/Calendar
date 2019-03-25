@@ -4,7 +4,7 @@
 
 Author: KangLin (kl222@126.com)
 
-[<img src="Resource/image/china.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
+[<img src="Resource/Image/china.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
 ------------------------------------------------
 
 ### Features
@@ -55,11 +55,11 @@ https://github.com/KangLin/Tasks/releases/latest
 
 ## Donation
 - Donation (greater than ¥20):  
-![donation (greater than ¥20)](Resource/image/Contribute.png "donation (greater than ¥20)")
+![donation (greater than ¥20)](Src/Resource/image/Contribute.png "donation (greater than ¥20)")
 
 - Donate ¥20  
-![donation ¥20](Resource/image/Contribute20.png "donation ¥20")
+![donation ¥20](Src/Resource/image/Contribute20.png "donation ¥20")
 
 ------------------------------------------------
 
-### [License Agreement](LICENSE.MD "LICENSE.MD")
+### [License Agreement](License.md "License.md")
