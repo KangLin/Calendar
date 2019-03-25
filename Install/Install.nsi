@@ -92,7 +92,7 @@ Function InstallVC
    StrCpy $R0 "-1"
 
 VSRedistInstalled:
-  ;MessageBox MB_OK  "Installed"
+  ;MessageBox MB_OK  "Vcredist_x86.exe is installed"
   Exch $R0
   Delete "$INSTDIR\bin\vcredist_x86.exe"
 FunctionEnd
@@ -108,21 +108,16 @@ Function InstallVC64
     StrCpy $R0 "-1"
     
     VSRedistInstalled:
-    ;MessageBox MB_OK  "Installed"
+    ;MessageBox MB_OK  "Vcredist_x64.exe is installed"
     Exch $R0
     Delete "$INSTDIR\bin\vcredist_x64.exe"
 FunctionEnd
 
 Function InstallRuntime
-  ${If} ${RunningX64}
     IfFileExists "$INSTDIR\bin\vcredist_x64.exe" 0 +2
     call InstallVC64
     IfFileExists "$INSTDIR\bin\vcredist_x86.exe" 0 +2
     call InstallVC
-  ${Else}
-    IfFileExists "$INSTDIR\bin\vcredist_x86.exe" 0 +2
-    call InstallVC
-  ${EndIf}
 FunctionEnd
 
 Function DirectoryPermissionErrorBox
