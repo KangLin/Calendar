@@ -28,7 +28,7 @@
 ### 编译
 - 建立并进入build目录
 
-        git clone git@github.com:KangLin/Tasks.git
+        git clone --recursive https://github.com/KangLin/Tasks.git
         cd Tasks
         mkdir build
 

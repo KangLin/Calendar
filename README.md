@@ -27,7 +27,7 @@ Author: KangLin (kl222@126.com)
 ### Compile
 - Create and enter the build directory
 
-        git clone git@github.com:KangLin/Tasks.git
+        git clone --recursive https://github.com/KangLin/Tasks.git
         cd Tasks
         mkdir build
 
