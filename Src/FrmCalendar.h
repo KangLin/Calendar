@@ -19,6 +19,9 @@ public:
     explicit CFrmCalendar(QWidget *parent = nullptr);
     virtual ~CFrmCalendar();
     
+private Q_SLOTS:
+    void slotSelectionChanged();
+
 private:
     Ui::CFrmCalendar *ui;
     CLunarCalendar *m_pCalendar;

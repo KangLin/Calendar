@@ -2,6 +2,7 @@
 #include "ui_FrmCalendar.h"
 #include "LunarCalendar.h"
 #include <QGridLayout>
+#include <QDate>
 
 CFrmCalendar::CFrmCalendar(QWidget *parent) :
     QWidget(parent),
@@ -12,7 +13,10 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_pCalendar->SetShowWeeks(false);
     m_pCalendar->SetShowTools(false);
     m_pCalendar->show();
-
+    bool check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
+                         this, SLOT(slotSelectionChanged()));
+    Q_ASSERT(check);
+    
     QGridLayout *pGridLayout = new QGridLayout(this);
     pGridLayout->addWidget(m_pCalendar);
     pGridLayout->addWidget(&m_listView);
@@ -21,4 +25,12 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
 CFrmCalendar::~CFrmCalendar()
 {
     delete ui;
+}
+
+void CFrmCalendar::slotSelectionChanged()
+{
+    if(!m_pCalendar)
+        return;
+    QDate date = m_pCalendar->SelectedDate();
+    //TODO: update list view
 }
