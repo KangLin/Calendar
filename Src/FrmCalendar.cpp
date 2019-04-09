@@ -9,6 +9,8 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
 {
     ui->setupUi(this);
     m_pCalendar = new CLunarCalendar(this);
+    m_pCalendar->SetShowWeeks(false);
+    m_pCalendar->SetShowTools(false);
     m_pCalendar->show();
 
     QGridLayout *pGridLayout = new QGridLayout(this);
