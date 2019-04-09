@@ -1,0 +1,3 @@
+[submodule "3th_libs/LunarCalendar"]
+	path = 3th_libs/LunarCalendar
+	url = https://github.com/KangLin/LunarCalendar.git

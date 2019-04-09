@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CFrmCalendar</name>
+    <message>
+        <location filename="../../FrmCalendar.ui" line="14"/>
+        <source>Calendar</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CFrmFullScreen</name>
     <message>
         <location filename="../../FrmFullScreen.ui" line="14"/>
@@ -454,6 +462,30 @@
     </message>
 </context>
 <context>
+    <name>CLunarCalendar</name>
+    <message>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="54"/>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="74"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="97"/>
+        <source>ToDay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="106"/>
+        <source>Date text</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CTask</name>
     <message>
         <location filename="../../Task.cpp" line="110"/>
@@ -468,23 +500,23 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskLockScreen</name>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="41"/>
+        <location filename="../../TaskLockScreen.cpp" line="42"/>
         <source>Lock screen and reset</source>
         <translation>锁定屏幕并休息</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="128"/>
+        <location filename="../../TaskLockScreen.cpp" line="126"/>
         <source>Remaining: %1</source>
         <translation>剩余时间： %1</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="34"/>
-        <location filename="../../TaskLockScreen.cpp" line="42"/>
+        <location filename="../../TaskLockScreen.cpp" line="35"/>
+        <location filename="../../TaskLockScreen.cpp" line="43"/>
         <source>Reset</source>
         <translation>休息</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="139"/>
+        <location filename="../../TaskLockScreen.cpp" line="137"/>
         <source>Lock screen</source>
         <translation>锁屏</translation>
     </message>

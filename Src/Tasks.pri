@@ -18,6 +18,8 @@ msvc {
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+include(../3th_libs/LunarCalendar/Src/LunarCalendar.pri)
+
 SOURCES += \
     $$PWD/Task.cpp \
     $$PWD/Tasks.cpp \
@@ -39,7 +41,8 @@ SOURCES += \
     $$PWD/Sticky.cpp \
     $$PWD/FrmStickyList.cpp \
     $$PWD/StickyModel.cpp \
-    $$PWD/StickyItemDelegate.cpp
+    $$PWD/StickyItemDelegate.cpp \
+    $$PWD/FrmCalendar.cpp
 
 HEADERS += \
     $$PWD/Task.h \
@@ -66,7 +69,8 @@ HEADERS += \
     $$PWD/StickyItemDelegate.h \
     $$PWD/tasks_export.h \
     $$PWD/tasks_export_windows.h \
-    $$PWD/tasks_export_linux
+    $$PWD/tasks_export_linux \
+    $$PWD/FrmCalendar.h
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \
@@ -75,12 +79,13 @@ FORMS += \
     $$PWD/FrmTaskProperty.ui \ 
     $$PWD/FrmTasks.ui \
     $$PWD/FrmTasksList.ui \
-    $$PWD/FrmStickyList.ui
+    $$PWD/FrmStickyList.ui \
+    $$PWD/FrmCalendar.ui
 
 RESOURCES += \
-    Resource/Resource.qrc \
-    Resource/sink/dark/style.qrc
+    $$PWD/Resource/Resource.qrc \
+    $$PWD/Resource/sink/dark/style.qrc
 
-DISTFILES += Resource/sink/* 
+DISTFILES += $$PWD/Resource/sink/* 
 
 include(Resource/Translations/Translations.pri)

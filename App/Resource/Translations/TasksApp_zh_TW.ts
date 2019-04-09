@@ -424,7 +424,7 @@ Email:kl222@126.com</source>
         <location filename="../../MainWindow.ui" line="60"/>
         <location filename="../../MainWindow.ui" line="63"/>
         <location filename="../../MainWindow.ui" line="66"/>
-        <location filename="../../MainWindow.cpp" line="31"/>
+        <location filename="../../MainWindow.cpp" line="34"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
@@ -464,29 +464,29 @@ Email:kl222@126.com</source>
         <translation>更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="21"/>
+        <location filename="../../MainWindow.cpp" line="24"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="25"/>
-        <location filename="../../MainWindow.cpp" line="84"/>
+        <location filename="../../MainWindow.cpp" line="28"/>
+        <location filename="../../MainWindow.cpp" line="98"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="27"/>
-        <location filename="../../MainWindow.cpp" line="88"/>
+        <location filename="../../MainWindow.cpp" line="30"/>
+        <location filename="../../MainWindow.cpp" line="102"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="35"/>
+        <location filename="../../MainWindow.cpp" line="38"/>
         <source>Enable run from boot</source>
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="160"/>
+        <location filename="../../MainWindow.cpp" line="174"/>
         <source>Open sink</source>
         <translation>打開皮膚</translation>
     </message>

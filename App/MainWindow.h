@@ -9,6 +9,7 @@
 #include "TasksList.h"
 #include "FrmTasksList.h"
 #include "FrmStickyList.h"
+#include "FrmCalendar.h"
 
 namespace Ui {
 class CMainWindow;
@@ -55,7 +56,8 @@ private:
     QTabWidget m_Table;
     CFrmTasksList m_FrmTasksList;
     CFrmStickyList m_frmStickyList;
-
+    CFrmCalendar m_frmCalendar;
+    
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
 };
