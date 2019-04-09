@@ -44,3 +44,10 @@ void CStickyItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
     e.render(painter);
     painter->restore();
 }
+
+//QSize CStickyItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+//{
+//    QTextEdit e;
+//    e.setHtml(index.data(Qt::EditRole).toString());
+//    return e.size();
+//}

@@ -80,9 +80,9 @@ int CTask::Check()
     if(GetInterval() < Elapsed())
     {
         m_PromptTimer.stop();
+        nRet = onRun();
         if(!m_szRunSound.isEmpty())
             QSound::play(m_szRunSound);
-        nRet = onRun();
     }
     return nRet;
 }

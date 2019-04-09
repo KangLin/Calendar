@@ -33,7 +33,8 @@ int main(int argc, char *argv[])
     tLunarCalendar.load(szPre + "/LunarCalendar_" + QLocale::system().name() + ".qm");
     a.installTranslator(&tLunarCalendar);
     set.setValue("Language", QLocale::system().name());
-
+    qDebug() << "Language:" << QLocale::system().name();
+    
     CFrmUpdater u;
     if(!u.GenerateUpdateXml())
         return 0;

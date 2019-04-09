@@ -47,7 +47,7 @@ INSTALLS += target
 win32 : equals(QMAKE_HOST.os, Windows){
     
     INSTALL_TARGET = $$system_path($${PREFIX}/bin/$(TARGET))
-      
+
     Deployment_qtlib.target = Deployment_qtlib
     Deployment_qtlib.path = $$system_path($${PREFIX})
     Deployment_qtlib.commands = "$$system_path($$[QT_INSTALL_BINS]/windeployqt)" \

@@ -42,7 +42,9 @@ SOURCES += \
     $$PWD/FrmStickyList.cpp \
     $$PWD/StickyModel.cpp \
     $$PWD/StickyItemDelegate.cpp \
-    $$PWD/FrmCalendar.cpp
+    $$PWD/FrmCalendar.cpp \
+    $$PWD/TaskCycleWeek.cpp \
+    $$PWD/TaskDay.cpp
 
 HEADERS += \
     $$PWD/Task.h \
@@ -70,7 +72,9 @@ HEADERS += \
     $$PWD/tasks_export.h \
     $$PWD/tasks_export_windows.h \
     $$PWD/tasks_export_linux \
-    $$PWD/FrmCalendar.h
+    $$PWD/FrmCalendar.h \
+    $$PWD/TaskCycleWeek.h \
+    $$PWD/TaskDay.h
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \

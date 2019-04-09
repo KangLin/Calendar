@@ -22,11 +22,10 @@ sink.files = Resource/sink/*
 sink.path = $$PREFIX/Resource
 sink.CONFIG += no_check_exist
 
-target.path = $$PREFIX/bin
-INSTALLS += TasksList sink target IncludeFiles
 IncludeFiles.path = $$PREFIX/include
 IncludeFiles.files = $$HEADERS
-INSTALLS += IncludeFiles
+target.path = $$PREFIX/bin
+INSTALLS += TasksList sink target IncludeFiles
 
 win32 : equals(QMAKE_HOST.os, Windows){
     
