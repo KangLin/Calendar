@@ -2,6 +2,7 @@
 #define FRMCALENDAR_H
 
 #include <QWidget>
+#include <QListView>
 #include "tasks_export.h"
 
 class CLunarCalendar;
@@ -21,6 +22,7 @@ public:
 private:
     Ui::CFrmCalendar *ui;
     CLunarCalendar *m_pCalendar;
+    QListView m_listView;
 };
 
 #endif // FRMCALENDAR_H

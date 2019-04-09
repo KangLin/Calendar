@@ -13,6 +13,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
 
     QGridLayout *pGridLayout = new QGridLayout(this);
     pGridLayout->addWidget(m_pCalendar);
+    pGridLayout->addWidget(&m_listView);
 }
 
 CFrmCalendar::~CFrmCalendar()
