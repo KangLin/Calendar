@@ -13,9 +13,12 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_pCalendar->SetShowWeeks(false);
     m_pCalendar->SetShowTools(false);
     m_pCalendar->show();
+    m_pCalendar->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     bool check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
                          this, SLOT(slotSelectionChanged()));
     Q_ASSERT(check);
+    
+    m_listView.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     
     QGridLayout *pGridLayout = new QGridLayout(this);
     pGridLayout->addWidget(m_pCalendar);
