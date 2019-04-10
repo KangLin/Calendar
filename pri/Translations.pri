@@ -5,7 +5,7 @@
 # Use:
 # Include this file into the project file (.pro)
 #    TRANSLATIONS_DIR =
-#    TRANSLATIONS_TARGET = 
+#    TRANSLATIONS_NAME = 
 #    include(../pri/Translations.pri) 
 
 # android and debug translate resources as resource file embed programs
@@ -43,7 +43,7 @@
 # 使用：
 # 把此文件包含进入工程文件中(.pro)
 #    TRANSLATIONS_DIR =
-#    TRANSLATIONS_TARGET = 
+#    TRANSLATIONS_NAME = 
 #    include(../pri/Translations.pri) 
 
 # android 和 debug 翻译资源做为资源文件嵌入程序
@@ -76,12 +76,12 @@
 #                                            |- ${TRANSLATIONS_NAME}_zh_TW.ts
 
 isEmpty(TRANSLATIONS_DIR) : TRANSLATIONS_DIR = $$_PRO_FILE_PWD_
-isEmpty(TRANSLATIONS_TARGET) : TRANSLATIONS_TARGET = $${TARGET}
+isEmpty(TRANSLATIONS_NAME) : TRANSLATIONS_NAME = $${TARGET}
 TRANSLATIONS += \
-    $$TRANSLATIONS_DIR/Resource/Translations/$${TRANSLATIONS_TARGET}_zh_CN.ts \
-    $$TRANSLATIONS_DIR/Resource/Translations/$${TRANSLATIONS_TARGET}_zh_TW.ts
+    $$TRANSLATIONS_DIR/Resource/Translations/$${TRANSLATIONS_NAME}_zh_CN.ts \
+    $$TRANSLATIONS_DIR/Resource/Translations/$${TRANSLATIONS_NAME}_zh_TW.ts
 
-TRANSLATIONS_TARGET=
+TRANSLATIONS_NAME=
 TRANSLATIONS_DIR=
 
 QM_FILES_RESOURCE_PREFIX = Translations

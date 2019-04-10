@@ -1,3 +1,5 @@
+project(Tasks)
+
 set(HEAD_FILES
     Task.h
     Tasks.h
