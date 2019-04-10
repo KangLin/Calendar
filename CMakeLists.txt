@@ -107,12 +107,12 @@ endif()
 add_subdirectory(Src)
 option(BUILD_APP "Set to ON to build applaction" ON)
 if(BUILD_APP)
+    #翻译
+    include(cmake/Qt5CorePatches.cmake) 
+    include(cmake/Translations.cmake)
+    
     add_subdirectory(App)
 endif(BUILD_APP)
-
-#翻译
-include(cmake/Qt5CorePatches.cmake) 
-include(cmake/Translations.cmake)
 
 set(OTHER_FILES
     License.md

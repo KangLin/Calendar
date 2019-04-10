@@ -16,6 +16,7 @@ set(SOURCE_UI_FILES
     DlgOption.ui)
 SET(RCC_FILES
     ${CMAKE_SOURCE_DIR}/Src/Resource/Resource.qrc
+    ${TRANSLATIONS_RESOURCE_FILES}
     )
 if(ANDROID)
     SET(RCC_FILES ${RCC_FILES} ${CMAKE_BINARY_DIR}/translations.qrc)

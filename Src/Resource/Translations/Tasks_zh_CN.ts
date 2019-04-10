@@ -6,7 +6,7 @@
     <message>
         <location filename="../../FrmCalendar.ui" line="14"/>
         <source>Calendar</source>
-        <translation type="unfinished"></translation>
+        <translation>日历</translation>
     </message>
 </context>
 <context>
@@ -466,23 +466,23 @@
     <message>
         <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="104"/>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="124"/>
+        <source>...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="147"/>
+        <source>ToDay</source>
+        <translation>今天</translation>
     </message>
     <message>
         <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="54"/>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="74"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="97"/>
-        <source>ToDay</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="106"/>
         <source>Date text</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

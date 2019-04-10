@@ -469,18 +469,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="54"/>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="74"/>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="104"/>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="124"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="97"/>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="147"/>
         <source>ToDay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="106"/>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="54"/>
         <source>Date text</source>
         <translation type="unfinished"></translation>
     </message>
