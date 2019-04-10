@@ -42,7 +42,9 @@ Qt does not provide openssl dynamic library for copyright reasons, so you must c
      - If it is 64-bit, you will need to download the binary installation package for openssl yourself.
 ------------------------------------------------
 ### Use
-- Direct source code. Is a QT project, directly introduces Tasks.pri
+- Direct source code
+
+  + Is a QT project, directly introduces Tasks.pri
 
          Include(Tasks.pri)
 
