@@ -20,8 +20,6 @@ msvc {
 
 INCLUDEPATH = $$PWD
 
-include(../3th_libs/LunarCalendar/Src/LunarCalendar.pri)
-
 SOURCES += \
     $$PWD/Task.cpp \
     $$PWD/Tasks.cpp \
@@ -95,3 +93,5 @@ RESOURCES += \
 DISTFILES += $$PWD/Resource/sink/* 
 
 include(../pri/Translations.pri)
+
+include(../3th_libs/LunarCalendar/Src/LunarCalendar.pri)
