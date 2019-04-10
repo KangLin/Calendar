@@ -14,6 +14,12 @@ set(SOURCE_UI_FILES
     MainWindow.ui
     FrmUpdater.ui
     DlgOption.ui)
+
+#翻译
+SET(TRANSLATIONS_NAME ${PROJECT_NAME}App)
+include(${CMAKE_SOURCE_DIR}/cmake/Qt5CorePatches.cmake) 
+include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
+
 SET(RCC_FILES
     ${CMAKE_SOURCE_DIR}/Src/Resource/Resource.qrc
     ${TRANSLATIONS_RESOURCE_FILES}
@@ -31,6 +37,7 @@ if(WIN32)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 endif()
 add_executable(${PROJECT_NAME}App ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} AppIcon.rc ${RCC_FILES})
+add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
 SET(APP_LIBS ${PROJECT_NAME} ${QT_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}App ${APP_LIBS})
 target_include_directories(${PROJECT_NAME}App PUBLIC "${CMAKE_SOURCE_DIR}/Src" "${CMAKE_BINARY_DIR}")

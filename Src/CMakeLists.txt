@@ -20,7 +20,8 @@ set(HEAD_FILES
     Sticky.h
     FrmStickyList.h
     StickyModel.h
-    StickyItemDelegate.h)
+    StickyItemDelegate.h
+    FrmCalendar.h)
 set(SOURCE_FILES
     Task.cpp
     Tasks.cpp
@@ -42,7 +43,8 @@ set(SOURCE_FILES
     Sticky.cpp
     FrmStickyList.cpp
     StickyModel.cpp
-    StickyItemDelegate.cpp)
+    StickyItemDelegate.cpp
+    FrmCalendar.cpp)
 set(SOURCE_UI_FILES
     FrmFullScreen.ui
     FrmTop.ui
@@ -50,23 +52,34 @@ set(SOURCE_UI_FILES
     FrmTaskProperty.ui
     FrmTasks.ui
     FrmTasksList.ui
-    FrmStickyList.ui)
+    FrmStickyList.ui
+    FrmCalendar.ui)
+
+#翻译
+include(${CMAKE_SOURCE_DIR}/cmake/Qt5CorePatches.cmake) 
+include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
+
 #设置资源文件
 SET(RCC_FILES
     Resource/Resource.qrc
     Resource/sink/dark/style.qrc
+    ${TRANSLATIONS_RESOURCE_FILES}
     )
 
 if(WIN32)
     #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
     set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 endif()
-add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} ${RCC_FILES})
-target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES})
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES}
+    ${SOURCE_UI_FILES} ${RCC_FILES})
+add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
+target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} LunarCalendar)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../3th_libs/LunarCalendar/Src)
 GENERATE_EXPORT_HEADER(${PROJECT_NAME})
 string(TOLOWER ${PROJECT_NAME} LOWER_PROJECT_NAME)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${LOWER_PROJECT_NAME}_export.h DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${LOWER_PROJECT_NAME}_export.h
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 
 # Install target
 INSTALL(TARGETS ${PROJECT_NAME}

@@ -103,14 +103,10 @@ if(NOT ANDROID)
 else()
     set(BUILD_ARCH ${CMAKE_ANDROID_ARCH})
 endif()
-
+add_subdirectory(3th_libs/LunarCalendar/Src)
 add_subdirectory(Src)
 option(BUILD_APP "Set to ON to build applaction" ON)
-if(BUILD_APP)
-    #翻译
-    include(cmake/Qt5CorePatches.cmake) 
-    include(cmake/Translations.cmake)
-    
+if(BUILD_APP)   
     add_subdirectory(App)
 endif(BUILD_APP)
 
