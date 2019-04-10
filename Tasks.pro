@@ -37,7 +37,8 @@ OTHER_FILES += Install/* \
     Update/* \
     CMakeLists.txt \
     etc/* \
-    cmake/*
+    cmake/* \
+    .travis.yml
 
 DISTFILES += \
     LICENSE.md \
