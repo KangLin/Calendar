@@ -43,8 +43,12 @@ add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
 SET(APP_LIBS Tasks ${QT_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} ${APP_LIBS})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/Src" "${CMAKE_BINARY_DIR}")
-set_target_properties(${PROJECT_NAME}
-    PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
+if(${CMAKE_CXX_COMPILER} MATCHES ".*/(g\\+\\+)(\\..*)")
+    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE "-mwindows")
+elseif(${CMAKE_CXX_COMPILER} MATCHES ".*/(cl)(\\..*)")
+    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE
+        "/SUBSYSTEM:WINDOWS\",5.01\" /ENTRY:mainCRTStartup")
+endif()
 # Install target
 INSTALL(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
