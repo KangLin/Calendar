@@ -90,8 +90,10 @@ RESOURCES += \
     $$PWD/Resource/Resource.qrc \
     $$PWD/Resource/sink/dark/style.qrc
 
-DISTFILES += $$PWD/Resource/sink/* 
+DISTFILES += $$PWD/Resource/sink/*
 
+TRANSLATIONS_DIR=$$PWD
+TRANSLATIONS_NAME=Tasks
 include(../pri/Translations.pri)
 
 include(../3th_libs/LunarCalendar/Src/LunarCalendar.pri)
