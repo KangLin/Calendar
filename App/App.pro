@@ -17,7 +17,7 @@ include(../pri/Translations.pri)
 
 #VERSION=$$BUILD_VERSION
 INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src
-DESTDIR = $$OUT_PWD/../bin
+!android: DESTDIR = $$OUT_PWD/../bin
 DEPENDPATH = $$DESTDIR
 SOURCES += DlgAbout/DlgAbout.cpp \
     main.cpp \
@@ -41,7 +41,7 @@ android {
 }
 LIBS *= -lTasks
 
-target.path = $$PREFIX/bin
+!android: target.path = $$PREFIX/bin
 INSTALLS += target
 
 win32 : equals(QMAKE_HOST.os, Windows){

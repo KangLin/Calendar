@@ -24,7 +24,7 @@ sink.CONFIG += no_check_exist
 
 IncludeFiles.path = $$PREFIX/include
 IncludeFiles.files = $$HEADERS
-target.path = $$PREFIX/bin
+!android: target.path = $$PREFIX/bin
 INSTALLS += TasksList sink target IncludeFiles
 
 win32 : equals(QMAKE_HOST.os, Windows){
