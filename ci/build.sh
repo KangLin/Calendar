@@ -75,12 +75,22 @@ if [ -n "$GENERATORS" ]; then
          -DCMAKE_VERBOSE=ON \
          -DCMAKE_BUILD_TYPE=Release \
          -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
-    cmake --build . --target install --config Release ${RABBIT_MAKE_JOB_PARA}
+    cmake --build . --target install --config Release -- ${RABBIT_MAKE_JOB_PARA}
 else
-    ${QT_ROOT}/bin/qmake ${SOURCE_DIR}/Tasks.pro "CONFIG+=release"
-    $MAKE -f Makefile
-    echo "$MAKE install ...."
-    $MAKE install
+    if [ "${BUILD_TARGERT}" = "android" ]; then
+        ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
+            "CONFIG+=release" 
+        
+        $MAKE 
+    else
+        ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
+            "CONFIG+=release" \
+            PREFIX=`pwd`/install
+            
+        $MAKE
+        echo "$MAKE install ...."
+        $MAKE install  
+    fi
 fi
 if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
     #cd ${SOURCE_DIR}
