@@ -9,7 +9,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     ui(new Ui::CFrmCalendar)
 {
     ui->setupUi(this);
-    CLunarCalendar::Init();
+    CLunarCalendar::InitTranslator();
     m_pCalendar = new CLunarCalendar(this);
     m_pCalendar->SetShowWeeks(false);
     //m_pCalendar->SetShowTools(false);
