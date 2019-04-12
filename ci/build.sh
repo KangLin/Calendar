@@ -81,7 +81,7 @@ else
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
             "CONFIG+=release" 
         
-        $MAKE 
+        $MAKE
     else
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
             "CONFIG+=release" \
