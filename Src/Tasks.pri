@@ -46,7 +46,13 @@ SOURCES += \
     $$PWD/TaskDay.cpp \
     $$PWD/Global/TasksTools.cpp
 
-HEADERS += \
+INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
+        $$PWD/FrmStickyList.h \
+        $$PWD/Global/GlobalDir.h \
+        $$PWD/FrmCalendar.h \
+        $$PWD/Global/TasksTools.h 
+
+HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/Task.h \
     $$PWD/Tasks.h \
     $$PWD/TasksList.h \
@@ -55,7 +61,6 @@ HEADERS += \
     $$PWD/FrmTop.h \
     $$PWD/TaskPrompt.h \
     $$PWD/FrmStickyNotes.h \
-    $$PWD/Global/GlobalDir.h \
     $$PWD/Global/Log.h \
     $$PWD/FrmFullScreen.h \
     $$PWD/ObjectFactory.h \
@@ -63,18 +68,14 @@ HEADERS += \
     $$PWD/ViewTaskProperty.h \ 
     $$PWD/FrmTasks.h \  
     $$PWD/TaskPromptDelay.h \
-    $$PWD/FrmTasksList.h \
     $$PWD/Sticky.h \
-    $$PWD/FrmStickyList.h \
     $$PWD/StickyModel.h \
     $$PWD/StickyItemDelegate.h \
     $$PWD/tasks_export.h \
     $$PWD/tasks_export_windows.h \
     $$PWD/tasks_export_linux \
-    $$PWD/FrmCalendar.h \
     $$PWD/TaskCycleWeek.h \
-    $$PWD/TaskDay.h \
-    $$PWD/Global/TasksTools.h
+    $$PWD/TaskDay.h 
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \

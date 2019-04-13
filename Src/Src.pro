@@ -22,8 +22,8 @@ sink.files = Resource/sink/*
 sink.path = $$PREFIX/Resource
 sink.CONFIG += no_check_exist
 
-IncludeFiles.path = $$PREFIX/include
-IncludeFiles.files = $$HEADERS
+IncludeFiles.path = $$PREFIX/include/Tasks
+IncludeFiles.files = $$INSTALLHEADER_FILES
 !android: target.path = $$PREFIX/bin
 INSTALLS += TasksList sink target IncludeFiles
 

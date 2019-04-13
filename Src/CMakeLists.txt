@@ -1,6 +1,14 @@
 project(Tasks)
 
+set(INSTALLHEADER_FILES
+    FrmTasksList.h
+    FrmStickyList.h
+    FrmTasksList.h    
+    Global/GlobalDir.h
+    Global/TasksTools.h
+    )
 set(HEAD_FILES
+    ${INSTALLHEADER_FILES}
     Task.h
     Tasks.h
     TasksList.h
@@ -9,21 +17,18 @@ set(HEAD_FILES
     FrmTop.h
     TaskPrompt.h
     FrmStickyNotes.h
-    Global/GlobalDir.h
     Global/Log.h
     FrmFullScreen.h
     ObjectFactory.h
-    Global/TasksTools.h
     FrmTaskPropery.h
     ViewTaskProperty.h
     FrmTasks.h 
     TaskPromptDelay.h
-    FrmTasksList.h
-    Sticky.h
-    FrmStickyList.h
+    Sticky.h   
     StickyModel.h
     StickyItemDelegate.h
-    FrmCalendar.h)
+    FrmTasksList.h
+    )
 set(SOURCE_FILES
     Task.cpp
     Tasks.cpp
@@ -80,17 +85,39 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../3th_libs/LunarCalendar/Src)
 GENERATE_EXPORT_HEADER(${PROJECT_NAME})
 string(TOLOWER ${PROJECT_NAME} LOWER_PROJECT_NAME)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/${LOWER_PROJECT_NAME}_export.h
-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+set(INSTALLHEADER_FILES ${INSTALLHEADER_FILES} 
+    ${CMAKE_CURRENT_BINARY_DIR}/${LOWER_PROJECT_NAME}_export.h)
+
+# Install head files
+#INSTALL(FILES ${HEAD_FILES} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+set_property(
+    TARGET
+        ${PROJECT_NAME}
+    PROPERTY
+        PUBLIC_HEADER "${INSTALLHEADER_FILES}"
+)
+
+export(
+    TARGETS
+        ${PROJECT_NAME}
+    FILE
+        ${CMAKE_BINARY_DIR}/cmake/${PROJECT_NAME}.cmake  # not going to be installed
+)
 
 # Install target
 INSTALL(TARGETS ${PROJECT_NAME}
+        EXPORT ${PROJECT_NAME}
         RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
         ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/Tasks
         )
-# Install head files
-INSTALL(FILES ${HEAD_FILES} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+
+INSTALL(
+        EXPORT ${PROJECT_NAME}
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/
+       )
+
 # Install cmake files
 #configure_file(TransformCoordinateConfig.cmake.in ${CMAKE_BINARY_DIR}/TransformCoordinateConfig.cmake @ONLY)
 #install(FILES ${CMAKE_BINARY_DIR}/TransformCoordinateConfig.cmake DESTINATION .)
@@ -104,7 +131,7 @@ INSTALL(FILES ${HEAD_FILES} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 #    configure_file(TransformCoordinate.pc.in ${CMAKE_BINARY_DIR}/TransformCoordinate.pc @ONLY)
 #    install(FILES ${CMAKE_BINARY_DIR}/TransformCoordinate.pc DESTINATION lib/pkgconfig)
 #endif()
-IF(WIN32 AND BUILD_SHARED_LIBS)
+IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32 AND BUILD_SHARED_LIBS)
     IF(CMAKE_BUILD_TYPE MATCHES Release AND MINGW)
         #windeployqt 分发时，是根据是否 strip 来判断是否是 DEBUG 版本,而用mingw编译时,qt没有自动 strip
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
