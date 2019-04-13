@@ -128,7 +128,7 @@ write_basic_package_version_file(
 install(FILES ${CMAKE_BINARY_DIR}/TasksConfigVersion.cmake DESTINATION .)
 if(NOT MSVC)
     # Install pc files
-    configure_file(Tasks.pc.in ${CMAKE_BINARY_DIR}/Tasks.pc @ONLY)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/Tasks.pc.in ${CMAKE_BINARY_DIR}/Tasks.pc @ONLY)
     install(FILES ${CMAKE_BINARY_DIR}/Tasks.pc DESTINATION lib/pkgconfig)
 endif()
 
