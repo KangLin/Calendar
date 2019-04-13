@@ -1,7 +1,7 @@
 #include "TaskLockScreen.h"
 #include <QDebug>
 #include <QCoreApplication>
-#include "Global/Tool.h"
+#include "Global/TasksTools.h"
 
 #if defined(Q_OS_WIN)
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam)
@@ -108,7 +108,7 @@ int CTaskLockScreen::onRun()
 #endif
 
     //如果是屏保，则结束
-    CTool::ScreenPower(false);
+    CTasksTools::ScreenPower(false);
     
     if(m_FullScreen)
     {

@@ -1,9 +1,13 @@
-#include "Tool.h"
+#include "TasksTools.h"
 #include <QSettings>
 #include <QApplication>
+#include <QDir>
+#include <QLocale>
 #if defined(Q_OS_WIN)
     #include <Windows.h>
 #endif
+
+#include "LunarCalendar.h"
 
 const QString gCurrentUserRun = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
 const QString gCurrentUserRunOnce = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce";
@@ -15,131 +19,160 @@ const QString gRunOnce = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\Curr
 const QString gRunServices = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServices";
 const QString gRunServicesOnce = "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunServicesOnce";
 
-CTool::CTool()
-{    
+CTasksTools::CTasksTools()
+{}
+
+CTasksTools::~CTasksTools()
+{}
+
+CTasksTools* CTasksTools::Instance()
+{
+    static CTasksTools* pTools = nullptr;
+    if(nullptr == pTools)
+        pTools = new CTasksTools();
+    return pTools;
 }
 
-int CTool::InstallStartRunCurrentUser()
+void CTasksTools::InitTranslator()
+{
+    QString szPre;    
+#if defined(Q_OS_ANDROID) || _DEBUG
+    szPre = ":/Translations";
+#else
+    szPre = qApp->applicationDirPath() + QDir::separator() + ".." + QDir::separator() + "translations";
+#endif
+    m_Translator.load(szPre + "/Tasks_" + QLocale::system().name() + ".qm");
+    qApp->installTranslator(&m_Translator);
+    
+    CLunarCalendar::InitTranslator();
+}
+
+void CTasksTools::CLeanTranslator()
+{
+    qApp->removeTranslator(&m_Translator);
+}
+
+int CTasksTools::InstallStartRunCurrentUser()
 {
     return InstallStartRun(gCurrentUserRun);
 }
 
-int CTool::RemoveStartRunCurrentUser()
+int CTasksTools::RemoveStartRunCurrentUser()
 {
     return RemoveStartRun(gCurrentUserRun);
 }
 
-bool CTool::IsStartRunCurrentUser()
+bool CTasksTools::IsStartRunCurrentUser()
 {
     return IsStartRun(gCurrentUserRun);
 }
 
-int CTool::InstallStartRunOnceCurrentUser()
+int CTasksTools::InstallStartRunOnceCurrentUser()
 {
     return InstallStartRun(gCurrentUserRunOnce);
 }
 
-int CTool::RemoveStartRunOnceCurrentUser()
+int CTasksTools::RemoveStartRunOnceCurrentUser()
 {
     return RemoveStartRun(gCurrentUserRunOnce);
 }
 
-bool CTool::IsStartRunOnceCurrentUser()
+bool CTasksTools::IsStartRunOnceCurrentUser()
 {
     return IsStartRun(gCurrentUserRunOnce);
 }
 
-int CTool::InstallStartRunServicesCurrentUser()
+int CTasksTools::InstallStartRunServicesCurrentUser()
 {
     return InstallStartRun(gCurrentUserRunServices);
 }
 
-int CTool::RemoveStartRunServicesCurrentUser()
+int CTasksTools::RemoveStartRunServicesCurrentUser()
 {
     return RemoveStartRun(gCurrentUserRunServices);
 }
 
-bool CTool::IsStartRunServicesCurrentUser()
+bool CTasksTools::IsStartRunServicesCurrentUser()
 {
     return IsStartRun(gCurrentUserRunServices);
 }
 
-int CTool::InstallStartRunServicesOnceCurrentUser()
+int CTasksTools::InstallStartRunServicesOnceCurrentUser()
 {
     return InstallStartRun(gCurrentUserRunServicesOnce);
 }
 
-int CTool::RemoveStartRunServicesOnceCurrentUser()
+int CTasksTools::RemoveStartRunServicesOnceCurrentUser()
 {
     return RemoveStartRun(gCurrentUserRunServicesOnce);
 }
 
-bool CTool::IsStartRunServicesOnceCurrentUser()
+bool CTasksTools::IsStartRunServicesOnceCurrentUser()
 {
     return IsStartRun(gCurrentUserRunServicesOnce);
 }
 
-int CTool::InstallStartRun()
+int CTasksTools::InstallStartRun()
 {
     return InstallStartRun(gRun);
 }
 
-int CTool::RemoveStartRun()
+int CTasksTools::RemoveStartRun()
 {
     return RemoveStartRun(gRun);
 }
 
-bool CTool::IsStartRun()
+bool CTasksTools::IsStartRun()
 {
     return IsStartRun(gRun);
 }
 
-int CTool::InstallStartRunOnce()
+int CTasksTools::InstallStartRunOnce()
 {
     return InstallStartRun(gRunOnce);
 }
 
-int CTool::RemoveStartRunOnce()
+int CTasksTools::RemoveStartRunOnce()
 {
     return RemoveStartRun(gRunOnce);
 }
 
-bool CTool::IsStartRunOnce()
+bool CTasksTools::IsStartRunOnce()
 {
     return IsStartRun(gRunOnce);
 }
 
-int CTool::InstallStartRunServices()
+int CTasksTools::InstallStartRunServices()
 {
     return InstallStartRun(gRunServices);
 }
 
-int CTool::RemoveStartRunServices()
+int CTasksTools::RemoveStartRunServices()
 {
     return RemoveStartRun(gRunServices);
 }
 
-bool CTool::IsStartRunServices()
+bool CTasksTools::IsStartRunServices()
 {
     return IsStartRun(gRunServices);
 }
 
-int CTool::InstallStartRunServicesOnce()
+int CTasksTools::InstallStartRunServicesOnce()
 {
     return InstallStartRun(gRunServicesOnce);
 }
 
-int CTool::RemoveStartRunServicesOnce()
+int CTasksTools::RemoveStartRunServicesOnce()
 {
     return RemoveStartRun(gRunServicesOnce);
 }
 
-bool CTool::IsStartRunServicesOnce()
+bool CTasksTools::IsStartRunServicesOnce()
 {
     return IsStartRun(gRunServicesOnce);
 }
 
-int CTool::InstallStartRun(const QString &szReg, const QString &szName, const QString &szPath)
+int CTasksTools::InstallStartRun(const QString &szReg, const QString &szName, const QString &szPath)
 {
     QString appName = QApplication::applicationName();
     QString appPath = QApplication::applicationFilePath();
@@ -150,7 +183,7 @@ int CTool::InstallStartRun(const QString &szReg, const QString &szName, const QS
     return SetRegister(szReg, appName, appPath);
 }
 
-int CTool::RemoveStartRun(const QString &szReg, const QString &szName)
+int CTasksTools::RemoveStartRun(const QString &szReg, const QString &szName)
 {
     QString appName = QApplication::applicationName();
     if(!szName.isEmpty())
@@ -158,7 +191,7 @@ int CTool::RemoveStartRun(const QString &szReg, const QString &szName)
     return RemoveRegister(szReg, appName);
 }
 
-bool CTool::IsStartRun(const QString &szReg, const QString &szName)
+bool CTasksTools::IsStartRun(const QString &szReg, const QString &szName)
 {
     QString appName = QApplication::applicationName();
     if(!szName.isEmpty())
@@ -166,7 +199,7 @@ bool CTool::IsStartRun(const QString &szReg, const QString &szName)
     return IsRegister(szReg, appName);
 }
 
-int CTool::SetRegister(const QString &reg, const QString &name, const QString &path)
+int CTasksTools::SetRegister(const QString &reg, const QString &name, const QString &path)
 {
     QSettings r(reg, QSettings::NativeFormat);
     QString val = r.value(name).toString();
@@ -175,7 +208,7 @@ int CTool::SetRegister(const QString &reg, const QString &name, const QString &p
     return 0;
 }
 
-int CTool::RemoveRegister(const QString &reg, const QString &name)
+int CTasksTools::RemoveRegister(const QString &reg, const QString &name)
 {
     QSettings r(reg, QSettings::NativeFormat);
     QString val = r.value(name).toString();
@@ -184,14 +217,14 @@ int CTool::RemoveRegister(const QString &reg, const QString &name)
     return 0;
 }
 
-bool CTool::IsRegister(const QString &reg, const QString &name)
+bool CTasksTools::IsRegister(const QString &reg, const QString &name)
 {
     QSettings r(reg, QSettings::NativeFormat);
     QString val = r.value(name).toString();
     return !val.isEmpty();
 }
 
-int CTool::ScreenPower(bool bOff)
+int CTasksTools::ScreenPower(bool bOff)
 {
 #if defined(Q_OS_WIN)
     if(bOff)
@@ -202,7 +235,7 @@ int CTool::ScreenPower(bool bOff)
     return 0;
 }
 
-int CTool::ScreenSaver(bool bSaver)
+int CTasksTools::ScreenSaver(bool bSaver)
 {
 #if defined(Q_OS_WIN)
     ::SystemParametersInfo( SPI_SETSCREENSAVEACTIVE, bSaver, 0, 0 );
@@ -211,11 +244,11 @@ int CTool::ScreenSaver(bool bSaver)
 }
 
 /*
-取消电源管理，避免睡眠、待机：
+取消电源管理，避免睡眠、待机：  
 
 ::SetThreadExecutionState( ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED );
 
- 恢复电源管理：
+ 恢复电源管理：  
 
 ::SetThreadExecutionState( ES_CONTINUOUS );
 

@@ -1,14 +1,22 @@
-#ifndef TOOL_H
-#define TOOL_H
+#ifndef TASKS_TOOL_H
+#define TASKS_TOOL_H
 
+#include <QTranslator>
 #include <QString>
 #include "tasks_export.h"
 
-class TASKS_EXPORT CTool
+class TASKS_EXPORT CTasksTools
 {
+private:
+    CTasksTools();
+    ~CTasksTools();
+    
 public:
-    CTool();
-
+    static CTasksTools* Instance();
+    
+    void InitTranslator();
+    void CLeanTranslator();
+    
     //https://zhidao.baidu.com/question/67815593.html
     static int InstallStartRunCurrentUser();
     static int RemoveStartRunCurrentUser();
@@ -54,9 +62,11 @@ public:
     static int ScreenSaver(bool bSaver);
     
 private:
+    QTranslator m_Translator;
+    
     static int SetRegister(const QString &reg, const QString &name, const QString &path);
     static int RemoveRegister(const QString &reg, const QString &name);
     static bool IsRegister(const QString &reg, const QString &name);
 };
 
-#endif // TOOL_H
+#endif // TASKS_TOOL_H

@@ -32,7 +32,6 @@ SOURCES += \
     $$PWD/Global/GlobalDir.cpp \
     $$PWD/Global/Log.cpp \
     $$PWD/FrmFullScreen.cpp \
-    $$PWD/Global/Tool.cpp \
     $$PWD/FrmTaskPropery.cpp \
     $$PWD/ViewTaskProperty.cpp \ 
     $$PWD/FrmTasks.cpp \  
@@ -44,7 +43,8 @@ SOURCES += \
     $$PWD/StickyItemDelegate.cpp \
     $$PWD/FrmCalendar.cpp \
     $$PWD/TaskCycleWeek.cpp \
-    $$PWD/TaskDay.cpp
+    $$PWD/TaskDay.cpp \
+    $$PWD/Global/TasksTools.cpp
 
 HEADERS += \
     $$PWD/Task.h \
@@ -59,7 +59,6 @@ HEADERS += \
     $$PWD/Global/Log.h \
     $$PWD/FrmFullScreen.h \
     $$PWD/ObjectFactory.h \
-    $$PWD/Global/Tool.h \
     $$PWD/FrmTaskPropery.h \
     $$PWD/ViewTaskProperty.h \ 
     $$PWD/FrmTasks.h \  
@@ -74,7 +73,8 @@ HEADERS += \
     $$PWD/tasks_export_linux \
     $$PWD/FrmCalendar.h \
     $$PWD/TaskCycleWeek.h \
-    $$PWD/TaskDay.h
+    $$PWD/TaskDay.h \
+    $$PWD/Global/TasksTools.h
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \

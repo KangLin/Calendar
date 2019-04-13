@@ -8,6 +8,7 @@
 #include "FrmUpdater.h"
 #include "FrmStickyNotes.h"
 #include "FrmStickyList.h"
+#include "Global/TasksTools.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,15 +25,11 @@ int main(int argc, char *argv[])
 #else
     szPre = CGlobalDir::Instance()->GetDirTranslations();
 #endif
-    
     QTranslator tApp, tTasks, tLunarCalendar;
     tApp.load(szPre + "/TasksApp_" + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
-    tTasks.load(szPre + "/Tasks_" + QLocale::system().name() + ".qm");
-    a.installTranslator(&tTasks);
-    tLunarCalendar.load(szPre + "/LunarCalendar_" + QLocale::system().name() + ".qm");
-    a.installTranslator(&tLunarCalendar);
-    set.setValue("Language", QLocale::system().name());
+
+    CTasksTools::Instance()->InitTranslator();
     
     CFrmUpdater u;
     if(!u.GenerateUpdateXml())

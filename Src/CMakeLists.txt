@@ -13,7 +13,7 @@ set(HEAD_FILES
     Global/Log.h
     FrmFullScreen.h
     ObjectFactory.h
-    Global/Tool.h
+    Global/TasksTools.h
     FrmTaskPropery.h
     ViewTaskProperty.h
     FrmTasks.h 
@@ -36,7 +36,7 @@ set(SOURCE_FILES
     Global/GlobalDir.cpp
     Global/Log.cpp
     FrmFullScreen.cpp
-    Global/Tool.cpp
+    Global/TasksTools.cpp
     FrmTaskPropery.cpp
     ViewTaskProperty.cpp
     FrmTasks.cpp

@@ -1,7 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "DlgAbout/DlgAbout.h"
-#include "Global/Tool.h"
+#include "Global/TasksTools.h"
 #include "Global/GlobalDir.h"
 #include "FrmUpdater.h"
 #include <QSettings>
@@ -38,7 +38,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_pStartRun = m_TrayIconMenu.addAction(tr("Enable run from boot"),
                                            this, SLOT(slotStartRun(bool)));
     m_pStartRun->setCheckable(true);
-    m_pStartRun->setChecked(CTool::IsStartRunCurrentUser());
+    m_pStartRun->setChecked(CTasksTools::IsStartRunCurrentUser());
     
     bool check = connect(&m_TrayIcon,
                     SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -107,11 +107,11 @@ void CMainWindow::slotStartRun(bool checked)
 {
     if(checked)
     {
-        CTool::InstallStartRunCurrentUser();
+        CTasksTools::InstallStartRunCurrentUser();
     }
     else
     {
-        CTool::RemoveStartRunCurrentUser();
+        CTasksTools::RemoveStartRunCurrentUser();
     }
 }
 

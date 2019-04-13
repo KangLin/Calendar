@@ -1,6 +1,6 @@
 #include "DlgOption.h"
 #include "ui_DlgOption.h"
-#include "Global/Tool.h"
+#include "Global/TasksTools.h"
 #include "Global/GlobalDir.h"
 #include <QSettings>
 
@@ -10,7 +10,7 @@ CDlgOption::CDlgOption(QWidget *parent) :
 {
     ui->setupUi(this);
     
-    ui->cbRunFromBoot->setChecked(CTool::IsStartRunCurrentUser());
+    ui->cbRunFromBoot->setChecked(CTasksTools::IsStartRunCurrentUser());
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     bool bShow = set.value("Options/MainWindow/Show", false).toBool();
@@ -26,11 +26,11 @@ void CDlgOption::on_buttonBox_accepted()
 {
     if(ui->cbRunFromBoot->checkState() == Qt::Checked)
     {
-        CTool::InstallStartRunCurrentUser();
+        CTasksTools::InstallStartRunCurrentUser();
     }
     else
     {
-        CTool::RemoveStartRunCurrentUser();
+        CTasksTools::RemoveStartRunCurrentUser();
     }
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
