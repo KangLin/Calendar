@@ -1,0 +1,9 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+libdir=${prefix}/lib
+includedir=${prefix}/include/Tasks
+
+Name: @PROJECT_NAME@
+Description: Tasks C++ library
+Version: @BUILD_VERSION@
+Libs: -L${libdir} -lTasks
+Cflags: -I${includedir} @Tasks_DEFINITIONS@

@@ -1,0 +1,56 @@
+# Author: KangLin(kl222@126.com)
+
+#.rst:
+# Tasks
+# --------
+#
+# Find Tasks
+#
+# Find the Tasks libraries (asound)
+#
+# ::
+#
+#   This module defines the following variables:
+#      Tasks_FOUND          - True if Tasks libraries are found
+#      Tasks_LIBRARIES      - Set when Tasks libraries is found
+#      Tasks_INCLUDE_DIRS   - where to find Tasks heard directory.
+#      Tasks_DEFINITIONS    - Set definitions
+#      Tasks_VERSION_STRING - the version of Tasks found (since CMake 2.8.8)
+
+set(Tasks_VERSION_STRING @BUILD_VERSION@)
+
+find_package(PkgConfig)
+if(PKG_CONFIG_FOUND)
+	pkg_check_modules(Tasks Tasks)
+    if(Tasks_FOUND)
+        return()
+    endif()
+endif()
+
+# Compute and install package configuration and version files
+get_filename_component(_dir "${CMAKE_CURRENT_LIST_FILE}" PATH)
+get_filename_component(_prefix "${_dir}" ABSOLUTE)
+
+find_path(Tasks_INCLUDE_DIR 
+    NAMES FrmTasksList.h
+	  FrmStickyList.h
+	  FrmTasksList.h  
+    HINTS ${_prefix}
+    PATH_SUFFIXES include/Tasks)
+find_library(Tasks_LIBRARY Tasks
+    HINTS ${_prefix}
+    PATH_SUFFIXES lib)
+
+find_package_handle_standard_args(Tasks
+    REQUIRED_VARS Tasks_INCLUDE_DIR
+                  Tasks_LIBRARY
+    VERSION_VAR   Tasks_VERSION_STRING)
+
+if(Tasks_FOUND)
+	SET(Tasks_INCLUDE_DIRS ${Tasks_INCLUDE_DIR})
+	SET(Tasks_LIBRARIES ${Tasks_LIBRARY})
+    SET(Tasks_DEFINITIONS @Tasks_DEFINITIONS@)
+endif()
+
+MARK_AS_ADVANCED(Tasks_INCLUDE_DIR Tasks_LIBRARY)
+

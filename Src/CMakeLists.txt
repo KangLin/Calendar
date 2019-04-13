@@ -81,7 +81,7 @@ add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES}
     ${SOURCE_UI_FILES} ${RCC_FILES})
 add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} LunarCalendar)
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../3th_libs/LunarCalendar/Src)
 GENERATE_EXPORT_HEADER(${PROJECT_NAME})
 string(TOLOWER ${PROJECT_NAME} LOWER_PROJECT_NAME)
@@ -119,18 +119,19 @@ INSTALL(
        )
 
 # Install cmake files
-#configure_file(TransformCoordinateConfig.cmake.in ${CMAKE_BINARY_DIR}/TransformCoordinateConfig.cmake @ONLY)
-#install(FILES ${CMAKE_BINARY_DIR}/TransformCoordinateConfig.cmake DESTINATION .)
-#write_basic_package_version_file(
-#    "${CMAKE_BINARY_DIR}/TransformCoordinateConfigVersion.cmake"
-#    VERSION ${BUILD_VERSION}
-#    COMPATIBILITY AnyNewerVersion)
-#install(FILES ${CMAKE_BINARY_DIR}/TransformCoordinateConfigVersion.cmake DESTINATION .)
-#if(NOT MSVC)
-#    # Install pc files
-#    configure_file(TransformCoordinate.pc.in ${CMAKE_BINARY_DIR}/TransformCoordinate.pc @ONLY)
-#    install(FILES ${CMAKE_BINARY_DIR}/TransformCoordinate.pc DESTINATION lib/pkgconfig)
-#endif()
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/TasksConfig.cmake.in ${CMAKE_BINARY_DIR}/TasksConfig.cmake @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/TasksConfig.cmake DESTINATION .)
+write_basic_package_version_file(
+    "${CMAKE_BINARY_DIR}/TasksConfigVersion.cmake"
+    VERSION ${BUILD_VERSION}
+    COMPATIBILITY AnyNewerVersion)
+install(FILES ${CMAKE_BINARY_DIR}/TasksConfigVersion.cmake DESTINATION .)
+if(NOT MSVC)
+    # Install pc files
+    configure_file(Tasks.pc.in ${CMAKE_BINARY_DIR}/Tasks.pc @ONLY)
+    install(FILES ${CMAKE_BINARY_DIR}/Tasks.pc DESTINATION lib/pkgconfig)
+endif()
+
 IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32 AND BUILD_SHARED_LIBS)
     IF(CMAKE_BUILD_TYPE MATCHES Release AND MINGW)
         #windeployqt 分发时，是根据是否 strip 来判断是否是 DEBUG 版本,而用mingw编译时,qt没有自动 strip
