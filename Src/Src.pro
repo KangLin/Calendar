@@ -4,8 +4,6 @@ TEMPLATE = lib
 !android : DESTDIR = $$OUT_PWD/../bin
 #DLLDESTDIR = $$DESTDIR
 
-DEFINES += Tasks_EXPORTS
-
 INCLUDEPATH+=$$PWD
 
 include(../pri/Common.pri)

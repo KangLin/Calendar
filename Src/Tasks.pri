@@ -2,6 +2,9 @@ QT += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network multimedia
 
+CONFIG(static): DEFINES *= TASKS_STATIC_DEFINE
+else: DEFINES *= Tasks_EXPORTS
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -50,7 +53,10 @@ INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
         $$PWD/FrmStickyList.h \
         $$PWD/Global/GlobalDir.h \
         $$PWD/FrmCalendar.h \
-        $$PWD/Global/TasksTools.h 
+        $$PWD/Global/TasksTools.h \
+        $$PWD/tasks_export.h \
+        $$PWD/tasks_export_windows.h \
+        $$PWD/tasks_export_linux 
 
 HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/Task.h \
@@ -71,9 +77,6 @@ HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/Sticky.h \
     $$PWD/StickyModel.h \
     $$PWD/StickyItemDelegate.h \
-    $$PWD/tasks_export.h \
-    $$PWD/tasks_export_windows.h \
-    $$PWD/tasks_export_linux \
     $$PWD/TaskCycleWeek.h \
     $$PWD/TaskDay.h 
 
