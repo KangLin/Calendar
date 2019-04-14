@@ -44,12 +44,30 @@ void CTasksTools::InitTranslator()
     m_Translator.load(szPre + "/Tasks_" + QLocale::system().name() + ".qm");
     qApp->installTranslator(&m_Translator);
     
-    CLunarCalendar::InitTranslator();
+    CLunarCalendar::InitResource();
 }
 
 void CTasksTools::CLeanTranslator()
 {
     qApp->removeTranslator(&m_Translator);
+}
+
+void CTasksTools::InitResource()
+{
+    InitTranslator();
+    Q_INIT_RESOURCE(ResourceTasks);
+#if defined(Q_OS_ANDROID) || _DEBUG
+    Q_INIT_RESOURCE(translations_Tasks);
+#endif
+}
+
+void CTasksTools::CleanResource()
+{
+    Q_CLEANUP_RESOURCE(ResourceTasks);
+#if defined(Q_OS_ANDROID) || _DEBUG
+    Q_CLEANUP_RESOURCE(translations_Tasks);
+#endif
+    CLeanTranslator();
 }
 
 int CTasksTools::InstallStartRunCurrentUser()

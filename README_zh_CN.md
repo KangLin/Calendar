@@ -93,7 +93,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
 - 加载翻译资源
   + 用库中提供的函数
 
-        CTasksTools::Instance()->InitTranslator();
+        CTasksTools::Instance()->InitResource();
 
   + 自定义
   

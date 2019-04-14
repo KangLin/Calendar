@@ -14,8 +14,8 @@ private:
 public:
     static CTasksTools* Instance();
     
-    void InitTranslator();
-    void CLeanTranslator();
+    void InitResource();
+    void CleanResource();
     
     //https://zhidao.baidu.com/question/67815593.html
     static int InstallStartRunCurrentUser();
@@ -67,6 +67,9 @@ private:
     static int SetRegister(const QString &reg, const QString &name, const QString &path);
     static int RemoveRegister(const QString &reg, const QString &name);
     static bool IsRegister(const QString &reg, const QString &name);
+    
+    void InitTranslator();
+    void CLeanTranslator();
 };
 
 #endif // TASKS_TOOL_H

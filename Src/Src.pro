@@ -3,6 +3,7 @@ TEMPLATE = lib
 
 !android : DESTDIR = $$OUT_PWD/../bin
 #DLLDESTDIR = $$DESTDIR
+CONFIG(staticlib): CONFIG*=static
 
 INCLUDEPATH+=$$PWD
 
@@ -25,7 +26,7 @@ IncludeFiles.files = $$INSTALLHEADER_FILES
 !android: target.path = $$PREFIX/bin
 INSTALLS += TasksList sink target IncludeFiles
 
-win32 : equals(QMAKE_HOST.os, Windows){
+!CONFIG(static): win32 : equals(QMAKE_HOST.os, Windows){
     
     INSTALL_TARGET = $$system_path($${PREFIX}/bin/$(TARGET))
       

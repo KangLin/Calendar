@@ -3,7 +3,7 @@
 #   1.2. 包含本文件
 #   1.3. 把 TRANSLATIONS_RESOURCE_FILES 加入到 add_executable 或 add_library 中
 #    例如： 在 add_executable(${PROJECT_NAME} ${TRANSLATIONS_RESOURCE_FILES})
-#   1.4. 增加目标依赖：
+#   1.4. 增加目标依赖（可选，默认会自动执行）：
 #    add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
 #
 #
@@ -14,7 +14,7 @@
 #      add_executable(${PROJECT_NAME} ${TRANSLATIONS_RESOURCE_FILES})
 #      add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
 #
-# 2. 在源码 main 函数中加入
+# 2. 在源码 main 函数中加入, 如果是 DEBUG，需要加入宏定义 _DEBUG
 #   QString szPre;    
 #   #if defined(Q_OS_ANDROID) || _DEBUG
 #       szPre = ":/Translations";
@@ -76,22 +76,23 @@ IF(OPTION_TRANSLATIONS)
         ADD_CUSTOM_TARGET(translations_${TRANSLATIONS_NAME} ALL DEPENDS ${QM_FILES})
         #add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
         
+        set(RESOURCE_FILE_NAME "${CMAKE_CURRENT_BINARY_DIR}/translations_${TRANSLATIONS_NAME}.qrc")
         if("Debug" STREQUAL CMAKE_BUILD_TYPE OR ANDROID)
-            file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc"
+            file(WRITE "${RESOURCE_FILE_NAME}"
                 "<!DOCTYPE RCC>
                 <RCC version=\"1.0\">
                 <qresource prefix=\"/Translations\">
                 ")
             foreach(qm ${QM_FILES})
                 get_filename_component(qm_name ${qm} NAME)
-                file(APPEND "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc"
+                file(APPEND "${RESOURCE_FILE_NAME}"
                     "    <file alias=\"${qm_name}\">${qm}</file>\n")
             endforeach(qm)
-            file(APPEND "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc"
+            file(APPEND "${RESOURCE_FILE_NAME}"
                 "  </qresource>
                 </RCC>
                 ")
-            set(TRANSLATIONS_RESOURCE_FILES "${CMAKE_CURRENT_BINARY_DIR}/translations.qrc")
+            set(TRANSLATIONS_RESOURCE_FILES "${RESOURCE_FILE_NAME}")
         else()
             install(FILES ${QM_FILES} DESTINATION "Translations")
         endif()

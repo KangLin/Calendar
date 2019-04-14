@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     tApp.load(szPre + "/TasksApp_" + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
 
-    CTasksTools::Instance()->InitTranslator();
+    CTasksTools::Instance()->InitResource();
     
     CFrmUpdater u;
     if(!u.GenerateUpdateXml())

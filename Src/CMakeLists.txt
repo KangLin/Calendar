@@ -68,7 +68,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
 
 #设置资源文件
 SET(RCC_FILES
-    Resource/Resource.qrc
+    Resource/ResourceTasks.qrc
     Resource/sink/dark/style.qrc
     ${TRANSLATIONS_RESOURCE_FILES}
     )

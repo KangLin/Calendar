@@ -21,7 +21,7 @@ msvc {
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-INCLUDEPATH = $$PWD
+INCLUDEPATH = $$PWD $$PWD/export
 
 SOURCES += \
     $$PWD/Task.cpp \
@@ -91,7 +91,7 @@ FORMS += \
     $$PWD/FrmCalendar.ui
 
 RESOURCES += \
-    $$PWD/Resource/Resource.qrc \
+    $$PWD/Resource/ResourceTasks.qrc \
     $$PWD/Resource/sink/dark/style.qrc
 
 DISTFILES += $$PWD/Resource/sink/*
