@@ -19,19 +19,16 @@ include(../pri/Translations.pri)
 INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src
 !android: DESTDIR = $$OUT_PWD/../bin
 DEPENDPATH = $$DESTDIR
-SOURCES += DlgAbout/DlgAbout.cpp \
+SOURCES += \
     main.cpp \
     MainWindow.cpp \
-    FrmUpdater.cpp \
     DlgOption.cpp
-HEADERS += DlgAbout/DlgAbout.h \
+HEADERS += \
     MainWindow.h \
-    FrmUpdater.h \
     DlgOption.h
-FORMS += DlgAbout/DlgAbout.ui \
+FORMS += \
     FrmEyeNurse.ui \
-    MainWindow.ui \ 
-    FrmUpdater.ui \
+    MainWindow.ui \
     DlgOption.ui
 
 android {
@@ -58,3 +55,14 @@ win32 : equals(QMAKE_HOST.os, Windows){
 }
 
 OTHER_FILES += CMakeLists.txt
+
+isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)
+!isEmpty(RabbitCommon_DIR): exists("$${RabbitCommon_DIR}/Src/RabbitCommon.pri"){
+    DEFINES += RABBITCOMMON
+    include("$${RabbitCommon_DIR}/Src/RabbitCommon.pri")
+} else{
+    message("RabbitCommon_DIR:$$RabbitCommon_DIR")
+    message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon ag:")
+    message("   git clone https://github.com/KangLin/RabbitCommon.git")
+    error  ("2. Then set value RabbitCommon_DIR to download root dirctory")
+}

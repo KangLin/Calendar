@@ -1,20 +1,14 @@
 project(TasksApp)
 
 set(HEAD_FILES
-    DlgAbout/DlgAbout.h 
     MainWindow.h 
-    FrmUpdater.h 
     DlgOption.h)
 set(SOURCE_FILES
-    DlgAbout/DlgAbout.cpp 
     main.cpp 
-    MainWindow.cpp 
-    FrmUpdater.cpp 
+    MainWindow.cpp
     DlgOption.cpp)
 set(SOURCE_UI_FILES
-    DlgAbout/DlgAbout.ui
     MainWindow.ui
-    FrmUpdater.ui
     DlgOption.ui)
 
 #翻译
@@ -23,7 +17,6 @@ include(${CMAKE_SOURCE_DIR}/cmake/Qt5CorePatches.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
 
 SET(RCC_FILES
-    ${CMAKE_SOURCE_DIR}/Src/Resource/Resource.qrc
     ${TRANSLATIONS_RESOURCE_FILES}
     )
 if(ANDROID)
@@ -41,6 +34,12 @@ endif()
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} AppIcon.rc ${RCC_FILES})
 add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
 SET(APP_LIBS Tasks ${QT_LIBRARIES})
+if(TARGET RabbitCommon)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE -DRABBITCOMMON)
+    target_include_directories(${PROJECT_NAME}
+        PRIVATE "${RabbitCommon_DIR}/Src" "${RabbitCommon_DIR}/Src/export")
+    set(APP_LIBS ${APP_LIBS} RabbitCommon)
+endif()
 target_link_libraries(${PROJECT_NAME} ${APP_LIBS})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/Src" "${CMAKE_BINARY_DIR}")
 if(${CMAKE_CXX_COMPILER} MATCHES ".*/(g\\+\\+)(\\..*)")

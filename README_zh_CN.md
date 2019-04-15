@@ -24,7 +24,11 @@
 [![编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/tasks/branch/master)
 
 ------------------------------------------------
-
+### 依赖
+- [RabbitCommon](https://github.com/KangLin/RabbitCommon)
+  
+        git clone https://github.com/KangLin/RabbitCommon.git
+        
 ### 编译
 - 建立并进入build目录
 
@@ -33,10 +37,16 @@
         mkdir build
 
 - 编译
-
-        qmake Tasks.pro
+        cd build
+        qmake ../Tasks.pro RabbitCommon_DIR=
         make install
 
+- 用 cmake
+
+      cd build
+      cmake .. -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 -DRabbitCommon_DIR=
+      cmake --build .
+      
 - 安装注意  
 Qt因为版权原因，没有提供openssl动态库，所以必须自己复制openssl的动态库到安装目录下。
     - 如果是32的，可以在Qt安装程序Tools\QtCreator\bin目录下，找到openssl的动态库（libeay32.dll、ssleay32.dll）

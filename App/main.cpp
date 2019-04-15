@@ -5,10 +5,11 @@
 #include <QSettings>
 #include "MainWindow.h"
 #include "Global/GlobalDir.h"
-#include "FrmUpdater.h"
+#include "FrmUpdater/FrmUpdater.h"
 #include "FrmStickyNotes.h"
 #include "FrmStickyList.h"
 #include "Global/TasksTools.h"
+#include "RabbitCommonTools.h"
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +31,9 @@ int main(int argc, char *argv[])
     a.installTranslator(&tApp);
 
     CTasksTools::Instance()->InitResource();
+    CRabbitCommonTools::Instance()->Init();
+
+    a.setApplicationDisplayName(QObject::tr("Tasks"));
     
     CFrmUpdater u;
     if(!u.GenerateUpdateXml())

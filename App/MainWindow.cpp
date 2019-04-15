@@ -3,7 +3,7 @@
 #include "DlgAbout/DlgAbout.h"
 #include "Global/TasksTools.h"
 #include "Global/GlobalDir.h"
-#include "FrmUpdater.h"
+#include "FrmUpdater/FrmUpdater.h"
 #include <QSettings>
 #include <QDebug>
 #include <QFileDialog>
@@ -81,9 +81,13 @@ CMainWindow::~CMainWindow()
 
 void CMainWindow::slotAbout()
 {
-    static CDlgAbout dlg;
-    if(dlg.isHidden())
-        dlg.exec();
+#ifdef RABBITCOMMON
+    CDlgAbout about(this);
+    about.m_AppIcon = windowIcon().pixmap(windowIcon().availableSizes().at(0));
+    about.m_szHomePage = "https://github.com/KangLin/Tasks";
+    if(about.isHidden())
+        about.exec();
+#endif
 }
 
 void CMainWindow::slotExit()
@@ -188,8 +192,12 @@ void CMainWindow::on_actionOption_O_triggered()
 
 void CMainWindow::on_actionUpdate_U_triggered()
 {
+#ifdef RABBITCOMMON
     CFrmUpdater *fu = new CFrmUpdater();
+    fu->SetTitle(qApp->applicationDisplayName(),
+                 windowIcon().pixmap(windowIcon().availableSizes().at(0)));
     fu->show();
+#endif
 }
 
 void CMainWindow::on_actionSticky_list_L_triggered()

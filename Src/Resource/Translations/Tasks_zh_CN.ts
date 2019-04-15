@@ -465,8 +465,8 @@
     <name>CLunarCalendar</name>
     <message>
         <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
+        <source>Calendar</source>
+        <translation type="unfinished">日历</translation>
     </message>
     <message>
         <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="104"/>

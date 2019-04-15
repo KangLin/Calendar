@@ -11,7 +11,7 @@ Author: KangLin (kl222@126.com)
 
 - [x] Eye Nurse： Vision protection
 - [x] Custom task
-- [ ] calendar
+- [x] calendar
      - [ ] Birthady(Year cycle)
      - [ ] Month cycle
      - [ ] Week cycle
@@ -23,6 +23,10 @@ Author: KangLin (kl222@126.com)
 [![Build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/tasks)
 
 ------------------------------------------------
+### Depend
+- [RabbitCommon](https://github.com/KangLin/RabbitCommon)
+  
+        git clone https://github.com/KangLin/RabbitCommon.git
 
 ### Compile
 - Create and enter the build directory
@@ -33,9 +37,16 @@ Author: KangLin (kl222@126.com)
 
 - Compile
 
-        qmake Tasks.pro
+        cd build
+        qmake ../Tasks.pro RabbitCommon_DIR=
         make install
 
++ Use cmake
+
+        cd build
+        cmake .. -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 -DRabbitCommon_DIR=
+        cmake --build .
+      
 - Note  
 Qt does not provide openssl dynamic library for copyright reasons, so you must copy the dynamic library of openssl to the installation directory.
      - If it is 32, you can find the dynamic library of openssl (libeay32.dll, ssleay32.dll) in the Qt installer Tools\QtCreator\bin directory.
