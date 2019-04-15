@@ -78,7 +78,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
             } else{
                 message("1. Please download Tasks source code from https://github.com/KangLin/Tasks ag:")
                 message("   git clone https://github.com/KangLin/Tasks.git")
-                message("2. Then set value Tasks_DIR to download root dirctory")
+                error("2. Then set value Tasks_DIR to download root dirctory")
             }
     
   + cmake工程
@@ -92,12 +92,12 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
           if(EXISTS ${Tasks_DIR}/Src)
               add_subdirectory(${Tasks_DIR}/Src ${CMAKE_BINARY_DIR}/Tasks)
           else()
-              message(FATAL_ERROR 
-              "1. Please download Tasks source code from https://github.com/KangLin/Tasks ag:"
-              "   git clone https://github.com/KangLin/Tasks.git"
-              "2. Then set cmake value or environment variable Tasks_DIR to download root dirctory."
-              "    ag:"
-              "       cmake -DTasks_DIR= ")
+              message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
+              message("   ag:")
+              message("       git clone https://github.com/KangLin/Tasks.git")
+              message("2. Then set cmake value or environment variable Tasks_DIR to download root dirctory.")
+              message("    ag:")
+              message(FATAL_ERROR "       cmake -DTasks_DIR= ")
           endif()
 
 - 加载翻译资源
