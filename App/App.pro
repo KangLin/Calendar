@@ -15,8 +15,11 @@ RC_FILE = AppIcon.rc
 include(../pri/Common.pri)
 include(../pri/Translations.pri)
 
+CONFIG(staticlib): CONFIG*=static
+CONFIG(static): DEFINES *= TASKS_STATIC_DEFINE
+
 #VERSION=$$BUILD_VERSION
-INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src
+INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src $$_PRO_FILE_PWD_/../Src/export
 !android: DESTDIR = $$OUT_PWD/../bin
 DEPENDPATH = $$DESTDIR
 SOURCES += \

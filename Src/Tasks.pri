@@ -21,7 +21,7 @@ msvc {
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-INCLUDEPATH = $$PWD $$PWD/export
+INCLUDEPATH += $$PWD $$PWD/export
 
 SOURCES += \
     $$PWD/Task.cpp \
@@ -54,9 +54,9 @@ INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
         $$PWD/Global/GlobalDir.h \
         $$PWD/FrmCalendar.h \
         $$PWD/Global/TasksTools.h \
-        $$PWD/tasks_export.h \
-        $$PWD/tasks_export_windows.h \
-        $$PWD/tasks_export_linux 
+        $$PWD/export/tasks_export.h \
+        $$PWD/export/tasks_export_windows.h \
+        $$PWD/export/tasks_export_linux.h
 
 HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/Task.h \

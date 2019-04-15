@@ -7,8 +7,6 @@ TEMPLATE = lib
 CONFIG += link_pkgconfig create_prl link_prl
 CONFIG(staticlib): CONFIG*=static
 
-INCLUDEPATH+=$$PWD
-
 include(../pri/Common.pri)
 include(Tasks.pri)
 
