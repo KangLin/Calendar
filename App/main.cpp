@@ -35,9 +35,12 @@ int main(int argc, char *argv[])
 
     a.setApplicationDisplayName(QObject::tr("Tasks"));
     
-    CFrmUpdater u;
-    if(!u.GenerateUpdateXml())
+#ifdef RABBITCOMMON
+    CFrmUpdater *pUpdate = new CFrmUpdater();
+    pUpdate->SetTitle(qApp->applicationDisplayName(), QPixmap(":/icon/App"));
+    if(!pUpdate->GenerateUpdateXml())
         return 0;
+#endif
 
     CMainWindow m;
 #if defined(Q_OS_ANDROID)

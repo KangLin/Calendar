@@ -83,7 +83,7 @@ void CMainWindow::slotAbout()
 {
 #ifdef RABBITCOMMON
     CDlgAbout about(this);
-    about.m_AppIcon = windowIcon().pixmap(windowIcon().availableSizes().at(0));
+    about.m_AppIcon = QPixmap(":/icon/App");
     about.m_szHomePage = "https://github.com/KangLin/Tasks";
     if(about.isHidden())
         about.exec();
@@ -194,8 +194,7 @@ void CMainWindow::on_actionUpdate_U_triggered()
 {
 #ifdef RABBITCOMMON
     CFrmUpdater *fu = new CFrmUpdater();
-    fu->SetTitle(qApp->applicationDisplayName(),
-                 windowIcon().pixmap(windowIcon().availableSizes().at(0)));
+    fu->SetTitle(qApp->applicationDisplayName(), QPixmap(":/icon/App"));
     fu->show();
 #endif
 }
