@@ -13,6 +13,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_pCalendar = new CLunarCalendar(this);
     m_pCalendar->SetShowWeeks(false);
     //m_pCalendar->SetShowTools(false);
+    m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     m_pCalendar->show();
     m_pCalendar->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     bool check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),

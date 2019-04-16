@@ -14,13 +14,13 @@
    <string>Calendar</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource/Resource.qrc">
+   <iconset resource="Resource/ResourceTasks.qrc">
     <normaloff>:/icon/Calendar</normaloff>:/icon/Calendar</iconset>
   </property>
  </widget>
  <resources>
-  <include location="Resource/Resource.qrc"/>
-  <include location="Resource/Resource.qrc"/>
+  <include location="Resource/ResourceTasks.qrc"/>
+  <include location="Resource/ResourceTasks.qrc"/>
  </resources>
  <connections/>
 </ui>

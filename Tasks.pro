@@ -51,5 +51,6 @@ DISTFILES += \
 
 RESOURCES += \
     Src/Resource/Resource.qrc \
-    App/Resource/Resource.qrc 
+    App/Resource/Resource.qrc \ 
+    Src/Resource/ResourceTasks.qrc
    
