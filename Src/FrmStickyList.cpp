@@ -134,7 +134,11 @@ void CFrmStickyList::on_actionNew_triggered()
     sn->SetSticky(s);
     if(sn)
     {
+#if defined (Q_OS_ANDROID)
+            sn->showMaximized();
+#else
         sn->show();
+#endif
     }
 }
 
@@ -168,8 +172,12 @@ void CFrmStickyList::ShowSticky(int i)
 {
    if(i < 0 || i >= m_StickyNotes.length())
        return;
+#if defined (Q_OS_ANDROID)
+   m_StickyNotes.at(i)->showMaximized();
+#else
    m_StickyNotes.at(i)->show();
    m_StickyNotes.at(i)->activateWindow();
+#endif
 }
 
 void CFrmStickyList::slotDelete(QSharedPointer<CSticky> sticky)
