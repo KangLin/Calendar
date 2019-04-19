@@ -69,6 +69,10 @@ CMainWindow::CMainWindow(QWidget *parent) :
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     m_Table.setCurrentIndex(set.value("Options/MainWindow/TableView", 0).toInt());
+    
+#ifdef RABBITCOMMON
+    m_frmUpdater.SetTitle(QPixmap(":/icon/App"));
+#endif
 }
 
 CMainWindow::~CMainWindow()
@@ -193,9 +197,11 @@ void CMainWindow::on_actionOption_O_triggered()
 void CMainWindow::on_actionUpdate_U_triggered()
 {
 #ifdef RABBITCOMMON
-    CFrmUpdater *fu = new CFrmUpdater();
-    fu->SetTitle(qApp->applicationDisplayName(), QPixmap(":/icon/App"));
-    fu->show();
+    #if defined (Q_OS_ANDROID)
+        m_frmUpdater.showMaximized();
+    #else
+        m_frmUpdater.show();
+    #endif
 #endif
 }
 

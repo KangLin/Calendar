@@ -5,11 +5,13 @@
 #include <QSettings>
 #include "MainWindow.h"
 #include "Global/GlobalDir.h"
-#include "FrmUpdater/FrmUpdater.h"
 #include "FrmStickyNotes.h"
 #include "FrmStickyList.h"
 #include "Global/TasksTools.h"
-#include "RabbitCommonTools.h"
+#ifdef RABBITCOMMON
+    #include "RabbitCommonTools.h"
+    #include "FrmUpdater/FrmUpdater.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -35,13 +37,13 @@ int main(int argc, char *argv[])
 
     a.setApplicationDisplayName(QObject::tr("Tasks"));
     
-#ifdef RABBITCOMMON
-    CFrmUpdater *pUpdate = new CFrmUpdater();
-    pUpdate->SetTitle(qApp->applicationDisplayName(), QPixmap(":/icon/App"));
-    if(!pUpdate->GenerateUpdateXml())
-        return 0;
+#ifdef RABBITCOMMON 
+    CFrmUpdater *pUpdate = new CFrmUpdater(); 
+    pUpdate->SetTitle(QPixmap(":/image/Calendar")); 
+    if(!pUpdate->GenerateUpdateXml()) 
+        return 0; 
 #endif
-
+    
     CMainWindow m;
 #if defined(Q_OS_ANDROID)
     m.showMaximized();
