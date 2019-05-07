@@ -12,10 +12,10 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     CLunarCalendar::InitResource();
     m_pCalendar = new CLunarCalendar(this);
     m_pCalendar->SetShowWeeks(false);
-    //m_pCalendar->SetShowTools(false);
-    m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
+    m_pCalendar->SetShowHead(false);
+    //m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     m_pCalendar->show();
-    m_pCalendar->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     bool check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
                          this, SLOT(slotSelectionChanged()));
     Q_ASSERT(check);
