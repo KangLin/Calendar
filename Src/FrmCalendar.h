@@ -19,6 +19,8 @@ public:
     explicit CFrmCalendar(QWidget *parent = nullptr);
     virtual ~CFrmCalendar();
     
+    virtual int onHandle(QDate date);
+    
 private Q_SLOTS:
     void slotSelectionChanged();
 
