@@ -2,7 +2,7 @@
 #include <QDebug>
 #include "ObjectFactory.h"
 
-int gTypeIdCTasks = qRegisterMetaType<CTasks>();
+static const int gTypeIdCTasks = qRegisterMetaType<CTasks>();
 
 CTasks::CTasks(QObject *parent) : QObject(parent)
 {

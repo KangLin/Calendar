@@ -54,7 +54,8 @@ public:
     Q_INVOKABLE virtual QString GetStartSound();
     Q_INVOKABLE virtual int SetRunSound(const QString & szSound = QString());
     Q_INVOKABLE virtual QString GetRunSound();
-    Q_INVOKABLE virtual int SetSound(const QString &szStartSound = QString(), const QString &szRunSound = QString());
+    Q_INVOKABLE virtual int SetSound(const QString &szStartSound = QString(),
+                                     const QString &szRunSound = QString());
     
     Q_INVOKABLE virtual int LoadSettings(const QDomElement &e);
     Q_INVOKABLE virtual int SaveSettings(QDomElement &e);

@@ -47,7 +47,9 @@ SOURCES += \
     $$PWD/FrmCalendar.cpp \
     $$PWD/TaskCycleWeek.cpp \
     $$PWD/TaskDay.cpp \
-    $$PWD/Global/TasksTools.cpp
+    $$PWD/Global/TasksTools.cpp \
+    $$PWD/Activity.cpp \
+    $$PWD/FrmActivity.cpp
 
 INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
         $$PWD/FrmStickyList.h \
@@ -78,7 +80,9 @@ HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/StickyModel.h \
     $$PWD/StickyItemDelegate.h \
     $$PWD/TaskCycleWeek.h \
-    $$PWD/TaskDay.h 
+    $$PWD/TaskDay.h \ 
+    $$PWD/Activity.h \
+    $$PWD/FrmActivity.h
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \
@@ -88,13 +92,15 @@ FORMS += \
     $$PWD/FrmTasks.ui \
     $$PWD/FrmTasksList.ui \
     $$PWD/FrmStickyList.ui \
-    $$PWD/FrmCalendar.ui
+    $$PWD/FrmCalendar.ui \
+    $$PWD/FrmActivity.ui
 
 RESOURCES += \
     $$PWD/Resource/ResourceTasks.qrc \
     $$PWD/Resource/sink/dark/style.qrc
 
-DISTFILES += $$PWD/Resource/sink/*
+DISTFILES += $$PWD/Resource/sink/* \
+    $$PWD/Resource/db/*
 
 TRANSLATIONS_DIR=$$PWD
 TRANSLATIONS_NAME=Tasks

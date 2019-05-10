@@ -3,6 +3,7 @@
 #include "LunarCalendar.h"
 #include <QVBoxLayout>
 #include <QDate>
+#include "FrmActivity.h"
 
 class CTasksHandler : public CLunarCalendar::CGetTaskHandler
 {
@@ -35,6 +36,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     ui(new Ui::CFrmCalendar)
 {
     ui->setupUi(this);
+    
     CLunarCalendar::InitResource();
     m_pCalendar = new CLunarCalendar(this);
     m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
