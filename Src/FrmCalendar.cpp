@@ -3,7 +3,9 @@
 #include "LunarCalendar.h"
 #include <QVBoxLayout>
 #include <QDate>
-#include "FrmActivity.h"
+#include "FrmTaskActivity.h"
+#include "TaskActivity.h"
+#include "TasksList.h"
 
 class CTasksHandler : public CLunarCalendar::CGetTaskHandler
 {
@@ -44,8 +46,9 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     //m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
-//    m_pCalendar->ShowHead(false);
-    m_pCalendar->ShowTime(false);
+    m_pCalendar->ShowHead(false);
+//    m_pCalendar->ShowTime(false);
+    m_pCalendar->ShowDate(true);
     m_pCalendar->ShowWeeks(false);
     
     bool check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
@@ -58,6 +61,20 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     setLayout(pLayout);
     pLayout->addWidget(m_pCalendar);
     pLayout->addWidget(&m_listView);
+    
+    QSharedPointer<CTaskActivity> task(new CTaskActivity());
+    task->SetTypeDate(CTaskActivity::Lunar);
+    task->SetPlace("place");
+    task->SetDateStart(2012,1,1);
+    task->SetTimeStart(QTime::currentTime());
+    task->AddPrompt();
+    QSharedPointer<CTasks> tasks(new CTasks());
+    tasks->Add(task);
+    CTasksList taskslist, tl;
+    taskslist.Add(tasks);
+    taskslist.SaveSettings("tastTask.xml");
+    
+    tl.LoadSettings("tastTask.xml");
 }
 
 CFrmCalendar::~CFrmCalendar()

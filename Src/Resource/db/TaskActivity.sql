@@ -1,9 +1,9 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "Activity" (
+CREATE TABLE IF NOT EXISTS "TaskActivity" (
     "ID" INTEGER PRIMARY KEY NOT NULL,
-	"Title"	TEXT,
-  	"Description"	TEXT,
-	"Place"	TEXT,
+	"Title"	    TEXT,
+  	"Content"   TEXT,
+	"Place"	    TEXT,
 	"Account"	TEXT,               -- 账户
 
     "DateStart"	TEXT,               -- 格式为 "YYYY-MM-DD" 的日期
@@ -27,6 +27,6 @@ CREATE TABLE IF NOT EXISTS "Activity" (
      正数表示在StartTime后，负数表示在StartTime前
      默认为-5分钟
     */
-    "Prompt" TEXT DEFAULT -5
+    "Prompt"    TEXT DEFAULT -5
 );
 COMMIT;

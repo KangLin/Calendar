@@ -1,33 +1,31 @@
-#ifndef ACTIVITY_H
-#define ACTIVITY_H
+#ifndef TASKACTIVITY_H
+#define TASKACTIVITY_H
 
 #include <QObject>
 #include <QDate>
 #include <QTime>
 #include <QVector>
+#include "Task.h"
 
-class CActivity : public QObject
+class CTaskActivity : public CTask
 {
     Q_OBJECT
-    Q_PROPERTY(int id READ GetId WRITE SetId)
-    Q_PROPERTY(QString title READ GetTitle WRITE SetTitle)
-    Q_PROPERTY(QString description READ GetDescription WRITE SetDescription)
     Q_PROPERTY(QString place READ GetPlace WRITE SetPlace)
     Q_PROPERTY(QString account READ GetAccount WRITE SetAccount)
     Q_PROPERTY(_TYPE_DATE typeDate READ GetTypeDate WRITE SetTypeDate)
+    Q_PROPERTY(QString dateStart READ GetDateStart WRITE SetDateStart)
+    Q_PROPERTY(QTime tmStart READ GetTimeStart WRITE SetTimeStart)
+    Q_PROPERTY(QString dateEnd READ GetDateEnd WRITE SetDateEnd)
+    Q_PROPERTY(QTime tmEnd READ GetTimeEnd WRITE SetTimeEnd)
     Q_PROPERTY(_ENUM_REPEAT repeat READ GetRepeat WRITE SetRepeat)
+    Q_PROPERTY(QString prompt READ GetPrompt WRITE SetPrompt)
     
 public:
-    explicit CActivity(QObject *parent = nullptr);
-    CActivity(const CActivity& a);
-    virtual ~CActivity();
+    explicit CTaskActivity(QObject *parent = nullptr);
+    CTaskActivity(const CTaskActivity& a);
+    virtual ~CTaskActivity();
     
-    Q_INVOKABLE int SetId(int id);
-    Q_INVOKABLE int GetId();
-    Q_INVOKABLE int SetTitle(const QString& szTitle);
-    Q_INVOKABLE QString GetTitle() const;
-    Q_INVOKABLE int SetDescription(const QString& szDescription);
-    Q_INVOKABLE QString GetDescription() const;
+    Q_INVOKABLE virtual QString GetDescription() const;
     Q_INVOKABLE int SetPlace(const QString& szPlace);
     Q_INVOKABLE QString GetPlace() const;
     Q_INVOKABLE int SetAccount(const QString& szAccount);
@@ -48,9 +46,17 @@ public:
         int Day;
     };
     int SetDateStart(int year, int month, int day);
-    CDate GetDateStart() const;
+    int GetDateStart(CDate &date);
+    Q_INVOKABLE int SetDateStart(QString date);
+    Q_INVOKABLE QString GetDateStart();
+    Q_INVOKABLE int SetTimeStart(QTime t);
+    Q_INVOKABLE QTime GetTimeStart();
     int SetDateEnd(int year, int month, int day);
-    CDate GetDateEnd() const;
+    int GetDateEnd(CDate date);
+    Q_INVOKABLE int SetDateEnd(QString date);
+    Q_INVOKABLE QString GetDateEnd();
+    Q_INVOKABLE int SetTimeEnd(QTime t);
+    Q_INVOKABLE QTime GetTimeEnd();
     enum _ENUM_REPEAT
     {
         Once = 0,
@@ -65,8 +71,25 @@ public:
     Q_INVOKABLE _ENUM_REPEAT GetRepeat() const;
     
     int AddPrompt(int minute = -5);
+    Q_INVOKABLE QString GetPrompt();
+    Q_INVOKABLE int SetPrompt(const QString& prompt);
     
-    virtual int onCheck();
+    /**
+     * @brief Start task, Initialize here. Note: first clean
+     * @return 
+     */
+    virtual int Start();
+    /**
+     * @brief Check if the task can run
+     * @return : 0, The task is finished. other, The task is continue.
+     */
+    virtual int Check();
+    /**
+     * @brief End
+     * @return : true: The task is remove from tasks list
+     *           false: The task remain in tasks list 
+     */
+    virtual bool End();
     
 private:
     virtual int onPrompt();
@@ -75,9 +98,6 @@ private:
 public Q_SLOTS:
     
 private:
-    int m_nId;
-    QString m_szTitle;
-    QString m_szDescription;
     QString m_szPlace;
     QString m_szAccount;
     _TYPE_DATE m_tyDate;
@@ -93,6 +113,6 @@ private:
     QVector<_PROMPT> m_Prompt; //Sort ascending. Units: minutes
 };
 
-Q_DECLARE_METATYPE(CActivity)
-
-#endif // ACTIVITY_H
+Q_DECLARE_METATYPE(CTaskActivity)
+Q_DECLARE_METATYPE(CTaskActivity::CDate)
+#endif // TASKACTIVITY_H

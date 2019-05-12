@@ -24,7 +24,10 @@ msvc {
 INCLUDEPATH += $$PWD $$PWD/export
 
 SOURCES += \
+    $$PWD/FrmTask.cpp \
+    $$PWD/FrmTaskActivity.cpp \
     $$PWD/Task.cpp \
+    $$PWD/TaskActivity.cpp \
     $$PWD/Tasks.cpp \
     $$PWD/TasksList.cpp \
     $$PWD/TaskLockScreen.cpp \
@@ -47,9 +50,7 @@ SOURCES += \
     $$PWD/FrmCalendar.cpp \
     $$PWD/TaskCycleWeek.cpp \
     $$PWD/TaskDay.cpp \
-    $$PWD/Global/TasksTools.cpp \
-    $$PWD/Activity.cpp \
-    $$PWD/FrmActivity.cpp
+    $$PWD/Global/TasksTools.cpp
 
 INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
         $$PWD/FrmStickyList.h \
@@ -61,7 +62,10 @@ INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
         $$PWD/export/tasks_export_linux.h
 
 HEADERS += $${INSTALLHEADER_FILES} \
+    $$PWD/FrmTask.h \
+    $$PWD/FrmTaskActivity.h \
     $$PWD/Task.h \
+    $$PWD/TaskActivity.h \
     $$PWD/Tasks.h \
     $$PWD/TasksList.h \
     $$PWD/TaskLockScreen.h \
@@ -80,20 +84,19 @@ HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/StickyModel.h \
     $$PWD/StickyItemDelegate.h \
     $$PWD/TaskCycleWeek.h \
-    $$PWD/TaskDay.h \ 
-    $$PWD/Activity.h \
-    $$PWD/FrmActivity.h
+    $$PWD/TaskDay.h  
 
 FORMS += \
     $$PWD/FrmFullScreen.ui \
+    $$PWD/FrmTask.ui \
+    $$PWD/FrmTaskActivity.ui \
     $$PWD/FrmTop.ui \
     $$PWD/FrmStickyNotes.ui \
     $$PWD/FrmTaskProperty.ui \ 
     $$PWD/FrmTasks.ui \
     $$PWD/FrmTasksList.ui \
     $$PWD/FrmStickyList.ui \
-    $$PWD/FrmCalendar.ui \
-    $$PWD/FrmActivity.ui
+    $$PWD/FrmCalendar.ui
 
 RESOURCES += \
     $$PWD/Resource/ResourceTasks.qrc \

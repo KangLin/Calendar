@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CFrmActivity</class>
- <widget class="QWidget" name="CFrmActivity">
+ <class>CFrmTaskActivity</class>
+ <widget class="QWidget" name="CFrmTaskActivity">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>600</height>
+    <width>262</width>
+    <height>501</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="ldTitle"/>
+      <widget class="QLineEdit" name="leTitle"/>
      </item>
     </layout>
    </item>
@@ -63,10 +63,24 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dtStart"/>
+      <widget class="QDateEdit" name="dtStart">
+       <property name="displayFormat">
+        <string>yyyy/MM/dd</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item>
-      <widget class="QTimeEdit" name="tmStart"/>
+      <widget class="QTimeEdit" name="tmStart">
+       <property name="displayFormat">
+        <string>HH:mm</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -80,10 +94,24 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dtEdit"/>
+      <widget class="QDateEdit" name="dtEnd">
+       <property name="displayFormat">
+        <string>yyyy/MM/dd</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item>
-      <widget class="QTimeEdit" name="tmEnd"/>
+      <widget class="QTimeEdit" name="tmEnd">
+       <property name="displayFormat">
+        <string>HH:mm</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -176,7 +204,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="ldAccount"/>
+      <widget class="QLineEdit" name="leAccount">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -190,19 +225,26 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lePlace"/>
+      <widget class="QLineEdit" name="lePlace">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
    <item row="9" column="0">
     <widget class="QLabel" name="label_7">
      <property name="text">
-      <string>Description:</string>
+      <string>Content:</string>
      </property>
     </widget>
    </item>
    <item row="10" column="0">
-    <widget class="QTextEdit" name="textEdit"/>
+    <widget class="QTextEdit" name="teContent"/>
    </item>
   </layout>
  </widget>

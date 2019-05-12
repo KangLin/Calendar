@@ -122,6 +122,7 @@ int CFrmTasks::InitTaskComboBox()
     ui->cbTask->addItem("CTaskPrompt");
     ui->cbTask->addItem("CTaskLockScreen");
     ui->cbTask->addItem("CTaskPromptDelay");
+    ui->cbTask->addItem("CTaskActivity");
     return 0;
 }
 
