@@ -38,7 +38,9 @@ OTHER_FILES += Install/* \
     CMakeLists.txt \
     etc/* \
     cmake/* \
-    .travis.yml
+    .travis.yml \
+    debian/* \
+    build_debpackage.sh
 
 DISTFILES += \
     LICENSE.md \

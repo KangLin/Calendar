@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v0.0.3.{build}'
+version: 'v0.0.4.{build}'
 
 environment:
   matrix: 
@@ -134,9 +134,10 @@ deploy:
   - provider: GitHub
     #release: Tasks$(appveyor_build_version)
     description: 'Release Tasks $(APPVEYOR_REPO_TAG_NAME) on windows'
-    #token : https://github.com/settings/tokens password encrypt: https://ci.appveyor.com/tools/encrypt
+    #token : https://github.com/settings/tokens
+    #password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
-      secure: xgIFN2iAfgj1gsWabdHrmFXvj0rce/ZWtKUwm3aDUNfLGu+kO/q94MYD8a46AbDL
+      secure: 0GwqzU/eBRWamiMRBd9BsYN1p5SKop/A0hUcLe9XGW/Hd9F5+g9F5pXsTymT1AFq
     #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
     #draft: true
     #prerelease: true

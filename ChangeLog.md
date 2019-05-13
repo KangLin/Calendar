@@ -2,6 +2,7 @@
   - Add screen power
   - Use QScrollArea in Android
   - Add calendar
+  - Add debin package
 
 - v0.0.3
   - Modify main window
