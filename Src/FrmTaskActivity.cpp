@@ -1,29 +1,34 @@
 #include "FrmTaskActivity.h"
 #include "ui_FrmTaskActivity.h"
 #include <QScrollArea>
+#include <QtDebug>
 
 CFrmTaskActivity::CFrmTaskActivity(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CFrmTaskActivity)
+    ui(new Ui::CFrmTaskActivity),
+    m_Task(new CTaskActivity())
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
 }
 
-CFrmTaskActivity::CFrmTaskActivity(CTaskActivity* task,
+CFrmTaskActivity::CFrmTaskActivity(QSharedPointer<CTaskActivity> task,
                                    QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmTaskActivity)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     SetTask(task);
 }
 
 CFrmTaskActivity::~CFrmTaskActivity()
 {
+    qDebug() << "CFrmTaskActivity::~CFrmTaskActivity()";
     delete ui;
 }
 
-int CFrmTaskActivity::SetTask(CTaskActivity* task)
+int CFrmTaskActivity::SetTask(QSharedPointer<CTaskActivity> task)
 {
     m_Task = task;
     ui->leTitle->setText(m_Task->GetTitle());
@@ -61,4 +66,10 @@ int CFrmTaskActivity::ApplyTask()
 void CFrmTaskActivity::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event);
+}
+
+void CFrmTaskActivity::hideEvent(QHideEvent *event)
+{
+    Q_UNUSED(event);
+    ApplyTask();
 }

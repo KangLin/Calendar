@@ -83,14 +83,14 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         bash build_debpackage.sh ${QT_ROOT}
     else
         bash build_debpackage.sh ${QT_ROOT} 
-        
-        if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "59" ]; then
+
+        if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "512" ]; then
             export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`pwd`/debian/tasks/opt/Tasks/bin
             MD5=`md5sum ../tasks*_amd64.deb|awk '{print $1}'`
             echo "MD5:${MD5}"
             ./debian/tasks/opt/Tasks/bin/TasksApp \
                 -f "`pwd`/update_linux.xml" \
-                --md5 ${MD5} 
+                --md5 ${MD5}
             export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
             #export UPLOADTOOL_PR_BODY=
             wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh

@@ -1,10 +1,9 @@
 - 0.0.5
-  - Added ubuntu distribution
-   - Add calendar reminder
-     - Birthday (year cycle)
-     - Month cycle
-     - Week cycle
-     - same date cycle
+  - Add calendar reminder
+    - Birthday (year cycle)
+    - Month cycle
+    - Week cycle
+    - same date cycle
      
 - v0.0.4
   - Add screen power

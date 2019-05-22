@@ -12,23 +12,23 @@ class CFrmTaskActivity;
 class CFrmTaskActivity : public QWidget
 {
     Q_OBJECT
-    
+
 public:
     explicit CFrmTaskActivity(QWidget *parent = nullptr);
-    explicit CFrmTaskActivity(CTaskActivity* task,
+    explicit CFrmTaskActivity(QSharedPointer<CTaskActivity> task,
                               QWidget *parent = nullptr);
     virtual ~CFrmTaskActivity() override;
-    
-    int SetTask(CTaskActivity *task);
+
+    int SetTask(QSharedPointer<CTaskActivity> task);
     int ApplyTask();
 
 private:
     Ui::CFrmTaskActivity *ui;
-    CTaskActivity* m_Task;
-    
-    // QWidget interface
+    QSharedPointer<CTaskActivity> m_Task;
+
 protected:
     virtual void showEvent(QShowEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override;
 };
 
 #endif // FRMACTIVITY_H

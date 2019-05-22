@@ -31,6 +31,9 @@
         <file alias="Move">image/move.png</file>
         <file alias="Close">image/green_close.png</file>
         <file alias="Calendar">image/calendar.png</file>
+        <file alias="ViewWeek">image/weeklyview.png</file>
+        <file alias="ViewMonth">image/monthlyview.png</file>
+        <file alias="Tools">image/Tools.png</file>
     </qresource>
     <qresource prefix="/icon/red">
         <file alias="Point">image/red_point.png</file>
