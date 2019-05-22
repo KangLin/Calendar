@@ -22,10 +22,11 @@ case "$1" in
     configure)
         if [ ! -f /usr/share/applications/Tasks.desktop ]; then
             ln -s /opt/Tasks/share/applications/Tasks.desktop /usr/share/applications/Tasks.desktop
+            ln -s /opt/Tasks/share/applications/Tasks.desktop /etc/xdg/autostart/Tasks.desktop
         fi
         echo "/opt/Tasks/lib" > /etc/ld.so.conf.d/Tasks.conf
         echo "/opt/Tasks/bin" >> /etc/ld.so.conf.d/Tasks.conf
-	echo "/opt/qt59/lib" >> /etc/ld.so.conf.d/Tasks.conf
+        echo "/opt/qt59/lib" >> /etc/ld.so.conf.d/Tasks.conf
         ldconfig
     ;;
 

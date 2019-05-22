@@ -9,7 +9,7 @@ TEMPLATE = app
 
 QT += core gui xml
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network multimedia
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 
 RC_FILE = AppIcon.rc
 include(../pri/Common.pri)

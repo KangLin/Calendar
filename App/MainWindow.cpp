@@ -113,14 +113,19 @@ void CMainWindow::slotShow()
 
 void CMainWindow::slotStartRun(bool checked)
 {
-    if(checked)
-    {
-        CTasksTools::InstallStartRunCurrentUser();
-    }
-    else
+    if(CTasksTools::IsStartRunCurrentUser())
     {
         CTasksTools::RemoveStartRunCurrentUser();
     }
+    else
+    {
+        CTasksTools::InstallStartRunCurrentUser();
+    }
+    
+    if(CTasksTools::IsStartRunCurrentUser())
+        m_pStartRun->setChecked(true);
+    else
+        m_pStartRun->setChecked(false);
 }
 
 void CMainWindow::slotActivated(QSystemTrayIcon::ActivationReason r)

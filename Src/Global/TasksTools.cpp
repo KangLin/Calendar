@@ -3,10 +3,11 @@
 #include <QApplication>
 #include <QDir>
 #include <QLocale>
+#include <QDebug>
 #if defined(Q_OS_WIN)
     #include <Windows.h>
 #endif
-
+#include "GlobalDir.h"
 #include "LunarCalendar.h"
 
 const QString gCurrentUserRun = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
@@ -192,6 +193,10 @@ bool CTasksTools::IsStartRunServicesOnce()
 
 int CTasksTools::InstallStartRun(const QString &szReg, const QString &szName, const QString &szPath)
 {
+    Q_UNUSED(szReg);
+    Q_UNUSED(szName);
+    Q_UNUSED(szPath);
+#if defined (Q_OS_WIN)
     QString appName = QApplication::applicationName();
     QString appPath = QApplication::applicationFilePath();
     if(!szName.isEmpty())
@@ -199,22 +204,63 @@ int CTasksTools::InstallStartRun(const QString &szReg, const QString &szName, co
     if(!szPath.isEmpty())
         appPath = szPath;
     return SetRegister(szReg, appName, appPath);
+#elif defined(Q_OS_ANDROID)
+    
+    return 0;
+#elif defined(Q_OS_UNIX)
+    //See: debian/postinst
+    QFile f("/opt/Tasks/share/applications/Tasks.desktop");
+    bool ret = f.link("/etc/xdg/autostart/Tasks.desktop");
+    if(!ret)
+    {
+        qDebug() << "file link " << f.fileName() << "to /etc/xdg/autostart/Tasks.desktop:" << f.error();
+        return -1;
+    }
+    return 0;
+#endif
 }
 
 int CTasksTools::RemoveStartRun(const QString &szReg, const QString &szName)
 {
+    Q_UNUSED(szReg);
+    Q_UNUSED(szName);
+#if defined (Q_OS_WIN)
     QString appName = QApplication::applicationName();
     if(!szName.isEmpty())
         appName = szName;
     return RemoveRegister(szReg, appName);
+#elif defined(Q_OS_ANDROID)
+    
+    return 0;
+#elif defined(Q_OS_UNIX)
+    QDir d;
+    if(d.remove("/etc/xdg/autostart/Tasks.desktop"))
+        return 0;
+    return -1;
+#endif
 }
 
 bool CTasksTools::IsStartRun(const QString &szReg, const QString &szName)
 {
+    Q_UNUSED(szReg);
+    Q_UNUSED(szName);
+#if defined (Q_OS_WIN)
     QString appName = QApplication::applicationName();
     if(!szName.isEmpty())
         appName = szName;
     return IsRegister(szReg, appName);
+#elif defined(Q_OS_ANDROID)
+    
+    return false;
+#elif defined(Q_OS_UNIX)
+    QFile f("/etc/xdg/autostart/Tasks.desktop");
+    if(f.open(QFile::ReadOnly))
+    {
+        f.close();
+        return true;
+    }
+    return false;
+#endif
 }
 
 int CTasksTools::SetRegister(const QString &reg, const QString &name, const QString &path)
@@ -244,6 +290,7 @@ bool CTasksTools::IsRegister(const QString &reg, const QString &name)
 
 int CTasksTools::ScreenPower(bool bOff)
 {
+    Q_UNUSED(bOff);
 #if defined(Q_OS_WIN)
     if(bOff)
         SendMessage(FindWindow(0, 0), WM_SYSCOMMAND, SC_MONITORPOWER, 2);
@@ -255,6 +302,7 @@ int CTasksTools::ScreenPower(bool bOff)
 
 int CTasksTools::ScreenSaver(bool bSaver)
 {
+    Q_UNUSED(bSaver);
 #if defined(Q_OS_WIN)
     ::SystemParametersInfo( SPI_SETSCREENSAVEACTIVE, bSaver, 0, 0 );
 #endif

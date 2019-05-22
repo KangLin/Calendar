@@ -30,6 +30,14 @@ install.CONFIG += directory no_check_exist
 !android : INSTALLS += other
 win32:  INSTALLS += install
 
+!android : unix {
+    DESKTOP_FILE.target = DESKTOP_FILE
+    DESKTOP_FILE.files = $$PWD/debian/Tasks.desktop
+    DESKTOP_FILE.path = $$system_path($${PREFIX})/share/applications
+    DESKTOP_FILE.CONFIG += directory no_check_exist
+    INSTALLS += DESKTOP_FILE
+}
+
 OTHER_FILES += Install/* \
     appveyor.yml \
     ci/* \

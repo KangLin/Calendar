@@ -98,8 +98,10 @@ function function_unix()
     sudo apt-get install -y -qq libglu1-mesa-dev
 
     if [ "$BUILD_DOWNLOAD" != "TRUE" ]; then
-        sudo apt-get install -y -qq qt${QT_VERSION_DIR}base qt${QT_VERSION_DIR}tools
-        sed -i "s/opt-qt597/opt-qt${QT_VERSION}/g" ${SOURCE_DIR}/debian/preinst
+        sudo apt-get install -y -qq qt${QT_VERSION_DIR}base \
+            qt${QT_VERSION_DIR}tools \
+            qt${QT_VERSION_DIR}multimedia
+        sed -i "s/export QT_VERSION=/export QT_VERSION=${QT_VERSION}/g" ${SOURCE_DIR}/debian/preinst
         sed -i "s/qt59/qt${QT_VERSION_DIR}/g" ${SOURCE_DIR}/debian/postinst
     fi
     function_common

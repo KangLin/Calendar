@@ -72,9 +72,9 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     tasks->Add(task);
     CTasksList taskslist, tl;
     taskslist.Add(tasks);
-    taskslist.SaveSettings("tastTask.xml");
+    taskslist.SaveSettings("testTask.xml");
     
-    tl.LoadSettings("tastTask.xml");
+    tl.LoadSettings("testTask.xml");
 }
 
 CFrmCalendar::~CFrmCalendar()
