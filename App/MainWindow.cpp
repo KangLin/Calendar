@@ -101,6 +101,8 @@ void CMainWindow::slotExit()
 
 void CMainWindow::slotShow()
 {
+    qDebug() << "CMainWindow::slotShow()";
+    
     if(isHidden())
     {   show();
         m_pShow->setText(tr("Hide"));
@@ -245,4 +247,9 @@ void CMainWindow::resizeEvent(QResizeEvent *event)
     if(s != m_Table.size())
         m_Table.resize(s);
 #endif
+}
+
+void CMainWindow::hideEvent(QHideEvent *event)
+{
+    m_pShow->setText(tr("Show"));
 }

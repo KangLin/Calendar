@@ -46,8 +46,8 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     //m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
-    m_pCalendar->ShowHead(false);
-//    m_pCalendar->ShowTime(false);
+    //m_pCalendar->ShowHead(false);
+    m_pCalendar->ShowTime(false);
     m_pCalendar->ShowDate(true);
     m_pCalendar->ShowWeeks(false);
     

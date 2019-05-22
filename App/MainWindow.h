@@ -66,6 +66,7 @@ private:
     
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override;
 };
 
 #endif // MAINWINDOW_H
