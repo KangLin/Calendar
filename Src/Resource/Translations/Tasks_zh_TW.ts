@@ -2,11 +2,162 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
+    <name>CDlgTaskActivity</name>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="14"/>
+        <source>Activity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="22"/>
+        <source>Title:</source>
+        <translation>標題</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="36"/>
+        <source>Date Type:</source>
+        <translation>日期類型</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="43"/>
+        <source>Solar</source>
+        <translation>陽歷</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="53"/>
+        <source>Lunar</source>
+        <translation>農歷</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="64"/>
+        <source>Start Time：</source>
+        <translation>開始時間：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="71"/>
+        <location filename="../../DlgTaskActivity.ui" line="102"/>
+        <source>yyyy/MM/dd</source>
+        <translation>yyyy/MM/dd</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="81"/>
+        <location filename="../../DlgTaskActivity.ui" line="112"/>
+        <source>HH:mm</source>
+        <translation>HH:mm</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="95"/>
+        <source>End Time：</source>
+        <translation>結束時間：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="124"/>
+        <source>Repeat</source>
+        <translation>重復</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="130"/>
+        <source>Once</source>
+        <translation>壹次</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="140"/>
+        <source>Every day</source>
+        <translation>每天</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="150"/>
+        <source>Weekly</source>
+        <translation>每周</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="157"/>
+        <source>Monthly</source>
+        <translation>每月</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="164"/>
+        <source>Every year</source>
+        <translation>每年</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="171"/>
+        <source>Custom</source>
+        <translation>自定義</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="183"/>
+        <source>Prompt:</source>
+        <translation>提示：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="190"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="197"/>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="211"/>
+        <source>Account:</source>
+        <translation>賬戶</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="232"/>
+        <source>Place:</source>
+        <translation>位置：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="251"/>
+        <source>Content:</source>
+        <translation>內容：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="276"/>
+        <source>Ok(&amp;O)</source>
+        <translation>確定(&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgTaskActivity.ui" line="283"/>
+        <source>Cancel(&amp;C)</source>
+        <translation>取消(&amp;C)</translation>
+    </message>
+</context>
+<context>
     <name>CFrmCalendar</name>
     <message>
         <location filename="../../FrmCalendar.ui" line="14"/>
+        <location filename="../../FrmCalendar.cpp" line="43"/>
         <source>Calendar</source>
-        <translation type="unfinished"></translation>
+        <translation>日歷</translation>
+    </message>
+    <message>
+        <location filename="../../FrmCalendar.cpp" line="52"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
+        <location filename="../../FrmCalendar.cpp" line="57"/>
+        <source>Delete</source>
+        <translation>刪除</translation>
+    </message>
+    <message>
+        <location filename="../../FrmCalendar.cpp" line="62"/>
+        <source>Modify</source>
+        <translation>修改</translation>
+    </message>
+    <message>
+        <location filename="../../FrmCalendar.cpp" line="68"/>
+        <source>Week</source>
+        <translation>周</translation>
+    </message>
+    <message>
+        <location filename="../../FrmCalendar.cpp" line="75"/>
+        <source>Tools</source>
+        <translation>工具</translation>
     </message>
 </context>
 <context>
@@ -123,6 +274,82 @@
         <location filename="../../FrmStickyNotes.cpp" line="40"/>
         <source>Delay</source>
         <translation>延遲</translation>
+    </message>
+</context>
+<context>
+    <name>CFrmTask</name>
+    <message>
+        <location filename="../../FrmTask.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="22"/>
+        <source>Start time</source>
+        <translation>開始時間:</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="32"/>
+        <source>Interval:</source>
+        <translation>間隔：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="45"/>
+        <source>Task interval(Unit: minute). If is 0, then run now.</source>
+        <translation>任務間隔（單位：分鐘）。如果是0，則立即運行。</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="58"/>
+        <source>M</source>
+        <translation>分</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="71"/>
+        <source>PromptInterval:</source>
+        <translation>提示間隔：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="84"/>
+        <location filename="../../FrmTask.ui" line="87"/>
+        <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
+        <translation>提示間隔（單位：秒）。如果是0，則不提示。</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="100"/>
+        <source>S</source>
+        <translation>秒</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="111"/>
+        <source>ID:</source>
+        <translation>ID：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="124"/>
+        <source>Task ID</source>
+        <translation>任務ID</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="134"/>
+        <source>Title:</source>
+        <translation>標題</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="147"/>
+        <source>Task title</source>
+        <translation>任務標題</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="167"/>
+        <source>Content:</source>
+        <translation>內容：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTask.ui" line="180"/>
+        <location filename="../../FrmTask.ui" line="183"/>
+        <location filename="../../FrmTask.ui" line="186"/>
+        <source>Task content</source>
+        <translation>任務內容</translation>
     </message>
 </context>
 <context>
@@ -320,19 +547,19 @@
         <translation>這是任務組中的當前任務.</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="148"/>
+        <location filename="../../FrmTasks.cpp" line="149"/>
         <source>New </source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="257"/>
-        <location filename="../../FrmTasks.cpp" line="267"/>
+        <location filename="../../FrmTasks.cpp" line="258"/>
+        <location filename="../../FrmTasks.cpp" line="268"/>
         <source>Open file</source>
         <translation>打開文件</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="257"/>
-        <location filename="../../FrmTasks.cpp" line="267"/>
+        <location filename="../../FrmTasks.cpp" line="258"/>
+        <location filename="../../FrmTasks.cpp" line="268"/>
         <source>png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)</source>
         <translation>png(*.png);;圖標(*.icon);;jpg(*.jpg);;位圖(*.bmp);;所有文件(*.*)</translation>
     </message>
@@ -464,25 +691,28 @@
 <context>
     <name>CLunarCalendar</name>
     <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="14"/>
         <source>Calendar</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">日歷</translation>
     </message>
     <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="104"/>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="124"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="147"/>
         <source>ToDay</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">今天</translation>
     </message>
     <message>
-        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.ui" line="54"/>
-        <source>Date text</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.cpp" line="85"/>
+        <source>Today</source>
+        <translation>今天</translation>
+    </message>
+    <message>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.cpp" line="162"/>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.cpp" line="1070"/>
+        <source>Month</source>
+        <translation>月</translation>
+    </message>
+    <message>
+        <location filename="../../../3th_libs/LunarCalendar/Src/LunarCalendar.cpp" line="1067"/>
+        <source>Week</source>
+        <translation>周</translation>
     </message>
 </context>
 <context>
@@ -495,6 +725,14 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
         <translation>任務是最基本的單位。它是最小的遠行單位。
 從Start函數開始經過間隔 Interval 時間後運行run函數。
 如果PromptInterval不為0，則間隔PromptInterval時間提示。</translation>
+    </message>
+</context>
+<context>
+    <name>CTaskActivity</name>
+    <message>
+        <location filename="../../TaskActivity.cpp" line="40"/>
+        <source>Task Activity</source>
+        <translation>活動任務</translation>
     </message>
 </context>
 <context>

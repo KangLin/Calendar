@@ -70,7 +70,17 @@ public:
     Q_INVOKABLE int SetRepeat(_ENUM_REPEAT repeat);
     Q_INVOKABLE _ENUM_REPEAT GetRepeat() const;
     
+    /**
+     * @brief AddPrompt
+     * @param minute
+     * @return 
+     */     
     int AddPrompt(int minute = -5);
+    /**
+     * @brief GetPrompt
+     * @return QString
+     * The time in minutes relative to StartTime. Separated by ","
+     */
     Q_INVOKABLE QString GetPrompt();
     Q_INVOKABLE int SetPrompt(const QString& prompt);
     

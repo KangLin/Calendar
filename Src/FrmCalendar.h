@@ -5,12 +5,9 @@
 #include <QListView>
 #include <QToolBar>
 #include "tasks_export.h"
+#include "TasksList.h"
 
 class CLunarCalendar;
-
-namespace Ui {
-class CFrmCalendar;
-}
 
 class TASKS_EXPORT CFrmCalendar : public QWidget
 {
@@ -24,17 +21,23 @@ public:
 
 private Q_SLOTS:
     void slotSelectionChanged();
-    void slotAddTask();
-    void slotDeleteTask();
-    void slotModifyTask();
+    void slotLoad();
+    void slotSaveAs();
+    void slotAdd();
+    void slotDelete();
+    void slotModify();
     void slotViewWeek(bool checked);
     void slotCalendarHead(bool checked);
 
 private:
-    Ui::CFrmCalendar *ui;
+    int Load(const QString& szFile);
+    
+private:
     CLunarCalendar *m_pCalendar;
     QListView m_listView;
     QToolBar m_ToolBar;
+    
+    CTasksList m_TasksList;
 };
 
 #endif // FRMCALENDAR_H

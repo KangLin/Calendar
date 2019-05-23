@@ -4,9 +4,13 @@
 #include <QVBoxLayout>
 #include <QDate>
 #include <QAction>
-#include "FrmTaskActivity.h"
+#include <QSettings>
+#include <QFileDialog>
+#include <QMessageBox>
+
+#include "DlgTaskActivity.h"
 #include "TaskActivity.h"
-#include "TasksList.h"
+#include "Global/GlobalDir.h"
 
 class CTasksHandler : public CLunarCalendar::CGetTaskHandler
 {
@@ -36,27 +40,37 @@ int CTasksHandler::onHandle(QDate date)
 
 CFrmCalendar::CFrmCalendar(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CFrmCalendar),
     m_ToolBar(this)
 {
-    ui->setupUi(this);
-    
     bool check = false;
+    setWindowTitle(tr("Calendar"));
+    
+    m_TasksList.setObjectName("TasksActivityList");
+    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), 
+                  QSettings::IniFormat);
+    QString szFile = set.value("TasksAcitvityList").toString();
+    Load(szFile);
     
     QAction* pAction = nullptr;
+    pAction = new QAction(QIcon(":/icon/File"), tr("Open"), this);
+    check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotLoad()));
+    Q_ASSERT(check);
+    m_ToolBar.addAction(pAction);
+    pAction = new QAction(QIcon(":/icon/Save"), tr("Save As"), this);
+    check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotSaveAs()));
+    Q_ASSERT(check);
+    m_ToolBar.addAction(pAction);
+    m_ToolBar.addSeparator();
     pAction = new QAction(QIcon(":/icon/Add"), tr("Add"), this);
-    check = connect(pAction, SIGNAL(triggered()),
-                    this, SLOT(slotAddTask()));
+    check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotAdd()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     pAction = new QAction(QIcon(":/icon/Delete"), tr("Delete"), this);
-    check = connect(pAction, SIGNAL(triggered()),
-                    this, SLOT(slotDeleteTask()));
+    check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotDelete()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     pAction = new QAction(QIcon(":/icon/Edit"), tr("Modify"), this);
-    check = connect(pAction, SIGNAL(triggered()),
-                    this, SLOT(slotModifyTask()));
+    check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotModify()));
     Q_ASSERT(check);
     m_ToolBar.addSeparator();
     m_ToolBar.addAction(pAction); 
@@ -97,25 +111,20 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     pLayout->addWidget(&m_ToolBar);
     pLayout->addWidget(m_pCalendar);
     pLayout->addWidget(&m_listView);
-    
-//    QSharedPointer<CTaskActivity> task(new CTaskActivity());
-//    task->SetTypeDate(CTaskActivity::Lunar);
-//    task->SetPlace("place");
-//    task->SetDateStart(2012,1,1);
-//    task->SetTimeStart(QTime::currentTime());
-//    task->AddPrompt();
-//    QSharedPointer<CTasks> tasks(new CTasks());
-//    tasks->Add(task);
-//    CTasksList taskslist, tl;
-//    taskslist.Add(tasks);
-//    taskslist.SaveSettings("testTask.xml");
-    
-//    tl.LoadSettings("testTask.xml");
+
 }
 
 CFrmCalendar::~CFrmCalendar()
 {
-    delete ui;
+}
+
+int CFrmCalendar::Load(const QString &szFile)
+{
+    int nRet = m_TasksList.LoadSettings(szFile);
+    if(nRet)
+        return nRet;
+
+    return m_TasksList.Start();
 }
 
 void CFrmCalendar::slotSelectionChanged()
@@ -128,13 +137,60 @@ void CFrmCalendar::slotSelectionChanged()
     
 }
 
+void CFrmCalendar::slotLoad()
+{
+    QFileDialog fd(this, tr("Load"), QString(), tr("xml(*.xml);;All files(*.*)"));
+    fd.setFileMode(QFileDialog::ExistingFile);
+#if defined (Q_OS_ANDROID)
+    fd.showMaximized();
+#endif
+    int n = fd.exec();
+    if(QDialog::Rejected == n)
+        return;
+    Load(fd.selectedFiles().at(0));
+}
+
+void CFrmCalendar::slotSaveAs()
+{
+    QFileDialog fd(this, tr("Save as ..."), QString(), "*.xml");
+    //fd.setFileMode(QFileDialog::AnyFile);
+    fd.setAcceptMode(QFileDialog::AcceptSave);
+#if defined (Q_OS_ANDROID)
+    fd.showMaximized();
+#endif
+    int n = fd.exec();
+    if(QDialog::Rejected == n)
+        return;
+    QString szFile = fd.selectedFiles().at(0);
+    if(szFile.lastIndexOf(".xml") == -1)
+        szFile += ".xml";
+    QDir d;
+    if(d.exists(szFile))
+    {
+        QMessageBox::StandardButton n = QMessageBox::warning(this,
+                          tr("File exist"),
+                          tr("%1 is existed, replace it?").arg(szFile),
+                          QMessageBox::Ok | QMessageBox::Cancel);
+        if(QMessageBox::Ok != n)
+            return;        
+    }
+    
+    int nRet = m_TasksList.SaveSettings(szFile);
+    if(0 == nRet)
+    {
+        QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+                      QSettings::IniFormat);
+        set.setValue("TasksAcitvityList", szFile);
+    }
+}
+
 void CFrmCalendar::slotViewWeek(bool checked)
 {
     if(checked)
         m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     else
         m_pCalendar->SetViewType(CLunarCalendar::ViewTypeMonth);
-    
+
 //    updateGeometry();
 }
 
@@ -145,20 +201,26 @@ void CFrmCalendar::slotCalendarHead(bool checked)
     m_pCalendar->ShowDate(true);
 }
 
-void CFrmCalendar::slotAddTask()
+void CFrmCalendar::slotAdd()
 {
-    CFrmTaskActivity* pTask = new CFrmTaskActivity();
-    pTask->show();
+    CDlgTaskActivity task;
+#if defined (Q_OS_ANDROID)
+    task.showMaximized();
+#endif
+    if(QDialog::Accepted == task.exec())
+    {
+        QSharedPointer<CTasks> tasks(new CTasks());
+        tasks->Add(task.GetTask());
+        m_TasksList.Add(tasks);
+    }
 }
 
-void CFrmCalendar::slotDeleteTask()
-{
-    
+void CFrmCalendar::slotDelete()
+{   
 }
 
-void CFrmCalendar::slotModifyTask()
-{
-    
+void CFrmCalendar::slotModify()
+{  
 }
 
 int CFrmCalendar::onHandle(QDate date)

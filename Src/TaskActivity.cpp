@@ -14,11 +14,13 @@ CTaskActivity::CTaskActivity(QObject *parent) : CTask(parent)
     m_dtStart.Month = QDate::currentDate().month();
     m_dtStart.Day = QDate::currentDate().day();
     m_dtEnd = m_dtStart;
+    m_tmStart = QTime::currentTime();
+    m_tmEnd = m_tmStart.addSecs(3600);
     m_Repeat = Once;
     AddPrompt();
 }
 
-CTaskActivity::CTaskActivity(const CTaskActivity &a)
+CTaskActivity::CTaskActivity(const CTaskActivity &a) : CTask(a)
 {
     m_szAccount = a.m_szAccount;
     m_szPlace = a.m_szPlace;

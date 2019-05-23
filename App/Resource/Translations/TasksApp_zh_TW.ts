@@ -104,13 +104,14 @@
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="28"/>
-        <location filename="../../MainWindow.cpp" line="102"/>
+        <location filename="../../MainWindow.cpp" line="108"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="30"/>
-        <location filename="../../MainWindow.cpp" line="106"/>
+        <location filename="../../MainWindow.cpp" line="112"/>
+        <location filename="../../MainWindow.cpp" line="254"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
@@ -120,7 +121,7 @@
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="178"/>
+        <location filename="../../MainWindow.cpp" line="189"/>
         <source>Open sink</source>
         <translation>打開皮膚</translation>
     </message>
@@ -128,7 +129,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="36"/>
+        <location filename="../../main.cpp" line="38"/>
         <source>Tasks</source>
         <translation>任務</translation>
     </message>

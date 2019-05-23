@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CFrmTaskActivity</class>
- <widget class="QWidget" name="CFrmTaskActivity">
+ <class>CDlgTaskActivity</class>
+ <widget class="QDialog" name="CDlgTaskActivity">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>262</width>
-    <height>501</height>
+    <width>298</width>
+    <height>582</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,6 +41,9 @@
       <widget class="QRadioButton" name="rbSolar">
        <property name="text">
         <string>Solar</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -126,12 +129,18 @@
         <property name="text">
          <string>Once</string>
         </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
        <widget class="QRadioButton" name="rbEveryDay">
         <property name="text">
          <string>Every day</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -176,14 +185,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pbPromptAdd">
        <property name="text">
         <string>Add</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pbPromptRemove">
        <property name="text">
         <string>Remove</string>
        </property>
@@ -246,8 +255,62 @@
    <item row="10" column="0">
     <widget class="QTextEdit" name="teContent"/>
    </item>
+   <item row="11" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>48</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbOk">
+       <property name="text">
+        <string>Ok(&amp;O)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbCancel">
+       <property name="text">
+        <string>Cancel(&amp;C)</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>leTitle</tabstop>
+  <tabstop>rbSolar</tabstop>
+  <tabstop>rbLunar</tabstop>
+  <tabstop>dtStart</tabstop>
+  <tabstop>tmStart</tabstop>
+  <tabstop>dtEnd</tabstop>
+  <tabstop>tmEnd</tabstop>
+  <tabstop>rbOnce</tabstop>
+  <tabstop>rbEveryDay</tabstop>
+  <tabstop>rbWeekly</tabstop>
+  <tabstop>rbMonthly</tabstop>
+  <tabstop>rbEveryYear</tabstop>
+  <tabstop>rbCustom</tabstop>
+  <tabstop>pbPromptAdd</tabstop>
+  <tabstop>pbPromptRemove</tabstop>
+  <tabstop>lstPromt</tabstop>
+  <tabstop>leAccount</tabstop>
+  <tabstop>lePlace</tabstop>
+  <tabstop>teContent</tabstop>
+  <tabstop>pbOk</tabstop>
+  <tabstop>pbCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

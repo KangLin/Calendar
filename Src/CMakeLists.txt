@@ -28,6 +28,8 @@ set(HEAD_FILES
     StickyModel.h
     StickyItemDelegate.h
     FrmTasksList.h
+    TaskActivity.h
+    DlgTaskActivity.h
     )
 set(SOURCE_FILES
     Task.cpp
@@ -51,7 +53,9 @@ set(SOURCE_FILES
     FrmStickyList.cpp
     StickyModel.cpp
     StickyItemDelegate.cpp
-    FrmCalendar.cpp)
+    FrmCalendar.cpp
+    TaskActivity.cpp
+    DlgTaskActivity.cpp)
 set(SOURCE_UI_FILES
     FrmFullScreen.ui
     FrmTop.ui
@@ -60,7 +64,8 @@ set(SOURCE_UI_FILES
     FrmTasks.ui
     FrmTasksList.ui
     FrmStickyList.ui
-    FrmCalendar.ui)
+    FrmCalendar.ui
+    DlgTaskActivity.ui)
 
 #翻译
 include(${CMAKE_SOURCE_DIR}/cmake/Qt5CorePatches.cmake) 

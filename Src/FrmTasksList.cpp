@@ -94,6 +94,9 @@ void CFrmTasksList::slotLoad()
 {
     QFileDialog fd(this, tr("Load"), QString(), tr("xml(*.xml);;All files(*.*)"));
     fd.setFileMode(QFileDialog::ExistingFile);
+#if defined (Q_OS_ANDROID)
+    fd.showMaximized();
+#endif
     int n = fd.exec();
     if(QDialog::Rejected == n)
         return;
@@ -105,6 +108,9 @@ void CFrmTasksList::slotSaveAs()
     QFileDialog fd(this, tr("Save as ..."), QString(), "*.xml");
     //fd.setFileMode(QFileDialog::AnyFile);
     fd.setAcceptMode(QFileDialog::AcceptSave);
+#if defined (Q_OS_ANDROID)
+    fd.showMaximized();
+#endif
     int n = fd.exec();
     if(QDialog::Rejected == n)
         return;
