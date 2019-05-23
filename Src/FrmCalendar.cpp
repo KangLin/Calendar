@@ -78,7 +78,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_pCalendar = new CLunarCalendar(this);
     m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
                                    new CTasksHandler(this)));
-    //m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     //m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
     m_pCalendar->ShowHead(false);
@@ -134,6 +134,8 @@ void CFrmCalendar::slotViewWeek(bool checked)
         m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     else
         m_pCalendar->SetViewType(CLunarCalendar::ViewTypeMonth);
+    
+//    updateGeometry();
 }
 
 void CFrmCalendar::slotCalendarHead(bool checked)
