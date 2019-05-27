@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/icon">
-        <file alias="App">image/app.png</file>
         <file alias="China">image/china.png</file>
         <file alias="EyeNurse">image/EyeNurse.png</file>
         <file alias="EyeCharts">image/EyeCharts.png</file>
@@ -34,6 +33,7 @@
         <file alias="ViewWeek">image/weeklyview.png</file>
         <file alias="ViewMonth">image/monthlyview.png</file>
         <file alias="Tools">image/Tools.png</file>
+        <file alias="App">image/tasks.png</file>
     </qresource>
     <qresource prefix="/icon/red">
         <file alias="Point">image/red_point.png</file>

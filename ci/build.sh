@@ -97,6 +97,19 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
             bash upload.sh ../tasks*_amd64.deb update_linux.xml
         fi
     fi
+    if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "512" ]; then
+        cd debian/tasks/opt/Tasks
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${QT_ROOT}/bin:${QT_ROOT}/lib
+        wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
+        chmod a+x linuxdeployqt-continuous-x86_64.AppImage
+                export VERSION="0.3.5"
+        ./linuxdeployqt-continuous-x86_64.AppImage share/applications/*.desktop \
+            -qmake=${QT_ROOT}/bin/qmake -appimage
+
+        wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+
+        bash upload.sh tasks*.AppImage*
+    fi
     exit 0
 fi
 

@@ -24,6 +24,7 @@ case "$1" in
         rm -fr /usr/share/applications/Tasks.desktop
         rm -fr /etc/xdg/autostart/Tasks.desktop
         rm -fr /etc/ld.so.conf.d/Tasks.conf
+        rm -fr /usr/share/pixmaps/tasks.png
     ;;
 
     *)
