@@ -118,8 +118,15 @@ public:
             //qDebug() << "propery name: " << szName << " value: " << value.toString();
             if(value.isValid())
             {
+                
                 QDomElement domProperty = doc.createElement(szName);
-                domProperty.setAttribute("value", value.toString());
+                if(p.isEnumType())
+                {
+                    QMetaEnum e = p.enumerator();
+                    qDebug() << "enum:" << e.enumName() << " name:" << e.name() << " key:" << e.key(value.toInt());
+                    domProperty.setAttribute("value", e.key(value.toInt()));
+                } else
+                    domProperty.setAttribute("value", value.toString());
                 e.appendChild(domProperty);
             }
         } 

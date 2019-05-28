@@ -15,13 +15,12 @@ class CDlgTaskActivity : public QDialog
     Q_OBJECT
 
 public:
-    explicit CDlgTaskActivity(QWidget *parent = nullptr);
-    explicit CDlgTaskActivity(QSharedPointer<CTaskActivity> task,
+    explicit CDlgTaskActivity(CTaskActivity* task,
                               QWidget *parent = nullptr);
     virtual ~CDlgTaskActivity() override;
 
-    int SetTask(QSharedPointer<CTaskActivity> task);
-    QSharedPointer<CTaskActivity> GetTask();
+    int SetTask(CTaskActivity* task);
+    CTaskActivity* GetTask();
     int ApplyTask();
 
 private:
@@ -29,8 +28,10 @@ private:
     
 private:
     Ui::CDlgTaskActivity *ui;
-    QSharedPointer<CTaskActivity> m_Task;
-    QStandardItemModel *m_pModel;
+    CTaskActivity* m_Task;
+    QStandardItemModel *m_pModelPrompt;
+    CTaskActivity::_TYPE_DATE m_TypeDate;
+    CTaskActivity::_ENUM_REPEAT m_Repeat;
     
 protected:
     virtual void showEvent(QShowEvent *event) override;
@@ -47,7 +48,6 @@ private slots:
     void on_rbMonthly_clicked();
     void on_rbEveryYear_clicked();
     void on_rbCustom_clicked();
-
     void on_pbPromptAdd_clicked();
     void on_pbPromptRemove_clicked();
 };

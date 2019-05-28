@@ -8,6 +8,7 @@ static const int gTypeIdCDate = qRegisterMetaType<CTaskActivity::CDate>();
 CTaskActivity::CTaskActivity(QObject *parent) : CTask(parent)
 {
     setObjectName("Task Activity");
+    SetContent("");
     SetTitle(objectName());
     m_tyDate = Solar;
     m_dtStart.Year = QDate::currentDate().year();
@@ -62,6 +63,12 @@ int CTaskActivity::SetAccount(const QString &szAccount)
 QString CTaskActivity::GetAccount() const
 {
     return m_szAccount;
+}
+
+int CTaskActivity::SetTypeDate(int type)
+{
+    m_tyDate = (_TYPE_DATE)type;
+    return 0;
 }
 
 int CTaskActivity::SetTypeDate(_TYPE_DATE type)
@@ -125,7 +132,7 @@ int CTaskActivity::SetDateEnd(int year, int month, int day)
     return 0;
 }
 
-int CTaskActivity::GetDateEnd(CDate date)
+int CTaskActivity::GetDateEnd(CDate &date)
 {
     date = m_dtEnd;
     return 0;
@@ -158,6 +165,12 @@ QTime CTaskActivity::GetTimeEnd()
     return m_tmEnd;
 }
 
+int CTaskActivity::SetRepeat(int repeat)
+{
+    m_Repeat = (_ENUM_REPEAT)repeat;
+    return 0;
+}
+
 int CTaskActivity::SetRepeat(_ENUM_REPEAT repeat)
 {
     m_Repeat = repeat;
@@ -178,10 +191,12 @@ int CTaskActivity::AddPrompt(int minute)
 
 int CTaskActivity::SetPrompt(const QString &prompt)
 {
+    m_Prompt.clear();
     QStringList s = prompt.split(",");
     foreach(QString p, s)
     {
-        AddPrompt(p.toInt());
+        if(!p.isEmpty())
+            AddPrompt(p.toInt());
     }
     return 0;
 }
@@ -250,6 +265,139 @@ int CTaskActivity::onCheckOnce()
     if(Solar == GetTypeDate())
     {
         
+    }
+    return nRet;
+}
+
+int CTaskActivity::CheckDate(const QDate &date)
+{
+    int nRet = -1;
+    switch (GetRepeat()) {
+    case Once:
+        {
+            QDate s(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day);
+            QDate end(m_dtEnd.Year, m_dtEnd.Month, m_dtEnd.Day);
+            if(s <= date && date <= end)
+                return 0;
+        }
+        break;
+    case EveryDay:
+        return 0;
+    case Weekly:
+        {
+            if(date < QDate(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day))
+                return -1;
+            QDate s(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day);
+            QDate e(m_dtEnd.Year, m_dtEnd.Month, m_dtEnd.Day);
+            int sWeek = s.dayOfWeek();
+            int eWeek = e.dayOfWeek();
+            if(sWeek <= eWeek)
+            {
+                if(sWeek <= date.dayOfWeek() && date.dayOfWeek() <= eWeek)
+                    return 0;
+                else 
+                    return -1;
+            }
+            if(sWeek <= date.dayOfWeek() && date.dayOfWeek() <= 7)
+                return 0;
+            else if (1<=date.dayOfWeek() && date.dayOfWeek() <= eWeek) {
+                return 0;
+            }
+            return -1;
+        }
+    case Monthly:
+        {
+            if(date < QDate(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day))
+                return -1;
+            if(m_dtStart.Day <= m_dtEnd.Day)
+            {
+                if(m_dtStart.Day <= date.day() && date.day() <= m_dtEnd.Day)
+                    return 0;
+                else
+                    return -1;
+            }
+            else
+            {
+                 if(m_dtStart.Day <= date.day() || date.day() <= m_dtEnd.Day)
+                     return 0;
+                 else
+                     return -1;
+            }
+        }
+    case EveryYear:
+        {
+            if(date < QDate(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day))
+                return -1;
+            if(m_dtStart.Year == m_dtEnd.Year)
+            {
+                int d = m_dtStart.Day;
+                QDate s;
+                do {
+                    s = QDate(date.year(), m_dtStart.Month, d);
+                    if(!s.isValid())
+                        d--;
+                    else 
+                        break;
+                } while(d >= 1 && !s.isValid());
+                d = m_dtEnd.Day;
+                QDate e;
+                do {
+                    e = QDate(date.year(), m_dtEnd.Month, d);
+                    if(!e.isValid())
+                        d--;
+                    else 
+                        break;
+                } while(d >= 1 && !e.isValid());
+                if(s <= date && date <= e)
+                    return 0;
+                else
+                    return -1;
+            }
+            int d = m_dtStart.Day;
+            QDate s;
+            do {
+                s = QDate(date.year(), m_dtStart.Month, d);
+                if(!s.isValid())
+                    d--;
+                else 
+                    break;
+            } while(d >= 1 && !s.isValid());
+            d = 31;
+            QDate e;
+            do {
+                e = QDate(date.year(), 12, d);
+                if(!e.isValid())
+                    d--;
+                else 
+                    break;
+            } while(d >= 1 && !e.isValid());
+            if(s <= date && date <= e)
+                return 0;
+            
+            do {
+                s = QDate(date.year(), 1, 1);
+                if(!s.isValid())
+                    d++;
+                else 
+                    break;
+            } while(d <= 31 && !s.isValid());
+            d = m_dtEnd.Day;
+            do {
+                e = QDate(date.year(), m_dtEnd.Month, d);
+                if(!e.isValid())
+                    d--;
+                else 
+                    break;
+            } while(d >= 1 && !e.isValid());
+            if(s <= date && date <= e)
+                return 0;
+            
+            return -1;
+        }
+    case Custom:
+        break;
+    default:
+        qDebug() << "CTaskActivity::CheckDate: GetRepeat():" << GetRepeat() << " isn't know";
     }
     return nRet;
 }

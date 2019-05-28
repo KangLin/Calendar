@@ -37,6 +37,7 @@ public:
         Lunar = 1      
     };
     Q_ENUM(_TYPE_DATE)
+    int SetTypeDate(int type);
     Q_INVOKABLE int SetTypeDate(_TYPE_DATE type);
     Q_INVOKABLE _TYPE_DATE GetTypeDate() const;
     struct CDate
@@ -52,7 +53,7 @@ public:
     Q_INVOKABLE int SetTimeStart(QTime t);
     Q_INVOKABLE QTime GetTimeStart();
     int SetDateEnd(int year, int month, int day);
-    int GetDateEnd(CDate date);
+    int GetDateEnd(CDate &date);
     Q_INVOKABLE int SetDateEnd(QString date);
     Q_INVOKABLE QString GetDateEnd();
     Q_INVOKABLE int SetTimeEnd(QTime t);
@@ -67,6 +68,7 @@ public:
         Custom = 100
     };
     Q_ENUM(_ENUM_REPEAT)
+    int SetRepeat(int repeat);
     Q_INVOKABLE int SetRepeat(_ENUM_REPEAT repeat);
     Q_INVOKABLE _ENUM_REPEAT GetRepeat() const;
     
@@ -100,6 +102,8 @@ public:
      *           false: The task remain in tasks list 
      */
     virtual bool End();
+
+    virtual int CheckDate(const QDate &date);
     
 private:
     virtual int onPrompt();
@@ -125,4 +129,5 @@ private:
 
 Q_DECLARE_METATYPE(CTaskActivity)
 Q_DECLARE_METATYPE(CTaskActivity::CDate)
+
 #endif // TASKACTIVITY_H

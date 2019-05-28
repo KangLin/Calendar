@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QListView>
 #include <QToolBar>
+#include <QStandardItemModel>
 #include "tasks_export.h"
 #include "TasksList.h"
 
@@ -28,6 +29,7 @@ private Q_SLOTS:
     void slotModify();
     void slotViewWeek(bool checked);
     void slotCalendarHead(bool checked);
+    void slotViewDoubleClicked(const QModelIndex &index);
 
 private:
     int Load(const QString& szFile);
@@ -35,8 +37,9 @@ private:
 private:
     CLunarCalendar *m_pCalendar;
     QListView m_listView;
+    QStandardItemModel* m_pModel;
     QToolBar m_ToolBar;
-    
+    bool m_bModify;
     CTasksList m_TasksList;
 };
 

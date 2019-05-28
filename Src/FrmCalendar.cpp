@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QDebug>
 
 #include "DlgTaskActivity.h"
 #include "TaskActivity.h"
@@ -40,11 +41,18 @@ int CTasksHandler::onHandle(QDate date)
 
 CFrmCalendar::CFrmCalendar(QWidget *parent) :
     QWidget(parent),
-    m_ToolBar(this)
+    m_pModel(new QStandardItemModel(this)),
+    m_ToolBar(this),
+    m_bModify(false)
 {
     bool check = false;
     setWindowTitle(tr("Calendar"));
-    
+
+    m_listView.setModel(m_pModel);
+    m_listView.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    check = connect(&m_listView, SIGNAL(doubleClicked(const QModelIndex &)),
+                    this, SLOT(slotViewDoubleClicked(const QModelIndex&)));
+    Q_ASSERT(check);
     m_TasksList.setObjectName("TasksActivityList");
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), 
                   QSettings::IniFormat);
@@ -60,6 +68,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotSaveAs()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
+    
     m_ToolBar.addSeparator();
     pAction = new QAction(QIcon(":/icon/Add"), tr("Add"), this);
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotAdd()));
@@ -72,8 +81,9 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     pAction = new QAction(QIcon(":/icon/Edit"), tr("Modify"), this);
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotModify()));
     Q_ASSERT(check);
-    m_ToolBar.addSeparator();
-    m_ToolBar.addAction(pAction); 
+    m_ToolBar.addAction(pAction);
+    
+    m_ToolBar.addSeparator();    
     pAction = new QAction(QIcon(":/icon/ViewWeek"), tr("Week"), this);
     pAction->setCheckable(true);
     pAction->setChecked(true);
@@ -103,19 +113,27 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
                          this, SLOT(slotSelectionChanged()));
     Q_ASSERT(check);
-    
-    m_listView.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    
+        
     QVBoxLayout *pLayout = new QVBoxLayout(this);
     setLayout(pLayout);
     pLayout->addWidget(&m_ToolBar);
     pLayout->addWidget(m_pCalendar);
     pLayout->addWidget(&m_listView);
-
 }
 
 CFrmCalendar::~CFrmCalendar()
 {
+    if(m_bModify)
+    {
+        QMessageBox::StandardButton n
+                = QMessageBox::warning(this, tr("Save"),
+             tr("The calendar is changed, is it save?"),
+                       QMessageBox::Ok|QMessageBox::No);
+        if(QMessageBox::Ok == n)
+        {
+            slotSaveAs();
+        }
+    }
 }
 
 int CFrmCalendar::Load(const QString &szFile)
@@ -164,23 +182,13 @@ void CFrmCalendar::slotSaveAs()
     QString szFile = fd.selectedFiles().at(0);
     if(szFile.lastIndexOf(".xml") == -1)
         szFile += ".xml";
-    QDir d;
-    if(d.exists(szFile))
-    {
-        QMessageBox::StandardButton n = QMessageBox::warning(this,
-                          tr("File exist"),
-                          tr("%1 is existed, replace it?").arg(szFile),
-                          QMessageBox::Ok | QMessageBox::Cancel);
-        if(QMessageBox::Ok != n)
-            return;        
-    }
-    
     int nRet = m_TasksList.SaveSettings(szFile);
     if(0 == nRet)
     {
         QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                       QSettings::IniFormat);
         set.setValue("TasksAcitvityList", szFile);
+        m_bModify = false;
     }
 }
 
@@ -203,30 +211,85 @@ void CFrmCalendar::slotCalendarHead(bool checked)
 
 void CFrmCalendar::slotAdd()
 {
-    CDlgTaskActivity task;
+    QSharedPointer<CTaskActivity> ta(new CTaskActivity());
+    CDlgTaskActivity task(ta.get());
 #if defined (Q_OS_ANDROID)
     task.showMaximized();
 #endif
     if(QDialog::Accepted == task.exec())
     {
         QSharedPointer<CTasks> tasks(new CTasks());
-        tasks->Add(task.GetTask());
+        tasks->Add(ta);
+        tasks->SetTitle(task.GetTask()->GetTitle());
+        tasks->SetContent(task.GetTask()->GetContent());
         m_TasksList.Add(tasks);
+        m_pCalendar->Update();
+        m_bModify = true;
     }
 }
 
 void CFrmCalendar::slotDelete()
-{   
+{
+    QModelIndex index = m_listView.currentIndex();
+    if(!index.isValid())
+        return;
+    
+    m_bModify = true;
 }
 
 void CFrmCalendar::slotModify()
-{  
+{
+    QModelIndex index = m_listView.currentIndex();
+    if(!index.isValid())
+        return;
+    QStandardItem* pItem = m_pModel->itemFromIndex(index);
+    QString szId = pItem->data().toString();
+    qDebug () << "id:" << szId;
+    QStringList id = szId.split('_');
+    QSharedPointer<CTasks> tasks = m_TasksList.Get(id.at(0).toInt());
+    if(!tasks)
+        return;
+    QSharedPointer<CTask> task = tasks->Get(id.at(1).toInt());
+    CDlgTaskActivity dlg((CTaskActivity*)task.get());
+#if defined (Q_OS_ANDROID)
+    task.showMaximized();
+#endif
+    if(QDialog::Accepted == dlg.exec())
+    {
+        m_pCalendar->Update();
+        m_bModify = true;
+    }
+}
+
+void CFrmCalendar::slotViewDoubleClicked(const QModelIndex &index)
+{
+    Q_UNUSED(index);
+    slotModify();
 }
 
 int CFrmCalendar::onHandle(QDate date)
 {
-    int nRet = 0;
-    Q_UNUSED(date);
-    
-    return nRet;
+    int index = 0;
+    m_pModel->clear();
+    QSharedPointer<CTasks> tasks = m_TasksList.Get(index++);
+    while(tasks)
+    {
+        QSharedPointer<CTask> task = tasks->Get();
+        if(task)
+        {
+            const QMetaObject* pObj = task->metaObject();
+            if(QString("CTaskActivity") == pObj->className())
+            {
+                CTaskActivity* pTask = static_cast<CTaskActivity*>(task.get());
+                if(pTask->CheckDate(date) == 0)
+                {
+                    QStandardItem* pItem = new QStandardItem(pTask->GetTitle());
+                    pItem->setData(QString::number(tasks->GetId()) + "_" + QString::number(task->GetId()));
+                    m_pModel->appendRow(pItem);
+                }
+            }
+        }
+        tasks = m_TasksList.Get(index++);
+    }
+    return m_pModel->rowCount();
 }

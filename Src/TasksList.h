@@ -24,6 +24,7 @@ public:
     int Remove(QSharedPointer<CTasks> tasks);
     int RemoveAll();
     QSharedPointer<CTasks> Get(int index);
+    
     /*
      * @brief Start: Initialize here
      * @param nInterval: Check interval.
