@@ -33,6 +33,7 @@ private Q_SLOTS:
 
 private:
     int Load(const QString& szFile);
+    int Update();
     
 private:
     CLunarCalendar *m_pCalendar;

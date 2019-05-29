@@ -82,7 +82,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotModify()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-    
+
     m_ToolBar.addSeparator();    
     pAction = new QAction(QIcon(":/icon/ViewWeek"), tr("Week"), this);
     pAction->setCheckable(true);
@@ -97,7 +97,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
                     this, SLOT(slotCalendarHead(bool)));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-    
+
     CLunarCalendar::InitResource();
     m_pCalendar = new CLunarCalendar(this);
     m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
@@ -109,30 +109,39 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_pCalendar->ShowTime(false);
     m_pCalendar->ShowDate(true);
     m_pCalendar->ShowWeeks(false);
-    
+
     check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
                          this, SLOT(slotSelectionChanged()));
     Q_ASSERT(check);
-        
+
     QVBoxLayout *pLayout = new QVBoxLayout(this);
     setLayout(pLayout);
     pLayout->addWidget(&m_ToolBar);
     pLayout->addWidget(m_pCalendar);
     pLayout->addWidget(&m_listView);
+    
+    Update();
 }
 
 CFrmCalendar::~CFrmCalendar()
 {
     if(m_bModify)
     {
-        QMessageBox::StandardButton n
-                = QMessageBox::warning(this, tr("Save"),
-             tr("The calendar is changed, is it save?"),
-                       QMessageBox::Ok|QMessageBox::No);
-        if(QMessageBox::Ok == n)
+        QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), 
+                      QSettings::IniFormat);
+        QString szFile = set.value("TasksAcitvityList").toString();
+        if(szFile.isEmpty())
         {
-            slotSaveAs();
-        }
+            QMessageBox::StandardButton n
+                    = QMessageBox::warning(this, tr("Save"),
+                 tr("The calendar is changed, is it save?"),
+                           QMessageBox::Ok|QMessageBox::No);
+            if(QMessageBox::Ok == n)
+            {
+                slotSaveAs();
+            }    
+        } else
+            m_TasksList.SaveSettings(szFile);
     }
 }
 
@@ -198,8 +207,6 @@ void CFrmCalendar::slotViewWeek(bool checked)
         m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     else
         m_pCalendar->SetViewType(CLunarCalendar::ViewTypeMonth);
-
-//    updateGeometry();
 }
 
 void CFrmCalendar::slotCalendarHead(bool checked)
@@ -223,7 +230,7 @@ void CFrmCalendar::slotAdd()
         tasks->SetTitle(task.GetTask()->GetTitle());
         tasks->SetContent(task.GetTask()->GetContent());
         m_TasksList.Add(tasks);
-        m_pCalendar->Update();
+        Update();
         m_bModify = true;
     }
 }
@@ -245,7 +252,7 @@ void CFrmCalendar::slotDelete()
     if(!tasks)
         return;
     m_TasksList.Remove(tasks);
-    m_pCalendar->Update();
+    Update();
     m_bModify = true;
 }
 
@@ -267,7 +274,7 @@ void CFrmCalendar::slotModify()
 #endif
     if(QDialog::Accepted == dlg.exec())
     {
-        m_pCalendar->Update();
+        Update();
         m_bModify = true;
     }
 }
@@ -304,4 +311,11 @@ int CFrmCalendar::onHandle(QDate date)
         tasks = m_TasksList.Get(index++);
     }
     return m_pModel->rowCount();
+}
+
+int CFrmCalendar::Update()
+{
+    m_pCalendar->Update();
+    onHandle(m_pCalendar->SelectedDate());
+    return 0;
 }
