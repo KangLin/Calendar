@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QListView>
 #include <QToolBar>
+#include <QMenu>
 #include <QStandardItemModel>
 #include "tasks_export.h"
 #include "TasksList.h"
@@ -30,7 +31,8 @@ private Q_SLOTS:
     void slotViewWeek(bool checked);
     void slotCalendarHead(bool checked);
     void slotViewDoubleClicked(const QModelIndex &index);
-
+    void slotViewCustomContextMenuRequested(const QPoint &pos);
+    
 private:
     int Load(const QString& szFile);
     int Update();
@@ -42,6 +44,7 @@ private:
     QToolBar m_ToolBar;
     bool m_bModify;
     CTasksList m_TasksList;
+    QMenu m_ListViewMenu;
 };
 
 #endif // FRMCALENDAR_H

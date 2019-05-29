@@ -5,7 +5,7 @@
 
 #include <QObject>
 #include "Task.h"
-#include <QVector>
+#include <QMap>
 #include <QSharedPointer>
 
 /**
@@ -42,14 +42,20 @@ public:
     /*Q_INVOKABLE virtual int InsertAfter(QSharedPointer<CTask> newTask,
                           QSharedPointer<CTask> task = QSharedPointer<CTask>());//*/
     Q_INVOKABLE virtual int Remove(QSharedPointer<CTask> task);
+    
+    Q_INVOKABLE virtual QSharedPointer<CTask> Get(int nIdTask);
     /**
      * @brief Get current task
      * @return 
      */
-    Q_INVOKABLE virtual QSharedPointer<CTask> Get();
-    Q_INVOKABLE virtual QSharedPointer<CTask> Get(int index);
-    Q_INVOKABLE virtual int Length();
+    Q_INVOKABLE virtual QSharedPointer<CTask> GetCurrent();
+    virtual QSharedPointer<CTask> GetIndex(int nIndex);
     Q_INVOKABLE virtual int GetCurrentIndex();
+    Q_INVOKABLE virtual int Length();
+    
+    typedef QMap<int, QSharedPointer<CTask> >::iterator POSTION;
+    POSTION GetFirst();
+    QSharedPointer<CTask> GetNext(POSTION &pos);
     
     /**
      * @brief Start: Initialize here
@@ -64,14 +70,11 @@ public:
 
     virtual int LoadSettings(const QDomElement &e);
     virtual int SaveSettings(QDomElement &e);
-
-private:
-    int ReSetId();
     
 private:
-    int m_nCurrent;
-    QVector<QSharedPointer<CTask>> m_vTask;
-
+    int m_CurrentPostion;
+    QMap<int, QSharedPointer<CTask> > m_Task;
+    int m_nIdTask;
     int m_nId;
     QString m_szTitle;
     QString m_szContent;

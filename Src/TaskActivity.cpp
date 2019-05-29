@@ -1,4 +1,5 @@
 #include "TaskActivity.h"
+#include "FrmTopActivity.h"
 #include "ObjectFactory.h"
 #include <QDebug>
 
@@ -229,27 +230,38 @@ int CTaskActivity::Start()
 int CTaskActivity::Check()
 {
     int nRet = 0;
+
+    nRet = CheckDate(QDate::currentDate());
+    if(nRet)
+        return nRet;
     
-    switch (GetRepeat()) {
-    case Once:
-        nRet = onCheckOnce();
-        break;
-    case EveryDay:
-        break;
-    case Weekly:
-        break;
-    case Monthly:
-        break;
-    case EveryYear:
-        break;
-    case Custom:
-        break;
+    if(m_tmEnd < QDateTime::currentDateTime().time())
+        return 0;
+    
+    QVector<_PROMPT>::iterator it;
+    for(it = m_Prompt.begin(); it != m_Prompt.end(); it++)
+    {   
+        if(it->bStop)
+            continue;
+        if(m_tmStart.addSecs(60 * it->nPrompt)
+                < QDateTime::currentDateTime().time())
+        {
+            it->bStop = true;
+            CFrmTopActivity* top = new CFrmTopActivity();
+            if(top)
+            {
+                top->SetText(GetTitle());
+                top->show();
+            }
+        }
     }
     return nRet;
 }
 
 bool CTaskActivity::End()
 {
+    //if(m_tmEnd < QDateTime::currentDateTime().time())
+    //    return true;
     return false;
 }
 

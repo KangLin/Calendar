@@ -53,11 +53,17 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     check = connect(&m_listView, SIGNAL(doubleClicked(const QModelIndex &)),
                     this, SLOT(slotViewDoubleClicked(const QModelIndex&)));
     Q_ASSERT(check);
+    m_listView.setContextMenuPolicy(Qt::CustomContextMenu);
+    check = connect(&m_listView,
+                    SIGNAL(customContextMenuRequested(const QPoint &)),
+                    this, SLOT(slotViewCustomContextMenuRequested(const QPoint &)));
+    Q_ASSERT(check);
     m_TasksList.setObjectName("TasksActivityList");
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), 
                   QSettings::IniFormat);
     QString szFile = set.value("TasksAcitvityList").toString();
     Load(szFile);
+    m_TasksList.Start();
     
     QAction* pAction = nullptr;
     pAction = new QAction(QIcon(":/icon/File"), tr("Open"), this);
@@ -151,7 +157,7 @@ int CFrmCalendar::Load(const QString &szFile)
     if(nRet)
         return nRet;
 
-    return m_TasksList.Start();
+    return 0;
 }
 
 void CFrmCalendar::slotSelectionChanged()
@@ -285,14 +291,31 @@ void CFrmCalendar::slotViewDoubleClicked(const QModelIndex &index)
     slotModify();
 }
 
+void CFrmCalendar::slotViewCustomContextMenuRequested(const QPoint& pos)
+{
+    m_ListViewMenu.clear();
+    QAction* pAction = m_ListViewMenu.addAction(QIcon(":/icon/Add"), tr("Add"));
+    bool check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotAdd()));
+    Q_ASSERT(check);
+    pAction = m_ListViewMenu.addAction(QIcon(":/icon/Delete"), tr("Delete"));
+    check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotDelete()));
+    Q_ASSERT(check);
+    pAction = m_ListViewMenu.addAction(QIcon(":/icon/Edit"), tr("Modify"));
+    check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotModify()));
+    Q_ASSERT(check);
+    m_ListViewMenu.popup(m_listView.mapToGlobal(pos));
+}
+
 int CFrmCalendar::onHandle(QDate date)
 {
     int index = 0;
     m_pModel->clear();
-    QSharedPointer<CTasks> tasks = m_TasksList.Get(index++);
+    CTasksList::POSTION pos = m_TasksList.GetFirst();
+    QSharedPointer<CTasks> tasks = m_TasksList.GetNext(pos);
     while(tasks)
     {
-        QSharedPointer<CTask> task = tasks->Get();
+        CTasks::POSTION posTask = tasks->GetFirst();
+        QSharedPointer<CTask> task = tasks->GetNext(posTask);
         if(task)
         {
             const QMetaObject* pObj = task->metaObject();
@@ -308,8 +331,8 @@ int CFrmCalendar::onHandle(QDate date)
                 }
             }
         }
-        tasks = m_TasksList.Get(index++);
-    }
+        tasks = m_TasksList.GetNext(pos);
+    };
     return m_pModel->rowCount();
 }
 

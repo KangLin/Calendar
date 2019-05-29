@@ -18,7 +18,7 @@ CTasksList::CTasksList(QObject *parent) : QObject(parent),
 
 CTasksList::~CTasksList()
 {
-    m_lstTasks.clear();
+    m_Tasks.clear();
     if(m_Timer.isActive())
         m_Timer.stop();
 }
@@ -29,41 +29,55 @@ int CTasksList::Add(QSharedPointer<CTasks> tasks)
     if(NULL == tasks)
         return -1;
     
-    int nIdex = m_lstTasks.indexOf(tasks);
-    if(nIdex > -1)
+    if(m_Tasks.end() != m_Tasks.find(tasks->GetId()))
     {
         qDebug() << "The tasks is exist";
         return 0;
     }
-    m_lstTasks.push_back(tasks);
+    
     tasks->SetId(m_nIdCount++);
+    m_Tasks[tasks->GetId()] = tasks;
+
     return nRet;
 }
 
 int CTasksList::Remove(QSharedPointer<CTasks> tasks)
 {
     int nRet = 0;
-    m_lstTasks.removeOne(tasks);
+    m_Tasks.remove(tasks->GetId());
     return nRet;
 }
 
 int CTasksList::RemoveAll()
 {
-    m_lstTasks.clear();
+    m_Tasks.clear();
     m_nIdCount = 0;
     return 0;
 }
 
-QSharedPointer<CTasks> CTasksList::Get(int index)
+QSharedPointer<CTasks> CTasksList::Get(int nId)
 {
-    if(index >= m_lstTasks.length() || index < 0)
+    return m_Tasks.value(nId);
+}
+
+CTasksList::POSTION CTasksList::GetFirst()
+{
+    return m_Tasks.begin();
+}
+
+QSharedPointer<CTasks> CTasksList::GetNext(POSTION &pos)
+{
+    if(m_Tasks.end() == pos)
         return QSharedPointer<CTasks>();
-    return m_lstTasks.at(index);
+    
+    QSharedPointer<CTasks> tasks = pos.value();
+    pos++;
+    return tasks;
 }
 
 int CTasksList::Start(int nInterval)
 {
-    foreach (QSharedPointer<CTasks> tasks, m_lstTasks)
+    foreach (QSharedPointer<CTasks> tasks, m_Tasks)
     {
         tasks->Start();
     }
@@ -76,7 +90,7 @@ int CTasksList::Start(int nInterval)
 int CTasksList::Check()
 {
     int nRet = 0;
-    foreach (QSharedPointer<CTasks> task, m_lstTasks)
+    foreach (QSharedPointer<CTasks> task, m_Tasks)
     {
         nRet = task->Check();
         if(0 == nRet)
@@ -91,7 +105,7 @@ int CTasksList::Check()
         }
     }
     
-    if(m_lstTasks.empty())
+    if(m_Tasks.empty())
     {
         if(m_Timer.isActive())
             m_Timer.stop();
@@ -129,6 +143,7 @@ int CTasksList::LoadSettings(const QDomElement &e)
         }
 
         t->LoadSettings(tasks);
+        //m_nIdCount = qMax(m_nIdCount, t->GetId());
         Add(t);
         tasks = tasks.nextSiblingElement("class");
     }
@@ -145,7 +160,7 @@ int CTasksList::SaveSettings(QDomElement &e)
     
     CObjectFactory::SaveSettings(de, this);
     
-    foreach(QSharedPointer<CTasks> t, m_lstTasks)
+    foreach(QSharedPointer<CTasks> t, m_Tasks)
     {
         t->SaveSettings(de);
     }

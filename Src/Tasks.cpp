@@ -6,7 +6,8 @@ static const int gTypeIdCTasks = qRegisterMetaType<CTasks>();
 
 CTasks::CTasks(QObject *parent) : QObject(parent)
 {
-    m_nCurrent = 0;
+    m_CurrentPostion = 0;
+    m_nIdTask = 0;
     m_nId = -1;
     setObjectName("Tasks");
     SetTitle(objectName());
@@ -14,12 +15,13 @@ CTasks::CTasks(QObject *parent) : QObject(parent)
 
 CTasks::CTasks(const CTasks &tasks)
 {
-    m_nCurrent = tasks.m_nCurrent;
+    m_CurrentPostion = tasks.m_CurrentPostion;
+    m_nIdTask = tasks.m_nIdTask;
     m_nId = tasks.m_nId;
     m_szTitle = tasks.m_szTitle;
     m_szContent = tasks.m_szContent;
     setObjectName(tasks.objectName());
-    m_vTask = tasks.m_vTask;
+    m_Task = tasks.m_Task;
 }
 
 CTasks::~CTasks()
@@ -35,32 +37,25 @@ int CTasks::Add(QSharedPointer<CTask> task)
     if(nullptr == task.data())
         return -1;
     
-    int nIndex = m_vTask.indexOf(task);
-    if(nIndex > -1)
+    if(m_Task.end() != m_Task.find(task->GetId()))
     {
         qDebug() << "The task is exist";
         return 0;
     }
     
-    m_vTask.push_back(task);
-    nRet = ReSetId();
+    task->SetId(m_nIdTask++);
+    m_Task[task->GetId()] = task;
+
     return nRet;
 }
 
 int CTasks::Insert(QSharedPointer<CTask> task, int nIndex)
 {
-    if(nullptr == task.data() || nIndex < 0 || nIndex > m_vTask.length())
+    if(m_Task.end() != m_Task.find(task->GetId()))
         return -1;
-    
-    int i = m_vTask.indexOf(task);
-    if(i > -1)
-    {
-        qDebug() << "The task is exist";
-        return 0;
-    }
-    
-    m_vTask.insert(nIndex, task);
-    ReSetId();
+    task->SetId(m_nIdTask++);
+    POSTION pos = m_Task.begin() + nIndex;
+    m_Task.insert(pos, task->GetId(), task);
     return 0;
 }
 
@@ -75,33 +70,69 @@ int CTasks::InsertAfter(QSharedPointer<CTask> newTask,
 int CTasks::Remove(QSharedPointer<CTask> task)
 {
     int nRet = 0;
-    m_vTask.removeOne(task);
-    if(m_nCurrent >= m_vTask.size())
-        m_nCurrent = m_vTask.size() - 1;
-    ReSetId();
+    m_Task.remove(task->GetId());
     return nRet;
 }
 
-QSharedPointer<CTask> CTasks::Get(int index)
+QSharedPointer<CTask> CTasks::Get(int nIdTask)
 {
-    if(index >= m_vTask.size() || index < 0)
-        return QSharedPointer<CTask>();
-    return m_vTask.at(index);
+    return m_Task.value(nIdTask);
 }
 
-QSharedPointer<CTask> CTasks::Get()
+QSharedPointer<CTask> CTasks::GetCurrent()
 {
-    return Get(m_nCurrent);
+    if(m_CurrentPostion >= m_Task.size())
+        return QSharedPointer<CTask>();
+    POSTION pos = m_Task.begin();
+    pos += m_CurrentPostion;
+    if(m_Task.end() == pos)
+        return QSharedPointer<CTask>();
+    return pos.value();
 }
 
 int CTasks::Length()
 {
-    return m_vTask.length();
+    return m_Task.size();
+}
+
+QSharedPointer<CTask> CTasks::GetIndex(int nIndex)
+{
+    POSTION pos = m_Task.begin() + nIndex;
+    if(m_Task.end() == pos)
+        return QSharedPointer<CTask>();
+    
+    return pos.value();
 }
 
 int CTasks::GetCurrentIndex()
 {
-    return m_nCurrent;
+    int nIndex = 0;
+    POSTION it = m_Task.begin();
+    while(it != m_Task.end())
+    {
+        if(m_Task.size() <= m_CurrentPostion)
+        {
+            return nIndex;
+        }
+        it++;
+        nIndex++;
+    }
+    return nIndex;
+}
+
+CTasks::POSTION CTasks::GetFirst()
+{
+    return m_Task.begin();
+}
+
+QSharedPointer<CTask> CTasks::GetNext(POSTION &pos)
+{
+    if(m_Task.end() == pos)
+        return QSharedPointer<CTask>();
+    
+    QSharedPointer<CTask> t = pos.value();
+    pos++;
+    return t;
 }
 
 int CTasks::GetId()
@@ -150,22 +181,12 @@ int CTasks::SetIcon(QIcon icon)
 
 bool CTasks::End()
 {
-    return m_vTask.isEmpty();
-}
-
-int CTasks::ReSetId()
-{
-    int n = 0;
-    foreach(QSharedPointer<CTask> t, m_vTask)
-    {
-        t->SetId(n++);
-    }
-    return 0;
+    return m_Task.isEmpty();
 }
 
 int CTasks::Start()
 {
-    QSharedPointer<CTask> task = Get();
+    QSharedPointer<CTask> task = GetCurrent();
     if(task.data())
         task->Start();
     return 0;
@@ -174,7 +195,7 @@ int CTasks::Start()
 int CTasks::Check()
 {
     int nRet = 0;
-    QSharedPointer<CTask> task = Get();
+    QSharedPointer<CTask> task = GetCurrent();
     if(nullptr == task.data())
     {
         qWarning() << "CTasks::Check(): task pointer is null";
@@ -186,12 +207,12 @@ int CTasks::Check()
         return nRet;
     
     if(task->End())
-        m_vTask.removeOne(task);
+        m_Task.remove(task->GetId());
     else
-        m_nCurrent++;
+        m_CurrentPostion++;
 
-    if(m_nCurrent >= m_vTask.size())
-        m_nCurrent = 0;
+    if(m_CurrentPostion >= m_Task.size())
+        m_CurrentPostion = 0;
     
     Start();
     
@@ -201,6 +222,7 @@ int CTasks::Check()
 int CTasks::LoadSettings(const QDomElement &e)
 {
     int nRet = 0;
+    m_nIdTask = 0;
     CObjectFactory::LoadSettings(e, this);
     QDomElement task = e.firstChildElement("class");
     while (!task.isNull()) {
@@ -234,7 +256,7 @@ int CTasks::SaveSettings(QDomElement &e)
     tasks.setAttribute("name", pObj->className());;
         
     CObjectFactory::SaveSettings(tasks, this);
-    foreach(QSharedPointer<CTask> t, m_vTask)
+    foreach(QSharedPointer<CTask> t, m_Task)
     {
         t->SaveSettings(tasks);
     }

@@ -26,6 +26,7 @@ INCLUDEPATH += $$PWD $$PWD/export
 SOURCES += \
     $$PWD/DlgTaskActivity.cpp \
     $$PWD/FrmTask.cpp \
+    $$PWD/FrmTopActivity.cpp \
     $$PWD/Task.cpp \
     $$PWD/TaskActivity.cpp \
     $$PWD/Tasks.cpp \
@@ -64,6 +65,7 @@ INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
 HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/DlgTaskActivity.h \
     $$PWD/FrmTask.h \
+    $$PWD/FrmTopActivity.h \
     $$PWD/Task.h \
     $$PWD/TaskActivity.h \
     $$PWD/Tasks.h \

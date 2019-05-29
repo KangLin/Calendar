@@ -5,7 +5,7 @@
 
 #include <QObject>
 #include "Tasks.h"
-#include <QList>
+#include <QMap>
 #include <QSharedPointer>
 #include <QTimer>
 
@@ -19,12 +19,16 @@ class CTasksList : public QObject
 public:
     explicit CTasksList(QObject *parent = nullptr);
     virtual ~CTasksList();
-
+    
     int Add(QSharedPointer<CTasks> tasks);
     int Remove(QSharedPointer<CTasks> tasks);
     int RemoveAll();
-    QSharedPointer<CTasks> Get(int index);
 
+    typedef QMap<int, QSharedPointer<CTasks> >::iterator POSTION;
+    POSTION GetFirst();
+    QSharedPointer<CTasks> GetNext(POSTION &pos);
+    QSharedPointer<CTasks> Get(int nId);
+    
     /*
      * @brief Start: Initialize here
      * @param nInterval: Check interval.
@@ -43,7 +47,7 @@ private Q_SLOTS:
     void slotTimeout();
 
 private:
-    QList<QSharedPointer<CTasks>> m_lstTasks;
+    QMap<int, QSharedPointer<CTasks> > m_Tasks;
     QTimer m_Timer;
     int m_nTimerInterval;
     int m_nIdCount;

@@ -28,9 +28,8 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
     if(!ui->widget->layout())
         return;
     
-    int nIndex = 0;
-    
-    QSharedPointer<CTasks> tasks = m_plstTasks->Get(nIndex++);
+    CTasksList::POSTION pos = m_plstTasks->GetFirst();
+    QSharedPointer<CTasks> tasks = m_plstTasks->GetNext(pos);
     while(tasks)
     {
         QGroupBox *pGb = new QGroupBox(
@@ -40,8 +39,9 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
         if(!pGb)
             break;
         ui->widget->layout()->addWidget(pGb);
-        int n = 0;
-        QSharedPointer<CTask> task = tasks->Get(n++);
+
+        CTasks::POSTION posTasks = tasks->GetFirst();
+        QSharedPointer<CTask> task = tasks->GetNext(posTasks);
         while(task)
         {
             if(!pGb->layout())
@@ -53,7 +53,7 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
             pGb->layout()->addItem(pVbLayout);
             
             QLabel *lable = new QLabel(pGb);
-            if(tasks->Get() == task)
+            if(tasks->GetCurrent() == task)
             {
                 QPalette lablePalette = lable->palette();
                 lablePalette.setColor(QPalette::Foreground,
@@ -65,9 +65,9 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
             pVbLayout->addWidget(lable);
             CViewTaskProperty *m_pProperty = new CViewTaskProperty(task, pGb);
             pVbLayout->addWidget(m_pProperty);
-            task = tasks->Get(n++);
+            task = tasks->GetNext(posTasks);
         }
-        tasks = m_plstTasks->Get(nIndex++);
+        tasks = m_plstTasks->GetNext(pos);
     }    
 }
 

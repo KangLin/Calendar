@@ -50,9 +50,9 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_TrayIcon.setToolTip(this->windowTitle());
     m_TrayIcon.show();
     
-    m_Table.addTab(&m_FrmTasksList, m_FrmTasksList.windowIcon(), m_FrmTasksList.windowTitle());
-    m_Table.addTab(&m_frmStickyList, m_frmStickyList.windowIcon(), m_frmStickyList.windowTitle());
     m_Table.addTab(&m_frmCalendar, m_frmCalendar.windowIcon(), m_frmCalendar.windowTitle());
+    m_Table.addTab(&m_frmStickyList, m_frmStickyList.windowIcon(), m_frmStickyList.windowTitle());
+    m_Table.addTab(&m_FrmTasksList, m_FrmTasksList.windowIcon(), m_FrmTasksList.windowTitle());
     m_Table.setTabPosition(QTabWidget::South);
     
 #if defined (Q_OS_ANDROID)

@@ -95,7 +95,7 @@ int CFrmTasks::SetTask(QSharedPointer<CTask> task)
         Q_ASSERT(false);
         return -1;
     }
-    if(m_Tasks->Get() == task)
+    if(m_Tasks->GetCurrent() == task)
     {
         ui->lbStartTime->setText(tr("Start: %1").arg(
                                      QTime::currentTime().addMSecs(
@@ -152,7 +152,7 @@ void CFrmTasks::on_pbAdd_clicked()
         qCritical() << "CFrmTasks::on_pbAdd_clicked: The m_Tasks is null";
         return;
     }
-    m_Tasks->Insert(task, ui->vsLength->value() + 1);
+    m_Tasks->Insert(task, m_Tasks->GetIndex(ui->vsLength->value())->GetId());
     //SetTask(task);
     SetSlider(ui->vsLength->value() + 1);
 }
@@ -165,7 +165,7 @@ void CFrmTasks::on_pbRemove_clicked()
         return;
     }
     int nPos = ui->vsLength->value();
-    m_Tasks->Remove(m_Tasks->Get(nPos));
+    m_Tasks->Remove(m_Tasks->GetIndex(nPos));
     SetTasks();
     SetSlider(nPos);
 }
@@ -182,7 +182,7 @@ void CFrmTasks::on_vsLength_valueChanged(int value)
         qCritical() << "CFrmTasks::on_vsLength_valueChanged: The m_Tasks is null";
         return;
     }
-    SetTask(m_Tasks->Get(value));
+    SetTask(m_Tasks->GetIndex(value));
 }
 
 void CFrmTasks::on_pbPrevious_clicked()
@@ -199,7 +199,7 @@ void CFrmTasks::on_pbApply_clicked()
 {
     if(!m_Tasks)
         return;
-    QSharedPointer<CTask> task = m_Tasks->Get(ui->vsLength->value());
+    QSharedPointer<CTask> task = m_Tasks->GetIndex(ui->vsLength->value());
     if(!task)
         return;
     m_Tasks->SetTitle(ui->leTasksTitle->text());
@@ -235,22 +235,22 @@ void CFrmTasks::on_teTasksContent_textChanged()
 
 void CFrmTasks::on_leTaskTitle_editingFinished()
 {
-    m_Tasks->Get(ui->vsLength->value())->SetTitle(ui->leTaskTitle->text());
+    m_Tasks->GetIndex(ui->vsLength->value())->SetTitle(ui->leTaskTitle->text());
 }
 
 void CFrmTasks::on_teTaskContent_textChanged()
 {
-    m_Tasks->Get(ui->vsLength->value())->SetContent(ui->teTaskContent->toPlainText());
+    m_Tasks->GetIndex(ui->vsLength->value())->SetContent(ui->teTaskContent->toPlainText());
 }
 
 void CFrmTasks::on_spPromptInterval_valueChanged(int arg1)
 {
-    m_Tasks->Get(ui->vsLength->value())->SetPromptInterval(arg1 * 1000);
+    m_Tasks->GetIndex(ui->vsLength->value())->SetPromptInterval(arg1 * 1000);
 }
 
 void CFrmTasks::on_spInterval_valueChanged(int arg1)
 {
-    m_Tasks->Get(ui->vsLength->value())->SetInterval(arg1 * 60 * 1000);
+    m_Tasks->GetIndex(ui->vsLength->value())->SetInterval(arg1 * 60 * 1000);
 }
 
 void CFrmTasks::on_pbTasksIcon_clicked()
@@ -270,7 +270,7 @@ void CFrmTasks::on_pbTaskIcon_clicked()
     if(QDialog::Rejected == n)
         return;
     int v = ui->vsLength->value();
-    QSharedPointer<CTask> t = m_Tasks->Get(v);
+    QSharedPointer<CTask> t = m_Tasks->GetIndex(v);
     if(!t)
         return;
     t->SetIcon(QPixmap(fd.selectedFiles().at(0)));
