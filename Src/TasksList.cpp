@@ -5,13 +5,14 @@
 #include <QDir>
 #include "Global/GlobalDir.h"
 
-CTasksList::CTasksList(QObject *parent) : QObject(parent)
+CTasksList::CTasksList(QObject *parent) : QObject(parent),
+    m_nTimerInterval(0),
+    m_nIdCount(0)
 {
     bool check = false;
     check = connect(&m_Timer, SIGNAL(timeout()),
                     this, SLOT(slotTimeout()));
     Q_ASSERT(check);
-    m_nTimerInterval = 0;
     setObjectName("TasksList");
 }
 
@@ -35,7 +36,7 @@ int CTasksList::Add(QSharedPointer<CTasks> tasks)
         return 0;
     }
     m_lstTasks.push_back(tasks);
-    ReSetId();
+    tasks->SetId(m_nIdCount++);
     return nRet;
 }
 
@@ -43,23 +44,13 @@ int CTasksList::Remove(QSharedPointer<CTasks> tasks)
 {
     int nRet = 0;
     m_lstTasks.removeOne(tasks);
-    ReSetId();
     return nRet;
 }
 
 int CTasksList::RemoveAll()
 {
     m_lstTasks.clear();
-    return 0;
-}
-
-int CTasksList::ReSetId()
-{
-    int n = 0;
-    foreach(QSharedPointer<CTasks> t, m_lstTasks)
-    {
-        t->SetId(n++);
-    }
+    m_nIdCount = 0;
     return 0;
 }
 
@@ -123,6 +114,7 @@ int CTasksList::LoadSettings(const QDomElement &e)
         return -1;
     }
 
+    m_nIdCount = 0;
     CObjectFactory::LoadSettings(e, this);
     QDomElement tasks = e.firstChildElement("class");
     while (!tasks.isNull()) {

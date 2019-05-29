@@ -5,8 +5,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 
-CDlgTaskActivity::CDlgTaskActivity(CTaskActivity *task,
-                                   QWidget *parent) :
+CDlgTaskActivity::CDlgTaskActivity(CTaskActivity *task, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgTaskActivity)
 {

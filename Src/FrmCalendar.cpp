@@ -212,7 +212,7 @@ void CFrmCalendar::slotCalendarHead(bool checked)
 void CFrmCalendar::slotAdd()
 {
     QSharedPointer<CTaskActivity> ta(new CTaskActivity());
-    CDlgTaskActivity task(ta.get());
+    CDlgTaskActivity task(ta.data());
 #if defined (Q_OS_ANDROID)
     task.showMaximized();
 #endif
@@ -230,10 +230,22 @@ void CFrmCalendar::slotAdd()
 
 void CFrmCalendar::slotDelete()
 {
+    int n = QMessageBox::warning(this, tr("Warning"), tr("Is sure delete ?"),
+                                 QMessageBox::Yes|QMessageBox::No);
+    if(QMessageBox::No == n)
+        return;
+    
     QModelIndex index = m_listView.currentIndex();
     if(!index.isValid())
         return;
-    
+    QStandardItem* pItem = m_pModel->itemFromIndex(index);
+    QString szId = pItem->data().toString();
+    QStringList id = szId.split('_');
+    QSharedPointer<CTasks> tasks = m_TasksList.Get(id.at(0).toInt());
+    if(!tasks)
+        return;
+    m_TasksList.Remove(tasks);
+    m_pCalendar->Update();
     m_bModify = true;
 }
 
@@ -244,13 +256,12 @@ void CFrmCalendar::slotModify()
         return;
     QStandardItem* pItem = m_pModel->itemFromIndex(index);
     QString szId = pItem->data().toString();
-    qDebug () << "id:" << szId;
     QStringList id = szId.split('_');
     QSharedPointer<CTasks> tasks = m_TasksList.Get(id.at(0).toInt());
     if(!tasks)
         return;
     QSharedPointer<CTask> task = tasks->Get(id.at(1).toInt());
-    CDlgTaskActivity dlg((CTaskActivity*)task.get());
+    CDlgTaskActivity dlg((CTaskActivity*)task.data());
 #if defined (Q_OS_ANDROID)
     task.showMaximized();
 #endif
@@ -280,11 +291,12 @@ int CFrmCalendar::onHandle(QDate date)
             const QMetaObject* pObj = task->metaObject();
             if(QString("CTaskActivity") == pObj->className())
             {
-                CTaskActivity* pTask = static_cast<CTaskActivity*>(task.get());
+                CTaskActivity* pTask = static_cast<CTaskActivity*>(task.data());
                 if(pTask->CheckDate(date) == 0)
                 {
                     QStandardItem* pItem = new QStandardItem(pTask->GetTitle());
-                    pItem->setData(QString::number(tasks->GetId()) + "_" + QString::number(task->GetId()));
+                    pItem->setData(QString::number(tasks->GetId())
+                                   + "_" + QString::number(task->GetId()));
                     m_pModel->appendRow(pItem);
                 }
             }
