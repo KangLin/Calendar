@@ -108,7 +108,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
 
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
 
-        bash upload.sh tasks*.AppImage*
+        bash upload.sh Tasks*.AppImage
     fi
     exit 0
 fi

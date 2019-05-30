@@ -11,20 +11,14 @@ CFrmTop::CFrmTop(QWidget *parent) :
             | Qt::Tool
             | Qt::WindowStaysOnTopHint
             | Qt::CustomizeWindowHint),
-    ui(new Ui::CFrmTop)
+    ui(new Ui::CFrmTop),
+    m_Postion(Center)
 {
     setAttribute(Qt::WA_QuitOnClose, false);
     ui->setupUi(this);
     m_pPopupMenu = nullptr;
     m_bMoveable = false;
-    QRect rect = this->geometry();
-    rect.setX((QGuiApplication::primaryScreen()->availableGeometry().width()
-               - ui->lbPrompt->geometry().width()) / 2);
-    rect.setY((QGuiApplication::primaryScreen()->availableGeometry().height()
-               - ui->lbPrompt->geometry().height()) / 2);
-    rect.setWidth(ui->lbPrompt->geometry().width());
-    rect.setHeight(ui->lbPrompt->geometry().height());
-    setGeometry(rect);
+    SetPostion(m_Postion);
     //setStyleSheet ("venus--TitleBar {background-color: rgb(0,0,0);color: rgb(255,255,255);}");
     //setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");
     //setStyleSheet("border-radius:100px;");
@@ -114,4 +108,80 @@ int CFrmTop::SetBackgroupImage(const QString szImage)
     setStyleSheet("");
 
     return 0;
+}
+
+int CFrmTop::SetPostion(POSTION pos)
+{
+    QRect rect = this->geometry();
+    rect.setWidth(ui->lbPrompt->width());
+    rect.setHeight(ui->lbPrompt->height());
+    setGeometry(rect);
+    
+    int nWidth = rect.width();
+    int nHeight = rect.height();
+    nWidth = qMax(nWidth, frameGeometry().width());
+    nHeight = qMax(nHeight, frameGeometry().height());
+    
+    int nScreenWidth = QGuiApplication::primaryScreen()->availableGeometry().width();
+    int nScreenHeight = QGuiApplication::primaryScreen()->availableGeometry().height();
+    
+    m_Postion = pos;
+    QPoint leftTopPoint(0, 0);
+    switch (m_Postion) {
+    case LeftTop:
+        break;
+    case LeftCenter:
+        {
+            leftTopPoint = QPoint(0, (nScreenHeight - nHeight) / 2);
+        }
+        break;
+    case LeftBottom:
+        {
+            leftTopPoint = QPoint(0, (nScreenHeight - nHeight));
+        }
+        break;
+    case CenterTop:
+        {
+            leftTopPoint = QPoint((nScreenWidth - nWidth) / 2, 0);
+        }
+        break;
+    case Center:
+        {
+            leftTopPoint = QPoint((nScreenWidth - nWidth) / 2,
+                                  (nScreenHeight - nHeight) / 2);
+        }
+        break;
+    case CenterBottom:
+        {
+            leftTopPoint = QPoint((nScreenWidth - nWidth) / 2,
+                              (nScreenHeight - nHeight));
+        }
+        break;
+    case RightTop:
+        {
+            leftTopPoint = QPoint((nScreenWidth - nWidth), 0);
+        }
+        break;
+    case RightCenter:
+        {
+            leftTopPoint = QPoint((nScreenWidth - nWidth),
+                              (nScreenHeight - nHeight) / 2);
+        }
+        break;
+    case RightBottom:
+        {
+            leftTopPoint = QPoint((nScreenWidth - nWidth),
+                          (nScreenHeight - nHeight));
+        }
+        break;
+    }
+    
+    move(leftTopPoint);
+    
+    return 0;
+}
+
+void CFrmTop::showEvent(QShowEvent *event)
+{
+    SetPostion(m_Postion);
 }

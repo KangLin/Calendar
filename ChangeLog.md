@@ -1,9 +1,11 @@
+- 0.0.6
+    - Custom cycle
+    
 - 0.0.5
   - Add calendar reminder
     - Birthday (year cycle)
     - Month cycle
     - Week cycle
-    - same date cycle
      
 - v0.0.4
   - Add screen power

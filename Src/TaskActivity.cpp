@@ -7,7 +7,7 @@ static const int gTypeIdTaskActivity = qRegisterMetaType<CTaskActivity>();
 static const int gTypeIdCDate = qRegisterMetaType<CTaskActivity::CDate>();
 
 CTaskActivity::CTaskActivity(QObject *parent) : CTask(parent)
-{
+{   
     setObjectName("Task Activity");
     SetContent("");
     SetTitle(objectName());
@@ -250,7 +250,12 @@ int CTaskActivity::Check()
             CFrmTopActivity* top = new CFrmTopActivity();
             if(top)
             {
-                top->SetText(GetTitle());
+                top->SetPostion(CFrmTopActivity::RightBottom);
+                top->setWindowTitle(GetTitle());
+                QString szText = GetTitle();
+                if(!GetContent().isEmpty())
+                    szText += "\n" + GetContent();
+                top->SetText(szText);
                 top->show();
             }
         }

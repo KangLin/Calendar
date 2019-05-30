@@ -3,6 +3,14 @@
 
 CFrmTopActivity::CFrmTopActivity(QWidget *parent): CFrmTop(parent)
 {
+    Qt::WindowFlags flags = windowFlags()
+            & ~(Qt::FramelessWindowHint |
+                Qt::X11BypassWindowManagerHint |  //这个标志是在x11下有用,查看帮助QWidget::showFullScreen()
+                Qt::Tool |
+                //Qt::WindowStaysOnTopHint |
+                Qt::CustomizeWindowHint
+                );
+    setWindowFlags(flags);
     setAttribute(Qt::WA_DeleteOnClose, true);
     
     m_Menu.addAction(QIcon(":/icon/Close"), tr("Close"),

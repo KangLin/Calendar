@@ -19,19 +19,33 @@ class CFrmTop : public QWidget
 
 public:
     explicit CFrmTop(QWidget *parent = nullptr);
-    virtual ~CFrmTop();
+    virtual ~CFrmTop() override;
 
     void SetText(const QString szText);
     int SetBackgroupImage(const QString szImage);
     int SetPopupMenu(QMenu* pMenu);
     
+    enum POSTION
+    {
+        LeftTop,
+        LeftCenter,
+        LeftBottom,
+        CenterTop,
+        Center,
+        CenterBottom,
+        RightTop,
+        RightCenter,
+        RightBottom
+    };
+    int SetPostion(POSTION pos);
+    
 protected:
-    virtual void mousePressEvent(QMouseEvent *e);
-    virtual void mouseReleaseEvent(QMouseEvent *e);
-    virtual void mouseMoveEvent(QMouseEvent *e);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
-
-    virtual void closeEvent(QCloseEvent *event);
+    virtual void mousePressEvent(QMouseEvent *e) override;
+    virtual void mouseReleaseEvent(QMouseEvent *e) override;
+    virtual void mouseMoveEvent(QMouseEvent *e) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override;
     
 private:
     Ui::CFrmTop *ui;
@@ -43,6 +57,8 @@ private:
 
     QImage m_bpBackgroup;
     QMenu* m_pPopupMenu;
+    
+    POSTION m_Postion;
 };
 
 #endif // FRMTOP_H

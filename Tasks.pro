@@ -42,7 +42,7 @@ win32:  INSTALLS += install
     icon128.path = $${PREFIX}/share/pixmaps
     icon128.CONFIG = directory no_check_exist
 
-    INSTALLS += DESKTOP_FILE
+    INSTALLS += DESKTOP_FILE icon128
 }
 
 OTHER_FILES += Install/* \
