@@ -36,26 +36,33 @@ int CTasks::Add(QSharedPointer<CTask> task)
     int nRet = 0;
     if(nullptr == task.data())
         return -1;
-    
-    if(m_Task.end() != m_Task.find(task->GetId()))
+    if(m_Task.contains(task))
     {
         qDebug() << "The task is exist";
-        return 0;
+        return -2;
     }
     
     task->SetId(m_nIdTask++);
-    m_Task[task->GetId()] = task;
+    m_Task.push_back(task);
 
     return nRet;
 }
 
 int CTasks::Insert(QSharedPointer<CTask> task, int nIndex)
 {
-    if(m_Task.end() != m_Task.find(task->GetId()))
+    if(nullptr == task.data())
         return -1;
+    if(m_Task.contains(task))
+    {
+        qDebug() << "The task is exist";
+        return -2;
+    }
+    if(nIndex + 1 < 0 || m_Task.size() <= nIndex + 1)
+    {
+        return Add(task);
+    }
     task->SetId(m_nIdTask++);
-    POSTION pos = m_Task.begin() + nIndex;
-    m_Task.insert(pos, task->GetId(), task);
+    m_Task.insert(nIndex + 1, task);
     return 0;
 }
 
@@ -70,7 +77,15 @@ int CTasks::InsertAfter(QSharedPointer<CTask> newTask,
 int CTasks::Remove(QSharedPointer<CTask> task)
 {
     int nRet = 0;
-    m_Task.remove(task->GetId());
+    if(nullptr == task.data())
+        return -1;
+    
+    if(!m_Task.contains(task))
+    {
+        qDebug() << "The task is not exist";
+        return 0;
+    }
+    m_Task.removeAll(task);
     return nRet;
 }
 
@@ -81,13 +96,9 @@ QSharedPointer<CTask> CTasks::Get(int nIdTask)
 
 QSharedPointer<CTask> CTasks::GetCurrent()
 {
-    if(m_CurrentPostion >= m_Task.size())
+    if(m_CurrentPostion < 0 || m_CurrentPostion >= m_Task.size())
         return QSharedPointer<CTask>();
-    POSTION pos = m_Task.begin();
-    pos += m_CurrentPostion;
-    if(m_Task.end() == pos)
-        return QSharedPointer<CTask>();
-    return pos.value();
+    return m_Task[m_CurrentPostion];
 }
 
 int CTasks::Length()
@@ -97,11 +108,9 @@ int CTasks::Length()
 
 QSharedPointer<CTask> CTasks::GetIndex(int nIndex)
 {
-    POSTION pos = m_Task.begin() + nIndex;
-    if(m_Task.end() == pos)
+    if(nIndex < 0 || nIndex >= m_Task.size())
         return QSharedPointer<CTask>();
-    
-    return pos.value();
+    return m_Task[nIndex];
 }
 
 int CTasks::GetCurrentIndex()
@@ -130,7 +139,7 @@ QSharedPointer<CTask> CTasks::GetNext(POSTION &pos)
     if(m_Task.end() == pos)
         return QSharedPointer<CTask>();
     
-    QSharedPointer<CTask> t = pos.value();
+    QSharedPointer<CTask> t = *pos;
     pos++;
     return t;
 }

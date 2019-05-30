@@ -152,8 +152,7 @@ void CFrmTasks::on_pbAdd_clicked()
         qCritical() << "CFrmTasks::on_pbAdd_clicked: The m_Tasks is null";
         return;
     }
-    m_Tasks->Insert(task, m_Tasks->GetIndex(ui->vsLength->value())->GetId());
-    //SetTask(task);
+    m_Tasks->Insert(task, ui->vsLength->value());
     SetSlider(ui->vsLength->value() + 1);
 }
 

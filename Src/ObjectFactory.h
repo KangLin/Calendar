@@ -123,7 +123,7 @@ public:
                 if(p.isEnumType())
                 {
                     QMetaEnum e = p.enumerator();
-                    qDebug() << "enum:" << e.enumName() << " name:" << e.name() << " key:" << e.key(value.toInt());
+                    //qDebug() << " name:" << e.name() << " key:" << e.key(value.toInt());
                     domProperty.setAttribute("value", e.key(value.toInt()));
                 } else
                     domProperty.setAttribute("value", value.toString());

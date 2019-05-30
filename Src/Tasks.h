@@ -5,7 +5,7 @@
 
 #include <QObject>
 #include "Task.h"
-#include <QMap>
+#include <QVector>
 #include <QSharedPointer>
 
 /**
@@ -53,7 +53,7 @@ public:
     Q_INVOKABLE virtual int GetCurrentIndex();
     Q_INVOKABLE virtual int Length();
     
-    typedef QMap<int, QSharedPointer<CTask> >::iterator POSTION;
+    typedef QVector<QSharedPointer<CTask> >::iterator POSTION;
     POSTION GetFirst();
     QSharedPointer<CTask> GetNext(POSTION &pos);
     
@@ -73,7 +73,7 @@ public:
     
 private:
     int m_CurrentPostion;
-    QMap<int, QSharedPointer<CTask> > m_Task;
+    QVector<QSharedPointer<CTask> > m_Task;
     int m_nIdTask;
     int m_nId;
     QString m_szTitle;
