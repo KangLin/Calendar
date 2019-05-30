@@ -276,7 +276,7 @@ void CFrmCalendar::slotModify()
     QSharedPointer<CTask> task = tasks->Get(id.at(1).toInt());
     CDlgTaskActivity dlg((CTaskActivity*)task.data());
 #if defined (Q_OS_ANDROID)
-    task.showMaximized();
+    dlg.showMaximized();
 #endif
     if(QDialog::Accepted == dlg.exec())
     {
