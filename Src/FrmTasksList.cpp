@@ -66,13 +66,15 @@ int CFrmTasksList::Init()
 
 void CFrmTasksList::slotRefresh()
 {
-    int nIndex = 0;
     m_Model.clear();
-    while(QSharedPointer<CTasks> p = m_TasksList.Get(nIndex++))
+    CTasksList::POSTION pos = m_TasksList.GetFirst();
+    while(QSharedPointer<CTasks> p = m_TasksList.GetNext(pos))
     {
-        QStandardItem *title = new QStandardItem(p->GetIcon(), p->GetTitle());
-        title->setToolTip(p->GetContent());
-        m_Model.appendRow(title);
+        QStandardItem *pItem = new QStandardItem(p->GetIcon(), p->GetTitle());
+        if(!pItem) return;
+        pItem->setToolTip(p->GetContent());
+        pItem->setData(p->GetId());
+        m_Model.appendRow(pItem);
     }
     m_lvTasks.setCurrentIndex(m_Model.index(0, 0));
     //TODO: 
@@ -87,7 +89,7 @@ int CFrmTasksList::Load(QString szFile)
     
     slotRefresh();
     
-    return m_TasksList.Start();
+    return 0; //m_TasksList.Start();
 }
 
 void CFrmTasksList::slotLoad()
@@ -117,16 +119,6 @@ void CFrmTasksList::slotSaveAs()
     QString szFile = fd.selectedFiles().at(0);
     if(szFile.lastIndexOf(".xml") == -1)
         szFile += ".xml";
-    QDir d;
-    if(d.exists(szFile))
-    {
-        QMessageBox::StandardButton n = QMessageBox::warning(this,
-                          tr("File exist"),
-                          tr("%1 is existed, replace it?").arg(szFile),
-                          QMessageBox::Ok | QMessageBox::Cancel);
-        if(QMessageBox::Ok != n)
-            return;        
-    }
     
     int nRet = m_TasksList.SaveSettings(szFile);
     if(0 == nRet)
@@ -140,9 +132,17 @@ void CFrmTasksList::slotSaveAs()
 
 void CFrmTasksList::on_lvTasks_clicked(const QModelIndex &index)
 {
-    QSharedPointer<CTasks> p = m_TasksList.Get(index.row());
+    QStandardItem* pItem = m_Model.item(m_lvTasks.currentIndex().row());
+    if(!pItem)
+    {
+        m_FrmTasks.SetTasks();
+        m_FrmTasks.hide();
+        return;
+    }
+    QSharedPointer<CTasks> p = m_TasksList.Get(pItem->data().toInt());
     if(nullptr == p)
     {
+        m_FrmTasks.SetTasks();
         m_FrmTasks.hide();
         return;
     }
@@ -167,24 +167,31 @@ void CFrmTasksList::slotNew()
     QSharedPointer<CTask> taskPrompt(new CTaskPromptDelay());
     task->SetTitle(tr("New prompt task"));
     task->SetContent(tr("If the task is not you need, please select a task from combox, new it, and remove the task."));
-    tasks->Add(taskPrompt);        
-    QStandardItem *title = new QStandardItem(tasks->GetIcon(), tasks->GetTitle());
-    title->setToolTip(tasks->GetContent());
-    m_Model.appendRow(title);
+    tasks->Add(taskPrompt);
+    
+    QStandardItem *pItem = new QStandardItem(tasks->GetIcon(), tasks->GetTitle());
+    if(!pItem) return;
+    pItem->setToolTip(tasks->GetContent());
+    pItem->setData(tasks->GetId());
+    m_Model.appendRow(pItem);
     m_lvTasks.setCurrentIndex(m_Model.index(m_Model.rowCount() - 1, 0));
     on_lvTasks_clicked(m_lvTasks.currentIndex());
 }
 
 void CFrmTasksList::slotRemove()
 {
-    m_TasksList.Remove(m_TasksList.Get(m_lvTasks.currentIndex().row()));
+    QStandardItem* pItem = m_Model.item(m_lvTasks.currentIndex().row());
+    if(!pItem) return;
+    m_TasksList.Remove(m_TasksList.Get(pItem->data().toInt()));
     m_Model.removeRow(m_lvTasks.currentIndex().row());
     on_lvTasks_clicked(m_lvTasks.currentIndex());
 }
 
 void CFrmTasksList::on_lvTasks_indexesMoved(const QModelIndexList &indexes)
 {
-    QSharedPointer<CTasks> p = m_TasksList.Get(indexes.at(0).row());
+    QStandardItem* pItem = m_Model.item(indexes.at(0).row());
+    if(!pItem) return;
+    QSharedPointer<CTasks> p = m_TasksList.Get(pItem->data().toInt());
     if(nullptr == p)
         return;
     m_FrmTasks.SetTasks(p);

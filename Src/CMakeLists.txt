@@ -30,6 +30,7 @@ set(HEAD_FILES
     FrmTasksList.h
     TaskActivity.h
     DlgTaskActivity.h
+    FrmTopActivity.h
     )
 set(SOURCE_FILES
     Task.cpp
@@ -55,7 +56,8 @@ set(SOURCE_FILES
     StickyItemDelegate.cpp
     FrmCalendar.cpp
     TaskActivity.cpp
-    DlgTaskActivity.cpp)
+    DlgTaskActivity.cpp
+    FrmTopActivity.cpp)
 set(SOURCE_UI_FILES
     FrmFullScreen.ui
     FrmTop.ui

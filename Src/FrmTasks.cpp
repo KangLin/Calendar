@@ -43,13 +43,12 @@ CFrmTasks::~CFrmTasks()
 int CFrmTasks::SetTasks(QSharedPointer<CTasks> tasks)
 {
     int nRet = 0;
-    if(!tasks)
-        tasks = m_Tasks;
+    m_Tasks = tasks;
     if(!tasks)
     {
         return -1;
     }
-    m_Tasks = tasks;
+
     if(!m_Tasks)
     {
         setEnabled(false);
@@ -165,7 +164,7 @@ void CFrmTasks::on_pbRemove_clicked()
     }
     int nPos = ui->vsLength->value();
     m_Tasks->Remove(m_Tasks->GetIndex(nPos));
-    SetTasks();
+    SetTasks(m_Tasks);
     SetSlider(nPos);
 }
 
