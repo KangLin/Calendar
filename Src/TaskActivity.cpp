@@ -250,6 +250,9 @@ int CTaskActivity::Check()
             CFrmTopActivity* top = new CFrmTopActivity();
             if(top)
             {
+                bool check = connect(this, SIGNAL(destroyed()),
+                                     top, SLOT(deleteLater()));
+                Q_ASSERT(check);
                 top->SetPostion(CFrmTopActivity::RightBottom);
                 top->setWindowTitle(GetTitle());
                 QString szText = GetTitle();
