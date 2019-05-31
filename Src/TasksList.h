@@ -33,9 +33,10 @@ public:
      * @brief Start: Initialize here
      * @param nInterval: Check interval.
      *                   If is 0, disable check in the class. check by user
+     * @param bForce: force restart
      * @return 
      */
-    int Start(int nInterval = 1000);
+    int Start(int nInterval = 1000, bool bForce = false);
     int Check();
 
     virtual int LoadSettings(const QDomElement &e);

@@ -75,8 +75,10 @@ QSharedPointer<CTasks> CTasksList::GetNext(POSTION &pos)
     return tasks;
 }
 
-int CTasksList::Start(int nInterval)
+int CTasksList::Start(int nInterval, bool bForce)
 {
+    if(m_Timer.isActive() && !bForce)
+        return -1;
     foreach (QSharedPointer<CTasks> tasks, m_Tasks)
     {
         tasks->Start();
