@@ -176,7 +176,7 @@ void CDlgTaskActivity::on_rbCustom_clicked()
     m_Repeat = CTaskActivity::Custom;
 
     CDlgContainer dlg;
-    dlg.setWidget(new CFrmCustomActivity());
+    dlg.SetWidget(new CFrmCustomActivity());
 #if defined (Q_OS_ANDROID)
     dlg.showMaximized();
 #endif

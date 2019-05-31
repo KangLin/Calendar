@@ -15,7 +15,9 @@ public:
     explicit CDlgContainer(QWidget *parent = nullptr);
     virtual ~CDlgContainer() override;
     
-    int setWidget(QWidget* pWidget);
+    int SetWidget(QWidget* pWidget);
+    int ShowButton(bool bShow = true);
+    int ExtendExec();
     
 private:
     Ui::CDlgContainer *ui;

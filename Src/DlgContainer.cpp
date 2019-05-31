@@ -17,7 +17,7 @@ CDlgContainer::~CDlgContainer()
     delete ui;
 }
 
-int CDlgContainer::setWidget(QWidget *pWidget)
+int CDlgContainer::SetWidget(QWidget *pWidget)
 {
     if(!pWidget)
         return -1;
@@ -27,6 +27,21 @@ int CDlgContainer::setWidget(QWidget *pWidget)
     ui->scrollArea->setWidget(pWidget);
     
     return 0;
+}
+
+int CDlgContainer::ShowButton(bool bShow)
+{
+    ui->pbOk->setVisible(bShow);
+    ui->pbCancle->setVisible(bShow);
+    return 0;
+}
+
+int CDlgContainer::ExtendExec()
+{
+#if defined (Q_OS_ANDROID)
+    showMaximized();
+#endif
+    return exec();
 }
 
 void CDlgContainer::showEvent(QShowEvent *event)

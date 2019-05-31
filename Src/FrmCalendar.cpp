@@ -249,11 +249,8 @@ void CFrmCalendar::slotAdd()
     QSharedPointer<CTaskActivity> ta(new CTaskActivity());
     CDlgTaskActivity* task = new CDlgTaskActivity(ta.data());
     CDlgContainer dlg;
-    dlg.setWidget(task);
-#if defined (Q_OS_ANDROID)
-    dlg.showMaximized();
-#endif
-    if(QDialog::Accepted == dlg.exec())
+    dlg.SetWidget(task);
+    if(QDialog::Accepted == dlg.ExtendExec())
     {
         task->ApplyTask();
         QSharedPointer<CTasks> tasks(new CTasks());
@@ -301,11 +298,8 @@ void CFrmCalendar::slotModify()
     QSharedPointer<CTask> task = tasks->Get(id.at(1).toInt());
     CDlgTaskActivity *t = new CDlgTaskActivity((CTaskActivity*)task.data());
     CDlgContainer dlg;
-    dlg.setWidget(t);
-#if defined (Q_OS_ANDROID)
-    dlg.showMaximized();
-#endif
-    if(QDialog::Accepted == dlg.exec())
+    dlg.SetWidget(t);
+    if(QDialog::Accepted == dlg.ExtendExec())
     {
         t->ApplyTask();
         Update();

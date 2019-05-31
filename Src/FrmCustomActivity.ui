@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>338</width>
-    <height>300</height>
+    <height>351</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -188,10 +188,10 @@
        </layout>
       </item>
       <item row="1" column="1">
-       <widget class="QDateEdit" name="dateEdit"/>
+       <widget class="QDateEdit" name="deUntil"/>
       </item>
       <item row="2" column="1">
-       <widget class="QSpinBox" name="spinBox"/>
+       <widget class="QSpinBox" name="spCount"/>
       </item>
      </layout>
     </widget>
