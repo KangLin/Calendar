@@ -12,9 +12,9 @@ Author: KangLin (kl222@126.com)
 - [x] Eye Nurse： Vision protection
 - [x] Custom task
 - [x] calendar
-     - [ ] Birthady(Year cycle)
-     - [ ] Month cycle
-     - [ ] Week cycle
+     - [x] Birthady(Year cycle)
+     - [x] Month cycle
+     - [x] Week cycle
      - [ ] Custom cycle
 - [x] Sticky
 

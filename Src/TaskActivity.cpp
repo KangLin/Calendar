@@ -7,7 +7,7 @@ static const int gTypeIdTaskActivity = qRegisterMetaType<CTaskActivity>();
 static const int gTypeIdCDate = qRegisterMetaType<CTaskActivity::CDate>();
 
 CTaskActivity::CTaskActivity(QObject *parent) : CTask(parent)
-{   
+{
     setObjectName("Task Activity");
     SetContent("");
     SetTitle(objectName());

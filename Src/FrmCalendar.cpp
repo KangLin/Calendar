@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <QDebug>
 
+#include "DlgContainer.h"
 #include "DlgTaskActivity.h"
 #include "TaskActivity.h"
 #include "Global/GlobalDir.h"
@@ -246,16 +247,19 @@ void CFrmCalendar::slotCalendarHead(bool checked)
 void CFrmCalendar::slotAdd()
 {
     QSharedPointer<CTaskActivity> ta(new CTaskActivity());
-    CDlgTaskActivity task(ta.data());
+    CDlgTaskActivity* task = new CDlgTaskActivity(ta.data());
+    CDlgContainer dlg;
+    dlg.setWidget(task);
 #if defined (Q_OS_ANDROID)
-    task.showMaximized();
+    dlg.showMaximized();
 #endif
-    if(QDialog::Accepted == task.exec())
+    if(QDialog::Accepted == dlg.exec())
     {
+        task->ApplyTask();
         QSharedPointer<CTasks> tasks(new CTasks());
         tasks->Add(ta);
-        tasks->SetTitle(task.GetTask()->GetTitle());
-        tasks->SetContent(task.GetTask()->GetContent());
+        tasks->SetTitle(task->GetTask()->GetTitle());
+        tasks->SetContent(task->GetTask()->GetContent());
         m_TasksList.Add(tasks);
         Update();
         m_bModify = true;
@@ -295,12 +299,15 @@ void CFrmCalendar::slotModify()
     if(!tasks)
         return;
     QSharedPointer<CTask> task = tasks->Get(id.at(1).toInt());
-    CDlgTaskActivity dlg((CTaskActivity*)task.data());
+    CDlgTaskActivity *t = new CDlgTaskActivity((CTaskActivity*)task.data());
+    CDlgContainer dlg;
+    dlg.setWidget(t);
 #if defined (Q_OS_ANDROID)
     dlg.showMaximized();
 #endif
     if(QDialog::Accepted == dlg.exec())
     {
+        t->ApplyTask();
         Update();
         m_bModify = true;
     }

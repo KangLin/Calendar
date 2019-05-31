@@ -65,7 +65,11 @@ public:
         Weekly = 2,
         Monthly = 3,
         EveryYear = 4,
-        Custom = 100
+        Custom = 10,
+        CustomYear = 11,
+        CustomMonth = 12,
+        CustomWeek = 13,
+        CustomDay = 14
     };
     Q_ENUM(_ENUM_REPEAT)
     int SetRepeat(int repeat);

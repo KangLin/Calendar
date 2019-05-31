@@ -24,7 +24,9 @@ msvc {
 INCLUDEPATH += $$PWD $$PWD/export
 
 SOURCES += \
+    $$PWD/DlgContainer.cpp \
     $$PWD/DlgTaskActivity.cpp \
+    $$PWD/FrmCustomActivity.cpp \
     $$PWD/FrmTask.cpp \
     $$PWD/FrmTopActivity.cpp \
     $$PWD/Task.cpp \
@@ -63,7 +65,9 @@ INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
         $$PWD/export/tasks_export_linux.h
 
 HEADERS += $${INSTALLHEADER_FILES} \
+    $$PWD/DlgContainer.h \
     $$PWD/DlgTaskActivity.h \
+    $$PWD/FrmCustomActivity.h \
     $$PWD/FrmTask.h \
     $$PWD/FrmTopActivity.h \
     $$PWD/Task.h \
@@ -89,7 +93,9 @@ HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/TaskDay.h  
 
 FORMS += \
+    $$PWD/DlgContainer.ui \
     $$PWD/DlgTaskActivity.ui \
+    $$PWD/FrmCustomActivity.ui \
     $$PWD/FrmFullScreen.ui \
     $$PWD/FrmTask.ui \
     $$PWD/FrmTop.ui \

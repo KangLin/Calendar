@@ -1,4 +1,6 @@
 #include "DlgTaskActivity.h"
+#include "FrmCustomActivity.h"
+#include "DlgContainer.h"
 #include "ui_DlgTaskActivity.h"
 #include <QScrollArea>
 #include <QtDebug>
@@ -134,17 +136,6 @@ void CDlgTaskActivity::hideEvent(QHideEvent *event)
     Q_UNUSED(event);
 }
 
-void CDlgTaskActivity::on_pbOk_clicked()
-{
-    ApplyTask();
-    accept();
-}
-
-void CDlgTaskActivity::on_pbCancel_clicked()
-{
-    this->reject();
-}
-
 void CDlgTaskActivity::on_rbSolar_clicked()
 {
     m_TypeDate = CTaskActivity::Solar;
@@ -183,6 +174,13 @@ void CDlgTaskActivity::on_rbEveryYear_clicked()
 void CDlgTaskActivity::on_rbCustom_clicked()
 {
     m_Repeat = CTaskActivity::Custom;
+
+    CDlgContainer dlg;
+    dlg.setWidget(new CFrmCustomActivity());
+#if defined (Q_OS_ANDROID)
+    dlg.showMaximized();
+#endif
+    dlg.exec();
 }
 
 void CDlgTaskActivity::on_pbPromptAdd_clicked()

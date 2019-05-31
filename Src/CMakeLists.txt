@@ -31,6 +31,8 @@ set(HEAD_FILES
     TaskActivity.h
     DlgTaskActivity.h
     FrmTopActivity.h
+    DlgContainer.h
+    FrmCustomActivity.h
     )
 set(SOURCE_FILES
     Task.cpp
@@ -57,7 +59,9 @@ set(SOURCE_FILES
     FrmCalendar.cpp
     TaskActivity.cpp
     DlgTaskActivity.cpp
-    FrmTopActivity.cpp)
+    FrmTopActivity.cpp
+    DlgContainer.cpp
+    FrmCustomActivity.cpp)
 set(SOURCE_UI_FILES
     FrmFullScreen.ui
     FrmTop.ui
@@ -67,7 +71,9 @@ set(SOURCE_UI_FILES
     FrmTasksList.ui
     FrmStickyList.ui
     FrmCalendar.ui
-    DlgTaskActivity.ui)
+    DlgTaskActivity.ui
+    DlgContainer.ui
+    FrmCustomActivity.ui)
 
 #翻译
 include(${CMAKE_SOURCE_DIR}/cmake/Qt5CorePatches.cmake) 

@@ -122,56 +122,60 @@ int CFrmTop::SetPostion(POSTION pos)
     nWidth = qMax(nWidth, frameGeometry().width());
     nHeight = qMax(nHeight, frameGeometry().height());
     
-    int nScreenWidth = QGuiApplication::primaryScreen()->availableGeometry().width();
-    int nScreenHeight = QGuiApplication::primaryScreen()->availableGeometry().height();
+    QRect rectScreen = QGuiApplication::primaryScreen()->availableGeometry();
+    int nScreenWidth = rectScreen.width();
+    int nScreenHeight = rectScreen.height();
     
     m_Postion = pos;
     QPoint leftTopPoint(0, 0);
     switch (m_Postion) {
     case LeftTop:
+        leftTopPoint = QPoint(rectScreen.left(), rectScreen.top());
         break;
     case LeftCenter:
         {
-            leftTopPoint = QPoint(0, (nScreenHeight - nHeight) / 2);
+            leftTopPoint = QPoint(rectScreen.left(), rectScreen.top() + (nScreenHeight - nHeight) / 2);
         }
         break;
     case LeftBottom:
         {
-            leftTopPoint = QPoint(0, (nScreenHeight - nHeight));
+            leftTopPoint = QPoint(rectScreen.left(), rectScreen.top() + (nScreenHeight - nHeight));
         }
         break;
     case CenterTop:
         {
-            leftTopPoint = QPoint((nScreenWidth - nWidth) / 2, 0);
+            leftTopPoint = QPoint(rectScreen.left() + (nScreenWidth - nWidth) / 2,
+                                  rectScreen.top());
         }
         break;
     case Center:
         {
-            leftTopPoint = QPoint((nScreenWidth - nWidth) / 2,
-                                  (nScreenHeight - nHeight) / 2);
+            leftTopPoint = QPoint(rectScreen.left() + (nScreenWidth - nWidth) / 2,
+                                  rectScreen.top() + (nScreenHeight - nHeight) / 2);
         }
         break;
     case CenterBottom:
         {
-            leftTopPoint = QPoint((nScreenWidth - nWidth) / 2,
-                              (nScreenHeight - nHeight));
+            leftTopPoint = QPoint(rectScreen.left() + (nScreenWidth - nWidth) / 2,
+                              rectScreen.top() + (nScreenHeight - nHeight));
         }
         break;
     case RightTop:
         {
-            leftTopPoint = QPoint((nScreenWidth - nWidth), 0);
+            leftTopPoint = QPoint(rectScreen.left() + (nScreenWidth - nWidth),
+                                  rectScreen.top());
         }
         break;
     case RightCenter:
         {
-            leftTopPoint = QPoint((nScreenWidth - nWidth),
-                              (nScreenHeight - nHeight) / 2);
+            leftTopPoint = QPoint(rectScreen.left() + (nScreenWidth - nWidth),
+                             rectScreen.top() + (nScreenHeight - nHeight) / 2);
         }
         break;
     case RightBottom:
         {
-            leftTopPoint = QPoint((nScreenWidth - nWidth),
-                          (nScreenHeight - nHeight));
+            leftTopPoint = QPoint(rectScreen.left() + (nScreenWidth - nWidth),
+                          rectScreen.top() + (nScreenHeight - nHeight));
         }
         break;
     }
