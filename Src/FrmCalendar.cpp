@@ -165,9 +165,30 @@ void CFrmCalendar::slotSelectionChanged()
     if(!m_pCalendar)
         return;
     QDate date = m_pCalendar->SelectedDate();
-    Q_UNUSED(date);    
-    //TODO: update list view
-    
+    m_pModel->clear();
+    CTasksList::POSTION pos = m_TasksList.GetFirst();
+    QSharedPointer<CTasks> tasks = m_TasksList.GetNext(pos);
+    while(tasks)
+    {
+        CTasks::POSTION posTask = tasks->GetFirst();
+        QSharedPointer<CTask> task = tasks->GetNext(posTask);
+        if(task)
+        {
+            const QMetaObject* pObj = task->metaObject();
+            if(QString("CTaskActivity") == pObj->className())
+            {
+                CTaskActivity* pTask = static_cast<CTaskActivity*>(task.data());
+                if(pTask->CheckDate(date) == 0)
+                {
+                    QStandardItem* pItem = new QStandardItem(pTask->GetTitle());
+                    pItem->setData(QString::number(tasks->GetId())
+                                   + "_" + QString::number(task->GetId()));
+                    m_pModel->appendRow(pItem);
+                }
+            }
+        }
+        tasks = m_TasksList.GetNext(pos);
+    };
 }
 
 void CFrmCalendar::slotLoad()
@@ -308,8 +329,7 @@ void CFrmCalendar::slotViewCustomContextMenuRequested(const QPoint& pos)
 
 int CFrmCalendar::onHandle(QDate date)
 {
-    int index = 0;
-    m_pModel->clear();
+    int nCount = 0;
     CTasksList::POSTION pos = m_TasksList.GetFirst();
     QSharedPointer<CTasks> tasks = m_TasksList.GetNext(pos);
     while(tasks)
@@ -324,16 +344,13 @@ int CFrmCalendar::onHandle(QDate date)
                 CTaskActivity* pTask = static_cast<CTaskActivity*>(task.data());
                 if(pTask->CheckDate(date) == 0)
                 {
-                    QStandardItem* pItem = new QStandardItem(pTask->GetTitle());
-                    pItem->setData(QString::number(tasks->GetId())
-                                   + "_" + QString::number(task->GetId()));
-                    m_pModel->appendRow(pItem);
+                    nCount++;
                 }
             }
         }
         tasks = m_TasksList.GetNext(pos);
     };
-    return m_pModel->rowCount();
+    return nCount;
 }
 
 int CFrmCalendar::Update()
