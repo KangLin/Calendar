@@ -131,6 +131,7 @@ public:
 private:
     virtual int onPrompt();
     virtual int onCheckOnce();
+    QDate GetValidDate(int year, int month, int day);
     
 public Q_SLOTS:
     

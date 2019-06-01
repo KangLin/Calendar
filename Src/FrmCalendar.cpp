@@ -358,6 +358,6 @@ int CFrmCalendar::Update()
 {
     m_pCalendar->Update();
     onHandle(m_pCalendar->SelectedDate());
-    m_TasksList.Start();
+    //m_TasksList.Start();
     return 0;
 }

@@ -21,7 +21,7 @@ CTaskActivity::CTaskActivity(QObject *parent) : CTask(parent)
     m_Repeat = Once;
     m_CustomNumber = 1;
     m_LoopCount = 1;
-    m_Week = 1;
+    m_Week = 0;
     m_Effective = Always;
     m_UntilDate = QDate::currentDate();
     AddPrompt();
@@ -382,6 +382,11 @@ int CTaskActivity::CheckDate(const QDate &date)
         {
             if(date < QDate(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day))
                 return -1;
+            
+            if(QDate(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day).addMonths(1)
+                    < QDate(m_dtEnd.Year, m_dtEnd.Month, m_dtEnd.Day))
+                return 0;
+            
             if(m_dtStart.Day <= m_dtEnd.Day)
             {
                 if(m_dtStart.Day <= date.day() && date.day() <= m_dtEnd.Day)
@@ -401,77 +406,150 @@ int CTaskActivity::CheckDate(const QDate &date)
         {
             if(date < QDate(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day))
                 return -1;
+            
+            if(QDate(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day).addYears(1)
+                    < QDate(m_dtEnd.Year, m_dtEnd.Month, m_dtEnd.Day))
+                return 0;
+            
             if(m_dtStart.Year == m_dtEnd.Year)
             {
-                int d = m_dtStart.Day;
-                QDate s;
-                do {
-                    s = QDate(date.year(), m_dtStart.Month, d);
-                    if(!s.isValid())
-                        d--;
-                    else 
-                        break;
-                } while(d >= 1 && !s.isValid());
-                d = m_dtEnd.Day;
-                QDate e;
-                do {
-                    e = QDate(date.year(), m_dtEnd.Month, d);
-                    if(!e.isValid())
-                        d--;
-                    else 
-                        break;
-                } while(d >= 1 && !e.isValid());
+                QDate s = GetValidDate(date.year(), m_dtStart.Month, m_dtStart.Day);
+                QDate e = GetValidDate(date.year(), m_dtEnd.Month, m_dtEnd.Day);
                 if(s <= date && date <= e)
                     return 0;
                 else
                     return -1;
             }
-            int d = m_dtStart.Day;
-            QDate s;
-            do {
-                s = QDate(date.year(), m_dtStart.Month, d);
-                if(!s.isValid())
-                    d--;
-                else 
-                    break;
-            } while(d >= 1 && !s.isValid());
-            d = 31;
-            QDate e;
-            do {
-                e = QDate(date.year(), 12, d);
-                if(!e.isValid())
-                    d--;
-                else 
-                    break;
-            } while(d >= 1 && !e.isValid());
+            
+            QDate s = GetValidDate(date.year(), m_dtStart.Month, m_dtStart.Day);
+            QDate e = GetValidDate(date.year(), 12, 31);
             if(s <= date && date <= e)
                 return 0;
-            
-            do {
-                s = QDate(date.year(), 1, 1);
-                if(!s.isValid())
-                    d++;
-                else 
-                    break;
-            } while(d <= 31 && !s.isValid());
-            d = m_dtEnd.Day;
-            do {
-                e = QDate(date.year(), m_dtEnd.Month, d);
-                if(!e.isValid())
-                    d--;
-                else 
-                    break;
-            } while(d >= 1 && !e.isValid());
+
+            s = QDate(date.year(), 1, 1);
+            e = GetValidDate(date.year(), m_dtEnd.Month, m_dtEnd.Day);
             if(s <= date && date <= e)
                 return 0;
             
             return -1;
         }
     case CustomDay:
+        {
+            qint64 count = 0;
+            QDate s(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day);
+            QDate e(m_dtEnd.Year, m_dtEnd.Month, m_dtEnd.Day);
+            if(date < s)
+                return -1;
+            count = s.daysTo(date) / m_CustomNumber;
+            switch (m_Effective) {
+            case Until:
+                {
+                    if(date > m_UntilDate)
+                        return -1;
+                }
+            case LoopCount:
+                {
+                    if(count < 0 || count >= m_LoopCount)
+                        return -1;
+                }
+            case Always:
+                if(s.addDays(m_CustomNumber * count) <= date 
+                        && date <= e.addDays(m_CustomNumber * count))
+                    return 0;
+                else
+                    return -1;
+            }
+        }
         break;
     case CustomWeek:
+        {
+            qint64 count = 0;
+            int number = m_CustomNumber * 7;
+            QDate s(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day);
+            QDate e(m_dtEnd.Year, m_dtEnd.Month, m_dtEnd.Day);
+            if(date < s)
+                return -1;
+            count = s.daysTo(date) / number;
+            switch (m_Effective) {
+            case Until:
+                {
+                    if(date > m_UntilDate)
+                        return -1;
+                }
+            case LoopCount:
+                {
+                    if(count < 0 || count >= m_LoopCount)
+                        return -1;
+                }
+            case Always:
+                if(m_Week)
+                {
+                    if(s.daysTo(e) > 7)
+                    {
+                        if(s.addDays(number * count) <= date 
+                                && date <= e.addDays(number * count))
+                        {
+                            if(m_Week & 1 << (date.dayOfWeek() - 1))
+                                return 0;
+                            else
+                                return -1;
+                        }
+                    }
+                    else
+                    {
+                        e = s.addDays(7);
+                        if(s.addDays(number * count) <= date 
+                                && date <= e.addDays(number * count))
+                            if(m_Week & 1 << (date.dayOfWeek() - 1))
+                                return 0;
+                            else
+                                return -1;
+                    }
+                } else {
+                    
+                    if(s.addDays(number * count) <= date 
+                            && date <= e.addDays(number * count))
+                        return 0;
+                    else
+                        return -1;
+                }
+            }
+        }
         break;
     case CustomMonth:
+        {
+            int count = 0;
+            QDate s(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day);
+            QDate e(m_dtEnd.Year, m_dtEnd.Month, m_dtEnd.Day);
+            if(date < s)
+                return -1;
+            
+            int countMonth = (date.year() - s.year()) * 12 + (date.month() - s.month());
+            count = countMonth / m_CustomNumber;
+            QDate start = s.addMonths(m_CustomNumber * count);
+            QDate end = start.addDays(s.daysTo(e));
+            end = GetValidDate(end.year(), end.month(), m_dtEnd.Day);
+
+            switch (m_Effective) {
+            case Until:
+                {
+                    if(date > m_UntilDate)
+                        return -1;
+                }
+            case LoopCount:
+                {
+                    if(count < 0 || count >= m_LoopCount)
+                        return -1;
+                }
+            case Always:
+                
+                if(start <= date && date <= end)
+                    return 0;
+                else
+                    
+                    return -1;
+           }
+        }
         break;
     case CustomYear:
         break;
@@ -479,4 +557,14 @@ int CTaskActivity::CheckDate(const QDate &date)
         qDebug() << "CTaskActivity::CheckDate: GetRepeat():" << GetRepeat() << " isn't know";
     }
     return nRet;
+}
+
+QDate CTaskActivity::GetValidDate(int year, int month, int day)
+{
+    QDate d(year, month, day);
+    while(!d.isValid())
+    {
+        d = QDate(year, month, --day);
+    }
+    return d;
 }
