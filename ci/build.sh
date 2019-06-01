@@ -102,7 +102,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${QT_ROOT}/bin:${QT_ROOT}/lib:`pwd`/debian/tasks/opt/Tasks/bin:`pwd`/debian/tasks/opt/Tasks/lib
         wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
         chmod a+x linuxdeployqt-continuous-x86_64.AppImage
-                export VERSION="0.3.5"
+        export VERSION="0.3.5"
         ./linuxdeployqt-continuous-x86_64.AppImage share/applications/*.desktop \
             -qmake=${QT_ROOT}/bin/qmake -appimage
 

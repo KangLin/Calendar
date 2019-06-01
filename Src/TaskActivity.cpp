@@ -326,22 +326,6 @@ bool CTaskActivity::End()
     return false;
 }
 
-int CTaskActivity::onCheckOnce()
-{
-    int nRet = 0;
-    QDateTime dt = QDateTime::currentDateTime();
-    QVector<_PROMPT>::iterator it;
-    for(it = m_Prompt.begin(); it != m_Prompt.end(); it++)
-    {
-        
-    }
-    if(Solar == GetTypeDate())
-    {
-        
-    }
-    return nRet;
-}
-
 int CTaskActivity::CheckDate(const QDate &date)
 {
     int nRet = -1;
@@ -559,6 +543,46 @@ int CTaskActivity::CheckDate(const QDate &date)
         }
         break;
     case CustomYear:
+        {
+            int count = 0;
+            QDate s(m_dtStart.Year, m_dtStart.Month, m_dtStart.Day);
+            QDate e(m_dtEnd.Year, m_dtEnd.Month, m_dtEnd.Day);
+            if(date < s)
+                return -1;
+            
+            int countYear = date.year() - s.year();
+            count = countYear / m_CustomNumber;
+            QDate start = s.addYears(m_CustomNumber * count);
+            QDate end = start.addDays(s.daysTo(e));
+            end = GetValidDate(end.year(), m_dtEnd.Month, m_dtEnd.Day);
+    
+            int countYear1 = date.year() - e.year();
+            int count1 = countYear1 / m_CustomNumber;
+            QDate end1 = e.addYears(count1 * m_CustomNumber);
+            QDate start1 = e.addDays(e.daysTo(s));
+            start1 = GetValidDate(start1.year(), m_dtStart.Month, m_dtStart.Day);
+            
+            switch (m_Effective) {
+            case Until:
+                {
+                    if(date > m_UntilDate)
+                        return -1;
+                }
+            case LoopCount:
+                {
+                    if((count < 0 || count >= m_LoopCount)
+                            && (count1 < 0 || count1 >= m_LoopCount))
+                        return -1;
+                }
+            case Always:
+                if(start <= date && date <= end)
+                    return 0;
+                
+                if(start1 <= date && date <= end1)
+                    return 0;
+                return -1;
+           }
+        }
         break;
     default:
         qDebug() << "CTaskActivity::CheckDate: GetRepeat():" << GetRepeat() << " isn't know";

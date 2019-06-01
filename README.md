@@ -15,7 +15,7 @@ Author: KangLin (kl222@126.com)
      - [x] Birthady(Year cycle)
      - [x] Month cycle
      - [x] Week cycle
-     - [ ] Custom cycle
+     - [x] Custom cycle
 - [x] Sticky
 
 ------------------------------------------------
