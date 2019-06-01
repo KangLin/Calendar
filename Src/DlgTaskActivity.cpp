@@ -76,9 +76,21 @@ int CDlgTaskActivity::SetTask(CTaskActivity *task)
     case CTaskActivity::EveryYear:
         ui->rbEveryYear->setChecked(true);
         break;
+    case CTaskActivity::CustomDay:
+    case CTaskActivity::CustomWeek:
+    case CTaskActivity::CustomMonth:
+    case CTaskActivity::CustomYear:
+        ui->rbCustom->setChecked(true);
+        break;
     default:
+        
         qDebug() << "task->GetRepeat():" << task->GetRepeat() << " is not know";
     }
+    m_CustomNumber = task->GetCustomNumber();
+    m_Week = task->GetWeek();
+    m_Effective = task->GetEffective();
+    m_UntilDate = task->GetUntil();
+    m_LoopCount = task->GetLoopCount();
     m_pModelPrompt->clear();
     QString szPrompt = m_Task->GetPrompt();
     QStringList lstPrompt = szPrompt.split(',');
@@ -109,9 +121,13 @@ int CDlgTaskActivity::ApplyTask()
     m_Task->SetTimeEnd(ui->tmEnd->time());
     m_Task->SetTypeDate(m_TypeDate);
     m_Task->SetRepeat(m_Repeat);
-
+    m_Task->SetCustomNumber(m_CustomNumber);
+    m_Task->SetWeek(m_Week);
+    m_Task->SetEffective(m_Effective);
+    m_Task->SetUntil(m_UntilDate);
+    m_Task->SetLoopCount(m_LoopCount);
+    
     QString szPrompt;
-
     int i = 0;
     m_Task->SetPrompt(""); //Clear
     while(1)
@@ -173,14 +189,28 @@ void CDlgTaskActivity::on_rbEveryYear_clicked()
 
 void CDlgTaskActivity::on_rbCustom_clicked()
 {
-    m_Repeat = CTaskActivity::Custom;
-
+    CFrmCustomActivity* p = new CFrmCustomActivity();
+    p->SetRepeat(m_Repeat);
+    p->SetNumber(m_CustomNumber);
+    p->SetWeek(m_Week);
+    p->SetEffective(m_Effective);
+    p->SetUntil(m_UntilDate);
+    p->SetLoopCount(m_LoopCount);
+    
     CDlgContainer dlg;
-    dlg.SetWidget(new CFrmCustomActivity());
+    dlg.SetWidget(p);
 #if defined (Q_OS_ANDROID)
     dlg.showMaximized();
 #endif
-    dlg.exec();
+    if(QDialog::Accepted == dlg.ExtendExec())
+    {
+        m_Repeat = p->GetRepeat();
+        m_CustomNumber = p->GetNumber();
+        m_Week = p->GetWeek();
+        m_Effective = p->GetEffective();
+        m_UntilDate = p->GetUntil();
+        m_LoopCount = p->GetLoopCount();
+    }
 }
 
 void CDlgTaskActivity::on_pbPromptAdd_clicked()

@@ -19,6 +19,11 @@ class CTaskActivity : public CTask
     Q_PROPERTY(QTime tmEnd READ GetTimeEnd WRITE SetTimeEnd)
     Q_PROPERTY(_ENUM_REPEAT repeat READ GetRepeat WRITE SetRepeat)
     Q_PROPERTY(QString prompt READ GetPrompt WRITE SetPrompt)
+    Q_PROPERTY(int customNumber READ GetCustomNumber WRITE SetCustomNumber)
+    Q_PROPERTY(int week READ GetWeek WRITE SetWeek)
+    Q_PROPERTY(_ENUM_EFFECTIVE Effective READ GetEffective WRITE SetEffective)
+    Q_PROPERTY(QDate until READ GetUntil WRITE SetUntil)
+    Q_PROPERTY(int loopCount READ GetLoopCount WRITE SetLoopCount)
     
 public:
     explicit CTaskActivity(QObject *parent = nullptr);
@@ -37,7 +42,6 @@ public:
         Lunar = 1      
     };
     Q_ENUM(_TYPE_DATE)
-    int SetTypeDate(int type);
     Q_INVOKABLE int SetTypeDate(_TYPE_DATE type);
     Q_INVOKABLE _TYPE_DATE GetTypeDate() const;
     struct CDate
@@ -60,21 +64,36 @@ public:
     Q_INVOKABLE QTime GetTimeEnd();
     enum _ENUM_REPEAT
     {
-        Once = 0,
-        EveryDay = 1,
-        Weekly = 2,
-        Monthly = 3,
-        EveryYear = 4,
-        Custom = 10,
-        CustomYear = 11,
-        CustomMonth = 12,
-        CustomWeek = 13,
-        CustomDay = 14
+        Once,
+        EveryDay,
+        Weekly,
+        Monthly,
+        EveryYear,
+        CustomYear,
+        CustomMonth,
+        CustomWeek,
+        CustomDay
     };
     Q_ENUM(_ENUM_REPEAT)
-    int SetRepeat(int repeat);
-    Q_INVOKABLE int SetRepeat(_ENUM_REPEAT repeat);
+    Q_INVOKABLE int SetRepeat(CTaskActivity::_ENUM_REPEAT repeat);
     Q_INVOKABLE _ENUM_REPEAT GetRepeat() const;
+    Q_INVOKABLE int SetCustomNumber(int n);
+    Q_INVOKABLE int GetCustomNumber() const; 
+    Q_INVOKABLE int SetWeek(int w);
+    Q_INVOKABLE int GetWeek() const;
+    enum _ENUM_EFFECTIVE
+    {
+        Always,
+        Until,
+        LoopCount
+    };
+    Q_ENUM(_ENUM_EFFECTIVE)
+    Q_INVOKABLE int SetEffective(_ENUM_EFFECTIVE e);
+    Q_INVOKABLE _ENUM_EFFECTIVE GetEffective() const;
+    Q_INVOKABLE int SetUntil(QDate d);
+    Q_INVOKABLE QDate GetUntil() const;
+    Q_INVOKABLE int SetLoopCount(int n);
+    Q_INVOKABLE int GetLoopCount() const;
     
     /**
      * @brief AddPrompt
@@ -122,6 +141,11 @@ private:
     struct CDate m_dtStart, m_dtEnd;
     QTime m_tmStart, m_tmEnd;
     _ENUM_REPEAT m_Repeat;
+    int m_CustomNumber;
+    int m_Week;
+    _ENUM_EFFECTIVE m_Effective;
+    QDate m_UntilDate;
+    int m_LoopCount;
     
     struct _PROMPT
     {

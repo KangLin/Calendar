@@ -13,7 +13,6 @@ CFrmCustomActivity::CFrmCustomActivity(QWidget *parent) :
     ui->cmbType->addItem(tr("Years"));
     
     ui->wdtWeek->setVisible(false);
-    ui->rbAlways->click();
 }
 
 CFrmCustomActivity::~CFrmCustomActivity()
@@ -61,13 +60,45 @@ void CFrmCustomActivity::on_rbUntil_clicked()
     ui->spCount->setVisible(false);
 }
 
-void CFrmCustomActivity::on_rbCount_clicked()
+void CFrmCustomActivity::on_rbLoopCount_clicked()
 {
     ui->deUntil->setVisible(false);
     ui->spCount->setVisible(true);
 }
 
-int CFrmCustomActivity::GetNumber()
+int CFrmCustomActivity::SetRepeat(CTaskActivity::_ENUM_REPEAT r)
+{
+    switch (r) {
+    case CTaskActivity::CustomDay:
+        ui->rbDays->click();
+        break;
+    case CTaskActivity::CustomWeek:
+        ui->rbWeeks->click();
+        break;
+    case CTaskActivity::CustomMonth:
+        ui->rbMonths->click();
+        break;
+    case CTaskActivity::CustomYear:
+        ui->rbYears->click();
+        break;
+    default:
+        break;
+    }
+    return 0;
+}
+
+CTaskActivity::_ENUM_REPEAT CFrmCustomActivity::GetRepeat() const
+{
+    return m_Repeat;
+}
+
+int CFrmCustomActivity::SetNumber(int n)
+{
+    ui->spNumber->setValue(n);
+    return 0;
+}
+
+int CFrmCustomActivity::GetNumber() const
 {
     return ui->spNumber->value();
 }
@@ -90,50 +121,96 @@ void CFrmCustomActivity::on_cmbType_currentIndexChanged(int index)
     }
 }
 
-void CFrmCustomActivity::SetWeek(Qt::DayOfWeek week)
+void CFrmCustomActivity::SetWeek(int w)
 {
-    switch (week) {
-    case Qt::DayOfWeek::Monday:
+    if(1 & w)
         ui->cbMonday->setChecked(true);
-        break;
-    case Qt::DayOfWeek::Tuesday:
+    else
+        ui->cbMonday->setChecked(false);
+    
+    if(2 & w)
         ui->cbTuesday->setChecked(true);
-        break;
-    case Qt::DayOfWeek::Wednesday:
+    else
+        ui->cbTuesday->setChecked(false);
+    
+    if(4 & w)
         ui->cbWednesday->setChecked(true);
-        break;
-    case Qt::DayOfWeek::Thursday:
+    else
+        ui->cbWednesday->setChecked(false);
+    
+    if(8 & w)
         ui->cbThursday->setChecked(true);
-        break;
-    case Qt::DayOfWeek::Friday:
+    else
+        ui->cbThursday->setChecked(false);
+    
+    if(16 & w)
         ui->cbFriday->setChecked(true);
-        break;
-    case Qt::DayOfWeek::Saturday:
+    else
+        ui->cbFriday->setChecked(false);
+    
+    if(32 & w)
         ui->cbSaturday->setChecked(true);
-        break;
-    case Qt::DayOfWeek::Sunday:
+    else
+        ui->cbSaturday->setChecked(false);
+    
+    if(64 & w)
         ui->cbSunday->setChecked(true);
-    }
+    else
+        ui->cbSunday->setChecked(false);
 }
 
-QVector<int> CFrmCustomActivity::GetWeek()
+int CFrmCustomActivity::GetWeek() const
 {
+    int w = 0;
     QVector<int> r;
     if(ui->cbMonday->isChecked())
-        r.push_back(Qt::DayOfWeek::Monday);
+        w |= 1;
     if(ui->cbTuesday->isChecked())
-        r.push_back(Qt::DayOfWeek::Tuesday);
+        w |= 2;
     if(ui->cbWednesday->isChecked())
-        r.push_back(Qt::DayOfWeek::Wednesday);
+        w |= 4;
     if(ui->cbThursday->isChecked())
-        r.push_back(Qt::DayOfWeek::Thursday);
+        w |= 8;
     if(ui->cbFriday->isChecked())
-        r.push_back(Qt::DayOfWeek::Friday);
+        w |= 16;
     if(ui->cbSaturday->isChecked())
-        r.push_back(Qt::DayOfWeek::Saturday);
+        w |= 32;
     if(ui->cbSunday->isChecked())
-        r.push_back(Qt::DayOfWeek::Sunday);
-    return r;
+        w |= 64;
+    return w;
+}
+
+int CFrmCustomActivity::SetEffective(CTaskActivity::_ENUM_EFFECTIVE e)
+{
+    switch (e) {
+    case CTaskActivity::Always:
+        ui->rbAlways->click();
+        break;
+    case CTaskActivity::Until:
+        ui->rbUntil->click();
+        break;
+    case CTaskActivity::LoopCount:
+        ui->rbLoopCount->click();
+        break;
+    }
+    return 0;
+}
+
+CTaskActivity::_ENUM_EFFECTIVE CFrmCustomActivity::GetEffective() const
+{
+    if(ui->rbAlways->isChecked())
+        return CTaskActivity::Always;
+    if(ui->rbUntil->isChecked())
+        return CTaskActivity::Until;
+    if(ui->rbLoopCount->isChecked())
+        return CTaskActivity::LoopCount;
+    return CTaskActivity::Always;
+}
+
+int CFrmCustomActivity::SetUntil(QDate d)
+{
+    ui->deUntil->setDate(d);
+    return 0;
 }
 
 QDate CFrmCustomActivity::GetUntil()
@@ -141,7 +218,13 @@ QDate CFrmCustomActivity::GetUntil()
     return ui->deUntil->date();
 }
 
-int CFrmCustomActivity::GetCount()
+int CFrmCustomActivity::SetLoopCount(int n)
+{
+    ui->spCount->setValue(n);
+    return 0;
+}
+
+int CFrmCustomActivity::GetLoopCount()
 {
     return ui->spCount->value();
 }

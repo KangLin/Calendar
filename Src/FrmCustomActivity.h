@@ -19,14 +19,18 @@ public:
     explicit CFrmCustomActivity(QWidget *parent = nullptr);
     ~CFrmCustomActivity();
     
-    CTaskActivity::_ENUM_REPEAT m_Repeat;
-    int GetNumber();
-    void SetWeek(Qt::DayOfWeek week
-               = static_cast<Qt::DayOfWeek>(QDate::currentDate().dayOfWeek()));
-    QVector<int> GetWeek();
-    
+    int SetRepeat(CTaskActivity::_ENUM_REPEAT r);
+    CTaskActivity::_ENUM_REPEAT GetRepeat() const;
+    int SetNumber(int n);
+    int GetNumber() const;
+    void SetWeek(int w);
+    int GetWeek() const;
+    int SetEffective(CTaskActivity::_ENUM_EFFECTIVE e);
+    CTaskActivity::_ENUM_EFFECTIVE GetEffective() const;
+    int SetUntil(QDate d);
     QDate GetUntil();
-    int GetCount();
+    int SetLoopCount(int n);
+    int GetLoopCount();
     
 private slots:
     void on_rbWeeks_clicked();
@@ -35,12 +39,14 @@ private slots:
     void on_rbYears_clicked();
     void on_rbAlways_clicked();
     void on_rbUntil_clicked();
-    void on_rbCount_clicked();
+    void on_rbLoopCount_clicked();
     
     void on_cmbType_currentIndexChanged(int index);
     
 private:
     Ui::CFrmCustomActivity *ui;
+    
+    CTaskActivity::_ENUM_REPEAT m_Repeat;
 };
 
 #endif // FRMCUSTOMACTIVITY_H

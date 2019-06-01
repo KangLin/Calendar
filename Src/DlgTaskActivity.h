@@ -32,14 +32,17 @@ private:
     QStandardItemModel *m_pModelPrompt;
     CTaskActivity::_TYPE_DATE m_TypeDate;
     CTaskActivity::_ENUM_REPEAT m_Repeat;
+    int m_CustomNumber;
+    int m_Week;
+    CTaskActivity::_ENUM_EFFECTIVE m_Effective;
+    QDate m_UntilDate;
+    int m_LoopCount;
     
 protected:
     virtual void showEvent(QShowEvent *event) override;
     virtual void hideEvent(QHideEvent *event) override;
 
 private slots:
-    void on_pbOk_clicked();
-    void on_pbCancel_clicked();
     void on_rbSolar_clicked();
     void on_rbLunar_clicked();
     void on_rbOnce_clicked();

@@ -179,19 +179,27 @@
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="rbCount">
+         <widget class="QRadioButton" name="rbLoopCount">
           <property name="text">
-           <string>Count</string>
+           <string>Loop count</string>
           </property>
          </widget>
         </item>
        </layout>
       </item>
       <item row="1" column="1">
-       <widget class="QDateEdit" name="deUntil"/>
+       <widget class="QDateEdit" name="deUntil">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QSpinBox" name="spCount"/>
+       <widget class="QSpinBox" name="spCount">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

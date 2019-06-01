@@ -19,6 +19,11 @@ CTaskActivity::CTaskActivity(QObject *parent) : CTask(parent)
     m_tmStart = QTime::currentTime();
     m_tmEnd = m_tmStart.addSecs(3600);
     m_Repeat = Once;
+    m_CustomNumber = 1;
+    m_LoopCount = 1;
+    m_Week = 1;
+    m_Effective = Always;
+    m_UntilDate = QDate::currentDate();
     AddPrompt();
 }
 
@@ -33,6 +38,11 @@ CTaskActivity::CTaskActivity(const CTaskActivity &a) : CTask(a)
     m_tmEnd = a.m_tmEnd;
     m_Repeat = a.m_Repeat;
     m_Prompt = a.m_Prompt;
+    m_CustomNumber = a.m_CustomNumber;
+    m_Week = a.m_Week;
+    m_Effective = a.m_Effective;
+    m_UntilDate = a.m_UntilDate;
+    m_LoopCount = a.m_LoopCount;
 }
 
 CTaskActivity::~CTaskActivity()
@@ -64,12 +74,6 @@ int CTaskActivity::SetAccount(const QString &szAccount)
 QString CTaskActivity::GetAccount() const
 {
     return m_szAccount;
-}
-
-int CTaskActivity::SetTypeDate(int type)
-{
-    m_tyDate = (_TYPE_DATE)type;
-    return 0;
 }
 
 int CTaskActivity::SetTypeDate(_TYPE_DATE type)
@@ -166,12 +170,6 @@ QTime CTaskActivity::GetTimeEnd()
     return m_tmEnd;
 }
 
-int CTaskActivity::SetRepeat(int repeat)
-{
-    m_Repeat = (_ENUM_REPEAT)repeat;
-    return 0;
-}
-
 int CTaskActivity::SetRepeat(_ENUM_REPEAT repeat)
 {
     m_Repeat = repeat;
@@ -181,6 +179,61 @@ int CTaskActivity::SetRepeat(_ENUM_REPEAT repeat)
 CTaskActivity::_ENUM_REPEAT CTaskActivity::GetRepeat() const
 {
     return m_Repeat;
+}
+
+int CTaskActivity::SetCustomNumber(int n)
+{
+    m_CustomNumber = n;
+    return 0;
+}
+
+int CTaskActivity::GetCustomNumber() const
+{
+    return m_CustomNumber;
+}
+
+int CTaskActivity::SetWeek(int w)
+{
+    m_Week = w;
+    return 0;
+}
+
+int CTaskActivity::GetWeek() const
+{
+    return m_Week;
+}
+
+int CTaskActivity::SetEffective(_ENUM_EFFECTIVE e)
+{
+    m_Effective = e;
+    return 0;
+}
+
+CTaskActivity::_ENUM_EFFECTIVE CTaskActivity::GetEffective() const
+{
+    return m_Effective;
+}
+
+int CTaskActivity::SetUntil(QDate d)
+{
+    m_UntilDate = d;
+    return 0;
+}
+
+QDate CTaskActivity::GetUntil() const
+{
+    return m_UntilDate;
+}
+
+int CTaskActivity::SetLoopCount(int n)
+{
+    m_LoopCount = n;
+    return 0;
+}
+
+int CTaskActivity::GetLoopCount() const
+{
+    return m_LoopCount;
 }
 
 int CTaskActivity::AddPrompt(int minute)
@@ -414,7 +467,13 @@ int CTaskActivity::CheckDate(const QDate &date)
             
             return -1;
         }
-    case Custom:
+    case CustomDay:
+        break;
+    case CustomWeek:
+        break;
+    case CustomMonth:
+        break;
+    case CustomYear:
         break;
     default:
         qDebug() << "CTaskActivity::CheckDate: GetRepeat():" << GetRepeat() << " isn't know";
