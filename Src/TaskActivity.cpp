@@ -530,6 +530,12 @@ int CTaskActivity::CheckDate(const QDate &date)
             QDate end = start.addDays(s.daysTo(e));
             end = GetValidDate(end.year(), end.month(), m_dtEnd.Day);
 
+            int countMonth1 = (date.year() - e.year()) * 12 + (date.month() - e.month());
+            int count1 = countMonth1 / m_CustomNumber;
+            QDate end1 = e.addMonths(count1 * m_CustomNumber);
+            QDate start1 = e.addDays(e.daysTo(s));
+            start1 = GetValidDate(start1.year(), start1.month(), m_dtStart.Day);
+            
             switch (m_Effective) {
             case Until:
                 {
@@ -538,16 +544,17 @@ int CTaskActivity::CheckDate(const QDate &date)
                 }
             case LoopCount:
                 {
-                    if(count < 0 || count >= m_LoopCount)
+                    if((count < 0 || count >= m_LoopCount)
+                            && (count1 < 0 || count1 >= m_LoopCount))
                         return -1;
                 }
             case Always:
-                
                 if(start <= date && date <= end)
                     return 0;
-                else
-                    
-                    return -1;
+                
+                if(start1 <= date && date <= end1)
+                    return 0;
+                return -1;
            }
         }
         break;
