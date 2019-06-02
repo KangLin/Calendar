@@ -1,3 +1,7 @@
+- 0.0.7
+   - Add install appimagep
+   - Add test of linux in ci
+   
 - 0.0.6
     - Custom cycle
     

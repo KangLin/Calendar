@@ -78,37 +78,41 @@ case ${BUILD_TARGERT} in
 esac
 
 if [ "${BUILD_TARGERT}" = "unix" ]; then
+    export VERSION="0.0.7"
     cd $SOURCE_DIR
-    if [ "$BUILD_DOWNLOAD" = "TRUE" ]; then
-        bash build_debpackage.sh ${QT_ROOT}
-    else
-        bash build_debpackage.sh ${QT_ROOT} 
-
-        if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "512" ]; then
-            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`pwd`/debian/tasks/opt/Tasks/bin
-            MD5=`md5sum ../tasks*_amd64.deb|awk '{print $1}'`
-            echo "MD5:${MD5}"
-            ./debian/tasks/opt/Tasks/bin/TasksApp \
-                -f "`pwd`/update_linux.xml" \
-                --md5 ${MD5}
-            export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
-            #export UPLOADTOOL_PR_BODY=
-            wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-            bash upload.sh ../tasks*_amd64.deb update_linux.xml
-        fi
-    fi
+    bash build_debpackage.sh ${QT_ROOT}
+    sudo dpkg -i ../tasks_${VERSION}_amd64.deb
+    $SOURCE_DIR/test/test_linux.sh 
+    
     if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "512" ]; then
         cd debian/tasks/opt/Tasks
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${QT_ROOT}/bin:${QT_ROOT}/lib:`pwd`/debian/tasks/opt/Tasks/bin:`pwd`/debian/tasks/opt/Tasks/lib
         wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
         chmod a+x linuxdeployqt-continuous-x86_64.AppImage
-        export VERSION="0.0.6"
+        
         ./linuxdeployqt-continuous-x86_64.AppImage share/applications/*.desktop \
-            -qmake=${QT_ROOT}/bin/qmake -appimage
-
+                -qmake=${QT_ROOT}/bin/qmake -appimage
+    
+        cp $SOURCE_DIR/Install/install.sh .
+        ln -s Tasks-${VERSION}-x86_64.AppImage Tasks-x86_64.AppImage
+        tar -czf Tasks_${VERSION}.tar.gz \
+            Tasks-x86_64.AppImage \
+            Tasks-${VERSION}-x86_64.AppImage \
+            Tasks-x86_64.AppImage \
+            install.sh share
+    
+        MD5=`md5sum $SOURCE_DIR/../tasks_${VERSION}_amd64.deb|awk '{print $1}'`
+        echo "MD5:${MD5}"
+        ./bin/TasksApp \
+            -f "`pwd`/update_linux.xml" \
+            --md5 ${MD5}
+        export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
+        #export UPLOADTOOL_PR_BODY=
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-
-        bash upload.sh Tasks*.AppImage
+        chmod u+x upload.sh
+        ./upload.sh $SOURCE_DIR/../tasks_${VERSION}_amd64.deb 
+        ./upload.sh update_linux.xml 
+        ./upload.sh Tasks_${VERSION}.tar.gz 
     fi
     exit 0
 fi

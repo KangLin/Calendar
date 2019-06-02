@@ -65,6 +65,36 @@ Qt does not provide openssl dynamic library for copyright reasons, so you must c
 ### Download
 https://github.com/KangLin/Tasks/releases/latest
 
+- Tasks_0.0.7.tar.gz  
+  The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
+
+  Usage:
+    1. Decompress
+
+      ```
+      mkdir Tasks
+      cd Tasks
+      tar xvfz Tasks_0.0.7.tar.gz
+      ```
+
+  2. install
+
+      ```
+      install.sh install
+      ```
+
+  3. If you want to uninstall
+
+      ```
+      install.sh remove
+      ```
+
+- tasks_0.0.7_amd64.deb  
+   Deb installation package for Ubuntu
+  
+- Tasks-Setup-0.0.7.exe  
+   Windows installation package, support for Windows xp and above
+   
 ------------------------------------------------
 
 ## Donation

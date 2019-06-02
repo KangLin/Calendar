@@ -55,6 +55,7 @@ OTHER_FILES += Install/* \
     cmake/* \
     .travis.yml \
     debian/* \
+    test/* \
     build_debpackage.sh
 
 DISTFILES += \
