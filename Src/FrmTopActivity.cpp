@@ -1,5 +1,7 @@
 #include "FrmTopActivity.h"
 #include <QInputDialog>
+#include "DlgContainer.h"
+#include "DlgTaskActivity.h"
 
 CFrmTopActivity::CFrmTopActivity(QWidget *parent): CFrmTop(parent)
 {
@@ -61,4 +63,28 @@ int CFrmTopActivity::AddDelay(int nMinute)
 {
     StartTimer((nMinute + m_Timer.interval() - m_StartTime.elapsed()) * 60 * 1000);
     return 0;
+}
+
+int CFrmTopActivity::SetTask(CTaskActivity *task)
+{
+    m_pTask = task;
+    return 0;
+}
+
+void CFrmTopActivity::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(Qt::LeftButton == event->button())
+    {
+        CDlgTaskActivity* pTask = new CDlgTaskActivity(m_pTask);
+        CDlgContainer dlg;
+        dlg.SetWidget(pTask);
+        bool check = connect(this, SIGNAL(destroyed()),
+                             &dlg, SLOT(reject()));
+        Q_ASSERT(check);
+        if(QDialog::Accepted == dlg.ExtendExec())
+        {
+            pTask->ApplyTask();
+        }
+        close();
+    }
 }

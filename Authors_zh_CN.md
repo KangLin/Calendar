@@ -3,5 +3,8 @@
 
 第三方库：
 
+日历
+https://github.com/KangLin/LunarCalendar
+
 Qt (LGPL v2.1)
 http://qt.io/

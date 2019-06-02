@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QTimer>
 #include <QTime>
+#include "TaskActivity.h"
 
 class CFrmTopActivity : public CFrmTop
 {
@@ -13,6 +14,7 @@ public:
     explicit CFrmTopActivity(QWidget *parent = nullptr);
 
     int StartTimer(int nMsec = 1000 * 60 * 5);
+    int SetTask(CTaskActivity* task);
     
 private Q_SLOTS:
     void slotDelay5Minute(bool checked);
@@ -24,6 +26,11 @@ private:
     QTime m_StartTime;
     
     int AddDelay(int nMinute);
+    
+    CTaskActivity* m_pTask;
+
+protected:
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
 #endif // FRMTOPACTIVITY_H
