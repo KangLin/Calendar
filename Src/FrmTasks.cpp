@@ -64,7 +64,7 @@ int CFrmTasks::SetTasks(QSharedPointer<CTasks> tasks)
     ui->leTasksID->setText(QString::number(m_Tasks->GetId()));
     ui->teTasksContent->setText(m_Tasks->GetContent());
     
-    SetSlider(m_Tasks->GetCurrentIndex());
+    SetSlider(0); //m_Tasks->GetCurrentIndex());
     
     return nRet;
 }
