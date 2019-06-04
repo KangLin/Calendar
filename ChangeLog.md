@@ -1,9 +1,12 @@
+- 0.0.8
+  - Update RabbitCommon, Use new Updater
+
 - 0.0.7
-   - Add install appimagep
-   - Add test of linux in ci
+  - Add install appimagep
+  - Add test of linux in ci
    
 - 0.0.6
-    - Custom cycle
+  - Custom cycle
     
 - 0.0.5
   - Add calendar reminder
