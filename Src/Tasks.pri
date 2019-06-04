@@ -117,4 +117,4 @@ TRANSLATIONS_DIR=$$PWD
 TRANSLATIONS_NAME=Tasks
 include(../pri/Translations.pri)
 
-include(../3th_libs/LunarCalendar/Src/LunarCalendar.pri)
+#include(../3th_libs/LunarCalendar/Src/LunarCalendar.pri)

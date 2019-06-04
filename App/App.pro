@@ -18,8 +18,18 @@ include(../pri/Translations.pri)
 CONFIG(staticlib): CONFIG*=static
 CONFIG(static): DEFINES *= TASKS_STATIC_DEFINE
 
+isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)
+isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$PWD/../../RabbitCommon
+isEmpty(RabbitCommon_DIR): exists("$${RabbitCommon_DIR}/Src/libRabbitCommon.pri"){
+    message("RabbitCommon_DIR:$$RabbitCommon_DIR")
+    message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon ag:")
+    message("   git clone https://github.com/KangLin/RabbitCommon.git")
+    error  ("2. Then set value RabbitCommon_DIR to download dirctory")
+}
+
+DEFINES += RABBITCOMMON
 #VERSION=$$BUILD_VERSION
-INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src $$_PRO_FILE_PWD_/../Src/export
+INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src $$_PRO_FILE_PWD_/../Src/export $${RabbitCommon_DIR}/Src $${RabbitCommon_DIR}/Src/export
 !android: DESTDIR = $$OUT_PWD/../bin
 DEPENDPATH = $$DESTDIR
 SOURCES += \
@@ -39,7 +49,7 @@ android {
 } else {
     LIBS *= "-L$$DESTDIR"
 }
-LIBS *= -lTasks
+LIBS *= -lRabbitCommon -lTasks
 
 !android: target.path = $$PREFIX/bin
 INSTALLS += target
@@ -58,15 +68,3 @@ win32 : equals(QMAKE_HOST.os, Windows){
 }
 
 OTHER_FILES += CMakeLists.txt
-
-isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)
-isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$PWD/../../RabbitCommon
-!isEmpty(RabbitCommon_DIR): exists("$${RabbitCommon_DIR}/Src/RabbitCommon.pri"){
-    DEFINES += RABBITCOMMON
-    include("$${RabbitCommon_DIR}/Src/RabbitCommon.pri")
-} else{
-    message("RabbitCommon_DIR:$$RabbitCommon_DIR")
-    message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon ag:")
-    message("   git clone https://github.com/KangLin/RabbitCommon.git")
-    error  ("2. Then set value RabbitCommon_DIR to download dirctory")
-}

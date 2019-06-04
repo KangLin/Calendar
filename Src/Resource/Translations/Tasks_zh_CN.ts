@@ -133,12 +133,11 @@
         <source>Content:</source>
         <translation>内容：</translation>
     </message>
-    
     <message>
         <location filename="../../DlgTaskActivity.cpp" line="99"/>
         <location filename="../../DlgTaskActivity.cpp" line="230"/>
         <source> Minutes</source>
-        <translation > 分钟</translation>
+        <translation> 分钟</translation>
     </message>
     <message>
         <location filename="../../DlgTaskActivity.cpp" line="220"/>
@@ -148,7 +147,7 @@
     <message>
         <location filename="../../DlgTaskActivity.cpp" line="221"/>
         <source>prompt (Unit: minute)</source>
-        <translation >提示（单位: 分钟）</translation>
+        <translation>提示（单位: 分钟）</translation>
     </message>
 </context>
 <context>
@@ -161,76 +160,83 @@
     </message>
     <message>
         <location filename="../../FrmCalendar.cpp" line="70"/>
+        <location filename="../../FrmCalendar.cpp" line="71"/>
         <source>Open</source>
-        <translation >打开</translation>
+        <translation>打开</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="74"/>
+        <location filename="../../FrmCalendar.cpp" line="75"/>
+        <location filename="../../FrmCalendar.cpp" line="76"/>
         <source>Save As</source>
-        <translation >另存为</translation>
+        <translation>另存为</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="80"/>
-        <location filename="../../FrmCalendar.cpp" line="319"/>
+        <location filename="../../FrmCalendar.cpp" line="82"/>
+        <location filename="../../FrmCalendar.cpp" line="83"/>
+        <location filename="../../FrmCalendar.cpp" line="326"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="84"/>
-        <location filename="../../FrmCalendar.cpp" line="322"/>
+        <location filename="../../FrmCalendar.cpp" line="87"/>
+        <location filename="../../FrmCalendar.cpp" line="88"/>
+        <location filename="../../FrmCalendar.cpp" line="329"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="88"/>
-        <location filename="../../FrmCalendar.cpp" line="325"/>
+        <location filename="../../FrmCalendar.cpp" line="92"/>
+        <location filename="../../FrmCalendar.cpp" line="93"/>
+        <location filename="../../FrmCalendar.cpp" line="332"/>
         <source>Modify</source>
         <translation>修改</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="94"/>
+        <location filename="../../FrmCalendar.cpp" line="99"/>
+        <location filename="../../FrmCalendar.cpp" line="100"/>
         <source>Week</source>
         <translation>周</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="101"/>
+        <location filename="../../FrmCalendar.cpp" line="107"/>
+        <location filename="../../FrmCalendar.cpp" line="108"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="143"/>
+        <location filename="../../FrmCalendar.cpp" line="150"/>
         <source>Save</source>
-        <translation >保存</translation>
+        <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="144"/>
+        <location filename="../../FrmCalendar.cpp" line="151"/>
         <source>The calendar is changed, is it save?</source>
-        <translation >日历改变，是否保存？</translation>
+        <translation>日历改变，是否保存？</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="197"/>
+        <location filename="../../FrmCalendar.cpp" line="204"/>
         <source>Load</source>
-        <translation >加载</translation>
+        <translation>加载</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="197"/>
+        <location filename="../../FrmCalendar.cpp" line="204"/>
         <source>xml(*.xml);;All files(*.*)</source>
-        <translation >xml(*.xml);;所有文件(*.*)</translation>
+        <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="210"/>
+        <location filename="../../FrmCalendar.cpp" line="217"/>
         <source>Save as ...</source>
         <translation>另存为 ……</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="268"/>
+        <location filename="../../FrmCalendar.cpp" line="275"/>
         <source>Warning</source>
-        <translation >警告</translation>
+        <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="268"/>
+        <location filename="../../FrmCalendar.cpp" line="275"/>
         <source>Is sure delete ?</source>
-        <translation >确定删除？</translation>
+        <translation>确定删除？</translation>
     </message>
 </context>
 <context>
@@ -238,91 +244,91 @@
     <message>
         <location filename="../../FrmCustomActivity.ui" line="14"/>
         <source>Custom</source>
-        <translation >自定义</translation>
+        <translation>自定义</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="20"/>
         <source>Type:</source>
-        <translation >类型：</translation>
+        <translation>类型：</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="28"/>
         <location filename="../../FrmCustomActivity.cpp" line="10"/>
         <source>Days</source>
-        <translation >日</translation>
+        <translation>日</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="38"/>
         <location filename="../../FrmCustomActivity.cpp" line="11"/>
         <source>Weeks</source>
-        <translation >周</translation>
+        <translation>周</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="45"/>
         <location filename="../../FrmCustomActivity.cpp" line="12"/>
         <source>Months</source>
-        <translation >月</translation>
+        <translation>月</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="52"/>
         <location filename="../../FrmCustomActivity.cpp" line="13"/>
         <source>Years</source>
-        <translation >年</translation>
+        <translation>年</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="111"/>
         <source>Monday</source>
-        <translation >周一</translation>
+        <translation>周一</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="118"/>
         <source>Tuesday</source>
-        <translation >周二</translation>
+        <translation>周二</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="125"/>
         <source>Wednesday</source>
-        <translation >周三</translation>
+        <translation>周三</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="136"/>
         <source>Thursday</source>
-        <translation >周四</translation>
+        <translation>周四</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="143"/>
         <source>Friday</source>
-        <translation >周五</translation>
+        <translation>周五</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="150"/>
         <source>Saturday</source>
-        <translation >周六</translation>
+        <translation>周六</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="159"/>
         <source>Sunday</source>
-        <translation >周日</translation>
+        <translation>周日</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="172"/>
         <source>Effective date</source>
-        <translation >有效期</translation>
+        <translation>有效期</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="180"/>
         <source>Always</source>
-        <translation >一直</translation>
+        <translation>一直</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="190"/>
         <source>Until</source>
-        <translation >直到</translation>
+        <translation>直到</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="197"/>
         <source>Loop count</source>
-        <translation >循环次数</translation>
+        <translation>循环次数</translation>
     </message>
 </context>
 <context>
@@ -746,7 +752,6 @@
         <source>Save as ...</source>
         <translation>另存为 ……</translation>
     </message>
-   
     <message>
         <location filename="../../FrmTasksList.ui" line="14"/>
         <source>Tasks</source>
@@ -847,25 +852,25 @@
 <context>
     <name>CFrmTopActivity</name>
     <message>
-        <location filename="../../FrmTopActivity.cpp" line="16"/>
-        <source>Close</source>
-        <translation >关闭</translation>
-    </message>
-    <message>
         <location filename="../../FrmTopActivity.cpp" line="18"/>
-        <source>Delay 5 Minute</source>
-        <translation >延迟5分钟</translation>
+        <source>Close</source>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../../FrmTopActivity.cpp" line="20"/>
-        <location filename="../../FrmTopActivity.cpp" line="48"/>
-        <source>Customize delay</source>
-        <translation >自定义延迟时间</translation>
+        <source>Delay 5 Minute</source>
+        <translation>延迟5分钟</translation>
     </message>
     <message>
-        <location filename="../../FrmTopActivity.cpp" line="49"/>
+        <location filename="../../FrmTopActivity.cpp" line="22"/>
+        <location filename="../../FrmTopActivity.cpp" line="50"/>
+        <source>Customize delay</source>
+        <translation>自定义延迟时间</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTopActivity.cpp" line="51"/>
         <source>Delay minute</source>
-        <translation >延迟分钟</translation>
+        <translation>延迟分钟</translation>
     </message>
 </context>
 <context>

@@ -7,10 +7,11 @@
 TEMPLATE = subdirs
 DESTDIR = $$OUT_PWD/bin
 
+LunarCalendar.file = 3th_libs/LunarCalendar/Src/LunarCalendar.pro
 lib.subdir = Src
-App.depends = lib
+App.depends = RabbitCommon LunarCalendar lib
 CONFIG *= ordered
-SUBDIRS = lib App
+SUBDIRS = RabbitCommon LunarCalendar lib App
 
 isEmpty(PREFIX) {
     android {
