@@ -78,7 +78,7 @@ case ${BUILD_TARGERT} in
 esac
 
 if [ "${BUILD_TARGERT}" = "unix" ]; then
-    export VERSION="0.0.7"
+    export VERSION="0.0.7-2-gfba5878"
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
     sudo dpkg -i ../tasks_${VERSION}_amd64.deb
