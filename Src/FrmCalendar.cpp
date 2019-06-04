@@ -365,6 +365,7 @@ int CFrmCalendar::Update()
 {
     m_pCalendar->Update();
     onHandle(m_pCalendar->SelectedDate());
+    slotSelectionChanged();
     //m_TasksList.Start();
     return 0;
 }
