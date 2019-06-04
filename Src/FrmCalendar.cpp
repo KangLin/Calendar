@@ -68,37 +68,44 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     
     QAction* pAction = nullptr;
     pAction = new QAction(QIcon(":/icon/File"), tr("Open"), this);
+    pAction->setStatusTip(tr("Open"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotLoad()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     pAction = new QAction(QIcon(":/icon/Save"), tr("Save As"), this);
+    pAction->setStatusTip(tr("Save As"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotSaveAs()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     
     m_ToolBar.addSeparator();
     pAction = new QAction(QIcon(":/icon/Add"), tr("Add"), this);
+    pAction->setStatusTip(tr("Add"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotAdd()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     pAction = new QAction(QIcon(":/icon/Delete"), tr("Delete"), this);
+    pAction->setStatusTip(tr("Delete"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotDelete()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     pAction = new QAction(QIcon(":/icon/Edit"), tr("Modify"), this);
+    pAction->setStatusTip(tr("Modify"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotModify()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
 
     m_ToolBar.addSeparator();    
     pAction = new QAction(QIcon(":/icon/ViewWeek"), tr("Week"), this);
+    pAction->setStatusTip(tr("Week"));
     pAction->setCheckable(true);
-    pAction->setChecked(true);
+    //pAction->setChecked(true);
     check = connect(pAction, SIGNAL(triggered(bool)),
                     this, SLOT(slotViewWeek(bool)));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     pAction = new QAction(QIcon(":/icon/Tools"), tr("Tools"), this);
+    pAction->setStatusTip(tr("Tools"));
     pAction->setCheckable(true);
     check = connect(pAction, SIGNAL(triggered(bool)),
                     this, SLOT(slotCalendarHead(bool)));
@@ -110,9 +117,9 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
                                    new CTasksHandler(this)));
     m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-    m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
+    //m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     //m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
-    m_pCalendar->ShowHead(false);
+    //m_pCalendar->ShowHead(false);
     m_pCalendar->ShowTime(false);
     m_pCalendar->ShowDate(true);
     m_pCalendar->ShowWeeks(false);
