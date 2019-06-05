@@ -49,7 +49,7 @@ android {
 } else {
     LIBS *= "-L$$DESTDIR"
 }
-LIBS *= -lRabbitCommon -lTasks
+LIBS *= -lRabbitCommon -lLunarCalendar -lTasks
 
 !android: target.path = $$PREFIX/bin
 INSTALLS += target

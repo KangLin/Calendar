@@ -50,57 +50,59 @@
       
 - 安装注意  
 Qt因为版权原因，没有提供openssl动态库，所以必须自己复制openssl的动态库到安装目录下。
-    - 如果是32的，可以在Qt安装程序Tools\QtCreator\bin目录下，找到openssl的动态库（libeay32.dll、ssleay32.dll）
-    - 如果是64位，则需要自己下载openssl的二进制安装包。
+    + windows
+        - 如果是32的，可以在Qt安装程序Tools\QtCreator\bin目录下，找到openssl的动态库（libeay32.dll、ssleay32.dll）
+        - 如果是64位，则需要自己下载openssl的二进制安装包。
+    + linux
+    
+        ```
+        sudo apt-get install libssl1.1
+        ```
     
 ------------------------------------------------
 
 ### 使用
 - 直接用源码
   + 是QT工程
-    - 子模块方式：
-      + 增加子模块：
-      
-            git submodule add https://github.com/KangLin/Tasks.git 3th_libs/Tasks
-      
-      + 在工程文件(.pro)中直接引入 Tasks.pri
+    - 库方式:
+    在项目文件中加入下列语句：
 
-            include(3th_libs/Tasks/Tasks.pri)
-
-    - 非子模块方式：
-      + 下载源码：https://github.com/KangLin/Tasks
-      + 在环境变量（Tasks_DIR） 或 QMAKE参数 （Tasks_DIR） 
-        中指定 Tasks 源码根目录的位置，然后在主工程文件（.pro）中加入下列：
-    
-            isEmpty(Tasks_DIR): Tasks_DIR=$$(Tasks_DIR)
-            !isEmpty(Tasks_DIR): exists("$${Tasks_DIR}/Src/Tasks.pri"){
-                DEFINES += Tasks
-                include($${Tasks_DIR}/Src/Tasks.pri)
-            } else{
+            isEmpty(Tasks_DIR): Tasks_DIR=$ENV{Tasks_DIR}
+            isEmpty(Tasks_DIR){
                 message("1. Please download Tasks source code from https://github.com/KangLin/Tasks ag:")
                 message("   git clone https://github.com/KangLin/Tasks.git")
                 error("2. Then set value Tasks_DIR to download root dirctory")
             }
-    
-  + cmake工程
-  - 子模块方式
-  
-          add_subdirectory(3th_libs/Tasks/Src)
-      
-  - 非子模块方式
-  
-          set(Tasks_DIR $ENV{Tasks_DIR} CACHE PATH "Set Tasks source code root directory.")
-          if(EXISTS ${Tasks_DIR}/Src)
-              add_subdirectory(${Tasks_DIR}/Src ${CMAKE_BINARY_DIR}/Tasks)
-          else()
-              message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
-              message("   ag:")
-              message("       git clone https://github.com/KangLin/Tasks.git")
-              message("2. Then set cmake value or environment variable Tasks_DIR to download root dirctory.")
-              message("    ag:")
-              message(FATAL_ERROR "       cmake -DTasks_DIR= ")
-          endif()
+            INCLUDEPATH *= $${Tasks_DIR}/include $${Tasks_DIR}/include/export
+            LIBS *= -L$${Tasks_DIR}/lib -lLunarCalendar -lTasks
 
+  + cmake工程
+    - 原码：
+        - 子模块方式
+  
+              add_subdirectory(3th_libs/Tasks/Src)
+      
+        - 非子模块方式
+    
+                set(Tasks_DIR $ENV{Tasks_DIR} CACHE PATH "Set Tasks source code root directory.")
+                if(EXISTS ${Tasks_DIR}/Src)
+                    add_subdirectory(${Tasks_DIR}/Src ${CMAKE_BINARY_DIR}/Tasks)
+                else()
+                    message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
+                    message("   ag:")
+                    message("       git clone https://github.com/KangLin/Tasks.git")
+                    message("2. Then set cmake value or environment variable Tasks_DIR to download root dirctory.")
+                    message("    ag:")
+                    message(FATAL_ERROR "       cmake -DTasks_DIR= ")
+                endif()
+                
+    - 库方式
+    
+        ```
+        FIND_PACKAGE(Tasks)
+        ```
+        
+        
 - 加载翻译资源
   + 用库中提供的函数
 

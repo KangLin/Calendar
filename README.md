@@ -54,12 +54,43 @@ Qt does not provide openssl dynamic library for copyright reasons, so you must c
      - If it is 64-bit, you will need to download the binary installation package for openssl yourself.
 ------------------------------------------------
 ### Use
-- Direct source code
+- pro
+    - Library mode:
+     Add the following statement to the project file:
+   
+            isEmpty(Tasks_DIR): Tasks_DIR=$ENV{Tasks_DIR}
+            isEmpty(Tasks_DIR){
+                message("1. Please download Tasks source code from https://github.com/KangLin/Tasks ag:")
+                message("   git clone https://github.com/KangLin/Tasks.git")
+                error("2. Then set value Tasks_DIR to download root dirctory")
+            }
+            INCLUDEPATH *= $${Tasks_DIR}/include $${Tasks_DIR}/include/export
+            LIBS *= -L$${Tasks_DIR}/lib -lLunarCalendar -lTasks
 
-  + Is a QT project, directly introduces Tasks.pri
+- cmake
+    - Source code
+        - Submodule mode
+  
+              add_subdirectory(3th_libs/Tasks/Src)
+      
+        - Non-submodule mode
+  
+                set(Tasks_DIR $ENV{Tasks_DIR} CACHE PATH "Set Tasks source code root directory.")
+                if(EXISTS ${Tasks_DIR}/Src)
+                    add_subdirectory(${Tasks_DIR}/Src ${CMAKE_BINARY_DIR}/Tasks)
+                else()
+                    message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
+                    message("   ag:")
+                    message("       git clone https://github.com/KangLin/Tasks.git")
+                    message("2. Then set cmake value or environment variable Tasks_DIR to download root dirctory.")
+                    message("    ag:")
+                    message(FATAL_ERROR "       cmake -DTasks_DIR= ")
+                endif()
 
-         Include(Tasks.pri)
+    - Library mode:
 
+        FIND_PACKAGE(Tasks)
+        
 ------------------------------------------------
 
 ### Download
