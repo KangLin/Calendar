@@ -11,7 +11,7 @@ INCLUDEPATH+=$$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src $$_PRO_FILE_PWD_/../
 android {
     LIBS *= "-L$$OUT_PWD/../Src"
 } else {
-    LIBS *= "-L$$OUT_PWD/../3th_libs/LunarCalendar/bin"
+    LIBS *= "-L$$OUT_PWD/../bin"
 }
 LIBS *= -lLunarCalendar
 include(../pri/Common.pri)

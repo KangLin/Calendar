@@ -7,7 +7,8 @@
 TEMPLATE = subdirs
 DESTDIR = $$OUT_PWD/bin
 
-LunarCalendar.file = 3th_libs/LunarCalendar/Src/LunarCalendar.pro
+RabbitCommon.file = 3th_libs/RabbitCommon.pro
+LunarCalendar.file = 3th_libs/LunarCalendar.pro
 lib.subdir = Src
 App.depends = RabbitCommon LunarCalendar lib
 CONFIG *= ordered
