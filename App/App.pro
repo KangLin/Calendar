@@ -30,7 +30,7 @@ isEmpty(RabbitCommon_DIR): exists("$${RabbitCommon_DIR}/Src/Src.pro"){
 DEFINES += RABBITCOMMON
 #VERSION=$$BUILD_VERSION
 INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src $$_PRO_FILE_PWD_/../Src/export $${RabbitCommon_DIR}/Src $${RabbitCommon_DIR}/Src/export
-!android: DESTDIR = $$OUT_PWD/../bin
+DESTDIR = $$OUT_PWD/../bin
 DEPENDPATH = $$DESTDIR
 SOURCES += \
     main.cpp \
@@ -44,12 +44,7 @@ FORMS += \
     MainWindow.ui \
     DlgOption.ui
 
-android {
-    LIBS *= "-L$$OUT_PWD/../Src"
-} else {
-    LIBS *= "-L$$DESTDIR"
-}
-LIBS *= -lRabbitCommon -lLunarCalendar -lTasks
+LIBS *= "-L$$DESTDIR" -lRabbitCommon -lLunarCalendar -lTasks
 
 !android: target.path = $$PREFIX/bin
 INSTALLS += target

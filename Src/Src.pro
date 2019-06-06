@@ -1,19 +1,15 @@
 TARGET = Tasks
 TEMPLATE = lib
 
-!android : DESTDIR = $$OUT_PWD/../bin
+DESTDIR = $$OUT_PWD/../bin
 #DLLDESTDIR = $$DESTDIR
 
 CONFIG += link_pkgconfig create_prl link_prl
 CONFIG(staticlib): CONFIG*=static
 
 INCLUDEPATH+=$$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src/export 
-android {
-    LIBS *= "-L$$OUT_PWD/../Src"
-} else {
-    LIBS *= "-L$$OUT_PWD/../bin"
-}
-LIBS *= -lLunarCalendar
+LIBS *= "-L$$OUT_PWD/../bin" -lLunarCalendar
+
 include(../pri/Common.pri)
 include(Tasks.pri)
 
