@@ -53,6 +53,10 @@ private slots:
     void on_rbCustom_clicked();
     void on_pbPromptAdd_clicked();
     void on_pbPromptRemove_clicked();
+    void on_dtStart_dateChanged(const QDate &date);
+    void on_dtEnd_dateChanged(const QDate &date);
+    void on_tmStart_timeChanged(const QTime &time);
+    void on_tmEnd_timeChanged(const QTime &time);
 };
 
 #endif // FRMACTIVITY_H

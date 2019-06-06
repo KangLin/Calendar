@@ -236,3 +236,35 @@ void CDlgTaskActivity::on_pbPromptRemove_clicked()
 {
     m_pModelPrompt->removeRow(ui->lstPromt->currentIndex().row());
 }
+
+void CDlgTaskActivity::on_dtStart_dateChanged(const QDate &date)
+{
+    if(date > ui->dtEnd->date())
+        ui->dtEnd->setDate(date);
+    if(date == ui->dtEnd->date())
+        if(ui->tmStart->time() > ui->tmEnd->time())
+            ui->tmEnd->setTime(ui->tmStart->time().addSecs(3600));
+}
+
+void CDlgTaskActivity::on_dtEnd_dateChanged(const QDate &date)
+{
+    if(date < ui->dtStart->date())
+        ui->dtStart->setDate(date);
+    if(date == ui->dtEnd->date())
+        if(ui->tmStart->time() > ui->tmEnd->time())
+            ui->tmStart->setTime(ui->tmEnd->time().addSecs(-3600));
+}
+
+void CDlgTaskActivity::on_tmStart_timeChanged(const QTime &time)
+{
+    if(ui->dtStart->date() == ui->dtEnd->date())
+        if(time > ui->tmEnd->time())
+            ui->tmEnd->setTime(time.addSecs(3600));
+}
+
+void CDlgTaskActivity::on_tmEnd_timeChanged(const QTime &time)
+{
+    if(ui->dtStart->date() == ui->dtEnd->date())
+        if(time < ui->tmStart->time())
+            ui->tmStart->setTime(time.addSecs(-3600));
+}
