@@ -6,6 +6,7 @@ DESTDIR = $$OUT_PWD/../bin
 
 CONFIG += link_pkgconfig create_prl link_prl
 CONFIG(staticlib): CONFIG*=static
+#android: CONFIG*=static
 
 INCLUDEPATH+=$$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src/export 
 LIBS *= "-L$$OUT_PWD/../bin" -lLunarCalendar
