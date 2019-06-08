@@ -81,6 +81,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     export VERSION="0.0.7-2-gfba5878"
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
+
     sudo dpkg -i ../tasks_${VERSION}_amd64.deb
     $SOURCE_DIR/test/test_linux.sh 
     
@@ -93,12 +94,12 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         ./linuxdeployqt-continuous-x86_64.AppImage share/applications/*.desktop \
                 -qmake=${QT_ROOT}/bin/qmake -appimage
     
+        # Create appimage install package
         cp $SOURCE_DIR/Install/install.sh .
         ln -s Tasks-${VERSION}-x86_64.AppImage Tasks-x86_64.AppImage
         tar -czf Tasks_${VERSION}.tar.gz \
             Tasks-x86_64.AppImage \
             Tasks-${VERSION}-x86_64.AppImage \
-            Tasks-x86_64.AppImage \
             install.sh share
     
         MD5=`md5sum $SOURCE_DIR/../tasks_${VERSION}_amd64.deb|awk '{print $1}'`
@@ -136,11 +137,19 @@ else
             "CONFIG+=release" ${CONFIG_PARA}
         
         $MAKE
+        $MAKE install INSTALL_ROOT=`pwd`/android-build
+        echo "JAVA_HOME:${JAVA_HOME}"
+        ${QT_ROOT}/bin/androiddeployqt \
+                       --input `pwd`/App/android-libTasksApp.so-deployment-settings.json \
+                       --output `pwd`/android-build \
+                       --android-platform ${ANDROID_API} \
+                       --gradle --verbose
+                       # --jdk ${JAVA_HOME}
     else
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
-            "CONFIG+=release" ${CONFIG_PARA}\
-            PREFIX=`pwd`/install 
-            
+                "CONFIG+=release" ${CONFIG_PARA}\
+                PREFIX=`pwd`/install
+                
         $MAKE
         echo "$MAKE install ...."
         $MAKE install

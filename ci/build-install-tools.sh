@@ -73,11 +73,11 @@ function function_android()
         mv android-sdk-linux android-sdk
         rm android-sdk_r24.4.1-linux.tgz 
         (sleep 5 ; while true ; do sleep 1 ; printf 'y\r\n' ; done ) \
-        | android-sdk/tools/android update sdk -u -t tool,android-18,android-24,extra,platform,platform-tools,build-tools-25.2.5
+        | android-sdk/tools/android update sdk -u #-t tool,android-18,android-24,extra,platform,platform-tools,build-tools-28.0.3
     fi
 
     sudo apt-get install ant -qq -y
-    sudo apt-get install libicu-dev
+    sudo apt-get install libicu-dev -qq -y
     
     function_common
     cd ${SOURCE_DIR}

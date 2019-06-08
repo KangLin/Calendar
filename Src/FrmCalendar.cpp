@@ -112,6 +112,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     pAction = new QAction(QIcon(":/icon/Tools"), tr("Tools"), this);
     pAction->setStatusTip(tr("Tools"));
     pAction->setCheckable(true);
+    pAction->setChecked(true);
     check = connect(pAction, SIGNAL(triggered(bool)),
                     this, SLOT(slotCalendarHead(bool)));
     Q_ASSERT(check);

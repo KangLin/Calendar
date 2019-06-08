@@ -135,7 +135,7 @@ void CFrmStickyList::on_actionNew_triggered()
     if(sn)
     {
 #if defined (Q_OS_ANDROID)
-            sn->showMaximized();
+        sn->showMaximized();
 #else
         sn->show();
 #endif
