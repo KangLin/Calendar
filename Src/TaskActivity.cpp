@@ -2,6 +2,7 @@
 #include "FrmTopActivity.h"
 #include "ObjectFactory.h"
 #include <QDebug>
+#include "LunarCalendar.h"
 
 static const int gTypeIdTaskActivity = qRegisterMetaType<CTaskActivity>();
 static const int gTypeIdCDate = qRegisterMetaType<CTaskActivity::CDate>();
@@ -330,6 +331,19 @@ bool CTaskActivity::End()
 int CTaskActivity::CheckDate(const QDate &date)
 {
     int nRet = -1;
+    if(Lunar == GetTypeDate()) {
+        if(GetRepeat() == EveryYear){
+            int y, m, d;
+            CLunarCalendar::GetLunar(date, y, m, d);
+            qDebug() << "Lunar:" << y << m << d;
+            if(m_dtStart.Month == m && m_dtStart.Day == d)
+                return 0;
+            return -1;
+        }
+        qDebug() << "Other isn't support";
+        return -1;
+    }
+    
     switch (GetRepeat()) {
     case Once:
         {

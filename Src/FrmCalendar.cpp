@@ -94,7 +94,12 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotModify()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-
+    m_ToolBar.addSeparator();   
+    pAction = new QAction(QIcon(":/icon/Refresh"), tr("Refresh"), this);
+    pAction->setStatusTip(tr("Modify"));
+    check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotRefresh()));
+    Q_ASSERT(check);
+    m_ToolBar.addAction(pAction);
     m_ToolBar.addSeparator();    
     pAction = new QAction(QIcon(":/icon/ViewWeek"), tr("Week"), this);
     pAction->setStatusTip(tr("Week"));
@@ -312,6 +317,11 @@ void CFrmCalendar::slotModify()
         Update();
         m_bModify = true;
     }
+}
+
+void CFrmCalendar::slotRefresh()
+{
+    m_TasksList.Start();
 }
 
 void CFrmCalendar::slotViewDoubleClicked(const QModelIndex &index)

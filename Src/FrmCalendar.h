@@ -28,6 +28,7 @@ private Q_SLOTS:
     void slotAdd();
     void slotDelete();
     void slotModify();
+    void slotRefresh();
     void slotViewWeek(bool checked);
     void slotCalendarHead(bool checked);
     void slotViewDoubleClicked(const QModelIndex &index);

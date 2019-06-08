@@ -1,6 +1,7 @@
 - 0.0.8
   - Update RabbitCommon, Use new Updater
-
+  - Add lunar year cycle
+  
 - 0.0.7
   - Add install appimagep
   - Add test of linux in ci
