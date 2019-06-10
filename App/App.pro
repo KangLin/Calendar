@@ -63,3 +63,13 @@ win32 : equals(QMAKE_HOST.os, Windows){
 }
 
 OTHER_FILES += CMakeLists.txt
+
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/build.gradle \
+    android/res/values/libs.xml
+
+contains(ANDROID_TARGET_ARCH,x86) {
+    ANDROID_PACKAGE_SOURCE_DIR = \
+        $$PWD/android
+}

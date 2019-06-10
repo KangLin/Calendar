@@ -30,7 +30,13 @@ QString CGlobalDir::GetDirApplication()
 
 QString CGlobalDir::GetDirConfig()
 {
-    QString szPath = GetDirApplication() + QDir::separator() + "etc";
+    QString szPath =
+        #if defined (Q_OS_ANDROID)
+            QString("assets:/")
+        #else
+            GetDirApplication() + QDir::separator()
+        #endif
+            + "etc";
     QDir d;
     if(!d.exists(szPath))
         d.mkpath(szPath);

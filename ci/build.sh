@@ -139,6 +139,9 @@ else
         $MAKE
         $MAKE install INSTALL_ROOT=`pwd`/android-build
         echo "JAVA_HOME:${JAVA_HOME}"
+        java --version
+        javac -version
+        gradle --version
         ${QT_ROOT}/bin/androiddeployqt \
                        --input `pwd`/App/android-libTasksApp.so-deployment-settings.json \
                        --output `pwd`/android-build \

@@ -8,7 +8,7 @@ CONFIG += link_pkgconfig create_prl link_prl
 CONFIG(staticlib): CONFIG*=static
 #android: CONFIG*=static
 
-INCLUDEPATH+=$$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src/export 
+INCLUDEPATH += $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src/export
 LIBS *= "-L$$OUT_PWD/../bin" -lLunarCalendar
 
 include(../pri/Common.pri)
@@ -18,11 +18,19 @@ include(Tasks.pri)
 #RC_FILE = Tasks.rc
 
 TasksList.files = ../etc/*.xml
-TasksList.path = $$PREFIX/etc/xml
+android{
+    TasksList.path = $$PREFIX/assets/etc/xml
+}else{
+    TasksList.path = $$PREFIX/etc/xml
+}
 TasksList.CONFIG += no_check_exist
 
 sink.files = Resource/sink/*
-sink.path = $$PREFIX/Resource
+android{
+    sink.path = $$PREFIX/assets/Resource
+}else{
+    sink.path = $$PREFIX/Resource
+}
 sink.CONFIG += no_check_exist
 
 IncludeFiles.path = $$PREFIX/include/Tasks

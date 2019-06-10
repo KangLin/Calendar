@@ -148,10 +148,17 @@ SET(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/install CACHE STRIN
 # Install other files
 INSTALL(FILES ${OTHER_FILES} DESTINATION ".")
 
-# Install xml files
-INSTALL(DIRECTORY etc/ DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/xml")
-# Install style files
-INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "Resource")
+if(ANDROID)
+    INSTALL(DIRECTORY etc/ DESTINATION "assets/etc/xml")
+    # Install style files
+    INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "assets/Resource")
+else()
+    # Install xml files   
+    INSTALL(DIRECTORY etc/ DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/xml")
+    # Install style files
+    INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "Resource")
+endif()
+
 INSTALL(FILES Install/Install.nsi DESTINATION "${CMAKE_BINARY_DIR}")
 
 message("Build app:${BUILD_APP}")

@@ -176,7 +176,7 @@ int CTasksList::LoadSettings(const QString &szFile)
     QString file = szFile;
     if(szFile.isEmpty())
         file = CGlobalDir::Instance()->GetDirApplicationXml()
-                + QDir::separator()
+                + QDir::separator()                
                 + objectName() + "_" + QLocale::system().name()
                 + ".xml";
     QFile f(file);

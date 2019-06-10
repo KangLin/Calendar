@@ -9,8 +9,6 @@ cache:
 compiler:
   - g++
 
-jdk: openjdk11
-
 os:
   - unix
 
@@ -18,6 +16,13 @@ addons:
   ssh_known_hosts:
     - github.com
 
+addons:
+  apt:
+    packages:
+      - openjdk-8-jdk
+      
+jdk: openjdk8
+    
 env:
   global:
     - SOURCE_DIR=$TRAVIS_BUILD_DIR
@@ -40,11 +45,16 @@ env:
 
 before_install:
   - echo "TRAVIS_OS_NAME=${TRAVIS_OS_NAME}"
-  - sudo apt-get install -y -qq xvfb xpra
+  - sudo apt-get install -y -qq xvfb xpra openjdk-8-jdk
   - sudo Xvfb :99 -ac &
   - export DISPLAY=:99.0
   - mkdir ${SOURCE_DIR}/Tools
   - export VERSION="0.0.7-2-gfba5878"
+  - wget https://raw.githubusercontent.com/michaelklishin/jdk_switcher/master/jdk_switcher.sh
+  - sudo chmod a+x jdk_switcher.sh
+  - ls
+  - ./jdk_switcher.sh home openjdk8
+  - ./jdk_switcher.sh use openjdk8
   - echo "JAVA_HOME:${JAVA_HOME}"
 
 install:
