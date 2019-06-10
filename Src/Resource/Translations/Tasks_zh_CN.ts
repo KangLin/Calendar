@@ -173,68 +173,74 @@
     <message>
         <location filename="../../FrmCalendar.cpp" line="82"/>
         <location filename="../../FrmCalendar.cpp" line="83"/>
-        <location filename="../../FrmCalendar.cpp" line="326"/>
+        <location filename="../../FrmCalendar.cpp" line="337"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
         <location filename="../../FrmCalendar.cpp" line="87"/>
         <location filename="../../FrmCalendar.cpp" line="88"/>
-        <location filename="../../FrmCalendar.cpp" line="329"/>
+        <location filename="../../FrmCalendar.cpp" line="340"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
         <location filename="../../FrmCalendar.cpp" line="92"/>
         <location filename="../../FrmCalendar.cpp" line="93"/>
-        <location filename="../../FrmCalendar.cpp" line="332"/>
+        <location filename="../../FrmCalendar.cpp" line="99"/>
+        <location filename="../../FrmCalendar.cpp" line="343"/>
         <source>Modify</source>
         <translation>修改</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="99"/>
-        <location filename="../../FrmCalendar.cpp" line="100"/>
+        <location filename="../../FrmCalendar.cpp" line="98"/>
+        <source>Refresh</source>
+        <translation type="unfinished">刷新</translation>
+    </message>
+    <message>
+        <location filename="../../FrmCalendar.cpp" line="104"/>
+        <location filename="../../FrmCalendar.cpp" line="105"/>
         <source>Week</source>
         <translation>周</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="107"/>
-        <location filename="../../FrmCalendar.cpp" line="108"/>
+        <location filename="../../FrmCalendar.cpp" line="112"/>
+        <location filename="../../FrmCalendar.cpp" line="113"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="150"/>
+        <location filename="../../FrmCalendar.cpp" line="156"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="151"/>
+        <location filename="../../FrmCalendar.cpp" line="157"/>
         <source>The calendar is changed, is it save?</source>
         <translation>日历改变，是否保存？</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="204"/>
+        <location filename="../../FrmCalendar.cpp" line="210"/>
         <source>Load</source>
         <translation>加载</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="204"/>
+        <location filename="../../FrmCalendar.cpp" line="210"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="217"/>
+        <location filename="../../FrmCalendar.cpp" line="223"/>
         <source>Save as ...</source>
         <translation>另存为 ……</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="275"/>
+        <location filename="../../FrmCalendar.cpp" line="281"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="275"/>
+        <location filename="../../FrmCalendar.cpp" line="281"/>
         <source>Is sure delete ?</source>
         <translation>确定删除？</translation>
     </message>
@@ -888,7 +894,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskActivity</name>
     <message>
-        <location filename="../../TaskActivity.cpp" line="54"/>
+        <location filename="../../TaskActivity.cpp" line="55"/>
         <source>Task Activity</source>
         <translation>活动任务</translation>
     </message>

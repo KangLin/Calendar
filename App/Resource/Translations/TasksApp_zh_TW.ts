@@ -65,7 +65,7 @@
     <message>
         <location filename="../../MainWindow.ui" line="75"/>
         <source>Exit(&amp;E)</source>
-        <translation>即出(&amp;E)</translation>
+        <translation>退出(&amp;E)</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="84"/>
