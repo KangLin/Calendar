@@ -96,7 +96,7 @@ Qt does not provide openssl dynamic library for copyright reasons, so you must c
 ### Download
 https://github.com/KangLin/Tasks/releases/latest
 
-- Tasks_0.0.7-2-gfba5878.tar.gz  
+- Tasks_0.0.8.tar.gz  
   The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
 
   Usage:
@@ -105,7 +105,7 @@ https://github.com/KangLin/Tasks/releases/latest
       ```
       mkdir Tasks
       cd Tasks
-      tar xvfz Tasks_0.0.7-2-gfba5878.tar.gz
+      tar xvfz Tasks_0.0.8.tar.gz
       ```
 
   2. install
@@ -120,10 +120,10 @@ https://github.com/KangLin/Tasks/releases/latest
       install.sh remove
       ```
 
-- tasks_0.0.7-2-gfba5878_amd64.deb  
+- tasks_0.0.8_amd64.deb  
    Deb installation package for Ubuntu
   
-- Tasks-Setup-0.0.7-2-gfba5878.exe  
+- Tasks-Setup-0.0.8.exe  
    Windows installation package, support for Windows xp and above
    
 ------------------------------------------------

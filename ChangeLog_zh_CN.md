@@ -1,6 +1,7 @@
 - 0.0.8
   - 更新RabbitCommon,使用新的更新功能
   - 增加农历年任务提醒（农历生日）
+  - 增加 android CI 
   
 - 0.0.7
   - 增加 appimagep 安装

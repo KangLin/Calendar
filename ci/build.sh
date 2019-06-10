@@ -14,6 +14,9 @@ if [ "$BUILD_TARGERT" = "android" ]; then
     if [ -n "$APPVEYOR" ]; then
         export JAVA_HOME="/C/Program Files (x86)/Java/jdk1.8.0"
     fi
+    if [ "$TRAVIS" = "true" ]; then
+        export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    fi
     export QT_ROOT=${SOURCE_DIR}/Tools/Qt/${QT_VERSION}/${QT_VERSION}/android_armv7
     export PATH=${SOURCE_DIR}/Tools/apache-ant/bin:$JAVA_HOME:$PATH
 fi
@@ -77,8 +80,8 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
+export VERSION="0.0.8"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
-    export VERSION="0.0.7-2-gfba5878"
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
 
@@ -138,16 +141,28 @@ else
         
         $MAKE
         $MAKE install INSTALL_ROOT=`pwd`/android-build
-        echo "JAVA_HOME:${JAVA_HOME}"
-        java --version
-        javac -version
-        gradle --version
         ${QT_ROOT}/bin/androiddeployqt \
                        --input `pwd`/App/android-libTasksApp.so-deployment-settings.json \
                        --output `pwd`/android-build \
                        --android-platform ${ANDROID_API} \
                        --gradle --verbose
                        # --jdk ${JAVA_HOME}
+        
+        cp $SOURCE_DIR/Update/update_android.xml .
+        MD5=`md5sum `pwd`/android-build/build/outputs/apk/debug/android-build-debug.apk|awk '{print $1}'`
+        echo "MD5:${MD5}"
+        sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" update_android.xml
+        sed -i "s/<INFO>.*</<INFO>Release Tasks-${VERSION}</g" update_android.xml
+        sed -i "s/<TIME>.*</<TIME>`date`</g" update_android.xml
+        sed -i "s/<ARCHITECTURE>.*</<ARCHITECTURE>${BUILD_ARCH}</g" update_android.xml
+        sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
+        sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Tasks/releases/download/${VERSION}/android-build-debug.apk<:g" update_android.xml
+        export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
+        #export UPLOADTOOL_PR_BODY=
+        wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+        chmod u+x upload.sh
+        ./upload.sh android-build/build/outputs/apk/debug/android-build-debug.apk
+        ./upload.sh update_android.xml
     else
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
                 "CONFIG+=release" ${CONFIG_PARA}\
@@ -158,11 +173,8 @@ else
         $MAKE install
     fi
 fi
+
 if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
-    #cd ${SOURCE_DIR}
-    #cp Install/Install.nsi build_${BUILD_TARGERT}
-    #"/C/Program Files (x86)/NSIS/makensis.exe" "build_${BUILD_TARGERT}/Install.nsi"
-    
     if [ "${AUTOBUILD_ARCH}" = "x86" ]; then
         cp /C/OpenSSL-Win32/bin/libeay32.dll install/bin
         cp /C/OpenSSL-Win32/bin/ssleay32.dll install/bin

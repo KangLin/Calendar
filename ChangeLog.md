@@ -1,6 +1,7 @@
 - 0.0.8
   - Update RabbitCommon, Use new Updater
   - Add lunar year cycle
+  - Add android ci
   
 - 0.0.7
   - Add install appimagep

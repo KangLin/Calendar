@@ -47,6 +47,13 @@ function function_common()
 function function_android()
 {
     cd ${SOURCE_DIR}/Tools
+    
+    # install oracle jdk
+    #sudo add-apt-repository ppa:linuxuprising/java -y
+    #sudo apt update
+    #(sleep 5 ; while true ; do sleep 1 ; printf '\r\n' ; done ) | sudo apt install oracle-java11-installer -qq -y
+    
+    #sudo apt install oracle-java11-set-default -qq -y
 
     #下载android ndk  
     if [ ! -d "`pwd`/android-ndk" ]; then
@@ -76,6 +83,8 @@ function function_android()
         | android-sdk/tools/android update sdk -u #-t tool,android-18,android-24,extra,platform,platform-tools,build-tools-28.0.3
     fi
 
+    
+    
     sudo apt-get install ant -qq -y
     sudo apt-get install libicu-dev -qq -y
     

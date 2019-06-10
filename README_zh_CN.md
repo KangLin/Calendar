@@ -124,7 +124,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
 ### 下载
 https://github.com/KangLin/Tasks/releases/latest
 
-- Tasks_0.0.7-2-gfba5878.tar.gz  
+- Tasks_0.0.8.tar.gz  
   AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/
   使用:
     1. 解压
@@ -132,7 +132,7 @@ https://github.com/KangLin/Tasks/releases/latest
       ```
       mkdir Tasks
       cd Tasks
-      tar xvfz Tasks_0.0.7-2-gfba5878.tar.gz
+      tar xvfz Tasks_0.0.8.tar.gz
       ```
 
   2. 安装
@@ -147,10 +147,10 @@ https://github.com/KangLin/Tasks/releases/latest
       install.sh remove
       ```
 
-- tasks_0.0.7-2-gfba5878_amd64.deb  
+- tasks_0.0.8_amd64.deb  
   deb 安装包,可用于　Ubuntu
   
-- Tasks-Setup-0.0.7-2-gfba5878.exe  
+- Tasks-Setup-0.0.8.exe  
   Windows安装包，支持 Windows xp 以上系统 
 
 ------------------------------------------------
