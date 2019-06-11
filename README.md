@@ -98,19 +98,18 @@ Qt does not provide openssl dynamic library for copyright reasons, so you must c
 - linux
     - [Tasks_0.0.8.tar.gz](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks_0.0.8.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
-
-        Usage:
-            1. Decompress
+      Usage:    
+      1. Decompress
 
                 mkdir Tasks
                 cd Tasks
                 tar xvfz Tasks_0.0.8.tar.gz
 
-            2. install
+      2. install
 
                 install.sh install
 
-            3. If you want to uninstall
+      3. If you want to uninstall
 
                 install.sh remove
 

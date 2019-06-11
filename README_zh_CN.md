@@ -125,25 +125,21 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
 
 - linux
     - [Tasks_0.0.8.tar.gz](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks_0.0.8.tar.gz)  
-      AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/
-          使用:
-            1. 解压
+      AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/  
+      使用:    
+      1. 解压
 
-            mkdir Tasks
-            cd Tasks
-            tar xvfz Tasks_0.0.8.tar.gz
+                mkdir Tasks
+                cd Tasks
+                tar xvfz Tasks_0.0.8.tar.gz
 
-          2. 安装
+      2. 安装
         
-              ```
-              install.sh install
-              ```
+                install.sh install
         
-          3. 如果需要，卸载
+      3. 如果需要，卸载
         
-              ```
-              install.sh remove
-              ```
+                install.sh remove
 
 - ubuntu
     - [tasks_0.0.8_amd64.deb](https://github.com/KangLin/Tasks/releases/download/0.0.8/tasks_0.0.8_amd64.deb)  
