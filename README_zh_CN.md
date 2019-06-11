@@ -25,11 +25,57 @@
 [![Travis 编译状态](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
 
 ------------------------------------------------
+
+## 捐赠
+- 捐赠(大于￥20)：  
+![捐赠( 大于 ￥20 )](Src/Resource/image/Contribute.png "捐赠(大于￥20)")
+
+- 捐赠￥20  
+![捐赠￥20](Src/Resource/image/Contribute20.png "捐赠￥20")
+
+------------------------------------------------
+
+### [下载安装包](https://github.com/KangLin/Tasks/releases/latest)
+
+- linux
+    - [Tasks_0.0.8.tar.gz](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks_0.0.8.tar.gz)  
+      AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/  
+      使用:    
+      1. 解压。复制Tasks_0.0.8.tar.gz到安装目录，然后解压：
+
+                mkdir Tasks
+                cd Tasks
+                cp $DOWNLOAD/Tasks_0.0.8.tar.gz .
+                tar xvfz Tasks_0.0.8.tar.gz
+
+      2. 安装
+        
+                ./install.sh install
+        
+      3. 如果需要，卸载
+        
+                ./install.sh remove
+
+- ubuntu
+    - [tasks_0.0.8_amd64.deb](https://github.com/KangLin/Tasks/releases/download/0.0.8/tasks_0.0.8_amd64.deb)  
+  deb 安装包,可用于　Ubuntu
+  
+- windows
+    - [Tasks-Setup-0.0.8.exe](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks-Setup-0.0.8.exe)  
+  Windows安装包，支持 Windows xp 以上系统 
+
+- android
+    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/0.0.8/android-build-debug.apk)
+
+------------------------------------------------
+
 ### 依赖
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)
   
         git clone https://github.com/KangLin/RabbitCommon.git
-        
+
+- [LunarCalendar](https://github.com/KangLin/LunarCalendar)
+
 ### 编译
 - 建立并进入build目录
 
@@ -69,20 +115,22 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
 
             isEmpty(Tasks_DIR): Tasks_DIR=$ENV{Tasks_DIR}
             isEmpty(Tasks_DIR){
-                message("1. Please download Tasks source code from https://github.com/KangLin/Tasks ag:")
-                message("   git clone https://github.com/KangLin/Tasks.git")
-                error("2. Then set value Tasks_DIR to download root dirctory")
+                message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
+                message("   ag:")
+                message("       git clone https://github.com/KangLin/Tasks.git")
+                message("2. Build the project, get library")
+                error("2. Then set value Tasks_DIR to library root dirctory")
             }
             INCLUDEPATH *= $${Tasks_DIR}/include $${Tasks_DIR}/include/export
             LIBS *= -L$${Tasks_DIR}/lib -lLunarCalendar -lTasks
 
   + cmake工程
     - 原码：
-        - 子模块方式
+        + 子模块方式
   
               add_subdirectory(3th_libs/Tasks/Src)
       
-        - 非子模块方式
+        + 非子模块方式
     
                 set(Tasks_DIR $ENV{Tasks_DIR} CACHE PATH "Set Tasks source code root directory.")
                 if(EXISTS ${Tasks_DIR}/Src)
@@ -96,12 +144,24 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
                     message(FATAL_ERROR "       cmake -DTasks_DIR= ")
                 endif()
                 
-    - 库方式
+    - 库方式:
     
-        ```
-        FIND_PACKAGE(Tasks)
-        ```
+        + Cmake 参数指定 Tasks_DIR 到库安装目录
         
+            FIND_PACKAGE(Tasks)
+        
+        + 在 CMakeLists.txt 中增加头文件和库文件
+        
+                SET(APP_LIBS ${PROJECT_NAME} ${QT_LIBRARIES})
+                if(Tasks_FOUND)
+                    target_compile_definitions(${PROJECT_NAME}
+                                PRIVATE -DTasks)
+                    target_include_directories(${PROJECT_NAME}
+                                PRIVATE "${Tasks_INCLUDE_DIRS}/Src"
+                                        "${Tasks_INCLUDE_DIRS}/Src/export")
+                    set(APP_LIBS ${APP_LIBS} ${Tasks_LIBRARIES})
+                endif()
+                target_link_libraries(${PROJECT_NAME} ${APP_LIBS})
         
 - 加载翻译资源
   + 用库中提供的函数
@@ -121,46 +181,10 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
 
 ------------------------------------------------
 
-### [下载](https://github.com/KangLin/Tasks/releases/latest)
+### 贡献
 
-- linux
-    - [Tasks_0.0.8.tar.gz](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks_0.0.8.tar.gz)  
-      AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/  
-      使用:    
-      1. 解压
-
-                mkdir Tasks
-                cd Tasks
-                tar xvfz Tasks_0.0.8.tar.gz
-
-      2. 安装
-        
-                install.sh install
-        
-      3. 如果需要，卸载
-        
-                install.sh remove
-
-- ubuntu
-    - [tasks_0.0.8_amd64.deb](https://github.com/KangLin/Tasks/releases/download/0.0.8/tasks_0.0.8_amd64.deb)  
-  deb 安装包,可用于　Ubuntu
-  
-- windows
-    - [Tasks-Setup-0.0.8.exe](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks-Setup-0.0.8.exe)  
-  Windows安装包，支持 Windows xp 以上系统 
-
-- android
-    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/0.0.8/android-build-debug.apk)
-  
-------------------------------------------------
-
-## 捐赠
-- 捐赠(大于￥20)：  
-![捐赠( 大于 ￥20 )](Src/Resource/image/Contribute.png "捐赠(大于￥20)")
-
-- 捐赠￥20  
-![捐赠￥20](Src/Resource/image/Contribute20.png "捐赠￥20")
+问题：https://github.com/KangLin/Tasks/issues  
+项目位置：https://github.com/KangLin/Tasks
 
 ------------------------------------------------
-
 ### [许可协议](License.md "License.md")
