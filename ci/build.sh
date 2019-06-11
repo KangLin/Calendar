@@ -17,7 +17,14 @@ if [ "$BUILD_TARGERT" = "android" ]; then
     if [ "$TRAVIS" = "true" ]; then
         export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
     fi
-    export QT_ROOT=${SOURCE_DIR}/Tools/Qt/${QT_VERSION}/${QT_VERSION}/android_armv7
+    case $BUILD_ARCH in
+        arm*)
+            export QT_ROOT=${SOURCE_DIR}/Tools/Qt/${QT_VERSION}/${QT_VERSION}/android_armv7
+            ;;
+        x86)
+        export QT_ROOT=${SOURCE_DIR}/Tools/Qt/${QT_VERSION}/${QT_VERSION}/android_x86
+        ;;
+    esac
     export PATH=${SOURCE_DIR}/Tools/apache-ant/bin:$JAVA_HOME:$PATH
 fi
 
@@ -149,7 +156,7 @@ else
                        # --jdk ${JAVA_HOME}
         
         cp $SOURCE_DIR/Update/update_android.xml .
-	APK_FILE=`find . -name "android-build-debug.apk"`
+	    APK_FILE=`find . -name "android-build-debug.apk"`
         MD5=`md5sum ${APK_FILE} | awk '{print $1}'`
         echo "MD5:${MD5}"
         sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" update_android.xml
@@ -159,14 +166,14 @@ else
         sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
         sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Tasks/releases/download/${VERSION}/android-build-debug.apk<:g" update_android.xml
 
-	if [ "$TRAVIS_TAG" != "" ]; then
-        	export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
-	        #export UPLOADTOOL_PR_BODY=
-	        wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-	        chmod u+x upload.sh
-        	./upload.sh ${APK_FILE} 
-	        ./upload.sh update_android.xml
-	fi
+        if [ "$TRAVIS_TAG" != "" ]; then
+                export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
+                #export UPLOADTOOL_PR_BODY=
+                wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+                chmod u+x upload.sh
+                ./upload.sh ${APK_FILE} 
+                ./upload.sh update_android.xml
+        fi
     else
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
                 "CONFIG+=release" ${CONFIG_PARA}\
@@ -179,10 +186,10 @@ else
 fi
 
 if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
-    if [ "${AUTOBUILD_ARCH}" = "x86" ]; then
+    if [ "${BUILD_ARCH}" = "x86" ]; then
         cp /C/OpenSSL-Win32/bin/libeay32.dll install/bin
         cp /C/OpenSSL-Win32/bin/ssleay32.dll install/bin
-    elif [ "${AUTOBUILD_ARCH}" = "x64" ]; then
+    elif [ "${BUILD_ARCH}" = "x64" ]; then
         cp /C/OpenSSL-Win64/bin/libeay32.dll install/bin
         cp /C/OpenSSL-Win64/bin/ssleay32.dll install/bin
     fi

@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <UPDATE>
-    <VERSION>0.0.7</VERSION>
-    <TIME>2019-06-03 14:39:54</TIME>
-    <INFO>Tasks 0.0.7</INFO>
+    <VERSION>0.0.8</VERSION>
+    <TIME>2019-06-11 06:04:26</TIME>
+    <INFO>Tasks 0.0.8</INFO>
     <FORCE>0</FORCE>
     <SYSTEM>Windows</SYSTEM>
-    <PLATFORM>0.0.7</PLATFORM>
+    <PLATFORM>x86</PLATFORM>
     <ARCHITECTURE>x86</ARCHITECTURE>
-    <MD5SUM>c0c3a6669356d9e748e337d1f11e891a</MD5SUM>
-    <URL>https://github.com/KangLin/Tasks/releases/download/0.0.7/Tasks-Setup-0.0.7.exe</URL>
+    <MD5SUM>f3d8fd23ac0dd0e1b89fbc24c088e5e3</MD5SUM>
+    <URL>https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks-Setup-0.0.8.exe</URL>
     <MIN_UPDATE_VERSION>0.0.1</MIN_UPDATE_VERSION>
 </UPDATE>
