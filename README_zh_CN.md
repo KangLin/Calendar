@@ -121,38 +121,41 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
 
 ------------------------------------------------
 
-### 下载
-https://github.com/KangLin/Tasks/releases/latest
+### [下载](https://github.com/KangLin/Tasks/releases/latest)
 
-- Tasks_0.0.8.tar.gz  
-  AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/
-  使用:
-    1. 解压
+- linux
+    - [Tasks_0.0.8.tar.gz](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks_0.0.8.tar.gz)  
+      AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/
+          使用:
+            1. 解压
 
-      ```
-      mkdir Tasks
-      cd Tasks
-      tar xvfz Tasks_0.0.8.tar.gz
-      ```
+            mkdir Tasks
+            cd Tasks
+            tar xvfz Tasks_0.0.8.tar.gz
 
-  2. 安装
+          2. 安装
+        
+              ```
+              install.sh install
+              ```
+        
+          3. 如果需要，卸载
+        
+              ```
+              install.sh remove
+              ```
 
-      ```
-      install.sh install
-      ```
-
-  3. 如果需要，卸载
-
-      ```
-      install.sh remove
-      ```
-
-- tasks_0.0.8_amd64.deb  
+- ubuntu
+    - [tasks_0.0.8_amd64.deb](https://github.com/KangLin/Tasks/releases/download/0.0.8/tasks_0.0.8_amd64.deb)  
   deb 安装包,可用于　Ubuntu
   
-- Tasks-Setup-0.0.8.exe  
+- windows
+    - [Tasks-Setup-0.0.8.exe](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks-Setup-0.0.8.exe)  
   Windows安装包，支持 Windows xp 以上系统 
 
+- android
+    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/0.0.8/android-build-debug.apk)
+  
 ------------------------------------------------
 
 ## 捐赠

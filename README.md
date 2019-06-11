@@ -93,39 +93,38 @@ Qt does not provide openssl dynamic library for copyright reasons, so you must c
         
 ------------------------------------------------
 
-### Download
-https://github.com/KangLin/Tasks/releases/latest
+### [Download](https://github.com/KangLin/Tasks/releases/latest)
 
-- Tasks_0.0.8.tar.gz  
-  The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
+- linux
+    - [Tasks_0.0.8.tar.gz](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks_0.0.8.tar.gz)  
+      The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
 
-  Usage:
-    1. Decompress
+        Usage:
+            1. Decompress
 
-      ```
-      mkdir Tasks
-      cd Tasks
-      tar xvfz Tasks_0.0.8.tar.gz
-      ```
+                mkdir Tasks
+                cd Tasks
+                tar xvfz Tasks_0.0.8.tar.gz
 
-  2. install
+            2. install
 
-      ```
-      install.sh install
-      ```
+                install.sh install
 
-  3. If you want to uninstall
+            3. If you want to uninstall
 
-      ```
-      install.sh remove
-      ```
+                install.sh remove
 
-- tasks_0.0.8_amd64.deb  
+- ubuntu
+    - [tasks_0.0.8_amd64.deb](https://github.com/KangLin/Tasks/releases/download/0.0.8/tasks_0.0.8_amd64.deb)  
    Deb installation package for Ubuntu
-  
-- Tasks-Setup-0.0.8.exe  
+
+- windows
+    - [Tasks-Setup-0.0.8.exe](https://github.com/KangLin/Tasks/releases/download/0.0.8/Tasks-Setup-0.0.8.exe)  
    Windows installation package, support for Windows xp and above
-   
+
+- android
+    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/0.0.8/android-build-debug.apk)
+    
 ------------------------------------------------
 
 ## Donation

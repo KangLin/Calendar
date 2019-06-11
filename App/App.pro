@@ -67,7 +67,8 @@ OTHER_FILES += CMakeLists.txt
 DISTFILES += \
     android/AndroidManifest.xml \
     android/build.gradle \
-    android/res/values/libs.xml
+    android/res/values/* \
+    android/res/values-zh/*
 
 contains(ANDROID_TARGET_ARCH,x86) {
     ANDROID_PACKAGE_SOURCE_DIR = \
