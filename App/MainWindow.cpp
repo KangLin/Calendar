@@ -90,6 +90,9 @@ void CMainWindow::slotAbout()
     about.m_AppIcon = QPixmap(":/icon/App");
     about.m_szHomePage = "https://github.com/KangLin/Tasks";
     if(about.isHidden())
+#if defined (Q_OS_ANDROID)
+        about.showMaximized();
+#endif
         about.exec();
 #endif
 }
