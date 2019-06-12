@@ -61,12 +61,12 @@ notifications:
   on_success: never  # [always|never|change]
   on_failure: always
 
-deploy:
-  - provider: releases
-    api_key:
-      secure: ALZWWdQlmi0gJ5Gs9gjX4waV4JYvZAFogN6oUCJayWYkCvME/z1QSxMERuZhRM0F4K2Kt8LWK2ozp18OEtonNQJ81ZELbZRYMQwl4C3Cmfhnywyn4UgiU3CLEQ3Dn25iLqHy7QhaS6BWyISxVQxrsEhFkc0tLDODwk45tibiniIpTtBtTB9Tx85p8FEfdOHUCNxhVtW9zF0LjdWxD569HEzpKDi8c4naNCDVvbBA9r2voQqt3NkNsCNz10vxyV+xO8uJIs1/K5Mj6Gnd+UaUtSDnVTUKCZatcge5OGpu9TcYbH5yLuhlTifVtYmhmK3YeAmte6uNlD6WYIdpSTMJLQ8Lgc2WE+2mj0G16afWtY9ajTqVUlJEa1R078gCnFG4YeYjUYIZhFq/u0U16Ga95RvHAZlQNVcyDLb/Mwt6QyJJdWRNHzsm1sY6mwhXKRwAMGvPl9RTWl6JJdFT5wcPYIzPL9+Y6k6ZhkdI6kWEzA7HYUbA1mLiF6Q8h+ezKnb10KiPEAFU4NNUmf3RKMwolRSTN/TkiZCRIVsPKnkLgS5LzTf6s0rGBZ2g5vWo1fDsigDPBJRE27742pPDXXMt82CySThq3lKJFwQsGObLg1z2H8XbvDkImVIVOK98oW2a/7aXX28/0LjWE2tdV83p1ho5DvyTlGZio+fqk0qmfsw=
-    file: "$TRAVIS_BUILD_DIR/../tasks_${VERSION}_amd64.deb "
-    skip_cleanup: true
-    on:
-      #tags: true
-      condition: "$BUILD_TARGERT=unix && $QT_VERSION_DIR=512 && $BUILD_DOWNLOAD=FALSE"
+#deploy:
+#  - provider: releases
+#    api_key:
+#      secure: ALZWWdQlmi0gJ5Gs9gjX4waV4JYvZAFogN6oUCJayWYkCvME/z1QSxMERuZhRM0F4K2Kt8LWK2ozp18OEtonNQJ81ZELbZRYMQwl4C3Cmfhnywyn4UgiU3CLEQ3Dn25iLqHy7QhaS6BWyISxVQxrsEhFkc0tLDODwk45tibiniIpTtBtTB9Tx85p8FEfdOHUCNxhVtW9zF0LjdWxD569HEzpKDi8c4naNCDVvbBA9r2voQqt3NkNsCNz10vxyV+xO8uJIs1/K5Mj6Gnd+UaUtSDnVTUKCZatcge5OGpu9TcYbH5yLuhlTifVtYmhmK3YeAmte6uNlD6WYIdpSTMJLQ8Lgc2WE+2mj0G16afWtY9ajTqVUlJEa1R078gCnFG4YeYjUYIZhFq/u0U16Ga95RvHAZlQNVcyDLb/Mwt6QyJJdWRNHzsm1sY6mwhXKRwAMGvPl9RTWl6JJdFT5wcPYIzPL9+Y6k6ZhkdI6kWEzA7HYUbA1mLiF6Q8h+ezKnb10KiPEAFU4NNUmf3RKMwolRSTN/TkiZCRIVsPKnkLgS5LzTf6s0rGBZ2g5vWo1fDsigDPBJRE27742pPDXXMt82CySThq3lKJFwQsGObLg1z2H8XbvDkImVIVOK98oW2a/7aXX28/0LjWE2tdV83p1ho5DvyTlGZio+fqk0qmfsw=
+#    file: "$TRAVIS_BUILD_DIR/../tasks_${VERSION}_amd64.deb "
+#    skip_cleanup: true
+#    on:
+#      tags: true
+#      condition: "$BUILD_TARGERT=unix && $QT_VERSION_DIR=512 && $BUILD_DOWNLOAD=FALSE"
