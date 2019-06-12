@@ -107,7 +107,12 @@ void CMainWindow::slotShow()
     qDebug() << "CMainWindow::slotShow()";
     
     if(isHidden())
-    {   show();
+    {   
+#if defined (Q_OS_ANDROID)
+        showMaximized();
+#else
+        show();
+#endif
         m_pShow->setText(tr("Hide"));
     }
     else {
@@ -206,6 +211,9 @@ void CMainWindow::on_actionSink_S_triggered()
 void CMainWindow::on_actionOption_O_triggered()
 {
     CDlgOption dlg(this);
+#if defined (Q_OS_ANDROID)
+    dlg.showMaximized();
+#endif
     dlg.exec();
 }
 
