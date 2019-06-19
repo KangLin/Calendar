@@ -64,6 +64,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     pScrollArea->setGeometry(this->geometry());
     pScrollArea->setWidget(&m_Table);
     pScrollArea->show();
+    pScrollArea->viewport()->setAttribute(Qt::WA_AcceptTouchEvents);
     setCentralWidget(pScrollArea);
 #else
     setCentralWidget(&m_Table);
