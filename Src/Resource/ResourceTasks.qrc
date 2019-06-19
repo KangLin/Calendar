@@ -3,8 +3,6 @@
         <file alias="China">image/china.png</file>
         <file alias="EyeNurse">image/EyeNurse.png</file>
         <file alias="EyeCharts">image/EyeCharts.png</file>
-        <file alias="Contribute">image/Contribute.png</file>
-        <file alias="Contribute20">image/Contribute20.png</file>
         <file alias="Add">image/add.png</file>
         <file alias="Delete">image/delete.png</file>
         <file alias="Sub">image/sub.png</file>

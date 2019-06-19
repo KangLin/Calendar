@@ -28,10 +28,10 @@
 
 ## 捐赠
 - 捐赠(大于￥20)：  
-![捐赠( 大于 ￥20 )](Src/Resource/image/Contribute.png "捐赠(大于￥20)")
+![捐赠( 大于 ￥20 )](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠(大于￥20)")
 
 - 捐赠￥20  
-![捐赠￥20](Src/Resource/image/Contribute20.png "捐赠￥20")
+![捐赠￥20](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute20.png "捐赠￥20")
 
 ------------------------------------------------
 
