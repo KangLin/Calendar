@@ -58,7 +58,7 @@
         <location filename="../../MainWindow.ui" line="60"/>
         <location filename="../../MainWindow.ui" line="63"/>
         <location filename="../../MainWindow.ui" line="66"/>
-        <location filename="../../MainWindow.cpp" line="34"/>
+        <location filename="../../MainWindow.cpp" line="40"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
@@ -98,30 +98,30 @@
         <translation>更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="24"/>
+        <location filename="../../MainWindow.cpp" line="30"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="28"/>
-        <location filename="../../MainWindow.cpp" line="108"/>
+        <location filename="../../MainWindow.cpp" line="34"/>
+        <location filename="../../MainWindow.cpp" line="119"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="30"/>
-        <location filename="../../MainWindow.cpp" line="112"/>
-        <location filename="../../MainWindow.cpp" line="254"/>
+        <location filename="../../MainWindow.cpp" line="36"/>
+        <location filename="../../MainWindow.cpp" line="123"/>
+        <location filename="../../MainWindow.cpp" line="275"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="38"/>
+        <location filename="../../MainWindow.cpp" line="44"/>
         <source>Enable run from boot</source>
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="189"/>
+        <location filename="../../MainWindow.cpp" line="205"/>
         <source>Open sink</source>
         <translation>打開皮膚</translation>
     </message>

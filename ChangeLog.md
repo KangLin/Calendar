@@ -1,38 +1,44 @@
+- 0.0.10
+  + Modify updater, and test it
+  
+- 0.0.9
+  + Modiyf android problem
+
 - 0.0.8
-  - Update RabbitCommon, Use new Updater
-  - Add lunar year cycle
-  - Add android ci
+  + Update RabbitCommon, Use new Updater
+  + Add lunar year cycle
+  + Add android ci
   
 - 0.0.7
-  - Add install appimagep
-  - Add test of linux in ci
+  + Add install appimagep
+  + Add test of linux in ci
    
 - 0.0.6
-  - Custom cycle
+  + Custom cycle
     
 - 0.0.5
-  - Add calendar reminder
+  + Add calendar reminder
     - Birthday (year cycle)
     - Month cycle
     - Week cycle
      
 - v0.0.4
-  - Add screen power
-  - Use QScrollArea in Android
-  - Add calendar
-  - Add debin package
+  + Add screen power
+  + Use QScrollArea in Android
+  + Add calendar
+  + Add debin package
 
 - v0.0.3
-  - Modify main window
-  - TasksList and StickyList add toolbar
-  - Library interface
-  - Modify project directory
-  - Add cmake manage project
+  + Modify main window
+  + TasksList and StickyList add toolbar
+  + Library interface
+  + Modify project directory
+  + Add cmake manage project
   
 - v0.0.2
-  - Edit tasks
-  - Updater
-  - Sticky
+  + Edit tasks
+  + Updater
+  + Sticky
   
 - v0.0.1
-  - Eye Nurse： Vision protection
+  + Eye Nurse： Vision protection

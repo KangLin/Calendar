@@ -11,10 +11,6 @@
 #include "FrmStickyList.h"
 #include "FrmCalendar.h"
 
-#ifdef RABBITCOMMON
-    #include "FrmUpdater/FrmUpdater.h"
-#endif
-
 namespace Ui {
 class CMainWindow;
 }
@@ -61,9 +57,7 @@ private:
     CFrmTasksList m_FrmTasksList;
     CFrmStickyList m_frmStickyList;
     CFrmCalendar m_frmCalendar;
-    
-    CFrmUpdater m_frmUpdater;
-    
+
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void hideEvent(QHideEvent *event) override;

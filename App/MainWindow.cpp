@@ -3,7 +3,6 @@
 #include "DlgAbout/DlgAbout.h"
 #include "Global/TasksTools.h"
 #include "Global/GlobalDir.h"
-#include "FrmUpdater/FrmUpdater.h"
 #include <QSettings>
 #include <QDebug>
 #include <QFileDialog>
@@ -11,6 +10,10 @@
 #include <QScrollArea>
 #include <QSize>
 #include <QScrollBar>
+
+#ifdef RABBITCOMMON
+    #include "FrmUpdater/FrmUpdater.h"
+#endif
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -73,10 +76,6 @@ CMainWindow::CMainWindow(QWidget *parent) :
     QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
                   QSettings::IniFormat);
     m_Table.setCurrentIndex(set.value("Options/MainWindow/TableView", 0).toInt());
-    
-#ifdef RABBITCOMMON
-    m_frmUpdater.SetTitle(QPixmap(":/icon/App"));
-#endif
 }
 
 CMainWindow::~CMainWindow()
@@ -224,10 +223,12 @@ void CMainWindow::on_actionOption_O_triggered()
 void CMainWindow::on_actionUpdate_U_triggered()
 {
 #ifdef RABBITCOMMON
+    CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
+    m_pfrmUpdater->SetTitle(QPixmap(":/icon/App"));
     #if defined (Q_OS_ANDROID)
-        m_frmUpdater.showMaximized();
+        m_pfrmUpdater->showMaximized();
     #else
-        m_frmUpdater.show();
+        m_pfrmUpdater->show();
     #endif
 #endif
 }

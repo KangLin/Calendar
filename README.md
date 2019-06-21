@@ -46,15 +46,15 @@ please compile and test the students with the corresponding equipment.
 ### [Download setup package](https://github.com/KangLin/Tasks/releases/latest)
 
 - linux
-    - [Tasks_0.0.9.tar.gz](https://github.com/KangLin/Tasks/releases/download/0.0.9/Tasks_0.0.9.tar.gz)  
+    - [Tasks_0.0.10.tar.gz](https://github.com/KangLin/Tasks/releases/download/0.0.10/Tasks_0.0.10.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:    
-      1. Decompress. Copy Tasks_0.0.9.tar.gz to install directory, then decompress it:
+      1. Decompress. Copy Tasks_0.0.10.tar.gz to install directory, then decompress it:
 
                 mkdir Tasks
                 cd Tasks
-                cp $DOWNLOAD/Tasks_0.0.9.tar.gz .
-                tar xvfz Tasks_0.0.9.tar.gz
+                cp $DOWNLOAD/Tasks_0.0.10.tar.gz .
+                tar xvfz Tasks_0.0.10.tar.gz
 
       2. install
 
@@ -65,15 +65,15 @@ please compile and test the students with the corresponding equipment.
                 ./install.sh remove
 
 - ubuntu
-    - [tasks_0.0.9_amd64.deb](https://github.com/KangLin/Tasks/releases/download/0.0.9/tasks_0.0.9_amd64.deb)  
+    - [tasks_0.0.10_amd64.deb](https://github.com/KangLin/Tasks/releases/download/0.0.10/tasks_0.0.10_amd64.deb)  
    Deb installation package for Ubuntu
 
 - windows
-    - [Tasks-Setup-0.0.9.exe](https://github.com/KangLin/Tasks/releases/download/0.0.9/Tasks-Setup-0.0.9.exe)  
+    - [Tasks-Setup-0.0.10.exe](https://github.com/KangLin/Tasks/releases/download/0.0.10/Tasks-Setup-0.0.10.exe)  
    Windows installation package, support for Windows xp and above
 
 - android
-    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/0.0.9/android-build-debug.apk)
+    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/0.0.10/android-build-debug.apk)
     
 ------------------------------------------------
 
