@@ -17,6 +17,15 @@ Author: KangLin (kl222@126.com)
      - [x] Week cycle
      - [x] Custom cycle
 - [x] Sticky
+- [x] Cross-platform, support multiple operating systems
+     - [x] Windows
+     - [x] Linux、Unix
+     - [x] Android
+     - [ ] Mac os
+     - [ ] IOS
+
+Mac os and IOS, I don't have the corresponding equipment,
+please compile and test the students with the corresponding equipment.
 
 ------------------------------------------------
 
