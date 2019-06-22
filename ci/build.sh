@@ -87,12 +87,12 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="0.0.10"
+export VERSION="v0.1.0"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
 
-    sudo dpkg -i ../tasks_${VERSION}_amd64.deb
+    sudo dpkg -i ../tasks_*_amd64.deb
     $SOURCE_DIR/test/test_linux.sh 
     
     if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "512" ]; then
@@ -112,7 +112,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
             Tasks-${VERSION}-x86_64.AppImage \
             install.sh share
     
-        MD5=`md5sum $SOURCE_DIR/../tasks_${VERSION}_amd64.deb|awk '{print $1}'`
+        MD5=`md5sum $SOURCE_DIR/../tasks_*_amd64.deb|awk '{print $1}'`
         echo "MD5:${MD5}"
         ./bin/TasksApp \
             -f "`pwd`/update_linux.xml" \
@@ -121,7 +121,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         #export UPLOADTOOL_PR_BODY=
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
         chmod u+x upload.sh
-        ./upload.sh $SOURCE_DIR/../tasks_${VERSION}_amd64.deb 
+        ./upload.sh $SOURCE_DIR/../tasks_*_amd64.deb 
         ./upload.sh update_linux.xml 
         ./upload.sh Tasks_${VERSION}.tar.gz 
     fi
