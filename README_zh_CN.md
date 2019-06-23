@@ -27,14 +27,15 @@
 
 Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己编译，测试。
 
-------------------------------------------------
+### 屏幕截图
 
-[![Appveyor 编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/tasks/branch/master)
-[![Travis 编译状态](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
+![Calendar](Resource/Image/ScreenShot/Calendar_zh_CN.PNG)
+![Sticky](Resource/Image/ScreenShot/Sticky_zh_CN.png)
+![Tasks](Resource/Image/ScreenShot/Tasks_zh_CN.PNG)
 
-------------------------------------------------
+### 捐赠
+本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
 
-## 捐赠
 - 捐赠(大于￥20)：  
 ![捐赠( 大于 ￥20 )](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠(大于￥20)")
 
@@ -43,6 +44,10 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 
 ------------------------------------------------
 
+[![Appveyor 编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/tasks/branch/master)
+[![Travis 编译状态](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
+
+------------------------------------------------
 ### [下载安装包](https://github.com/KangLin/Tasks/releases/latest)
 
 - linux
@@ -75,8 +80,6 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 - android
     + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.1.0/android-build-debug.apk)
 
-------------------------------------------------
-
 ### 依赖
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)
   
@@ -108,12 +111,10 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
         - 如果是32的，可以在Qt安装程序Tools\QtCreator\bin目录下，找到openssl的动态库（libeay32.dll、ssleay32.dll）
         - 如果是64位，则需要自己下载openssl的二进制安装包。
     + linux
-    
+
         ```
         sudo apt-get install libssl1.1
         ```
-    
-------------------------------------------------
 
 ### 使用
 - 直接用源码
@@ -177,7 +178,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
         CTasksTools::Instance()->InitResource();
 
   + 自定义
-  
+
         QString szPre;    
         #if defined(Q_OS_ANDROID) || _DEBUG
             szPre = ":/Translations";
@@ -187,12 +188,9 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
         m_Translator.load(szPre + "/Tasks_" + QLocale::system().name() + ".qm");
         qApp->installTranslator(&m_Translator);
 
-------------------------------------------------
-
 ### 贡献
 
 问题：https://github.com/KangLin/Tasks/issues  
 项目位置：https://github.com/KangLin/Tasks
 
-------------------------------------------------
 ### [许可协议](License.md "License.md")

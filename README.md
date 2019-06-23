@@ -27,19 +27,22 @@ Author: KangLin (kl222@126.com)
 Mac os and IOS, I don't have the corresponding equipment,
 please compile and test the students with the corresponding equipment.
 
-------------------------------------------------
+### ScreentShot
+![Calendar](Resource/Image/ScreenShot/Calendar.PNG)
+![Sticky](Resource/Image/ScreenShot/Sticky.png)
+![Tasks](Resource/Image/ScreenShot/Tasks.PNG)
 
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/tasks)
-[![Travis build Status](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
-
-------------------------------------------------
-
-## Donation
+### Donation
 - Donation (greater than ¥20):  
 ![donation (greater than ¥20)](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation (greater than ¥20)")
 
 - Donate ¥20  
 ![donation ¥20](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute20.png "donation ¥20")
+
+------------------------------------------------
+
+[![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/tasks)
+[![Travis build Status](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
 
 ------------------------------------------------
 
@@ -75,7 +78,6 @@ please compile and test the students with the corresponding equipment.
 - android
     + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.1.0/android-build-debug.apk)
     
-------------------------------------------------
 
 ### Depend
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)
@@ -115,7 +117,6 @@ please compile and test the students with the corresponding equipment.
      sudo apt-get install libssl1.1
      ```
 
-------------------------------------------------
 ### Use
 - pro
     - Library mode:
@@ -159,7 +160,7 @@ please compile and test the students with the corresponding equipment.
             FIND_PACKAGE(Tasks)
         
         + Add libraries and include in CMakeLists.txt
-        
+
                 SET(APP_LIBS ${PROJECT_NAME} ${QT_LIBRARIES})
                 if(Tasks_FOUND)
                     target_compile_definitions(${PROJECT_NAME}
@@ -170,13 +171,10 @@ please compile and test the students with the corresponding equipment.
                     set(APP_LIBS ${APP_LIBS} ${Tasks_LIBRARIES})
                 endif()
                 target_link_libraries(${PROJECT_NAME} ${APP_LIBS})
-                
-------------------------------------------------
 
 ### Contribution
 
 Question: https://github.com/KangLin/Tasks/issues  
 Project location: https://github.com/KangLin/Tasks
 
-------------------------------------------------
 ### [License Agreement](License.md "License.md")
