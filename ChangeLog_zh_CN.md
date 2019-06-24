@@ -1,3 +1,6 @@
+- v0.1.2
+  + 修改打包 tar.gz
+
 - v0.1.1
   + 增加屏幕截图
   + 增加 update_linux_appimage.xml

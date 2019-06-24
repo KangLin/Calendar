@@ -87,7 +87,7 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="v0.1.1"
+export VERSION="v0.1.2"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
@@ -101,15 +101,13 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     chmod a+x linuxdeployqt-continuous-x86_64.AppImage
     
     ./linuxdeployqt-continuous-x86_64.AppImage share/applications/*.desktop \
-    -qmake=${QT_ROOT}/bin/qmake -appimage
+        -qmake=${QT_ROOT}/bin/qmake -appimage
     
     # Create appimage install package
     cp $SOURCE_DIR/Install/install.sh .
     ln -s Tasks-${VERSION}-x86_64.AppImage Tasks-x86_64.AppImage
-    tar -czf Tasks_${VERSION}.tar.gz \
-    Tasks-x86_64.AppImage \
-    Tasks-${VERSION}-x86_64.AppImage \
-    install.sh share
+    tar -czf ../Tasks_${VERSION}.tar.gz . \
+        --exclude linuxdeployqt-continuous-x86_64.AppImage
     
     MD5=`md5sum $SOURCE_DIR/../tasks_*_amd64.deb|awk '{print $1}'`
     echo "MD5:${MD5}"
@@ -132,7 +130,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         chmod u+x upload.sh
         ./upload.sh $SOURCE_DIR/../tasks_*_amd64.deb 
         ./upload.sh update_linux.xml update_linux_appimage.xml
-        ./upload.sh Tasks_${VERSION}.tar.gz 
+        ./upload.sh ../Tasks_${VERSION}.tar.gz
     fi
     exit 0
 fi

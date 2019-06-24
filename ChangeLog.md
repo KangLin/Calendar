@@ -1,3 +1,6 @@
+- v0.1.2
+  + Modify tar.gz
+
 - v0.1.1
   + Add screen shot
   + Add update_linux_appimage.xml
