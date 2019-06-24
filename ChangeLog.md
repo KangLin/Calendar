@@ -1,3 +1,10 @@
+- v0.1.1
+  + Add screen shot
+  + Add update_linux_appimage.xml
+  
+- v0.1.0
+  + Reuse presufix v
+  
 - 0.0.10
   + Modify updater, and test it
   
