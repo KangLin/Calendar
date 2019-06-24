@@ -87,7 +87,7 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="0.1.1"
+export VERSION="v0.1.1"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
