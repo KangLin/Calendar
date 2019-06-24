@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 SOURCE_DIR=`pwd`
 
