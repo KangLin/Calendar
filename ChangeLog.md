@@ -1,3 +1,7 @@
+- v0.1.3
+  + Modify tar.gz
+  + Add admin authoriser
+
 - v0.1.2
   + Modify tar.gz
 
