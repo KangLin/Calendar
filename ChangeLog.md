@@ -1,3 +1,6 @@
+- v0.1.4
+  + Only test linux appimage update
+
 - v0.1.3
   + Modify tar.gz
   + Add admin authoriser
