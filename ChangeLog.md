@@ -1,3 +1,6 @@
+- v0.1.5
+  + Modify install.sh
+
 - v0.1.4
   + Only test linux appimage update
 

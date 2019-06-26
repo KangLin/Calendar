@@ -1,3 +1,6 @@
+- v0.1.5
+  + 修改 install.sh
+ 
 - v0.1.4
   + 只做linux下appimage更新测试
 
