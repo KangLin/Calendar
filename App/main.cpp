@@ -33,13 +33,13 @@ int main(int argc, char *argv[])
     a.installTranslator(&tApp);
 
     CTasksTools::Instance()->InitResource();
-    CRabbitCommonTools::Instance()->Init();
+    RabbitCommon::CTools::Instance()->Init();
 
     a.setApplicationDisplayName(QObject::tr("Tasks"));
     
 #ifdef RABBITCOMMON 
-    CFrmUpdater *pUpdate = new CFrmUpdater(); 
-    pUpdate->SetTitle(QPixmap(":/image/Calendar")); 
+    RabbitCommon::CFrmUpdater *pUpdate = new RabbitCommon::CFrmUpdater();
+    pUpdate->SetTitle(QPixmap(":/icon/App"));
     if(!pUpdate->GenerateUpdateXml()) 
         return 0; 
 #endif

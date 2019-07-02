@@ -1,3 +1,23 @@
+- v0.1.5
+  + Modify install.sh
+
+- v0.1.4
+  + Only test linux appimage update
+
+- v0.1.3
+  + Modify tar.gz
+  + Add admin authoriser
+
+- v0.1.2
+  + Modify tar.gz
+
+- v0.1.1
+  + Add screen shot
+  + Add update_linux_appimage.xml
+  
+- v0.1.0
+  + Reuse presufix v
+  
 - 0.0.10
   + Modify updater, and test it
   
