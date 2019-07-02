@@ -6,8 +6,25 @@
 
 [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
 
+[![Appveyor 编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/tasks/branch/master)
+[![Travis 编译状态](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
 ------------------------------------------------
 
+- [功能](#功能)
+- [屏幕截图](#屏幕截图)
+- [捐赠](#捐赠)
+- [下载安装包](#下载安装包)
+    + [linux](#linux)
+    + [ubuntu](#ubuntu)
+    + [windows](#windows)
+    + [android](#android)
+- [依赖](#依赖)
+- [编译](#编译)
+- [使用](#使用)
+- [贡献](#贡献)
+- [许可协议](#许可协议)
+
+------------------------------------------------
 ### 功能
 
 - [x] 眼睛护士: 保护视力
@@ -42,12 +59,6 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 - 捐赠￥20  
 ![捐赠￥20](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute20.png "捐赠￥20")
 
-------------------------------------------------
-
-[![Appveyor 编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/tasks/branch/master)
-[![Travis 编译状态](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
-
-------------------------------------------------
 ### [下载安装包](https://github.com/KangLin/Tasks/releases/latest)
 
 - linux
