@@ -175,10 +175,17 @@ int CTasksList::LoadSettings(const QString &szFile)
 {
     QString file = szFile;
     if(szFile.isEmpty())
+    {
         file = CGlobalDir::Instance()->GetDirApplicationXml()
                 + QDir::separator()                
                 + objectName() + "_" + QLocale::system().name()
                 + ".xml";
+        QDir f(file);
+        if(!f.exists())
+            file = CGlobalDir::Instance()->GetDirApplicationXml()
+                    + QDir::separator()
+                    + objectName() + "_en.xml";
+    }
     QFile f(file);
     if(!f.open(QIODevice::ReadOnly))
     {
@@ -201,10 +208,17 @@ int CTasksList::SaveSettings(const QString &szFile)
     int nRet = 0;
     QString file = szFile;
     if(szFile.isEmpty())
+    {
         file = CGlobalDir::Instance()->GetDirApplicationXml()
                 + QDir::separator()
                 + objectName() + "_" + QLocale::system().name()
                 + ".xml";
+        QDir f(file);
+        if(!f.exists())
+            file = CGlobalDir::Instance()->GetDirApplicationXml()
+                    + QDir::separator()
+                    + objectName() + "_en.xml";
+    }
     QFile f(file);
     if(!f.open(QIODevice::WriteOnly))
     {
