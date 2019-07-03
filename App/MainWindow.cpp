@@ -89,7 +89,7 @@ CMainWindow::~CMainWindow()
 void CMainWindow::slotAbout()
 {
 #ifdef RABBITCOMMON
-    RabbitCommon::CDlgAbout about(this);
+    CDlgAbout about(this);
     about.m_AppIcon = QPixmap(":/icon/App");
     about.m_szHomePage = "https://github.com/KangLin/Tasks";
     if(about.isHidden())
@@ -223,7 +223,7 @@ void CMainWindow::on_actionOption_O_triggered()
 void CMainWindow::on_actionUpdate_U_triggered()
 {
 #ifdef RABBITCOMMON
-    RabbitCommon::CFrmUpdater* m_pfrmUpdater = new RabbitCommon::CFrmUpdater();
+    CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
     m_pfrmUpdater->SetTitle(QPixmap(":/icon/App"));
     #if defined (Q_OS_ANDROID)
         m_pfrmUpdater->showMaximized();

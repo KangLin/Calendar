@@ -52,7 +52,7 @@ win32 {
 } else:mac {
     QT += macextras
     LIBS += -framework Security
-} else:unix {
+} else:unix:!android {
     QT += dbus
     LIBS += -lutil
 }
@@ -81,7 +81,5 @@ DISTFILES += \
     android/res/values/* \
     android/res/values-zh/*
 
-contains(ANDROID_TARGET_ARCH,x86) {
-    ANDROID_PACKAGE_SOURCE_DIR = \
-        $$PWD/android
-}
+#contains(ANDROID_TARGET_ARCH,x86) {
+android: ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

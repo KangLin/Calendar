@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     a.setApplicationDisplayName(QObject::tr("Tasks"));
     
 #ifdef RABBITCOMMON 
-    RabbitCommon::CFrmUpdater *pUpdate = new RabbitCommon::CFrmUpdater();
+    CFrmUpdater *pUpdate = new CFrmUpdater();
     pUpdate->SetTitle(QPixmap(":/icon/App"));
     if(!pUpdate->GenerateUpdateXml()) 
         return 0; 
