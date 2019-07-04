@@ -37,6 +37,7 @@ IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     ENDIF()
 ENDIF()
 message("BUILD_VERSION:${BUILD_VERSION}")
+set(VERSION ${BUILD_VERSION})
 
 if("Debug" STREQUAL CMAKE_BUILD_TYPE)
     add_definitions(-D_DEBUG)

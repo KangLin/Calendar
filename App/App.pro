@@ -28,7 +28,6 @@ isEmpty(RabbitCommon_DIR): exists("$${RabbitCommon_DIR}/Src/Src.pro"){
 }
 
 DEFINES += RABBITCOMMON
-#VERSION=$$BUILD_VERSION
 INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src $$_PRO_FILE_PWD_/../Src/export $${RabbitCommon_DIR}/Src $${RabbitCommon_DIR}/Src/export
 DESTDIR = $$OUT_PWD/../bin
 DEPENDPATH = $$DESTDIR
