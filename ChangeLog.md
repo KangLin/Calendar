@@ -1,3 +1,7 @@
+- v0.1.6
+  + Use RabbitCommon v1.0.0
+  + FIX BUG
+  
 - v0.1.5
   + Modify install.sh
 

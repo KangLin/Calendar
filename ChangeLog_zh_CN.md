@@ -1,3 +1,7 @@
+- v0.1.6
+  + 使用 RabbitCommon v1.0.0
+  + 固定 BUG
+  
 - v0.1.5
   + 修改 install.sh
  

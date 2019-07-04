@@ -33,8 +33,10 @@ int main(int argc, char *argv[])
     a.installTranslator(&tApp);
 
     CTasksTools::Instance()->InitResource();
+#ifdef RABBITCOMMON 
     RabbitCommon::CTools::Instance()->Init();
-
+#endif
+    
     a.setApplicationDisplayName(QObject::tr("Tasks"));
     
 #ifdef RABBITCOMMON 

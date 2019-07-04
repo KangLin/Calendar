@@ -87,7 +87,7 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="v0.1.5"
+export VERSION="v0.1.6"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
@@ -100,13 +100,12 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
     chmod a+x linuxdeployqt-continuous-x86_64.AppImage
     
-    ./linuxdeployqt-continuous-x86_64.AppImage Tasks/share/applications/*.desktop \
-        -qmake=${QT_ROOT}/bin/qmake -appimage
-    
     cd Tasks
+    ./../linuxdeployqt-continuous-x86_64.AppImage Tasks/share/applications/*.desktop \
+        -qmake=${QT_ROOT}/bin/qmake -appimage -no-copy-copyright-files 
     
     # Create appimage install package
-    cp ../Tasks-${VERSION}-x86_64.AppImage .
+    #cp ../Tasks-${VERSION}-x86_64.AppImage .
     cp $SOURCE_DIR/Install/install.sh .
     ln -s Tasks-${VERSION}-x86_64.AppImage Tasks-x86_64.AppImage
     tar -czf Tasks_${VERSION}.tar.gz \
