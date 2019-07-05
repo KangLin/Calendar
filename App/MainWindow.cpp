@@ -136,10 +136,10 @@ void CMainWindow::slotStartRun(bool checked)
         RabbitCommon::CTools::InstallStartRun();
     }
     
-    /*if(RabbitCommon::CTools::IsStartRun())
+    if(RabbitCommon::CTools::IsStartRun())
         m_pStartRun->setChecked(true);
     else
-        m_pStartRun->setChecked(false);*/
+        m_pStartRun->setChecked(false);
 }
 
 void CMainWindow::slotActivated(QSystemTrayIcon::ActivationReason r)
