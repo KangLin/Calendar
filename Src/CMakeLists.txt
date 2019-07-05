@@ -95,8 +95,8 @@ target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} LunarCalendar RabbitCommon
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../3th_libs/LunarCalendar/Src
     ${CMAKE_CURRENT_SOURCE_DIR}/../3th_libs/LunarCalendar/Src/export
-    "${RabbitCommon_DIR}/Src"
-    "${RabbitCommon_DIR}/Src/export")
+    ${RabbitCommon_DIR}/Src
+    ${RabbitCommon_DIR}/Src/export)
 GENERATE_EXPORT_HEADER(${PROJECT_NAME})
 string(TOLOWER ${PROJECT_NAME} LOWER_PROJECT_NAME)
 set(INSTALLHEADER_FILES ${INSTALLHEADER_FILES} 
