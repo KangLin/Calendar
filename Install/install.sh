@@ -7,7 +7,7 @@ case "$1" in
         echo "remove ..."
         rm -f /usr/share/applications/Tasks.desktop
         rm -f /etc/xdg/autostart/Tasks.desktop
-        rm -f /usr/share/pixmaps/tasks.png
+        rm -f /usr/share/pixmaps/Tasks.png
     ;;
 
     install|*)
@@ -25,12 +25,12 @@ case "$1" in
         sed -i "s/Exec=.*//g" `pwd`/share/applications/Tasks.desktop
         echo "Exec=`pwd`/Tasks-x86_64.AppImage" >> `pwd`/share/applications/Tasks.desktop
 
-        if [ -f /usr/share/pixmaps/tasks.png ]; then
-            rm /usr/share/pixmaps/tasks.png
+        if [ -f /usr/share/pixmaps/Tasks.png ]; then
+            rm /usr/share/pixmaps/Tasks.png
         fi
         if [ ! -d /usr/share/pixmaps ]; then
             mkdir -p /usr/share/pixmaps
         fi
-        ln -s `pwd`/share/pixmaps/tasks.png /usr/share/pixmaps/tasks.png
+        ln -s `pwd`/share/pixmaps/Tasks.png /usr/share/pixmaps/Tasks.png
         ;;
 esac

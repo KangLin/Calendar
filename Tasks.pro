@@ -40,7 +40,7 @@ win32:  INSTALLS += install
 
     # install icons
     icon128.target = icon128
-    icon128.files = Src/Resource/image/tasks.png
+    icon128.files = Src/Resource/image/Tasks.png
     icon128.path = $${PREFIX}/share/pixmaps
     icon128.CONFIG = directory no_check_exist
 

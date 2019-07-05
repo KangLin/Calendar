@@ -23,13 +23,13 @@ if [ ! -f /usr/share/applications/${PROJECT_NAME}.desktop ]; then
 	EXIT_CODE=$[EXIT_CODE+1]
 fi
 
-if [ ! -f /opt/${PROJECT_NAME}/share/pixmaps/tasks.png ]; then
-	echo "There are not /opt/share/pixmaps/tasks.png"
+if [ ! -f /opt/${PROJECT_NAME}/share/pixmaps/Tasks.png ]; then
+        echo "There are not /opt/share/pixmaps/Tasks.png"
 	EXIT_CODE=$[EXIT_CODE+1]
 fi
 
-if [ ! -f /usr/share/pixmaps/tasks.png ]; then
-    echo "There are not /usr/share/pixmaps/tasks.png"
+if [ ! -f /usr/share/pixmaps/Tasks.png ]; then
+    echo "There are not /usr/share/pixmaps/Tasks.png"
     EXIT_CODE=$[EXIT_CODE+1]
 fi
 
