@@ -8,8 +8,8 @@ if [ -n "$1" ]; then
 	PROJECT_NAME=$1
 fi
 
-if [ ! /etc/xdg/autostart/${PROJECT_NAME}.desktop ]; then
-    echo "There are not /etc/xdg/autostart/${PROJECT_NAME}.desktop"
+if [ ! ~/.config/autostart/${PROJECT_NAME}.desktop ]; then
+    echo "There are not ~/.config/autostart/autostart/${PROJECT_NAME}.desktop"
     EXIT_CODE=$[EXIT_CODE+1]
 fi
 

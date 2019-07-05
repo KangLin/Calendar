@@ -13,6 +13,7 @@
 
 #ifdef RABBITCOMMON
     #include "FrmUpdater/FrmUpdater.h"
+    #include "RabbitCommonTools.h"
 #endif
 
 CMainWindow::CMainWindow(QWidget *parent) :
@@ -44,7 +45,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_pStartRun = m_TrayIconMenu.addAction(tr("Enable run from boot"),
                                            this, SLOT(slotStartRun(bool)));
     m_pStartRun->setCheckable(true);
-    m_pStartRun->setChecked(CTasksTools::IsStartRunCurrentUser());
+    m_pStartRun->setChecked(RabbitCommon::CTools::IsStartRun());
     
     bool check = connect(&m_TrayIcon,
                     SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -126,19 +127,19 @@ void CMainWindow::slotShow()
 
 void CMainWindow::slotStartRun(bool checked)
 {
-    if(CTasksTools::IsStartRunCurrentUser())
+    if(RabbitCommon::CTools::IsStartRun())
     {
-        CTasksTools::RemoveStartRunCurrentUser();
+        RabbitCommon::CTools::RemoveStartRun();
     }
     else
     {
-        CTasksTools::InstallStartRunCurrentUser();
+        RabbitCommon::CTools::InstallStartRun();
     }
     
-    if(CTasksTools::IsStartRunCurrentUser())
+    /*if(RabbitCommon::CTools::IsStartRun())
         m_pStartRun->setChecked(true);
     else
-        m_pStartRun->setChecked(false);
+        m_pStartRun->setChecked(false);*/
 }
 
 void CMainWindow::slotActivated(QSystemTrayIcon::ActivationReason r)

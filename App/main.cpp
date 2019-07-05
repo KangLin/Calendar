@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 #if defined(Q_OS_ANDROID) || _DEBUG
     szPre = ":/Translations";
 #else
-    szPre = CGlobalDir::Instance()->GetDirTranslations();
+    szPre = RabbitCommon::CDir::Instance()->GetDirTranslations();
 #endif
     QTranslator tApp, tTasks, tLunarCalendar;
     tApp.load(szPre + "/TasksApp_" + QLocale::system().name() + ".qm");

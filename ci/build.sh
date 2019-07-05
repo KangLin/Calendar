@@ -101,7 +101,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     chmod a+x linuxdeployqt-continuous-x86_64.AppImage
     
     cd Tasks
-    ./../linuxdeployqt-continuous-x86_64.AppImage Tasks/share/applications/*.desktop \
+    ./../linuxdeployqt-continuous-x86_64.AppImage share/applications/*.desktop \
         -qmake=${QT_ROOT}/bin/qmake -appimage -no-copy-copyright-files 
     
     # Create appimage install package

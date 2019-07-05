@@ -21,8 +21,11 @@ set -e
 case "$1" in
     configure)
         if [ ! -f /usr/share/applications/Tasks.desktop ]; then
+            if [ ! -d ~/.config/autostart ]; then
+                mkdir -p ~/.config/autostart
+            fi
+            ln -s /opt/Tasks/share/applications/Tasks.desktop ~/.config/autostart/Tasks.desktop
             ln -s /opt/Tasks/share/applications/Tasks.desktop /usr/share/applications/Tasks.desktop
-            ln -s /opt/Tasks/share/applications/Tasks.desktop /etc/xdg/autostart/Tasks.desktop
         fi
         if [ ! -f /usr/share/pixmaps/tasks.png ]; then
             if [ ! -d /usr/share/pixmaps ]; then
@@ -37,6 +40,10 @@ case "$1" in
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
+        rm -fr ~/.config/autostart/Tasks.desktop
+        rm -fr /usr/share/applications/Tasks.desktop
+        rm -fr /etc/ld.so.conf.d/Tasks.conf
+        rm -fr /usr/share/pixmaps/tasks.png
     ;;
 
     *)
