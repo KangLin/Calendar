@@ -3,8 +3,7 @@ project(Tasks)
 set(INSTALLHEADER_FILES
     FrmTasksList.h
     FrmStickyList.h
-    FrmTasksList.h    
-    Global/GlobalDir.h
+    FrmTasksList.h
     Global/TasksTools.h
     )
 set(HEAD_FILES
@@ -43,7 +42,6 @@ set(SOURCE_FILES
     FrmTop.cpp
     TaskPrompt.cpp
     FrmStickyNotes.cpp
-    Global/GlobalDir.cpp
     Global/Log.cpp
     FrmFullScreen.cpp
     Global/TasksTools.cpp

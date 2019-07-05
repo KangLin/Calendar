@@ -38,7 +38,6 @@ SOURCES += \
     $$PWD/FrmTop.cpp \
     $$PWD/TaskPrompt.cpp \
     $$PWD/FrmStickyNotes.cpp \
-    $$PWD/Global/GlobalDir.cpp \
     $$PWD/Global/Log.cpp \
     $$PWD/FrmFullScreen.cpp \
     $$PWD/FrmTaskPropery.cpp \

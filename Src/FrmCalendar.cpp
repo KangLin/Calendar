@@ -12,7 +12,7 @@
 #include "DlgContainer.h"
 #include "DlgTaskActivity.h"
 #include "TaskActivity.h"
-#include "Global/GlobalDir.h"
+#include "RabbitCommonDir.h"
 
 class CTasksHandler : public CLunarCalendar::CGetTaskHandler
 {
@@ -60,7 +60,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
                     this, SLOT(slotViewCustomContextMenuRequested(const QPoint &)));
     Q_ASSERT(check);
     m_TasksList.setObjectName("TasksActivityList");
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), 
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), 
                   QSettings::IniFormat);
     QString szFile = set.value("TasksAcitvityList").toString();
     Load(szFile);
@@ -147,7 +147,7 @@ CFrmCalendar::~CFrmCalendar()
 {
     if(m_bModify)
     {
-        QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(), 
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), 
                       QSettings::IniFormat);
         QString szFile = set.value("TasksAcitvityList").toString();
         if(szFile.isEmpty())
@@ -235,7 +235,7 @@ void CFrmCalendar::slotSaveAs()
     int nRet = m_TasksList.SaveSettings(szFile);
     if(0 == nRet)
     {
-        QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                       QSettings::IniFormat);
         set.setValue("TasksAcitvityList", szFile);
         m_bModify = false;

@@ -3,7 +3,7 @@
 #include "ObjectFactory.h"
 #include <QFile>
 #include <QDir>
-#include "Global/GlobalDir.h"
+#include "RabbitCommonDir.h"
 
 CTasksList::CTasksList(QObject *parent) : QObject(parent),
     m_nTimerInterval(0),
@@ -176,13 +176,13 @@ int CTasksList::LoadSettings(const QString &szFile)
     QString file = szFile;
     if(szFile.isEmpty())
     {
-        file = CGlobalDir::Instance()->GetDirApplicationXml()
+        file = RabbitCommon::CDir::Instance()->GetDirApplicationXml()
                 + QDir::separator()                
                 + objectName() + "_" + QLocale::system().name()
                 + ".xml";
         QDir f(file);
         if(!f.exists())
-            file = CGlobalDir::Instance()->GetDirApplicationXml()
+            file = RabbitCommon::CDir::Instance()->GetDirApplicationXml()
                     + QDir::separator()
                     + objectName() + "_en.xml";
     }
@@ -209,13 +209,13 @@ int CTasksList::SaveSettings(const QString &szFile)
     QString file = szFile;
     if(szFile.isEmpty())
     {
-        file = CGlobalDir::Instance()->GetDirApplicationXml()
+        file = RabbitCommon::CDir::Instance()->GetDirApplicationXml()
                 + QDir::separator()
                 + objectName() + "_" + QLocale::system().name()
                 + ".xml";
         QDir f(file);
         if(!f.exists())
-            file = CGlobalDir::Instance()->GetDirApplicationXml()
+            file = RabbitCommon::CDir::Instance()->GetDirApplicationXml()
                     + QDir::separator()
                     + objectName() + "_en.xml";
     }

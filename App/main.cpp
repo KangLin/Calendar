@@ -4,11 +4,11 @@
 #include <QDebug>
 #include <QSettings>
 #include "MainWindow.h"
-#include "Global/GlobalDir.h"
 #include "FrmStickyNotes.h"
 #include "FrmStickyList.h"
 #include "Global/TasksTools.h"
 #ifdef RABBITCOMMON
+    #include "RabbitCommonDir.h"
     #include "RabbitCommonTools.h"
     #include "FrmUpdater/FrmUpdater.h"
 #endif
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     a.setApplicationVersion(BUILD_VERSION);
     a.setApplicationName("Tasks");
 
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     QString szPre;
    

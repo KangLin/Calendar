@@ -1,6 +1,6 @@
 #include "FrmStickyList.h"
 #include "ui_FrmStickyList.h"
-#include "Global/GlobalDir.h"
+#include "RabbitCommonDir.h"
 #include "StickyItemDelegate.h"
 #include <QFileDialog>
 #include <QSettings>
@@ -27,10 +27,10 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
     bool check = connect(&m_lvTasks, SIGNAL(doubleClicked(const QModelIndex)),
                      this, SLOT(on_listView_doubleClicked(const QModelIndex)));
     Q_ASSERT(check);
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     QString szFile = set.value("Sticky/File",
-                               CGlobalDir::Instance()->GetDirData()
+                               RabbitCommon::CDir::Instance()->GetDirUserData()
                                + QDir::separator() + "Sticky").toString();
     Load(szFile);
     QSharedPointer<CSticky> s;
@@ -54,10 +54,10 @@ CFrmStickyList::~CFrmStickyList()
 {
     if(m_Model.IsModify())
     {    
-        QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                       QSettings::IniFormat);
         QString szFile = set.value("Sticky/File",
-                                   CGlobalDir::Instance()->GetDirData()
+                                   RabbitCommon::CDir::Instance()->GetDirUserData()
                                    + QDir::separator() + "Sticky").toString();
         Save(szFile);
     }
@@ -92,7 +92,7 @@ int CFrmStickyList::Load(const QString &szFile)
     QPoint pos;
     d >> szVersion >> pos >> rect >> m_Model;
     f.close();
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     set.value("Sticky/File", szFile);
     setGeometry(rect);

@@ -7,7 +7,7 @@
 #if defined(Q_OS_WIN)
     #include <Windows.h>
 #endif
-#include "GlobalDir.h"
+
 #include "LunarCalendar.h"
 
 const QString gCurrentUserRun = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";

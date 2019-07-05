@@ -1,7 +1,7 @@
 #include "DlgOption.h"
 #include "ui_DlgOption.h"
 #include "Global/TasksTools.h"
-#include "Global/GlobalDir.h"
+#include "RabbitCommonDir.h"
 #include <QSettings>
 
 CDlgOption::CDlgOption(QWidget *parent) :
@@ -11,7 +11,7 @@ CDlgOption::CDlgOption(QWidget *parent) :
     ui->setupUi(this);
     
     ui->cbRunFromBoot->setChecked(CTasksTools::IsStartRunCurrentUser());
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     bool bShow = set.value("Options/MainWindow/Show", false).toBool();
     ui->cbShowMainWindows->setChecked(bShow);
@@ -32,7 +32,7 @@ void CDlgOption::on_buttonBox_accepted()
     {
         CTasksTools::RemoveStartRunCurrentUser();
     }
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     if(ui->cbShowMainWindows->checkState() == Qt::Checked)
         set.setValue("Options/MainWindow/Show", true);

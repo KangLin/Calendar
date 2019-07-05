@@ -6,10 +6,24 @@ DESTDIR = $$OUT_PWD/../bin
 
 CONFIG += link_pkgconfig create_prl link_prl
 CONFIG(staticlib): CONFIG*=static
-#android: CONFIG*=static
 
-INCLUDEPATH += $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src/export
-LIBS *= "-L$$OUT_PWD/../bin" -lLunarCalendar
+isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)
+isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$PWD/../../RabbitCommon
+!isEmpty(RabbitCommon_DIR): exists("$${RabbitCommon_DIR}/Src/Src.pro"){
+    CONFIG(static): DEFINES *= RABBITCOMMON_STATIC_DEFINE
+} else {
+    message("Don't find RabbitCommon, in RabbitCommon_DIR:$$RabbitCommon_DIR")
+    message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon ag:")
+    message("   git clone https://github.com/KangLin/RabbitCommon.git")
+    error  ("2. Then set value RabbitCommon_DIR to download dirctory")
+}
+
+DEFINES += RABBITCOMMON
+INCLUDEPATH += $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src \
+    $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src/export \
+    $${RabbitCommon_DIR}/Src $${RabbitCommon_DIR}/Src/export
+
+LIBS *= "-L$$OUT_PWD/../bin" -lRabbitCommon -lLunarCalendar
 
 include(../pri/Common.pri)
 include(Tasks.pri)

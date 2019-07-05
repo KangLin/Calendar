@@ -1,4 +1,3 @@
-#include "Global/GlobalDir.h"
 #include "FrmTaskPropery.h"
 #include "ui_FrmTaskProperty.h"
 #include <QMetaObject>

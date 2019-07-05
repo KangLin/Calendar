@@ -2,7 +2,7 @@
 #include "ui_MainWindow.h"
 #include "DlgAbout/DlgAbout.h"
 #include "Global/TasksTools.h"
-#include "Global/GlobalDir.h"
+#include "RabbitCommonDir.h"
 #include <QSettings>
 #include <QDebug>
 #include <QFileDialog>
@@ -73,7 +73,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     setCentralWidget(&m_Table);
 #endif
     
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     m_Table.setCurrentIndex(set.value("Options/MainWindow/TableView", 0).toInt());
 }
@@ -81,7 +81,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
 CMainWindow::~CMainWindow()
 {
     delete ui;
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     set.setValue("Options/MainWindow/TableView", m_Table.currentIndex());
 }
@@ -165,13 +165,13 @@ void CMainWindow::closeEvent(QCloseEvent *e)
 
 int CMainWindow::LoadStyle()
 {
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     QString szFile = set.value("Sink",
                            #if defined (Q_OS_ANDROID)
                                QString("assets:/")
                            #else
-                               CGlobalDir::Instance()->GetDirApplication()
+                               RabbitCommon::CDir::Instance()->GetDirApplication()
                                + QDir::separator()
                            #endif
                                + "Resource/dark/style.qss").toString();
@@ -206,7 +206,7 @@ void CMainWindow::on_actionSink_S_triggered()
     if(szFile.isEmpty())
         return;
     LoadStyle(szFile);
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     set.setValue("Sink", szFile);
 }

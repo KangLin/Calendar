@@ -1,7 +1,8 @@
 #include "FrmTasksList.h"
 #include "TaskPromptDelay.h"
 #include "ui_FrmTasksList.h"
-#include "Global/GlobalDir.h"
+#include "RabbitCommonDir.h"
+
 #include <QModelIndex>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -56,7 +57,7 @@ int CFrmTasksList::Init()
     check = connect(ui->actionRefresh_F, SIGNAL(triggered()),
                     this, SLOT(slotRefresh()));
     Q_ASSERT(check);
-    QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     QString szFile = set.value("TasksList").toString();
     nRet = Load(szFile);
@@ -123,7 +124,7 @@ void CFrmTasksList::slotSaveAs()
     int nRet = m_TasksList.SaveSettings(szFile);
     if(0 == nRet)
     {
-        QSettings set(CGlobalDir::Instance()->GetUserConfigureFile(),
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                       QSettings::IniFormat);
         set.setValue("TasksList", szFile);
     }
