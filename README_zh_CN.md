@@ -57,15 +57,15 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 ### [下载安装包](https://github.com/KangLin/Tasks/releases/latest)
 
 - linux
-    - [Tasks_v0.1.6.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.1.6/Tasks_v0.1.6.tar.gz)  
+    - [Tasks_v0.1.7.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.1.7/Tasks_v0.1.7.tar.gz)  
       AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/  
       使用:    
-      1. 解压。复制Tasks_v0.1.6.tar.gz到安装目录，然后解压：
+      1. 解压。复制Tasks_v0.1.7.tar.gz到安装目录，然后解压：
 
                 mkdir Tasks
                 cd Tasks
-                cp $DOWNLOAD/Tasks_v0.1.6.tar.gz .
-                tar xvfz Tasks_v0.1.6.tar.gz
+                cp $DOWNLOAD/Tasks_v0.1.7.tar.gz .
+                tar xvfz Tasks_v0.1.7.tar.gz
 
       2. 安装
         
@@ -76,15 +76,15 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
                 ./install.sh remove
 
 - ubuntu
-    - [tasks_0.1.6_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.1.6/tasks_0.1.6_amd64.deb)  
+    - [tasks_0.1.7_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.1.7/tasks_0.1.7_amd64.deb)  
   deb 安装包,可用于　Ubuntu
   
 - windows
-    - [Tasks-Setup-v0.1.6.exe](https://github.com/KangLin/Tasks/releases/download/v0.1.6/Tasks-Setup-v0.1.6.exe)  
+    - [Tasks-Setup-v0.1.7.exe](https://github.com/KangLin/Tasks/releases/download/v0.1.7/Tasks-Setup-v0.1.7.exe)  
   Windows安装包，支持 Windows xp 以上系统 
 
 - android
-    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.1.6/android-build-debug.apk)
+    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.1.7/android-build-debug.apk)
 
 ### 依赖
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)

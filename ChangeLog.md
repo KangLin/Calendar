@@ -1,3 +1,6 @@
+- v0.1.7
+  + Modify startup when system boot
+  
 - v0.1.6
   + Use RabbitCommon v1.0.0
   + FIX BUG

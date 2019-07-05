@@ -4,8 +4,23 @@
 
 Author: KangLin (kl222@126.com)
 
-[<img src="Resource/Image/china.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
+[<img src="Resource/Image/china.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)  
+
+[![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/tasks)
+[![Travis build Status](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
+
 ------------------------------------------------
+### Tables of contents
+
+- [Features](#Features)
+- [ScreentShot](#ScreentShot)
+- [Donation](#Donation)
+- [Download setup package](#Download-setup-package)
+- [Depend](#Depend)
+- [Compile](#Compile)
+- [Use](#Use)
+- [Contribution](#Contribution)
+- [License Agreement](#License-Agreement)
 
 ### Features
 
@@ -39,25 +54,18 @@ please compile and test the students with the corresponding equipment.
 - Donate ¥20  
 ![donation ¥20](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute20.png "donation ¥20")
 
-------------------------------------------------
-
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/tasks)
-[![Travis build Status](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
-
-------------------------------------------------
-
 ### [Download setup package](https://github.com/KangLin/Tasks/releases/latest)
 
 - linux
-    - [Tasks_v0.1.6.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.1.6/Tasks_v0.1.6.tar.gz)  
+    - [Tasks_v0.1.7.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.1.7/Tasks_v0.1.7.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:    
-      1. Decompress. Copy Tasks_v0.1.6.tar.gz to install directory, then decompress it:
+      1. Decompress. Copy Tasks_v0.1.7.tar.gz to install directory, then decompress it:
 
                 mkdir Tasks
                 cd Tasks
-                cp $DOWNLOAD/Tasks_v0.1.6.tar.gz .
-                tar xvfz Tasks_v0.1.6.tar.gz
+                cp $DOWNLOAD/Tasks_v0.1.7.tar.gz .
+                tar xvfz Tasks_v0.1.7.tar.gz
 
       2. install
 
@@ -68,15 +76,15 @@ please compile and test the students with the corresponding equipment.
                 ./install.sh remove
 
 - ubuntu
-    - [tasks_0.1.6_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.1.6/tasks_0.1.6_amd64.deb)  
+    - [tasks_0.1.7_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.1.7/tasks_0.1.7_amd64.deb)  
    Deb installation package for Ubuntu
 
 - windows
-    - [Tasks-Setup-v0.1.6.exe](https://github.com/KangLin/Tasks/releases/download/v0.1.6/Tasks-Setup-v0.1.6.exe)  
+    - [Tasks-Setup-v0.1.7.exe](https://github.com/KangLin/Tasks/releases/download/v0.1.7/Tasks-Setup-v0.1.7.exe)  
    Windows installation package, support for Windows xp and above
 
 - android
-    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.1.6/android-build-debug.apk)
+    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.1.7/android-build-debug.apk)
     
 
 ### Depend
