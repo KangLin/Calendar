@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QDir>
 #include "RabbitCommonDir.h"
+#include <QMessageBox>
 
 CTasksList::CTasksList(QObject *parent) : QObject(parent),
     m_nTimerInterval(0),
@@ -180,8 +181,8 @@ int CTasksList::LoadSettings(const QString &szFile)
                 + QDir::separator()                
                 + objectName() + "_" + QLocale::system().name()
                 + ".xml";
-        QDir f(file);
-        if(!f.exists())
+        QDir f;
+        if(!f.exists(file))
             file = RabbitCommon::CDir::Instance()->GetDirApplicationXml()
                     + QDir::separator()
                     + objectName() + "_en.xml";

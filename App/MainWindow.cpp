@@ -172,7 +172,7 @@ int CMainWindow::LoadStyle()
                            #if defined (Q_OS_ANDROID)
                                QString("assets:/")
                            #else
-                               RabbitCommon::CDir::Instance()->GetDirApplication()
+                               RabbitCommon::CDir::Instance()->GetDirApplicationInstallRoot()
                                + QDir::separator()
                            #endif
                                + "Resource/dark/style.qss").toString();
