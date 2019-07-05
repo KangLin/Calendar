@@ -21,11 +21,14 @@ set -e
 case "$1" in
     configure)
         if [ ! -f /usr/share/applications/Tasks.desktop ]; then
-            if [ ! -d ~/.config/autostart ]; then
-                mkdir -p ~/.config/autostart
-            fi
-            ln -s /opt/Tasks/share/applications/Tasks.desktop ~/.config/autostart/Tasks.desktop
             ln -s /opt/Tasks/share/applications/Tasks.desktop /usr/share/applications/Tasks.desktop
+        fi
+        if [ ! -d ~/.config/autostart ]; then
+            mkdir -p ~/.config/autostart
+        fi
+        if [ ! -f  ~/.config/autostart/Tasks.desktop ]; then
+            chmod a+wr ~/.config/autostart
+            ln -s /opt/Tasks/share/applications/Tasks.desktop ~/.config/autostart/Tasks.desktop
         fi
         if [ ! -f /usr/share/pixmaps/Tasks.png ]; then
             if [ ! -d /usr/share/pixmaps ]; then
