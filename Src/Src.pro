@@ -21,9 +21,10 @@ isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$PWD/../../RabbitCommon
 DEFINES += RABBITCOMMON
 INCLUDEPATH += $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src \
     $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src/export \
-    $${RabbitCommon_DIR}/Src $${RabbitCommon_DIR}/Src/export
+    $${RabbitCommon_DIR}/Src \
+    $${RabbitCommon_DIR}/Src/export
 
-LIBS *= "-L$$OUT_PWD/../bin" -lRabbitCommon -lLunarCalendar
+LIBS *= -L$$DESTDIR -lRabbitCommon -lLunarCalendar
 
 include(../pri/Common.pri)
 include(Tasks.pri)

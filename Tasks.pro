@@ -15,21 +15,22 @@ CONFIG *= ordered
 SUBDIRS = RabbitCommon LunarCalendar lib App
 
 isEmpty(PREFIX) {
-    android {
-        PREFIX = /.
-    } else {
-        PREFIX = $$OUT_PWD/install
-    } 
+    qnx : PREFIX = /tmp
+    else : ios: PREFIX=/
+    else : android : PREFIX = /
+    else : unix : PREFIX = /opt/Tasks
+    else : PREFIX = $$OUT_PWD/install
 }
 other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
               ChangeLog_zh_CN.md App/AppIcon.ico
-other.path = $$PREFIX
+android: other.path = $$PREFIX/assets
+else: other.path = $$PREFIX
 other.CONFIG += no_check_exist 
+INSTALLS += other
 
 install.files = Install/Install.nsi
 install.path = $$OUT_PWD
 install.CONFIG += directory no_check_exist 
-!android : INSTALLS += other
 win32:  INSTALLS += install
 
 !android : unix {

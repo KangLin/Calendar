@@ -37,7 +37,7 @@ DEFINES += BUILD_PLATFORM=\"\\\"$${QMAKE_PLATFORM}\\\"\"
 
 isEmpty(PREFIX) {
     android {
-        PREFIX = /.
+        PREFIX = /
     } else {
         PREFIX = $$OUT_PWD/../install
     } 
