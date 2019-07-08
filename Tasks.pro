@@ -28,10 +28,15 @@ else: other.path = $$PREFIX
 other.CONFIG += no_check_exist 
 INSTALLS += other
 
-install.files = Install/Install.nsi
-install.path = $$OUT_PWD
-install.CONFIG += directory no_check_exist 
-win32:  INSTALLS += install
+install_win.files = Install/Install.nsi
+install_win.path = $$OUT_PWD
+install_win.CONFIG += directory no_check_exist 
+win32:  INSTALLS += install_win
+
+install_unix.files = Install/install.sh
+install_unix.path = $$PREFIX
+install_unix.CONFIG += directory no_check_exist 
+unix: !android: INSTALLS += install_unix
 
 !android : unix {
     DESKTOP_FILE.target = DESKTOP_FILE
