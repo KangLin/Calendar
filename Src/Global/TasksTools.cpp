@@ -9,6 +9,7 @@
 #endif
 
 #include "LunarCalendar.h"
+#include "RabbitCommonDir.h"
 
 CTasksTools::CTasksTools()
 {}
@@ -26,13 +27,8 @@ CTasksTools* CTasksTools::Instance()
 
 void CTasksTools::InitTranslator()
 {
-    QString szPre;    
-#if defined(Q_OS_ANDROID) || _DEBUG
-    szPre = ":/Translations";
-#else
-    szPre = qApp->applicationDirPath() + QDir::separator() + ".." + QDir::separator() + "translations";
-#endif
-    m_Translator.load(szPre + "/Tasks_" + QLocale::system().name() + ".qm");
+    m_Translator.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
+                      + "/Tasks_" + QLocale::system().name() + ".qm");
     qApp->installTranslator(&m_Translator);
     
     CLunarCalendar::InitResource();
@@ -47,7 +43,7 @@ void CTasksTools::InitResource()
 {
     InitTranslator();
     Q_INIT_RESOURCE(ResourceTasks);
-#if defined(Q_OS_ANDROID) || _DEBUG
+#if _DEBUG
     Q_INIT_RESOURCE(translations_Tasks);
 #endif
 }
@@ -55,7 +51,7 @@ void CTasksTools::InitResource()
 void CTasksTools::CleanResource()
 {
     Q_CLEANUP_RESOURCE(ResourceTasks);
-#if defined(Q_OS_ANDROID) || _DEBUG
+#if _DEBUG
     Q_CLEANUP_RESOURCE(translations_Tasks);
 #endif
     CLeanTranslator();

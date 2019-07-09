@@ -21,16 +21,12 @@ int main(int argc, char *argv[])
 
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
-    QString szPre;
-   
-#if defined(Q_OS_ANDROID) || _DEBUG
-    szPre = ":/Translations";
-#else
-    szPre = RabbitCommon::CDir::Instance()->GetDirTranslations();
-#endif
+
     QTranslator tApp, tTasks, tLunarCalendar;
-    tApp.load(szPre + "/TasksApp_" + QLocale::system().name() + ".qm");
+    tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
+              + "/TasksApp_" + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
+    qInfo() << "Language:" << QLocale::system().name();
 
     CTasksTools::Instance()->InitResource();
 #ifdef RABBITCOMMON 

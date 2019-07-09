@@ -58,7 +58,7 @@
         <location filename="../../MainWindow.ui" line="60"/>
         <location filename="../../MainWindow.ui" line="63"/>
         <location filename="../../MainWindow.ui" line="66"/>
-        <location filename="../../MainWindow.cpp" line="40"/>
+        <location filename="../../MainWindow.cpp" line="41"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
@@ -98,30 +98,30 @@
         <translation>更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="30"/>
+        <location filename="../../MainWindow.cpp" line="31"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="34"/>
-        <location filename="../../MainWindow.cpp" line="119"/>
+        <location filename="../../MainWindow.cpp" line="35"/>
+        <location filename="../../MainWindow.cpp" line="120"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="36"/>
-        <location filename="../../MainWindow.cpp" line="123"/>
-        <location filename="../../MainWindow.cpp" line="275"/>
+        <location filename="../../MainWindow.cpp" line="37"/>
+        <location filename="../../MainWindow.cpp" line="124"/>
+        <location filename="../../MainWindow.cpp" line="276"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="44"/>
+        <location filename="../../MainWindow.cpp" line="45"/>
         <source>Enable run from boot</source>
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="205"/>
+        <location filename="../../MainWindow.cpp" line="206"/>
         <source>Open sink</source>
         <translation>打開皮膚</translation>
     </message>
@@ -129,7 +129,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="38"/>
+        <location filename="../../main.cpp" line="40"/>
         <source>Tasks</source>
         <translation>任務</translation>
     </message>

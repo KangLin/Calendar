@@ -22,7 +22,9 @@ SET(RCC_FILES
 if(ANDROID)
     SET(RCC_FILES ${RCC_FILES} ${CMAKE_BINARY_DIR}/translations.qrc)
 endif()
-set(OTHER_FILES AppIcon.ico)
+if(WIN32)
+    set(OTHER_FILES AppIcon.ico)
+endif()
 
 add_definitions(-DBUILD_VERSION="${BUILD_VERSION}")
 add_definitions(-DBUILD_ARCH="${BUILD_ARCH}")

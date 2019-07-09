@@ -22,7 +22,8 @@ isEmpty(PREFIX) {
     else : PREFIX = $$OUT_PWD/install
 }
 other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
-              ChangeLog_zh_CN.md App/AppIcon.ico
+              ChangeLog_zh_CN.md
+win32: other.files += App/AppIcon.ico #windows install need
 android: other.path = $$PREFIX/assets
 else: other.path = $$PREFIX
 other.CONFIG += no_check_exist 
@@ -76,6 +77,4 @@ DISTFILES += \
     ChangeLog_zh_CN.md 
 
 RESOURCES += \
-    Src/Resource/Resource.qrc \
-    App/Resource/Resource.qrc \ 
     Src/Resource/ResourceTasks.qrc

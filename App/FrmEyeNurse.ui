@@ -14,14 +14,14 @@
    <string>Eye nurse</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../Src/Resource/Resource.qrc">
+   <iconset resource="../Src/Resource/ResourceTasks.qrc">
     <normaloff>:/icon/EyeNurse</normaloff>:/icon/EyeNurse</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout"/>
  </widget>
  <resources>
-  <include location="../Src/Resource/Resource.qrc"/>
-  <include location="../Src/Resource/Resource.qrc"/>
+  <include location="../Src/Resource/ResourceTasks.qrc"/>
+  <include location="../Src/Resource/ResourceTasks.qrc"/>
  </resources>
  <connections/>
 </ui>

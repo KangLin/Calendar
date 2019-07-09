@@ -14,13 +14,13 @@
    <string>Tasks</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource/Resource.qrc">
+   <iconset resource="Resource/ResourceTasks.qrc">
     <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout"/>
   <action name="actionLoad_L">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset resource="Resource/ResourceTasks.qrc">
      <normaloff>:/icon/File</normaloff>:/icon/File</iconset>
    </property>
    <property name="text">
@@ -38,7 +38,7 @@
   </action>
   <action name="actionSaveAs_S">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset resource="Resource/ResourceTasks.qrc">
      <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
    </property>
    <property name="text">
@@ -59,7 +59,7 @@
   </action>
   <action name="actionNew_N">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset resource="Resource/ResourceTasks.qrc">
      <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
    </property>
    <property name="text">
@@ -80,7 +80,7 @@
   </action>
   <action name="actionRemove_R">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset resource="Resource/ResourceTasks.qrc">
      <normaloff>:/icon/Delete</normaloff>:/icon/Delete</iconset>
    </property>
    <property name="text">
@@ -98,7 +98,7 @@
   </action>
   <action name="actionRefresh_F">
    <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
+    <iconset resource="Resource/ResourceTasks.qrc">
      <normaloff>:/icon/Refresh</normaloff>:/icon/Refresh</iconset>
    </property>
    <property name="text">
@@ -116,7 +116,8 @@
   </action>
  </widget>
  <resources>
-  <include location="Resource/Resource.qrc"/>
+  <include location="Resource/ResourceTasks.qrc"/>
+  <include location="Resource/ResourceTasks.qrc"/>
  </resources>
  <connections/>
 </ui>

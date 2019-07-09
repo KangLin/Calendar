@@ -14,7 +14,7 @@
    <string>Option</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../Src/Resource/Resource.qrc">
+   <iconset resource="../Src/Resource/ResourceTasks.qrc">
     <normaloff>:/icon/Option</normaloff>:/icon/Option</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -78,8 +78,8 @@
   </layout>
  </widget>
  <resources>
-  <include location="../Src/Resource/Resource.qrc"/>
-  <include location="../Src/Resource/Resource.qrc"/>
+  <include location="../Src/Resource/ResourceTasks.qrc"/>
+  <include location="../Src/Resource/ResourceTasks.qrc"/>
  </resources>
  <connections>
   <connection>

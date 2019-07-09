@@ -547,12 +547,12 @@
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../../FrmTaskPropery.cpp" line="36"/>
+        <location filename="../../FrmTaskPropery.cpp" line="35"/>
         <source>Tasks: %1; Id: %2</source>
         <translation>任务: %1; Id: %2</translation>
     </message>
     <message>
-        <location filename="../../FrmTaskPropery.cpp" line="63"/>
+        <location filename="../../FrmTaskPropery.cpp" line="62"/>
         <source>Id: %1 Title: %2</source>
         <translation>Id :%1 标题： %2</translation>
     </message>
@@ -744,17 +744,17 @@
 <context>
     <name>CFrmTasksList</name>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="97"/>
+        <location filename="../../FrmTasksList.cpp" line="98"/>
         <source>Load</source>
         <translation>加载</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="97"/>
+        <location filename="../../FrmTasksList.cpp" line="98"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="110"/>
+        <location filename="../../FrmTasksList.cpp" line="111"/>
         <source>Save as ...</source>
         <translation>另存为 ……</translation>
     </message>
@@ -797,7 +797,7 @@
         <location filename="../../FrmTasksList.ui" line="69"/>
         <location filename="../../FrmTasksList.ui" line="72"/>
         <location filename="../../FrmTasksList.ui" line="75"/>
-        <location filename="../../FrmTasksList.cpp" line="157"/>
+        <location filename="../../FrmTasksList.cpp" line="158"/>
         <source>New tasks</source>
         <translation>新建任务组</translation>
     </message>
@@ -826,23 +826,23 @@
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="159"/>
+        <location filename="../../FrmTasksList.cpp" line="160"/>
         <source>After 5 minutes, the prompt will show 5 minutes, repeat</source>
         <translation>5分钟后，开始提示，提示5分钟，重复</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="164"/>
+        <location filename="../../FrmTasksList.cpp" line="165"/>
         <source>New task</source>
         <translation>新建任务</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="165"/>
-        <location filename="../../FrmTasksList.cpp" line="169"/>
+        <location filename="../../FrmTasksList.cpp" line="166"/>
+        <location filename="../../FrmTasksList.cpp" line="170"/>
         <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
         <translation>如果此任务不是你需要的，请从下面组合框中选择你需要的任务建立它，并删除此任务。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="168"/>
+        <location filename="../../FrmTasksList.cpp" line="169"/>
         <source>New prompt task</source>
         <translation>新建提示</translation>
     </message>
