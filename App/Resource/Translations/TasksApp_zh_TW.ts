@@ -129,7 +129,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="40"/>
+        <location filename="../../main.cpp" line="36"/>
         <source>Tasks</source>
         <translation>任務</translation>
     </message>
