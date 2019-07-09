@@ -21,7 +21,7 @@ CONFIG(static): DEFINES *= TASKS_STATIC_DEFINE
 isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)
 isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$PWD/../../RabbitCommon
 !isEmpty(RabbitCommon_DIR): exists("$${RabbitCommon_DIR}/Src/Src.pro"){
-    CONFIG(static): DEFINES *= RABBITCOMMON_STATIC_DEFINE
+    CONFIG(static): DEFINES *= RABBITCOMMON_STATIC_DEFINE LUNARCALENDAR_STATIC_DEFINE
 } else {
     message("Don't find RabbitCommon, in RabbitCommon_DIR:$$RabbitCommon_DIR")
     message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon ag:")
