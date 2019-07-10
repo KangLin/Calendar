@@ -17,6 +17,10 @@ case "$1" in
         fi
         ln -s `pwd`/share/applications/Tasks.desktop /usr/share/applications/Tasks.desktop
 
+        if [ ! -d ~/.config/autostart ]; then
+            mkdir -p ~/.config/autostart
+            chmod a+wr ~/.config/autostart
+        fi
         if [ -f ~/.config/autostart/Tasks.desktop ]; then
             rm ~/.config/autostart/Tasks.desktop
         fi
