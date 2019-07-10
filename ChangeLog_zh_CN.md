@@ -1,3 +1,8 @@
+- v0.1.8
+  + Android: 移动 authors.md, changelog.md to assets in android
+  + 固定资源 BUG
+  + FIX BUG
+
 - v0.1.7
   + 修改系统启动时自动
   + 固定 BUG

@@ -186,7 +186,7 @@ int CMainWindow::LoadStyle(const QString &szFile)
         qApp->setStyleSheet("");
     else
     {
-        QFile file(szFile);  
+        QFile file(szFile);
         if(file.open(QFile::ReadOnly))
         {
             QString stylesheet= file.readAll();
@@ -203,9 +203,9 @@ int CMainWindow::LoadStyle(const QString &szFile)
 
 void CMainWindow::on_actionSink_S_triggered()
 {
-    QString szFile = QFileDialog::getOpenFileName(this, tr("Open sink"));
-    if(szFile.isEmpty())
-        return;
+    QString szFile;
+    szFile = RabbitCommon::CDir::OpenFileDialog(this, tr("Open sink"));
+    
     LoadStyle(szFile);
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
@@ -261,7 +261,7 @@ void CMainWindow::resizeEvent(QResizeEvent *event)
         width -= pScrollArea->verticalScrollBar()->frameGeometry().width();
     if(!pScrollArea->horizontalScrollBar()->isHidden())
         height -= pScrollArea->horizontalScrollBar()->frameGeometry().height();
-    
+
     if(s.width() < width)
         s.setWidth(width);
     if(s.height() < height)

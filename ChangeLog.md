@@ -1,3 +1,8 @@
+- v0.1.8
+  + Android: Move authors.md, changelog.md to assets in android
+  + FIX resource bug
+  + FIX BUG
+  
 - v0.1.7
   + Modify startup when system boot
   + FIX BUG

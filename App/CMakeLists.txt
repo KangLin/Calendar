@@ -23,7 +23,7 @@ if(ANDROID)
     SET(RCC_FILES ${RCC_FILES} ${CMAKE_BINARY_DIR}/translations.qrc)
 endif()
 if(WIN32)
-    set(OTHER_FILES AppIcon.ico)
+    set(OTHER_FILES ${OTHER_FILES} AppIcon.ico)
 endif()
 
 add_definitions(-DBUILD_VERSION="${BUILD_VERSION}")
