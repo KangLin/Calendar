@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Use to install appimage in linux
+# $1: install or remove
+# $2: run
 
 case "$1" in
     remove)
@@ -12,11 +14,13 @@ case "$1" in
 
     install|*)
         echo "install ..."
+        # Install destop
         if [ -f /usr/share/applications/Tasks.desktop ]; then
             rm /usr/share/applications/Tasks.desktop
         fi
         ln -s `pwd`/share/applications/Tasks.desktop /usr/share/applications/Tasks.desktop
 
+        # Install auto run on boot
         if [ ! -d ~/.config/autostart ]; then
             mkdir -p ~/.config/autostart
             chmod a+wr ~/.config/autostart
@@ -26,9 +30,11 @@ case "$1" in
         fi
         ln -s `pwd`/share/applications/Tasks.desktop ~/.config/autostart/Tasks.desktop
 
+        # Reset exec to desktop
         sed -i "s/Exec=.*//g" `pwd`/share/applications/Tasks.desktop
         echo "Exec=`pwd`/Tasks-x86_64.AppImage" >> `pwd`/share/applications/Tasks.desktop
 
+        # Install applications icon
         if [ -f /usr/share/pixmaps/Tasks.png ]; then
             rm /usr/share/pixmaps/Tasks.png
         fi
@@ -36,5 +42,10 @@ case "$1" in
             mkdir -p /usr/share/pixmaps
         fi
         ln -s `pwd`/share/pixmaps/Tasks.png /usr/share/pixmaps/Tasks.png
+        
+        # Whether run after install
+        if [ "$2" = "run" ]; then
+            ./Tasks-x86_64.AppImage
+        fi
         ;;
 esac

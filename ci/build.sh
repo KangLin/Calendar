@@ -87,23 +87,23 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="v0.1.7"
+export VERSION="v0.1.8"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
 
     sudo dpkg -i ../tasks_*_amd64.deb
-    $SOURCE_DIR/test/test_linux.sh 
-        
+    $SOURCE_DIR/test/test_linux.sh
+
     cd debian/tasks/opt
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${QT_ROOT}/bin:${QT_ROOT}/lib:`pwd`/debian/tasks/opt/Tasks/bin:`pwd`/debian/tasks/opt/Tasks/lib
     wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
     chmod a+x linuxdeployqt-continuous-x86_64.AppImage
-    
+
     cd Tasks
     ./../linuxdeployqt-continuous-x86_64.AppImage share/applications/*.desktop \
         -qmake=${QT_ROOT}/bin/qmake -appimage -no-copy-copyright-files 
-    
+
     # Create appimage install package
     #cp ../Tasks-${VERSION}-x86_64.AppImage .
     cp $SOURCE_DIR/Install/install.sh .
@@ -113,7 +113,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         Tasks-x86_64.AppImage \
         share \
         install.sh
-    
+
     # Create update.xml
     MD5=`md5sum $SOURCE_DIR/../tasks_*_amd64.deb|awk '{print $1}'`
     echo "MD5:${MD5}"
@@ -158,7 +158,7 @@ else
     if [ "${BUILD_TARGERT}" = "android" ]; then
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
             "CONFIG+=release" ${CONFIG_PARA}
-        
+
         $MAKE
         $MAKE install INSTALL_ROOT=`pwd`/android-build
         ${QT_ROOT}/bin/androiddeployqt \
