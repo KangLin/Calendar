@@ -15,6 +15,7 @@ set(SOURCE_UI_FILES
 SET(TRANSLATIONS_NAME ${PROJECT_NAME})
 include(${CMAKE_SOURCE_DIR}/cmake/Qt5CorePatches.cmake) 
 include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Utils.cmake)
 
 SET(RCC_FILES
     ${TRANSLATIONS_RESOURCE_FILES}
@@ -84,20 +85,20 @@ IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
     INSTALL(DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>/" DESTINATION "${CMAKE_INSTALL_BINDIR}")
 ENDIF()
 
-#IF(ANDROID)
-#    GENERATED_DEPLOYMENT_SETTINGS()
-#    find_program(ANT NAMES ant) # PATHS  "/usr/bin")
-#    MESSAGE("ant:${ANT}\n")
+IF(ANDROID)
+    GENERATED_DEPLOYMENT_SETTINGS()
+    #find_program(ANT NAMES ant) # PATHS  "/usr/bin")
+    #MESSAGE("ant:${ANT}\n")
 
-#    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-#        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_BINARY_DIR}/libRabbitIm.so ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/libRabbitIm.so
-#        #注意 需要把 ${QT_INSTALL_DIR}/bin 加到环境变量PATH中
-#        COMMAND "${QT_INSTALL_DIR}/bin/androiddeployqt"
-#            --input ${CMAKE_BINARY_DIR}/android-libRabbitIm.so-deployment-settings.json
-#            --output ${CMAKE_BINARY_DIR}/android-build
-#            --verbose
-#            #--ant /usr/bin/ant
-#            #--jdk $ENV{JAVA_HOME}
-#    )
-#ENDIF(ANDROID)
+    add_custom_target(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PROJECT_BINARY_DIR}/libRabbitIm.so ${PROJECT_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/libRabbitIm.so
+        #注意 需要把 ${QT_INSTALL_DIR}/bin 加到环境变量PATH中
+        COMMAND "${QT_INSTALL_DIR}/bin/androiddeployqt"
+            --input ${PROJECT_BINARY_DIR}/android-App.so-deployment-settings.json
+            --output ${PROJECT_BINARY_DIR}/android-build
+            --verbose
+            #--ant /usr/bin/ant
+            #--jdk $ENV{JAVA_HOME}
+    )
+ENDIF(ANDROID)
 

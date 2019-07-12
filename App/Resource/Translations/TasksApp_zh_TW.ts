@@ -121,7 +121,7 @@
         <translation>允許開戶自啟動</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="206"/>
+        <location filename="../../MainWindow.cpp" line="207"/>
         <source>Open sink</source>
         <translation>打開皮膚</translation>
     </message>
