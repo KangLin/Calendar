@@ -1,3 +1,8 @@
+- v0.2.0
+  + 修改 AndroidManifest.xml
+  
+- v0.1.9
+
 - v0.1.8
   + Android: 移动 authors.md, changelog.md to assets in android
   + 固定资源 BUG

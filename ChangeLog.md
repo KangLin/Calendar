@@ -1,3 +1,8 @@
+- v0.2.0
+  + Modify AndroidManifest.xml
+  
+- v0.1.9
+
 - v0.1.8
   + Android: Move authors.md, changelog.md to assets in android
   + FIX resource bug
