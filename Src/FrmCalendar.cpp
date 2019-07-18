@@ -120,15 +120,16 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
 
     CLunarCalendar::InitResource();
     m_pCalendar = new CLunarCalendar(this);
+    m_pCalendar->SetTouchUpDownFunction(CLunarCalendar::TouchChangeView);
     m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
                                    new CTasksHandler(this)));
     m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     //m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
     //m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
-    //m_pCalendar->ShowHead(false);
+    m_pCalendar->ShowHead(false);
     m_pCalendar->ShowTime(false);
     m_pCalendar->ShowDate(true);
-    m_pCalendar->ShowWeeks(false);
+    //m_pCalendar->ShowWeeks(false);
 
     check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
                          this, SLOT(slotSelectionChanged()));
