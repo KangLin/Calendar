@@ -65,7 +65,27 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     QString szFile = set.value("TasksAcitvityList").toString();
     Load(szFile);
     m_TasksList.Start();
-    
+
+    CLunarCalendar::InitResource();
+    m_pCalendar = new CLunarCalendar(this);
+    m_pCalendar->SetTouchUpDownFunction(CLunarCalendar::TouchChangeView);
+    m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
+                                   new CTasksHandler(this)));
+    m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+    //m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
+    //m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
+#if defined (Q_OS_ANDROID)
+    m_pCalendar->ShowHead(false);
+#else
+    m_pCalendar->ShowHead(true);
+#endif
+    m_pCalendar->ShowTime(false);
+    m_pCalendar->ShowDate(true);
+    m_pCalendar->ShowWeeks(false);
+    check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
+                         this, SLOT(slotSelectionChanged()));
+    Q_ASSERT(check);
+
     QAction* pAction = nullptr;
     pAction = new QAction(QIcon(":/icon/File"), tr("Open"), this);
     pAction->setStatusTip(tr("Open"));
@@ -100,7 +120,15 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotRefresh()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-    m_ToolBar.addSeparator();    
+    m_ToolBar.addSeparator();
+#if defined (Q_OS_ANDROID)
+    pAction = new QAction(QIcon(":/image/Today"), tr("Today"), this);
+    pAction->setStatusTip(tr("Today"));
+    check = connect(pAction, SIGNAL(triggered()),
+                    m_pCalendar, SLOT(soltShowToday()));
+    Q_ASSERT(check);
+    m_ToolBar.addAction(pAction);    
+#else
     pAction = new QAction(QIcon(":/icon/ViewWeek"), tr("Week"), this);
     pAction->setStatusTip(tr("Week"));
     pAction->setCheckable(true);
@@ -117,23 +145,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
                     this, SLOT(slotCalendarHead(bool)));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-
-    CLunarCalendar::InitResource();
-    m_pCalendar = new CLunarCalendar(this);
-    m_pCalendar->SetTouchUpDownFunction(CLunarCalendar::TouchChangeView);
-    m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
-                                   new CTasksHandler(this)));
-    m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
-    //m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
-    //m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
-    m_pCalendar->ShowHead(false);
-    m_pCalendar->ShowTime(false);
-    m_pCalendar->ShowDate(true);
-    //m_pCalendar->ShowWeeks(false);
-
-    check = connect(m_pCalendar, SIGNAL(sigSelectionChanged()),
-                         this, SLOT(slotSelectionChanged()));
-    Q_ASSERT(check);
+#endif
 
     QVBoxLayout *pLayout = new QVBoxLayout(this);
     setLayout(pLayout);

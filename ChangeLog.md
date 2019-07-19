@@ -1,3 +1,8 @@
+- v0.2.1
+  + android add touch
+  + add today icon
+  + Modify main window
+  
 - v0.2.0
   + Modify AndroidManifest.xml
   

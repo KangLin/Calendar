@@ -1,3 +1,8 @@
+- v0.2.1
+  + android 下增加触屏滑动
+  + 增加今天图标
+  + 修改主窗口
+
 - v0.2.0
   + 修改 AndroidManifest.xml
   
