@@ -41,6 +41,7 @@ private Q_SLOTS:
     
 protected:
     virtual void closeEvent(QCloseEvent *e) override;
+    bool eventFilter(QObject *watched, QEvent *event);
     
 private:
     int LoadStyle();
@@ -60,7 +61,7 @@ private:
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void hideEvent(QHideEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override;    
 };
 
 #endif // MAINWINDOW_H
