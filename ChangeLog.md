@@ -2,6 +2,7 @@
   + android add touch
   + add today icon
   + Modify main window
+  + Modify key change calendar bug
   
 - v0.2.0
   + Modify AndroidManifest.xml

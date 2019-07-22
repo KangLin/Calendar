@@ -2,6 +2,7 @@
   + android 下增加触屏滑动
   + 增加今天图标
   + 修改主窗口
+  + 修改日历键盘选择日期BUG
 
 - v0.2.0
   + 修改 AndroidManifest.xml
