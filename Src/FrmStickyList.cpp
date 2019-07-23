@@ -6,7 +6,6 @@
 #include <QSettings>
 #include <QDebug>
 
-
 CFrmStickyList::CFrmStickyList(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmStickyList),
@@ -17,6 +16,13 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
     ui->setupUi(this);
     this->layout()->addWidget(&m_ToolBar);
     this->layout()->addWidget(&m_lvTasks);
+    QAction * pAction = m_ToolBar.addAction(QIcon(":/icon/File"), tr("Open stricky"), this, SLOT(slotLoad()));
+    pAction->setToolTip(tr("Open stricky"));
+    pAction->setStatusTip(tr("Open stricky"));
+    pAction = m_ToolBar.addAction(QIcon(":/icon/Save"), tr("Save sticky"), this, SLOT(slotSave()));
+    pAction->setToolTip(tr("Save stricky"));
+    pAction->setStatusTip(tr("Save stricky"));
+    m_ToolBar.addSeparator();
     m_ToolBar.addAction(ui->actionNew);
     m_ToolBar.addAction(ui->actionRemove);
     m_lvTasks.setModel(&m_Model);
@@ -72,7 +78,13 @@ CFrmStickyList::~CFrmStickyList()
 
 void CFrmStickyList::slotLoad()
 {
-    QString szFile = QFileDialog::getOpenFileName();
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    QString szFile = set.value("Sticky/File",
+                               RabbitCommon::CDir::Instance()->GetDirUserData()
+                               + QDir::separator() + "Sticky").toString();
+    QFileInfo fi(szFile);
+    szFile = RabbitCommon::CDir::GetOpenFileName(this, tr("Open sticky"), fi.path()); // QFileDialog::getOpenFileName();
     if(szFile.isEmpty())
         return;
     Load(szFile);
@@ -102,7 +114,13 @@ int CFrmStickyList::Load(const QString &szFile)
 
 void CFrmStickyList::slotSave()
 {
-    QString szFile = QFileDialog::getSaveFileName();
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    QString szFile = set.value("Sticky/File",
+                               RabbitCommon::CDir::Instance()->GetDirUserData()
+                               + QDir::separator() + "Sticky").toString();
+    QFileInfo fi(szFile);
+    szFile = RabbitCommon::CDir::GetSaveFileName(this, tr("Save sticky"), fi.path());
     if(szFile.isEmpty())
         return;
 }

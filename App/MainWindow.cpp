@@ -209,7 +209,7 @@ int CMainWindow::LoadStyle(const QString &szFile)
 void CMainWindow::on_actionSink_S_triggered()
 {
     QString szFile;
-    szFile = RabbitCommon::CDir::OpenFileDialog(this, tr("Open sink"));
+    szFile = RabbitCommon::CDir::GetOpenFileName(this, tr("Open sink"));
     
     LoadStyle(szFile);
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
