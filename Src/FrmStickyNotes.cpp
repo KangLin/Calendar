@@ -10,9 +10,13 @@
 #include <QBuffer>
 
 CFrmStickyNotes::CFrmStickyNotes(QWidget *parent) :
+    #if defined(Q_OS_ANDROID)
+    QWidget (parent),
+    #else
     QWidget(parent, 
             Qt::Drawer
             | Qt::CustomizeWindowHint),
+    #endif
     ui(new Ui::CFrmStickyNotes),
     m_ToolBarTop(this),
     m_ToolBarButton(this),
@@ -39,9 +43,10 @@ CFrmStickyNotes::CFrmStickyNotes(QWidget *parent) :
     m_pComboBox->addItem(tr("Priority"));
     m_pComboBox->addItem(tr("Delay"));
     m_ToolBarTop.addWidget(m_pComboBox);
+#if !defined (Q_OS_ANDROID)
     m_ToolBarTop.hide();
     m_ToolBarButton.hide();
-    
+#endif
     bool check = connect(&m_TextEdit, SIGNAL(textChanged()), this, SLOT(slotTextChanged()));
     Q_ASSERT(check);
     check = connect(m_pComboBox, SIGNAL(currentIndexChanged(int)),
