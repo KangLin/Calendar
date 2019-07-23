@@ -22,7 +22,7 @@ CFrmStickyNotes::CFrmStickyNotes(QWidget *parent) :
     setAttribute(Qt::WA_QuitOnClose, false);
     setAttribute(Qt::WA_DeleteOnClose, false);
     ui->setupUi(this);
-    //TODO:Use qss
+    //Use qss
     //setStyleSheet("background-color:rgb(255,255,128);color:rgb(0,255,0);");
     //setStyleSheet("QWidget{background-color:gray;border-top-left-radius:15px;border-top-right-radius:15px;}"); 
 

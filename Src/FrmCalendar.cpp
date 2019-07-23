@@ -273,6 +273,10 @@ void CFrmCalendar::slotCalendarHead(bool checked)
 void CFrmCalendar::slotAdd()
 {
     QSharedPointer<CTaskActivity> ta(new CTaskActivity());
+    ta->SetDateStart(m_pCalendar->SelectedDate().year(),
+                     m_pCalendar->SelectedDate().month(),
+                     m_pCalendar->SelectedDate().day());
+    ta->SetDateEnd(ta->GetDateStart());
     CDlgTaskActivity* task = new CDlgTaskActivity(ta.data());
     CDlgContainer dlg;
     dlg.SetWidget(task);
