@@ -9,13 +9,15 @@ class CStickyItemDelegate : public QStyledItemDelegate
 public:
     explicit CStickyItemDelegate(QObject *parent = nullptr);
 
-//    virtual QWidget *createEditor(QWidget *parent,
-//                          const QStyleOptionViewItem &option,
-//                          const QModelIndex &index) const override;
-//    virtual void setEditorData(QWidget *editor, const QModelIndex &index) const override;
-//    virtual void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
+    virtual QWidget *createEditor(QWidget *parent,
+                          const QStyleOptionViewItem &option,
+                          const QModelIndex &index) const override;
+    virtual void setEditorData(QWidget *editor, const QModelIndex &index) const override;
+    virtual void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-    //virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+
+    //void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 };
 
 #endif // STIKYITEMDELEGATE_H

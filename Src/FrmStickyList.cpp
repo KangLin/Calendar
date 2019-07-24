@@ -29,8 +29,9 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
     m_lvTasks.setContextMenuPolicy(Qt::ActionsContextMenu);
     m_lvTasks.addAction(ui->actionNew);
     m_lvTasks.addAction(ui->actionRemove);
+    //m_lvTasks.setSpacing(2);
     m_lvTasks.setItemDelegate(new CStickyItemDelegate(&m_lvTasks));
-    bool check = connect(&m_lvTasks, SIGNAL(doubleClicked(const QModelIndex)),
+    bool check = connect(&m_lvTasks, SIGNAL(clicked(const QModelIndex)),
                      this, SLOT(on_listView_doubleClicked(const QModelIndex)));
     Q_ASSERT(check);
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
