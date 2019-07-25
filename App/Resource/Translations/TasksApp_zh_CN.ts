@@ -104,14 +104,14 @@
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="35"/>
-        <location filename="../../MainWindow.cpp" line="120"/>
+        <location filename="../../MainWindow.cpp" line="125"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="37"/>
-        <location filename="../../MainWindow.cpp" line="124"/>
-        <location filename="../../MainWindow.cpp" line="276"/>
+        <location filename="../../MainWindow.cpp" line="129"/>
+        <location filename="../../MainWindow.cpp" line="265"/>
         <source>Show</source>
         <translation>显示</translation>
     </message>
@@ -121,7 +121,7 @@
         <translation>允许开户自启动</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="207"/>
+        <location filename="../../MainWindow.cpp" line="212"/>
         <source>Open sink</source>
         <translation>打开皮肤</translation>
     </message>
@@ -129,7 +129,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="36"/>
+        <location filename="../../main.cpp" line="40"/>
         <source>Tasks</source>
         <translation>任务</translation>
     </message>

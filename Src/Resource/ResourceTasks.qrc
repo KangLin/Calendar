@@ -20,7 +20,7 @@
         <file alias="CopyRight">image/copyright.png</file>
         <file alias="Download">image/download.png</file>
         <file alias="Restart">image/restart.png</file>
-        <file alias="Sticky">image/stricky.png</file>
+        <file alias="Sticky">image/sticky.png</file>
         <file alias="Bold">image/bold.png</file>
         <file alias="Italic">image/italic.png</file>
         <file alias="Stricke">image/stricke.png</file>

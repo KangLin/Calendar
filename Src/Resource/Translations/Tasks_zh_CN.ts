@@ -159,88 +159,94 @@
         <translation>日历</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="70"/>
-        <location filename="../../FrmCalendar.cpp" line="71"/>
+        <location filename="../../FrmCalendar.cpp" line="90"/>
+        <location filename="../../FrmCalendar.cpp" line="91"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="75"/>
-        <location filename="../../FrmCalendar.cpp" line="76"/>
+        <location filename="../../FrmCalendar.cpp" line="95"/>
+        <location filename="../../FrmCalendar.cpp" line="96"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="82"/>
-        <location filename="../../FrmCalendar.cpp" line="83"/>
-        <location filename="../../FrmCalendar.cpp" line="337"/>
+        <location filename="../../FrmCalendar.cpp" line="102"/>
+        <location filename="../../FrmCalendar.cpp" line="103"/>
+        <location filename="../../FrmCalendar.cpp" line="354"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="87"/>
-        <location filename="../../FrmCalendar.cpp" line="88"/>
-        <location filename="../../FrmCalendar.cpp" line="340"/>
+        <location filename="../../FrmCalendar.cpp" line="107"/>
+        <location filename="../../FrmCalendar.cpp" line="108"/>
+        <location filename="../../FrmCalendar.cpp" line="357"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="92"/>
-        <location filename="../../FrmCalendar.cpp" line="93"/>
-        <location filename="../../FrmCalendar.cpp" line="99"/>
-        <location filename="../../FrmCalendar.cpp" line="343"/>
+        <location filename="../../FrmCalendar.cpp" line="112"/>
+        <location filename="../../FrmCalendar.cpp" line="113"/>
+        <location filename="../../FrmCalendar.cpp" line="119"/>
+        <location filename="../../FrmCalendar.cpp" line="360"/>
         <source>Modify</source>
         <translation>修改</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="98"/>
+        <location filename="../../FrmCalendar.cpp" line="118"/>
         <source>Refresh</source>
-        <translation type="unfinished">刷新</translation>
+        <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="104"/>
-        <location filename="../../FrmCalendar.cpp" line="105"/>
+        <location filename="../../FrmCalendar.cpp" line="125"/>
+        <location filename="../../FrmCalendar.cpp" line="126"/>
+        <source>Today</source>
+        <translation>今天</translation>
+    </message>
+    <message>
+        <location filename="../../FrmCalendar.cpp" line="132"/>
+        <location filename="../../FrmCalendar.cpp" line="133"/>
         <source>Week</source>
         <translation>周</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="112"/>
-        <location filename="../../FrmCalendar.cpp" line="113"/>
+        <location filename="../../FrmCalendar.cpp" line="140"/>
+        <location filename="../../FrmCalendar.cpp" line="141"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="156"/>
+        <location filename="../../FrmCalendar.cpp" line="169"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="157"/>
+        <location filename="../../FrmCalendar.cpp" line="170"/>
         <source>The calendar is changed, is it save?</source>
         <translation>日历改变，是否保存？</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="210"/>
+        <location filename="../../FrmCalendar.cpp" line="223"/>
         <source>Load</source>
         <translation>加载</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="210"/>
+        <location filename="../../FrmCalendar.cpp" line="223"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="223"/>
+        <location filename="../../FrmCalendar.cpp" line="236"/>
         <source>Save as ...</source>
         <translation>另存为 ……</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="281"/>
+        <location filename="../../FrmCalendar.cpp" line="298"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="281"/>
+        <location filename="../../FrmCalendar.cpp" line="298"/>
         <source>Is sure delete ?</source>
         <translation>确定删除？</translation>
     </message>
@@ -390,7 +396,23 @@
         <translation>移除便签</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.cpp" line="132"/>
+        <location filename="../../FrmStickyList.cpp" line="19"/>
+        <location filename="../../FrmStickyList.cpp" line="20"/>
+        <location filename="../../FrmStickyList.cpp" line="21"/>
+        <location filename="../../FrmStickyList.cpp" line="88"/>
+        <source>Open sticky</source>
+        <translation>打开便签</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyList.cpp" line="22"/>
+        <location filename="../../FrmStickyList.cpp" line="23"/>
+        <location filename="../../FrmStickyList.cpp" line="24"/>
+        <location filename="../../FrmStickyList.cpp" line="124"/>
+        <source>Save sticky</source>
+        <translation>保存便签</translation>
+    </message>
+    <message>
+        <location filename="../../FrmStickyList.cpp" line="151"/>
         <source>Take notes ......</source>
         <translation>记笔记……</translation>
     </message>
@@ -403,52 +425,52 @@
         <translation>便签</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="29"/>
+        <location filename="../../FrmStickyNotes.cpp" line="33"/>
         <source>Bold</source>
         <translation>粗体</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="30"/>
+        <location filename="../../FrmStickyNotes.cpp" line="34"/>
         <source>Italic</source>
         <translation>斜体</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="31"/>
+        <location filename="../../FrmStickyNotes.cpp" line="35"/>
         <source>Underline</source>
         <translation>下划线</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="32"/>
+        <location filename="../../FrmStickyNotes.cpp" line="36"/>
         <source>Strikethrough</source>
         <translation>删除线</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="34"/>
+        <location filename="../../FrmStickyNotes.cpp" line="38"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="35"/>
+        <location filename="../../FrmStickyNotes.cpp" line="39"/>
         <source>New</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="36"/>
+        <location filename="../../FrmStickyNotes.cpp" line="40"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="38"/>
+        <location filename="../../FrmStickyNotes.cpp" line="42"/>
         <source>Normal</source>
         <translation>正常</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="39"/>
+        <location filename="../../FrmStickyNotes.cpp" line="43"/>
         <source>Priority</source>
         <translation>紧急</translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="40"/>
+        <location filename="../../FrmStickyNotes.cpp" line="44"/>
         <source>Delay</source>
         <translation>延迟</translation>
     </message>
@@ -458,7 +480,7 @@
     <message>
         <location filename="../../FrmTask.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../FrmTask.ui" line="22"/>
