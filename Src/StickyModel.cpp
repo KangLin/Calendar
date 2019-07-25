@@ -101,9 +101,11 @@ QSharedPointer<CSticky> CStickyModel::Add()
     if(!s)
         return QSharedPointer<CSticky>();
     m_Stickys.push_front(s);
-    insertRow(0, QModelIndex());
+    int row = m_Stickys.length() - 1;
+    if(row < 0) row = 0;
+    insertRow(row, QModelIndex());
     SetModify(true);
-    emit dataChanged(index(0), index(0));
+    emit dataChanged(index(0), index(row));
     bool check = connect(s.data(), SIGNAL(sigRemove(QSharedPointer<CSticky>)),
                     this, SLOT(slotDelete(QSharedPointer<CSticky>)));
     Q_ASSERT(check);
