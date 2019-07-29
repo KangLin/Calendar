@@ -11,6 +11,8 @@ class CStickyModel : public QAbstractListModel
     
 public:
     explicit CStickyModel(QObject *parent = nullptr);
+    int Clean();
+    
 public Q_SLOTS:
     bool IsModify();
     int SetModify(bool bModify =  true);
@@ -38,6 +40,7 @@ private:
     QList<QSharedPointer<CSticky> > m_Stickys;
     bool m_bModify;    
     
+    void internalUpdate();
 };
 
 #endif // CSTRICKYMODEL_H

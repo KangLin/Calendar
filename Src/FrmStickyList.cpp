@@ -68,13 +68,19 @@ CFrmStickyList::~CFrmStickyList()
                                    + QDir::separator() + "Sticky").toString();
         Save(szFile);
     }
+    CleanStickyNotes();
+    delete ui;
+}
+
+int CFrmStickyList::CleanStickyNotes()
+{
     foreach(CFrmStickyNotes* p, m_StickyNotes)
     {
         p->close();
         p->deleteLater();
     }
     m_StickyNotes.clear();
-    delete ui;
+    return 0;
 }
 
 void CFrmStickyList::slotLoad()
@@ -103,6 +109,8 @@ int CFrmStickyList::Load(const QString &szFile)
     QString szVersion;
     QRect rect;
     QPoint pos;
+    m_Model.Clean();
+    CleanStickyNotes();
     d >> szVersion >> pos >> rect >> m_Model;
     f.close();
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),

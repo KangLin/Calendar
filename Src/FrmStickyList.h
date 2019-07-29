@@ -35,6 +35,7 @@ private:
     int Save(const QString &szFile);
     void ShowSticky(int nIndex);
     CFrmStickyNotes *NewFrmSticky(QSharedPointer<CSticky> s);
+    int CleanStickyNotes();
     
 private:
     Ui::CFrmStickyList *ui;

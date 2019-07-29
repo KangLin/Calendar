@@ -84,6 +84,18 @@ bool CStickyModel::removeRows(int row, int count, const QModelIndex &parent)
     return true;
 }
 
+int CStickyModel::Clean()
+{
+    m_Stickys.clear();
+    internalUpdate();
+    return 0;
+}
+
+void CStickyModel::internalUpdate()
+{
+    emit dataChanged(index(0), index(m_Stickys.length() -1));
+}
+
 bool CStickyModel::IsModify()
 {
     return m_bModify;
@@ -100,7 +112,7 @@ QSharedPointer<CSticky> CStickyModel::Add()
     QSharedPointer<CSticky> s(new CSticky());    
     if(!s)
         return QSharedPointer<CSticky>();
-    m_Stickys.push_front(s);
+    m_Stickys.push_back(s);
     int row = m_Stickys.length() - 1;
     if(row < 0) row = 0;
     insertRow(row, QModelIndex());
