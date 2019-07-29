@@ -16,9 +16,10 @@ QWidget *CStickyItemDelegate::createEditor(QWidget *parent,
 {
     if(index.isValid()) {
         QTextEdit *textedit = new QTextEdit(parent);
+        textedit->setReadOnly(true);
         return textedit;
     } else {
-         return QStyledItemDelegate::createEditor(parent,option,index);
+        return QStyledItemDelegate::createEditor(parent,option,index);
     }
 }
 
@@ -47,8 +48,10 @@ void CStickyItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
     painter->save();
     
     QTextEdit e;
-    e.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+    //e.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     e.setHtml(index.data(Qt::EditRole).toString());
+    //QVariant background = index.model()->data(index, Qt::BackgroundRole);
+    //QVariant front = index.model()->data(index, Qt::ForegroundRole);
     painter->setBrush(option.backgroundBrush);
     painter->translate(option.rect.topLeft());
     e.resize(option.rect.size());
