@@ -1,3 +1,6 @@
+- v0.2.2
+  + Modiy sticky bug
+  
 - v0.2.1
   + android add touch
   + add today icon
