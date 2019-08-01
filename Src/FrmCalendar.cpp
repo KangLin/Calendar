@@ -73,7 +73,12 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
                                    new CTasksHandler(this)));
     m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     //m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
-    //m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
+    if(!QLocale::system().name().compare("zh_CN", Qt::CaseInsensitive)
+            || !QLocale::system().name().compare("zh_TW", Qt::CaseInsensitive)
+            || !QLocale::system().name().compare("zh_HK", Qt::CaseInsensitive))
+        m_pCalendar->SetCalendarType((CLunarCalendar::_CalendarType)(CLunarCalendar::CalendarTypeLunar|CLunarCalendar::CalendarTypeSolar));
+    else
+        m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
 #if defined (Q_OS_ANDROID)
     m_pCalendar->ShowHead(false);
 #else
