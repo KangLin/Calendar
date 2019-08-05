@@ -74,11 +74,11 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_Table.installEventFilter(this);
 #else
     m_Table.addTab(&m_FrmTasksList, m_FrmTasksList.windowIcon(),
-                   m_FrmTasksList.windowTitle());    
+                   m_FrmTasksList.windowTitle());
 #endif
     m_Table.setTabPosition(QTabWidget::South);
     setCentralWidget(&m_Table);
-    
+
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     m_Table.setCurrentIndex(set.value("Options/MainWindow/TableView", 0).toInt());
