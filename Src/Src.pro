@@ -33,19 +33,13 @@ include(Tasks.pri)
 #RC_FILE = Tasks.rc
 
 TasksList.files = ../etc/*.xml
-android{
-    TasksList.path = $$PREFIX/assets/etc/xml
-}else{
-    TasksList.path = $$PREFIX/etc/xml
-}
+android: TasksList.path = $$PREFIX/assets/etc/xml
+else: TasksList.path = $$PREFIX/etc/xml
 TasksList.CONFIG += no_check_exist
 
 sink.files = Resource/sink/*
-android{
-    sink.path = $$PREFIX/assets/Resource
-}else{
-    sink.path = $$PREFIX/Resource
-}
+android: sink.path = $$PREFIX/assets/Resource
+else: sink.path = $$PREFIX/Resource
 sink.CONFIG += no_check_exist
 
 IncludeFiles.path = $$PREFIX/include/Tasks

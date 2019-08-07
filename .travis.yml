@@ -15,6 +15,7 @@ os:
 addons:
   ssh_known_hosts:
     - github.com
+    - frs.sourceforge.net
 
 env:
   global:
@@ -42,7 +43,7 @@ before_install:
   - sudo Xvfb :99 -ac &
   - export DISPLAY=:99.0
   - mkdir ${SOURCE_DIR}/Tools
-  - export VERSION="v0.2.2"
+  - export VERSION="v0.2.3"
   
 install:
   - cd ${SOURCE_DIR}

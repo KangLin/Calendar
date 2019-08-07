@@ -2,6 +2,9 @@
 #下载工具  
 
 set -e
+SOURCE_DIR="`pwd`"
+echo $SOURCE_DIR
+TOOLS_DIR=${SOURCE_DIR}/Tools
 
 function function_install_yasm()
 {
@@ -136,9 +139,6 @@ function function_mingw()
     function_common
     cd ${SOURCE_DIR}
 }
-
-SOURCE_DIR="`pwd`"
-echo $SOURCE_DIR
 
 case ${BUILD_TARGERT} in
     android)

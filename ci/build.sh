@@ -87,21 +87,28 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="v0.2.2"
+if [ "ON" = "${STATIC}" ]; then
+    CONFIG_PARA="CONFIG*=static"
+fi
+export VERSION="v0.2.3"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     bash build_debpackage.sh ${QT_ROOT}
 
     sudo dpkg -i ../tasks_*_amd64.deb
-    $SOURCE_DIR/test/test_linux.sh
+    echo "test ......"
+    ./test/test_linux.sh
 
-    cd debian/tasks/opt
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${QT_ROOT}/bin:${QT_ROOT}/lib:`pwd`/Tasks/bin:`pwd`/Tasks/lib
-    wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" -O linuxdeployqt.AppImage
-    chmod a+x linuxdeployqt.AppImage
+    export LD_LIBRARY_PATH=`pwd`/debian/tasks/opt/Tasks/bin:`pwd`/debian/tasks/opt/Tasks/lib:${QT_ROOT}/bin:${QT_ROOT}/lib:$LD_LIBRARY_PATH
     
+    cd debian/tasks/opt
+    
+    URL_LINUXDEPLOYQT=https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+    wget -c -nv ${URL_LINUXDEPLOYQT} -O linuxdeployqt.AppImage
+    chmod a+x linuxdeployqt.AppImage
+
     cd Tasks
-    ./../linuxdeployqt.AppImage share/applications/*.desktop \
+    ../linuxdeployqt.AppImage share/applications/*.desktop \
         -qmake=${QT_ROOT}/bin/qmake -appimage -no-copy-copyright-files 
 
     # Create appimage install package

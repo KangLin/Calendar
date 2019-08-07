@@ -15,11 +15,11 @@ CONFIG *= ordered
 SUBDIRS = RabbitCommon LunarCalendar lib App
 
 isEmpty(PREFIX) {
-    qnx : PREFIX = /tmp
-    else : ios: PREFIX=/
-    else : android : PREFIX = /
-    else : unix : PREFIX = /opt/Tasks
-    else : PREFIX = $$OUT_PWD/install
+    android {
+        PREFIX = /.
+    } else {
+        PREFIX = $$OUT_PWD/../install
+    } 
 }
 other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
               ChangeLog_zh_CN.md
