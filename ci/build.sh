@@ -87,9 +87,6 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-if [ "ON" = "${STATIC}" ]; then
-    CONFIG_PARA="CONFIG*=static"
-fi
 export VERSION="v0.2.3"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
@@ -99,7 +96,8 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     echo "test ......"
     ./test/test_linux.sh
 
-    export LD_LIBRARY_PATH=`pwd`/debian/tasks/opt/Tasks/bin:`pwd`/debian/tasks/opt/Tasks/lib:${QT_ROOT}/bin:${QT_ROOT}/lib:$LD_LIBRARY_PATH
+    #因为上面 dpgk 已安装好了，所以不需要设置下面的环境变量
+    #export LD_LIBRARY_PATH=`pwd`/debian/tasks/opt/Tasks/bin:`pwd`/debian/tasks/opt/Tasks/lib:${QT_ROOT}/bin:${QT_ROOT}/lib:$LD_LIBRARY_PATH
     
     cd debian/tasks/opt
     
@@ -109,7 +107,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
 
     cd Tasks
     ../linuxdeployqt.AppImage share/applications/*.desktop \
-        -qmake=${QT_ROOT}/bin/qmake -appimage -no-copy-copyright-files 
+        -qmake=${QT_ROOT}/bin/qmake -appimage -no-copy-copyright-files -verbose
 
     # Create appimage install package
     #cp ../Tasks-${VERSION}-x86_64.AppImage .
