@@ -87,6 +87,7 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
     + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.2.3/android-build-debug.apk)
 
 ### 依赖
+- [Qt (LGPL v2.1)](http://qt.io/)
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)
   
         git clone https://github.com/KangLin/RabbitCommon.git
