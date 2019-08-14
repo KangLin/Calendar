@@ -1,3 +1,6 @@
+- v0.2.4
+  + Add chinese holidays in calendar
+
 - v0.2.3
   + Determine the calendar type based on the local language
   

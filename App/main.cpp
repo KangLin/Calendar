@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     qInfo() << "Language:" << QLocale::system().name();
 
     CTasksTools::Instance()->InitResource();
-#ifdef RABBITCOMMON 
+#ifdef RABBITCOMMON
     RabbitCommon::CTools::Instance()->Init();
 #endif
     
