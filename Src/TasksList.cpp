@@ -178,14 +178,38 @@ int CTasksList::LoadSettings(const QString &szFile)
     if(szFile.isEmpty())
     {
         file = RabbitCommon::CDir::Instance()->GetDirApplicationXml()
-                + QDir::separator()                
+                + QDir::separator()
                 + objectName() + "_" + QLocale::system().name()
                 + ".xml";
         QDir f;
         if(!f.exists(file))
-            file = RabbitCommon::CDir::Instance()->GetDirApplicationXml()
+        {
+#if defined (Q_OS_ANDROID)
+            QString szFileReadOnly = RabbitCommon::CDir::Instance()->GetDirApplicationXml(true)
                     + QDir::separator()
-                    + objectName() + "_en.xml";
+                    + objectName() + "_" + QLocale::system().name()
+                    + ".xml";
+            if(f.exists(szFileReadOnly))
+                QFile::copy(szFileReadOnly, file);
+            if(!f.exists(file))
+            {
+#endif
+                file = RabbitCommon::CDir::Instance()->GetDirApplicationXml()
+                        + QDir::separator()
+                        + objectName() + "_en.xml";
+#if defined (Q_OS_ANDROID)
+                if(!f.exists(file))
+                {
+                    szFileReadOnly = RabbitCommon::CDir::Instance()->GetDirApplicationXml(true)
+                            + QDir::separator()
+                            + objectName() + "_en.xml";
+                    if(f.exists(szFileReadOnly))
+                        QFile::copy(szFileReadOnly, file);
+                }
+            }
+#endif
+            
+        }
     }
     QFile f(file);
     if(!f.open(QIODevice::ReadOnly))

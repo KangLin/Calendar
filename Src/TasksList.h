@@ -48,6 +48,8 @@ private Q_SLOTS:
     void slotTimeout();
 
 private:
+    
+private:
     QMap<int, QSharedPointer<CTasks> > m_Tasks;
     QTimer m_Timer;
     int m_nTimerInterval;

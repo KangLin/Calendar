@@ -174,14 +174,10 @@ int CMainWindow::LoadStyle()
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     QString szFile = set.value("Sink",
-                           #if defined (Q_OS_ANDROID)
-                               QString("assets:/")
-                           #else
-                               RabbitCommon::CDir::Instance()->GetDirApplicationInstallRoot()
-                               + QDir::separator()
-                           #endif
-                               + "Resource/dark/style.qss").toString();
-    //qDebug() << "LoadStyle:" << szFile;
+                  RabbitCommon::CDir::Instance()->GetDirApplicationInstallRoot()
+                  + QDir::separator()
+                  + "Resource/dark/style.qss").toString();
+    qDebug() << "LoadStyle:" << szFile;
     return  LoadStyle(szFile);
 }
 
