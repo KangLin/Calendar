@@ -68,7 +68,6 @@ set(SOURCE_UI_FILES
     FrmTasks.ui
     FrmTasksList.ui
     FrmStickyList.ui
-    FrmCalendar.ui
     DlgTaskActivity.ui
     DlgContainer.ui
     FrmCustomActivity.ui)

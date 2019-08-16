@@ -102,8 +102,7 @@ FORMS += \
     $$PWD/FrmTaskProperty.ui \ 
     $$PWD/FrmTasks.ui \
     $$PWD/FrmTasksList.ui \
-    $$PWD/FrmStickyList.ui \
-    $$PWD/FrmCalendar.ui
+    $$PWD/FrmStickyList.ui
 
 RESOURCES += \
     $$PWD/Resource/ResourceTasks.qrc \

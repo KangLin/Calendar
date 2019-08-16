@@ -1,5 +1,4 @@
 #include "FrmCalendar.h"
-#include "ui_FrmCalendar.h"
 #include "LunarCalendar.h"
 #include <QVBoxLayout>
 #include <QDate>
@@ -48,7 +47,8 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
 {
     bool check = false;
     setWindowTitle(tr("Calendar"));
-
+    setWindowIcon(QIcon(":/icon/Calendar"));
+    
     m_listView.setModel(m_pModel);
     m_listView.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     check = connect(&m_listView, SIGNAL(doubleClicked(const QModelIndex &)),
@@ -56,8 +56,8 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     Q_ASSERT(check);
     m_listView.setContextMenuPolicy(Qt::CustomContextMenu);
     check = connect(&m_listView,
-                    SIGNAL(customContextMenuRequested(const QPoint &)),
-                    this, SLOT(slotViewCustomContextMenuRequested(const QPoint &)));
+                SIGNAL(customContextMenuRequested(const QPoint &)),
+                this, SLOT(slotViewCustomContextMenuRequested(const QPoint &)));
     Q_ASSERT(check);
     m_TasksList.setObjectName("TasksActivityList");
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), 
