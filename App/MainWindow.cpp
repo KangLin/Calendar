@@ -21,10 +21,8 @@ CMainWindow::CMainWindow(QWidget *parent) :
     ui(new Ui::CMainWindow),
     m_Table(this)
 {
-    //TODO: Modify style
-#if !defined (Q_OS_ANDROID)
     LoadStyle();
-#endif
+
     ui->setupUi(this);
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
