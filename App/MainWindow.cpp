@@ -55,25 +55,39 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_TrayIcon.setToolTip(this->windowTitle());
     m_TrayIcon.show();
 
-    m_Table.addTab(&m_frmCalendar,
-                   m_frmCalendar.windowIcon(), m_frmCalendar.windowTitle());
-    m_Table.addTab(&m_frmStickyList,
-                   m_frmStickyList.windowIcon(), m_frmStickyList.windowTitle());
 #if defined (Q_OS_ANDROID)
     QScrollArea *pScrollArea = new QScrollArea(&m_Table);
     if(pScrollArea)
     {
+        pScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        pScrollArea->setWidget(&m_frmCalendar);
+        pScrollArea->show();
+        pScrollArea->viewport()->setAttribute(Qt::WA_AcceptTouchEvents);
+        m_Table.addTab(pScrollArea, m_frmCalendar.windowIcon(),
+                       m_frmCalendar.windowTitle());
+    }
+    pScrollArea = new QScrollArea(&m_Table);
+    if(pScrollArea)
+    {
+        pScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         pScrollArea->setWidget(&m_FrmTasksList);
         pScrollArea->show();
         pScrollArea->viewport()->setAttribute(Qt::WA_AcceptTouchEvents);
         m_Table.addTab(pScrollArea, m_FrmTasksList.windowIcon(),
                        m_FrmTasksList.windowTitle());        
     }
+    
     m_Table.installEventFilter(this);
 #else
+    m_Table.addTab(&m_frmCalendar,
+                   m_frmCalendar.windowIcon(), m_frmCalendar.windowTitle());
     m_Table.addTab(&m_FrmTasksList, m_FrmTasksList.windowIcon(),
                    m_FrmTasksList.windowTitle());
 #endif
+    m_Table.addTab(&m_frmStickyList,
+                   m_frmStickyList.windowIcon(), m_frmStickyList.windowTitle());
     m_Table.setTabPosition(QTabWidget::South);
     setCentralWidget(&m_Table);
 
@@ -266,35 +280,52 @@ bool CMainWindow::eventFilter(QObject *watched, QEvent *event)
 
     switch (event->type()) {
     case QEvent::Resize:
+        
+        for(int i = 0; i < m_Table.count(); i++)
         {
-            QScrollArea *pScrollArea 
-                    = dynamic_cast<QScrollArea*>(m_Table.widget(2));
+            QScrollArea *pScrollArea
+                    = dynamic_cast<QScrollArea*>(m_Table.widget(i));
             if(!pScrollArea) break;
-            CFrmTasksList* pFrmTasksList 
-                    = dynamic_cast<CFrmTasksList*>(pScrollArea->widget());
-            if(&m_FrmTasksList != pFrmTasksList)
+            if(pScrollArea->metaObject()->className() != QString("QScrollArea"))
+            {
+                qDebug() << "objectName:" << pScrollArea->metaObject()->className();
                 break;
-            
+            }
+            QWidget* pForm
+                    = dynamic_cast<QWidget*>(pScrollArea->widget());
+            if(!pForm)
+                break;
+
             QResizeEvent *resizeEvent = dynamic_cast<QResizeEvent*>(event);
-            pScrollArea->resize(resizeEvent->size());
-            
-            //qDebug() << "tab:" << resizeEvent->size() << m_Table.currentIndex() << pScrollArea->size();
-            
             QSize s = resizeEvent->size();
+            pScrollArea->resize(s);
+            pForm->resize(s);
+
+            qDebug() << "tab:" << resizeEvent->size() << i << pScrollArea->size();
+
+            /*if(pForm->size().width() <= s.width())
+               pScrollArea->verticalScrollBar()->hide(); 
+            if(pForm->size().height() <= s.height())
+               pScrollArea->horizontalScrollBar()->hide();
+            */
             int width = pScrollArea->width();
             int height = pScrollArea->height();
-            if(!pScrollArea->verticalScrollBar()->isHidden())
+            /*if(!pScrollArea->verticalScrollBar()->isHidden())
                 width -= pScrollArea->verticalScrollBar()->frameGeometry().width();
             if(!pScrollArea->horizontalScrollBar()->isHidden())
                 height -= pScrollArea->horizontalScrollBar()->frameGeometry().height();
-            
-            if(s.width() < width)
-                s.setWidth(width);
-            if(s.height() < height)
-                s.setHeight(height);
-            if(s != pFrmTasksList->size())
-                pFrmTasksList->resize(s);
-        }   
+            */
+            qDebug() << "width:" << width << "height:" << height;
+
+            QSize frmSize = pForm->frameGeometry().size();
+            if(frmSize.width() < width)
+                frmSize.setWidth(width);
+            if(frmSize.height() < height)
+                frmSize.setHeight(height);
+            if(frmSize != pForm->size())
+                pForm->resize(frmSize);
+        }
+
         break;
     default:
         break;
