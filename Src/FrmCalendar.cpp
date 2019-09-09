@@ -165,7 +165,7 @@ CFrmCalendar::~CFrmCalendar()
 {
     if(m_bModify)
     {
-        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), 
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                       QSettings::IniFormat);
         QString szFile = set.value("TasksAcitvityList").toString();
         if(szFile.isEmpty())
@@ -176,10 +176,23 @@ CFrmCalendar::~CFrmCalendar()
                            QMessageBox::Ok|QMessageBox::No);
             if(QMessageBox::Ok == n)
             {
-                slotSaveAs();
-            }    
-        } else
-            m_TasksList.SaveSettings(szFile);
+                szFile = RabbitCommon::CDir::Instance()->GetDirUserXml()
+                                + QDir::separator()
+                                + "TasksAcitvityList.xml";
+            }
+        }
+
+        if(!szFile.isEmpty())
+        {
+            int nRet = m_TasksList.SaveSettings(szFile);
+            if(0 == nRet)
+            {
+                QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                              QSettings::IniFormat);
+                set.setValue("TasksAcitvityList", szFile);
+                m_bModify = false;
+            }
+        }
     }
 }
 
