@@ -31,7 +31,11 @@ add_definitions(-DBUILD_VERSION="${BUILD_VERSION}")
 add_definitions(-DBUILD_ARCH="${BUILD_ARCH}")
 add_definitions(-DBUILD_PLATFORM="${BUILD_PLATFORM}")
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} AppIcon.rc ${RCC_FILES})
+if(ANDROID)
+    add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} ${RCC_FILES})
+else()
+    add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} AppIcon.rc ${RCC_FILES})
+endif()
 add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
 SET(APP_LIBS Tasks ${QT_LIBRARIES})
 if(TARGET RabbitCommon)
@@ -48,7 +52,7 @@ elseif(${CMAKE_CXX_COMPILER} MATCHES ".*/(cl)(\\..*)")
     set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE
         "/SUBSYSTEM:WINDOWS\",5.01\" /ENTRY:mainCRTStartup")
 endif()
-set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${BUILD_VERSION})
 
 # Install target
@@ -91,7 +95,7 @@ IF(ANDROID)
     #MESSAGE("ant:${ANT}\n")
 
     add_custom_target(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${PROJECT_BINARY_DIR}/libRabbitIm.so ${PROJECT_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/libRabbitIm.so
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" ${PROJECT_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
         #注意 需要把 ${QT_INSTALL_DIR}/bin 加到环境变量PATH中
         COMMAND "${QT_INSTALL_DIR}/bin/androiddeployqt"
             --input ${PROJECT_BINARY_DIR}/android-App.so-deployment-settings.json
