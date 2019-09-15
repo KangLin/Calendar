@@ -109,10 +109,31 @@ please compile and test the students with the corresponding equipment.
         make install
 
 + Use cmake
+  + windows or linux
 
         cd build
-        cmake .. -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 -DRabbitCommon_DIR=
+        cmake .. -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+             -DCMAKE_BUILD_TYPE=Release \
+             -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
+             -DRabbitCommon_DIR=
         cmake --build .
+    
+  + android
+    + 主机是linux
+
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake -DANDROID_ABI="armeabi-v7a with NEON" -DANDROID_PLATFORM=android-18 \
+             -DQt5_DIR= \
+             -DRabbitCommon_DIR= 
+            cmake --build . --config Release --target install
+
+    + 主机是windows
+
+            cd build
+            cmake .. -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake  -DCMAKE_MAKE_PROGRAM=${ANDROID_NDK}/prebuilt/windows-x86_64/bin/make.exe -DANDROID_ABI=arm64-v8a -DANDROID_ARM_NEON=ON \
+               -DQt5_DIR= \
+               -DRabbitCommon_DIR= 
+            cmake --build . --config Release --target install
       
 - Note  
     + windows
