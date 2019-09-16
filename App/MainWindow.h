@@ -41,7 +41,7 @@ private Q_SLOTS:
     
 protected:
     virtual void closeEvent(QCloseEvent *e) override;
-    bool eventFilter(QObject *watched, QEvent *event);
+    bool eventFilter(QObject *watched, QEvent *event) override;
     
 private:
     int LoadStyle();

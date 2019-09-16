@@ -21,7 +21,7 @@ SET(RCC_FILES
     ${TRANSLATIONS_RESOURCE_FILES}
     )
 if(ANDROID)
-    SET(RCC_FILES ${RCC_FILES} ${CMAKE_BINARY_DIR}/translations.qrc)
+    SET(RCC_FILES ${RCC_FILES} ${CMAKE_CURRENT_BINARY_DIR}/translations_${PROJECT_NAME}.qrc)
 endif()
 if(WIN32)
     set(OTHER_FILES ${OTHER_FILES} AppIcon.ico)
@@ -53,6 +53,8 @@ elseif(${CMAKE_CXX_COMPILER} MATCHES ".*/(cl)(\\..*)")
         "/SUBSYSTEM:WINDOWS\",5.01\" /ENTRY:mainCRTStartup")
 endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set_target_properties(${PROJECT_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${BUILD_VERSION})
 
 # Install target
@@ -91,16 +93,23 @@ ENDIF()
 
 IF(ANDROID)
     GENERATED_DEPLOYMENT_SETTINGS()
-    #find_program(ANT NAMES ant) # PATHS  "/usr/bin")
-    #MESSAGE("ant:${ANT}\n")
 
-    add_custom_target(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" ${PROJECT_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
+    set(ANDROID_DELOP_PARA --gradle)
+    if(Qt5_VERSION VERSION_LESS 5.8.0)
+        find_program(ANT NAMES ant) # PATHS  "/usr/bin")
+        MESSAGE("ant:${ANT}\n")
+        if(ANT_FOUND)
+            set(ANDROID_DELOP_PARA --ant ${ANT})
+        endif()
+    endif()
+    add_custom_target(ANDROID_DELOPY #TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
         #注意 需要把 ${QT_INSTALL_DIR}/bin 加到环境变量PATH中
         COMMAND "${QT_INSTALL_DIR}/bin/androiddeployqt"
-            --input ${PROJECT_BINARY_DIR}/android-App.so-deployment-settings.json
-            --output ${PROJECT_BINARY_DIR}/android-build
+            --input ${PROJECT_BINARY_DIR}/android-lib${PROJECT_NAME}.so-deployment-settings.json
+            --output ${CMAKE_BINARY_DIR}/android-build
             --verbose
+            ${ANDROID_DELOP_PARA}
             #--ant /usr/bin/ant
             #--jdk $ENV{JAVA_HOME}
     )

@@ -46,7 +46,7 @@ endif()
 #需要的QT组件
 SET(QT_COMPONENTS Core Gui Widgets Xml Network Multimedia)
 find_package(Qt5 COMPONENTS ${QT_COMPONENTS})
-
+message("QT_VERSION:${Qt5_VERSION}")
 #打开 qt 编译工具
 SET(CMAKE_AUTOUIC ON)
 SET(CMAKE_AUTOMOC ON)
@@ -115,9 +115,10 @@ endif()
 if( "${RabbitCommon_DIR}" STREQUAL "" )
     set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
     if( "${RabbitCommon_DIR}" STREQUAL "" )
-        set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/..)
+        set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/../RabbitCommon)
     endif()
 endif()
+
 if(DEFINED RabbitCommon_DIR AND EXISTS ${RabbitCommon_DIR}/Src)
     add_subdirectory(${RabbitCommon_DIR}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
 else()
@@ -143,20 +144,26 @@ set(OTHER_FILES
     ChangeLog_zh_CN.md)
 
 # 设置安装前缀
-SET(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/install CACHE STRING "Install path prefix.") 
-
-# Install other files
-INSTALL(FILES ${OTHER_FILES} DESTINATION ".")
+if(ANDROID)
+    set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/android-build CACHE STRING "Install path prefix" FORCE)
+else()
+    SET(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/install CACHE STRING "Install path prefix.")
+endif()
 
 if(ANDROID)
+    # Install xml files
     INSTALL(DIRECTORY etc/ DESTINATION "assets/etc/xml")
     # Install style files
     INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "assets/Resource")
+    # Install other files
+    INSTALL(FILES ${OTHER_FILES} DESTINATION "assets")
 else()
-    # Install xml files   
+    # Install xml files
     INSTALL(DIRECTORY etc/ DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/xml")
     # Install style files
     INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "Resource")
+    # Install other files
+    INSTALL(FILES ${OTHER_FILES} DESTINATION ".")
 endif()
 
 INSTALL(FILES Install/Install.nsi DESTINATION "${CMAKE_BINARY_DIR}")
