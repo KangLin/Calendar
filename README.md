@@ -135,6 +135,22 @@ please compile and test the students with the corresponding equipment.
                -DRabbitCommon_DIR= 
             cmake --build . --config Release --target install
       
+    + Parameter Description: https://developer.android.google.cn/ndk/guides/cmake
+      + ANDROID_ABI: The following values can be taken:
+         Goal ABI. If the target ABI is not specified, CMake uses armeabi-v7a by default.
+         Valid ABI are:
+        + armeabi：CPU with software floating point arithmetic based on ARMv5TE
+        + armeabi-v7a：ARMv7-based device with hardware FPU instructions (VFP v3 D16)
+        + armeabi-v7a with NEON：Same as armeabi-v7a, but with NEON floating point instructions enabled. This is equivalent to setting -DANDROID_ABI=armeabi-v7a and -DANDROID_ARM_NEON=ON.
+        + arm64-v8a：ARMv8 AArch64 Instruction Set
+        + x86：IA-32 Instruction Set
+        + x86_64 - x86-64 Instruction Set
+      + ANDROID_NDK <path> The path of installed ndk in host
+      + ANDROID_PLATFORM: For a full list of platform names and corresponding Android system images, see the [Android NDK Native API] (https://developer.android.google.com/ndk/guides/stable_apis.html)
+      + ANDROID_ARM_MODE
+      + ANDROID_ARM_NEON
+      + ANDROID_STL:Specifies the STL that CMake should use. 
+
 - Note  
     + windows
        If you build app. Qt does not provide openssl dynamic library for copyright reasons, so you must copy the dynamic library of openssl to the installation directory.
