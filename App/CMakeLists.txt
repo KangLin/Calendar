@@ -36,7 +36,7 @@ if(ANDROID)
 else()
     add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} AppIcon.rc ${RCC_FILES})
 endif()
-add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
+add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME} Tasks LunarCalendar RabbitCommon)
 SET(APP_LIBS Tasks ${QT_LIBRARIES})
 if(TARGET RabbitCommon)
     target_compile_definitions(${PROJECT_NAME} PRIVATE -DRABBITCOMMON)
@@ -61,7 +61,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${BUILD_VERSION})
 INSTALL(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
         ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+        LIBRARY DESTINATION "${CMAKE_INSTALL_BINDIR}"
         )
     
 # Install other files
@@ -92,7 +92,8 @@ IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
 ENDIF()
 
 IF(ANDROID)
-    GENERATED_DEPLOYMENT_SETTINGS()
+    Set(JSON_FILE ${PROJECT_BINARY_DIR}/android-lib${PROJECT_NAME}.so-deployment-settings.json)
+    GENERATED_DEPLOYMENT_SETTINGS(${JSON_FILE} ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME})
 
     set(ANDROID_DELOP_PARA --gradle)
     if(Qt5_VERSION VERSION_LESS 5.8.0)
@@ -102,15 +103,15 @@ IF(ANDROID)
             set(ANDROID_DELOP_PARA --ant ${ANT})
         endif()
     endif()
-    add_custom_target(ANDROID_DELOPY #TARGET ${PROJECT_NAME} POST_BUILD
+    
+    add_custom_target(ANDROID_DEPLOY #TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
         #注意 需要把 ${QT_INSTALL_DIR}/bin 加到环境变量PATH中
         COMMAND "${QT_INSTALL_DIR}/bin/androiddeployqt"
-            --input ${PROJECT_BINARY_DIR}/android-lib${PROJECT_NAME}.so-deployment-settings.json
             --output ${CMAKE_BINARY_DIR}/android-build
+            --input ${JSON_FILE}
             --verbose
             ${ANDROID_DELOP_PARA}
-            #--ant /usr/bin/ant
             #--jdk $ENV{JAVA_HOME}
     )
 ENDIF(ANDROID)

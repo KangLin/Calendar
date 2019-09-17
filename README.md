@@ -122,18 +122,29 @@ please compile and test the students with the corresponding equipment.
     + 主机是linux
 
             cd build
-            cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake -DANDROID_ABI="armeabi-v7a with NEON" -DANDROID_PLATFORM=android-18 \
-             -DQt5_DIR= \
-             -DRabbitCommon_DIR= 
+            cmake .. -DCMAKE_BUILD_TYPE=Release \
+                 -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
+                 -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
+                 -DANDROID_ABI="armeabi-v7a with NEON" \
+                 -DANDROID_PLATFORM=android-18 \
+                 -DQt5_DIR= \
+                 -DRabbitCommon_DIR= 
             cmake --build . --config Release --target install
+            cmake --build . --target ANDROID_DEPLOY   
 
     + 主机是windows
 
             cd build
-            cmake .. -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake  -DCMAKE_MAKE_PROGRAM=${ANDROID_NDK}/prebuilt/windows-x86_64/bin/make.exe -DANDROID_ABI=arm64-v8a -DANDROID_ARM_NEON=ON \
+            cmake .. -G"Unix Makefiles" \
+               -DCMAKE_BUILD_TYPE=Release \
+               -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
+               -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
+               -DCMAKE_MAKE_PROGRAM=${ANDROID_NDK}/prebuilt/windows-x86_64/bin/make.exe \
+               -DANDROID_ABI=arm64-v8a -DANDROID_ARM_NEON=ON \
                -DQt5_DIR= \
                -DRabbitCommon_DIR= 
-            cmake --build . --config Release --target install
+           cmake --build . --config Release --target install
+           cmake --build . --target ANDROID_DEPLOY     
       
     + Parameter Description: https://developer.android.google.cn/ndk/guides/cmake
       + ANDROID_ABI: The following values can be taken:

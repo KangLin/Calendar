@@ -44,7 +44,7 @@ if("Debug" STREQUAL CMAKE_BUILD_TYPE)
 endif()
 
 #需要的QT组件
-SET(QT_COMPONENTS Core Gui Widgets Xml Network Multimedia)
+SET(QT_COMPONENTS Core Gui Widgets Xml Network Multimedia Sql)
 find_package(Qt5 COMPONENTS ${QT_COMPONENTS})
 message("QT_VERSION:${Qt5_VERSION}")
 #打开 qt 编译工具
