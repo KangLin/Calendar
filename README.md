@@ -116,10 +116,10 @@ please compile and test the students with the corresponding equipment.
              -DCMAKE_BUILD_TYPE=Release \
              -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
              -DRabbitCommon_DIR=
-        cmake --build .
+        cmake --build . --config Release --target install
     
   + android
-    + 主机是linux
+    + The host is linux
 
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=Release \
@@ -132,7 +132,7 @@ please compile and test the students with the corresponding equipment.
             cmake --build . --config Release --target install
             cmake --build . --target ANDROID_DEPLOY   
 
-    + 主机是windows
+    + The host is windows
 
             cd build
             cmake .. -G"Unix Makefiles" \
@@ -161,6 +161,10 @@ please compile and test the students with the corresponding equipment.
       + ANDROID_ARM_MODE
       + ANDROID_ARM_NEON
       + ANDROID_STL:Specifies the STL that CMake should use. 
+
+    + Install apk to devices
+
+           adb install android-build-debug.apk 
 
 - Note  
     + windows

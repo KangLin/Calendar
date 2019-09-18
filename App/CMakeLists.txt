@@ -92,8 +92,9 @@ IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
 ENDIF()
 
 IF(ANDROID)
-    Set(JSON_FILE ${PROJECT_BINARY_DIR}/android-lib${PROJECT_NAME}.so-deployment-settings.json)
-    GENERATED_DEPLOYMENT_SETTINGS(${JSON_FILE} ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME})
+    Set(JSON_FILE ${CMAKE_BINARY_DIR}/android_deployment_settings.json)
+    GENERATED_DEPLOYMENT_SETTINGS(NAME ${JSON_FILE}
+        APPLACTION "${CMAKE_BINARY_DIR}/bin/lib${PROJECT_NAME}.so")
 
     set(ANDROID_DELOP_PARA --gradle)
     if(Qt5_VERSION VERSION_LESS 5.8.0)
@@ -105,7 +106,9 @@ IF(ANDROID)
     endif()
     
     add_custom_target(ANDROID_DEPLOY #TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
+        #COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}
+        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:${PROJECT_NAME}>/*" ${CMAKE_BINARY_DIR}/android-build/libs/${ANDROID_ABI}
         #注意 需要把 ${QT_INSTALL_DIR}/bin 加到环境变量PATH中
         COMMAND "${QT_INSTALL_DIR}/bin/androiddeployqt"
             --output ${CMAKE_BINARY_DIR}/android-build

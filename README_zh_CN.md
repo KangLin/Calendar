@@ -107,17 +107,17 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
         make install
 
 - 用 cmake
-  + windows or linux
+  + windows 或 linux
   
           cd build
           cmake .. -DCMAKE_INSTALL_PREFIX=`pwd`/install \
                -DCMAKE_BUILD_TYPE=Release \
                -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
                -DRabbitCommon_DIR=
-          cmake --build .
+          cmake --build . --config Release --target install
       
   + android
-    + 主机是linux
+    - 主机是linux
 
           cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release \
@@ -130,7 +130,7 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
           cmake --build . --config Release --target install
           cmake --build . --target ANDROID_DEPLOY         
 
-    + 主机是windows
+    - 主机是windows
 
           cd build
           cmake .. -G"Unix Makefiles" \
@@ -159,6 +159,10 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
       + ANDROID_ARM_MODE
       + ANDROID_ARM_NEON
       + ANDROID_STL:指定 CMake 应使用的 STL。 
+
+    - 安装 apk 到设备
+
+           adb install android-build-debug.apk 
 
 - 安装注意  
 Qt因为版权原因，没有提供openssl动态库，所以必须自己复制openssl的动态库到安装目录下。
