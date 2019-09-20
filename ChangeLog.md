@@ -1,3 +1,6 @@
+- v0.2.5
+  + Finish cmake
+  
 - v0.2.4
   + Add chinese holidays in calendar
 
