@@ -146,7 +146,6 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     exit 0
 fi
 
-cd build_${BUILD_TARGERT}
 if [ -n "$GENERATORS" ]; then
     if [ -n "${STATIC}" ]; then
         CONFIG_PARA="-DBUILD_SHARED_LIBS=${STATIC}"
