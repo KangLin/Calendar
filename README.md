@@ -48,11 +48,8 @@ please compile and test the students with the corresponding equipment.
 ![Tasks](Resource/Image/ScreenShot/Tasks.PNG)
 
 ### Donation
-- Donation (greater than ¥20):  
-![donation (greater than ¥20)](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation (greater than ¥20)")
 
-- Donate ¥20  
-![donation ¥20](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute20.png "donation ¥20")
+![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
 
 ### [Download setup package](https://github.com/KangLin/Tasks/releases/latest)
 
