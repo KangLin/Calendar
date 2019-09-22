@@ -54,15 +54,15 @@ please compile and test the students with the corresponding equipment.
 ### [Download setup package](https://github.com/KangLin/Tasks/releases/latest)
 
 - linux
-    - [Tasks_v0.2.4.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.2.4/Tasks_v0.2.4.tar.gz)  
+    - [Tasks_v0.2.5.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.2.5/Tasks_v0.2.5.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:    
-      1. Decompress. Copy Tasks_v0.2.4.tar.gz to install directory, then decompress it:
+      1. Decompress. Copy Tasks_v0.2.5.tar.gz to install directory, then decompress it:
 
                 mkdir Tasks
                 cd Tasks
-                cp $DOWNLOAD/Tasks_v0.2.4.tar.gz .
-                tar xvfz Tasks_v0.2.4.tar.gz
+                cp $DOWNLOAD/Tasks_v0.2.5.tar.gz .
+                tar xvfz Tasks_v0.2.5.tar.gz
 
       2. install
 
@@ -73,15 +73,15 @@ please compile and test the students with the corresponding equipment.
                 ./install.sh remove
 
 - ubuntu
-    - [tasks_0.2.4_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.2.4/tasks_0.2.4_amd64.deb)  
+    - [tasks_0.2.5_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.2.5/tasks_0.2.5_amd64.deb)  
    Deb installation package for Ubuntu
 
 - windows
-    - [Tasks-Setup-v0.2.4.exe](https://github.com/KangLin/Tasks/releases/download/v0.2.4/Tasks-Setup-v0.2.4.exe)  
+    - [Tasks-Setup-v0.2.5.exe](https://github.com/KangLin/Tasks/releases/download/v0.2.5/Tasks-Setup-v0.2.5.exe)  
    Windows installation package, support for Windows xp and above
 
 - android
-    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.2.4/android-build-debug.apk)
+    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.2.5/android-build-debug.apk)
     
 
 ### Depend
