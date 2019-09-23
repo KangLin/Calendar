@@ -4,6 +4,7 @@
 static int gTypeCSticky = qRegisterMetaType<CSticky>();
 CSticky::CSticky(QObject *parent) : QObject(parent)
 {
+    m_nVersion = 0;
     m_bWindowHide = false;
     m_Policy = normal;
 }
@@ -16,7 +17,8 @@ CSticky::CSticky(const CSticky &s)
     m_WindowsPos = s.m_WindowsPos;
     m_bWindowHide = s.m_bWindowHide;
     m_szContent = s.m_szContent;
-    m_Time = s.m_Time;
+    m_tmModify = s.m_tmModify;
+    m_tmCreate = s.m_tmCreate;
 }
 
 CSticky::~CSticky()
@@ -27,7 +29,9 @@ CSticky::~CSticky()
 int CSticky::SetContent(const QString &szContent)
 {
     m_szContent = szContent;
-    m_Time = QDateTime::currentDateTime();
+    m_tmModify = QDateTime::currentDateTime();
+    if(m_tmCreate.isNull())
+        m_tmCreate = m_tmModify;
     emit sigUpdate();
     return 0;
 }
@@ -65,14 +69,26 @@ int CSticky::GetWindows(QPoint &pos, QSize &size)
 
 int CSticky::SetModifyTime()
 {
-    m_Time = QDateTime::currentDateTime();
+    m_tmModify = QDateTime::currentDateTime();
     emit sigUpdate();
     return 0;
 }
 
 QDateTime CSticky::GetModifyTime()
 {
-    return m_Time;
+    return m_tmModify;
+}
+
+int CSticky::SetCreateTime()
+{
+    m_tmCreate = QDateTime::currentDateTime();
+    emit sigUpdate();
+    return 0;
+}
+
+QDateTime CSticky::GetCreateTime()
+{
+    return m_tmCreate;
 }
 
 CSticky::POLICY CSticky::GetPolicy()
@@ -102,11 +118,13 @@ bool CSticky::GetWindowHide()
 #ifndef QT_NO_DATASTREAM
 QDataStream& operator<<(QDataStream &d, const CSticky &s)
 {
+    d << s.m_nVersion;
     d << (int)s.m_Policy;
     return d << s.m_bWindowHide
              << s.m_WindowsPos
              << s.m_WindowSize 
-             << s.m_Time
+             << s.m_tmCreate
+             << s.m_tmModify
              << s.m_szContent
              << s.m_szText;
 }
@@ -114,12 +132,14 @@ QDataStream& operator<<(QDataStream &d, const CSticky &s)
 QDataStream& operator>>(QDataStream &d, CSticky &s)
 {
     int p;
+    d >> s.m_nVersion;
     d >> p;
     s.m_Policy = (CSticky::POLICY)p;
     d >> s.m_bWindowHide
             >> s.m_WindowsPos
             >> s.m_WindowSize
-            >> s.m_Time 
+            >> s.m_tmCreate
+            >> s.m_tmModify 
             >> s.m_szContent
             >> s.m_szText;
     return d;

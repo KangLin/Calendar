@@ -28,7 +28,7 @@ CFrmStickyNotes::CFrmStickyNotes(QWidget *parent) :
     ui->setupUi(this);
     //Use qss
     //setStyleSheet("background-color:rgb(255,255,128);color:rgb(0,255,0);");
-    //setStyleSheet("QWidget{background-color:gray;border-top-left-radius:15px;border-top-right-radius:15px;}"); 
+    //setStyleSheet("QWidget{background-color:gray;border-top-left-radius:15px;border-top-right-radius:15px;}");
 
     m_ToolBarButton.addAction(QIcon(":/icon/Bold"), tr("Bold"), this, SLOT(slotBold()));
     m_ToolBarButton.addAction(QIcon(":/icon/Italic"), tr("Italic"), this, SLOT(slotItalic()));
