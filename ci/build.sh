@@ -124,14 +124,17 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     echo "MD5:${MD5}"
     ./bin/TasksApp \
         -f "`pwd`/update_linux.xml" \
+        -m "v0.2.6" \
         --md5 ${MD5}
     cat update_linux.xml
     
     MD5=`md5sum Tasks_${VERSION}.tar.gz|awk '{print $1}'`
     ./Tasks-x86_64.AppImage \
         -f "`pwd`/update_linux_appimage.xml" \
+        -m "v0.2.6" \
         --md5 ${MD5} \
         --url "https://github.com/KangLin/Tasks/releases/download/${VERSION}/Tasks_${VERSION}.tar.gz"
+
     cat update_linux_appimage.xml
     
     if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "512" ]; then
@@ -199,7 +202,6 @@ else
             sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
             sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Tasks/releases/download/${VERSION}/android-build-debug.apk<:g" update_android.xml
 
-
             export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
             #export UPLOADTOOL_PR_BODY=
             wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
@@ -231,7 +233,7 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
         "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
         MD5=`md5sum Tasks-Setup-*.exe|awk '{print $1}'`
         echo "MD5:${MD5}"
-        install/bin/TasksApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5}
+        install/bin/TasksApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.2.6"
         
         cat update_windows.xml
     fi
