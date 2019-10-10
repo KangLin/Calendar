@@ -1,4 +1,4 @@
-- v0.5.6
+- v0.2.6
   + Add strick version
   
 - v0.2.5
