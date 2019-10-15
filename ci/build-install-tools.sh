@@ -77,7 +77,7 @@ function install_android_sdk_and_ndk()
             mv android-ndk-r10e android-ndk
             rm android-ndk-r10e-linux-x86_64.bin
         else
-            NDK_VERSION=android-ndk-r20-linux-x86_64.zip
+            NDK_VERSION=r20
             wget -c -nv https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip
             unzip android-ndk-${NDK_VERSION}-linux-x86_64.zip
             mv android-ndk-${NDK_VERSION} android-ndk
@@ -89,10 +89,11 @@ function install_android_sdk_and_ndk()
 
     #Download android sdk  
     if [ ! -d "`pwd`/android-sdk" ]; then
-        wget -c -nv https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
-        tar xf android-sdk_r24.4.1-linux.tgz 
+        SDK_VERSION=r24.4.1
+        wget -c -nv https://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz
+        tar xf android-sdk_${SDK_VERSION}-linux.tgz 
         mv android-sdk-linux android-sdk
-        rm android-sdk_r24.4.1-linux.tgz 
+        rm android-sdk_${SDK_VERSION}-linux.tgz 
         (sleep 5 ; while true ; do sleep 1 ; printf 'y\r\n' ; done ) \
         | android-sdk/tools/android update sdk -u #-t tool,android-18,android-24,extra,platform,platform-tools,build-tools-28.0.3
     fi
