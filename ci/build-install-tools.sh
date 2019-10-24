@@ -137,7 +137,7 @@ function function_unix()
         libgstreamer0.10-dev \
         libgstreamer-plugins-base0.10-dev \
         gstreamer1.0-pulseaudio \
-        libodbc1 libmysql-cil-dev
+        libmysql-cil-dev libmysql-cil-dev libmysql-ocaml-dev libmysql++-dev libmysqld-dev libmysqlcppconn-dev
 
     if [ "$BUILD_DOWNLOAD" != "TRUE" ]; then
         sudo apt-get install -y -qq qt${QT_VERSION_DIR}base \
