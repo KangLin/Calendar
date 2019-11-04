@@ -11,13 +11,13 @@ cd ${SOURCE_DIR}
 if [ "$BUILD_TARGERT" = "android" ]; then
     export ANDROID_SDK_ROOT=${SOURCE_DIR}/Tools/android-sdk
     export ANDROID_NDK_ROOT=${SOURCE_DIR}/Tools/android-ndk
-    export ANDROID_SDK=${ANDROID_SDK_ROOT}
-    export ANDROID_NDK=${ANDROID_NDK_ROOT}
     if [ -n "$APPVEYOR" ]; then
         export JAVA_HOME="/C/Program Files (x86)/Java/jdk1.8.0"
+        export ANDROID_NDK_ROOT=${SOURCE_DIR}/Tools/android-sdk/ndk-bundle
     fi
     if [ "$TRAVIS" = "true" ]; then
-        export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+        export JAVA_HOME=${SOURCE_DIR}/Tools/android-studio/jre
+        #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
     fi
     case $BUILD_ARCH in
         arm*)
@@ -28,6 +28,8 @@ if [ "$BUILD_TARGERT" = "android" ]; then
         ;;
     esac
     export PATH=${SOURCE_DIR}/Tools/apache-ant/bin:$JAVA_HOME:$PATH
+    export ANDROID_SDK=${ANDROID_SDK_ROOT}
+    export ANDROID_NDK=${ANDROID_NDK_ROOT}
 fi
 
 if [ "${BUILD_TARGERT}" = "unix" ]; then
@@ -92,6 +94,12 @@ esac
 export VERSION="v0.2.6"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
+    if [ "${BUILD_DOWNLOAD}" != "TRUE" ]; then
+        sed -i "s/export QT_VERSION_DIR=.*/export QT_VERSION_DIR=${QT_VERSION_DIR}/g" ${SOURCE_DIR}/debian/postinst
+        sed -i "s/export QT_VERSION=.*/export QT_VERSION=${QT_VERSION}/g" ${SOURCE_DIR}/debian/preinst
+        cat ${SOURCE_DIR}/debian/postinst
+        cat ${SOURCE_DIR}/debian/preinst
+    fi
     bash build_debpackage.sh ${QT_ROOT}
 
     sudo dpkg -i ../tasks_*_amd64.deb
@@ -155,24 +163,28 @@ if [ -n "$GENERATORS" ]; then
     if [ -n "${STATIC}" ]; then
         CONFIG_PARA="-DBUILD_SHARED_LIBS=${STATIC}"
     fi
+    if [ -n "${ANDROID_ARM_NEON}" ]; then
+        CONFIG_PARA="${CONFIG_PARA} -DANDROID_ARM_NEON=${ANDROID_ARM_NEON}"
+    fi
     if [ "${BUILD_TARGERT}" = "android" ]; then
-	    cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
-		 -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
-		 -DCMAKE_VERBOSE=ON \
-		 -DCMAKE_BUILD_TYPE=Release \
-		 -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
-         -DQt5Core_DIR=${QT_ROOT}/lib/cmake/Qt5Core \
-         -DQt5Gui_DIR=${QT_ROOT}/lib/cmake/Qt5Gui \
-         -DQt5Widgets_DIR=${QT_ROOT}/lib/cmake/Qt5Widgets \
-         -DQt5Xml_DIR=${QT_ROOT}/lib/cmake/Qt5Xml \
-         -DQt5Sql_DIR=${QT_ROOT}/lib/cmake/Qt5Sql \
-         -DQt5Network_DIR=${QT_ROOT}/lib/cmake/Qt5Network \
-         -DQt5Multimedia_DIR=${QT_ROOT}/lib/cmake/Qt5Multimedia \
-         -DQt5LinguistTools_DIR=${QT_ROOT}/lib/cmake/Qt5LinguistTools \
-         -DANDROID_PLATFORM=${ANDROID_API} \
-         -DANDROID_ABI="${BUILD_ARCH}" \
-         -DCMAKE_MAKE_PROGRAM=make \
-         -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake 
+        cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
+            -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
+            -DCMAKE_VERBOSE=ON \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
+            -DQt5Core_DIR=${QT_ROOT}/lib/cmake/Qt5Core \
+            -DQt5Gui_DIR=${QT_ROOT}/lib/cmake/Qt5Gui \
+            -DQt5Widgets_DIR=${QT_ROOT}/lib/cmake/Qt5Widgets \
+            -DQt5Xml_DIR=${QT_ROOT}/lib/cmake/Qt5Xml \
+            -DQt5Sql_DIR=${QT_ROOT}/lib/cmake/Qt5Sql \
+            -DQt5Network_DIR=${QT_ROOT}/lib/cmake/Qt5Network \
+            -DQt5Multimedia_DIR=${QT_ROOT}/lib/cmake/Qt5Multimedia \
+            -DQt5LinguistTools_DIR=${QT_ROOT}/lib/cmake/Qt5LinguistTools \
+            -DQt5AndroidExtras_DIR=${QT_ROOT}/lib/cmake/Qt5AndroidExtras \
+            -DANDROID_PLATFORM=${ANDROID_API} \
+            -DANDROID_ABI="${BUILD_ARCH}" \
+            -DCMAKE_MAKE_PROGRAM=make \
+            -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake 
     else
 	    cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
 		 -DCMAKE_INSTALL_PREFIX=`pwd`/install \

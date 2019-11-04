@@ -38,7 +38,10 @@ case "$1" in
         fi
         echo "/opt/Tasks/lib" > /etc/ld.so.conf.d/Tasks.conf
         echo "/opt/Tasks/bin" >> /etc/ld.so.conf.d/Tasks.conf
-        echo "/opt/qt59/lib" >> /etc/ld.so.conf.d/Tasks.conf
+        export QT_VERSION_DIR=
+        if [ -n "${QT_VERSION_DIR}" ]; then
+            echo "/opt/qt${QT_VERSION_DIR}/lib" >> /etc/ld.so.conf.d/FaceRecognizer.conf
+        fi
         ldconfig
     ;;
 
