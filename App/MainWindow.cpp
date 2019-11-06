@@ -108,7 +108,7 @@ void CMainWindow::slotAbout()
 {
 #ifdef RABBITCOMMON
     CDlgAbout about(this);
-    about.m_AppIcon = QPixmap(":/icon/App");
+    about.m_AppIcon = QImage(":/icon/App");
     about.m_szHomePage = "https://github.com/KangLin/Tasks";
     if(about.isHidden())
 #if defined (Q_OS_ANDROID)
@@ -238,7 +238,7 @@ void CMainWindow::on_actionUpdate_U_triggered()
 {
 #ifdef RABBITCOMMON
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
-    m_pfrmUpdater->SetTitle(QPixmap(":/icon/App"));
+    m_pfrmUpdater->SetTitle(QImage(":/icon/App"));
     #if defined (Q_OS_ANDROID)
         m_pfrmUpdater->showMaximized();
     #else
