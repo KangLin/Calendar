@@ -24,13 +24,13 @@ Author: KangLin (kl222@126.com)
 
 ### Features
 
-- [x] Eye Nurse： Vision protection
-- [x] Custom task
 - [x] calendar
      - [x] Birthady(Year cycle), include lunar and solar
      - [x] Month cycle
      - [x] Week cycle
      - [x] Custom cycle
+- [x] Custom task
+  - [x] Eye Nurse： Vision protection
 - [x] Sticky
 - [x] Cross-platform, support multiple operating systems
      - [x] Windows
