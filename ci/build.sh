@@ -136,7 +136,6 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         -f "`pwd`/update_linux.xml" \
         -m "v0.2.6" \
         --md5 ${MD5}
-    cat update_linux.xml
     
     MD5=`md5sum Tasks_${VERSION}.tar.gz|awk '{print $1}'`
     ./Tasks-x86_64.AppImage \
@@ -144,9 +143,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         -m "v0.2.6" \
         --md5 ${MD5} \
         --url "https://github.com/KangLin/Tasks/releases/download/${VERSION}/Tasks_${VERSION}.tar.gz"
-
-    cat update_linux_appimage.xml
-    
+  
     if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "512" ]; then
         export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
         #export UPLOADTOOL_PR_BODY=
