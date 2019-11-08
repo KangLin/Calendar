@@ -8,6 +8,7 @@ TARGET = TasksApp
 TEMPLATE = app
 
 QT += core gui xml sql
+android: QT += androidextras
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network multimedia
 

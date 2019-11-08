@@ -3,6 +3,10 @@
 #include <QLocale>
 #include <QDebug>
 #include <QSettings>
+#if defined(Q_OS_ANDROID)
+    #include <QtAndroidExtras/QtAndroid>
+#endif
+
 #include "MainWindow.h"
 #include "FrmStickyNotes.h"
 #include "FrmStickyList.h"
@@ -18,6 +22,10 @@ int main(int argc, char *argv[])
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
+#if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    QtAndroid::hideSplashScreen();
+#endif
+    
     QApplication a(argc, argv);
     a.setApplicationVersion(BUILD_VERSION);
     a.setApplicationName("Tasks");
