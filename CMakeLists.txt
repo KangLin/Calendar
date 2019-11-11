@@ -152,8 +152,6 @@ set(OTHER_FILES
 # 设置安装前缀
 if(ANDROID)
     set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/android-build CACHE STRING "Install path prefix" FORCE)
-else()
-    SET(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/install CACHE STRING "Install path prefix.")
 endif()
 
 if(ANDROID)
