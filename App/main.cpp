@@ -30,10 +30,6 @@ int main(int argc, char *argv[])
     a.setApplicationVersion(BUILD_VERSION);
     a.setApplicationName("Tasks");
     
-//#if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
-//    QtAndroid::hideSplashScreen();
-//#endif
-    
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
 
