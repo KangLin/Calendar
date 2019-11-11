@@ -20,9 +20,6 @@ include(${CMAKE_SOURCE_DIR}/cmake/Utils.cmake)
 SET(RCC_FILES
     ${TRANSLATIONS_RESOURCE_FILES}
     )
-if(ANDROID)
-    SET(RCC_FILES ${RCC_FILES} ${CMAKE_CURRENT_BINARY_DIR}/translations_${PROJECT_NAME}.qrc)
-endif()
 if(WIN32)
     set(OTHER_FILES ${OTHER_FILES} AppIcon.ico)
 endif()
