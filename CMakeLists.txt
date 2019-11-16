@@ -66,8 +66,6 @@ SET(CMAKE_AUTORCC ON)
 SET(CMAKE_INCLUDE_CURRENT_DIR ON)
 SET(CMAKE_VERBOSE_MAKEFILE ON)
 
-
-
 IF(MSVC)
     # This option is to enable the /MP switch for Visual Studio 2005 and above compilers
     OPTION(WIN32_USE_MP "Set to ON to build with the /MP option (Visual Studio 2005 and above)." ON)
@@ -159,23 +157,32 @@ if(ANDROID)
     set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/android-build CACHE STRING "Install path prefix" FORCE)
 endif()
 
+add_custom_target(install-runtime
+  COMMAND
+     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime 
+     -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake"
+)
+
 if(ANDROID)
     # Install xml files
-    INSTALL(DIRECTORY etc/ DESTINATION "assets/etc/xml")
+    INSTALL(DIRECTORY etc/ DESTINATION "assets/etc/xml" COMPONENT Runtime)
     # Install style files
-    INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "assets/Resource")
+    INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "assets/Resource" COMPONENT Runtime)
     # Install other files
-    INSTALL(FILES ${OTHER_FILES} DESTINATION "assets")
+    INSTALL(FILES ${OTHER_FILES} DESTINATION "assets" COMPONENT Runtime)
 else()
     # Install xml files
-    INSTALL(DIRECTORY etc/ DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/xml")
+    INSTALL(DIRECTORY etc/ DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/xml" COMPONENT Runtime)
     # Install style files
-    INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "Resource")
+    INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "Resource" COMPONENT Runtime)
     # Install other files
-    INSTALL(FILES ${OTHER_FILES} DESTINATION ".")
+    INSTALL(FILES ${OTHER_FILES} DESTINATION "." COMPONENT Runtime)
 endif()
 
-INSTALL(FILES Install/Install.nsi DESTINATION "${CMAKE_BINARY_DIR}")
+if(WIN32)
+    INSTALL(FILES Install/Install.nsi DESTINATION "${CMAKE_BINARY_DIR}"
+        COMPONENT Runtime)
+endif()
 
 message("Build arch:${BUILD_ARCH}")
 message("Build app:${BUILD_APP}")

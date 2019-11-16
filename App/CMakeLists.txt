@@ -20,9 +20,6 @@ include(${CMAKE_SOURCE_DIR}/cmake/Utils.cmake)
 SET(RCC_FILES
     ${TRANSLATIONS_RESOURCE_FILES}
     )
-if(WIN32)
-    set(OTHER_FILES ${OTHER_FILES} AppIcon.ico)
-endif()
 
 add_definitions(-DBUILD_VERSION="${BUILD_VERSION}")
 add_definitions(-DBUILD_ARCH="${BUILD_ARCH}")
@@ -43,16 +40,17 @@ if(TARGET RabbitCommon)
 endif()
 target_link_libraries(${PROJECT_NAME} ${APP_LIBS})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/Src" "${CMAKE_BINARY_DIR}")
-if(${CMAKE_CXX_COMPILER} MATCHES ".*/(g\\+\\+)(\\..*)")
+if(MINGW)
     set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE "-mwindows")
-elseif(${CMAKE_CXX_COMPILER} MATCHES ".*/(cl)(\\..*)")
+elseif(MSVC)
     set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE
         "/SUBSYSTEM:WINDOWS\",5.01\" /ENTRY:mainCRTStartup")
 endif()
-set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set_target_properties(${PROJECT_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${BUILD_VERSION})
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+    VERSION ${BUILD_VERSION})
 if(UNIX AND NOT ANDROID)
     set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_NAME ${PROJECT_NAME})
 endif()
@@ -73,12 +71,15 @@ else()
             )
 endif()
 
-# Install other files
-INSTALL(FILES ${OTHER_FILES} DESTINATION ".")
+if(WIN32)
+    INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Runtime)
+endif()
 
 if(UNIX)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/debian/Tasks.desktop DESTINATION "share/applications")
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Tasks.png DESTINATION "share/pixmaps")
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/debian/Tasks.desktop
+        DESTINATION "share/applications" COMPONENT Runtime)
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Tasks.png
+        DESTINATION "share/pixmaps" COMPONENT Runtime)
 endif()
 
 IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
@@ -97,7 +98,9 @@ IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
         --verbose 7
         "$<TARGET_FILE:${PROJECT_NAME}>"
         )
-    INSTALL(DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>/" DESTINATION "${CMAKE_INSTALL_BINDIR}")
+    INSTALL(DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>/"
+        DESTINATION "${CMAKE_INSTALL_BINDIR}"
+        COMPONENT Runtime)
 ENDIF()
 
 IF(ANDROID)
