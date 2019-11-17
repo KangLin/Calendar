@@ -107,7 +107,7 @@ CMainWindow::~CMainWindow()
 void CMainWindow::slotAbout()
 {
 #ifdef RABBITCOMMON
-    CDlgAbout about(this);
+    CDlgAbout about;
     about.m_AppIcon = QImage(":/icon/App");
     about.m_szHomePage = "https://github.com/KangLin/Tasks";
     if(about.isHidden())
