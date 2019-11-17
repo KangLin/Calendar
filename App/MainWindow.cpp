@@ -107,7 +107,7 @@ CMainWindow::~CMainWindow()
 void CMainWindow::slotAbout()
 {
 #ifdef RABBITCOMMON
-    CDlgAbout about;
+    CDlgAbout about(this);
     about.m_AppIcon = QImage(":/icon/App");
     about.m_szHomePage = "https://github.com/KangLin/Tasks";
     if(about.isHidden())
@@ -115,6 +115,19 @@ void CMainWindow::slotAbout()
         about.showMaximized();
 #endif
         about.exec();
+#endif
+}
+
+void CMainWindow::on_actionUpdate_U_triggered()
+{
+#ifdef RABBITCOMMON
+    CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
+    m_pfrmUpdater->SetTitle(QImage(":/icon/App"));
+    #if defined (Q_OS_ANDROID)
+        m_pfrmUpdater->showMaximized();
+    #else
+        m_pfrmUpdater->show();
+    #endif
 #endif
 }
 
@@ -232,19 +245,6 @@ void CMainWindow::on_actionOption_O_triggered()
     dlg.showMaximized();
 #endif
     dlg.exec();
-}
-
-void CMainWindow::on_actionUpdate_U_triggered()
-{
-#ifdef RABBITCOMMON
-    CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
-    m_pfrmUpdater->SetTitle(QImage(":/icon/App"));
-    #if defined (Q_OS_ANDROID)
-        m_pfrmUpdater->showMaximized();
-    #else
-        m_pfrmUpdater->show();
-    #endif
-#endif
 }
 
 void CMainWindow::on_actionSticky_list_L_triggered()
