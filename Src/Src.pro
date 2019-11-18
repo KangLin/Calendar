@@ -37,15 +37,10 @@ android: TasksList.path = $$PREFIX/assets/etc/xml
 else: TasksList.path = $$PREFIX/etc/xml
 TasksList.CONFIG += no_check_exist
 
-sink.files = Resource/sink/*
-android: sink.path = $$PREFIX/assets/Resource
-else: sink.path = $$PREFIX/Resource
-sink.CONFIG += no_check_exist
-
 IncludeFiles.path = $$PREFIX/include/Tasks
 IncludeFiles.files = $$INSTALLHEADER_FILES
 !android: target.path = $$PREFIX/bin
-INSTALLS += TasksList sink target IncludeFiles
+INSTALLS += TasksList target IncludeFiles
 
 !CONFIG(static): win32 : equals(QMAKE_HOST.os, Windows){
     

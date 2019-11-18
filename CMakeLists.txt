@@ -164,17 +164,9 @@ add_custom_target(install-runtime
 )
 
 if(ANDROID)
-    # Install xml files
-    INSTALL(DIRECTORY etc/ DESTINATION "assets/etc/xml" COMPONENT Runtime)
-    # Install style files
-    INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "assets/Resource" COMPONENT Runtime)
     # Install other files
     INSTALL(FILES ${OTHER_FILES} DESTINATION "assets" COMPONENT Runtime)
 else()
-    # Install xml files
-    INSTALL(DIRECTORY etc/ DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/xml" COMPONENT Runtime)
-    # Install style files
-    INSTALL(DIRECTORY Src/Resource/sink/ DESTINATION "Resource" COMPONENT Runtime)
     # Install other files
     INSTALL(FILES ${OTHER_FILES} DESTINATION "." COMPONENT Runtime)
 endif()

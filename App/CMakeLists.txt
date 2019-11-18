@@ -82,6 +82,13 @@ if(UNIX)
         DESTINATION "share/pixmaps" COMPONENT Runtime)
 endif()
 
+ # Install style files
+if(ANDROID)
+    INSTALL(DIRECTORY Resource/sink/ DESTINATION "assets/data/style" COMPONENT Runtime)
+else()
+    INSTALL(DIRECTORY Resource/sink/ DESTINATION "data/style" COMPONENT Runtime)
+endif()
+
 IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
     SET(RUNTIME_FILE "${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX}")
     IF(CMAKE_BUILD_TYPE MATCHES Release AND MINGW)

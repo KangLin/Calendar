@@ -79,7 +79,6 @@ include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
 #设置资源文件
 SET(RCC_FILES
     Resource/ResourceTasks.qrc
-    Resource/sink/dark/style.qrc
     ${TRANSLATIONS_RESOURCE_FILES}
     )
 
@@ -150,6 +149,13 @@ if(NOT MSVC)
     # Install pc files
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/Tasks.pc.in ${CMAKE_BINARY_DIR}/Tasks.pc @ONLY)
     install(FILES ${CMAKE_BINARY_DIR}/Tasks.pc DESTINATION lib/pkgconfig)
+endif()
+
+# Install xml files
+if(ANDROID)
+    INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/etc/ DESTINATION "assets/etc/xml" COMPONENT Runtime)
+else()
+    INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/etc/ DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/xml" COMPONENT Runtime)
 endif()
 
 IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32 AND BUILD_SHARED_LIBS)

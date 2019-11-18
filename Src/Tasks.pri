@@ -105,8 +105,7 @@ FORMS += \
     $$PWD/FrmStickyList.ui
 
 RESOURCES += \
-    $$PWD/Resource/ResourceTasks.qrc \
-    $$PWD/Resource/sink/dark/style.qrc
+    $$PWD/Resource/ResourceTasks.qrc
 
 DISTFILES += $$PWD/Resource/sink/* \
     $$PWD/Resource/db/*
