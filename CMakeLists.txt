@@ -152,11 +152,6 @@ set(OTHER_FILES
     Authors_zh_CN.md
     ChangeLog_zh_CN.md)
 
-# 设置安装前缀
-if(ANDROID)
-    set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/android-build CACHE STRING "Install path prefix" FORCE)
-endif()
-
 add_custom_target(install-runtime
   COMMAND
      "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime 
