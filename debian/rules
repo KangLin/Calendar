@@ -31,7 +31,7 @@ override_dh_auto_build:
 
 override_dh_shlibdeps:
     ifdef GENERATORS
-	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/tasks/opt/Tasks/bin
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/tasks/opt/Tasks/lib:`pwd`/debian/tasks/opt/Tasks/bin
     else
-	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/tasks/opt/Tasks/bin
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/tasks/opt/Tasks/lib:`pwd`/debian/tasks/opt/Tasks/bin
     endif
