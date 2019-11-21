@@ -1,3 +1,6 @@
+- v0.2.7
+  + Modify ci
+
 - v0.2.6
   + Add strick version
   
