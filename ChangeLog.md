@@ -1,3 +1,6 @@
+- v0.2.9
+  + Test updater
+
 - v0.2.8
   + Modify updater
   
