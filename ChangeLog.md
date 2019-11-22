@@ -1,3 +1,6 @@
+- v0.2.8
+  + Modify updater
+  
 - v0.2.7
   + Modify ci
 

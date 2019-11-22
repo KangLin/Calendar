@@ -98,7 +98,7 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="v0.2.7"
+export VERSION="v0.2.8"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     if [ "${DOWNLOAD_QT}" != "TRUE" ]; then
@@ -129,6 +129,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     # Create appimage install package
     #cp ../Tasks-${VERSION}-x86_64.AppImage .
     cp $SOURCE_DIR/Install/install.sh .
+    cp $RabbitCommon_DIR/Install/install1.sh .
     ln -s Tasks-${VERSION}-x86_64.AppImage Tasks-x86_64.AppImage
     tar -czf Tasks_${VERSION}.tar.gz \
         Tasks-${VERSION}-x86_64.AppImage \
@@ -141,17 +142,20 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     echo "MD5:${MD5}"
     ./bin/TasksApp \
         -f "`pwd`/update_linux.xml" \
-        -m "v0.2.6" \
+        -m "v0.2.8" \
         --md5 ${MD5}
     
     MD5=`md5sum Tasks_${VERSION}.tar.gz|awk '{print $1}'`
     ./Tasks-x86_64.AppImage \
         -f "`pwd`/update_linux_appimage.xml" \
-        -m "v0.2.6" \
+        -m "v0.2.8" \
         --md5 ${MD5} \
         --url "https://github.com/KangLin/Tasks/releases/download/${VERSION}/Tasks_${VERSION}.tar.gz"
   
-    if [ "$TRAVIS_TAG" != "" -a "${QT_VERSION_DIR}" = "512" ]; then
+    if [ "$TRAVIS_TAG" != "" \
+         -a "${QT_VERSION}" = "5.12.3" \
+         -a "$DOWNLOAD_QT" != "TRUE" \
+         -a -z "$GENERATORS" ]; then
         export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
         #export UPLOADTOOL_PR_BODY=
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
@@ -199,8 +203,8 @@ if [ -n "$GENERATORS" ]; then
     cmake --build . --target install --config Release -- ${RABBIT_MAKE_JOB_PARA}
     if [ "${BUILD_TARGERT}" = "android" ]; then
         cmake --build . --target APK
-        APK_FILE=`find . -name "android-build-debug.apk"`
-        cp ${APK_FILE} $SOURCE_DIR/
+        #APK_FILE=`find . -name "android-build-debug.apk"`
+        #cp ${APK_FILE} $SOURCE_DIR/ # appveyor.yml used
     fi
 else
     if [ "ON" = "${STATIC}" ]; then
@@ -219,8 +223,10 @@ else
                        --gradle --verbose
                        # --jdk ${JAVA_HOME}
         APK_FILE=`find . -name "android-build-debug.apk"`
-        cp ${APK_FILE} ${SOURCE_DIR}/
-        if [ "$TRAVIS_TAG" != "" -a "$BUILD_ARCH"="armeabi-v7a" -a "$QT_VERSION_DIR"="5.12" ]; then
+        cp ${APK_FILE} ${SOURCE_DIR}/  # appveyor.yml used
+        if [ "$TRAVIS_TAG" != "" \
+             -a "$BUILD_ARCH"="armeabi-v7a" \
+             -a "$QT_VERSION"="5.12.6" ]; then
         
             cp $SOURCE_DIR/Update/update_android.xml .
             MD5=`md5sum ${APK_FILE} | awk '{print $1}'`
@@ -263,7 +269,7 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
         "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
         MD5=`md5sum Tasks-Setup-*.exe|awk '{print $1}'`
         echo "MD5:${MD5}"
-        install/bin/TasksApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.2.6"
+        install/bin/TasksApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.2.8"
         
         cat update_windows.xml
     fi
