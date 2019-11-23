@@ -160,7 +160,10 @@ please compile and test the students with the corresponding equipment.
       + ANDROID_ARM_MODE
       + ANDROID_ARM_NEON
       + ANDROID_STL:Specifies the STL that CMake should use. 
-
+        - c++_shared: The shared library variant of libc++.
+        - c++_static: The static library variant of libc++.
+        - none: No C++ standard library suport.
+        - system: The system STL
     + Install apk to devices
 
            adb install android-build-debug.apk 
