@@ -123,6 +123,7 @@ void CMainWindow::on_actionUpdate_U_triggered()
 #ifdef RABBITCOMMON
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
     m_pfrmUpdater->SetTitle(QImage(":/icon/App"));
+    m_pfrmUpdater->SetInstallAutoStartup();
     #if defined (Q_OS_ANDROID)
         m_pfrmUpdater->showMaximized();
     #else

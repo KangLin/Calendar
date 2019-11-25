@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
 #ifdef RABBITCOMMON 
     CFrmUpdater *pUpdate = new CFrmUpdater();
     pUpdate->SetTitle(QImage(":/icon/App"));
+    pUpdate->SetInstallAutoStartup();
     if(!pUpdate->GenerateUpdateXml()) 
         return 0; 
 #endif

@@ -1,3 +1,6 @@
+- v0.3.0
+  + Test updater
+
 - v0.2.9
   + Test updater
 
