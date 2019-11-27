@@ -98,7 +98,7 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="v0.3.0"
+export VERSION="v0.3.1"
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     if [ "${DOWNLOAD_QT}" != "TRUE" ]; then
@@ -143,13 +143,13 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     echo "MD5:${MD5}"
     ./bin/TasksApp \
         -f "`pwd`/update_linux.xml" \
-        -m "v0.3.0" \
+        -m "v0.3.1" \
         --md5 ${MD5}
     
     MD5=`md5sum Tasks_${VERSION}.tar.gz|awk '{print $1}'`
     ./Tasks-x86_64.AppImage \
         -f "`pwd`/update_linux_appimage.xml" \
-        -m "v0.3.0" \
+        -m "v0.3.1" \
         --md5 ${MD5} \
         --url "https://github.com/KangLin/Tasks/releases/download/${VERSION}/Tasks_${VERSION}.tar.gz"
   
@@ -270,8 +270,7 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
         "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
         MD5=`md5sum Tasks-Setup-*.exe|awk '{print $1}'`
         echo "MD5:${MD5}"
-        install/bin/TasksApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.3.0"
-        
-        cat update_windows.xml
+        install/bin/TasksApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.3.1"
+        #cat update_windows.xml
     fi
 fi

@@ -54,15 +54,15 @@ please compile and test the students with the corresponding equipment.
 ### [Download setup package](https://github.com/KangLin/Tasks/releases/latest)
 
 - linux
-    - [Tasks_v0.3.0.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.3.0/Tasks_v0.3.0.tar.gz)  
+    - [Tasks_v0.3.1.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.3.1/Tasks_v0.3.1.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:    
-      1. Decompress. Copy Tasks_v0.3.0.tar.gz to install directory, then decompress it:
+      1. Decompress. Copy Tasks_v0.3.1.tar.gz to install directory, then decompress it:
 
                 mkdir Tasks
                 cd Tasks
-                cp $DOWNLOAD/Tasks_v0.3.0.tar.gz .
-                tar xvfz Tasks_v0.3.0.tar.gz
+                cp $DOWNLOAD/Tasks_v0.3.1.tar.gz .
+                tar xvfz Tasks_v0.3.1.tar.gz
 
       2. install
 
@@ -73,15 +73,15 @@ please compile and test the students with the corresponding equipment.
                 ./install.sh remove
 
 - ubuntu
-    - [tasks_0.3.0_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.0/tasks_0.3.0_amd64.deb)  
+    - [tasks_0.3.1_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.1/tasks_0.3.1_amd64.deb)  
    Deb installation package for Ubuntu
 
 - windows
-    - [Tasks-Setup-v0.3.0.exe](https://github.com/KangLin/Tasks/releases/download/v0.3.0/Tasks-Setup-v0.3.0.exe)  
+    - [Tasks-Setup-v0.3.1.exe](https://github.com/KangLin/Tasks/releases/download/v0.3.1/Tasks-Setup-v0.3.1.exe)  
    Windows installation package, support for Windows xp and above
 
 - android
-    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.3.0/android-build-debug.apk)
+    + [android-build-debug.apk](https://github.com/KangLin/Tasks/releases/download/v0.3.1/android-build-debug.apk)
     
 
 ### Depend
@@ -159,7 +159,7 @@ please compile and test the students with the corresponding equipment.
       + ANDROID_PLATFORM: For a full list of platform names and corresponding Android system images, see the [Android NDK Native API] (https://developer.android.google.com/ndk/guides/stable_apis.html)
       + ANDROID_ARM_MODE
       + ANDROID_ARM_NEON
-      + ANDROID_STL:Specifies the STL that CMake should use. 
+      + ANDROID_STL: Specifies the STL that CMake should use. 
         - c++_shared: The shared library variant of libc++.
         - c++_static: The static library variant of libc++.
         - none: No C++ standard library suport.
