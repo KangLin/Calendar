@@ -221,7 +221,9 @@ else
                        --input `pwd`/App/android-libTasksApp.so-deployment-settings.json \
                        --output `pwd`/android-build \
                        --android-platform ${ANDROID_API} \
-                       --gradle --verbose
+                       --gradle --verbose \
+                       --sign ${SOURCE_DIR}/Tasks.keystore \
+                       --storepass ${STOREPASS}
                        # --jdk ${JAVA_HOME}
         APK_FILE=`find . -name "android-build-debug.apk"`
         cp ${APK_FILE} ${SOURCE_DIR}/  # appveyor.yml used
