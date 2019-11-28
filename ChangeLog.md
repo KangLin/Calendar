@@ -1,3 +1,7 @@
+- v0.3.2
+  + Test updater
+  + Add android sign
+
 - v0.3.1
   + Test updater
   

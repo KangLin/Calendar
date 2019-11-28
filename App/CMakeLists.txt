@@ -122,18 +122,9 @@ IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
 ENDIF()
 
 IF(ANDROID)
-    Set(JSON_FILE ${CMAKE_BINARY_DIR}/android_deployment_settings.json)
+    Set(JSON_FILE ${CMAKE_CURRENT_BINARY_DIR}/android-libTasksApp.so-deployment-settings.json)
     GENERATED_DEPLOYMENT_SETTINGS(NAME ${JSON_FILE}
         APPLACTION "${CMAKE_BINARY_DIR}/bin/lib${PROJECT_NAME}.so")
-
-    set(ANDROID_DELOP_PARA --gradle)
-    if(Qt5_VERSION VERSION_LESS 5.8.0)
-        find_program(ANT NAMES ant) # PATHS  "/usr/bin")
-        MESSAGE("ant:${ANT}\n")
-        if(ANT_FOUND)
-            set(ANDROID_DELOP_PARA --ant ${ANT})
-        endif()
-    endif()
 
     add_custom_target(APK #TARGET ${PROJECT_NAME} POST_BUILD
         #COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" ${CMAKE_INSTALL_PREFIX}/libs/${ANDROID_ABI}/$<TARGET_FILE_NAME:${PROJECT_NAME}>
@@ -144,8 +135,7 @@ IF(ANDROID)
             --output ${CMAKE_INSTALL_PREFIX}
             --input ${JSON_FILE}
             --verbose
+            --gradle
             --android-platform ${ANDROID_PLATFORM}
-            ${ANDROID_DELOP_PARA}
-            #--jdk $ENV{JAVA_HOME}
-    )
+        )
 ENDIF(ANDROID)

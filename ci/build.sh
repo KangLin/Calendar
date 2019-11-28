@@ -1,40 +1,45 @@
 #!/bin/bash
-set -ev
+set -e
 
 SOURCE_DIR=`pwd`
 if [ -n "$1" ]; then
     SOURCE_DIR=$1
 fi
-
+TOOLS_DIR=${SOURCE_DIR}/Tools
 cd ${SOURCE_DIR}
+export RabbitCommon_DIR="${SOURCE_DIR}/RabbitCommon"
 
 if [ "$BUILD_TARGERT" = "android" ]; then
-    export ANDROID_SDK_ROOT=${SOURCE_DIR}/Tools/android-sdk
-    export ANDROID_NDK_ROOT=${SOURCE_DIR}/Tools/android-ndk
+    export ANDROID_SDK_ROOT=${TOOLS_DIR}/android-sdk
+    export ANDROID_NDK_ROOT=${TOOLS_DIR}/android-ndk
     if [ -n "$APPVEYOR" ]; then
-        export JAVA_HOME="/C/Program Files (x86)/Java/jdk1.8.0"
-        export ANDROID_NDK_ROOT=${SOURCE_DIR}/Tools/android-sdk/ndk-bundle
+        #export JAVA_HOME="/C/Program Files (x86)/Java/jdk1.8.0"
+        export ANDROID_NDK_ROOT=${TOOLS_DIR}/android-sdk/ndk-bundle
     fi
-    if [ "$TRAVIS" = "true" ]; then
-        export JAVA_HOME=${SOURCE_DIR}/Tools/android-studio/jre
+    #if [ "$TRAVIS" = "true" ]; then
         #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    fi
+    #fi
+    export JAVA_HOME=${TOOLS_DIR}/android-studio/jre
+    
     case $BUILD_ARCH in
         arm*)
-            export QT_ROOT=${SOURCE_DIR}/Tools/Qt/${QT_VERSION}/${QT_VERSION}/android_armv7
+            export QT_ROOT=${TOOLS_DIR}/Qt/${QT_VERSION}/${QT_VERSION}/android_armv7
             ;;
         x86)
-        export QT_ROOT=${SOURCE_DIR}/Tools/Qt/${QT_VERSION}/${QT_VERSION}/android_x86
+        export QT_ROOT=${TOOLS_DIR}/Qt/${QT_VERSION}/${QT_VERSION}/android_x86
         ;;
     esac
-    export PATH=${SOURCE_DIR}/Tools/apache-ant/bin:$JAVA_HOME:$PATH
+    export PATH=${TOOLS_DIR}/apache-ant/bin:$JAVA_HOME/bin:$PATH
     export ANDROID_SDK=${ANDROID_SDK_ROOT}
     export ANDROID_NDK=${ANDROID_NDK_ROOT}
+    if [ -z "${BUILD_TOOS_VERSION}" ]; then
+        export BUILD_TOOS_VERSION="28.0.3"
+    fi
 fi
 
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     if [ "$DOWNLOAD_QT" = "TRUE" ]; then
-        QT_DIR=${SOURCE_DIR}/Tools/Qt/${QT_VERSION}
+        QT_DIR=${TOOLS_DIR}/Qt/${QT_VERSION}
         export QT_ROOT=${QT_DIR}/${QT_VERSION}/gcc_64
     else
         #source /opt/qt${QT_VERSION_DIR}/bin/qt${QT_VERSION_DIR}-env.sh
@@ -48,7 +53,7 @@ fi
 if [ "$BUILD_TARGERT" != "windows_msvc" ]; then
     RABBIT_MAKE_JOB_PARA="-j`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`"  #make 同时工作进程参数
     if [ "$RABBIT_MAKE_JOB_PARA" = "-j1" ];then
-        RABBIT_MAKE_JOB_PARA="-j2"
+        RABBIT_MAKE_JOB_PARA=""
     fi
 fi
 
@@ -60,6 +65,7 @@ TARGET_OS=`uname -s`
 case $TARGET_OS in
     MINGW* | CYGWIN* | MSYS*)
         export PKG_CONFIG=/c/msys64/mingw32/bin/pkg-config.exe
+        RABBIT_BUILD_HOST="windows"
         if [ "$BUILD_TARGERT" = "android" ]; then
             ANDROID_NDK_HOST=windows-x86_64
             if [ ! -d $ANDROID_NDK/prebuilt/${ANDROID_NDK_HOST} ]; then
@@ -98,7 +104,12 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
-export VERSION="v0.3.1"
+if [ -n "$appveyor_build_version" -a -z "$VERSION" ]; then
+    export VERSION=$appveyor_build_version
+fi
+if [ -z "$VERSION" ]; then
+    export VERSION="v0.3.1"
+fi
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     if [ "${DOWNLOAD_QT}" != "TRUE" ]; then
@@ -201,12 +212,8 @@ if [ -n "$GENERATORS" ]; then
 		 -DCMAKE_BUILD_TYPE=Release \
 		 -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
     fi
-    cmake --build . --target install --config Release -- ${RABBIT_MAKE_JOB_PARA}
-    if [ "${BUILD_TARGERT}" = "android" ]; then
-        cmake --build . --target APK
-        #APK_FILE=`find . -name "android-build-debug.apk"`
-        #cp ${APK_FILE} $SOURCE_DIR/ # appveyor.yml used
-    fi
+    cmake --build . --config Release -- ${RABBIT_MAKE_JOB_PARA}
+    cmake --build . --config Release --target install    
 else
     if [ "ON" = "${STATIC}" ]; then
         CONFIG_PARA="CONFIG*=static"
@@ -217,37 +224,6 @@ else
 
         $MAKE
         $MAKE install INSTALL_ROOT=`pwd`/android-build
-        ${QT_ROOT}/bin/androiddeployqt \
-                       --input `pwd`/App/android-libTasksApp.so-deployment-settings.json \
-                       --output `pwd`/android-build \
-                       --android-platform ${ANDROID_API} \
-                       --gradle --verbose \
-                       --sign ${SOURCE_DIR}/Tasks.keystore \
-                       --storepass ${STOREPASS}
-                       # --jdk ${JAVA_HOME}
-        APK_FILE=`find . -name "android-build-debug.apk"`
-        cp ${APK_FILE} ${SOURCE_DIR}/  # appveyor.yml used
-        if [ "$TRAVIS_TAG" != "" \
-             -a "$BUILD_ARCH"="armeabi-v7a" \
-             -a "$QT_VERSION"="5.12.6" ]; then
-        
-            cp $SOURCE_DIR/Update/update_android.xml .
-            MD5=`md5sum ${APK_FILE} | awk '{print $1}'`
-            echo "MD5:${MD5}"
-            sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" update_android.xml
-            sed -i "s/<INFO>.*</<INFO>Release Tasks-${VERSION}</g" update_android.xml
-            sed -i "s/<TIME>.*</<TIME>`date`</g" update_android.xml
-            sed -i "s/<ARCHITECTURE>.*</<ARCHITECTURE>${BUILD_ARCH}</g" update_android.xml
-            sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
-            sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Tasks/releases/download/${VERSION}/android-build-debug.apk<:g" update_android.xml
-
-            export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
-            #export UPLOADTOOL_PR_BODY=
-            wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-            chmod u+x upload.sh
-            ./upload.sh ${APK_FILE} 
-            ./upload.sh update_android.xml
-        fi
     else
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
                 "CONFIG+=release" ${CONFIG_PARA}\
@@ -259,6 +235,7 @@ else
     fi
 fi
 
+# Install package
 if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
     if [ "${BUILD_ARCH}" = "x86" ]; then
         cp /C/OpenSSL-Win32/bin/libeay32.dll install/bin
@@ -274,5 +251,39 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
         echo "MD5:${MD5}"
         install/bin/TasksApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.3.1"
         #cat update_windows.xml
+    fi
+fi
+
+if [ "${BUILD_TARGERT}" = "android" ]; then
+    ${QT_ROOT}/bin/androiddeployqt \
+        --input `pwd`/App/android-libTasksApp.so-deployment-settings.json \
+        --output `pwd`/android-build \
+        --android-platform ${ANDROID_API} \
+        --gradle \
+        --sign ${RabbitCommon_DIR}/RabbitCommon.keystore rabbitcommon \
+        --storepass ${STOREPASS}
+    APK_FILE=`find . -name "android-build-release-signed.apk"`
+    mv -f ${APK_FILE} $SOURCE_DIR/Tasks_${VERSION}.apk
+    APK_FILE=$SOURCE_DIR/Tasks_${VERSION}.apk
+    if [ "$TRAVIS_TAG" != "" \
+         -a "$BUILD_ARCH"="armeabi-v7a" \
+         -a "$QT_VERSION"="5.12.6" ]; then
+    
+        cp $SOURCE_DIR/Update/update_android.xml .
+        MD5=`md5sum ${APK_FILE} | awk '{print $1}'`
+        echo "MD5:${MD5}"
+        sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" update_android.xml
+        sed -i "s/<INFO>.*</<INFO>Release Tasks-${VERSION}</g" update_android.xml
+        sed -i "s/<TIME>.*</<TIME>`date`</g" update_android.xml
+        sed -i "s/<ARCHITECTURE>.*</<ARCHITECTURE>${BUILD_ARCH}</g" update_android.xml
+        sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
+        sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Tasks/releases/download/${VERSION}/Tasks_${VERSION}.apk<:g" update_android.xml
+    
+        export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
+        #export UPLOADTOOL_PR_BODY=
+        wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+        chmod u+x upload.sh
+        ./upload.sh ${APK_FILE} 
+        ./upload.sh update_android.xml
     fi
 fi

@@ -3,7 +3,17 @@ version: 'v0.3.1.{build}'
 
 environment:
   matrix: 
-  ##### msvc 2013 ########
+  ##### android ########
+  - BUILD_TARGERT: android
+    GENERATORS: "MSYS Makefiles"
+    BUILD_ARCH: "armeabi-v7a"
+    ANDROID_ARM_NEON: ON
+    QT_VERSION_DIR: 5.12
+    QT_VERSION: 5.12.6
+    ANDROID_API: android-24
+    TOOLCHAIN_VERSION: 4.9
+
+  ##### msvc 2013 ########  
   - BUILD_TARGERT: windows_msvc
     #GENERATORS: "Visual Studio 12 2013"
     TOOLCHAIN_VERSION: 12
@@ -89,16 +99,6 @@ environment:
     QT_ROOT: C:\Qt\5.12\mingw73_64
     BUILD_ARCH: x64
 
-  ##### android ########
-  - BUILD_TARGERT: android
-    GENERATORS: "MSYS Makefiles"
-    BUILD_ARCH: "armeabi-v7a"
-    ANDROID_ARM_NEON: ON
-    QT_VERSION_DIR: 5.12
-    QT_VERSION: 5.12.6
-    ANDROID_API: android-24
-    TOOLCHAIN_VERSION: 4.9
-
 matrix:
   fast_finish: false
 
@@ -124,7 +124,6 @@ before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - git submodule update --init --recursive
   - git clone https://github.com/KangLin/RabbitCommon.git
-  - set RabbitCommon_DIR=%APPVEYOR_BUILD_FOLDER%/RabbitCommon
   - if "%BUILD_TARGERT%" == "android" C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build-install-tools-windows.sh
 
 build_script:
@@ -137,7 +136,7 @@ artifacts:
     type: zip
     
   - path: build_${BUILD_TARGERT}/update_windows.xml
-  - path: android-build-debug.apk
+  - path: Tasks_$(appveyor_build_version).apk
   
 test: off
 
