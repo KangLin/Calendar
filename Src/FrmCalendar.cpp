@@ -238,29 +238,18 @@ void CFrmCalendar::slotSelectionChanged()
 
 void CFrmCalendar::slotLoad()
 {
-    QFileDialog fd(this, tr("Load"), QString(), tr("xml(*.xml);;All files(*.*)"));
-    fd.setFileMode(QFileDialog::ExistingFile);
-#if defined (Q_OS_ANDROID)
-    fd.showMaximized();
+#ifdef RABBITCOMMON
+    QString szFile = RabbitCommon::CDir::GetOpenFileName(this,
+                    tr("Load"), QString(), tr("xml(*.xml);;All files(*.*)"));
+    Load(szFile);
 #endif
-    int n = fd.exec();
-    if(QDialog::Rejected == n)
-        return;
-    Load(fd.selectedFiles().at(0));
 }
 
 void CFrmCalendar::slotSaveAs()
 {
-    QFileDialog fd(this, tr("Save as ..."), QString(), "*.xml");
-    //fd.setFileMode(QFileDialog::AnyFile);
-    fd.setAcceptMode(QFileDialog::AcceptSave);
-#if defined (Q_OS_ANDROID)
-    fd.showMaximized();
-#endif
-    int n = fd.exec();
-    if(QDialog::Rejected == n)
-        return;
-    QString szFile = fd.selectedFiles().at(0);
+#ifdef RABBITCOMMON
+    QString szFile = RabbitCommon::CDir::GetSaveFileName(this,
+                                tr("Save as ..."), QString(), "*.xml");
     if(szFile.lastIndexOf(".xml") == -1)
         szFile += ".xml";
     int nRet = m_TasksList.SaveSettings(szFile);
@@ -271,6 +260,7 @@ void CFrmCalendar::slotSaveAs()
         set.setValue("TasksAcitvityList", szFile);
         m_bModify = false;
     }
+#endif
 }
 
 void CFrmCalendar::slotViewWeek(bool checked)
