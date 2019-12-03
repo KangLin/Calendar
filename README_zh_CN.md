@@ -65,11 +65,11 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 
       2. 安装
         
-                ./install.sh install
+                ./install1.sh install_autostart Tasks
         
       3. 如果需要，卸载
         
-                ./install.sh remove
+                ./install1.sh remove Tasks
 
 - ubuntu
     - [tasks_0.3.2_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.2/tasks_0.3.2_amd64.deb)  

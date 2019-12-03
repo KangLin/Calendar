@@ -66,11 +66,11 @@ please compile and test the students with the corresponding equipment.
 
       2. install
 
-                ./install.sh install
+                ./install1.sh install_autostart Tasks
 
       3. If you want to uninstall
 
-                ./install.sh remove
+                ./install1.sh remove Tasks
 
 - ubuntu
     - [tasks_0.3.2_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.2/tasks_0.3.2_amd64.deb)  
