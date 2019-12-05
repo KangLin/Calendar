@@ -36,6 +36,7 @@ void CTasksTools::InitTranslator()
 
 void CTasksTools::CLeanTranslator()
 {
+    CLunarCalendar::CLeanResource();
     qApp->removeTranslator(&m_Translator);
 }
 

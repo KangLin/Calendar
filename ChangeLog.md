@@ -1,3 +1,6 @@
+- v0.3.3
+  + table size is ok
+  
 - v0.3.2
   + Test updater
   + Add android sign

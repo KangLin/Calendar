@@ -14,10 +14,12 @@
    <string>Tasks</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../Src/Resource/ResourceTasks.qrc">
+   <iconset>
     <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout"/>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -50,7 +52,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionAbout_A">
    <property name="icon">
-    <iconset resource="../Src/Resource/ResourceTasks.qrc">
+    <iconset>
      <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
    </property>
    <property name="text">
@@ -68,7 +70,7 @@
   </action>
   <action name="actionExit_E">
    <property name="icon">
-    <iconset resource="../Src/Resource/ResourceTasks.qrc">
+    <iconset>
      <normaloff>:/icon/red/Close</normaloff>:/icon/red/Close</iconset>
    </property>
    <property name="text">
@@ -77,7 +79,7 @@
   </action>
   <action name="actionOption_O">
    <property name="icon">
-    <iconset resource="../Src/Resource/ResourceTasks.qrc">
+    <iconset>
      <normaloff>:/icon/Option</normaloff>:/icon/Option</iconset>
    </property>
    <property name="text">
@@ -95,7 +97,7 @@
   </action>
   <action name="actionSink_S">
    <property name="icon">
-    <iconset resource="../Src/Resource/ResourceTasks.qrc">
+    <iconset>
      <normaloff>:/icon/Sink</normaloff>:/icon/Sink</iconset>
    </property>
    <property name="text">
@@ -116,7 +118,7 @@
   </action>
   <action name="actionUpdate_U">
    <property name="icon">
-    <iconset resource="../Src/Resource/ResourceTasks.qrc">
+    <iconset>
      <normaloff>:/icon/Download</normaloff>:/icon/Download</iconset>
    </property>
    <property name="text">
@@ -124,9 +126,6 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="../Src/Resource/ResourceTasks.qrc"/>
-  <include location="../Src/Resource/ResourceTasks.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

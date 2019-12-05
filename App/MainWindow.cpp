@@ -21,9 +21,9 @@ CMainWindow::CMainWindow(QWidget *parent) :
     ui(new Ui::CMainWindow),
     m_Table(this)
 {
-    LoadStyle();
-
     ui->setupUi(this);
+    LoadStyle();
+    
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
                 tr("Exit"),
@@ -59,26 +59,32 @@ CMainWindow::CMainWindow(QWidget *parent) :
     QScrollArea *pScrollArea = new QScrollArea(&m_Table);
     if(pScrollArea)
     {
-        pScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-        pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        pScrollArea->installEventFilter(this);
+        pScrollArea->setWidgetResizable(true);
+        //pScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        //pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        //m_frmCalendar.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
         pScrollArea->setWidget(&m_frmCalendar);
         pScrollArea->show();
         pScrollArea->viewport()->setAttribute(Qt::WA_AcceptTouchEvents);
         m_Table.addTab(pScrollArea, m_frmCalendar.windowIcon(),
                        m_frmCalendar.windowTitle());
+        
     }
     pScrollArea = new QScrollArea(&m_Table);
     if(pScrollArea)
     {
+        pScrollArea->installEventFilter(this);
+        pScrollArea->setWidgetResizable(true);
         pScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         pScrollArea->setWidget(&m_FrmTasksList);
         pScrollArea->show();
         pScrollArea->viewport()->setAttribute(Qt::WA_AcceptTouchEvents);
         m_Table.addTab(pScrollArea, m_FrmTasksList.windowIcon(),
-                       m_FrmTasksList.windowTitle());        
+                       m_FrmTasksList.windowTitle());
     }
-    
+
     m_Table.installEventFilter(this);
 #else
     m_Table.addTab(&m_frmCalendar,
@@ -267,71 +273,69 @@ void CMainWindow::on_actionTasks_list_A_triggered()
     m_FrmTasksList.show();
 }
 
-void CMainWindow::resizeEvent(QResizeEvent *event)
-{
-    Q_UNUSED(event);
-    m_Table.resize(event->size());
-}
-
 void CMainWindow::hideEvent(QHideEvent *event)
 {
     Q_UNUSED(event);
     m_pShow->setText(tr("Show"));
 }
 
+bool CMainWindow::eventResizeTable(QTabWidget *pTabWidget, QResizeEvent *event)
+{
+    if(!pTabWidget || !event) return false;
+    for(int i = 0; i < pTabWidget->count(); i++)
+    {
+        QScrollArea *pScrollArea
+                = dynamic_cast<QScrollArea*>(pTabWidget->widget(i));
+        if(!pScrollArea) continue;
+        qDebug() << "eventResizeTable" << event->size();
+        if(pScrollArea->metaObject()->className() != QString("QScrollArea"))
+        {
+            qDebug() << "objectName:" << pScrollArea->metaObject()->className();
+            return false;
+        }
+        
+        QSize s = event->size();
+        pScrollArea->resize(s);
+    }
+    return false;
+}
+
+bool CMainWindow::eventResizeScrollArea(QScrollArea *pScrollArea, QResizeEvent *event)
+{
+    if(!pScrollArea || !event) return false;
+    QWidget* pForm = dynamic_cast<QWidget*>(pScrollArea->widget());
+    if(!pForm) return true;
+    QSize s = event->size();
+    QSize sMin = pForm->minimumSizeHint();
+    
+    QSize sNew = s;
+    qDebug() << "eventResizeScrollArea" << s << sMin
+             << pScrollArea->size() << pScrollArea->contentsRect();
+    if(s.width() < sMin.width())
+        sNew.setWidth(sMin.width());
+    if(s.height() < sMin.height())
+        sNew.setHeight(sMin.height());
+    //pForm->setMinimumSize(pForm->minimumSizeHint());
+    pForm->resize(sNew);
+    //pForm->adjustSize();
+    return false;
+}
+
 bool CMainWindow::eventFilter(QObject *watched, QEvent *event)
 {
-    if(&m_Table != watched)
-        return false;
-
     switch (event->type()) {
     case QEvent::Resize:
-        
-        for(int i = 0; i < m_Table.count(); i++)
+        if(&m_Table == watched)
         {
-            QScrollArea *pScrollArea
-                    = dynamic_cast<QScrollArea*>(m_Table.widget(i));
-            if(!pScrollArea) break;
-            if(pScrollArea->metaObject()->className() != QString("QScrollArea"))
-            {
-                qDebug() << "objectName:" << pScrollArea->metaObject()->className();
-                break;
-            }
-            QWidget* pForm
-                    = dynamic_cast<QWidget*>(pScrollArea->widget());
-            if(!pForm)
-                break;
-
-            QResizeEvent *resizeEvent = dynamic_cast<QResizeEvent*>(event);
-            QSize s = resizeEvent->size();
-            pScrollArea->resize(s);
-            pForm->resize(s);
-
-            qDebug() << "tab:" << resizeEvent->size() << i << pScrollArea->size();
-
-            /*if(pForm->size().width() <= s.width())
-               pScrollArea->verticalScrollBar()->hide(); 
-            if(pForm->size().height() <= s.height())
-               pScrollArea->horizontalScrollBar()->hide();
-            */
-            int width = pScrollArea->width();
-            int height = pScrollArea->height();
-            /*if(!pScrollArea->verticalScrollBar()->isHidden())
-                width -= pScrollArea->verticalScrollBar()->frameGeometry().width();
-            if(!pScrollArea->horizontalScrollBar()->isHidden())
-                height -= pScrollArea->horizontalScrollBar()->frameGeometry().height();
-            */
-            qDebug() << "width:" << width << "height:" << height;
-
-            QSize frmSize = pForm->frameGeometry().size();
-            if(frmSize.width() < width)
-                frmSize.setWidth(width);
-            if(frmSize.height() < height)
-                frmSize.setHeight(height);
-            if(frmSize != pForm->size())
-                pForm->resize(frmSize);
+            return eventResizeTable(dynamic_cast<QTabWidget*>(watched), 
+                                    dynamic_cast<QResizeEvent*>(event));
+        } 
+        if(watched->metaObject()->className() == QString("QScrollArea"))
+        {
+            return eventResizeScrollArea(dynamic_cast<QScrollArea*>(watched),
+                                         dynamic_cast<QResizeEvent*>(event));
         }
-
+        
         break;
     default:
         break;

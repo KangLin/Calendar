@@ -54,15 +54,15 @@ please compile and test the students with the corresponding equipment.
 ### [Download setup package](https://github.com/KangLin/Tasks/releases/latest)
 
 - linux
-    - [Tasks_v0.3.2.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.3.2/Tasks_v0.3.2.tar.gz)  
+    - [Tasks_v0.3.3.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.3.3/Tasks_v0.3.3.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:    
-      1. Decompress. Copy Tasks_v0.3.2.tar.gz to install directory, then decompress it:
+      1. Decompress. Copy Tasks_v0.3.3.tar.gz to install directory, then decompress it:
 
                 mkdir Tasks
                 cd Tasks
-                cp $DOWNLOAD/Tasks_v0.3.2.tar.gz .
-                tar xvfz Tasks_v0.3.2.tar.gz
+                cp $DOWNLOAD/Tasks_v0.3.3.tar.gz .
+                tar xvfz Tasks_v0.3.3.tar.gz
 
       2. install
 
@@ -73,15 +73,15 @@ please compile and test the students with the corresponding equipment.
                 ./install1.sh remove Tasks
 
 - ubuntu
-    - [tasks_0.3.2_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.2/tasks_0.3.2_amd64.deb)  
+    - [tasks_0.3.3_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.3/tasks_0.3.3_amd64.deb)  
    Deb installation package for Ubuntu
 
 - windows
-    - [Tasks-Setup-v0.3.2.exe](https://github.com/KangLin/Tasks/releases/download/v0.3.2/Tasks-Setup-v0.3.2.exe)  
+    - [Tasks-Setup-v0.3.3.exe](https://github.com/KangLin/Tasks/releases/download/v0.3.3/Tasks-Setup-v0.3.3.exe)  
    Windows installation package, support for Windows xp and above
 
 - android
-    + [Tasks_v0.3.2.apk](https://github.com/KangLin/Tasks/releases/download/v0.3.2/Tasks_v0.3.2.apk)
+    + [Tasks_v0.3.3.apk](https://github.com/KangLin/Tasks/releases/download/v0.3.3/Tasks_v0.3.3.apk)
     
 
 ### Depend

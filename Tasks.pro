@@ -72,9 +72,9 @@ DISTFILES += \
     Authors.md \
     Authors_zh_CN.md \
     README_zh_CN.md \
-    README.md \ 
+    README.md \
     ChangeLog.md \
-    ChangeLog_zh_CN.md 
+    ChangeLog_zh_CN.md
 
 RESOURCES += \
     Src/Resource/ResourceTasks.qrc

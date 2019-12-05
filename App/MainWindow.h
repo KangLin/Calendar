@@ -6,6 +6,8 @@
 #include <QSystemTrayIcon>
 #include <QCloseEvent>
 #include <QTabWidget>
+#include <QScrollArea>
+
 #include "TasksList.h"
 #include "FrmTasksList.h"
 #include "FrmStickyList.h"
@@ -42,6 +44,8 @@ private Q_SLOTS:
 protected:
     virtual void closeEvent(QCloseEvent *e) override;
     bool eventFilter(QObject *watched, QEvent *event) override;
+    bool eventResizeTable(QTabWidget *pTabWidget, QResizeEvent *event);
+    bool eventResizeScrollArea(QScrollArea *pScrollArea, QResizeEvent* event);
     
 private:
     int LoadStyle();
@@ -60,7 +64,6 @@ private:
     CFrmCalendar m_frmCalendar;
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void hideEvent(QHideEvent *event) override;    
 };
 

@@ -1,5 +1,10 @@
 #include "FrmCalendar.h"
 #include "LunarCalendar.h"
+#include "DlgContainer.h"
+#include "DlgTaskActivity.h"
+#include "TaskActivity.h"
+#include "RabbitCommonDir.h"
+
 #include <QVBoxLayout>
 #include <QDate>
 #include <QAction>
@@ -7,11 +12,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDebug>
-
-#include "DlgContainer.h"
-#include "DlgTaskActivity.h"
-#include "TaskActivity.h"
-#include "RabbitCommonDir.h"
+#include <QResizeEvent>
 
 class CTasksHandler : public CLunarCalendar::CGetTaskHandler
 {
@@ -48,7 +49,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     bool check = false;
     setWindowTitle(tr("Calendar"));
     setWindowIcon(QIcon(":/icon/Calendar"));
-    
+
     m_listView.setModel(m_pModel);
     m_listView.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     check = connect(&m_listView, SIGNAL(doubleClicked(const QModelIndex &)),
@@ -66,7 +67,6 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     Load(szFile);
     m_TasksList.Start();
 
-    CLunarCalendar::InitResource();
     m_pCalendar = new CLunarCalendar(this);
     m_pCalendar->SetTouchUpDownFunction(CLunarCalendar::TouchChangeView);
     m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
