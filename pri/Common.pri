@@ -17,7 +17,7 @@ isEmpty(BUILD_VERSION) {
     }
 }
 isEmpty(BUILD_VERSION){
-    BUILD_VERSION="v0.3.3"
+    BUILD_VERSION="v0.3.4"
 }
 message("Tasks BUILD_VERSION:$$BUILD_VERSION")
 DEFINES += BUILD_VERSION=\"\\\"$$quote($$BUILD_VERSION)\\\"\"

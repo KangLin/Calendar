@@ -1,3 +1,6 @@
+- v0.3.4
+  + Modify chinese holidays directory to user directory
+  
 - v0.3.3
   + table size is ok
   

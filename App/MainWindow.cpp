@@ -59,7 +59,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     QScrollArea *pScrollArea = new QScrollArea(&m_Table);
     if(pScrollArea)
     {
-        pScrollArea->installEventFilter(this);
+        //pScrollArea->installEventFilter(this);
         pScrollArea->setWidgetResizable(true);
         //pScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         //pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -74,7 +74,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     pScrollArea = new QScrollArea(&m_Table);
     if(pScrollArea)
     {
-        pScrollArea->installEventFilter(this);
+        //pScrollArea->installEventFilter(this);
         pScrollArea->setWidgetResizable(true);
         pScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
