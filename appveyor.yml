@@ -2,6 +2,9 @@
 version: 'v0.3.4.{build}'
 
 environment:
+  STOREPASS:
+    secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=
+    
   matrix: 
   ##### android ########
   - BUILD_TARGERT: android
