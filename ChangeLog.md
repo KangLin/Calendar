@@ -1,3 +1,6 @@
+- v0.3.5
+  + FIX: about widge size
+
 - v0.3.4
   + Modify chinese holidays directory to user directory
   
