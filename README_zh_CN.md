@@ -98,6 +98,7 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
         mkdir build
 
 - 编译
+
         cd build
         qmake ../Tasks.pro RabbitCommon_DIR=
         make install
