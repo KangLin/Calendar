@@ -46,7 +46,16 @@ FORMS += \
     MainWindow.ui \
     DlgOption.ui
 
-LIBS *= "-L$$DESTDIR" -lRabbitCommon -lLunarCalendar -lTasks
+LIBS *= -L$$DESTDIR
+android{
+    versionAtLeast(QT_VERSION, 5.14.0) : LIBS *= \
+        -lRabbitCommon_$${ANDROID_TARGET_ARCH} \
+        -lLunarCalendar_$${ANDROID_TARGET_ARCH} \
+        -lTasks_$${ANDROID_TARGET_ARCH}
+    else: LIBS *= -lRabbitCommon -lLunarCalendar -lTasks
+} else{
+    LIBS *= -lRabbitCommon -lLunarCalendar -lTasks
+}
 
 win32 {
     QT += winextras

@@ -24,7 +24,13 @@ INCLUDEPATH += $$_PRO_FILE_PWD_/../3th_libs/LunarCalendar/Src \
     $${RabbitCommon_DIR}/Src \
     $${RabbitCommon_DIR}/Src/export
 
-LIBS *= -L$$DESTDIR -lRabbitCommon -lLunarCalendar
+LIBS *= -L$$DESTDIR
+android{
+    versionAtLeast(QT_VERSION, 5.14.0) : LIBS *= -lRabbitCommon_$${ANDROID_TARGET_ARCH} -lLunarCalendar_$${ANDROID_TARGET_ARCH}
+    else: LIBS *= -lRabbitCommon -lLunarCalendar
+} else{
+    LIBS *= -lRabbitCommon -lLunarCalendar
+}
 
 include(../pri/Common.pri)
 include(Tasks.pri)

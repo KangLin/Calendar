@@ -27,10 +27,14 @@ win32{
     VERSION=$$first(VERSION)
 }
 
-contains(QMAKE_TARGET.arch, x86_64) {
-    DEFINES += BUILD_ARCH=\"\\\"x86_64\\\"\"
+android{
+    DEFINES += BUILD_ARCH=\"\\\"$${ANDROID_TARGET_ARCH}\\\"\"
 } else {
-    DEFINES += BUILD_ARCH=\"\\\"x86\\\"\"
+    contains(QMAKE_TARGET.arch, x86_64) {
+        DEFINES += BUILD_ARCH=\"\\\"x86_64\\\"\"
+    } else {
+        DEFINES += BUILD_ARCH=\"\\\"x86\\\"\"
+    }
 }
 CONFIG(debug, debug|release) : DEFINES += _DEBUG
 DEFINES += BUILD_PLATFORM=\"\\\"$${QMAKE_PLATFORM}\\\"\"
