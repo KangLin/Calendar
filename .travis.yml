@@ -24,6 +24,7 @@ env:
     - QMAKE=qmake
 
   matrix:
+    # BUILD_ARCH可选（arm64-v8a armeabi-v7a x86_64 x86）
     - BUILD_TARGERT="unix" QT_VERSION_DIR=512 QT_VERSION=5.12.3 DOWNLOAD_QT=FALSE
     - BUILD_TARGERT="unix" QT_VERSION_DIR=511 QT_VERSION=5.11.3 DOWNLOAD_QT=FALSE GENERATORS="Unix Makefiles" STATIC=ON
 
@@ -31,7 +32,7 @@ env:
     - BUILD_TARGERT="unix" BUILD_ARCH="unix" QT_VERSION_DIR=5.12 QT_VERSION=5.12.6 DOWNLOAD_QT=TRUE GENERATORS="Unix Makefiles"
     - BUILD_TARGERT="unix" BUILD_ARCH="unix" QT_VERSION_DIR=5.13 QT_VERSION=5.13.2 DOWNLOAD_QT=TRUE STATIC=ON
 
-    - BUILD_TARGERT="android" BUILD_ARCH="armeabi-v7a" ANDROID_ARM_NEON=ON QT_VERSION_DIR=5.14 QT_VERSION=5.14.0 ANDROID_API=android-24 DOWNLOAD_QT=TRUE
+    - BUILD_TARGERT="android" BUILD_ARCH="armeabi-v7a x86" ANDROID_ARM_NEON=ON QT_VERSION_DIR=5.14 QT_VERSION=5.14.0 ANDROID_API=android-24 DOWNLOAD_QT=TRUE
     - BUILD_TARGERT="android" BUILD_ARCH="armeabi-v7a" ANDROID_ARM_NEON=ON QT_VERSION_DIR=5.13 QT_VERSION=5.13.2 ANDROID_API=android-24 DOWNLOAD_QT=TRUE GENERATORS="Unix Makefiles"
     - BUILD_TARGERT="android" BUILD_ARCH="armeabi-v7a" ANDROID_ARM_NEON=ON QT_VERSION_DIR=5.12 QT_VERSION=5.12.6 ANDROID_API=android-24 DOWNLOAD_QT=TRUE
     - BUILD_TARGERT="android" BUILD_ARCH="x86" QT_VERSION_DIR=5.12 QT_VERSION=5.12.6 ANDROID_API=android-24 DOWNLOAD_QT=TRUE STATIC=ON
@@ -47,6 +48,7 @@ before_install:
 install:
   - cd ${SOURCE_DIR}
   - git clone https://github.com/KangLin/RabbitCommon.git
+  - export RabbitCommon_DIR="`pwd`/RabbitCommon"
   - bash ci/build-install-tools.sh > /dev/null
 #  - |
 #    if [ "$BUILD_TARGERT"="unix" -a -z "$RABBIT_ARCH" ]; then

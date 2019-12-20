@@ -105,7 +105,14 @@ please compile and test the students with the corresponding equipment.
         qmake ../Tasks.pro RabbitCommon_DIR=
         make install
 
+  + Parameter
+    + RabbitCommon_DIR: RabbitCommon source directory
 + Use cmake
+  + CMAKE parameter：
+    - [MUST] Qt5_DIR: qt install postion(default $QT_ROOT/lib/cmake/Qt5).
+                   See：https://doc.qt.io/qt-5/cmake-get-started.html
+    - [MUST] RabbitCommon_DIR: RabbitCommon source directory
+    - [Optional] CMAKE_INSTALL_PREFIX: install prefix
   + windows or linux
 
         cd build

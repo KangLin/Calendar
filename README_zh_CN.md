@@ -102,7 +102,15 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
         qmake ../Tasks.pro RabbitCommon_DIR=
         make install
 
+  + 参数：
+    - RabbitCommon_DIR: 指向 RabbitCommon 源码目录
+
 - 用 cmake
+  + CMAKE 参数：
+    - [必选] Qt5_DIR: qt 安装位置(指向Qt5Config.cmake的目录，默认为 安装目录/lib/cmake/Qt5)。
+                     详见：https://doc.qt.io/qt-5/cmake-get-started.html
+    - RabbitCommon_DIR: 指向 RabbitCommon 源码目录
+    - [可选] CMAKE_INSTALL_PREFIX: 安装前缀
   + windows 或 linux
   
           cd build

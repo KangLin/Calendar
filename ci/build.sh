@@ -21,14 +21,18 @@ if [ "$BUILD_TARGERT" = "android" ]; then
     #fi
     export JAVA_HOME=${TOOLS_DIR}/android-studio/jre
     
-    case $BUILD_ARCH in
-        arm*)
-            export QT_ROOT=${TOOLS_DIR}/Qt/${QT_VERSION}/${QT_VERSION}/android_armv7
+    if [ "$QT_VERSION_DIR" = "5.14" ]; then
+        export QT_ROOT=${TOOLS_DIR}/Qt/${QT_VERSION}/${QT_VERSION}/android
+    else
+        case $BUILD_ARCH in
+            arm*)
+                export QT_ROOT=${TOOLS_DIR}/Qt/${QT_VERSION}/${QT_VERSION}/android_armv7
+                ;;
+            x86)
+            export QT_ROOT=${TOOLS_DIR}/Qt/${QT_VERSION}/${QT_VERSION}/android_x86
             ;;
-        x86)
-        export QT_ROOT=${TOOLS_DIR}/Qt/${QT_VERSION}/${QT_VERSION}/android_x86
-        ;;
-    esac
+        esac
+    fi
     export PATH=${TOOLS_DIR}/apache-ant/bin:$JAVA_HOME/bin:$PATH
     export ANDROID_SDK=${ANDROID_SDK_ROOT}
     export ANDROID_NDK=${ANDROID_NDK_ROOT}
@@ -216,9 +220,13 @@ else
         CONFIG_PARA="CONFIG*=static"
     fi
     if [ "${BUILD_TARGERT}" = "android" ]; then
-        ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
-            "CONFIG+=release" ${CONFIG_PARA}
-
+        if [ "$QT_VERSION_DIR" = "5.14" ]; then
+            ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
+                "CONFIG+=release" ${CONFIG_PARA} ANDROID_ABIS="$BUILD_ARCH"
+        else
+            ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
+                "CONFIG+=release" ${CONFIG_PARA}
+        fi
         $MAKE
         $MAKE install INSTALL_ROOT=`pwd`/android-build
     else
