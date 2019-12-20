@@ -31,6 +31,7 @@ function function_common()
     #fi
     
     # Qt qt安装参见：https://github.com/benlau/qtci  
+    cd ${TOOLS_DIR}
     if [ "$DOWNLOAD_QT" = "TRUE" ]; then
         QT_DIR=`pwd`/Qt/${QT_VERSION}
         if [ ! -d "${QT_DIR}" ]; then

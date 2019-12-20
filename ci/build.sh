@@ -9,6 +9,11 @@ TOOLS_DIR=${SOURCE_DIR}/Tools
 cd ${SOURCE_DIR}
 export RabbitCommon_DIR="${SOURCE_DIR}/RabbitCommon"
 
+function version_gt() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"; }
+function version_le() { test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" == "$1"; }
+function version_lt() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" != "$1"; }
+function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
+
 if [ "$BUILD_TARGERT" = "android" ]; then
     export ANDROID_SDK_ROOT=${TOOLS_DIR}/android-sdk
     export ANDROID_NDK_ROOT=${TOOLS_DIR}/android-ndk
@@ -21,7 +26,7 @@ if [ "$BUILD_TARGERT" = "android" ]; then
     #fi
     export JAVA_HOME=${TOOLS_DIR}/android-studio/jre
     
-    if [ "$QT_VERSION_DIR" = "5.14" ]; then
+    if version_ge $QT_VERSION_DIR 5.14 ; then
         export QT_ROOT=${TOOLS_DIR}/Qt/${QT_VERSION}/${QT_VERSION}/android
     else
         case $BUILD_ARCH in
@@ -220,7 +225,7 @@ else
         CONFIG_PARA="CONFIG*=static"
     fi
     if [ "${BUILD_TARGERT}" = "android" ]; then
-        if [ "$QT_VERSION_DIR" = "5.14" ]; then
+        if version_ge $QT_VERSION_DIR 5.14 ; then
             ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
                 "CONFIG+=release" ${CONFIG_PARA} ANDROID_ABIS="$BUILD_ARCH"
         else
