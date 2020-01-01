@@ -45,7 +45,8 @@ TasksList.CONFIG += no_check_exist
 
 IncludeFiles.path = $$PREFIX/include/Tasks
 IncludeFiles.files = $$INSTALLHEADER_FILES
-!android: target.path = $$PREFIX/bin
+!android: unix: target.path = $$PREFIX/lib
+else: target.path = $$PREFIX/bin
 INSTALLS += TasksList target IncludeFiles
 
 !CONFIG(static): win32 : equals(QMAKE_HOST.os, Windows){
