@@ -85,6 +85,7 @@ SET(RCC_FILES
 add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES}
     ${SOURCE_UI_FILES} ${RCC_FILES})
 add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
 target_link_libraries(${PROJECT_NAME} PUBLIC ${QT_LIBRARIES} LunarCalendar)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../3th_libs/LunarCalendar/Src

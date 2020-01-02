@@ -1,5 +1,6 @@
 - v0.3.5
   + FIX: about widge size
+  + Modify ci for use ubuntu system qt 
 
 - v0.3.4
   + Modify chinese holidays directory to user directory

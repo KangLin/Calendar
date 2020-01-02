@@ -4,7 +4,7 @@ TEMPLATE = lib
 DESTDIR = $$OUT_PWD/../bin
 #DLLDESTDIR = $$DESTDIR
 
-CONFIG += link_pkgconfig create_prl link_prl
+CONFIG *= c++11 link_pkgconfig create_prl link_prl
 CONFIG(staticlib): CONFIG*=static
 
 isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)

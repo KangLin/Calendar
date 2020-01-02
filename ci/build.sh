@@ -47,7 +47,9 @@ if [ "$BUILD_TARGERT" = "android" ]; then
 fi
 
 if [ "${BUILD_TARGERT}" = "unix" ]; then
-    if [ "$DOWNLOAD_QT" = "TRUE" ]; then
+    if [ "$DOWNLOAD_QT" = "APT" ]; then
+        export QT_ROOT=/usr/lib/`uname -m`-linux-gnu/qt5
+    elif [ "$DOWNLOAD_QT" = "TRUE" ]; then
         QT_DIR=${TOOLS_DIR}/Qt/${QT_VERSION}
         export QT_ROOT=${QT_DIR}/${QT_VERSION}/gcc_64
     else
@@ -118,7 +120,7 @@ if [ -z "$VERSION" ]; then
 fi
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
-    if [ "${DOWNLOAD_QT}" != "TRUE" ]; then
+    if [ "${DOWNLOAD_QT}" != "TRUE" -a "${DOWNLOAD_QT}" != "APT" ]; then
         sed -i "s/export QT_VERSION_DIR=.*/export QT_VERSION_DIR=${QT_VERSION_DIR}/g" ${SOURCE_DIR}/debian/postinst
         sed -i "s/export QT_VERSION=.*/export QT_VERSION=${QT_VERSION}/g" ${SOURCE_DIR}/debian/preinst
         cat ${SOURCE_DIR}/debian/postinst
@@ -171,8 +173,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         -m "v0.3.4" 
   
     if [ "$TRAVIS_TAG" != "" \
-         -a "${QT_VERSION}" = "5.12.3" \
-         -a "$DOWNLOAD_QT" != "TRUE" \
+         -a "$DOWNLOAD_QT" = "APT" \
          -a -z "$GENERATORS" ]; then
         export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
         #export UPLOADTOOL_PR_BODY=
