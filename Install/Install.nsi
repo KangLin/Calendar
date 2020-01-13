@@ -88,7 +88,7 @@ Function InstallVC
 
    ; check regist
    IfErrors 0 VSRedistInstalled
-   Exec "$INSTDIR\bin\vcredist_x86.exe /q"
+   Exec "$INSTDIR\bin\vcredist_x86.exe /q /norestart"
    StrCpy $R0 "-1"
 
 VSRedistInstalled:
@@ -104,7 +104,7 @@ Function InstallVC64
     
     ; check regist
     IfErrors 0 VSRedistInstalled
-    Exec "$INSTDIR\bin\vcredist_x64.exe /q"
+    Exec "$INSTDIR\bin\vcredist_x64.exe /q /norestart"
     StrCpy $R0 "-1"
     
     VSRedistInstalled:
