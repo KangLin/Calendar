@@ -2,6 +2,7 @@
   + FIX: about widge size
   + Modify ci for use ubuntu system qt 
   + Modify install.nsi in windows to add " /norestart"
+  + Modify 2020 chinese holidays
 
 - v0.3.4
   + Modify chinese holidays directory to user directory
