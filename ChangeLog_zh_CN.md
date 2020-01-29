@@ -3,6 +3,7 @@
   + 修改自动化编译，用 ubuntu 系统自带的 qt
   + 修改 install.nsi ，禁止VC库安装后重启
   + 修改 2020 年春节假期
+  + Android: 增加 openssl 到 APK 中
 
 - v0.3.4
   + 修改中国假日数据库目录为用户数据库目录

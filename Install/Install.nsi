@@ -3,7 +3,7 @@
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Tasks"
 !define PRODUCT_APP_NAME "TasksApp"
-!define PRODUCT_VERSION "v0.3.4"
+!define PRODUCT_VERSION "v0.3.5"
 !define PRODUCT_PUBLISHER "KangLin studio"
 !define PRODUCT_WEB_SITE "https://github.com/KangLin/${PRODUCT_NAME}"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_NAME}.exe"
@@ -70,8 +70,8 @@ LangString LANG_DIRECTORY_PERMISSION ${LANG_SIMPCHINESE} "无目录访问权限"
 
 ; MUI end ------
 
-Name "$(LANG_PRODUCT_NAME)-${PRODUCT_VERSION}"
-Caption "$(LANG_PRODUCT_NAME)-${PRODUCT_VERSION}"
+Name "$(LANG_PRODUCT_NAME) ${PRODUCT_VERSION}"
+Caption "$(LANG_PRODUCT_NAME) ${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}-Setup-${PRODUCT_VERSION}.exe"
 InstallDir "$LOCALAPPDATA\${PRODUCT_NAME}"
 ;InstallDirRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" ""

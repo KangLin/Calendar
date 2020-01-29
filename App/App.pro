@@ -99,5 +99,8 @@ DISTFILES += \
     android/res/values/* \
     android/res/values-zh/*
 
-#contains(ANDROID_TARGET_ARCH,x86) {
-android: ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+android{
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+    !isEmpty(OPENSSL_ROOT_DIR) : ANDROID_EXTRA_LIBS = $$OPENSSL_ROOT_DIR/lib/libssl.so \
+                                     $$OPENSSL_ROOT_DIR/lib/libcrypto.so
+}

@@ -6,6 +6,7 @@ if [ -n "$1" ]; then
     SOURCE_DIR=$1
 fi
 TOOLS_DIR=${SOURCE_DIR}/Tools
+ThirdLibs_DIR=${TOOLS_DIR}/ThirdLibs
 cd ${SOURCE_DIR}
 export RabbitCommon_DIR="${SOURCE_DIR}/RabbitCommon"
 
@@ -113,10 +114,10 @@ case ${BUILD_TARGERT} in
 esac
 
 if [ -n "$appveyor_build_version" -a -z "$VERSION" ]; then
-    export VERSION="v0.3.4"
+    export VERSION="v0.3.5"
 fi
 if [ -z "$VERSION" ]; then
-    export VERSION="v0.3.4"
+    export VERSION="v0.3.5"
 fi
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
@@ -134,9 +135,9 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
 
     #因为上面 dpgk 已安装好了，所以不需要设置下面的环境变量
     #export LD_LIBRARY_PATH=`pwd`/debian/tasks/opt/Tasks/bin:`pwd`/debian/tasks/opt/Tasks/lib:${QT_ROOT}/bin:${QT_ROOT}/lib:$LD_LIBRARY_PATH
-    
+
     cd debian/tasks/opt
-    
+
     URL_LINUXDEPLOYQT=https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
     wget -c -nv ${URL_LINUXDEPLOYQT} -O linuxdeployqt.AppImage
     chmod a+x linuxdeployqt.AppImage
@@ -164,18 +165,18 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         -f "`pwd`/update_linux.xml" \
         --md5 ${MD5} \
         -m "v0.3.4"
-    
+
     MD5=`md5sum Tasks_${VERSION}.tar.gz|awk '{print $1}'`
     ./Tasks-x86_64.AppImage \
         -f "`pwd`/update_linux_appimage.xml" \
         --md5 ${MD5} \
         --url "https://github.com/KangLin/Tasks/releases/download/${VERSION}/Tasks_${VERSION}.tar.gz" \
         -m "v0.3.4" 
-  
+
     if [ "$TRAVIS_TAG" != "" \
          -a "$DOWNLOAD_QT" = "APT" \
          -a -z "$GENERATORS" ]; then
-        export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
+        export UPLOADTOOL_BODY="Release Tasks ${VERSION}"
         #export UPLOADTOOL_PR_BODY=
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
         chmod u+x upload.sh
@@ -194,6 +195,9 @@ if [ -n "$GENERATORS" ]; then
         CONFIG_PARA="${CONFIG_PARA} -DANDROID_ARM_NEON=${ANDROID_ARM_NEON}"
     fi
     if [ "${BUILD_TARGERT}" = "android" ]; then
+        if [ -d "$ThirdLibs_DIR" ]; then
+            CONFIG_PARA="${CONFIG_PARA} -DOPENSSL_ROOT_DIR=$ThirdLibs_DIR"
+        fi
         cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
             -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
             -DCMAKE_VERBOSE=ON \
@@ -213,7 +217,7 @@ if [ -n "$GENERATORS" ]; then
             -DCMAKE_MAKE_PROGRAM=make \
             -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake 
     else
-	    cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
+        cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
 		 -DCMAKE_INSTALL_PREFIX=`pwd`/install \
 		 -DCMAKE_VERBOSE=ON \
 		 -DCMAKE_BUILD_TYPE=Release \
@@ -226,6 +230,11 @@ else
         CONFIG_PARA="CONFIG*=static"
     fi
     if [ "${BUILD_TARGERT}" = "android" ]; then
+        if [ -d "$ThirdLibs_DIR" ]; then
+            CONFIG_PARA="${CONFIG_PARA} OPENSSL_ROOT_DIR=$ThirdLibs_DIR"
+        fi
+
+        echo "${QT_ROOT}/bin/qmake ${SOURCE_DIR} CONFIG+=release ${CONFIG_PARA} ANDROID_ABIS=$BUILD_ARCH"
         if version_ge $QT_VERSION_DIR 5.14 ; then
             ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
                 "CONFIG+=release" ${CONFIG_PARA} ANDROID_ABIS="$BUILD_ARCH"
@@ -239,7 +248,7 @@ else
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
                 "CONFIG+=release" ${CONFIG_PARA}\
                 PREFIX=`pwd`/install
-                
+
         $MAKE
         echo "$MAKE install ...."
         $MAKE install
@@ -265,7 +274,7 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
     fi
 fi
 
-if [ "${BUILD_TARGERT}" = "android" ]; then
+if [ -z "$GENERATORS" -a ${BUILD_TARGERT} = "android" ]; then
     ${QT_ROOT}/bin/androiddeployqt \
         --input `pwd`/App/android-libTasksApp.so-deployment-settings.json \
         --output `pwd`/android-build \
@@ -274,24 +283,24 @@ if [ "${BUILD_TARGERT}" = "android" ]; then
         --sign ${RabbitCommon_DIR}/RabbitCommon.keystore rabbitcommon \
         --storepass ${STOREPASS}
     APK_FILE=`find . -name "android-build-release-signed.apk"`
-    mv -f ${APK_FILE} $SOURCE_DIR/Tasks_${VERSION}.apk
-    APK_FILE=$SOURCE_DIR/Tasks_${VERSION}.apk
+    APK_NAME=Tasks_${BUILD_ARCH}_${VERSION}.apk
+    mv -f ${APK_FILE} $SOURCE_DIR/${APK_NAME}
+    APK_FILE=$SOURCE_DIR/${APK_NAME}
     if [ "$TRAVIS_TAG" != "" \
-         -a "$BUILD_ARCH"="armeabi-v7a" \
-         -a "$QT_VERSION"="5.12.6" ]; then
-    
+         -a "$QT_VERSION" = "5.12.6" \
+         -a "$BUILD_ARCH" = "armeabi-v7a" ]; then
         cp $SOURCE_DIR/Update/update_android.xml .
         MD5=`md5sum ${APK_FILE} | awk '{print $1}'`
         echo "MD5:${MD5}"
         sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" update_android.xml
-        sed -i "s/<INFO>.*</<INFO>Release Tasks-${VERSION}</g" update_android.xml
+        sed -i "s/<INFO>.*</<INFO>Release Tasks ${VERSION}</g" update_android.xml
         sed -i "s/<TIME>.*</<TIME>`date`</g" update_android.xml
         sed -i "s/<ARCHITECTURE>.*</<ARCHITECTURE>${BUILD_ARCH}</g" update_android.xml
         sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
-        sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Tasks/releases/download/${VERSION}/Tasks_${VERSION}.apk<:g" update_android.xml
+        sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Tasks/releases/download/${VERSION}/${APK_NAME}<:g" update_android.xml
         sed -i "s/<MIN_UPDATE_VERSION>.*</<MIN_UPDATE_VERSION>${VERSION}</g" update_android.xml
         
-        export UPLOADTOOL_BODY="Release Tasks-${VERSION}"
+        export UPLOADTOOL_BODY="Release Tasks ${VERSION}"
         #export UPLOADTOOL_PR_BODY=
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
         chmod u+x upload.sh

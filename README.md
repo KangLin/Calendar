@@ -53,16 +53,23 @@ please compile and test the students with the corresponding equipment.
 
 ### [Download setup package](https://github.com/KangLin/Tasks/releases/latest)
 
+- windows
+    - [Tasks-Setup-v0.3.5.exe](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks-Setup-v0.3.5.exe)
+   Windows installation package, support for Windows xp and above
+
+- android
+    + [Tasks_armeabi-v7a_v0.3.5.apk](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks_armeabi-v7a_v0.3.5.apk)
+
 - linux
-    - [Tasks_v0.3.4.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.3.4/Tasks_v0.3.4.tar.gz)  
+    - [Tasks_v0.3.5.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks_v0.3.5.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:    
-      1. Decompress. Copy Tasks_v0.3.4.tar.gz to install directory, then decompress it:
+      1. Decompress. Copy Tasks_v0.3.5.tar.gz to install directory, then decompress it:
 
                 mkdir Tasks
                 cd Tasks
-                cp $DOWNLOAD/Tasks_v0.3.4.tar.gz .
-                tar xvfz Tasks_v0.3.4.tar.gz
+                cp $DOWNLOAD/Tasks_v0.3.5.tar.gz .
+                tar xvfz Tasks_v0.3.5.tar.gz
 
       2. install
 
@@ -73,16 +80,8 @@ please compile and test the students with the corresponding equipment.
                 ./install1.sh remove Tasks
 
 - ubuntu
-    - [tasks_0.3.4_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.4/tasks_0.3.4_amd64.deb)  
+    - [tasks_0.3.5_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.5/tasks_0.3.5_amd64.deb)  
    Deb installation package for Ubuntu
-
-- windows
-    - [Tasks-Setup-v0.3.4.exe](https://github.com/KangLin/Tasks/releases/download/v0.3.4/Tasks-Setup-v0.3.4.exe)  
-   Windows installation package, support for Windows xp and above
-
-- android
-    + [Tasks_v0.3.4.apk](https://github.com/KangLin/Tasks/releases/download/v0.3.4/Tasks_v0.3.4.apk)
-    
 
 ### Depend
 - [Qt (LGPL v2.1)](http://qt.io/)

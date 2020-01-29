@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v0.3.4.{build}'
+version: 'v0..5.{build}'
 
 environment:
   STOREPASS:
@@ -15,6 +15,7 @@ environment:
     QT_VERSION: 5.12.6
     ANDROID_API: android-24
     TOOLCHAIN_VERSION: 4.9
+    #DOWNLOAD_THIRDLIBS_URL: "https://github.com/KangLin/RabbitThirdLibrary/releases/download/v0.1.5/android24_arm_qt5.12.6_Release.tar.gz"
 
   ##### msvc 2013 ########  
   - BUILD_TARGERT: windows_msvc
@@ -154,9 +155,10 @@ deploy:
     #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
     #draft: true
     #prerelease: true
+    force_update: true
     on:
       BUILD_TARGERT: windows_msvc
-      TOOLCHAIN_VERSION: 14
+      TOOLCHAIN_VERSION: 12
       QT_VERSION: 5.6.3
       BUILD_ARCH: x86
       appveyor_repo_tag: true        # deploy on tag push only
