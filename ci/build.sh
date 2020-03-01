@@ -119,6 +119,8 @@ fi
 if [ -z "$VERSION" ]; then
     export VERSION="v0.3.5"
 fi
+export UPLOADTOOL_BODY="Release Tasks ${VERSION}.<br> The change see [ChangeLog.md](ChangeLog.md) or [ChangeLog_zh_CN.md](ChangeLog_zh_CN.md)"
+#export UPLOADTOOL_PR_BODY=
 if [ "${BUILD_TARGERT}" = "unix" ]; then
     cd $SOURCE_DIR
     if [ "${DOWNLOAD_QT}" != "TRUE" -a "${DOWNLOAD_QT}" != "APT" ]; then
@@ -176,8 +178,6 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     if [ "$TRAVIS_TAG" != "" \
          -a "$DOWNLOAD_QT" = "APT" \
          -a -z "$GENERATORS" ]; then
-        export UPLOADTOOL_BODY="Release Tasks ${VERSION}"
-        #export UPLOADTOOL_PR_BODY=
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
         chmod u+x upload.sh
         ./upload.sh $SOURCE_DIR/../tasks_*_amd64.deb 
@@ -200,7 +200,7 @@ if [ -n "$GENERATORS" ]; then
         fi
         cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
             -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
-            -DCMAKE_VERBOSE=ON \
+            -DCMAKE_VERBOSE_MAKEFILE=ON \
             -DCMAKE_BUILD_TYPE=Release \
             -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
             -DQt5Core_DIR=${QT_ROOT}/lib/cmake/Qt5Core \
@@ -219,7 +219,7 @@ if [ -n "$GENERATORS" ]; then
     else
         cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
 		 -DCMAKE_INSTALL_PREFIX=`pwd`/install \
-		 -DCMAKE_VERBOSE=ON \
+		 -DCMAKE_VERBOSE_MAKEFILE=ON \
 		 -DCMAKE_BUILD_TYPE=Release \
 		 -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
     fi
@@ -300,8 +300,6 @@ if [ -z "$GENERATORS" -a ${BUILD_TARGERT} = "android" ]; then
         sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Tasks/releases/download/${VERSION}/${APK_NAME}<:g" update_android.xml
         sed -i "s/<MIN_UPDATE_VERSION>.*</<MIN_UPDATE_VERSION>${VERSION}</g" update_android.xml
         
-        export UPLOADTOOL_BODY="Release Tasks ${VERSION}"
-        #export UPLOADTOOL_PR_BODY=
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
         chmod u+x upload.sh
         ./upload.sh ${APK_FILE} 
