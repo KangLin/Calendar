@@ -208,9 +208,9 @@ int CMainWindow::LoadStyle()
     QString szFile = set.value("Sink",
                   RabbitCommon::CDir::Instance()->GetDirApplicationInstallRoot()
                   + QDir::separator()
-                  + "data" + QDir::separator() + "style"
-                  + QDir::separator() + "dark" + QDir::separator()
-                  + "style.qss").toString();
+                  + "data" + QDir::separator()
+                  + "style" + QDir::separator()
+                  + "black.qss").toString();
     qDebug() << "LoadStyle:" << szFile;
     return  LoadStyle(szFile);
 }
@@ -238,15 +238,20 @@ int CMainWindow::LoadStyle(const QString &szFile)
 
 void CMainWindow::on_actionSink_S_triggered()
 {
-    QString szFile;
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    QString szFile = set.value("Sink",
+                  RabbitCommon::CDir::Instance()->GetDirApplicationInstallRoot()
+                  + QDir::separator()
+                  + "data" + QDir::separator()
+                  + "style" + QDir::separator()
+                  + "black.qss").toString();
     szFile = RabbitCommon::CDir::GetOpenFileName(this, tr("Open sink"),
-                 RabbitCommon::CDir::Instance()->GetDirApplicationInstallRoot()
-                 + QDir::separator() + "data" + QDir::separator() + "style",
+                 szFile,
                  tr("Style files(*.qss)"));
     if(szFile.isEmpty()) return;
     LoadStyle(szFile);
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
-                  QSettings::IniFormat);
+    
     set.setValue("Sink", szFile);
 }
 
