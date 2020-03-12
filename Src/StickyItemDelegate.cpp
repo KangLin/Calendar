@@ -56,6 +56,7 @@ void CStickyItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
     painter->translate(option.rect.topLeft());
     e.resize(option.rect.size());
     e.render(painter);
+    
     painter->restore();
 }
 
@@ -64,9 +65,13 @@ QSize CStickyItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QM
     QTextEdit e;
     e.setHtml(index.data(Qt::EditRole).toString());
     QMargins cm = e.contentsMargins();
+    int marginW = e.style()->pixelMetric(
+                                QStyle::PM_FocusFrameHMargin) << 1;
+    int marginH = e.style()->pixelMetric(
+                                QStyle::PM_FocusFrameVMargin) << 1;
     QSize s = option.rect.size();
     s.setHeight(option.fontMetrics.boundingRect(e.toPlainText()).height()
-                + cm.top() + cm.bottom());
+                + cm.top() + cm.bottom() + marginH);
     return s;
 }
 
