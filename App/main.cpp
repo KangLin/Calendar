@@ -28,14 +28,15 @@ int main(int argc, char *argv[])
     
     QApplication a(argc, argv);
     a.setApplicationVersion(BUILD_VERSION);
-    a.setApplicationName("Tasks");
+    a.setApplicationName("Calendar");
     
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
 
     QTranslator tApp, tTasks, tLunarCalendar;
     tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
-              + "/TasksApp_" + QLocale::system().name() + ".qm");
+              + QDir::separator() + a.applicationName() + "App_"
+              + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
     qInfo() << "Language:" << QLocale::system().name();
 
@@ -44,7 +45,7 @@ int main(int argc, char *argv[])
     RabbitCommon::CTools::Instance()->Init();
 #endif
     
-    a.setApplicationDisplayName(QObject::tr("Tasks"));
+    a.setApplicationDisplayName(QObject::tr("Calendar"));
     
 #ifdef RABBITCOMMON 
     CFrmUpdater *pUpdate = new CFrmUpdater();

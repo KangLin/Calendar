@@ -7,45 +7,45 @@
 case "$1" in
     remove)
         echo "remove ..."
-        rm -f /usr/share/applications/Tasks.desktop
-        rm -f ~/.config/autostart/Tasks.desktop
-        rm -f /usr/share/pixmaps/Tasks.png
+        rm -f /usr/share/applications/Calendar.desktop
+        rm -f ~/.config/autostart/Calendar.desktop
+        rm -f /usr/share/pixmaps/Calendar.png
     ;;
 
     install|*)
         echo "install ..."
         # Install destop
-        if [ -f /usr/share/applications/Tasks.desktop ]; then
-            rm /usr/share/applications/Tasks.desktop
+        if [ -f /usr/share/applications/Calendar.desktop ]; then
+            rm /usr/share/applications/Calendar.desktop
         fi
-        ln -s `pwd`/share/applications/Tasks.desktop /usr/share/applications/Tasks.desktop
+        ln -s `pwd`/share/applications/Calendar.desktop /usr/share/applications/Calendar.desktop
 
         # Install auto run on boot
         if [ ! -d ~/.config/autostart ]; then
             mkdir -p ~/.config/autostart
             chmod a+wr ~/.config/autostart
         fi
-        if [ -f ~/.config/autostart/Tasks.desktop ]; then
-            rm ~/.config/autostart/Tasks.desktop
+        if [ -f ~/.config/autostart/Calendar.desktop ]; then
+            rm ~/.config/autostart/Calendar.desktop
         fi
-        ln -s `pwd`/share/applications/Tasks.desktop ~/.config/autostart/Tasks.desktop
+        ln -s `pwd`/share/applications/Calendar.desktop ~/.config/autostart/Calendar.desktop
 
         # Reset exec to desktop
-        sed -i "s/Exec=.*//g" `pwd`/share/applications/Tasks.desktop
-        echo "Exec=`pwd`/Tasks-x86_64.AppImage" >> `pwd`/share/applications/Tasks.desktop
+        sed -i "s/Exec=.*//g" `pwd`/share/applications/Calendar.desktop
+        echo "Exec=`pwd`/Calendar-x86_64.AppImage" >> `pwd`/share/applications/Calendar.desktop
 
         # Install applications icon
-        if [ -f /usr/share/pixmaps/Tasks.png ]; then
-            rm /usr/share/pixmaps/Tasks.png
+        if [ -f /usr/share/pixmaps/Calendar.png ]; then
+            rm /usr/share/pixmaps/Calendar.png
         fi
         if [ ! -d /usr/share/pixmaps ]; then
             mkdir -p /usr/share/pixmaps
         fi
-        ln -s `pwd`/share/pixmaps/Tasks.png /usr/share/pixmaps/Tasks.png
+        ln -s `pwd`/share/pixmaps/Calendar.png /usr/share/pixmaps/Calendar.png
         
         # Whether run after install
         if [ "$2" = "run" ]; then
-            ./Tasks-x86_64.AppImage
+            ./Calendar-x86_64.AppImage
         fi
         ;;
 esac

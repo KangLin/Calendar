@@ -153,7 +153,7 @@
 <context>
     <name>CFrmCalendar</name>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="49"/>
+        <location filename="../../FrmCalendar.cpp" line="50"/>
         <source>Calendar</source>
         <translation>日歷</translation>
     </message>
@@ -172,14 +172,14 @@
     <message>
         <location filename="../../FrmCalendar.cpp" line="107"/>
         <location filename="../../FrmCalendar.cpp" line="108"/>
-        <location filename="../../FrmCalendar.cpp" line="372"/>
+        <location filename="../../FrmCalendar.cpp" line="362"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
         <location filename="../../FrmCalendar.cpp" line="112"/>
         <location filename="../../FrmCalendar.cpp" line="113"/>
-        <location filename="../../FrmCalendar.cpp" line="375"/>
+        <location filename="../../FrmCalendar.cpp" line="365"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
@@ -187,7 +187,7 @@
         <location filename="../../FrmCalendar.cpp" line="117"/>
         <location filename="../../FrmCalendar.cpp" line="118"/>
         <location filename="../../FrmCalendar.cpp" line="124"/>
-        <location filename="../../FrmCalendar.cpp" line="378"/>
+        <location filename="../../FrmCalendar.cpp" line="368"/>
         <source>Modify</source>
         <translation>修改</translation>
     </message>
@@ -225,27 +225,27 @@
         <translation>日歷改變，是否保存？</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="241"/>
+        <location filename="../../FrmCalendar.cpp" line="243"/>
         <source>Load</source>
         <translation>加載</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="241"/>
+        <location filename="../../FrmCalendar.cpp" line="243"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="254"/>
+        <location filename="../../FrmCalendar.cpp" line="252"/>
         <source>Save as ...</source>
         <translation>另存為 ……</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="316"/>
+        <location filename="../../FrmCalendar.cpp" line="306"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="316"/>
+        <location filename="../../FrmCalendar.cpp" line="306"/>
         <source>Is sure delete ?</source>
         <translation>確定刪除？</translation>
     </message>
@@ -765,17 +765,17 @@
 <context>
     <name>CFrmTasksList</name>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="98"/>
+        <location filename="../../FrmTasksList.cpp" line="99"/>
         <source>Load</source>
         <translation>加載</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="98"/>
+        <location filename="../../FrmTasksList.cpp" line="99"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="111"/>
+        <location filename="../../FrmTasksList.cpp" line="106"/>
         <source>Save as ...</source>
         <translation>另存為 ……</translation>
     </message>
@@ -818,7 +818,7 @@
         <location filename="../../FrmTasksList.ui" line="69"/>
         <location filename="../../FrmTasksList.ui" line="72"/>
         <location filename="../../FrmTasksList.ui" line="75"/>
-        <location filename="../../FrmTasksList.cpp" line="158"/>
+        <location filename="../../FrmTasksList.cpp" line="144"/>
         <source>New tasks</source>
         <translation>新建任務組</translation>
     </message>
@@ -847,23 +847,23 @@
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="160"/>
+        <location filename="../../FrmTasksList.cpp" line="146"/>
         <source>After 5 minutes, the prompt will show 5 minutes, repeat</source>
         <translation>5分鐘後，開始提示，提示5分鐘，重復</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="165"/>
+        <location filename="../../FrmTasksList.cpp" line="151"/>
         <source>New task</source>
         <translation>新建任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="166"/>
-        <location filename="../../FrmTasksList.cpp" line="170"/>
+        <location filename="../../FrmTasksList.cpp" line="152"/>
+        <location filename="../../FrmTasksList.cpp" line="156"/>
         <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
         <translation>如果此任務不是妳需要的，請從下面組合框中選擇妳需要的任務建立它，並刪除此任務。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="169"/>
+        <location filename="../../FrmTasksList.cpp" line="155"/>
         <source>New prompt task</source>
         <translation>新建提示</translation>
     </message>

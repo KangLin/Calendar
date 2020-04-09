@@ -1,5 +1,5 @@
 #!/bin/sh
-# prerm script for Tasks
+# prerm script for Calendar
 #
 # see: dh_installdeb(1)
 

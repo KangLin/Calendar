@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-TARGET = TasksApp
+TARGET = CalendarApp
 TEMPLATE = app
 
 QT += core gui xml sql

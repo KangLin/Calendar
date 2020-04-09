@@ -1,4 +1,4 @@
-## Tasks
+## Calendar
 
 =========================================================
 
@@ -6,8 +6,8 @@ Author: KangLin (kl222@126.com)
 
 [<img src="Resource/Image/china.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)  
 
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/tasks)
-[![Travis build Status](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
+[![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar)
+[![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
 
 ------------------------------------------------
 ### Tables of contents
@@ -43,66 +43,79 @@ Mac os and IOS, I don't have the corresponding equipment,
 please compile and test the students with the corresponding equipment.
 
 ### ScreentShot
-![Calendar](Resource/Image/ScreenShot/Calendar.PNG)
+![Calendar](Resource/Image/ScreenShot/Calendar.png)
 ![Sticky](Resource/Image/ScreenShot/Sticky.png)
-![Tasks](Resource/Image/ScreenShot/Tasks.PNG)
+![Tasks](Resource/Image/ScreenShot/Task.png)
 
 ### Donation
 
 ![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
 
-### [Download setup package](https://github.com/KangLin/Tasks/releases/latest)
+### [Download setup package](https://github.com/KangLin/Calendar/releases/latest)
 
 - windows
-    - [Tasks-Setup-v0.3.5.exe](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks-Setup-v0.3.5.exe)
+    - [Calendar-Setup-v0.3.5.exe](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar-Setup-v0.3.5.exe)
    Windows installation package, support for Windows xp and above
 
 - android
-    + [Tasks_armeabi-v7a_v0.3.5.apk](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks_armeabi-v7a_v0.3.5.apk)
+    + [Calendar_armeabi-v7a_v0.3.5.apk](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_armeabi-v7a_v0.3.5.apk)
 
 - linux
-    - [Tasks_v0.3.5.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks_v0.3.5.tar.gz)  
+    - [Calendar_v0.3.5.tar.gz](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_v0.3.5.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
-      Usage:    
-      1. Decompress. Copy Tasks_v0.3.5.tar.gz to install directory, then decompress it:
+      Usage:
+      
+      1. Decompress. Copy Calendar_v0.3.5.tar.gz to install directory, then decompress it:
 
-                mkdir Tasks
-                cd Tasks
-                cp $DOWNLOAD/Tasks_v0.3.5.tar.gz .
-                tar xvfz Tasks_v0.3.5.tar.gz
+            ```
+            mkdir Calendar
+            cd Calendar
+            cp $DOWNLOAD/Calendar_v0.3.5.tar.gz .
+            tar xvfz Calendar_v0.3.5.tar.gz
+            ```
 
       2. install
-
-                ./install1.sh install_autostart Tasks
+      
+            ```
+            ./install1.sh install_autostart Calendar
+            ```
 
       3. If you want to uninstall
-
-                ./install1.sh remove Tasks
+      
+            ```
+            ./install1.sh remove Calendar
+            ```
 
 - ubuntu
-    - [tasks_0.3.5_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.5/tasks_0.3.5_amd64.deb)  
+    - [Calendar_0.3.5_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_0.3.5_amd64.deb)  
    Deb installation package for Ubuntu
 
 ### Depend
 - [Qt (LGPL v2.1)](http://qt.io/)
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)
-  
-        git clone https://github.com/KangLin/RabbitCommon.git
+
+    ```
+    git clone https://github.com/KangLin/RabbitCommon.git
+    ```
 
 - [LunarCalendar](https://github.com/KangLin/LunarCalendar)
 
 ### Compile
 - Create and enter the build directory
 
-        git clone --recursive https://github.com/KangLin/Tasks.git
-        cd Tasks
-        mkdir build
+    ```
+    git clone --recursive https://github.com/KangLin/Calendar.git
+    cd Calendar
+    mkdir build
+    ```
 
 - Compile
 
-        cd build
-        qmake ../Tasks.pro RabbitCommon_DIR=
-        make install
+    ```
+    cd build
+    qmake ../Calendar.pro RabbitCommon_DIR=
+    make install
+    ```
 
   + Parameter
     + RabbitCommon_DIR: RabbitCommon source directory
@@ -120,37 +133,57 @@ please compile and test the students with the corresponding equipment.
              -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
              -DRabbitCommon_DIR=
         cmake --build . --config Release --target install
-    
+        
   + android
-    + The host is linux
-
+    - The host is linux
+      + Compile
+      
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=Release \
-                 -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
-                 -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
-                 -DANDROID_ABI="armeabi-v7a with NEON" \
-                 -DANDROID_PLATFORM=android-18 \
-                 -DQt5_DIR= \
-                 -DRabbitCommon_DIR= 
+                -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
+                -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
+                -DANDROID_ABI="armeabi-v7a with NEON" \
+                -DANDROID_PLATFORM=android-18 \
+                -DQt5_DIR= \
+                -DRabbitCommon_DIR= 
             cmake --build . --config Release --target install
             cmake --build . --target APK   
 
-    + The host is windows
-
+      + Install
+        - Install program and libraries
+        
+                cmake --build . --config Release --target install/strip
+                 
+        - Generate APK
+        
+                cmake --build . --config Release --target APK
+                 
+    - The host is windows
+      + Compile
+      
             cd build
-            cmake .. -G"Unix Makefiles" \
-               -DCMAKE_BUILD_TYPE=Release \
-               -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
-               -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
-               -DCMAKE_MAKE_PROGRAM=${ANDROID_NDK}/prebuilt/windows-x86_64/bin/make.exe \
-               -DANDROID_PLATFORM=android-18 \
-               -DANDROID_ABI=arm64-v8a \
-               -DANDROID_ARM_NEON=ON \
-               -DQt5_DIR= \
-               -DRabbitCommon_DIR= 
+            cmake .. -G"Unix Makefiles" ^
+                -DCMAKE_BUILD_TYPE=Release ^
+                -DCMAKE_INSTALL_PREFIX=`pwd`/android-build ^
+                -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake ^
+                -DCMAKE_MAKE_PROGRAM=${ANDROID_NDK}/prebuilt/windows-x86_64/bin/make.exe ^
+                -DANDROID_PLATFORM=android-18 ^
+                -DANDROID_ABI=arm64-v8a ^
+                -DANDROID_ARM_NEON=ON ^
+                -DQt5_DIR= ^
+                -DRabbitCommon_DIR= 
             cmake --build . --config Release --target install
             cmake --build . --target APK     
       
+      + Install
+        - Install program and libraries
+          
+                cmake --build . --config Release --target install/strip
+                   
+        - Generate APK
+          
+                cmake --build . --config Release --target APK
+                   
     + Parameter Description: https://developer.android.google.cn/ndk/guides/cmake
       + ANDROID_ABI: The following values can be taken:
          Goal ABI. If the target ABI is not specified, CMake uses armeabi-v7a by default.
@@ -181,69 +214,79 @@ please compile and test the students with the corresponding equipment.
         - If it is 64-bit, you will need to download the binary installation package for openssl yourself.
   
     + linux
- 
-     ```
-     sudo apt-get install libssl1.1
-     ```
+
+        ```
+        sudo apt-get install libssl1.1
+        ```
 
 ### Use
 - pro
     - Library mode:
      Add the following code to the project file:
-   
-            isEmpty(Tasks_DIR): Tasks_DIR=$ENV{Tasks_DIR}
-            isEmpty(Tasks_DIR){
-                message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
-                message("   ag:")
-                message("       git clone https://github.com/KangLin/Tasks.git")
-                message("2. Build the project, get library")
-                error("2. Then set value Tasks_DIR to library root dirctory")
-            }
-            INCLUDEPATH *= $${Tasks_DIR}/include $${Tasks_DIR}/include/export
-            LIBS *= -L$${Tasks_DIR}/lib -lLunarCalendar -lTasks
+
+        ```
+        isEmpty(Calendar_DIR): Calendar_DIR=$ENV{Calendar_DIR}
+        isEmpty(Calendar_DIR){
+            message("1. Please download Calendar source code from https://github.com/KangLin/Calendar")
+            message("   ag:")
+            message("       git clone https://github.com/KangLin/Calendar.git")
+            message("2. Build the project, get library")
+            error("2. Then set value Calendar_DIR to library root dirctory")
+        }
+        INCLUDEPATH *= $${Calendar_DIR}/include $${Calendar_DIR}/include/export
+        LIBS *= -L$${Calendar_DIR}/lib -lLunarCalendar -lCalendar
+        ```
 
 - cmake
     + Source code
         + Submodule mode
-  
-              add_subdirectory(3th_libs/Tasks/Src)
+
+            ```
+            add_subdirectory(3th_libs/Calendar/Src)
+            ```
       
         + Non-submodule mode
-  
-                set(Tasks_DIR $ENV{Tasks_DIR} CACHE PATH "Set Tasks source code root directory.")
-                if(EXISTS ${Tasks_DIR}/Src)
-                    add_subdirectory(${Tasks_DIR}/Src ${CMAKE_BINARY_DIR}/Tasks)
-                else()
-                    message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
-                    message("   ag:")
-                    message("       git clone https://github.com/KangLin/Tasks.git")
-                    message("2. Then set cmake value or environment variable Tasks_DIR to download root dirctory.")
-                    message("    ag:")
-                    message(FATAL_ERROR "       cmake -DTasks_DIR= ")
-                endif()
 
+            ```
+            set(Calendar_DIR $ENV{Calendar_DIR} CACHE PATH "Set Calendar source code root directory.")
+            if(EXISTS ${Calendar_DIR}/Src)
+                add_subdirectory(${Calendar_DIR}/Src ${CMAKE_BINARY_DIR}/Calendar)
+            else()
+                message("1. Please download Calendar source code from https://github.com/KangLin/Calendar")
+                message("   ag:")
+                message("       git clone https://github.com/KangLin/Calendar.git")
+                message("2. Then set cmake value or environment variable Calendar_DIR to download root dirctory.")
+                message("    ag:")
+                message(FATAL_ERROR "       cmake -DCalendar_DIR= ")
+            endif()
+            ```
+            
     + Library mode:
 
-        + Cmake parameter Tasks_DIR specifies the installation root directory
+        + Cmake parameter Calendar_DIR specifies the installation root directory
         
-            FIND_PACKAGE(Tasks)
+            ```
+            FIND_PACKAGE(Calendar)
+            ```
         
         + Add libraries and include in CMakeLists.txt
 
-                SET(APP_LIBS ${PROJECT_NAME} ${QT_LIBRARIES})
-                if(Tasks_FOUND)
-                    target_compile_definitions(${PROJECT_NAME}
-                                PRIVATE -DTasks)
-                    target_include_directories(${PROJECT_NAME}
-                                PRIVATE "${Tasks_INCLUDE_DIRS}/Src"
-                                        "${Tasks_INCLUDE_DIRS}/Src/export")
-                    set(APP_LIBS ${APP_LIBS} ${Tasks_LIBRARIES})
-                endif()
-                target_link_libraries(${PROJECT_NAME} ${APP_LIBS})
+            ```
+            SET(APP_LIBS ${PROJECT_NAME} ${QT_LIBRARIES})
+            if(Calendar_FOUND)
+                target_compile_definitions(${PROJECT_NAME}
+                            PRIVATE -DCalendar)
+                target_include_directories(${PROJECT_NAME}
+                                PRIVATE "${Calendar_INCLUDE_DIRS}/Src"
+                                        "${Calendar_INCLUDE_DIRS}/Src/export")
+                set(APP_LIBS ${APP_LIBS} ${Calendar_LIBRARIES})
+            endif()
+            target_link_libraries(${PROJECT_NAME} ${APP_LIBS})
+            ```
 
 ### Contribution
 
-Question: https://github.com/KangLin/Tasks/issues  
-Project location: https://github.com/KangLin/Tasks
+Question: https://github.com/KangLin/Calendar/issues  
+Project location: https://github.com/KangLin/Calendar
 
 ### [License Agreement](License.md "License.md")

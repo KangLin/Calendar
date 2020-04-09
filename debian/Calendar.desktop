@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Calendar
+GenericName=Calendar
+Comment=Calendar
+Name[zh_CN]=日历
+GenericName[zh_CN]=日历
+Comment[zh_CN]=日历
+Icon=Calendar
+Exec=/opt/Calendar/bin/CalendarApp
+Terminal=false
+StartupNotify=true
+Categories=Application;Development;

@@ -1,15 +1,15 @@
-Source: tasks
+Source: calendar
 Section: main
 Priority: optional
 Maintainer: Kang Lin <kl222@126.com>
 Build-Depends: debhelper (>= 6)
 Standards-Version:"v0.3.5"
-Homepage: https://github.com/KangLin/Tasks
-Vcs-Git: https://github.com/KangLin/Tasks.git
-#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/Tasks.git
+Homepage: https://github.com/KangLin/Calendar
+Vcs-Git: https://github.com/KangLin/Calendar.git
+#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/Calendar.git
 
-Package: tasks
+Package: calendar
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Tasks
+Description: Calendar

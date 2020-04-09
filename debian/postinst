@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for Tasks
+# postinst script for Calendar
 #
 # see: dh_installdeb(1)
 
@@ -20,24 +20,24 @@ set -e
 
 case "$1" in
     configure)
-        if [ ! -f /usr/share/applications/Tasks.desktop ]; then
-            ln -s /opt/Tasks/share/applications/Tasks.desktop /usr/share/applications/Tasks.desktop
+        if [ ! -f /usr/share/applications/Calendar.desktop ]; then
+            ln -s /opt/Calendar/share/applications/Calendar.desktop /usr/share/applications/Calendar.desktop
         fi
         if [ ! -d ~/.config/autostart ]; then
             mkdir -p ~/.config/autostart
         fi
-        if [ ! -f  ~/.config/autostart/Tasks.desktop ]; then
+        if [ ! -f  ~/.config/autostart/Calendar.desktop ]; then
             chmod a+wr ~/.config/autostart
-            ln -s /opt/Tasks/share/applications/Tasks.desktop ~/.config/autostart/Tasks.desktop
+            ln -s /opt/Calendar/share/applications/Calendar.desktop ~/.config/autostart/Calendar.desktop
         fi
-        if [ ! -f /usr/share/pixmaps/Tasks.png ]; then
+        if [ ! -f /usr/share/pixmaps/Calendar.png ]; then
             if [ ! -d /usr/share/pixmaps ]; then
                 mkdir -p /usr/share/pixmaps
             fi
-            ln -s /opt/Tasks/share/pixmaps/Tasks.png /usr/share/pixmaps/Tasks.png
+            ln -s /opt/Calendar/share/pixmaps/Calendar.png /usr/share/pixmaps/Calendar.png
         fi
-        echo "/opt/Tasks/lib" > /etc/ld.so.conf.d/Tasks.conf
-        echo "/opt/Tasks/bin" >> /etc/ld.so.conf.d/Tasks.conf
+        echo "/opt/Calendar/lib" > /etc/ld.so.conf.d/Calendar.conf
+        echo "/opt/Calendar/bin" >> /etc/ld.so.conf.d/Calendar.conf
         export QT_VERSION_DIR=
         if [ -n "${QT_VERSION_DIR}" ]; then
             echo "/opt/qt${QT_VERSION_DIR}/lib" >> /etc/ld.so.conf.d/FaceRecognizer.conf
@@ -46,10 +46,10 @@ case "$1" in
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
-        rm -fr ~/.config/autostart/Tasks.desktop
-        rm -fr /usr/share/applications/Tasks.desktop
-        rm -fr /etc/ld.so.conf.d/Tasks.conf
-        rm -fr /usr/share/pixmaps/Tasks.png
+        rm -fr ~/.config/autostart/Calendar.desktop
+        rm -fr /usr/share/applications/Calendar.desktop
+        rm -fr /etc/ld.so.conf.d/Calendar.conf
+        rm -fr /usr/share/pixmaps/Calendar.png
     ;;
 
     *)

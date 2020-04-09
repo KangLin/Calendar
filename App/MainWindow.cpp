@@ -115,7 +115,7 @@ void CMainWindow::slotAbout()
 #ifdef RABBITCOMMON
     CDlgAbout about(this);
     about.m_AppIcon = QImage(":/icon/App");
-    about.m_szHomePage = "https://github.com/KangLin/Tasks";
+    about.m_szHomePage = "https://github.com/KangLin/Calendar";
     if(about.isHidden())
 #if defined (Q_OS_ANDROID)
         about.showMaximized();

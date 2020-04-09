@@ -1,5 +1,5 @@
 #!/bin/sh
-# postrm script for Tasks
+# postrm script for Calendar
 #
 # see: dh_installdeb(1)
 
@@ -21,10 +21,10 @@ set -e
 
 case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-        rm -fr ~/.config/autostart/Tasks.desktop
-        rm -fr /usr/share/applications/Tasks.desktop
-        rm -fr /etc/ld.so.conf.d/Tasks.conf
-        rm -fr /usr/share/pixmaps/Tasks.png
+        rm -fr ~/.config/autostart/Calendar.desktop
+        rm -fr /usr/share/applications/Calendar.desktop
+        rm -fr /etc/ld.so.conf.d/Calendar.conf
+        rm -fr /usr/share/pixmaps/Calendar.png
         ldconfig
     ;;
 

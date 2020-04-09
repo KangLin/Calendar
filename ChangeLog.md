@@ -1,3 +1,6 @@
+- v1.0.0
+  + Rename project name to calendar
+  
 - v0.3.5
   + FIX: about widge size
   + Modify ci for use ubuntu system qt 

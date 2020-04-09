@@ -1,4 +1,4 @@
-## 任务
+## 日历
 
 ================================================
 
@@ -6,8 +6,8 @@
 
 [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
 
-[![Appveyor 编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/tasks/branch/master)
-[![Travis 编译状态](https://travis-ci.org/KangLin/Tasks.svg?branch=master)](https://travis-ci.org/KangLin/Tasks)
+[![Appveyor 编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar/branch/master)
+[![Travis 编译状态](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
 ------------------------------------------------
 
 * [功能](#功能)
@@ -41,45 +41,51 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 
 ### 屏幕截图
 
-![Calendar](Resource/Image/ScreenShot/Calendar_zh_CN.PNG)
+![Calendar](Resource/Image/ScreenShot/Calendar_zh_CN.png)
 ![Sticky](Resource/Image/ScreenShot/Sticky_zh_CN.png)
-![Tasks](Resource/Image/ScreenShot/Tasks_zh_CN.PNG)
+![Tasks](Resource/Image/ScreenShot/Task_zh_CN.png)
 
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
   
 ![捐赠](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠")
 
-### [下载安装包](https://github.com/KangLin/Tasks/releases/latest)
+### [下载安装包](https://github.com/KangLin/Calendar/releases/latest)
 
 - windows
-    - [Tasks-Setup-v0.3.5.exe](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks-Setup-v0.3.5.exe)
+    - [Calendar-Setup-v0.3.5.exe](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar-Setup-v0.3.5.exe)
   Windows安装包，支持 Windows xp 以上系统
 
 - android
-    + [Tasks_v0.3.5.apk](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks_v0.3.5.apk)
+    + [Calendar_v0.3.5.apk](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_v0.3.5.apk)
 
 - linux
-    - [Tasks_v0.3.5.tar.gz](https://github.com/KangLin/Tasks/releases/download/v0.3.5/Tasks_v0.3.5.tar.gz)  
+    - [Calendar_v0.3.5.tar.gz](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_v0.3.5.tar.gz)  
       AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/  
       使用:    
-      1. 解压。复制Tasks_v0.3.5.tar.gz到安装目录，然后解压：
+      1. 解压。复制 Calendar_v0.3.5.tar.gz 到安装目录，然后解压：
 
-                mkdir Tasks
-                cd Tasks
-                cp $DOWNLOAD/Tasks_v0.3.5.tar.gz .
-                tar xvfz Tasks_v0.3.5.tar.gz
-
+            ```
+            mkdir Calendar
+            cd Calendar
+            cp $DOWNLOAD/Calendar_v0.3.5.tar.gz .
+            tar xvfz Calendar_v0.3.5.tar.gz
+            ```
+            
       2. 安装
         
-                ./install1.sh install_autostart Tasks
+            ```
+            ./install1.sh install_autostart Calendar
+            ```
         
       3. 如果需要，卸载
         
-                ./install1.sh remove Tasks
+            ```
+            ./install1.sh remove Calendar
+            ```
 
 - ubuntu
-    - [tasks_0.3.5_amd64.deb](https://github.com/KangLin/Tasks/releases/download/v0.3.5/tasks_0.3.5_amd64.deb)  
+    - [Calendar_0.3.5_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_0.3.5_amd64.deb)  
   deb 安装包,可用于　Ubuntu
 
 ### 依赖
@@ -87,20 +93,19 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)
   
         git clone https://github.com/KangLin/RabbitCommon.git
-
+        
 - [LunarCalendar](https://github.com/KangLin/LunarCalendar)
 
 ### 编译
 - 建立并进入build目录
 
-        git clone --recursive https://github.com/KangLin/Tasks.git
-        cd Tasks
+        git clone --recursive https://github.com/KangLin/Calendar.git
         mkdir build
 
 - 编译
 
         cd build
-        qmake ../Tasks.pro RabbitCommon_DIR=
+        qmake ../Calendar.pro RabbitCommon_DIR=
         make install
 
   + 参数：
@@ -114,42 +119,58 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
     - [可选] CMAKE_INSTALL_PREFIX: 安装前缀
   + windows 或 linux
   
-          cd build
-          cmake .. -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+        cd build
+        cmake .. -DCMAKE_INSTALL_PREFIX=`pwd`/install \
                -DCMAKE_BUILD_TYPE=Release \
                -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
                -DRabbitCommon_DIR=
-          cmake --build . --config Release --target install
-      
+        cmake --build . --config Release --target install
+        
   + android
     - 主机是linux
+      + 编译
 
-          cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release \
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=Release \
                -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
                -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
                -DANDROID_ABI="armeabi-v7a with NEON" \
                -DANDROID_PLATFORM=android-18 \
                -DQt5_DIR= \
                -DRabbitCommon_DIR= 
-          cmake --build . --config Release --target install
-          cmake --build . --target APK
+            cmake --build . --config Release
 
+    　+ 安装
+        - 安装库和程序
+
+              cmake --build . --config Release --target install/strip
+              
+        - 生成 APK
+
+              cmake --build . --config Release --target APK
+          
     - 主机是windows
+      + 编译
 
-          cd build
-          cmake .. -G"Unix Makefiles" \
-             -DCMAKE_BUILD_TYPE=Release \
-             -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
-             -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
-             -DCMAKE_MAKE_PROGRAM=${ANDROID_NDK}/prebuilt/windows-x86_64/bin/make.exe \
-             -DANDROID_PLATFORM=android-18 \
-             -DANDROID_ABI=arm64-v8a \
-             -DANDROID_ARM_NEON=ON \
-             -DQt5_DIR= \
-             -DRabbitCommon_DIR= 
-          cmake --build . --config Release --target install
-          cmake --build . --target APK
+            cd build
+            cmake .. -DCMAKE_INSTALL_PREFIX=%cd%\android-build ^
+                -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ^
+                -DCMAKE_TOOLCHAIN_FILE=%ANDROID_NDK%/build/cmake/android.toolchain.cmake ^
+                -DCMAKE_MAKE_PROGRAM=%ANDROID_NDK%/prebuilt/windows-x86_64/bin/make.exe ^
+                -DANDROID_ABI=arm64-v8a ^
+                -DANDROID_ARM_NEON=ON ^
+                -DANDROID_PLATFORM=android-24 ^
+                -DQt5_DIR= ^
+                -DRabbitCommon_DIR= 
+             
+      + 安装
+        - 安装库和程序
+
+            cmake --build . --config Release --target install/strip
+
+        - 生成 APK
+
+            cmake --build . --config Release --target APK
 
     - 参数说明：https://developer.android.google.cn/ndk/guides/cmake
       + ANDROID_ABI: 可取下列值：
@@ -173,7 +194,7 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 
     - 安装 apk 到设备
 
-           adb install android-build-debug.apk 
+           adb install android-build-debug.apk
 
 - 安装注意  
 Qt因为版权原因，没有提供openssl动态库，所以必须自己复制openssl的动态库到安装目录下。
@@ -182,9 +203,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
         - 如果是64位，则需要自己下载openssl的二进制安装包。
     + linux
 
-        ```
         sudo apt-get install libssl1.1
-        ```
 
 ### 使用
 - 直接用源码
@@ -192,53 +211,53 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
     - 库方式:
     在项目文件中加入下列语句：
 
-            isEmpty(Tasks_DIR): Tasks_DIR=$ENV{Tasks_DIR}
-            isEmpty(Tasks_DIR){
-                message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
+            isEmpty(Calendar_DIR): Calendar_DIR=$ENV{Calendar_DIR}
+            isEmpty(Calendar_DIR){
+                message("1. Please download Calendar source code from https://github.com/KangLin/Calendar")
                 message("   ag:")
-                message("       git clone https://github.com/KangLin/Tasks.git")
+                message("       git clone https://github.com/KangLin/Calendar.git")
                 message("2. Build the project, get library")
-                error("2. Then set value Tasks_DIR to library root dirctory")
+                error("2. Then set value Calendar_DIR to library root dirctory")
             }
-            INCLUDEPATH *= $${Tasks_DIR}/include $${Tasks_DIR}/include/export
-            LIBS *= -L$${Tasks_DIR}/lib -lLunarCalendar -lTasks
+            INCLUDEPATH *= $${Calendar_DIR}/include $${Calendar_DIR}/include/export
+            LIBS *= -L$${Calendar_DIR}/lib -lLunarCalendar -lCalendar
 
   + cmake工程
     - 原码：
         + 子模块方式
   
-              add_subdirectory(3th_libs/Tasks/Src)
+              add_subdirectory(3th_libs/Calendar/Src)
       
         + 非子模块方式
     
-                set(Tasks_DIR $ENV{Tasks_DIR} CACHE PATH "Set Tasks source code root directory.")
-                if(EXISTS ${Tasks_DIR}/Src)
-                    add_subdirectory(${Tasks_DIR}/Src ${CMAKE_BINARY_DIR}/Tasks)
+                set(Calendar_DIR $ENV{Calendar_DIR} CACHE PATH "Set Calendar source code root directory.")
+                if(EXISTS ${Calendar_DIR}/Src)
+                    add_subdirectory(${Calendar_DIR}/Src ${CMAKE_BINARY_DIR}/Calendar)
                 else()
-                    message("1. Please download Tasks source code from https://github.com/KangLin/Tasks")
+                    message("1. Please download Calendar source code from https://github.com/KangLin/Calendar")
                     message("   ag:")
-                    message("       git clone https://github.com/KangLin/Tasks.git")
-                    message("2. Then set cmake value or environment variable Tasks_DIR to download root dirctory.")
+                    message("       git clone https://github.com/KangLin/Calendar.git")
+                    message("2. Then set cmake value or environment variable Calendar_DIR to download root dirctory.")
                     message("    ag:")
-                    message(FATAL_ERROR "       cmake -DTasks_DIR= ")
+                    message(FATAL_ERROR "       cmake -DCalendar_DIR= ")
                 endif()
                 
     - 库方式:
     
-        + Cmake 参数指定 Tasks_DIR 到库安装目录
+        + Cmake 参数指定 Calendar_DIR 到库安装目录
         
-            FIND_PACKAGE(Tasks)
+            FIND_PACKAGE(Calendar)
         
         + 在 CMakeLists.txt 中增加头文件和库文件
         
                 SET(APP_LIBS ${PROJECT_NAME} ${QT_LIBRARIES})
-                if(Tasks_FOUND)
+                if(Calendar_FOUND)
                     target_compile_definitions(${PROJECT_NAME}
-                                PRIVATE -DTasks)
+                                PRIVATE -DCalendar)
                     target_include_directories(${PROJECT_NAME}
-                                PRIVATE "${Tasks_INCLUDE_DIRS}/Src"
-                                        "${Tasks_INCLUDE_DIRS}/Src/export")
-                    set(APP_LIBS ${APP_LIBS} ${Tasks_LIBRARIES})
+                                PRIVATE "${Calendar_INCLUDE_DIRS}/Src"
+                                        "${Calendar_INCLUDE_DIRS}/Src/export")
+                    set(APP_LIBS ${APP_LIBS} ${Calendar_LIBRARIES})
                 endif()
                 target_link_libraries(${PROJECT_NAME} ${APP_LIBS})
         
@@ -255,12 +274,12 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
         #else
             szPre = qApp->applicationDirPath() + QDir::separator() + ".." + QDir::separator() + "translations";
         #endif
-        m_Translator.load(szPre + "/Tasks_" + QLocale::system().name() + ".qm");
+        m_Translator.load(szPre + "/Calendar_" + QLocale::system().name() + ".qm");
         qApp->installTranslator(&m_Translator);
 
 ### 贡献
 
-问题：https://github.com/KangLin/Tasks/issues  
-项目位置：https://github.com/KangLin/Tasks
+问题：https://github.com/KangLin/Calendar/issues  
+项目位置：https://github.com/KangLin/Calendar
 
 ### [许可协议](License.md "License.md")

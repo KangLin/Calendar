@@ -1,4 +1,4 @@
-project(TasksApp)
+project(CalendarApp)
 
 set(HEAD_FILES
     MainWindow.h 
@@ -30,7 +30,7 @@ if(ANDROID)
 else()
     add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} AppIcon.rc ${RCC_FILES})
 endif()
-add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME} Tasks)
+add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
 SET(APP_LIBS Tasks ${QT_LIBRARIES})
 if(TARGET RabbitCommon)
@@ -88,9 +88,9 @@ if(WIN32)
 endif()
 
 if(UNIX)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/debian/Tasks.desktop
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/debian/Calendar.desktop
         DESTINATION "share/applications" COMPONENT Runtime)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Tasks.png
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Calendar.png
         DESTINATION "share/pixmaps" COMPONENT Runtime)
 endif()
 
@@ -123,7 +123,7 @@ IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
 ENDIF()
 
 IF(ANDROID)
-    Set(JSON_FILE ${CMAKE_CURRENT_BINARY_DIR}/android-libTasksApp.so-deployment-settings.json)
+    Set(JSON_FILE ${CMAKE_CURRENT_BINARY_DIR}/android-libCalendarApp.so-deployment-settings.json)
     GENERATED_DEPLOYMENT_SETTINGS(NAME ${JSON_FILE}
         APPLACTION "${CMAKE_BINARY_DIR}/bin/lib${PROJECT_NAME}.so")
 
