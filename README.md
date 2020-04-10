@@ -43,9 +43,13 @@ Mac os and IOS, I don't have the corresponding equipment,
 please compile and test the students with the corresponding equipment.
 
 ### ScreentShot
-![Calendar](Resource/Image/ScreenShot/Calendar.png)
-![Sticky](Resource/Image/ScreenShot/Sticky.png)
-![Tasks](Resource/Image/ScreenShot/Task.png)
+- ![Calendar](Resource/Image/ScreenShot/Calendar.png)
+- ![Sticky](Resource/Image/ScreenShot/Sticky.png)
+- ![Tasks](Resource/Image/ScreenShot/Task.png)
+- ![Android Calendar](Resource/Image/ScreenShot/AndroidCalendar.png)
+- ![Android Stricky List](Resource/Image/ScreenShot/AndroidStrickyList.png)
+- ![Android Stricky](Resource/Image/ScreenShot/AndroidStricky.png)
+- ![Android Tasks](Resource/Image/ScreenShot/AndroidTask.png)
 
 ### Donation
 
@@ -54,24 +58,24 @@ please compile and test the students with the corresponding equipment.
 ### [Download setup package](https://github.com/KangLin/Calendar/releases/latest)
 
 - windows
-    - [Calendar-Setup-v0.3.5.exe](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar-Setup-v0.3.5.exe)
+    - [Calendar-Setup-v1.0.0.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.0/Calendar-Setup-v1.0.0.exe)
    Windows installation package, support for Windows xp and above
 
 - android
-    + [Calendar_armeabi-v7a_v0.3.5.apk](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_armeabi-v7a_v0.3.5.apk)
+    + [Calendar_armeabi-v7a_v1.0.0.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.0/Calendar_armeabi-v7a_v1.0.0.apk)
 
 - linux
-    - [Calendar_v0.3.5.tar.gz](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_v0.3.5.tar.gz)  
+    - [Calendar_v1.0.0.tar.gz](https://github.com/KangLin/Calendar/releases/download/v1.0.0/Calendar_v1.0.0.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:
       
-      1. Decompress. Copy Calendar_v0.3.5.tar.gz to install directory, then decompress it:
+      1. Decompress. Copy Calendar_v1.0.0.tar.gz to install directory, then decompress it:
 
             ```
             mkdir Calendar
             cd Calendar
-            cp $DOWNLOAD/Calendar_v0.3.5.tar.gz .
-            tar xvfz Calendar_v0.3.5.tar.gz
+            cp $DOWNLOAD/Calendar_v1.0.0.tar.gz .
+            tar xvfz Calendar_v1.0.0.tar.gz
             ```
 
       2. install
@@ -87,7 +91,7 @@ please compile and test the students with the corresponding equipment.
             ```
 
 - ubuntu
-    - [Calendar_0.3.5_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v0.3.5/Calendar_0.3.5_amd64.deb)  
+    - [Calendar_1.0.0_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v1.0.0/Calendar_1.0.0_amd64.deb)  
    Deb installation package for Ubuntu
 
 ### Depend
