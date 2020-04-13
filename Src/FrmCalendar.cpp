@@ -48,7 +48,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
 {
     bool check = false;
     setWindowTitle(tr("Calendar"));
-    setWindowIcon(QIcon(":/icon/Calendar"));
+    setWindowIcon(QIcon(":/icon/App"));
 
     m_listView.setModel(m_pModel);
     m_listView.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

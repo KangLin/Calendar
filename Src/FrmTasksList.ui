@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Resource/ResourceTasks.qrc">
-    <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
+    <normaloff>:/icon/Task</normaloff>:/icon/Task</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout"/>
   <action name="actionLoad_L">
@@ -116,7 +116,6 @@
   </action>
  </widget>
  <resources>
-  <include location="Resource/ResourceTasks.qrc"/>
   <include location="Resource/ResourceTasks.qrc"/>
  </resources>
  <connections/>

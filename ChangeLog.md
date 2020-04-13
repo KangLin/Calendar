@@ -1,3 +1,6 @@
+- v1.0.1
+  + Modify application icon
+
 - v1.0.0
   + Rename project name to calendar
   
