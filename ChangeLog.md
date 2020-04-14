@@ -1,7 +1,6 @@
-- v1.0.1
-  + Modify application icon
-
 - v1.0.0
+  + FIX: android run fail
+  + Modify application icon
   + Rename project name to calendar
   
 - v0.3.5

@@ -101,6 +101,4 @@ DISTFILES += \
 
 android{
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-    !isEmpty(OPENSSL_ROOT_DIR) : ANDROID_EXTRA_LIBS = $$OPENSSL_ROOT_DIR/lib/libssl.so \
-                                     $$OPENSSL_ROOT_DIR/lib/libcrypto.so
 }

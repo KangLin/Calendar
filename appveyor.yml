@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v1.0.1.{build}'
+version: 'v1.0.2.{build}'
 
 environment:
   STOREPASS:
@@ -138,8 +138,8 @@ build_script:
 
 artifacts:
   - path: build_${BUILD_TARGERT}/Calendar-Setup-*.exe
-    name: Calendar_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
-    type: zip
+    #name: Calendar_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
+    #type: zip
     
   - path: build_${BUILD_TARGERT}/update_windows.xml
   - path: Calendar_*.apk
@@ -150,7 +150,7 @@ test: off
 deploy:
   - provider: GitHub
     #release: Tasks$(appveyor_build_version)
-    description: 'Release Tasks $(APPVEYOR_REPO_TAG_NAME) on windows'
+    #description: 'Release Tasks $(APPVEYOR_REPO_TAG_NAME) on windows'
     #token : https://github.com/settings/tokens
     #password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
