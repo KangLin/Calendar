@@ -113,12 +113,14 @@ case ${BUILD_TARGERT} in
         ;;
 esac
 
+export PKG_CONFIG_PATH=${ThirdLibs_DIR}/lib/pkgconfig:${PKG_CONFIG_PATH}
 if [ -n "$appveyor_build_version" -a -z "$VERSION" ]; then
-    export VERSION="v1.0.2"
+    export VERSION="v1.0.0"
 fi
 if [ -z "$VERSION" ]; then
-    export VERSION="v1.0.2"
+    export VERSION="v1.0.0"
 fi
+
 export UPLOADTOOL_BODY="Release Calendar ${VERSION}.<br> The change see [ChangeLog.md](ChangeLog.md) or [ChangeLog_zh_CN.md](ChangeLog_zh_CN.md)"
 #export UPLOADTOOL_PR_BODY=
 if [ "${BUILD_TARGERT}" = "unix" ]; then
