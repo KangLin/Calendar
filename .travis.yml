@@ -1,22 +1,21 @@
 sudo: required
 dist: xenial
 language: cpp
-
 cache:
   - apt
-  #- directories:
-    #- Package
+  - directories:
+    - Package
 
-compiler:
-  - g++
+#compiler:
+#  - g++
 
-os:
-  - unix
+#os:
+#  - unix
 
-addons:
-  ssh_known_hosts:
-    - github.com
-    - frs.sourceforge.net
+#addons:
+#  ssh_known_hosts:
+#    - github.com
+#    - frs.sourceforge.net
 
 env:
   global:
@@ -46,7 +45,7 @@ env:
     - BUILD_TARGERT="android" BUILD_ARCH="armeabi-v7a" ANDROID_ARM_NEON=ON QT_VERSION_DIR=5.12 QT_VERSION=5.12.6 ANDROID_API=android-24 DOWNLOAD_QT=TRUE GENERATORS="Unix Makefiles" DOWNLOAD_THIRDLIBS_URL=https://github.com/KangLin/RabbitThirdLibrary/releases/download/v0.2.6/android_arm_v0.2.6_in_linux.tar.gz
     - BUILD_TARGERT="android" BUILD_ARCH="arm64-v8a" ANDROID_ARM_NEON=ON QT_VERSION_DIR=5.12 QT_VERSION=5.12.6 ANDROID_API=android-24 DOWNLOAD_QT=TRUE DOWNLOAD_THIRDLIBS_URL=https://github.com/KangLin/RabbitThirdLibrary/releases/download/v0.2.6/android_arm64_v0.2.6_in_linux.tar.gz
     - BUILD_TARGERT="android" BUILD_ARCH="x86" QT_VERSION_DIR=5.12 QT_VERSION=5.12.6 ANDROID_API=android-24 DOWNLOAD_QT=TRUE GENERATORS="Unix Makefiles" DOWNLOAD_THIRDLIBS_URL=https://github.com/KangLin/RabbitThirdLibrary/releases/download/v0.2.6/android_x86_v0.2.6_in_linux.tar.gz
-
+    
 before_install:
   - echo "TRAVIS_OS_NAME=${TRAVIS_OS_NAME}"
   - sudo apt-get install -y -qq xvfb xpra

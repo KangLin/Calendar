@@ -1,6 +1,9 @@
 #TODO: Change version
 version: 'v1.0.0.{build}'
 
+cache:
+  - Package
+  
 environment:
   STOREPASS:
     secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=

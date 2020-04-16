@@ -77,6 +77,9 @@ function function_common()
 
 function install_android()
 {
+    if [ -n "$1" ]; then
+        NDK="ndk-bundle"
+    fi
     cd ${TOOLS_DIR}
     if [ ! -d "`pwd`/android-sdk" ]; then
         cd ${PACKAGE_DIR}
@@ -84,16 +87,20 @@ function install_android()
         if [ ! -f android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz ]; then
             wget -c -nv https://dl.google.com/dl/android/studio/ide-zips/3.5.1.0/android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz
         fi
-        cp android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz ${TOOLS_DIR}/.
+        tar xzf android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz -C ${TOOLS_DIR}
         cd ${TOOLS_DIR}
-        tar xzf android-studio-ide-${ANDROID_STUDIO_VERSION}-linux.tar.gz
         export JAVA_HOME=`pwd`/android-studio/jre
         export PATH=${JAVA_HOME}/bin:$PATH
-        wget -c -nv https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+        cd ${PACKAGE_DIR}
+        SDK_PACKAGE=sdk-tools-linux-4333796.zip
+        if [ ! -f ${SDK_PACKAGE} ]; then
+            wget -c -nv https://dl.google.com/android/repository/${SDK_PACKAGE}
+        fi
+        cd ${TOOLS_DIR}
         mkdir android-sdk
         cd android-sdk
-        cp ../sdk-tools-linux-4333796.zip .
-        unzip -q sdk-tools-linux-4333796.zip
+        unzip -q ${PACKAGE_DIR}/${SDK_PACKAGE} -d `pwd`
+        
         echo "Install sdk and ndk ......"
         if [ -n "${ANDROID_API}" ]; then
             PLATFORMS="platforms;${ANDROID_API}"
@@ -104,46 +111,26 @@ function install_android()
             BUILD_TOOS_VERSION="28.0.3"
         fi
         (sleep 5 ; num=0 ; while [ $num -le 5 ] ; do sleep 1 ; num=$(($num+1)) ; printf 'y\r\n' ; done ) \
-        | ./tools/bin/sdkmanager "platform-tools" "build-tools;${BUILD_TOOS_VERSION}" "${PLATFORMS}" "ndk-bundle"
-        if [ ! -d ${TOOLS_DIR}/android-ndk ]; then
-            ln -s ${TOOLS_DIR}/android-sdk/ndk-bundle ${TOOLS_DIR}/android-ndk
+        | ./tools/bin/sdkmanager "platform-tools" "build-tools;${BUILD_TOOS_VERSION}" "${PLATFORMS}" ${NDK}
+        if [ -n "${NDK}" ]; then
+            if [ ! -d ${TOOLS_DIR}/android-ndk ]; then
+                ln -s ${TOOLS_DIR}/android-sdk/ndk-bundle ${TOOLS_DIR}/android-ndk
+            fi
         fi
     fi
 }
 
 function install_android_sdk_and_ndk()
 {
-    cd ${SOURCE_DIR}/Tools
-    
-    #下载android ndk  
-    if [ ! -d "`pwd`/android-ndk" ]; then
-        if [ "$QT_VERSION_DIR" = "5.8" ]; then
-            wget -c -nv http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
-            chmod u+x android-ndk-r10e-linux-x86_64.bin
-            ./android-ndk-r10e-linux-x86_64.bin > /dev/null
-            mv android-ndk-r10e android-ndk
-            rm android-ndk-r10e-linux-x86_64.bin
-        else
-            NDK_VERSION=r20
-            wget -c -nv https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip
-            unzip android-ndk-${NDK_VERSION}-linux-x86_64.zip
-            mv android-ndk-${NDK_VERSION} android-ndk
-            rm android-ndk-${NDK_VERSION}-linux-x86_64.zip
-        fi
+    install_android
+    NDK_PACKAGE=android-ndk-r21-linux-x86_64.zip
+    cd ${PACKAGE_DIR}
+    if [ ! -f ${NDK_PACKAGE} ]; then
+        wget -c -nv https://dl.google.com/android/repository/${NDK_PACKAGE}
     fi
-
+    unzip -q ${NDK_PACKAGE} -d ${TOOLS_DIR}
     cd ${TOOLS_DIR}
-
-    #Download android sdk  
-    if [ ! -d "`pwd`/android-sdk" ]; then
-        SDK_VERSION=r24.4.1
-        wget -c -nv https://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz
-        tar xf android-sdk_${SDK_VERSION}-linux.tgz 
-        mv android-sdk-linux android-sdk
-        rm android-sdk_${SDK_VERSION}-linux.tgz 
-        (sleep 5 ; while true ; do sleep 1 ; printf 'y\r\n' ; done ) \
-        | android-sdk/tools/android update sdk -u -t tool,${ANDROID_API},extra,platform,platform-tools,build-tools-28.0.3,build-tools-28.0.2
-    fi
+    mv android-ndk-r21 android-ndk
 }
 
 function function_android()
@@ -162,8 +149,8 @@ function function_android()
     sudo apt-get install libicu-dev -qq -y
     sudo apt-get install -qq -y libxkbcommon-x11-dev libglu1-mesa-dev
 
+    install_android_sdk_and_ndk
     function_common
-    install_android
 
     cd ${SOURCE_DIR}
 }
