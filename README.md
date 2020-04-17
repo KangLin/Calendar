@@ -32,7 +32,7 @@ Author: KangLin (kl222@126.com)
 - [x] Custom task
   - [x] Eye Nurse： Vision protection
 - [x] Sticky
-- [x] Cross-platform, support multiple operating systems
+- [x] Cross-platform, support multiple operating systems(https://doc.qt.io/qt-5/supported-platforms.html)
      - [x] Windows
      - [x] Linux、Unix
      - [x] Android

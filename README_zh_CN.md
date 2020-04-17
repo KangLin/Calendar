@@ -30,13 +30,13 @@
 - [x] 自定义任务
   - [x] 眼睛护士: 保护视力
 - [x] 便签
-- 跨平台，支持多操作系统
+- 跨平台，支持多操作系统(https://doc.qt.io/qt-5/supported-platforms.html)
   + [x] Windows
   + [x] Linux、Unix
   + [x] Android
   + [ ] Mac os
   + [ ] IOS
-
+  
 Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己编译，测试。
 
 ### 屏幕截图
