@@ -43,13 +43,15 @@ Mac os and IOS, I don't have the corresponding equipment,
 please compile and test the students with the corresponding equipment.
 
 ### ScreentShot
-- ![Calendar](Resource/Image/ScreenShot/Calendar.png)
-- ![Sticky](Resource/Image/ScreenShot/Sticky.png)
-- ![Tasks](Resource/Image/ScreenShot/Task.png)
-- ![Android Calendar](Resource/Image/ScreenShot/AndroidCalendar.png)
-- ![Android Stricky List](Resource/Image/ScreenShot/AndroidStrickyList.png)
-- ![Android Stricky](Resource/Image/ScreenShot/AndroidStricky.png)
-- ![Android Tasks](Resource/Image/ScreenShot/AndroidTask.png)
+- Unix screent shot
+  - ![Calendar](Resource/Image/ScreenShot/Calendar.png)
+  - ![Sticky](Resource/Image/ScreenShot/Sticky.png)
+  - ![Tasks](Resource/Image/ScreenShot/Task.png)
+- Android screent shot
+  - ![Android Calendar](Resource/Image/ScreenShot/AndroidCalendar.png)
+  - ![Android Stricky List](Resource/Image/ScreenShot/AndroidStrickyList.png)
+  - ![Android Stricky](Resource/Image/ScreenShot/AndroidStricky.png)
+  - ![Android Tasks](Resource/Image/ScreenShot/AndroidTask.png)
 
 ### Donation
 

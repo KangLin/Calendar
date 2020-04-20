@@ -41,9 +41,11 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 
 ### 屏幕截图
 
-- ![Calendar](Resource/Image/ScreenShot/Calendar_zh_CN.png)
-- ![Sticky](Resource/Image/ScreenShot/Sticky_zh_CN.png)
-- ![Tasks](Resource/Image/ScreenShot/Task_zh_CN.png)
++ Unix 下截图
+  - ![Calendar](Resource/Image/ScreenShot/Calendar_zh_CN.png)
+  - ![Sticky](Resource/Image/ScreenShot/Sticky_zh_CN.png)
+  - ![Tasks](Resource/Image/ScreenShot/Task_zh_CN.png)
++ Android 下截图
 - ![Android Calendar](Resource/Image/ScreenShot/AndroidCalendar_zh_CN.png)
 - ![Android Stricky List](Resource/Image/ScreenShot/AndroidStrickyList_zh_CN.png)
 - ![Android Stricky](Resource/Image/ScreenShot/AndroidStricky_zh_CN.png)
