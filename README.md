@@ -294,5 +294,6 @@ please compile and test the students with the corresponding equipment.
 
 Question: https://github.com/KangLin/Calendar/issues  
 Project location: https://github.com/KangLin/Calendar
+Contributors: https://github.com/KangLin/Calendar/graphs/contributors
 
 ### [License Agreement](License.md "License.md")
