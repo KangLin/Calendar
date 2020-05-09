@@ -1,13 +1,16 @@
 ## [<img src="App/AppIcon.ico" title="日历" width="16" height="16"/>日历](https://github.com/KangLin/Calendar)
 
-================================================
 
 作者：康林（kl222@126.com)
+
+- [项目位置](https://github.com/KangLin/Calendar)
+- [项目主页](https://kanglin.github.io/Calendar/)
 
 [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
 
 [![Appveyor 编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar/branch/master)
 [![Travis 编译状态](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
+
 ------------------------------------------------
 
 * [功能](#功能)
@@ -285,8 +288,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
 
 ### 贡献
 
-问题：https://github.com/KangLin/Calendar/issues  
-项目位置：https://github.com/KangLin/Calendar
-贡献者：https://github.com/KangLin/Calendar/graphs/contributors
+- [问题](https://github.com/KangLin/Calendar/issues)
+- [贡献者](https://github.com/KangLin/Calendar/graphs/contributors)
 
 ### [许可协议](License.md "License.md")

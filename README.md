@@ -1,8 +1,9 @@
 ## [<img src="App/AppIcon.ico" alt="Calendar" title="Calendar" width="16" height="16"/>Calendar](https://github.com/KangLin/Calendar)  
 
-=========================================================
-
 Author: KangLin (kl222@126.com)
+
+- [Project location](https://github.com/KangLin/Calendar)
+- [Project home](https://kanglin.github.io/Calendar/)
 
 [<img src="Resource/Image/china.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)  
 
@@ -10,6 +11,7 @@ Author: KangLin (kl222@126.com)
 [![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
 
 ------------------------------------------------
+
 ### Tables of contents
 
 - [Features](#Features)
@@ -292,8 +294,7 @@ please compile and test the students with the corresponding equipment.
 
 ### Contribution
 
-Question: https://github.com/KangLin/Calendar/issues  
-Project location: https://github.com/KangLin/Calendar
-Contributors: https://github.com/KangLin/Calendar/graphs/contributors
+- [Question](https://github.com/KangLin/Calendar/issues)
+- [Contributors](https://github.com/KangLin/Calendar/graphs/contributors)
 
 ### [License Agreement](License.md "License.md")
