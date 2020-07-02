@@ -26,7 +26,7 @@ other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
 win32: other.files += App/AppIcon.ico #windows install need
 android: other.path = $$PREFIX/assets
 else: other.path = $$PREFIX
-other.CONFIG += no_check_exist 
+other.CONFIG += no_check_exist
 INSTALLS += other
 
 install_win.files = Install/Install.nsi
