@@ -33,7 +33,7 @@ isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$PWD/../../RabbitCommon
 
 DEFINES += RABBITCOMMON
 INCLUDEPATH+=$$_PRO_FILE_PWD_/../Src $$_PRO_FILE_PWD_/../Src/export $${RabbitCommon_DIR}/Src $${RabbitCommon_DIR}/Src/export
-DESTDIR = $$OUT_PWD/../bin
+isEmpty(DESTDIR): DESTDIR = $$OUT_PWD/../bin
 DEPENDPATH = $$DESTDIR
 SOURCES += \
     main.cpp \

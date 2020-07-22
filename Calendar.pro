@@ -9,7 +9,9 @@ DESTDIR = $$OUT_PWD/bin
 
 RabbitCommon.file = 3th_libs/RabbitCommon.pro
 LunarCalendar.file = 3th_libs/LunarCalendar.pro
+LunarCalendar.depends = RabbitCommon
 lib.subdir = Src
+lib.depends = LunarCalendar
 App.depends = RabbitCommon LunarCalendar lib
 CONFIG *= ordered
 SUBDIRS = RabbitCommon LunarCalendar lib App
