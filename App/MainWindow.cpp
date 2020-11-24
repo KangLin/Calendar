@@ -19,10 +19,11 @@
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::CMainWindow),
-    m_Table(this)
+    m_Table(this),
+    m_Stlye(this)
 {
     ui->setupUi(this);
-    LoadStyle();
+    m_Stlye.LoadStyle();
     
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
@@ -201,60 +202,6 @@ void CMainWindow::closeEvent(QCloseEvent *e)
     hide();
 }
 
-int CMainWindow::LoadStyle()
-{
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
-                  QSettings::IniFormat);
-    QString szFile = set.value("Sink",
-                  RabbitCommon::CDir::Instance()->GetDirApplicationInstallRoot()
-                  + QDir::separator()
-                  + "data" + QDir::separator()
-                  + "style" + QDir::separator()
-                  + "black.qss").toString();
-    qDebug() << "LoadStyle:" << szFile;
-    return  LoadStyle(szFile);
-}
-
-int CMainWindow::LoadStyle(const QString &szFile)
-{
-    if(szFile.isEmpty())
-        qApp->setStyleSheet("");
-    else
-    {
-        QFile file(szFile);
-        if(file.open(QFile::ReadOnly))
-        {
-            QString stylesheet= file.readAll();
-            qApp->setStyleSheet(stylesheet);
-            file.close();
-        }
-        else
-        {
-            qDebug() << "file open file fail:" << szFile;                       
-        }
-    }
-    return 0;
-}
-
-void CMainWindow::on_actionSink_S_triggered()
-{
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
-                  QSettings::IniFormat);
-    QString szFile = set.value("Sink",
-                  RabbitCommon::CDir::Instance()->GetDirApplicationInstallRoot()
-                  + QDir::separator()
-                  + "data" + QDir::separator()
-                  + "style" + QDir::separator()
-                  + "black.qss").toString();
-    szFile = RabbitCommon::CDir::GetOpenFileName(this, tr("Open sink"),
-                 szFile,
-                 tr("Style files(*.qss)"));
-    if(szFile.isEmpty()) return;
-    LoadStyle(szFile);
-    
-    set.setValue("Sink", szFile);
-}
-
 void CMainWindow::on_actionOption_O_triggered()
 {
     CDlgOption dlg(this);
@@ -280,7 +227,7 @@ void CMainWindow::on_actionTasks_list_A_triggered()
 
 void CMainWindow::hideEvent(QHideEvent *event)
 {
-    Q_UNUSED(event);
+    Q_UNUSED(event)
     m_pShow->setText(tr("Show"));
 }
 
@@ -346,4 +293,14 @@ bool CMainWindow::eventFilter(QObject *watched, QEvent *event)
         break;
     }
     return false;
+}
+
+void CMainWindow::on_actionDefaultStyle_D_triggered()
+{
+    m_Stlye.SetDefaultStyle();
+}
+
+void CMainWindow::on_actionOpenStyle_triggered()
+{
+    m_Stlye.slotStyle();
 }

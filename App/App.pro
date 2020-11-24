@@ -72,12 +72,6 @@ win32 {
 !android: target.path = $$PREFIX/bin
 INSTALLS += target
 
-sink.files = Resource/sink/*
-android: sink.path = $$PREFIX/assets/data/style
-else: sink.path = $$PREFIX/data/style
-sink.CONFIG += no_check_exist
-INSTALLS += sink
-
 win32 : equals(QMAKE_HOST.os, Windows){
     
     INSTALL_TARGET = $$system_path($${PREFIX}/bin/$(TARGET))

@@ -1,3 +1,6 @@
+- v1.0.1
+  + Modify style
+
 - v1.0.0
   + FIX: android run fail
   + Modify application icon

@@ -12,6 +12,7 @@
 #include "FrmTasksList.h"
 #include "FrmStickyList.h"
 #include "FrmCalendar.h"
+#include "RabbitCommonStyle.h"
 
 namespace Ui {
 class CMainWindow;
@@ -34,12 +35,15 @@ private Q_SLOTS:
     void slotActivated(QSystemTrayIcon::ActivationReason reason);
     void on_actionExit_E_triggered();
     void on_actionAbout_A_triggered();   
-    void on_actionSink_S_triggered();
+    
     void on_actionOption_O_triggered();
     void on_actionUpdate_U_triggered();
 
     void on_actionSticky_list_L_triggered();
     void on_actionTasks_list_A_triggered();
+    
+    void on_actionDefaultStyle_D_triggered();
+    void on_actionOpenStyle_triggered();
     
 protected:
     virtual void closeEvent(QCloseEvent *e) override;
@@ -63,6 +67,8 @@ private:
     CFrmStickyList m_frmStickyList;
     CFrmCalendar m_frmCalendar;
 
+    RabbitCommon::CStyle m_Stlye;
+    
 protected:
     virtual void hideEvent(QHideEvent *event) override;    
 };

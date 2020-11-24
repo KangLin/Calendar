@@ -40,9 +40,16 @@
     <property name="title">
      <string>Tools(&amp;T)</string>
     </property>
+    <widget class="QMenu" name="menuSink_S">
+     <property name="title">
+      <string>Sink(&amp;S)</string>
+     </property>
+     <addaction name="actionDefaultStyle_D"/>
+     <addaction name="actionOpenStyle"/>
+    </widget>
     <addaction name="separator"/>
     <addaction name="actionOption_O"/>
-    <addaction name="actionSink_S"/>
+    <addaction name="menuSink_S"/>
     <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
@@ -95,27 +102,6 @@
     <string>Option</string>
    </property>
   </action>
-  <action name="actionSink_S">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/icon/Sink</normaloff>:/icon/Sink</iconset>
-   </property>
-   <property name="text">
-    <string>Sink(&amp;S)</string>
-   </property>
-   <property name="iconText">
-    <string>Sink</string>
-   </property>
-   <property name="toolTip">
-    <string>Sink</string>
-   </property>
-   <property name="statusTip">
-    <string>Sink</string>
-   </property>
-   <property name="whatsThis">
-    <string>Sink</string>
-   </property>
-  </action>
   <action name="actionUpdate_U">
    <property name="icon">
     <iconset>
@@ -123,6 +109,16 @@
    </property>
    <property name="text">
     <string>Update(&amp;U)</string>
+   </property>
+  </action>
+  <action name="actionDefaultStyle_D">
+   <property name="text">
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionOpenStyle">
+   <property name="text">
+    <string>Open</string>
    </property>
   </action>
  </widget>
