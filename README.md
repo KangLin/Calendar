@@ -62,24 +62,24 @@ please compile and test the students with the corresponding equipment.
 ### [Download setup package](https://github.com/KangLin/Calendar/releases/latest)
 
 - windows
-    - [Calendar-Setup-v1.0.0.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.0/Calendar-Setup-v1.0.0.exe)
+    - [Calendar-Setup-v1.0.1.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.1/Calendar-Setup-v1.0.1.exe)
    Windows installation package, support for Windows xp and above
 
 - android
-    + [Calendar_armeabi-v7a_v1.0.0.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.0/Calendar_armeabi-v7a_v1.0.0.apk)
+    + [Calendar_armeabi-v7a_v1.0.1.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.1/Calendar_armeabi-v7a_v1.0.1.apk)
 
 - linux
-    - [Calendar_v1.0.0.tar.gz](https://github.com/KangLin/Calendar/releases/download/v1.0.0/Calendar_v1.0.0.tar.gz)  
+    - [Calendar_v1.0.1.tar.gz](https://github.com/KangLin/Calendar/releases/download/v1.0.1/Calendar_v1.0.1.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:
       
-      1. Decompress. Copy Calendar_v1.0.0.tar.gz to install directory, then decompress it:
+      1. Decompress. Copy Calendar_v1.0.1.tar.gz to install directory, then decompress it:
 
             ```
             mkdir Calendar
             cd Calendar
-            cp $DOWNLOAD/Calendar_v1.0.0.tar.gz .
-            tar xvfz Calendar_v1.0.0.tar.gz
+            cp $DOWNLOAD/Calendar_v1.0.1.tar.gz .
+            tar xvfz Calendar_v1.0.1.tar.gz
             ```
 
       2. install
@@ -95,7 +95,7 @@ please compile and test the students with the corresponding equipment.
             ```
 
 - ubuntu
-    - [Calendar_1.0.0_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v1.0.0/Calendar_1.0.0_amd64.deb)  
+    - [Calendar_1.0.1_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v1.0.1/Calendar_1.0.1_amd64.deb)  
    Deb installation package for Ubuntu
 
 ### Depend

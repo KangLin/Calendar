@@ -1,5 +1,6 @@
 - v1.0.1
   + Modify style
+  + Add 2021 chinese holiday
 
 - v1.0.0
   + FIX: android run fail
