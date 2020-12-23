@@ -115,10 +115,10 @@ esac
 
 export PKG_CONFIG_PATH=${ThirdLibs_DIR}/lib/pkgconfig:${PKG_CONFIG_PATH}
 if [ -n "$appveyor_build_version" -a -z "$VERSION" ]; then
-    export VERSION="1.0.1"
+    export VERSION="v1.0.2"
 fi
 if [ -z "$VERSION" ]; then
-    export VERSION="1.0.1"
+    export VERSION="v1.0.2"
 fi
 
 export UPLOADTOOL_BODY="Release Calendar ${VERSION}.<br> The change see [ChangeLog.md](ChangeLog.md) or [ChangeLog_zh_CN.md](ChangeLog_zh_CN.md)"
