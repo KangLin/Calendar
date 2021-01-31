@@ -239,16 +239,16 @@ else
         echo "${QT_ROOT}/bin/qmake ${SOURCE_DIR} CONFIG+=release ${CONFIG_PARA} ANDROID_ABIS=$BUILD_ARCH"
         if version_ge $QT_VERSION_DIR 5.14 ; then
             ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
-                "CONFIG+=release" ${CONFIG_PARA} ANDROID_ABIS="$BUILD_ARCH"
+                "CONFIG+=Release" ${CONFIG_PARA} ANDROID_ABIS="$BUILD_ARCH"
         else
             ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
-                "CONFIG+=release" ${CONFIG_PARA}
+                "CONFIG+=Release" ${CONFIG_PARA}
         fi
         $MAKE
         $MAKE install INSTALL_ROOT=`pwd`/android-build
     else
         ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
-                "CONFIG+=release" ${CONFIG_PARA}\
+                "CONFIG+=Release" ${CONFIG_PARA}\
                 PREFIX=`pwd`/install
 
         $MAKE
