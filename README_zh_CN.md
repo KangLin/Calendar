@@ -122,9 +122,10 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 
 - 用 cmake
   + CMAKE 参数：
-    - [必选] Qt5_DIR: qt 安装位置(指向Qt5Config.cmake的目录，默认为 安装目录/lib/cmake/Qt5)。
-                     详见：https://doc.qt.io/qt-5/cmake-get-started.html
-    - RabbitCommon_DIR: 指向 RabbitCommon 源码目录
+    - [必选] Qt5_DIR: qt5 安装位置(指向Qt5Config.cmake的目录，默认为 安装目录/lib/cmake/Qt5)。  
+                     详见：https://doc.qt.io/qt-5/cmake-get-started.html  
+             或者 Qt6_DIR: qt6 安装位置(指向Qt6Config.cmake的目录，默认为 安装目录/lib/cmake/Qt6)
+    - [必选] RabbitCommon_DIR: 指向 RabbitCommon 源码目录
     - [可选] CMAKE_INSTALL_PREFIX: 安装前缀
   + windows 或 linux
   
@@ -239,6 +240,26 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
       
         + 非子模块方式
     
+                # Need include ${RabbitCommon_DIR}/cmake/Translations.cmake
+                if( "${RabbitCommon_DIR}" STREQUAL "" )
+                    set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
+                    if( "${RabbitCommon_DIR}" STREQUAL "" )
+                        set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/../RabbitCommon)
+                    endif()
+                endif()
+
+                if(DEFINED RabbitCommon_DIR AND EXISTS ${RabbitCommon_DIR}/Src)
+                    add_subdirectory(${RabbitCommon_DIR}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
+                    include(${RabbitCommon_DIR}/cmake/Translations.cmake)
+                 else()
+                     message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon")
+                     message("   ag:")
+                     message("       git clone https://github.com/KangLin/RabbitCommon.git")
+                     message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root dirctory.")
+                     message("   ag:")
+                     message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
+                endif()
+
                 set(Calendar_DIR $ENV{Calendar_DIR} CACHE PATH "Set Calendar source code root directory.")
                 if(EXISTS ${Calendar_DIR}/Src)
                     add_subdirectory(${Calendar_DIR}/Src ${CMAKE_BINARY_DIR}/Calendar)

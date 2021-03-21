@@ -130,7 +130,8 @@ please compile and test the students with the corresponding equipment.
 + Use cmake
   + CMAKE parameter：
     - [MUST] Qt5_DIR: qt install postion(default $QT_ROOT/lib/cmake/Qt5).
-                   See：https://doc.qt.io/qt-5/cmake-get-started.html
+                   See：https://doc.qt.io/qt-5/cmake-get-started.html  
+          or Qt6_DIR: qt install postion(default $QT_ROOT/lib/cmake/Qt6).
     - [MUST] RabbitCommon_DIR: RabbitCommon source directory
     - [Optional] CMAKE_INSTALL_PREFIX: install prefix
   + windows or linux
@@ -256,6 +257,26 @@ please compile and test the students with the corresponding equipment.
         + Non-submodule mode
 
             ```
+            # Need include ${RabbitCommon_DIR}/cmake/Translations.cmake
+            if( "${RabbitCommon_DIR}" STREQUAL "" )
+                set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
+                if( "${RabbitCommon_DIR}" STREQUAL "" )
+                    set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/../RabbitCommon)
+                endif()
+             endif()
+
+             if(DEFINED RabbitCommon_DIR AND EXISTS ${RabbitCommon_DIR}/Src)
+                 add_subdirectory(${RabbitCommon_DIR}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
+                 include(${RabbitCommon_DIR}/cmake/Translations.cmake)
+             else()
+                 message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon")
+                 message("   ag:")
+                 message("       git clone https://github.com/KangLin/RabbitCommon.git")
+                 message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root dirctory.")
+                 message("   ag:")
+                 message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
+            endif()
+
             set(Calendar_DIR $ENV{Calendar_DIR} CACHE PATH "Set Calendar source code root directory.")
             if(EXISTS ${Calendar_DIR}/Src)
                 add_subdirectory(${Calendar_DIR}/Src ${CMAKE_BINARY_DIR}/Calendar)
