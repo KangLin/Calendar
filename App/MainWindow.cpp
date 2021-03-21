@@ -117,6 +117,7 @@ void CMainWindow::slotAbout()
     CDlgAbout about(this);
     about.m_AppIcon = QImage(":/icon/App");
     about.m_szHomePage = "https://github.com/KangLin/Calendar";
+    about.m_szCopyrightStartTime = "2019";
     if(about.isHidden())
 #if defined (Q_OS_ANDROID)
         about.showMaximized();
