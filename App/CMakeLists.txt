@@ -1,4 +1,9 @@
-project(CalendarApp)
+project(CalendarApp LANGUAGES CXX)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
 set(HEAD_FILES
     MainWindow.h 
@@ -12,14 +17,17 @@ set(SOURCE_UI_FILES
     DlgOption.ui)
 
 #翻译
-SET(TRANSLATIONS_NAME ${PROJECT_NAME})
-include(${CMAKE_SOURCE_DIR}/cmake/Qt5CorePatches.cmake) 
-include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/Utils.cmake)
-
-SET(RCC_FILES
-    ${TRANSLATIONS_RESOURCE_FILES}
+GENERATED_QT_TRANSLATIONS(
+    SOURCES ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES}
+    OUT_QRC TRANSLATIONS_QRC_FILES
     )
+string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
+if(BUILD_TYPE STREQUAL "debug")
+    LIST(APPEND PRIVATE_DEFINITIONS DEBUG)
+    LIST(APPEND RCC_FILES
+        ${TRANSLATIONS_QRC_FILES}
+        )
+endif()
 
 add_definitions(-DBUILD_VERSION="${BUILD_VERSION}")
 add_definitions(-DBUILD_ARCH="${BUILD_ARCH}")
@@ -30,8 +38,7 @@ if(ANDROID)
 else()
     add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} AppIcon.rc ${RCC_FILES})
 endif()
-add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
+target_compile_definitions(${PROJECT_NAME} PRIVATE ${PRIVATE_DEFINITIONS})
 SET(APP_LIBS Tasks ${QT_LIBRARIES})
 if(TARGET RabbitCommon)
     target_compile_definitions(${PROJECT_NAME} PRIVATE -DRABBITCOMMON)

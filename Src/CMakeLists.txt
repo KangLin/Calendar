@@ -1,4 +1,4 @@
-project(Tasks)
+project(Tasks LANGUAGES CXX)
 
 set(INSTALLHEADER_FILES
     FrmTasksList.h
@@ -72,20 +72,26 @@ set(SOURCE_UI_FILES
     DlgContainer.ui
     FrmCustomActivity.ui)
 
-#翻译
-include(${CMAKE_SOURCE_DIR}/cmake/Qt5CorePatches.cmake) 
-include(${CMAKE_SOURCE_DIR}/cmake/Translations.cmake)
-
 #设置资源文件
 SET(RCC_FILES
     Resource/ResourceTasks.qrc
-    ${TRANSLATIONS_RESOURCE_FILES}
     )
+#翻译
+GENERATED_QT_TRANSLATIONS(
+    SOURCES ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES}
+    OUT_QRC TRANSLATIONS_QRC_FILES
+    )
+string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
+if(BUILD_TYPE STREQUAL "debug")
+    LIST(APPEND PRIVATE_DEFINITIONS DEBUG)
+    LIST(APPEND RCC_FILES
+        ${TRANSLATIONS_QRC_FILES}
+        )
+endif()
 
 add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES}
     ${SOURCE_UI_FILES} ${RCC_FILES})
-add_dependencies(${TRANSLATIONS_NAME} translations_${TRANSLATIONS_NAME})
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
+target_compile_definitions(${PROJECT_NAME} PRIVATE ${PRIVATE_DEFINITIONS})
 target_link_libraries(${PROJECT_NAME} PUBLIC ${QT_LIBRARIES} LunarCalendar)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../3th_libs/LunarCalendar/Src
