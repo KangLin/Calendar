@@ -14,6 +14,9 @@ namespace Ui {
 class CFrmTasksList;
 }
 
+/**
+ * @brief Tasks list form class
+ */
 class TASKS_EXPORT CFrmTasksList : public QWidget
 {
     Q_OBJECT

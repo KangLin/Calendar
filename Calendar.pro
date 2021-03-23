@@ -67,7 +67,9 @@ OTHER_FILES += Install/* \
     .travis.yml \
     debian/* \
     test/* \
-    build_debpackage.sh
+    build_debpackage.sh \
+    .github/* \
+    .github/workflows/*
 
 DISTFILES += \
     LICENSE.md \

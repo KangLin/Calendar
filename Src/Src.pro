@@ -38,6 +38,7 @@ include(Tasks.pri)
 #VERSION=1.0.0
 #RC_FILE = Tasks.rc
 
+# Install tasks list config files
 TasksList.files = ../etc/*.xml
 android: TasksList.path = $$PREFIX/assets/etc/xml
 else: TasksList.path = $$PREFIX/etc/xml

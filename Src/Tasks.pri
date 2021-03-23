@@ -55,13 +55,13 @@ SOURCES += \
     $$PWD/Global/TasksTools.cpp
 
 INSTALLHEADER_FILES = $$PWD/FrmTasksList.h \
-        $$PWD/FrmStickyList.h \
-        $$PWD/Global/GlobalDir.h \
-        $$PWD/FrmCalendar.h \
-        $$PWD/Global/TasksTools.h \
-        $$PWD/export/tasks_export.h \
-        $$PWD/export/tasks_export_windows.h \
-        $$PWD/export/tasks_export_linux.h
+    $$PWD/FrmStickyList.h \
+    $$PWD/Global/GlobalDir.h \
+    $$PWD/FrmCalendar.h \
+    $$PWD/Global/TasksTools.h \
+    $$PWD/export/tasks_export.h \
+    $$PWD/export/tasks_export_windows.h \
+    $$PWD/export/tasks_export_linux.h
 
 HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/DlgContainer.h \
