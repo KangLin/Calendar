@@ -1,3 +1,6 @@
+- v1.0.2
+  + Add qt6
+
 - v1.0.1
   + Modify style
   + Add 2021 chinese holiday
