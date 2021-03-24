@@ -62,23 +62,23 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 ### [下载安装包](https://github.com/KangLin/Calendar/releases/latest)
 
 - windows
-    - [Calendar-Setup-v1.0.2.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.2/Calendar-Setup-v1.0.2.exe)
+    - [Calendar-Setup-v1.0.3.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar-Setup-v1.0.3.exe)
   Windows安装包，支持 Windows xp 以上系统
 
 - android
-    + [Calendar_v1.0.2.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.2/Calendar_v1.0.2.apk)
+    + [Calendar_v1.0.3.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.apk)
 
 - linux
-    - [Calendar_v1.0.2.tar.gz](https://github.com/KangLin/Calendar/releases/download/v1.0.2/Calendar_v1.0.2.tar.gz)  
+    - [Calendar_v1.0.3.tar.gz](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.tar.gz)  
       AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/  
       使用:    
-      1. 解压。复制 Calendar_v1.0.2.tar.gz 到安装目录，然后解压：
+      1. 解压。复制 Calendar_v1.0.3.tar.gz 到安装目录，然后解压：
 
             ```
             mkdir Calendar
             cd Calendar
-            cp $DOWNLOAD/Calendar_v1.0.2.tar.gz .
-            tar xvfz Calendar_v1.0.2.tar.gz
+            cp $DOWNLOAD/Calendar_v1.0.3.tar.gz .
+            tar xvfz Calendar_v1.0.3.tar.gz
             ```
             
       2. 安装
@@ -94,7 +94,7 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
             ```
 
 - ubuntu
-    - [Calendar_1.0.2_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v1.0.2/Calendar_1.0.2_amd64.deb)  
+    - [Calendar_1.0.3_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_1.0.3_amd64.deb)  
   deb 安装包,可用于　Ubuntu
 
 ### 依赖
