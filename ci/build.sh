@@ -289,7 +289,7 @@ if [ ${BUILD_TARGERT} = "android" ]; then
     mv -f ${APK_FILE} $SOURCE_DIR/${APK_NAME}
     APK_FILE=$SOURCE_DIR/${APK_NAME}
     if [ "$TRAVIS_TAG" != "" \
-         -a "$QT_VERSION" = "5.12.6" \
+         -a "$QT_VERSION" = "5.12.10" \
          -a "$BUILD_ARCH" = "armeabi-v7a" ]; then
         cp $SOURCE_DIR/Update/update_android.xml .
         MD5=`md5sum ${APK_FILE} | awk '{print $1}'`
