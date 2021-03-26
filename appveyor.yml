@@ -18,7 +18,7 @@ environment:
     BUILD_ARCH: "armeabi-v7a" #BUILD_ARCH可选（arm64-v8a armeabi-v7a x86_64 x86）
     ANDROID_ARM_NEON: ON
     QT_VERSION_DIR: 5.12
-    QT_VERSION: 5.12.9
+    QT_VERSION: 5.12.7
     ANDROID_API: android-24
     TOOLCHAIN_VERSION: 4.9
     #DOWNLOAD_THIRDLIBS_URL: "https://github.com/KangLin/RabbitThirdLibrary/releases/download/v0.1.5/android24_arm_qt5.12.6_Release.tar.gz"
