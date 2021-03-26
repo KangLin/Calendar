@@ -5,12 +5,32 @@ static int gTypeIdCTaskPrompt = qRegisterMetaType<CTaskPrompt>();
 
 CTaskPrompt::CTaskPrompt(QObject *parent) : CTask(parent)
 {
-    setObjectName("TaskPrompt");
+    Init();
     SetTitle(objectName());
     SetTitle(GetTitle());
     SetInterval(5 * 60 * 1000);
     SetPromptInterval(1000);
-    
+}
+
+CTaskPrompt::CTaskPrompt(const QString szContent, const QString szTitle,
+                         int nInterval,
+                         int nPromptInterval,
+                         QObject *parent)
+    : CTask (nInterval, nPromptInterval, parent)
+{
+    Init();
+    SetTitle(szTitle);
+    SetContent(szContent);
+}
+
+CTaskPrompt::CTaskPrompt(const CTaskPrompt &t)
+{
+    Q_UNUSED(t);
+}
+
+void CTaskPrompt::Init()
+{
+    setObjectName("TaskPrompt");
     bool check = connect(this, SIGNAL(sigShow()),
                          this, SLOT(slotShow()));
     Q_ASSERT(check);
@@ -20,22 +40,6 @@ CTaskPrompt::CTaskPrompt(QObject *parent) : CTask(parent)
     check = connect(this, SIGNAL(sigUpdate()),
                          this, SLOT(slotUpdate()));
     Q_ASSERT(check);
-}
-
-CTaskPrompt::CTaskPrompt(const QString szContent, const QString szTitle,
-                         int nInterval,
-                         int nPromptInterval,
-                         QObject *parent)
-    : CTask (nInterval, nPromptInterval, parent)
-{
-    setObjectName("TaskPrompt");
-    SetTitle(szTitle);
-    SetContent(szContent);
-}
-
-CTaskPrompt::CTaskPrompt(const CTaskPrompt &t)
-{
-    Q_UNUSED(t);
 }
 
 QString CTaskPrompt::GetDescription() const

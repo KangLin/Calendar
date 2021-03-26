@@ -35,6 +35,9 @@ protected Q_SLOTS:
     virtual void slotClose();
     virtual void slotUpdate();
     
+private:
+    void Init();
+    
 protected:
     CFrmTop m_Top;
 };
