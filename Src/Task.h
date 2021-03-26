@@ -93,7 +93,8 @@ protected:
     int Remaining();
     QString szRemaining();
     
-    QTimer m_PromptTimer;
+    //QTimer m_PromptTimer;
+    QTime m_PromptTime;
     int m_nPromptInterval;
     QString m_szStartSound, m_szRunSound;
 

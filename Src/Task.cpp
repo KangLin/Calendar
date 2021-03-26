@@ -36,9 +36,6 @@ CTask::CTask(int nInterval, int nPromptInterval, QObject *parent)
 
 int CTask::Init()
 {
-    bool check = connect(&m_PromptTimer, SIGNAL(timeout()),
-                         this, SLOT(slotPrompt()));
-    Q_ASSERT(check);
     SetId(-1);
     setObjectName("Task");
     SetTitle(objectName());
@@ -60,7 +57,9 @@ int CTask::Start()
         QSound::play(m_szStartSound);
     m_Time.restart();
     if(m_nPromptInterval > 0)
-        m_PromptTimer.start(m_nPromptInterval);
+    {
+        m_PromptTime = QTime::currentTime();
+    }
     return onStart();
 }
 
@@ -77,12 +76,25 @@ int CTask::onRun()
 int CTask::Check()
 {
     int nRet = -1;
+    
     if(GetInterval() < Elapsed())
     {
-        m_PromptTimer.stop();
         nRet = onRun();
+        if(nRet)
+            qDebug() << "onRun fail:" << nRet;
+        
         if(!m_szRunSound.isEmpty())
             QSound::play(m_szRunSound);
+        nRet = 0;
+    } else {
+        if(m_nPromptInterval > 0)
+        {
+            if(m_PromptTime.msecsTo(QTime::currentTime()) > m_nPromptInterval)
+            {
+                slotPrompt();
+                m_PromptTime = QTime::currentTime();
+            }
+        }
     }
     return nRet;
 }
@@ -184,11 +196,7 @@ int CTask::GetPromptInterval() const
 int CTask::SetPromptInterval(int interval)
 {
     m_nPromptInterval = interval;
-    if(m_PromptTimer.isActive())
-    {
-        m_PromptTimer.stop();
-        m_PromptTimer.start(m_nPromptInterval);
-    }
+    m_PromptTime = QTime::currentTime();
     return 0;
 }
 

@@ -104,7 +104,6 @@ int CTaskPromptDelay::Check()
     if(GetInterval() < Elapsed())
     {
         m_bStop = true;
-        m_PromptTimer.stop();
         if(!m_szRunSound.isEmpty())
             QSound::play(m_szRunSound);
         nRet = onRun();
@@ -113,6 +112,15 @@ int CTaskPromptDelay::Check()
             return nRet;
         m_Delay.first()->Start();
         return -1;
+    } else {
+        if(m_nPromptInterval > 0)
+        {
+            if(m_PromptTime.msecsTo(QTime::currentTime()) > m_nPromptInterval)
+            {
+                slotPrompt();
+                m_PromptTime = QTime::currentTime();
+            }
+        }
     }
     return nRet;
 }
