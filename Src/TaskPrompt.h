@@ -25,10 +25,15 @@ protected:
     virtual int onRun() override;
 
 Q_SIGNALS:
-    void sigPrompt();
+    void sigShow();
+    void sigClose();
+    void sigUpdate();
     
 protected Q_SLOTS:
     virtual void slotPrompt() override;
+    virtual void slotShow();
+    virtual void slotClose();
+    virtual void slotUpdate();
     
 protected:
     CFrmTop m_Top;

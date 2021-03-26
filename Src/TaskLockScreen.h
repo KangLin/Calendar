@@ -29,20 +29,12 @@ public:
                              QObject *parent = nullptr);
     CTaskLockScreen(const CTaskLockScreen &t);
     virtual QString GetDescription() const override;
-    
-protected:
-    virtual int onStart() override;
-    virtual int onRun() override;
 
 protected Q_SLOTS:
-    virtual void slotPrompt() override;
-    virtual void slotLock();
-    virtual void slotUnlock();
-    
-Q_SIGNALS:
-    void sigLock();
-    void sigUnlock();
-    
+    virtual void slotShow() override;
+    virtual void slotClose() override;
+    virtual void slotUpdate() override;
+        
 private:
     int Init();
 

@@ -11,8 +11,14 @@ CTaskPrompt::CTaskPrompt(QObject *parent) : CTask(parent)
     SetInterval(5 * 60 * 1000);
     SetPromptInterval(1000);
     
-    bool check = connect(this, SIGNAL(sigPrompt()),
-                         this, SLOT(slotPrompt()));
+    bool check = connect(this, SIGNAL(sigShow()),
+                         this, SLOT(slotShow()));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigClose()),
+                         this, SLOT(slotClose()));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigUpdate()),
+                         this, SLOT(slotUpdate()));
     Q_ASSERT(check);
 }
 
@@ -39,18 +45,33 @@ QString CTaskPrompt::GetDescription() const
 
 int CTaskPrompt::onStart()
 {
-    emit sigPrompt();
+    emit sigShow();
     return 0;
 }
 
 int CTaskPrompt::onRun()
 {
-    m_Top.close();
+    emit sigClose();
     return 0;
 }
 
 void CTaskPrompt::slotPrompt()
 {
-    m_Top.SetText(GetContent() + "\n" + tr("Remaining: ") + szRemaining());
+    emit sigUpdate();
+}
+
+void CTaskPrompt::slotShow()
+{
+    slotPrompt();
     m_Top.show();
+}
+
+void CTaskPrompt::slotClose()
+{
+    m_Top.close();
+}
+
+void CTaskPrompt::slotUpdate()
+{
+    m_Top.SetText(GetContent() + "\n" + tr("Remaining: ") + szRemaining());
 }

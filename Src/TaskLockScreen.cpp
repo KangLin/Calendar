@@ -57,46 +57,7 @@ int CTaskLockScreen::Init()
     m_hKeyboardHook = NULL;
     m_hMouseHook = NULL;
 #endif
-    
-    bool check = false;
-    check = connect(this, SIGNAL(sigLock()),
-                    this, SLOT(slotLock()));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigUnlock()),
-                    this, SLOT(slotUnlock()));
-    Q_ASSERT(check);
     return 0;
-}
-
-int CTaskLockScreen::onStart()
-{
-    int nRet = 0;
-
-    emit sigLock();
-    
-    return nRet;
-}
-
-int CTaskLockScreen::onRun()
-{
-    int nRet = 0;
-
-    emit sigUnlock();
-    return nRet;
-}
-
-void CTaskLockScreen::slotPrompt()
-{
-    QTime tm(0, 0);
-    tm = tm.addMSecs(Remaining());
-    if(m_FullScreen)
-        m_FullScreen->Prompt(GetContent() + "\n" + tr("Remaining: %1")
-                         .arg(tm.toString("HH:mm:ss")),
-                        Remaining(),
-                        0,
-                        GetInterval(),
-                        true
-                        );
 }
 
 QString CTaskLockScreen::GetDescription() const
@@ -104,7 +65,7 @@ QString CTaskLockScreen::GetDescription() const
     return tr("Lock screen");
 }
 
-void CTaskLockScreen::slotLock()
+void CTaskLockScreen::slotShow()
 {
     if(nullptr == m_FullScreen.data())
     {
@@ -125,10 +86,10 @@ void CTaskLockScreen::slotLock()
                                       (HINSTANCE)GetModuleHandle(NULL),
                                       0);
 #endif
-    slotPrompt();
+    slotUpdate();
 }
 
-void CTaskLockScreen::slotUnlock()
+void CTaskLockScreen::slotClose()
 {
 #if defined(Q_OS_WIN)
     if(m_hKeyboardHook)
@@ -154,4 +115,18 @@ void CTaskLockScreen::slotUnlock()
         m_FullScreen->close();
         m_FullScreen.clear();
     }
+}
+
+void CTaskLockScreen::slotUpdate()
+{
+    QTime tm(0, 0);
+    tm = tm.addMSecs(Remaining());
+    if(m_FullScreen)
+        m_FullScreen->Prompt(GetContent() + "\n" + tr("Remaining: %1")
+                         .arg(tm.toString("HH:mm:ss")),
+                        Remaining(),
+                        0,
+                        GetInterval(),
+                        true
+                        );
 }
