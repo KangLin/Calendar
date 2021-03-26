@@ -36,6 +36,12 @@ protected:
 
 protected Q_SLOTS:
     virtual void slotPrompt() override;
+    virtual void slotLock();
+    virtual void slotUnlock();
+    
+Q_SIGNALS:
+    void sigLock();
+    void sigUnlock();
     
 private:
     int Init();

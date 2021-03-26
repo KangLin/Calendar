@@ -57,6 +57,14 @@ int CTaskLockScreen::Init()
     m_hKeyboardHook = NULL;
     m_hMouseHook = NULL;
 #endif
+    
+    bool check = false;
+    check = connect(this, SIGNAL(sigLock()),
+                    this, SLOT(slotLock()));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigUnlock()),
+                    this, SLOT(slotUnlock()));
+    Q_ASSERT(check);
     return 0;
 }
 
@@ -64,6 +72,40 @@ int CTaskLockScreen::onStart()
 {
     int nRet = 0;
 
+    emit sigLock();
+    
+    return nRet;
+}
+
+int CTaskLockScreen::onRun()
+{
+    int nRet = 0;
+
+    emit sigUnlock();
+    return nRet;
+}
+
+void CTaskLockScreen::slotPrompt()
+{
+    QTime tm(0, 0);
+    tm = tm.addMSecs(Remaining());
+    if(m_FullScreen)
+        m_FullScreen->Prompt(GetContent() + "\n" + tr("Remaining: %1")
+                         .arg(tm.toString("HH:mm:ss")),
+                        Remaining(),
+                        0,
+                        GetInterval(),
+                        true
+                        );
+}
+
+QString CTaskLockScreen::GetDescription() const
+{
+    return tr("Lock screen");
+}
+
+void CTaskLockScreen::slotLock()
+{
     if(nullptr == m_FullScreen.data())
     {
         m_FullScreen = QSharedPointer<CFrmFullScreen>(new CFrmFullScreen());
@@ -84,13 +126,10 @@ int CTaskLockScreen::onStart()
                                       0);
 #endif
     slotPrompt();
-    return nRet;
 }
 
-int CTaskLockScreen::onRun()
+void CTaskLockScreen::slotUnlock()
 {
-    int nRet = 0;
-
 #if defined(Q_OS_WIN)
     if(m_hKeyboardHook)
     {
@@ -115,24 +154,4 @@ int CTaskLockScreen::onRun()
         m_FullScreen->close();
         m_FullScreen.clear();
     }
-    return nRet;
-}
-
-void CTaskLockScreen::slotPrompt()
-{
-    QTime tm(0, 0);
-    tm = tm.addMSecs(Remaining());
-    if(m_FullScreen)
-        m_FullScreen->Prompt(GetContent() + "\n" + tr("Remaining: %1")
-                         .arg(tm.toString("HH:mm:ss")),
-                        Remaining(),
-                        0,
-                        GetInterval(),
-                        true
-                        );
-}
-
-QString CTaskLockScreen::GetDescription() const
-{
-    return tr("Lock screen");
 }
