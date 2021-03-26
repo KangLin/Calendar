@@ -1,4 +1,5 @@
 #include "TaskPrompt.h"
+#include <QDebug>
 
 static int gTypeIdCTaskPrompt = qRegisterMetaType<CTaskPrompt>();
 
@@ -9,6 +10,10 @@ CTaskPrompt::CTaskPrompt(QObject *parent) : CTask(parent)
     SetTitle(GetTitle());
     SetInterval(5 * 60 * 1000);
     SetPromptInterval(1000);
+    
+    bool check = connect(this, SIGNAL(sigPrompt()),
+                         this, SLOT(slotPrompt()));
+    Q_ASSERT(check);
 }
 
 CTaskPrompt::CTaskPrompt(const QString szContent, const QString szTitle,
@@ -34,8 +39,7 @@ QString CTaskPrompt::GetDescription() const
 
 int CTaskPrompt::onStart()
 {
-    slotPrompt();
-    m_Top.show();
+    emit sigPrompt();
     return 0;
 }
 
@@ -48,4 +52,5 @@ int CTaskPrompt::onRun()
 void CTaskPrompt::slotPrompt()
 {
     m_Top.SetText(GetContent() + "\n" + tr("Remaining: ") + szRemaining());
+    m_Top.show();
 }

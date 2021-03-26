@@ -23,7 +23,10 @@ public:
 protected:
     virtual int onStart() override;
     virtual int onRun() override;
-        
+
+Q_SIGNALS:
+    void sigPrompt();
+    
 protected Q_SLOTS:
     virtual void slotPrompt() override;
     

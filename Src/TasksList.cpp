@@ -8,20 +8,32 @@
 
 CTasksList::CTasksList(QObject *parent) : QObject(parent),
     m_nTimerInterval(0),
-    m_nIdCount(0)
+    m_nIdCount(0),
+    m_Thread(this),
+    m_bThread(true)
 {
-    bool check = false;
-    check = connect(&m_Timer, SIGNAL(timeout()),
-                    this, SLOT(slotTimeout()));
-    Q_ASSERT(check);
     setObjectName("TasksList");
+    
+    bool check = false;
+    if(!m_bThread)
+    {
+        check = connect(&m_Timer, SIGNAL(timeout()),
+                        this, SLOT(slotTimeout()));
+        Q_ASSERT(check);
+    }
 }
 
 CTasksList::~CTasksList()
 {
-    m_Tasks.clear();
-    if(m_Timer.isActive())
-        m_Timer.stop();
+    if(m_bThread)
+    {
+        m_Thread.Quit();
+        m_Thread.wait();
+    } else {
+        m_Tasks.clear();
+        if(m_Timer.isActive())
+            m_Timer.stop();
+    }
 }
 
 int CTasksList::Add(QSharedPointer<CTasks> tasks)
@@ -78,15 +90,30 @@ QSharedPointer<CTasks> CTasksList::GetNext(POSTION &pos)
 
 int CTasksList::Start(int nInterval, bool bForce)
 {
-    if(m_Timer.isActive() && !bForce)
-        return -1;
-    foreach (QSharedPointer<CTasks> tasks, m_Tasks)
+    if(m_bThread)
     {
-        tasks->Start();
+        if(m_Thread.isRunning() && !bForce)
+            return -1;
+        
+        foreach (QSharedPointer<CTasks> tasks, m_Tasks)
+        {
+            tasks->Start();
+        }
+        
+        m_Thread.start();
+    } else {
+        
+        if(m_Timer.isActive() && !bForce)
+            return -1;
+        foreach (QSharedPointer<CTasks> tasks, m_Tasks)
+        {
+            tasks->Start();
+        }
+        
+        m_nTimerInterval = nInterval;
+        if(m_nTimerInterval)
+            m_Timer.start(m_nTimerInterval);
     }
-    m_nTimerInterval = nInterval;
-    if(m_nTimerInterval)
-        m_Timer.start(m_nTimerInterval);
     return 0;
 }
 
@@ -110,8 +137,16 @@ int CTasksList::Check()
     
     if(m_Tasks.empty())
     {
-        if(m_Timer.isActive())
-            m_Timer.stop();
+        if(m_bThread)
+        {
+            if(m_Thread.isRunning())
+            {
+                m_Thread.Quit();
+            }
+        } else {
+            if(m_Timer.isActive())
+                m_Timer.stop();
+        }
     }
     return nRet;
 }

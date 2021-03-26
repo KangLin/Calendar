@@ -41,6 +41,7 @@ SOURCES += \
     $$PWD/Global/Log.cpp \
     $$PWD/FrmFullScreen.cpp \
     $$PWD/FrmTaskPropery.cpp \
+    $$PWD/ThreadTasks.cpp \
     $$PWD/ViewTaskProperty.cpp \ 
     $$PWD/FrmTasks.cpp \  
     $$PWD/TaskPromptDelay.cpp \
@@ -82,6 +83,7 @@ HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/FrmFullScreen.h \
     $$PWD/ObjectFactory.h \
     $$PWD/FrmTaskPropery.h \
+    $$PWD/ThreadTasks.h \
     $$PWD/ViewTaskProperty.h \ 
     $$PWD/FrmTasks.h \  
     $$PWD/TaskPromptDelay.h \

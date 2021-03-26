@@ -32,6 +32,7 @@ set(HEAD_FILES
     FrmTopActivity.h
     DlgContainer.h
     FrmCustomActivity.h
+    ThreadTasks.h
     )
 set(SOURCE_FILES
     Task.cpp
@@ -59,7 +60,9 @@ set(SOURCE_FILES
     DlgTaskActivity.cpp
     FrmTopActivity.cpp
     DlgContainer.cpp
-    FrmCustomActivity.cpp)
+    FrmCustomActivity.cpp
+    ThreadTasks.cpp
+    )
 set(SOURCE_UI_FILES
     FrmFullScreen.ui
     FrmTop.ui
@@ -70,7 +73,8 @@ set(SOURCE_UI_FILES
     FrmStickyList.ui
     DlgTaskActivity.ui
     DlgContainer.ui
-    FrmCustomActivity.ui)
+    FrmCustomActivity.ui
+    )
 
 #设置资源文件
 SET(RCC_FILES

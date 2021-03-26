@@ -8,6 +8,7 @@
 #include <QMap>
 #include <QSharedPointer>
 #include <QTimer>
+#include <ThreadTasks.h>
 
 /**
  * @brief Define parallel tasks
@@ -43,7 +44,7 @@ public:
     virtual int LoadSettings(const QString &szFile = QString());
     virtual int SaveSettings(QDomElement &e);
     virtual int SaveSettings(const QString &szFile = QString());
-
+    
 private Q_SLOTS:
     void slotTimeout();
 
@@ -54,6 +55,8 @@ private:
     QTimer m_Timer;
     int m_nTimerInterval;
     int m_nIdCount;
+    CThreadTasks m_Thread;
+    bool m_bThread;
 };
 
 #endif // TASLIST_H
