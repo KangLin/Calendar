@@ -133,6 +133,9 @@ private:
     QDate GetValidDate(int year, int month, int day);
     
 public Q_SLOTS:
+    virtual void slotShowTopForm();
+Q_SIGNALS:
+    void sigShowTopForm();
     
 private:
     QString m_szPlace;

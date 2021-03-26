@@ -26,6 +26,10 @@ CTaskActivity::CTaskActivity(QObject *parent) : CTask(parent)
     m_Effective = Always;
     m_UntilDate = QDate::currentDate();
     AddPrompt();
+    
+    bool check = connect(this, SIGNAL(sigShowTopForm()),
+                         this, SLOT(slotShowTopForm()));
+    Q_ASSERT(check);
 }
 
 CTaskActivity::CTaskActivity(const CTaskActivity &a) : CTask(a)
@@ -301,21 +305,7 @@ int CTaskActivity::Check()
                 < QDateTime::currentDateTime().time())
         {
             it->bStop = true;
-            CFrmTopActivity* top = new CFrmTopActivity();
-            if(top)
-            {
-                bool check = connect(this, SIGNAL(destroyed()),
-                                     top, SLOT(deleteLater()));
-                Q_ASSERT(check);
-                top->SetTask(this);
-                top->SetPostion(CFrmTopActivity::RightBottom);
-                top->setWindowTitle(GetTitle());
-                QString szText = GetTitle();
-                if(!GetContent().isEmpty())
-                    szText += "\n" + GetContent();
-                top->SetText(szText);
-                top->show();
-            }
+            emit sigShowTopForm();
         }
     }
     return nRet;
@@ -326,6 +316,25 @@ bool CTaskActivity::End()
     //if(m_tmEnd < QDateTime::currentDateTime().time())
     //    return true;
     return false;
+}
+
+void CTaskActivity::slotShowTopForm()
+{
+    CFrmTopActivity* top = new CFrmTopActivity();
+    if(top)
+    {
+        bool check = connect(this, SIGNAL(destroyed()),
+                             top, SLOT(deleteLater()));
+        Q_ASSERT(check);
+        top->SetTask(this);
+        top->SetPostion(CFrmTopActivity::RightBottom);
+        top->setWindowTitle(GetTitle());
+        QString szText = GetTitle();
+        if(!GetContent().isEmpty())
+            szText += "\n" + GetContent();
+        top->SetText(szText);
+        top->show();
+    }
 }
 
 int CTaskActivity::CheckDate(const QDate &date)

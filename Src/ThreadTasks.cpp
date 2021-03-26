@@ -16,10 +16,7 @@ CThreadTasks::~CThreadTasks()
 void CThreadTasks::run()
 {
     while(!m_bExit)
-    {
-        qDebug() << "thread id:" << QThread::currentThreadId()
-                 << ";Interval:" << m_pTaskList->GetTimerInterval();
-        
+    { 
         QThread::usleep(1000);
         m_pTaskList->Check();
     }
