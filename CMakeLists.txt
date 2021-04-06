@@ -43,7 +43,11 @@ ENDIF()
 message("BUILD_VERSION:${BUILD_VERSION}")
 set(VERSION ${BUILD_VERSION})
 
-if("Debug" STREQUAL CMAKE_BUILD_TYPE)
+if(NOT DEFINED CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release")
+endif(NOT DEFINED CMAKE_BUILD_TYPE)
+string(TOLOWER "${CMAKE_BUILD_TYPE}" build_type)
+if("debug" STREQUAL build_type)
     add_definitions(-D_DEBUG)
 endif()
 
