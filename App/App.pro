@@ -20,6 +20,13 @@ include(../pri/Translations.pri)
 CONFIG(staticlib): CONFIG*=static
 CONFIG(static): DEFINES *= TASKS_STATIC_DEFINE
 
+#Support windows xp
+mingw : DEFINES += "_WIN32_WINNT=0x0501" 
+msvc {
+    QMAKE_LFLAGS *= /SUBSYSTEM:WINDOWS",5.01"
+    QMAKE_CXXFLAGS += "/utf-8"
+}
+
 isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)
 isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$PWD/../../RabbitCommon
 !isEmpty(RabbitCommon_DIR): exists("$${RabbitCommon_DIR}/Src/Src.pro"){

@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     
     a.setApplicationDisplayName(QObject::tr("Calendar"));
     
-#ifdef RABBITCOMMON 
+#ifdef RABBITCOMMON
     CFrmUpdater *pUpdate = new CFrmUpdater();
     pUpdate->SetTitle(QImage(":/icon/App"));
     pUpdate->SetInstallAutoStartup();
@@ -64,5 +64,13 @@ int main(int argc, char *argv[])
         m.show();
 #endif
 
-    return a.exec();
+    int nRet = a.exec();
+    
+#ifdef RABBITCOMMON
+    RabbitCommon::CTools::Instance()->Clean();
+#endif
+    
+    a.removeTranslator(&tApp);
+    CTasksTools::Instance()->CleanResource();
+    return nRet;
 }
