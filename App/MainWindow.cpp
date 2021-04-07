@@ -15,15 +15,15 @@
     #include "FrmUpdater/FrmUpdater.h"
     #include "RabbitCommonTools.h"
 #endif
+#include "RabbitCommonStyle.h"
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::CMainWindow),
-    m_Table(this),
-    m_Stlye(this)
+    m_Table(this)
 {
     ui->setupUi(this);
-    m_Stlye.LoadStyle();
+    RabbitCommon::CStyle::Instance()->LoadStyle();
     
     m_TrayIconMenu.addAction(
                 QIcon(":/icon/Close"),
@@ -298,10 +298,10 @@ bool CMainWindow::eventFilter(QObject *watched, QEvent *event)
 
 void CMainWindow::on_actionDefaultStyle_D_triggered()
 {
-    m_Stlye.SetDefaultStyle();
+    RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
 }
 
 void CMainWindow::on_actionOpenStyle_triggered()
 {
-    m_Stlye.slotStyle();
+    RabbitCommon::CStyle::Instance()->slotStyle();
 }

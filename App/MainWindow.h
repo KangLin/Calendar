@@ -12,7 +12,6 @@
 #include "FrmTasksList.h"
 #include "FrmStickyList.h"
 #include "FrmCalendar.h"
-#include "RabbitCommonStyle.h"
 
 namespace Ui {
 class CMainWindow;
@@ -66,8 +65,6 @@ private:
     CFrmTasksList m_FrmTasksList;
     CFrmStickyList m_frmStickyList;
     CFrmCalendar m_frmCalendar;
-
-    RabbitCommon::CStyle m_Stlye;
     
 protected:
     virtual void hideEvent(QHideEvent *event) override;    
