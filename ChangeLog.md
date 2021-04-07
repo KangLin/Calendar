@@ -1,5 +1,6 @@
 - v1.0.3
   + test github action upload release
+  + Use RabbitCommon::CStyle to change style
   
 - v1.0.2
   + Add qt6
