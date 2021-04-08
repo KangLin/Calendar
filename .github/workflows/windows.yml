@@ -92,7 +92,7 @@ jobs:
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-        name: Calendar-Setup-v1.0.2.exe
+        name: Calendar-Setup-v1.0.3.exe
         path: |
           ${{github.workspace}}/build/Calendar-Setup-*.exe
           #${{github.workspace}}/build/update_*.xml

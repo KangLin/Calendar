@@ -1,6 +1,7 @@
 - v1.0.3
   + 测试 github action 更新发行
   + 用 RabbitCommon::CStyle 更改样式
+  + 增加后台任务线程
   
 - v1.0.2
   + 以春节做为一年的第一天

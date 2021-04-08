@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v1.0.3.{build}'
+version: 'v1..{build}'
 
 cache:
   - Package
@@ -157,7 +157,7 @@ deploy:
     #token : https://github.com/settings/tokens
     #password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
-      secure: sYmMwfLPHdUlJb7wJBznB0VgOUBLrJRuu9af0FV1vZxZbxWb0Lzn6ODCIT5PLGry
+      secure: gBxMTYLJ27qqkFFVcItKV8TtZShliR8gtk8BeORbFNHpcTf4ZbfauuIVKRKKHXGY
     #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
     #draft: true
     #prerelease: true
