@@ -9,6 +9,11 @@ Author: KangLin (kl222@126.com)
 
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar)
 [![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/Calendar)](https://github.com/KangLin/Calendar/stars)
+[![GitHub forks](https://img.shields.io/github/forks/KangLin/Calendar)](https://github.com/KangLin/Calendar/forks)
+[![GitHub issues](https://img.shields.io/github/issues/KangLin/Calendar)](https://github.com/KangLin/Calendar/issues)
+[![Current release](https://img.shields.io/github/release/KangLin/Calendar)](https://github.com/KangLin/Calendar/releases)
+[![All releases downloads](https://img.shields.io/github/downloads/KangLin/Calendar/total)](https://github.com/KangLin/Calendar/releases)
 
 ------------------------------------------------
 
