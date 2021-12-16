@@ -27,9 +27,8 @@
 <context>
     <name>CFrmEyeNurse</name>
     <message>
-        <location filename="../../FrmEyeNurse.ui" line="14"/>
         <source>Eye nurse</source>
-        <translation>眼睛護士</translation>
+        <translation type="vanished">眼睛護士</translation>
     </message>
 </context>
 <context>
@@ -106,14 +105,14 @@
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="34"/>
-        <location filename="../../MainWindow.cpp" line="158"/>
+        <location filename="../../MainWindow.cpp" line="159"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="36"/>
-        <location filename="../../MainWindow.cpp" line="162"/>
-        <location filename="../../MainWindow.cpp" line="231"/>
+        <location filename="../../MainWindow.cpp" line="163"/>
+        <location filename="../../MainWindow.cpp" line="232"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
