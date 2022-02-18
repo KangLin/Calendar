@@ -1,20 +1,24 @@
 ## [<img src="App/AppIcon.ico" title="日历" width="16" height="16"/>日历](https://github.com/KangLin/Calendar)
 
-
 作者：康林（kl222@126.com)
 
-- 项目位置: https://github.com/KangLin/Calendar
-- [项目主页](https://kanglin.github.io/Calendar/)
+------------------------------------------------
 
-[<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
+[:us: 英语](README.md)
 
-[![Appveyor 编译状态](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda/branch/master?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar/branch/master)
-[![Travis 编译状态](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/Calendar)](https://github.com/KangLin/Calendar/stars)
-[![GitHub forks](https://img.shields.io/github/forks/KangLin/Calendar)](https://github.com/KangLin/Calendar/forks)
+[![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar)
+[![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
+
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/Calendar)](https://github.com/KangLin/Calendar/issues)
-[![Current release](https://img.shields.io/github/release/KangLin/Calendar)](https://github.com/KangLin/Calendar/releases)
-[![All releases downloads](https://img.shields.io/github/downloads/KangLin/Calendar/total)](https://github.com/KangLin/Calendar/releases)
+
+[![GitHub 点赞量](https://img.shields.io/github/stars/KangLin/Calendar?label=Github%20点赞量)](https://github.com/KangLin/Calendar/stars)
+[![star](https://gitee.com/kl222/Calendar/badge/star.svg?theme=dark)](https://gitee.com/kl222/Calendar/stargazers)
+
+[![github 最后发行版本下载](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20最后发行版本下载)](https://github.com/KangLin/Calendar/releases/latest)
+[![sourceforge 最后发行版本下载](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
+
+[![github 下载量](https://img.shields.io/github/downloads/KangLin/Calendar/total?label=Github%20下载量)](https://github.com/KangLin/Calendar/releases)
+[![Download Calendar](https://img.shields.io/sourceforge/dt/rabbitcalendar.svg?label=Sourceforge%20下载量)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
 
 ------------------------------------------------
 
@@ -27,6 +31,16 @@
 * [使用](#使用)
 * [贡献](#贡献)
 * [许可协议](#许可协议)
+
+
+### 项目位置
+- 代码库:
+  + 主库: https://github.com/KangLin/Calendar
+  + 镜像库:
+    - https://gitee.com/kl222/Calendar
+    - https://gitlab.com/kl222/Calendar
+    - https://sourceforge.net/projects/rabbitcalendar/
+- [项目主页](https://kanglin.github.io/Calendar/)
 
 ### 功能
 
@@ -64,17 +78,21 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
  
 [![捐赠](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠") 
 
-### [下载安装包](https://github.com/KangLin/Calendar/releases/latest)
+### 下载
 
-- windows
-    - [Calendar-Setup-v1.0.3.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar-Setup-v1.0.3.exe)
+- [![最后发行版本下载](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20最后发行版本下载)](https://github.com/KangLin/Calendar/releases/latest)
+- [![最后发行版本下载](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
+- windows:  
   Windows安装包，支持 Windows xp 以上系统
-
-- android
-    + [Calendar_v1.0.3.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.apk)
-
-- linux
-    - [Calendar_v1.0.3.tar.gz](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.tar.gz)  
+  + [从 sourceforge 下载 Calendar-Setup-v1.0.3.exe ](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/Calendar-Setup-v1.0.3.exe/download)
+  + [从 Github 下载 Calendar-Setup-v1.0.3.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar-Setup-v1.0.3.exe)  
+- android:
+  + [从 github 下载 Calendar_armeabi-v7a_v1.0.3.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.apk)
+- linux: 
+  + [从 sourceforge 下载 Calendar_v1.0.3.tar.gz](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/Calendar_v1.0.3.tar.gz/download)
+  + [从 github 下载 Calendar_v1.0.3.tar.gz](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.tar.gz)
+    
+    
       AppImage格式的执行程序，可直接运行在linux系统，详见：https://appimage.org/  
       使用:    
       1. 解压。复制 Calendar_v1.0.3.tar.gz 到安装目录，然后解压：
@@ -98,10 +116,11 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
             ./install1.sh remove Calendar
             ```
 
-- ubuntu
-    - [Calendar_1.0.3_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_1.0.3_amd64.deb)  
+- ubuntu:  
   deb 安装包,可用于　Ubuntu
-
+  + [从 sourceforge 下载 Calendar_1.0.3_amd64.deb](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/calendar_1.0.3_amd64.deb/download)
+  + [从 github 下载 Calendar_1.0.3_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_1.0.3_amd64.deb)  
+  
 ### 依赖
 - [Qt (LGPL v2.1)](http://qt.io/)
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)

@@ -1,3 +1,6 @@
+- v1.0.4
+  + Add mirrory repository
+  
 - v1.0.3
   + test github action upload release
   + Use RabbitCommon::CStyle to change style
