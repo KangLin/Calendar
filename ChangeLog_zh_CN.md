@@ -1,3 +1,6 @@
+- v1.0.4
+  + 增加镜像库
+
 - v1.0.3
   + 测试 github action 更新发行
   + 用 RabbitCommon::CStyle 更改样式

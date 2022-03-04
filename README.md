@@ -2,18 +2,22 @@
 
 Author: KangLin (kl222@126.com)
 
-- Project location: https://github.com/KangLin/Calendar
-- [Project home](https://kanglin.github.io/Calendar/)
-
-[<img src="Resource/Image/china.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)  
+-----------------------------------------------
+[:cn: 中文](README_zh_CN.md)
 
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar)
 [![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/Calendar)](https://github.com/KangLin/Calendar/stars)
-[![GitHub forks](https://img.shields.io/github/forks/KangLin/Calendar)](https://github.com/KangLin/Calendar/forks)
+
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/Calendar)](https://github.com/KangLin/Calendar/issues)
-[![Current release](https://img.shields.io/github/release/KangLin/Calendar)](https://github.com/KangLin/Calendar/releases)
-[![All releases downloads](https://img.shields.io/github/downloads/KangLin/Calendar/total)](https://github.com/KangLin/Calendar/releases)
+
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/Calendar=Github%20stars)](https://github.com/KangLin/Calendar/stars)
+[![star](https://gitee.com/kl222/Calendar/badge/star.svg?theme=dark)](https://gitee.com/kl222/Calendar/stargazers)
+
+[![Latest Release](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20release)](https://github.com/KangLin/Calendar/releases/latest)
+[![Download Calendar](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
+
+[![Github downloads](https://img.shields.io/github/downloads/KangLin/Calendar/total?label=Github%20Downloads)](https://github.com/KangLin/Calendar/releases)
+[![Sourceforge download](https://img.shields.io/sourceforge/dt/rabbitcalendar.svg?label=Sourceforge%20Downloads)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
 
 ------------------------------------------------
 
@@ -28,6 +32,15 @@ Author: KangLin (kl222@126.com)
 - [Use](#Use)
 - [Contribution](#Contribution)
 - [License Agreement](#License-Agreement)
+
+### Project location:
+- Project repository:
+  + Main repository: https://github.com/KangLin/Calendar
+  + Mirror repository:
+    - https://gitlab.com/kl222/Calendar
+    - https://gitee.com/kl222/Calendar
+    - https://sourceforge.net/projects/rabbitcalendar/
+- [Project home](https://kanglin.github.io/Calendar/)
 
 ### Features
 
@@ -64,17 +77,19 @@ please compile and test the students with the corresponding equipment.
 
 [![donation](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
 
-### [Download setup package](https://github.com/KangLin/Calendar/releases/latest)
+### Download
 
-- windows
-    - [Calendar-Setup-v1.0.3.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar-Setup-v1.0.3.exe)
-   Windows installation package, support for Windows xp and above
+- [![Latest Release](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20Release)](https://github.com/KangLin/Calendar/releases/latest)
+- [![Download Calendar](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
+  + Windows: Windows installation package, support for Windows xp and above
+    - [Download Calendar-Setup-v1.0.3.exe from github](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar-Setup-v1.0.3.exe)
+    - [Download Calendar-Setup-v1.0.3.exe from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/Calendar-Setup-v1.0.3.exe/download)
+  + Android: 
+    - [Download Calendar_armeabi-v7a_v1.0.3.apk from github](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_armeabi-v7a_v1.0.3.apk)
+  + linux: 
+    - [Download Calendar_v1.0.3.tar.gz from github](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.tar.gz)
+    - [Download Calendar_v1.0.3.tar.gz from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/Calendar_v1.0.3.tar.gz/download)
 
-- android
-    + [Calendar_armeabi-v7a_v1.0.3.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_armeabi-v7a_v1.0.3.apk)
-
-- linux
-    - [Calendar_v1.0.3.tar.gz](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.tar.gz)  
       The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
       Usage:
       
@@ -99,9 +114,10 @@ please compile and test the students with the corresponding equipment.
             ./install1.sh remove Calendar
             ```
 
-- ubuntu
-    - [Calendar_1.0.3_amd64.deb](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_1.0.3_amd64.deb)  
-   Deb installation package for Ubuntu
+  + ubuntu: 
+    Deb installation package for Ubuntu
+    - [Download Calendar_1.0.3_amd64.deb from github](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_1.0.3_amd64.deb)
+    - [Download Calendar_1.0.3_amd64.deb from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/calendar_1.0.3_amd64.deb/download)
 
 ### Depend
 - [Qt (LGPL v2.1)](http://qt.io/)

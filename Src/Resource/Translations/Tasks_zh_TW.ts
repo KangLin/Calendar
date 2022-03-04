@@ -477,77 +477,56 @@
 <context>
     <name>CFrmTask</name>
     <message>
-        <location filename="../../FrmTask.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../FrmTask.ui" line="22"/>
         <source>Start time</source>
-        <translation>開始時間:</translation>
+        <translation type="vanished">開始時間:</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="32"/>
         <source>Interval:</source>
-        <translation>間隔：</translation>
+        <translation type="vanished">間隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="45"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
-        <translation>任務間隔（單位：分鐘）。如果是0，則立即運行。</translation>
+        <translation type="vanished">任務間隔（單位：分鐘）。如果是0，則立即運行。</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="58"/>
         <source>M</source>
-        <translation>分</translation>
+        <translation type="vanished">分</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="71"/>
         <source>PromptInterval:</source>
-        <translation>提示間隔：</translation>
+        <translation type="vanished">提示間隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="84"/>
-        <location filename="../../FrmTask.ui" line="87"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
-        <translation>提示間隔（單位：秒）。如果是0，則不提示。</translation>
+        <translation type="vanished">提示間隔（單位：秒）。如果是0，則不提示。</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="100"/>
         <source>S</source>
-        <translation>秒</translation>
+        <translation type="vanished">秒</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="111"/>
         <source>ID:</source>
-        <translation>ID：</translation>
+        <translation type="vanished">ID：</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="124"/>
         <source>Task ID</source>
-        <translation>任務ID</translation>
+        <translation type="vanished">任務ID</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="134"/>
         <source>Title:</source>
-        <translation>標題</translation>
+        <translation type="vanished">標題</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="147"/>
         <source>Task title</source>
-        <translation>任務標題</translation>
+        <translation type="vanished">任務標題</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="167"/>
         <source>Content:</source>
-        <translation>內容：</translation>
+        <translation type="vanished">內容：</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="180"/>
-        <location filename="../../FrmTask.ui" line="183"/>
-        <location filename="../../FrmTask.ui" line="186"/>
         <source>Task content</source>
-        <translation>任務內容</translation>
+        <translation type="vanished">任務內容</translation>
     </message>
 </context>
 <context>
@@ -903,7 +882,7 @@
 <context>
     <name>CTask</name>
     <message>
-        <location filename="../../Task.cpp" line="110"/>
+        <location filename="../../Task.cpp" line="122"/>
         <source>Task is base unit. Is a minimal execution unit.
 Start with the Start function and run the Run function after the interval.
 If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</source>
@@ -915,7 +894,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskActivity</name>
     <message>
-        <location filename="../../TaskActivity.cpp" line="55"/>
+        <location filename="../../TaskActivity.cpp" line="59"/>
         <source>Task Activity</source>
         <translation>活動任務</translation>
     </message>
@@ -928,7 +907,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
         <translation>鎖定屏幕並休息</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="126"/>
+        <location filename="../../TaskLockScreen.cpp" line="125"/>
         <source>Remaining: %1</source>
         <translation>剩余時間： %1</translation>
     </message>
@@ -939,7 +918,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
         <translation>休息</translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="137"/>
+        <location filename="../../TaskLockScreen.cpp" line="65"/>
         <source>Lock screen</source>
         <translation>鎖屏</translation>
     </message>
@@ -947,12 +926,12 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskPrompt</name>
     <message>
-        <location filename="../../TaskPrompt.cpp" line="32"/>
+        <location filename="../../TaskPrompt.cpp" line="47"/>
         <source>Prompt task, Only prompt.</source>
         <translation>提示任務，僅顯示提示</translation>
     </message>
     <message>
-        <location filename="../../TaskPrompt.cpp" line="50"/>
+        <location filename="../../TaskPrompt.cpp" line="80"/>
         <source>Remaining: </source>
         <translation>剩余時間:</translation>
     </message>

@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<TS version="2.1" language="es_ES">
 <context>
     <name>CDlgOption</name>
     <message>
         <location filename="../../DlgOption.ui" line="14"/>
         <source>Option</source>
-        <translation>选项</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgOption.ui" line="28"/>
         <source>General</source>
-        <translation>普通</translation>
-    </message>
-    <message>
-        <location filename="../../DlgOption.ui" line="47"/>
-        <source>Enable run from boot</source>
-        <translation>允许开户自启动</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgOption.ui" line="34"/>
         <source>Show windows in application start</source>
-        <translation>应用启动时，显示窗口</translation>
+        <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>CFrmEyeNurse</name>
     <message>
-        <source>Eye nurse</source>
-        <translation type="vanished">眼睛护士</translation>
+        <location filename="../../DlgOption.ui" line="47"/>
+        <source>Enable run from boot</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -36,22 +29,27 @@
     <message>
         <location filename="../../MainWindow.ui" line="14"/>
         <source>Calendar</source>
-        <translation>日历</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="34"/>
         <source>Help(&amp;H)</source>
-        <translation>帮助(&amp;H)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="41"/>
         <source>Tools(&amp;T)</source>
-        <translation>工具(&amp;T)</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="45"/>
+        <source>Sink(&amp;S)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="66"/>
         <source>About(&amp;A)</source>
-        <translation>关于(&amp;A)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="69"/>
@@ -59,67 +57,62 @@
         <location filename="../../MainWindow.ui" line="75"/>
         <location filename="../../MainWindow.cpp" line="40"/>
         <source>About</source>
-        <translation>关于</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="84"/>
         <source>Exit(&amp;E)</source>
-        <translation>退出(&amp;E)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="93"/>
         <source>Option(&amp;O)</source>
-        <translation>选项(&amp;O)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="96"/>
         <location filename="../../MainWindow.ui" line="99"/>
         <location filename="../../MainWindow.ui" line="102"/>
         <source>Option</source>
-        <translation>选项</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="116"/>
-        <source>Default(&amp;D)</source>
-        <translation>默认(&amp;D)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="121"/>
-        <source>Open</source>
-        <translation>打开</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="45"/>
-        <source>Sink(&amp;S)</source>
-        <translation>换肤(&amp;S)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="111"/>
         <source>Update(&amp;U)</source>
-        <translation>更新(&amp;U)</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="116"/>
+        <source>Default(&amp;D)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="121"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="30"/>
         <source>Exit</source>
-        <translation>退出</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="34"/>
         <location filename="../../MainWindow.cpp" line="159"/>
         <source>Hide</source>
-        <translation>隐藏</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="36"/>
         <location filename="../../MainWindow.cpp" line="163"/>
         <location filename="../../MainWindow.cpp" line="232"/>
         <source>Show</source>
-        <translation>显示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="44"/>
         <source>Enable run from boot</source>
-        <translation>允许开户自启动</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -127,7 +120,7 @@
     <message>
         <location filename="../../main.cpp" line="48"/>
         <source>Calendar</source>
-        <translation>日历</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
