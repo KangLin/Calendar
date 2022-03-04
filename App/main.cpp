@@ -3,6 +3,7 @@
 #include <QLocale>
 #include <QDebug>
 #include <QSettings>
+#include <QDir>
 #if defined(Q_OS_ANDROID)
     #include <QtAndroidExtras/QtAndroid>
 #endif

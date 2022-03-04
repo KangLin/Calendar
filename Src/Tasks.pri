@@ -1,4 +1,5 @@
 # 作者：康林 <kl222@126.com>
+
 QT += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network multimedia
@@ -10,7 +11,7 @@ else: DEFINES *= Tasks_EXPORTS
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += QT_DEPRECATED_WARNINGS HAVE_GUI
 CONFIG *= C++11
 msvc {
     QMAKE_CXXFLAGS += "/utf-8"
