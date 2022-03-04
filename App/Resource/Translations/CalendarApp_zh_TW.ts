@@ -27,8 +27,9 @@
 <context>
     <name>CFrmEyeNurse</name>
     <message>
+        <location filename="../../FrmEyeNurse.ui" line="14"/>
         <source>Eye nurse</source>
-        <translation type="vanished">眼睛護士</translation>
+        <translation>眼睛護士</translation>
     </message>
 </context>
 <context>
@@ -125,7 +126,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="48"/>
+        <location filename="../../main.cpp" line="49"/>
         <source>Calendar</source>
         <translation>日歷</translation>
     </message>
