@@ -1,3 +1,5 @@
+// 作者：康林 <kl222@126.com>
+
 #include "FrmTaskPropery.h"
 #include "ui_FrmTaskProperty.h"
 #include <QMetaObject>

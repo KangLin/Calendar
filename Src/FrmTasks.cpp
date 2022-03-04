@@ -1,3 +1,5 @@
+// 作者：康林 <kl222@126.com>
+
 #include "FrmTasks.h"
 #include "ui_FrmTasks.h"
 #include "ObjectFactory.h"

@@ -1,3 +1,5 @@
+// 作者：康林 <kl222@126.com>
+
 #include "FrmCalendar.h"
 #include "LunarCalendar.h"
 #include "DlgContainer.h"

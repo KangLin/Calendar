@@ -1,3 +1,5 @@
+// 作者：康林 <kl222@126.com>
+
 #include "FrmFullScreen.h"
 #include "ui_FrmFullScreen.h"
 #include <QDebug>

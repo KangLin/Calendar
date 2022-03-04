@@ -1,3 +1,5 @@
+// 作者：康林 <kl222@126.com>
+
 #include "FrmTasksList.h"
 #include "TaskPromptDelay.h"
 #include "ui_FrmTasksList.h"

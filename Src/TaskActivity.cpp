@@ -1,3 +1,5 @@
+// 作者：康林 <kl222@126.com>
+
 #include "TaskActivity.h"
 #include "FrmTopActivity.h"
 #include "ObjectFactory.h"

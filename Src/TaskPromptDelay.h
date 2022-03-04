@@ -1,3 +1,5 @@
+// 作者：康林 <kl222@126.com>
+
 #ifndef TASKPROMPTDELAY_H
 #define TASKPROMPTDELAY_H
 

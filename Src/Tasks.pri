@@ -1,3 +1,4 @@
+# 作者：康林 <kl222@126.com>
 QT += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network multimedia

@@ -1,3 +1,5 @@
+// 作者：康林 <kl222@126.com>
+
 #include "FrmTop.h"
 #include "ui_FrmTop.h"
 #include <QGuiApplication>
