@@ -1,6 +1,8 @@
 - v1.0.4
   + Add mirrory repository
-  
+  + FIX: divide by 0 crash. Affects all previous releases.
+    See RabbitCommon: 7ed300a206d8a36c30003b6c19ad181682d0ff5f
+
 - v1.0.3
   + test github action upload release
   + Use RabbitCommon::CStyle to change style
