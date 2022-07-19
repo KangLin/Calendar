@@ -4,6 +4,6 @@ includedir=${prefix}/include/Tasks
 
 Name: @PROJECT_NAME@
 Description: Tasks C++ library
-Version: @BUILD_VERSION@
+Version: @Calendar_VERSION@
 Libs: -L${libdir} -lTasks
 Cflags: -I${includedir} @Tasks_DEFINITIONS@

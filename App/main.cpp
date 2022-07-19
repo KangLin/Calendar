@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 #endif
     
     QApplication a(argc, argv);
-    a.setApplicationVersion(BUILD_VERSION);
+    a.setApplicationVersion(Calendar_VERSION);
     a.setApplicationName("Calendar");
     
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),

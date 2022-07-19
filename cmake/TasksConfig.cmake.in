@@ -17,7 +17,7 @@
 #      Tasks_DEFINITIONS    - Set definitions
 #      Tasks_VERSION_STRING - the version of Tasks found (since CMake 2.8.8)
 
-set(Tasks_VERSION_STRING @BUILD_VERSION@)
+set(Tasks_VERSION_STRING @Calendar_VERSION@)
 
 find_package(PkgConfig)
 if(PKG_CONFIG_FOUND)
