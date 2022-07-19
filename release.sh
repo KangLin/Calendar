@@ -37,6 +37,8 @@ sed -i "s/^version: '.*{build}'/version: '${VERSION}.{build}'/g" ${SOURCE_DIR}/a
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
 sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/.travis.yml
 sed -i "s/Calendar-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+.exe/Calendar-Setup-${VERSION}.exe/g" ${SOURCE_DIR}/.github/workflows/windows.yml
+sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
+sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/qmake.yml
 
 sed -i "s/^\Standards-Version:.*/\Standards-Version:\"${VERSION}\"/g" ${SOURCE_DIR}/debian/control
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
@@ -44,6 +46,7 @@ sed -i "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/debian/cha
 sed -i "s/Version=.*/Version=${DEBIAN_VERSION}/g" ${SOURCE_DIR}/debian/Calendar.desktop
 sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
+sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
 
 MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
 sed -i "s/android:versionCode=.*android/android:versionCode=\"${MAJOR_VERSION}\" android/g"  ${SOURCE_DIR}/App/android/AndroidManifest.xml

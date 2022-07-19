@@ -18,10 +18,10 @@ CFrmStickyList::CFrmStickyList(QWidget *parent) :
     ui->setupUi(this);
     this->layout()->addWidget(&m_ToolBar);
     this->layout()->addWidget(&m_lvTasks);
-    QAction * pAction = m_ToolBar.addAction(QIcon(":/icon/File"), tr("Open sticky"), this, SLOT(slotLoad()));
+    QAction * pAction = m_ToolBar.addAction(QIcon::fromTheme("document-open"), tr("Open sticky"), this, SLOT(slotLoad()));
     pAction->setToolTip(tr("Open sticky"));
     pAction->setStatusTip(tr("Open sticky"));
-    pAction = m_ToolBar.addAction(QIcon(":/icon/Save"), tr("Save sticky"), this, SLOT(slotSave()));
+    pAction = m_ToolBar.addAction(QIcon::fromTheme("document-save"), tr("Save sticky"), this, SLOT(slotSave()));
     pAction->setToolTip(tr("Save sticky"));
     pAction->setStatusTip(tr("Save sticky"));
     m_ToolBar.addSeparator();

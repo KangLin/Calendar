@@ -14,8 +14,8 @@
    <string>Calendar</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
+   <iconset theme="calendar">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout"/>
@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -40,16 +40,10 @@
     <property name="title">
      <string>Tools(&amp;T)</string>
     </property>
-    <widget class="QMenu" name="menuSink_S">
-     <property name="title">
-      <string>Sink(&amp;S)</string>
-     </property>
-     <addaction name="actionDefaultStyle_D"/>
-     <addaction name="actionOpenStyle"/>
-    </widget>
     <addaction name="separator"/>
     <addaction name="actionOption_O"/>
-    <addaction name="menuSink_S"/>
+    <addaction name="separator"/>
+    <addaction name="actionStyle"/>
     <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
@@ -59,8 +53,8 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionAbout_A">
    <property name="icon">
-    <iconset>
-     <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
+    <iconset theme="calendar">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>About(&amp;A)</string>
@@ -77,8 +71,8 @@
   </action>
   <action name="actionExit_E">
    <property name="icon">
-    <iconset>
-     <normaloff>:/icon/red/Close</normaloff>:/icon/red/Close</iconset>
+    <iconset theme="window-close">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Exit(&amp;E)</string>
@@ -86,8 +80,8 @@
   </action>
   <action name="actionOption_O">
    <property name="icon">
-    <iconset>
-     <normaloff>:/icon/Option</normaloff>:/icon/Option</iconset>
+    <iconset theme="system-settings">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Option(&amp;O)</string>
@@ -104,21 +98,20 @@
   </action>
   <action name="actionUpdate_U">
    <property name="icon">
-    <iconset>
-     <normaloff>:/icon/Download</normaloff>:/icon/Download</iconset>
+    <iconset theme="system-software-update">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Update(&amp;U)</string>
    </property>
   </action>
-  <action name="actionDefaultStyle_D">
+  <action name="actionStyle">
+  <property name="icon">
+   <iconset theme="style">
+    <normaloff>.</normaloff>.</iconset>
+  </property>
    <property name="text">
-    <string>Default(&amp;D)</string>
-   </property>
-  </action>
-  <action name="actionOpenStyle">
-   <property name="text">
-    <string>Open</string>
+    <string>Style</string>
    </property>
   </action>
  </widget>

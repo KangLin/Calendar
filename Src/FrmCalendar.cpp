@@ -50,7 +50,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
 {
     bool check = false;
     setWindowTitle(tr("Calendar"));
-    setWindowIcon(QIcon(":/icon/App"));
+    setWindowIcon(QIcon::fromTheme("calendar"));
 
     m_listView.setModel(m_pModel);
     m_listView.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -94,35 +94,35 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     Q_ASSERT(check);
 
     QAction* pAction = nullptr;
-    pAction = new QAction(QIcon(":/icon/File"), tr("Open"), this);
+    pAction = new QAction(QIcon::fromTheme("document-open"), tr("Open"), this);
     pAction->setStatusTip(tr("Open"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotLoad()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-    pAction = new QAction(QIcon(":/icon/Save"), tr("Save As"), this);
+    pAction = new QAction(QIcon::fromTheme("document-save"), tr("Save As"), this);
     pAction->setStatusTip(tr("Save As"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotSaveAs()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     
     m_ToolBar.addSeparator();
-    pAction = new QAction(QIcon(":/icon/Add"), tr("Add"), this);
+    pAction = new QAction(QIcon::fromTheme("add"), tr("Add"), this);
     pAction->setStatusTip(tr("Add"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotAdd()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-    pAction = new QAction(QIcon(":/icon/Delete"), tr("Delete"), this);
+    pAction = new QAction(QIcon::fromTheme("edit-delete"), tr("Delete"), this);
     pAction->setStatusTip(tr("Delete"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotDelete()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-    pAction = new QAction(QIcon(":/icon/Edit"), tr("Modify"), this);
+    pAction = new QAction(QIcon::fromTheme("document-save-as"), tr("Modify"), this);
     pAction->setStatusTip(tr("Modify"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotModify()));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
     m_ToolBar.addSeparator();   
-    pAction = new QAction(QIcon(":/icon/Refresh"), tr("Refresh"), this);
+    pAction = new QAction(QIcon::fromTheme("view-refresh"), tr("Refresh"), this);
     pAction->setStatusTip(tr("Modify"));
     check = connect(pAction, SIGNAL(triggered()), this, SLOT(slotRefresh()));
     Q_ASSERT(check);
@@ -136,7 +136,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);    
 #else
-    pAction = new QAction(QIcon(":/icon/ViewWeek"), tr("Week"), this);
+    pAction = new QAction(QIcon::fromTheme("week"), tr("Week"), this);
     pAction->setStatusTip(tr("Week"));
     pAction->setCheckable(true);
     //pAction->setChecked(true);
@@ -144,7 +144,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
                     this, SLOT(slotViewWeek(bool)));
     Q_ASSERT(check);
     m_ToolBar.addAction(pAction);
-    pAction = new QAction(QIcon(":/icon/Tools"), tr("Tools"), this);
+    pAction = new QAction(QIcon::fromTheme("tools"), tr("Tools"), this);
     pAction->setStatusTip(tr("Tools"));
     pAction->setCheckable(true);
     pAction->setChecked(true);

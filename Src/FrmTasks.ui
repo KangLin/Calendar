@@ -14,8 +14,8 @@
    <string>Tasks</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource/ResourceTasks.qrc">
-    <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
+   <iconset theme="task">
+  </iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
@@ -108,8 +108,8 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Resource/ResourceTasks.qrc">
-           <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
+          <iconset theme="task">
+          </iconset>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -180,8 +180,7 @@
           <string>Previous</string>
          </property>
          <property name="icon">
-          <iconset resource="Resource/ResourceTasks.qrc">
-           <normaloff>:/icon/Up</normaloff>:/icon/Up</iconset>
+          <iconset theme="up"></iconset>
          </property>
         </widget>
        </item>
@@ -200,8 +199,7 @@
           <string>Next</string>
          </property>
          <property name="icon">
-          <iconset resource="Resource/ResourceTasks.qrc">
-           <normaloff>:/icon/Down</normaloff>:/icon/Down</iconset>
+          <iconset theme="down"></iconset>
          </property>
         </widget>
        </item>
@@ -289,8 +287,8 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="Resource/ResourceTasks.qrc">
-              <normaloff>:/icon/App</normaloff>:/icon/App</iconset>
+             <iconset theme="task">
+              </iconset>
             </property>
            </widget>
           </item>
@@ -441,8 +439,8 @@
           <string>Add</string>
          </property>
          <property name="icon">
-          <iconset resource="Resource/ResourceTasks.qrc">
-           <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
+          <iconset theme="add">
+          </iconset>
          </property>
         </widget>
        </item>
@@ -461,8 +459,8 @@
           <string>Remove</string>
          </property>
          <property name="icon">
-          <iconset resource="Resource/ResourceTasks.qrc">
-           <normaloff>:/icon/Sub</normaloff>:/icon/Sub</iconset>
+          <iconset theme="subtract">
+          </iconset>
          </property>
         </widget>
        </item>
@@ -478,8 +476,8 @@
           <string>Save</string>
          </property>
          <property name="icon">
-          <iconset resource="Resource/ResourceTasks.qrc">
-           <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
+          <iconset theme="document-save">
+          </iconset>
          </property>
         </widget>
        </item>
@@ -508,8 +506,8 @@
           <string>Close</string>
          </property>
          <property name="icon">
-          <iconset resource="Resource/ResourceTasks.qrc">
-           <normaloff>:/icon/Close</normaloff>:/icon/Close</iconset>
+          <iconset theme="window-close">
+          </iconset>
          </property>
         </widget>
        </item>

@@ -50,7 +50,14 @@ int main(int argc, char *argv[])
     
 #ifdef RABBITCOMMON
     CFrmUpdater *pUpdate = new CFrmUpdater();
-    pUpdate->SetTitle(QImage(":/icon/App"));
+    QIcon icon = QIcon::fromTheme("calendar");
+    if(!icon.isNull()) {
+        auto sizeList = icon.availableSizes();
+        if(!sizeList.isEmpty()) {
+            QPixmap p = icon.pixmap(*sizeList.begin());
+            pUpdate->SetTitle(p.toImage());
+        }
+    }
     pUpdate->SetInstallAutoStartup();
     if(!pUpdate->GenerateUpdateXml()) 
         return 0; 

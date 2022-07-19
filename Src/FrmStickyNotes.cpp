@@ -32,14 +32,14 @@ CFrmStickyNotes::CFrmStickyNotes(QWidget *parent) :
     //setStyleSheet("background-color:rgb(255,255,128);color:rgb(0,255,0);");
     //setStyleSheet("QWidget{background-color:gray;border-top-left-radius:15px;border-top-right-radius:15px;}");
 
-    m_ToolBarButton.addAction(QIcon(":/icon/Bold"), tr("Bold"), this, SLOT(slotBold()));
-    m_ToolBarButton.addAction(QIcon(":/icon/Italic"), tr("Italic"), this, SLOT(slotItalic()));
-    m_ToolBarButton.addAction(QIcon(":/icon/Underline"), tr("Underline"), this, SLOT(slotUnderline()));
-    m_ToolBarButton.addAction(QIcon(":/icon/Stricke"), tr("Strikethrough"), this, SLOT(slotStrikethrough()));
+    m_ToolBarButton.addAction(QIcon::fromTheme("format-text-bold"), tr("Bold"), this, SLOT(slotBold()));
+    m_ToolBarButton.addAction(QIcon::fromTheme("format-text-italic"), tr("Italic"), this, SLOT(slotItalic()));
+    m_ToolBarButton.addAction(QIcon::fromTheme("format-text-underline"), tr("Underline"), this, SLOT(slotUnderline()));
+    m_ToolBarButton.addAction(QIcon::fromTheme("format-text-strikethrough"), tr("Strikethrough"), this, SLOT(slotStrikethrough()));
     m_ToolBarButton.addSeparator();
-    m_ToolBarButton.addAction(QIcon(":/icon/Delete"), tr("Delete"), this, SLOT(slotDelet()));
-    m_ToolBarButton.addAction(QIcon(":/icon/Add"), tr("New"), this, SLOT(slotNew()));
-    m_ToolBarTop.addAction(QIcon(":/icon/Close"), tr("Close"), this, SLOT(close()));
+    m_ToolBarButton.addAction(QIcon::fromTheme("edit-delete"), tr("Delete"), this, SLOT(slotDelet()));
+    m_ToolBarButton.addAction(QIcon::fromTheme("add"), tr("New"), this, SLOT(slotNew()));
+    m_ToolBarTop.addAction(QIcon::fromTheme("window-close"), tr("Close"), this, SLOT(close()));
     m_pComboBox = new QComboBox(this);
     m_pComboBox->addItem(tr("Normal"));
     m_pComboBox->addItem(tr("Priority"));

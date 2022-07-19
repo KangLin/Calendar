@@ -144,7 +144,7 @@ void CFrmTasksList::slotNew()
     //TODO：增加一个常用任务的组合框列表供用户选择  
     QSharedPointer<CTasks> tasks(new CTasks());
     tasks->SetTitle(tr("New tasks"));
-    tasks->SetIcon(QIcon(":/icon/App"));
+    tasks->SetIcon(QIcon::fromTheme("task"));
     tasks->SetContent(tr("After 5 minutes, the prompt will show 5 minutes, repeat"));
     m_TasksList.Add(tasks);
     //TODO:如果这里是新的，原来没有开始过。是否增加重新开始菜单？  

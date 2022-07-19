@@ -14,8 +14,8 @@
    <string>Sticky</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource/ResourceTasks.qrc">
-    <normaloff>:/icon/Sticky</normaloff>:/icon/Sticky</iconset>
+   <iconset theme="sticky">
+   </iconset>
   </property>
   <property name="toolTip">
    <string>Sticky</string>
@@ -29,8 +29,8 @@
   <layout class="QGridLayout" name="gridLayout"/>
   <action name="actionNew">
    <property name="icon">
-    <iconset resource="Resource/ResourceTasks.qrc">
-     <normaloff>:/icon/Add</normaloff>:/icon/Add</iconset>
+    <iconset theme="add">
+    </iconset>
    </property>
    <property name="text">
     <string>New</string>
@@ -47,8 +47,8 @@
   </action>
   <action name="actionRemove">
    <property name="icon">
-    <iconset resource="Resource/ResourceTasks.qrc">
-     <normaloff>:/icon/Delete</normaloff>:/icon/Delete</iconset>
+    <iconset theme="edit-delete">
+    </iconset>
    </property>
    <property name="text">
     <string>Remove</string>

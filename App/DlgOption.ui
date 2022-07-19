@@ -14,8 +14,8 @@
    <string>Option</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../Src/Resource/ResourceTasks.qrc">
-    <normaloff>:/icon/Option</normaloff>:/icon/Option</iconset>
+   <iconset theme="system-settings">
+   </iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">

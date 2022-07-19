@@ -5,6 +5,13 @@ Author: KangLin (kl222@126.com)
 -----------------------------------------------
 [:cn: 中文](README_zh_CN.md)
 
+[![qmake](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml)
+[![qmake](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml)
+[![ubuntu](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml)
+[![ubuntu](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml)
+[![msvc](https://github.com/KangLin/Calendar/actions/workflows/windows.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/windows.yml)
+[![msvc](https://github.com/KangLin/Calendar/actions/workflows/windows.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/windows.yml)
+
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar)
 [![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
 

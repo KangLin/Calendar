@@ -1,127 +1,218 @@
-name: cmake_windows
+name: msvc
 
 on: [push]
 
-env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Release
-
 jobs:
-  build:
-    # The CMake configure and build commands are platform agnostic and should work equally
-    # well on Windows or Mac.  You can convert this to a matrix build if you need
-    # cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: windows-latest
+  use_install_qt:
+    name: ${{matrix.os}}-vc-${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}
+
+    strategy:
+      matrix:
+        BUILD_TYPE: [Release, Debug]
+        os: [windows-latest]
+        CMAKE_GENERATOR: [Visual Studio 17 2022]
+        #CMAKE_GENERATOR_PLATFORM: [x64, Win32]
+        #VCPKG_PLATFORM_TOOLSET: [v142, v141, v140]
+        qt_version: [6.2.4, 5.15.2, 5.12.12]
+        include:
+          - triplet: x64-windows
+            VCPKG_PLATFORM_TOOLSET: v142
+            qt_version: 6.2.4
+            qt_arch: win64_msvc2019_64
+            CMAKE_GENERATOR_PLATFORM: x64
+            qt_modules: 'qtwebengine qtscxml qtmultimedia qtwebview qtimageformats'
+
+          - triplet: x64-windows
+            VCPKG_PLATFORM_TOOLSET: v142
+            qt_version: 5.15.2
+            qt_arch: win64_msvc2019_64
+            CMAKE_GENERATOR_PLATFORM: x64
+            qt_modules: 'qtwebengine'
+
+          - triplet: x86-windows
+            VCPKG_PLATFORM_TOOLSET: v141
+            qt_version: 5.12.12
+            qt_arch: win32_msvc2017
+            CMAKE_GENERATOR_PLATFORM: Win32
+            qt_modules: 'qtwebengine'
+
+    runs-on: ${{ matrix.os }}
+
+    env:
+      SOURCE_DIR:  ${{github.workspace}}\.cache\source
+      TOOSL_DIR:   ${{github.workspace}}\.cache\tools
+      INSTALL_DIR: ${{github.workspace}}\.cache\install_msvc_${{matrix.triplet}}_${{matrix.BUILD_TYPE}}
+      CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
+      VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
+      CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
+      Calendar_VERSION: v0.2.3
+      VCPKGGITCOMMITID: 6adca01a3fadca0cc0b80f03ec57c7c3a0be5c02
+      qt_modules: '${{matrix.qt_modules}}'
+
+    defaults:
+      run:
+        shell: cmd
 
     steps:
     - uses: actions/checkout@v2
       with:
         submodules: 'true'
-        
-    - name: git clone --recursive
-      # Use a bash shell so we can use the same syntax for environment variable
-      # access regardless of the host operating system
-      shell: bash
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run:  git submodule update --init --recursive
+        fetch-depth: 0
+
+    - uses: snickerbockers/submodules-init@v4
+
+    - name: make directory
+      run: |
+        cmake -E make_directory ${{env.SOURCE_DIR}}
+        cmake -E make_directory ${{env.TOOSL_DIR}}
+        cmake -E make_directory ${{env.INSTALL_DIR}}
+
+    - name: Cache installed
+      uses: actions/cache@v2
+      id: cache-installed
+      with:
+        path: |
+          ${{env.INSTALL_DIR}}
+        key: Calendar_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2022_12_26
+
+    - name: run-vcpkg
+      uses: lukka/run-vcpkg@v7
+      with:
+        vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+        vcpkgDirectory: ${{runner.workspace}}/vcpkg/
+        # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
+        # compute its hash and append this to the computed cache's key.
+        appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
+        vcpkgTriplet: '${{matrix.triplet}}'
+        vcpkgArguments: 'zlib openssl sqlite3'
+
+    - name: Cache Qt
+      id: cache-qt
+      uses: actions/cache@v1  # not v2!
+      with:
+        path: ${{env.TOOSL_DIR}}/qt
+        key: Calendar_msvc_qt-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}
 
     - name: Install Qt
       # You may pin to the exact commit or the version.
-      # uses: jurplel/install-qt-action@88f3374475d094ce56ca6a7cc41cfda5a6ec093c
-      uses: jurplel/install-qt-action@v2.13.0
+      # uses: jurplel/install-qt-action@a962fb91949c8e846a3e4a944d50e7ef5cc3a28a
+      uses: jurplel/install-qt-action@v3
       with:
         # Directory to install Qt
-        #dir: # optional
+        dir: '${{env.TOOSL_DIR}}/qt' # optional
         # Version of Qt to install
-        version: 5.12.10 # optional, default is 5.15.2
+        version: '${{matrix.qt_version}}' # optional, default is 5.15.2
         # Host platform
-        host: windows # optional
+        #host: linux # optional
         # Target platform for build
-        #target: # optional, default is desktop
+        #target: desktop # optional, default is desktop
         # Architecture for Windows/Android
-        #arch: win32_msvc2015 # optional
+        arch: '${{matrix.qt_arch}}' # optional
         # Whether or not to install Qt dependencies on Linux
-        #install-deps: # optional, default is true
+        #install-deps: true # optional, default is true
         # Additional Qt modules to install
-        #modules: # optional
+        modules: '${{env.qt_modules}}' # optional
+        # Force a Qt mirror in case the default is not working
+        #mirror: # optional
         # Whether or not to actually download Qt
-        #cached: # optional, default is false
+        cached: '${{steps.cache-qt.outputs.cache-hit}}' # optional, default is false
         # Whether or not to automatically run setup-python to find a valid python version.
-        #setup-python: # optional, default is true
+        #setup-python: false # optional, default is true
         # Qt tools to download--specify comma-separated argument lists which are themselves separated by spaces: <tool_name>,<tool_version>,<tool_arch>
         #tools: # optional
-        # Whether or not to set environment variables after running aqtinstall
-        #set-env: # optional, default is true
         # Whether or not to actually install Qt or just the tools from the tools argument
-        #tools-only: # optional, default is false
+        #tools-only: false # optional, default is false
         # Version of aqtinstall to use in case of issues
-        #aqtversion: # optional, default is ==1.1.3
+        #aqtversion: # optional, default is ==0.10.0
         # Version of py7zr to use in case of issues
-        #py7zrversion: # optional, default is ==0.14.0
+        #py7zrversion: # optional, default is ==0.11.0
         # Any extra arguments to append to the back
         #extra: # optional
 
+    - name: build log4qt
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\Log4Qt (
+            git clone https://github.com/KangLin/Log4Qt.git
+            cd Log4Qt
+            cmake -E make_directory build
+            cd build
+            cmake .. ^
+                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
+                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
+                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
+                -DLOG4QT_ENABLE_EXAMPLES=OFF ^
+                -DLOG4QT_ENABLE_TESTS=OFF ^
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
+
     - name: git clone RabbitCommon
-      working-directory: ${{github.workspace}}
+      working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
 
-    - name: Create Build Environment
-      # Some projects don't allow in-source building, so create a separate build directory
-      # We'll use this as our working directory for all subsequent commands
-      run: cmake -E make_directory ${{github.workspace}}/build
-
-    - name: Configure CMake
-      # Use a bash shell so we can use the same syntax for environment variable
-      # access regardless of the host operating system
-      working-directory: ${{github.workspace}}/build
-      # Note the current convention is to use the -S and -B options here to specify source 
-      # and build directories, but this is only available with CMake 3.13 and higher.  
-      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-      run: cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install
+    - name: build Calendar
       env:
-        RabbitCommon_DIR: ${{github.workspace}}/RabbitCommon
-
-    - name: Build
-      working-directory: ${{github.workspace}}/build
+        RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
+        Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
       run: |
-        cmake --build . --config ${{env.BUILD_TYPE}}
-        cmake --build . --config ${{env.BUILD_TYPE}} --target install-runtime
-        makensis ${{github.workspace}}/build/Install.nsi
+        cmake -E make_directory ${{github.workspace}}/build
+        cd ${{github.workspace}}/build
+        cmake ${{github.workspace}} ^
+            -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
+            -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
+            -DCMARK_SHARED=OFF ^
+            -DCMARK_TESTS=OFF ^
+            -DCMARK_STATIC=ON ^
+            -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
+            -DBUILD_QUIWidget=OFF ^
+            -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --config ${{matrix.BUILD_TYPE}}
+        IF "${{matrix.BUILD_TYPE}}" == "Release" (
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
+        ) else (
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
+        )
+
+    - name: Package
+      # if: ${{ matrix.BUILD_TYPE == 'Release' }}
+      working-directory: ${{github.workspace}}\build
+      run: |
+        copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
+        copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
+        copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
+        7z a Calendar_windows_${{env.Calendar_VERSION}}.zip .\install\*
+        md5sum Calendar_windows_${{env.Calendar_VERSION}}.zip > Calendar_windows_${{env.Calendar_VERSION}}.zip.md5sum
+        makensis Install.nsi
+        copy /Y Calendar_Setup_${{env.Calendar_VERSION}}.exe Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe
+        md5sum Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe > Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe.md5sum
+        ${{github.workspace}}\build\install\bin\CalendarApp.exe ^
+                -f "update_windows.xml" ^
+                -u "https://github.com/KangLin/Calendar/releases/download/${VERSION}/Calendar_Setup_${VERSION}.exe;https://sourceforge.net/projects/Calendar/files/${VERSION}/Calendar_Setup_${VERSION}.exe" ^
+                --pf Calendar_Setup_${{env.Calendar_VERSION}}.exe ^
+                -m "${{env.Calendar_VERSION}}"
 
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-        name: Calendar-Setup-v1.0.3.exe
+        name: Calendar_${{matrix.os}}_msvc_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
         path: |
-          ${{github.workspace}}/build/Calendar-Setup-*.exe
-          #${{github.workspace}}/build/update_*.xml
+          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}.exe
+          ${{github.workspace}}\build\update_windows.xml
+      #if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
     - name: Upload To Github Release
-      # You may pin to the exact commit or the version.
-      # uses: xresloader/upload-to-github-release@3ad14478ee4fb9bd65e84c6d496a7d6862892f43
-      uses: xresloader/upload-to-github-release@v1.2.2
+      if: ${{ matrix.BUILD_TYPE == 'Release' && '6.2.4' == matrix.qt_version && startsWith(github.ref, 'refs/tags/') }}
+      uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        # The files or file patterns to upload. You can upload multiple files by split them by semicolon. You can use the glob pattern to find the files.
-        file: ${{github.workspace}}/build/Calendar-Setup-*.exe
-        # The files or file patterns to delete before uploading new files. You can delete multiple files by split them by semicolon. You can use the glob pattern to find the files.
-        #delete_file: # optional, default is 
-        # If you need to overwrite existing files, add overwrite: true to the with.
-        #overwrite: # optional, default is false
-        # The resultant deployment is a draft Release that only repository collaborators can see. This gives you an opportunity to examine and edit the draft release.
-        draft: false # optional, default is true
-        # The resultant deployment is a Prerelease. This gives you an opportunity to examine and edit the prerelease.
-        prerelease: true # optional, default is false
-        # With tags: true, your Releases deployment will trigger if and only if the build is a tagged build.
-        #tags: true # optional, default is false
-        # Only work on these branches(splited by semicolon), set to nothing to accept all branches.
-        #branches: master # optional, default is 
-        # With verbose: true, be verbose.
-        verbose: true # optional, default is false
-        # Set custom tag name.
-        #tag_name: 'v0.0.4'
-        # If try to update latest release.
-        #update_latest_release: true # optional, default is false
-      if: startsWith(github.ref, 'refs/tags/')
+        prerelease: false
+        body: |
+           [:cn: 修改日志](ChangeLog_zh_CN.md)  [:en: Change log](ChangeLog.md)
+        files: |
+          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe
+          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe.md5sum

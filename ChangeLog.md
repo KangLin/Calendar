@@ -6,6 +6,7 @@
   + Add 2022 chinese holidays
   + Add 2023 chinese holidays
   + Update package
+  + Use icon theme
 
 - v1.0.3
   + test github action upload release

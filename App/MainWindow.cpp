@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "DlgAbout/DlgAbout.h"
-#include "Global/TasksTools.h"
 #include "RabbitCommonDir.h"
 #include <QSettings>
 #include <QDebug>
@@ -14,8 +13,8 @@
 #ifdef RABBITCOMMON
     #include "FrmUpdater/FrmUpdater.h"
     #include "RabbitCommonTools.h"
+    #include "FrmStyle/FrmStyle.h"
 #endif
-#include "RabbitCommonStyle.h"
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,10 +22,9 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_Table(this)
 {
     ui->setupUi(this);
-    RabbitCommon::CStyle::Instance()->LoadStyle();
-    
+
     m_TrayIconMenu.addAction(
-                QIcon(":/icon/Close"),
+                QIcon::fromTheme("window-close"),
                 tr("Exit"),
                 this,
                 SLOT(slotExit()));
@@ -36,10 +34,8 @@ CMainWindow::CMainWindow(QWidget *parent) :
         szShow = tr("Show");
     m_pShow = m_TrayIconMenu.addAction(windowIcon(), szShow,
                                        this, SLOT(slotShow()));
-    m_TrayIconMenu.addAction(QIcon(":/icon/App"),
-                             tr("About"),
-                             this,
-                             SLOT(slotAbout()));
+    m_TrayIconMenu.addAction(windowIcon(), tr("About"),
+                             this, SLOT(slotAbout()));
 
     m_pStartRun = m_TrayIconMenu.addAction(tr("Enable run from boot"),
                                            this, SLOT(slotStartRun(bool)));
@@ -115,7 +111,12 @@ void CMainWindow::slotAbout()
 {
 #ifdef RABBITCOMMON
     CDlgAbout about(this);
-    about.m_AppIcon = QImage(":/icon/App");
+    QIcon icon = windowIcon();
+    if(icon.isNull()) return;
+    auto sizeList = icon.availableSizes();
+    if(sizeList.isEmpty()) return;
+    QPixmap p = icon.pixmap(*sizeList.begin());
+    about.m_AppIcon = p.toImage();
     about.m_szHomePage = "https://github.com/KangLin/Calendar";
     about.m_szCopyrightStartTime = "2019";
     if(about.isHidden())
@@ -130,7 +131,12 @@ void CMainWindow::on_actionUpdate_U_triggered()
 {
 #ifdef RABBITCOMMON
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
-    m_pfrmUpdater->SetTitle(QImage(":/icon/App"));
+    QIcon icon = windowIcon();
+    if(icon.isNull()) return;
+    auto sizeList = icon.availableSizes();
+    if(sizeList.isEmpty()) return;
+    QPixmap p = icon.pixmap(*sizeList.begin());
+    m_pfrmUpdater->SetTitle(p.toImage());
     m_pfrmUpdater->SetInstallAutoStartup();
     #if defined (Q_OS_ANDROID)
         m_pfrmUpdater->showMaximized();
@@ -296,12 +302,8 @@ bool CMainWindow::eventFilter(QObject *watched, QEvent *event)
     return false;
 }
 
-void CMainWindow::on_actionDefaultStyle_D_triggered()
+void CMainWindow::on_actionStyle_triggered()
 {
-    RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
-}
-
-void CMainWindow::on_actionOpenStyle_triggered()
-{
-    RabbitCommon::CStyle::Instance()->slotStyle();
+    CFrmStyle* p = new CFrmStyle();
+    p->show();
 }

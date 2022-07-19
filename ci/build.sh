@@ -168,7 +168,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     ./bin/CalendarApp \
         -f "`pwd`/update_linux.xml" \
         --md5 ${MD5} \
-        -m "v1.0.4"
+        -m "${VERSION}"
 
     MD5=`md5sum Calendar_${VERSION}.tar.gz|awk '{print $1}'`
     ./Calendar-x86_64.AppImage \
@@ -269,9 +269,10 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
     
     if [ -z "${STATIC}" ]; then
         "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
-        MD5=`md5sum Calendar-Setup-*.exe|awk '{print $1}'`
+        MD5=`md5sum Calendar_Setup_*.exe|awk '{print $1}'`
         echo "MD5:${MD5}"
-        install/bin/CalendarApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.3.4"
+        install/bin/CalendarApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "${VERSION}" \
+            -u "https://github.com/KangLin/Calendar/releases/download/${VERSION}/Calendar_Setup_${VERSION}.exe;https://sourceforge.net/projects/Calendar/files/${VERSION}/Calendar_Setup_${VERSION}.exe" \
         #cat update_windows.xml
     fi
 fi
