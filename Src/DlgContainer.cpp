@@ -4,7 +4,6 @@
 #include "ui_DlgContainer.h"
 #include <QScreen>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QDebug>
 
 CDlgContainer::CDlgContainer(QWidget *parent) :

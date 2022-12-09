@@ -57,7 +57,7 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
             if(tasks->GetCurrent() == task)
             {
                 QPalette lablePalette = lable->palette();
-                lablePalette.setColor(QPalette::Foreground,
+                lablePalette.setColor(QPalette::Window,
                                       lablePalette.color(QPalette::Highlight));
                 lable->setPalette(lablePalette);
             }

@@ -1,7 +1,11 @@
 // 作者：康林 <kl222@126.com>
 
 #include "TaskPromptDelay.h"
-#include <QSound>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include <QSoundEffect>
+#else
+    #include <QSound>
+#endif
 #include <QInputDialog>
 
 static int gTypeIdCTaskPromptDelay = qRegisterMetaType<CTaskPromptDelay>();
@@ -107,7 +111,18 @@ int CTaskPromptDelay::Check()
     {
         m_bStop = true;
         if(!m_szRunSound.isEmpty())
+        {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            QSoundEffect effect;
+            effect.setSource(QUrl::fromLocalFile(m_szRunSound));
+            //    effect.setLoopCount(1);
+            //    effect.setVolume(1);
+            effect.play();
+#else
             QSound::play(m_szRunSound);
+#endif
+        }
+
         nRet = onRun();
         //TODO: weather check the nRet?
         if(m_Delay.isEmpty())

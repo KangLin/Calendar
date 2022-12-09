@@ -5,8 +5,13 @@
 #include <QDebug>
 #include <QPainter>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QTime>
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QScreen>
+#else
+#include <QDesktopWidget>
+#endif
 
 CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
     QWidget(parent,
@@ -17,8 +22,15 @@ CFrmFullScreen::CFrmFullScreen(QWidget *parent) :
             | Qt::CustomizeWindowHint),
     ui(new Ui::CFrmFullScreen)
 {
-    this->setFixedSize(qApp->desktop()->size());
-    resize(qApp->desktop()->size());
+    QSize s;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    s = qApp->primaryScreen()->geometry().size();
+#else
+    s = qApp->desktop()->size();
+#endif
+    this->setFixedSize(s);
+    resize(s);
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     //setStyleSheet("background-color:rgb(0,0,0);color:rgb(0,255,0);");

@@ -64,8 +64,11 @@ CFrmStickyNotes::~CFrmStickyNotes()
     qDebug() << "CFrmStickyNotes::~CFrmStickyNotes()";
     delete ui;
 }
-
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+void CFrmStickyNotes::enterEvent(QEnterEvent *event)
+#else
 void CFrmStickyNotes::enterEvent(QEvent *event)
+#endif
 {
     qDebug() << "CFrmStickyNotes::enterEvent";
     Q_UNUSED(event);

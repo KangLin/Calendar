@@ -2,7 +2,11 @@
 
 #include "Task.h"
 #include <QDebug>
-#include <QSound>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include <QSoundEffect>
+#else
+    #include <QSound>
+#endif
 #include <ObjectFactory.h>
 #include <QtXml>
 #include <QMetaProperty>
@@ -56,7 +60,18 @@ CTask::~CTask()
 int CTask::Start()
 {
     if(!m_szStartSound.isEmpty())
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        QSoundEffect effect;
+        effect.setSource(QUrl::fromLocalFile(m_szStartSound));
+        //    effect.setLoopCount(1);
+        //    effect.setVolume(1);
+        effect.play();
+#else
         QSound::play(m_szStartSound);
+#endif
+    }
+
     m_Time.restart();
     if(m_nPromptInterval > 0)
     {
@@ -86,7 +101,18 @@ int CTask::Check()
             qDebug() << "onRun fail:" << nRet;
         
         if(!m_szRunSound.isEmpty())
+        {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            QSoundEffect effect;
+            effect.setSource(QUrl::fromLocalFile(m_szRunSound));
+            //    effect.setLoopCount(1);
+            //    effect.setVolume(1);
+            effect.play();
+#else
             QSound::play(m_szRunSound);
+#endif
+        }
+
         nRet = 0;
     } else {
         if(m_nPromptInterval > 0)

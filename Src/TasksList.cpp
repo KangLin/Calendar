@@ -300,7 +300,11 @@ int CTasksList::SaveSettings(const QString &szFile)
     if(nRet)
         return nRet;
     QTextStream stream(&f);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    stream.setEncoding(QStringConverter::Utf8);
+#else
     stream.setCodec("UTF-8");
+#endif
     doc.save(stream, 4);//4个空格缩进  
     f.close();
     return nRet;

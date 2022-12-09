@@ -6,7 +6,7 @@
 #include "FrmTop.h"
 #include <QMenu>
 #include <QTimer>
-#include <QTime>
+#include <QElapsedTimer>
 #include "TaskActivity.h"
 
 class CFrmTopActivity : public CFrmTop
@@ -25,7 +25,7 @@ private Q_SLOTS:
 private:
     QMenu m_Menu;
     QTimer m_Timer;
-    QTime m_StartTime;
+    QElapsedTimer m_StartTime;
     
     int AddDelay(int nMinute);
     

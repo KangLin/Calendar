@@ -32,7 +32,6 @@ CFrmTopActivity::CFrmTopActivity(QWidget *parent): CFrmTop(parent)
 
 int CFrmTopActivity::StartTimer(int nMsec)
 {
-    m_StartTime = QTime::currentTime();
     m_Timer.start(nMsec);
     m_StartTime.start();
     return 0;

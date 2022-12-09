@@ -6,8 +6,8 @@
 #pragma once
 
 #include <QObject>
+#include <QElapsedTimer>
 #include <QTime>
-#include <QTimer>
 #include <QDomElement>
 #include <QIcon>
 
@@ -106,7 +106,7 @@ private:
     QString m_szContent;
     QIcon m_Icon;
     
-    QTime m_Time;
+    QElapsedTimer m_Time;
     int m_nInterval;
     
     int Init();    
