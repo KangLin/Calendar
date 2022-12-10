@@ -3,6 +3,9 @@
   + FIX: divide by 0 crash. Affects all previous releases.
     See RabbitCommon: 7ed300a206d8a36c30003b6c19ad181682d0ff5f
   + Support Qt6
+  + Add 2022 chinese holidays
+  + Add 2023 chinese holidays
+  + Update package
 
 - v1.0.3
   + test github action upload release
