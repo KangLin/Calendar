@@ -168,14 +168,14 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     ./bin/CalendarApp \
         -f "`pwd`/update_linux.xml" \
         --md5 ${MD5} \
-        -m "v0.3.4"
+        -m "v1.0.4"
 
     MD5=`md5sum Calendar_${VERSION}.tar.gz|awk '{print $1}'`
     ./Calendar-x86_64.AppImage \
         -f "`pwd`/update_linux_appimage.xml" \
         --md5 ${MD5} \
         --url "https://github.com/KangLin/Calendar/releases/download/${VERSION}/Calendar_${VERSION}.tar.gz" \
-        -m "v0.3.4" 
+        -m "v1.0.4" 
 
     if [ "$TRAVIS_TAG" != "" \
          -a "$DOWNLOAD_QT" = "APT" \
