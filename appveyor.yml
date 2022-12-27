@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v1.0.3.{build}'
+version: 'v1.0.4.{build}'
 
 cache:
   - Package
@@ -14,7 +14,7 @@ environment:
   matrix: 
   ##### msvc 2013 ########  
   - BUILD_TARGERT: windows_msvc
-    #GENERATORS: "Visual Studio 12 2013"
+    GENERATORS: "Visual Studio 12 2013"
     TOOLCHAIN_VERSION: 12
     QT_ROOT: C:\Qt\5.6\msvc2013
     BUILD_ARCH: x86
@@ -137,12 +137,12 @@ build_script:
   - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build.sh
 
 artifacts:
-  - path: build_${BUILD_TARGERT}/Calendar-Setup-*.exe
+  - path: build_${BUILD_TARGERT}/Calendar_Setup_*.exe
     #name: Calendar_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
     #type: zip
     
   - path: build_${BUILD_TARGERT}/update_windows.xml
-  - path: Calendar_*.apk
+  #- path: Calendar_*.apk
   
 test: off
 
@@ -154,7 +154,7 @@ deploy:
     #token : https://github.com/settings/tokens
     #password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
-      secure: gBxMTYLJ27qqkFFVcItKV8TtZShliR8gtk8BeORbFNHpcTf4ZbfauuIVKRKKHXGY
+      secure: y42tpZMQWuT0cKJMwegdc6TXbrcKn4matIlwF2MJvcaeZiS91c1rQm3omyhBAb5E
     #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
     #draft: true
     #prerelease: true

@@ -33,7 +33,7 @@ Author: KangLin (kl222@126.com)
 - [Features](#Features)
 - [ScreentShot](#ScreentShot)
 - [Donation](#Donation)
-- [Download setup package](#Download-setup-package)
+- [Download](#Download)
 - [Depend](#Depend)
 - [Compile](#Compile)
 - [Use](#Use)
@@ -89,42 +89,38 @@ please compile and test the students with the corresponding equipment.
 - [![Latest Release](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20Release)](https://github.com/KangLin/Calendar/releases/latest)
 - [![Download Calendar](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
   + Windows: Windows installation package, support for Windows xp and above
-    - [Download Calendar-Setup-v1.0.3.exe from github](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar-Setup-v1.0.3.exe)
-    - [Download Calendar-Setup-v1.0.3.exe from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/Calendar-Setup-v1.0.3.exe/download)
+    - [Download Calendar-Setup-v1.0.4.exe from github](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar-Setup-v1.0.4.exe)
+    - [Download Calendar-Setup-v1.0.4.exe from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.4/Calendar-Setup-v1.0.4.exe/download)
   + Android: 
-    - [Download Calendar_armeabi-v7a_v1.0.3.apk from github](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_armeabi-v7a_v1.0.3.apk)
-  + linux: 
-    - [Download Calendar_v1.0.3.tar.gz from github](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_v1.0.3.tar.gz)
-    - [Download Calendar_v1.0.3.tar.gz from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/Calendar_v1.0.3.tar.gz/download)
-
-      The AppImage format executable can be run directly on the Linux system, see: https://appimage.org/  
-      Usage:
-      
-      1. Decompress. Copy Calendar_v1.0.3.tar.gz to install directory, then decompress it:
-
-            ```
-            mkdir Calendar
-            cd Calendar
-            cp $DOWNLOAD/Calendar_v1.0.3.tar.gz .
-            tar xvfz Calendar_v1.0.3.tar.gz
-            ```
-
-      2. install
-      
-            ```
-            ./install1.sh install_autostart Calendar
-            ```
-
-      3. If you want to uninstall
-      
-            ```
-            ./install1.sh remove Calendar
-            ```
-
-  + ubuntu: 
-    Deb installation package for Ubuntu
-    - [Download Calendar_1.0.3_amd64.deb from github](https://github.com/KangLin/Calendar/releases/download/v1.0.3/Calendar_1.0.3_amd64.deb)
-    - [Download Calendar_1.0.3_amd64.deb from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.3/calendar_1.0.3_amd64.deb/download)
+    - [Download Calendar_armeabi-v7a_v1.0.4.apk from github](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_armeabi-v7a_v1.0.4.apk)
+    
+  + Ubuntu:
+    + Ubuntu 20.04: calendar_1.0.4_amd64_Ubuntu-20.04.deb
+        
+            sudo apt install ./calendar_1.0.4_amd64_Ubuntu-20.04.deb
+            
+            # If you're on an older Linux distribution, you will need to run this instead:
+            # sudo dpkg -i calendar_1.0.4_amd64_Ubuntu-20.04.deb
+            # sudo apt-get install -f # Install dependencies
+    
+      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb/download)
+    + MD5SUM file: calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum
+      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum/download)
+    + Ubuntu 18.04: calendar_1.0.4_amd64_Ubuntu-18.04.deb
+    
+            sudo apt install ./calendar_1.0.4_amd64_Ubuntu-18.04.deb
+            
+            # If you're on an older Linux distribution, you will need to run this instead:
+            # sudo dpkg -i calendar_1.0.4_amd64_Ubuntu-18.04.deb
+            # sudo apt-get install -f # Install dependencies
+    
+      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb/download)
+    + MD5SUM file: calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum
+      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum/download)
 
 ### Depend
 - [Qt (LGPL v2.1)](http://qt.io/)

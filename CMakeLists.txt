@@ -17,7 +17,7 @@ if(POLICY CMP0020)
     cmake_policy(SET CMP0020 NEW)
 endif()
 
-SET(Calendar_VERSION "v1.0.3")
+SET(Calendar_VERSION "v1.0.4")
 # Find Git Version Patch
 IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     if(NOT GIT)

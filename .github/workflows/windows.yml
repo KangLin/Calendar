@@ -45,7 +45,7 @@ jobs:
       CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
-      Calendar_VERSION: v0.2.3
+      Calendar_VERSION: v1.0.3
       VCPKGGITCOMMITID: 6adca01a3fadca0cc0b80f03ec57c7c3a0be5c02
       qt_modules: '${{matrix.qt_modules}}'
 
@@ -185,14 +185,13 @@ jobs:
         copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         7z a Calendar_windows_${{env.Calendar_VERSION}}.zip .\install\*
-        md5sum Calendar_windows_${{env.Calendar_VERSION}}.zip > Calendar_windows_${{env.Calendar_VERSION}}.zip.md5sum
         makensis Install.nsi
-        copy /Y Calendar_Setup_${{env.Calendar_VERSION}}.exe Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe
-        md5sum Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe > Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe.md5sum
+        copy /Y Calendar_Setup_${{env.Calendar_VERSION}}.exe Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe
+        md5sum Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe > Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe.md5sum
         ${{github.workspace}}\build\install\bin\CalendarApp.exe ^
                 -f "update_windows.xml" ^
-                -u "https://github.com/KangLin/Calendar/releases/download/${VERSION}/Calendar_Setup_${VERSION}.exe;https://sourceforge.net/projects/Calendar/files/${VERSION}/Calendar_Setup_${VERSION}.exe" ^
-                --pf Calendar_Setup_${{env.Calendar_VERSION}}.exe ^
+                -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe;https://sourceforge.net/projects/Calendar/files/${{env.Calendar_VERSION}}/Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe" ^
+                --pf Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe ^
                 -m "${{env.Calendar_VERSION}}"
 
     - name: update 
@@ -212,7 +211,7 @@ jobs:
       with:
         prerelease: false
         body: |
-           [:cn: 修改日志](ChangeLog_zh_CN.md)  [:en: Change log](ChangeLog.md)
+           [:cn: 修改日志](ChangeLog_zh_CN.md) [:en: Change log](ChangeLog.md)
         files: |
-          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe
-          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe.md5sum
+          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe
+          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe.md5sum
