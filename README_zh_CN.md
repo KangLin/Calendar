@@ -91,8 +91,8 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 - [![最后发行版本下载](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
 - windows:  
   Windows安装包，支持 Windows xp 以上系统
-  + [从 sourceforge 下载 Calendar-Setup-v1.0.4.exe ](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.4/Calendar-Setup-v1.0.4.exe/download)
-  + [从 Github 下载 Calendar-Setup-v1.0.4.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar-Setup-v1.0.4.exe)  
+  + [从 sourceforge 下载 Calendar_Setup_v1.0.4.exe ](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.4/Calendar_Setup_v1.0.4.exe/download)
+  + [从 Github 下载 Calendar_Setup_v1.0.4.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_Setup_v1.0.4.exe)  
 - android:
   + [从 github 下载 Calendar_armeabi-v7a_v1.0.4.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_v1.0.4.apk)
 

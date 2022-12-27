@@ -89,8 +89,8 @@ please compile and test the students with the corresponding equipment.
 - [![Latest Release](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20Release)](https://github.com/KangLin/Calendar/releases/latest)
 - [![Download Calendar](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
   + Windows: Windows installation package, support for Windows xp and above
-    - [Download Calendar-Setup-v1.0.4.exe from github](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar-Setup-v1.0.4.exe)
-    - [Download Calendar-Setup-v1.0.4.exe from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.4/Calendar-Setup-v1.0.4.exe/download)
+    - [Download Calendar_Setup_v1.0.4.exe from github](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_Setup_v1.0.4.exe)
+    - [Download Calendar_Setup_v1.0.4.exe from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.4/Calendar_Setup_v1.0.4.exe/download)
   + Android: 
     - [Download Calendar_armeabi-v7a_v1.0.4.apk from github](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_armeabi-v7a_v1.0.4.apk)
     
