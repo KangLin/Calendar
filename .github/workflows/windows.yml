@@ -185,6 +185,7 @@ jobs:
         copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         7z a Calendar_windows_${{env.Calendar_VERSION}}.zip .\install\*
+        md5sum Calendar_windows_${{env.Calendar_VERSION}}.zip > Calendar_windows_${{env.Calendar_VERSION}}.zip.md5sum
         makensis Install.nsi
         copy /Y Calendar_Setup_${{env.Calendar_VERSION}}.exe Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe
         md5sum Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe > Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe.md5sum
@@ -215,3 +216,5 @@ jobs:
         files: |
           ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe
           ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe.md5sum
+          ${{github.workspace}}\build\Calendar_windows_${{env.Calendar_VERSION}}.zip
+          ${{github.workspace}}\build\Calendar_windows_${{env.Calendar_VERSION}}.zip.md5sum
