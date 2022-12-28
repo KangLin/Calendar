@@ -36,8 +36,7 @@ sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/bu
 sed -i "s/^version: '.*{build}'/version: '${VERSION}.{build}'/g" ${SOURCE_DIR}/appveyor.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
 sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/.travis.yml
-sed -i "s/Calendar-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+.exe/Calendar-Setup-${VERSION}.exe/g" ${SOURCE_DIR}/.github/workflows/windows.yml
-sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/windows.yml
+sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/qmake.yml
 
 sed -i "s/^\Standards-Version:.*/\Standards-Version:\"${VERSION}\"/g" ${SOURCE_DIR}/debian/control
