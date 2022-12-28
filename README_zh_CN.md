@@ -10,8 +10,8 @@
 [![qmake](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml)
 [![ubuntu](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml)
 [![ubuntu](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml)
-[![msvc](https://github.com/KangLin/Calendar/actions/workflows/windows.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/windows.yml)
-[![msvc](https://github.com/KangLin/Calendar/actions/workflows/windows.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/windows.yml)
+[![msvc](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml)
+[![msvc](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml)
 
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar)
 [![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
@@ -91,38 +91,38 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 - [![最后发行版本下载](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
 - windows:  
   Windows安装包，支持 Windows xp 以上系统
-  + [从 sourceforge 下载 Calendar_Setup_v1.0.4.exe ](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.4/Calendar_Setup_v1.0.4.exe/download)
-  + [从 Github 下载 Calendar_Setup_v1.0.4.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_Setup_v1.0.4.exe)  
+  + [从 sourceforge 下载 Calendar_Setup_v1.0.5.exe ](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.5/Calendar_Setup_v1.0.5.exe/download)
+  + [从 Github 下载 Calendar_Setup_v1.0.5.exe](https://github.com/KangLin/Calendar/releases/download/v1.0.5/Calendar_Setup_v1.0.5.exe)  
 - android:
-  + [从 github 下载 Calendar_armeabi-v7a_v1.0.4.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_v1.0.4.apk)
+  + [从 github 下载 Calendar_armeabi-v7a_v1.0.5.apk](https://github.com/KangLin/Calendar/releases/download/v1.0.5/Calendar_v1.0.5.apk)
 
 - Ubuntu:
-  + Ubuntu 20.04: calendar_1.0.4_amd64_Ubuntu-20.04.deb
+  + Ubuntu 20.04: calendar_1.0.5_amd64_Ubuntu-20.04.deb
     
-        sudo apt install ./calendar_1.0.4_amd64_Ubuntu-20.04.deb
+        sudo apt install ./calendar_1.0.5_amd64_Ubuntu-20.04.deb
 
         # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
-        # sudo dpkg -i calendar_1.0.4_amd64_Ubuntu-20.04.deb
+        # sudo dpkg -i calendar_1.0.5_amd64_Ubuntu-20.04.deb
         # sudo apt-get install -f # 安装依赖
 
-    - [从 github 下载](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb)
-    - [从 sourceforge 下载](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb/download)
-  + md5 校验文件: calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum
-    - [从 github 下载](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum)
-    - [从 sourceforge 下载](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum/download)
-  + Ubuntu 18.04: calendar_1.0.4_amd64_Ubuntu-18.04.deb
+    - [从 github 下载](https://github.com/KangLin/calendar/releases/download/v1.0.5/calendar_1.0.5_amd64_Ubuntu-20.04.deb)
+    - [从 sourceforge 下载](https://sourceforge.net/projects/calendar/files/v1.0.5/calendar_1.0.5_amd64_Ubuntu-20.04.deb/download)
+  + md5 校验文件: calendar_1.0.5_amd64_Ubuntu-20.04.deb.md5sum
+    - [从 github 下载](https://github.com/KangLin/calendar/releases/download/v1.0.5/calendar_1.0.5_amd64_Ubuntu-20.04.deb.md5sum)
+    - [从 sourceforge 下载](https://sourceforge.net/projects/calendar/files/v1.0.5/calendar_1.0.5_amd64_Ubuntu-20.04.deb.md5sum/download)
+  + Ubuntu 18.04: calendar_1.0.5_amd64_Ubuntu-18.04.deb
 
-        sudo apt install ./calendar_1.0.4_amd64_Ubuntu-18.04.deb
+        sudo apt install ./calendar_1.0.5_amd64_Ubuntu-18.04.deb
 
         # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
-        # sudo dpkg -i calendar_1.0.4_amd64_Ubuntu-18.04.deb
+        # sudo dpkg -i calendar_1.0.5_amd64_Ubuntu-18.04.deb
         # sudo apt-get install -f # 安装依赖
 
-    - [从 github 下载](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb)
-    - [从 sourceforge 下载](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb/download)
-  + md5 校验文件: calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum
-    - [从 github 下载](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum)
-    - [从 sourceforge 下载](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum/download)
+    - [从 github 下载](https://github.com/KangLin/calendar/releases/download/v1.0.5/calendar_1.0.5_amd64_Ubuntu-18.04.deb)
+    - [从 sourceforge 下载](https://sourceforge.net/projects/calendar/files/v1.0.5/calendar_1.0.5_amd64_Ubuntu-18.04.deb/download)
+  + md5 校验文件: calendar_1.0.5_amd64_Ubuntu-18.04.deb.md5sum
+    - [从 github 下载](https://github.com/KangLin/calendar/releases/download/v1.0.5/calendar_1.0.5_amd64_Ubuntu-18.04.deb.md5sum)
+    - [从 sourceforge 下载](https://sourceforge.net/projects/calendar/files/v1.0.5/calendar_1.0.5_amd64_Ubuntu-18.04.deb.md5sum/download)
 
 ### 依赖
 - [Qt (LGPL v2.1)](http://qt.io/)

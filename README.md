@@ -9,8 +9,8 @@ Author: KangLin (kl222@126.com)
 [![qmake](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml)
 [![ubuntu](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml)
 [![ubuntu](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml)
-[![msvc](https://github.com/KangLin/Calendar/actions/workflows/windows.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/windows.yml)
-[![msvc](https://github.com/KangLin/Calendar/actions/workflows/windows.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/windows.yml)
+[![msvc](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml)
+[![msvc](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml)
 
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar)
 [![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
@@ -89,38 +89,38 @@ please compile and test the students with the corresponding equipment.
 - [![Latest Release](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20Release)](https://github.com/KangLin/Calendar/releases/latest)
 - [![Download Calendar](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
   + Windows: Windows installation package, support for Windows xp and above
-    - [Download Calendar_Setup_v1.0.4.exe from github](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_Setup_v1.0.4.exe)
-    - [Download Calendar_Setup_v1.0.4.exe from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.4/Calendar_Setup_v1.0.4.exe/download)
+    - [Download Calendar_Setup_v1.0.5.exe from github](https://github.com/KangLin/Calendar/releases/download/v1.0.5/Calendar_Setup_v1.0.5.exe)
+    - [Download Calendar_Setup_v1.0.5.exe from sourceforge](https://sourceforge.net/projects/rabbitcalendar/files/v1.0.5/Calendar_Setup_v1.0.5.exe/download)
   + Android: 
-    - [Download Calendar_armeabi-v7a_v1.0.4.apk from github](https://github.com/KangLin/Calendar/releases/download/v1.0.4/Calendar_armeabi-v7a_v1.0.4.apk)
+    - [Download Calendar_armeabi-v7a_v1.0.5.apk from github](https://github.com/KangLin/Calendar/releases/download/v1.0.5/Calendar_armeabi-v7a_v1.0.5.apk)
     
   + Ubuntu:
-    + Ubuntu 20.04: calendar_1.0.4_amd64_Ubuntu-20.04.deb
+    + Ubuntu 20.04: calendar_1.0.5_amd64_Ubuntu-20.04.deb
         
-            sudo apt install ./calendar_1.0.4_amd64_Ubuntu-20.04.deb
+            sudo apt install ./calendar_1.0.5_amd64_Ubuntu-20.04.deb
             
             # If you're on an older Linux distribution, you will need to run this instead:
-            # sudo dpkg -i calendar_1.0.4_amd64_Ubuntu-20.04.deb
+            # sudo dpkg -i calendar_1.0.5_amd64_Ubuntu-20.04.deb
             # sudo apt-get install -f # Install dependencies
     
-      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb/download)
-    + MD5SUM file: calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum
-      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-20.04.deb.md5sum/download)
-    + Ubuntu 18.04: calendar_1.0.4_amd64_Ubuntu-18.04.deb
+      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.5/calendar_1.0.5_amd64_Ubuntu-20.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.5/calendar_1.0.5_amd64_Ubuntu-20.04.deb/download)
+    + MD5SUM file: calendar_1.0.5_amd64_Ubuntu-20.04.deb.md5sum
+      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.5/calendar_1.0.5_amd64_Ubuntu-20.04.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.5/calendar_1.0.5_amd64_Ubuntu-20.04.deb.md5sum/download)
+    + Ubuntu 18.04: calendar_1.0.5_amd64_Ubuntu-18.04.deb
     
-            sudo apt install ./calendar_1.0.4_amd64_Ubuntu-18.04.deb
+            sudo apt install ./calendar_1.0.5_amd64_Ubuntu-18.04.deb
             
             # If you're on an older Linux distribution, you will need to run this instead:
-            # sudo dpkg -i calendar_1.0.4_amd64_Ubuntu-18.04.deb
+            # sudo dpkg -i calendar_1.0.5_amd64_Ubuntu-18.04.deb
             # sudo apt-get install -f # Install dependencies
     
-      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb/download)
-    + MD5SUM file: calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum
-      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.4/calendar_1.0.4_amd64_Ubuntu-18.04.deb.md5sum/download)
+      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.5/calendar_1.0.5_amd64_Ubuntu-18.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.5/calendar_1.0.5_amd64_Ubuntu-18.04.deb/download)
+    + MD5SUM file: calendar_1.0.5_amd64_Ubuntu-18.04.deb.md5sum
+      - [Download from github](https://github.com/KangLin/calendar/releases/download/v1.0.5/calendar_1.0.5_amd64_Ubuntu-18.04.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/calendar/files/v1.0.5/calendar_1.0.5_amd64_Ubuntu-18.04.deb.md5sum/download)
 
 ### Depend
 - [Qt (LGPL v2.1)](http://qt.io/)

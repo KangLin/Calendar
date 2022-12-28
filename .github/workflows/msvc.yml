@@ -187,12 +187,12 @@ jobs:
         7z a Calendar_windows_${{env.Calendar_VERSION}}.zip .\install\*
         md5sum Calendar_windows_${{env.Calendar_VERSION}}.zip > Calendar_windows_${{env.Calendar_VERSION}}.zip.md5sum
         makensis Install.nsi
-        copy /Y Calendar_Setup_${{env.Calendar_VERSION}}.exe Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe
-        md5sum Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe > Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe.md5sum
+        copy /Y Calendar_Setup_${{env.Calendar_VERSION}}.exe Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe
+        md5sum Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe > Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe.md5sum
         ${{github.workspace}}\build\install\bin\CalendarApp.exe ^
                 -f "update_windows.xml" ^
-                -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe;https://sourceforge.net/projects/Calendar/files/${{env.Calendar_VERSION}}/Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe" ^
-                --pf Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe ^
+                -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe;https://sourceforge.net/projects/Calendar/files/${{env.Calendar_VERSION}}/Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe" ^
+                --pf Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe ^
                 -m "${{env.Calendar_VERSION}}"
 
     - name: update 
@@ -200,7 +200,7 @@ jobs:
       with:
         name: Calendar_${{matrix.os}}_msvc_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
         path: |
-          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}.exe
+          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe
           ${{github.workspace}}\build\update_windows.xml
       #if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
@@ -212,9 +212,9 @@ jobs:
       with:
         prerelease: false
         body: |
-           [:cn: 修改日志](ChangeLog_zh_CN.md) [:en: Change log](ChangeLog.md)
+          [:cn: 修改日志](ChangeLog_zh_CN.md) [:en: Change log](ChangeLog.md)
         files: |
-          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe
-          ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}.exe.md5sum
-          ${{github.workspace}}\build\Calendar_windows_${{env.Calendar_VERSION}}.zip
-          ${{github.workspace}}\build\Calendar_windows_${{env.Calendar_VERSION}}.zip.md5sum
+          build\Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe
+          build\Calendar_Setup_${{env.Calendar_VERSION}}_win7.exe.md5sum
+          build\Calendar_windows_${{env.Calendar_VERSION}}.zip
+          build\Calendar_windows_${{env.Calendar_VERSION}}.zip.md5sum

@@ -1,3 +1,6 @@
+- v1.0.5
+  + CI: Modify update release
+
 - v1.0.4
   + 增加镜像库
   + 修复除 0 引起的崩溃。影响前面所有发行版本。此错误是 RabbitCommon 引起的。
