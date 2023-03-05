@@ -17,7 +17,7 @@ Author: KangLin (kl222@126.com)
 
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/Calendar)](https://github.com/KangLin/Calendar/issues)
 
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/Calendar=Github%20stars)](https://github.com/KangLin/Calendar/stars)
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/Calendar?label=Github%20stars)](https://star-history.com/#KangLin/Calendar&Date)
 [![star](https://gitee.com/kl222/Calendar/badge/star.svg?theme=dark)](https://gitee.com/kl222/Calendar/stargazers)
 
 [![Latest Release](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20release)](https://github.com/KangLin/Calendar/releases/latest)
