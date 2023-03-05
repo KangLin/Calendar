@@ -18,8 +18,8 @@
 
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/Calendar)](https://github.com/KangLin/Calendar/issues)
 
-[![GitHub 点赞量](https://img.shields.io/github/stars/KangLin/Calendar?label=Github%20点赞量)](https://github.com/KangLin/Calendar/stars)
-[![star](https://gitee.com/kl222/Calendar/badge/star.svg?theme=dark)](https://gitee.com/kl222/Calendar/stargazers)
+[![GitHub 点赞量](https://img.shields.io/github/stars/KangLin/Calendar?label=Github%20点赞量)](https://star-history.com/#KangLin/Calendar&Date)
+[![Gitee 点赞量](https://gitee.com/kl222/Calendar/badge/star.svg?theme=dark)](https://gitee.com/kl222/Calendar/stargazers)
 
 [![github 最后发行版本下载](https://img.shields.io/github/release/KangLin/Calendar.svg?label=Github%20最后发行版本下载)](https://github.com/KangLin/Calendar/releases/latest)
 [![sourceforge 最后发行版本下载](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitcalendar/files/latest/download)
