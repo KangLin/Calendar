@@ -17,34 +17,6 @@ if(POLICY CMP0020)
     cmake_policy(SET CMP0020 NEW)
 endif()
 
-SET(Calendar_VERSION "v1.0.5")
-# Find Git Version Patch
-IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
-    if(NOT GIT)
-        SET(GIT $ENV{GIT})
-    endif()
-    if(NOT GIT)
-        FIND_PROGRAM(GIT NAMES git git.exe git.cmd)
-    endif()
-    IF(GIT)
-        EXECUTE_PROCESS(
-            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-            COMMAND ${GIT} describe --tags
-            OUTPUT_VARIABLE GIT_VERSION  OUTPUT_STRIP_TRAILING_WHITESPACE
-        )
-	    if(NOT GIT_VERSION)
-            EXECUTE_PROCESS(
-                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-                COMMAND ${GIT} rev-parse --short HEAD
-                OUTPUT_VARIABLE GIT_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE
-            )
-        endif()
-        SET(Calendar_VERSION ${GIT_VERSION})
-    ENDIF()
-ENDIF()
-message("Calendar_VERSION:${Calendar_VERSION}")
-set(VERSION ${Calendar_VERSION})
-
 if(NOT DEFINED CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif(NOT DEFINED CMAKE_BUILD_TYPE)
@@ -150,6 +122,12 @@ else()
     message("   ag:")
     message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
 endif()
+
+GET_VERSION(OUT_VERSION Calendar_VERSION
+    OUT_REVISION Calendar_VERSION_REVISION)
+message("Calendar_VERSION:${Calendar_VERSION}; Calendar_VERSION_REVISION:${Calendar_VERSION_REVISION}")
+
+set(VERSION ${Calendar_VERSION})
 add_subdirectory(3th_libs/LunarCalendar/Src)
 add_subdirectory(Src)
 option(BUILD_APP "Set to ON to build applaction" ON)

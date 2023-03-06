@@ -119,6 +119,7 @@ void CMainWindow::slotAbout()
     about.m_AppIcon = p.toImage();
     about.m_szHomePage = "https://github.com/KangLin/Calendar";
     about.m_szCopyrightStartTime = "2019";
+    about.m_szVersionRevision = Calendar_VERSION_REVISION;
     if(about.isHidden())
 #if defined (Q_OS_ANDROID)
         about.showMaximized();

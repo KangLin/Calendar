@@ -8,8 +8,9 @@ isEmpty(Calendar_VERSION) {
             Calendar_VERSION = $$GIT_DESCRIBE
         }
     }
+    Calendar_VERSION_REVISION = $$system(cd $$system_path($$_PRO_FILE_PWD_) && $$GIT rev-parse --short HEAD)
     isEmpty(Calendar_VERSION) {
-        Calendar_VERSION = $$system(cd $$system_path($$_PRO_FILE_PWD_) && $$GIT rev-parse --short HEAD)
+        Calendar_VERSION = $$Calendar_VERSION_REVISION
     }
     
     isEmpty(Calendar_VERSION){
@@ -21,6 +22,7 @@ isEmpty(Calendar_VERSION){
 }
 message("Calendar Calendar_VERSION:$$Calendar_VERSION")
 DEFINES += Calendar_VERSION=\"\\\"$$quote($$Calendar_VERSION)\\\"\"
+DEFINES += Calendar_VERSION_REVISION=\"\\\"$$quote($$Calendar_VERSION_REVISION)\\\"\"
 VERSION=$$replace(Calendar_VERSION, v,)
 win32{
     VERSION=$$split(VERSION, -)

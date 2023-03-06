@@ -29,9 +29,11 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-add_definitions(-DCalendar_VERSION="${Calendar_VERSION}")
-add_definitions(-DBUILD_ARCH="${BUILD_ARCH}")
-add_definitions(-DBUILD_PLATFORM="${BUILD_PLATFORM}")
+LIST(APPEND PRIVATE_DEFINITIONS
+    Calendar_VERSION_REVISION="${Calendar_VERSION_REVISION}"
+    Calendar_VERSION="${Calendar_VERSION}"
+    BUILD_ARCH="${BUILD_ARCH}"
+    BUILD_PLATFORM="${BUILD_PLATFORM}")
 
 if(ANDROID)
     add_library(${PROJECT_NAME} ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} ${RCC_FILES})
