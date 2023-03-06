@@ -99,8 +99,28 @@ if(UNIX)
         DESTINATION "share/applications" COMPONENT Runtime)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Calendar.png
         DESTINATION "share/pixmaps" COMPONENT Runtime)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/Calendar.sh
+    INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/Calendar.sh
         DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT Runtime)
+endif()
+
+if(Log4Qt_FOUND)
+    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_log4qt.conf)
+        configure_file(${CMAKE_SOURCE_DIR}/etc/Calendar_log4qt.conf
+            ${CMAKE_BINARY_DIR}/etc/Calendar_log4qt.conf
+            COPYONLY)
+    endif()
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/Calendar_log4qt.conf
+        DESTINATION etc
+        COMPONENT Runtime)
+else()
+    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.conf)
+        configure_file(${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.conf
+            ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.conf
+            COPYONLY)
+    endif()
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.conf
+        DESTINATION etc
+        COMPONENT Runtime)
 endif()
 
 IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
@@ -112,7 +132,7 @@ IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
             )
     ENDIF()
 
-    #注意 需要把 ${QT_INSTALL_DIR}/bin 加到环境变量PATH中  
+    #注意 需要把 ${QT_INSTALL_DIR}/bin 加到环境变量PATH中
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND "${QT_INSTALL_DIR}/bin/windeployqt"
         --compiler-runtime

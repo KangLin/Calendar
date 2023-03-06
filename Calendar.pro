@@ -1,7 +1,7 @@
 # 作者：康林 <kl222@126.com>
 
 TEMPLATE = subdirs
-DESTDIR = $$OUT_PWD/bin
+DESTDIR = $$system_path($$OUT_PWD/bin)
 
 RabbitCommon.file = 3th_libs/RabbitCommon.pro
 LunarCalendar.file = 3th_libs/LunarCalendar.pro
@@ -16,7 +16,7 @@ isEmpty(PREFIX) {
     android {
         PREFIX = /.
     } else {
-        PREFIX = $$OUT_PWD/../install
+        PREFIX = $$system_path($$OUT_PWD/../install)
     } 
 }
 other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
@@ -27,17 +27,17 @@ else: other.path = $$PREFIX
 other.CONFIG += no_check_exist
 INSTALLS += other
 
-install_win.files = Install/Install.nsi
+install_win.files = $$system_path(Install/Install.nsi)
 install_win.path = $$OUT_PWD
 install_win.CONFIG += directory no_check_exist 
 win32:  INSTALLS += install_win
 
-install_unix.files = Install/install.sh
-install_unix.path = $$PREFIX
-install_unix.CONFIG += directory no_check_exist 
-unix: !android: INSTALLS += install_unix
-
 !android : unix {
+    install_unix.files = Install/install.sh
+    install_unix.path = $$PREFIX
+    install_unix.CONFIG += directory no_check_exist 
+    unix: !android: INSTALLS += install_unix
+
     DESKTOP_FILE.target = DESKTOP_FILE
     DESKTOP_FILE.files = $$PWD/share/org.Rabbit.Calendar.desktop
     DESKTOP_FILE.path = $${PREFIX}/share/applications
@@ -56,6 +56,12 @@ unix: !android: INSTALLS += install_unix
 
     INSTALLS += DESKTOP_FILE START_SCRIPT icon128
 }
+
+LOG_FILE.target = LOG_FILE
+LOG_FILE.files = $$system_path($$PWD/etc/Calendar_logqt.conf)
+LOG_FILE.path = $$system_path($${PREFIX}/etc)
+LOG_FILE.CONFIG += directory no_check_exist
+INSTALL *= LOG_FILE
 
 OTHER_FILES += Install/* \
     appveyor.yml \
