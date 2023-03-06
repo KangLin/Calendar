@@ -21,8 +21,8 @@ set -e
 
 case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-        rm -fr ~/.config/autostart/Calendar.desktop
-        rm -fr /usr/share/applications/Calendar.desktop
+        rm -fr ~/.config/autostart/org.Rabbit.Calendar.desktop
+        rm -fr /usr/share/applications/org.Rabbit.Calendar.desktop
         rm -fr /etc/ld.so.conf.d/Calendar.conf
         rm -fr /usr/share/pixmaps/Calendar.png
         ldconfig

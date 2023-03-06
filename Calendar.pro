@@ -39,17 +39,22 @@ unix: !android: INSTALLS += install_unix
 
 !android : unix {
     DESKTOP_FILE.target = DESKTOP_FILE
-    DESKTOP_FILE.files = $$PWD/debian/Calendar.desktop
-    DESKTOP_FILE.path = $$system_path($${PREFIX})/share/applications
+    DESKTOP_FILE.files = $$PWD/share/org.Rabbit.Calendar.desktop
+    DESKTOP_FILE.path = $${PREFIX}/share/applications
     DESKTOP_FILE.CONFIG += directory no_check_exist
 
+    START_SCRIPT.target = START_SCRIPT
+    START_SCRIPT.files = $$PWD/share/Calendar.sh
+    START_SCRIPT.path = $${PREFIX}/bin
+    START_SCRIPT.CONFIG += directory no_check_exist
+    
     # install icons
     icon128.target = icon128
     icon128.files = Src/Resource/image/Calendar.png
     icon128.path = $${PREFIX}/share/pixmaps
     icon128.CONFIG = directory no_check_exist
 
-    INSTALLS += DESKTOP_FILE icon128
+    INSTALLS += DESKTOP_FILE START_SCRIPT icon128
 }
 
 OTHER_FILES += Install/* \

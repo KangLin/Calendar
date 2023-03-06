@@ -17,27 +17,34 @@ set -e
 # for details, see https://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+INSTALL_ROOT=/opt/Calendar
 
 case "$1" in
     configure)
-        if [ ! -f /usr/share/applications/Calendar.desktop ]; then
-            ln -s /opt/Calendar/share/applications/Calendar.desktop /usr/share/applications/Calendar.desktop
+        mkdir -p $INSTALL_ROOT/log
+        chmod 777 $INSTALL_ROOT/log
+        if [ ! -d $INSTALL_ROOT/bin/log ]; then
+            ln -s $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
+        fi
+        
+        if [ ! -f /usr/share/applications/org.Rabbit.Calendar.desktop ]; then
+            ln -s ${INSTALL_ROOT}/share/applications/org.Rabbit.Calendar.desktop /usr/share/applications/org.Rabbit.Calendar.desktop
         fi
         if [ ! -d ~/.config/autostart ]; then
             mkdir -p ~/.config/autostart
         fi
-        if [ ! -f  ~/.config/autostart/Calendar.desktop ]; then
+        if [ ! -f  ~/.config/autostart/org.Rabbit.Calendar.desktop ]; then
             chmod a+wr ~/.config/autostart
-            ln -s /opt/Calendar/share/applications/Calendar.desktop ~/.config/autostart/Calendar.desktop
+            ln -s ${INSTALL_ROOT}/share/applications/org.Rabbit.Calendar.desktop ~/.config/autostart/org.Rabbit.Calendar.desktop
         fi
         if [ ! -f /usr/share/pixmaps/Calendar.png ]; then
             if [ ! -d /usr/share/pixmaps ]; then
                 mkdir -p /usr/share/pixmaps
             fi
-            ln -s /opt/Calendar/share/pixmaps/Calendar.png /usr/share/pixmaps/Calendar.png
+            ln -s ${INSTALL_ROOT}/share/pixmaps/Calendar.png /usr/share/pixmaps/Calendar.png
         fi
-        echo "/opt/Calendar/lib" > /etc/ld.so.conf.d/Calendar.conf
-        echo "/opt/Calendar/bin" >> /etc/ld.so.conf.d/Calendar.conf
+        #echo "${INSTALL_ROOT}/lib" > /etc/ld.so.conf.d/Calendar.conf
+        #echo "${INSTALL_ROOT}/bin" >> /etc/ld.so.conf.d/Calendar.conf
         export QT_VERSION_DIR=
         if [ -n "${QT_VERSION_DIR}" ]; then
             echo "/opt/qt${QT_VERSION_DIR}/lib" >> /etc/ld.so.conf.d/FaceRecognizer.conf
@@ -46,8 +53,8 @@ case "$1" in
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
-        rm -fr ~/.config/autostart/Calendar.desktop
-        rm -fr /usr/share/applications/Calendar.desktop
+        rm -fr ~/.config/autostart/org.Rabbit.Calendar.desktop
+        rm -fr /usr/share/applications/org.Rabbit.Calendar.desktop
         rm -fr /etc/ld.so.conf.d/Calendar.conf
         rm -fr /usr/share/pixmaps/Calendar.png
     ;;

@@ -95,10 +95,12 @@ if(WIN32)
 endif()
 
 if(UNIX)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/debian/Calendar.desktop
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/org.Rabbit.Calendar.desktop
         DESTINATION "share/applications" COMPONENT Runtime)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Calendar.png
         DESTINATION "share/pixmaps" COMPONENT Runtime)
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/Calendar.sh
+        DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT Runtime)
 endif()
 
 IF("Release" STREQUAL CMAKE_BUILD_TYPE AND WIN32)
