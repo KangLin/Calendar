@@ -1,3 +1,8 @@
+- v1.0.6
+  + rename tag.sh to deploy.sh
+  + Modify log (See: RabbitCommon)
+  + Fix dynamic library errors
+
 - v1.0.5
   + CI: Modify update release
 

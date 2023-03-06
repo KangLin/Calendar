@@ -16,7 +16,7 @@
 
 ifdef CMAKE
     ifdef Log4Qt_DIR
-        PARAS += -DLog4Qt_DIR=${Log4Qt_DIR}
+        CMAKE_PARAS += -DLog4Qt_DIR=${Log4Qt_DIR}
     endif
 endif
 
@@ -31,7 +31,7 @@ endif
 # This is example for Cmake (See https://bugs.debian.org/641051 )
 override_dh_auto_configure:
     ifdef CMAKE
-		dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/Calendar ${PARAS}
+		dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/Calendar ${CMAKE_PARAS}
     else
 		$(QT_ROOT)/bin/qmake PREFIX=/opt/Calendar CONFIG+=Release
     endif

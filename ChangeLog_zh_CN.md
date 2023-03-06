@@ -1,3 +1,8 @@
+- v1.0.6
+  + 重命名 tag.sh 到 deploy.sh
+  + 修改日志（详见：RabbitCommon)
+  + 修复动态库错误
+  
 - v1.0.5
   + CI: Modify update release
 
