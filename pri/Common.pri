@@ -18,7 +18,7 @@ isEmpty(Calendar_VERSION) {
     }
 }
 isEmpty(Calendar_VERSION){
-    Calendar_VERSION="v1.0.5"
+    Calendar_VERSION="v1.0.6"
 }
 message("Calendar Calendar_VERSION:$$Calendar_VERSION")
 DEFINES += Calendar_VERSION=\"\\\"$$quote($$Calendar_VERSION)\\\"\"
