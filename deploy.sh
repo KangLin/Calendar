@@ -29,7 +29,7 @@ if [ -z "$VERSION" ]; then
 fi
 
 sed -i "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Install/Install.nsi
-sed -i "s/SET(Calendar_VERSION.*/\SET(Calendar_VERSION \"${VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
+sed -i "s/    set(Calendar_VERSION .*/    set(Calendar_VERSION \"${VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/^\    Calendar_VERSION=.*/\    Calendar_VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/pri/Common.pri
 sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
@@ -54,7 +54,7 @@ if [ -n "$1" ]; then
     git add .
     git commit -m "Release $1"
     git tag -d $1
+#    git push origin :refs/tags/$1
     git tag -a $1 -m "Release $1"
     git push origin $1
-    git push origin :refs/tags/$1
 fi
