@@ -127,7 +127,7 @@ GET_VERSION(OUT_VERSION Calendar_VERSION
     OUT_REVISION Calendar_VERSION_REVISION)
 message("Calendar_VERSION:${Calendar_VERSION}; Calendar_VERSION_REVISION:${Calendar_VERSION_REVISION}")
 if(NOT Calendar_VERSION)
-    set(Calendar_VERSION "v1.0.5")
+    set(Calendar_VERSION "v1.0.6")
 endif()
 set(VERSION ${Calendar_VERSION})
 add_subdirectory(3th_libs/LunarCalendar/Src)

@@ -154,7 +154,7 @@ deploy:
     #token : https://github.com/settings/tokens
     #password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
-      secure: y42tpZMQWuT0cKJMwegdc6TXbrcKn4matIlwF2MJvcaeZiS91c1rQm3omyhBAb5E
+      secure: aPr1U6S1RtXZiK2mCWtAAIOMjuiBR0yPsD2kaYIADtx2ulIitdp336kFqmfKwM9x
     #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
     #draft: true
     #prerelease: true

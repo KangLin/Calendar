@@ -160,7 +160,7 @@ jobs:
         #sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
         /opt/Calendar/bin/Calendar.sh \
             -f "`pwd`/update_linux.xml" \
-            -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/calendar_${{env.Calendar_VERSION}}_amd64_${{matrix.os}}.deb;https://sourceforge.net/projects/Calendar/files/v${{env.Calendar_VERSION}}/calendar_${{env.Calendar_VERSION}}_amd64_${{matrix.os}}.deb" \
+            -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/calendar_${{env.Calendar_VERSION}}_amd64_${{matrix.os}}.deb;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/calendar_${{env.Calendar_VERSION}}_amd64_${{matrix.os}}.deb" \
             --md5 "${MD5SUM}" \
             --pf calendar_${{env.Calendar_VERSION}}_amd64_${{ matrix.os }}.deb \
             -m "v${{env.Calendar_VERSION}}"

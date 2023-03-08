@@ -1,4 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <REDIRECT>
     <VERSION>v1.0.6</VERSION>
+    <WINDOWS>
+        <URL>https://github.com/KangLin/Calendar/releases/download/v1.0.8/update_windows.xml</URL>
+        <URL>https://sourceforge.net/projects/rabbitcalendar/files/v1.0.8/update_windows.xml/download</URL>
+    </WINDOWS>
+    <LINUX>
+        <URL>https://github.com/KangLin/Calendar/releases/download/v1.0.8/update_linux.xml</URL>
+        <URL>https://sourceforge.net/projects/rabbitcalendar/files/v1.0.8/update_linux.xml/download</URL>
+    </LINUX>
+    <!--
+    <LINUX_APPIMAGE>
+        <URL>https://github.com/KangLin/Calendar/releases/download/v1.0.8/update_linux_appimage.xml</URL>
+        <URL>https://sourceforge.net/projects/rabbitcalendar/files/v1.0.8/update_linux_appimage.xml/download</URL>
+    </LINUX_APPIMAGE>
+    -->
 </REDIRECT>
