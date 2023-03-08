@@ -27,7 +27,7 @@ case "$1" in
             mkdir -p ~/.config/autostart
         fi
         if [ ! -f  ~/.config/autostart/Calendar.desktop ]; then
-            chmod a+wr ~/.config/autostart
+            chmod 755 ~/.config/autostart
             ln -s /opt/Calendar/share/applications/Calendar.desktop ~/.config/autostart/Calendar.desktop
         fi
         if [ ! -f /usr/share/pixmaps/Calendar.png ]; then
@@ -36,8 +36,8 @@ case "$1" in
             fi
             ln -s /opt/Calendar/share/pixmaps/Calendar.png /usr/share/pixmaps/Calendar.png
         fi
-        echo "/opt/Calendar/lib" > /etc/ld.so.conf.d/Calendar.conf
-        echo "/opt/Calendar/bin" >> /etc/ld.so.conf.d/Calendar.conf
+        #echo "/opt/Calendar/lib" > /etc/ld.so.conf.d/Calendar.conf
+        #echo "/opt/Calendar/bin" >> /etc/ld.so.conf.d/Calendar.conf
         export QT_VERSION_DIR=
         if [ -n "${QT_VERSION_DIR}" ]; then
             echo "/opt/qt${QT_VERSION_DIR}/lib" >> /etc/ld.so.conf.d/FaceRecognizer.conf
