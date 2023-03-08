@@ -32,9 +32,9 @@ case "$1" in
         fi
         if [ ! -d ~/.config/autostart ]; then
             mkdir -p ~/.config/autostart
+            chmod 755 ~/.config/autostart
         fi
         if [ ! -f  ~/.config/autostart/org.Rabbit.Calendar.desktop ]; then
-            chmod a+wr ~/.config/autostart
             ln -s ${INSTALL_ROOT}/share/applications/org.Rabbit.Calendar.desktop ~/.config/autostart/org.Rabbit.Calendar.desktop
         fi
         if [ ! -f /usr/share/pixmaps/Calendar.png ]; then
