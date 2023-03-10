@@ -1,3 +1,6 @@
+- v1.0.7
+  + 测试更新
+
 - v1.0.6
   + 重命名 tag.sh 到 deploy.sh
   + 修改日志（详见：RabbitCommon)

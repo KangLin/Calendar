@@ -1,3 +1,6 @@
+- v1.0.7
+  + Test updater
+
 - v1.0.6
   + rename tag.sh to deploy.sh
   + Modify log (See: RabbitCommon)
