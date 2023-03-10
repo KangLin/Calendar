@@ -36,7 +36,6 @@ win32:  INSTALLS += install_win
     install_unix.files = Install/install.sh
     install_unix.path = $$PREFIX
     install_unix.CONFIG += directory no_check_exist 
-    unix: !android: INSTALLS += install_unix
 
     DESKTOP_FILE.target = DESKTOP_FILE
     DESKTOP_FILE.files = $$PWD/share/org.Rabbit.Calendar.desktop
@@ -54,7 +53,7 @@ win32:  INSTALLS += install_win
     icon128.path = $${PREFIX}/share/pixmaps
     icon128.CONFIG = directory no_check_exist
 
-    INSTALLS += DESKTOP_FILE START_SCRIPT icon128
+    INSTALLS += install_unix DESKTOP_FILE START_SCRIPT icon128
 }
 
 LOG_FILE.target = LOG_FILE
