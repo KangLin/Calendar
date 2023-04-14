@@ -6,10 +6,11 @@ Build-Depends: debhelper (>= 6)
 Standards-Version:"v1.0.7"
 Homepage: https://github.com/KangLin/Calendar
 Vcs-Git: https://github.com/KangLin/Calendar.git
-#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/Calendar.git
+Vcs-Browser: https://github.com/KangLin/Calendar
 
 Package: calendar
 Architecture: any
-Pre-Depends: ${misc:Pre-Depends}
+Recommends: qt6-qpa-plugins, libqt6svg6, libqt6svgwidgets6, libqt6webenginecore6-bin
+#Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Calendar

@@ -13,7 +13,7 @@
 #ifdef RABBITCOMMON
     #include "FrmUpdater/FrmUpdater.h"
     #include "RabbitCommonTools.h"
-    #include "FrmStyle/FrmStyle.h"
+    #include "FrmStyle.h"
 #endif
 
 CMainWindow::CMainWindow(QWidget *parent) :

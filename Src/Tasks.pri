@@ -11,7 +11,7 @@ else: DEFINES *= Tasks_EXPORTS
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS HAVE_GUI
+DEFINES += QT_DEPRECATED_WARNINGS HAVE_RABBITCOMMON_GUI
 CONFIG *= C++11
 msvc {
     QMAKE_CXXFLAGS += "/utf-8"
