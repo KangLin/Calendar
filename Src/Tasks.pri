@@ -40,7 +40,6 @@ SOURCES += \
     $$PWD/FrmTop.cpp \
     $$PWD/TaskPrompt.cpp \
     $$PWD/FrmStickyNotes.cpp \
-    $$PWD/Global/Log.cpp \
     $$PWD/FrmFullScreen.cpp \
     $$PWD/FrmTaskPropery.cpp \
     $$PWD/ThreadTasks.cpp \
@@ -81,7 +80,6 @@ HEADERS += $${INSTALLHEADER_FILES} \
     $$PWD/FrmTop.h \
     $$PWD/TaskPrompt.h \
     $$PWD/FrmStickyNotes.h \
-    $$PWD/Global/Log.h \
     $$PWD/FrmFullScreen.h \
     $$PWD/ObjectFactory.h \
     $$PWD/FrmTaskPropery.h \

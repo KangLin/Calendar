@@ -16,7 +16,6 @@ set(HEAD_FILES
     FrmTop.h
     TaskPrompt.h
     FrmStickyNotes.h
-    Global/Log.h
     FrmFullScreen.h
     ObjectFactory.h
     FrmTaskPropery.h
@@ -43,7 +42,6 @@ set(SOURCE_FILES
     FrmTop.cpp
     TaskPrompt.cpp
     FrmStickyNotes.cpp
-    Global/Log.cpp
     FrmFullScreen.cpp
     Global/TasksTools.cpp
     FrmTaskPropery.cpp
