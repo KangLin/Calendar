@@ -11,9 +11,9 @@
 #include <QScrollBar>
 
 #ifdef RABBITCOMMON
-    #include "FrmUpdater/FrmUpdater.h"
+    #include "FrmUpdater.h"
     #include "RabbitCommonTools.h"
-    #include "FrmStyle/FrmStyle.h"
+    #include "FrmStyle.h"
 #endif
 
 CMainWindow::CMainWindow(QWidget *parent) :
@@ -119,7 +119,7 @@ void CMainWindow::slotAbout()
     about.m_AppIcon = p.toImage();
     about.m_szHomePage = "https://github.com/KangLin/Calendar";
     about.m_szCopyrightStartTime = "2019";
-    about.m_szVersionRevision = Calendar_VERSION_REVISION;
+    about.m_szVersionRevision = Calendar_REVISION;
     if(about.isHidden())
 #if defined (Q_OS_ANDROID)
         about.showMaximized();

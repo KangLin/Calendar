@@ -6,4 +6,4 @@ Name: @PROJECT_NAME@
 Description: Tasks C++ library
 Version: @Calendar_VERSION@
 Libs: -L${libdir} -lTasks
-Cflags: -I${includedir} @Tasks_DEFINITIONS@
+Cflags: -I${includedir} @Tasks_DEFINITIONS_PC@
