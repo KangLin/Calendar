@@ -27,9 +27,9 @@ public:
     int Remove(QSharedPointer<CTasks> tasks);
     int RemoveAll();
 
-    typedef QMap<int, QSharedPointer<CTasks> >::iterator POSTION;
-    POSTION GetFirst();
-    QSharedPointer<CTasks> GetNext(POSTION &pos);
+    typedef QMap<int, QSharedPointer<CTasks> >::iterator POSITION;
+    POSITION GetFirst();
+    QSharedPointer<CTasks> GetNext(POSITION &pos);
     QSharedPointer<CTasks> Get(int nId);
     
     /*

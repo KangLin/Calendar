@@ -213,11 +213,11 @@ void CFrmCalendar::slotSelectionChanged()
         return;
     QDate date = m_pCalendar->SelectedDate();
     m_pModel->clear();
-    CTasksList::POSTION pos = m_TasksList.GetFirst();
+    CTasksList::POSITION pos = m_TasksList.GetFirst();
     QSharedPointer<CTasks> tasks = m_TasksList.GetNext(pos);
     while(tasks)
     {
-        CTasks::POSTION posTask = tasks->GetFirst();
+        CTasks::POSITION posTask = tasks->GetFirst();
         QSharedPointer<CTask> task = tasks->GetNext(posTask);
         if(task)
         {
@@ -376,11 +376,11 @@ void CFrmCalendar::slotViewCustomContextMenuRequested(const QPoint& pos)
 int CFrmCalendar::onHandle(QDate date)
 {
     int nCount = 0;
-    CTasksList::POSTION pos = m_TasksList.GetFirst();
+    CTasksList::POSITION pos = m_TasksList.GetFirst();
     QSharedPointer<CTasks> tasks = m_TasksList.GetNext(pos);
     while(tasks)
     {
-        CTasks::POSTION posTask = tasks->GetFirst();
+        CTasks::POSITION posTask = tasks->GetFirst();
         QSharedPointer<CTask> task = tasks->GetNext(posTask);
         if(task)
         {

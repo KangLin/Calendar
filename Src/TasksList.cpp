@@ -75,12 +75,12 @@ QSharedPointer<CTasks> CTasksList::Get(int nId)
     return m_Tasks.value(nId);
 }
 
-CTasksList::POSTION CTasksList::GetFirst()
+CTasksList::POSITION CTasksList::GetFirst()
 {
     return m_Tasks.begin();
 }
 
-QSharedPointer<CTasks> CTasksList::GetNext(POSTION &pos)
+QSharedPointer<CTasks> CTasksList::GetNext(POSITION &pos)
 {
     if(m_Tasks.end() == pos)
         return QSharedPointer<CTasks>();
@@ -163,7 +163,7 @@ int CTasksList::LoadSettings(const QDomElement &e)
     int nRet = 0;
     if("class" != e.tagName())
     {
-        qCritical() << "CTasksList::LoadSettings faile: tagName:"
+        qCritical() << "CTasksList::LoadSettings failed: tagName:"
                     << e.tagName() << " name:" << e.attribute("name");
         return -1;
     }

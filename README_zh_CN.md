@@ -254,7 +254,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
                 message("   ag:")
                 message("       git clone https://github.com/KangLin/Calendar.git")
                 message("2. Build the project, get library")
-                error("2. Then set value Calendar_DIR to library root dirctory")
+                error("2. Then set value Calendar_DIR to library root directory")
             }
             INCLUDEPATH *= $${Calendar_DIR}/include $${Calendar_DIR}/include/export
             LIBS *= -L$${Calendar_DIR}/lib -lLunarCalendar -lCalendar
@@ -282,7 +282,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
                      message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon")
                      message("   ag:")
                      message("       git clone https://github.com/KangLin/RabbitCommon.git")
-                     message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root dirctory.")
+                     message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root directory.")
                      message("   ag:")
                      message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
                 endif()
@@ -294,7 +294,7 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
                     message("1. Please download Calendar source code from https://github.com/KangLin/Calendar")
                     message("   ag:")
                     message("       git clone https://github.com/KangLin/Calendar.git")
-                    message("2. Then set cmake value or environment variable Calendar_DIR to download root dirctory.")
+                    message("2. Then set cmake value or environment variable Calendar_DIR to download root directory.")
                     message("    ag:")
                     message(FATAL_ERROR "       cmake -DCalendar_DIR= ")
                 endif()

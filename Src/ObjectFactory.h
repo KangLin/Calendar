@@ -53,7 +53,7 @@ public:
         const QMetaObject* pObj = pThis->metaObject();
         if("class" != e.tagName())
         {
-            qCritical() << pObj->className() << "::LoadSettings faile: tagName:"
+            qCritical() << pObj->className() << "::LoadSettings failed: tagName:"
                         << e.tagName() << " name:" << e.attribute("name");
             return -1;
         }
@@ -77,7 +77,7 @@ public:
             QMetaProperty property = pObj->property(nIndex);
             QVariant v(szValue);
             if(!property.write(pThis, szValue))
-                qCritical() << "Write propery fail: " << pObj->className() << szName;
+                qCritical() << "Write property fail: " << pObj->className() << szName;
             */
             de = de.nextSiblingElement();
         }
@@ -117,7 +117,7 @@ public:
                 if(!ba.isEmpty())
                     value = ba.toBase64();
             }
-            //qDebug() << "propery name: " << szName << " value: " << value.toString();
+            //qDebug() << "property name: " << szName << " value: " << value.toString();
             if(value.isValid())
             {
                 

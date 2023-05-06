@@ -11,7 +11,7 @@
 #include <QGroupBox>
 #include <QDir>
 #include <QLabel>
-
+ 
 CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
                                  QWidget *parent) :
     QWidget(parent),
@@ -29,7 +29,7 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
     if(!ui->widget->layout())
         return;
     
-    CTasksList::POSTION pos = m_plstTasks->GetFirst();
+    CTasksList::POSITION pos = m_plstTasks->GetFirst();
     QSharedPointer<CTasks> tasks = m_plstTasks->GetNext(pos);
     while(tasks)
     {
@@ -41,7 +41,7 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
             break;
         ui->widget->layout()->addWidget(pGb);
 
-        CTasks::POSTION posTasks = tasks->GetFirst();
+        CTasks::POSITION posTasks = tasks->GetFirst();
         QSharedPointer<CTask> task = tasks->GetNext(posTasks);
         while(task)
         {
@@ -53,17 +53,17 @@ CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
             QVBoxLayout *pVbLayout = new QVBoxLayout(pGb);
             pGb->layout()->addItem(pVbLayout);
             
-            QLabel *lable = new QLabel(pGb);
+            QLabel *label = new QLabel(pGb);
             if(tasks->GetCurrent() == task)
             {
-                QPalette lablePalette = lable->palette();
+                QPalette lablePalette = label->palette();
                 lablePalette.setColor(QPalette::Window,
                                       lablePalette.color(QPalette::Highlight));
-                lable->setPalette(lablePalette);
+                label->setPalette(lablePalette);
             }
-            lable->setText(tr("Id: %1 Title: %2").arg(
+            label->setText(tr("Id: %1 Title: %2").arg(
                             QString::number(task->GetId()), task->GetTitle()));
-            pVbLayout->addWidget(lable);
+            pVbLayout->addWidget(label);
             CViewTaskProperty *m_pProperty = new CViewTaskProperty(task, pGb);
             pVbLayout->addWidget(m_pProperty);
             task = tasks->GetNext(posTasks);

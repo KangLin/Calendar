@@ -70,7 +70,7 @@ int CFrmTasksList::Init()
 void CFrmTasksList::slotRefresh()
 {
     m_Model.clear();
-    CTasksList::POSTION pos = m_TasksList.GetFirst();
+    CTasksList::POSITION pos = m_TasksList.GetFirst();
     while(QSharedPointer<CTasks> p = m_TasksList.GetNext(pos))
     {
         QStandardItem *pItem = new QStandardItem(p->GetIcon(), p->GetTitle());

@@ -42,75 +42,65 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="45"/>
-        <source>Sink(&amp;S)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="66"/>
+        <location filename="../../MainWindow.ui" line="60"/>
         <source>About(&amp;A)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../MainWindow.ui" line="63"/>
+        <location filename="../../MainWindow.ui" line="66"/>
         <location filename="../../MainWindow.ui" line="69"/>
-        <location filename="../../MainWindow.ui" line="72"/>
-        <location filename="../../MainWindow.ui" line="75"/>
-        <location filename="../../MainWindow.cpp" line="40"/>
+        <location filename="../../MainWindow.cpp" line="37"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="84"/>
+        <location filename="../../MainWindow.ui" line="78"/>
         <source>Exit(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="93"/>
+        <location filename="../../MainWindow.ui" line="87"/>
         <source>Option(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../MainWindow.ui" line="90"/>
+        <location filename="../../MainWindow.ui" line="93"/>
         <location filename="../../MainWindow.ui" line="96"/>
-        <location filename="../../MainWindow.ui" line="99"/>
-        <location filename="../../MainWindow.ui" line="102"/>
         <source>Option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="111"/>
+        <location filename="../../MainWindow.ui" line="105"/>
         <source>Update(&amp;U)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="116"/>
-        <source>Default(&amp;D)</source>
+        <location filename="../../MainWindow.ui" line="114"/>
+        <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="121"/>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.cpp" line="30"/>
+        <location filename="../../MainWindow.cpp" line="28"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="34"/>
-        <location filename="../../MainWindow.cpp" line="159"/>
+        <location filename="../../MainWindow.cpp" line="32"/>
+        <location filename="../../MainWindow.cpp" line="166"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="36"/>
-        <location filename="../../MainWindow.cpp" line="163"/>
-        <location filename="../../MainWindow.cpp" line="232"/>
+        <location filename="../../MainWindow.cpp" line="34"/>
+        <location filename="../../MainWindow.cpp" line="170"/>
+        <location filename="../../MainWindow.cpp" line="239"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="44"/>
+        <location filename="../../MainWindow.cpp" line="40"/>
         <source>Enable run from boot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -118,7 +108,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="48"/>
+        <location filename="../../main.cpp" line="49"/>
         <source>Calendar</source>
         <translation type="unfinished"></translation>
     </message>

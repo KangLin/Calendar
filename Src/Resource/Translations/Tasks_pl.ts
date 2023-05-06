@@ -134,18 +134,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgTaskActivity.cpp" line="99"/>
-        <location filename="../../DlgTaskActivity.cpp" line="230"/>
+        <location filename="../../DlgTaskActivity.cpp" line="101"/>
+        <location filename="../../DlgTaskActivity.cpp" line="232"/>
         <source> Minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgTaskActivity.cpp" line="220"/>
+        <location filename="../../DlgTaskActivity.cpp" line="222"/>
         <source>Prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgTaskActivity.cpp" line="221"/>
+        <location filename="../../DlgTaskActivity.cpp" line="223"/>
         <source>prompt (Unit: minute)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -153,99 +153,99 @@
 <context>
     <name>CFrmCalendar</name>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="50"/>
+        <location filename="../../FrmCalendar.cpp" line="52"/>
         <source>Calendar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="95"/>
-        <location filename="../../FrmCalendar.cpp" line="96"/>
+        <location filename="../../FrmCalendar.cpp" line="97"/>
+        <location filename="../../FrmCalendar.cpp" line="98"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="100"/>
-        <location filename="../../FrmCalendar.cpp" line="101"/>
+        <location filename="../../FrmCalendar.cpp" line="102"/>
+        <location filename="../../FrmCalendar.cpp" line="103"/>
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="107"/>
-        <location filename="../../FrmCalendar.cpp" line="108"/>
-        <location filename="../../FrmCalendar.cpp" line="362"/>
+        <location filename="../../FrmCalendar.cpp" line="109"/>
+        <location filename="../../FrmCalendar.cpp" line="110"/>
+        <location filename="../../FrmCalendar.cpp" line="364"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="112"/>
-        <location filename="../../FrmCalendar.cpp" line="113"/>
-        <location filename="../../FrmCalendar.cpp" line="365"/>
+        <location filename="../../FrmCalendar.cpp" line="114"/>
+        <location filename="../../FrmCalendar.cpp" line="115"/>
+        <location filename="../../FrmCalendar.cpp" line="367"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="117"/>
-        <location filename="../../FrmCalendar.cpp" line="118"/>
-        <location filename="../../FrmCalendar.cpp" line="124"/>
-        <location filename="../../FrmCalendar.cpp" line="368"/>
+        <location filename="../../FrmCalendar.cpp" line="119"/>
+        <location filename="../../FrmCalendar.cpp" line="120"/>
+        <location filename="../../FrmCalendar.cpp" line="126"/>
+        <location filename="../../FrmCalendar.cpp" line="370"/>
         <source>Modify</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="123"/>
+        <location filename="../../FrmCalendar.cpp" line="125"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="130"/>
-        <location filename="../../FrmCalendar.cpp" line="131"/>
+        <location filename="../../FrmCalendar.cpp" line="132"/>
+        <location filename="../../FrmCalendar.cpp" line="133"/>
         <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="137"/>
-        <location filename="../../FrmCalendar.cpp" line="138"/>
+        <location filename="../../FrmCalendar.cpp" line="139"/>
+        <location filename="../../FrmCalendar.cpp" line="140"/>
         <source>Week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="145"/>
-        <location filename="../../FrmCalendar.cpp" line="146"/>
+        <location filename="../../FrmCalendar.cpp" line="147"/>
+        <location filename="../../FrmCalendar.cpp" line="148"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="174"/>
+        <location filename="../../FrmCalendar.cpp" line="176"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="175"/>
+        <location filename="../../FrmCalendar.cpp" line="177"/>
         <source>The calendar is changed, is it save?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="243"/>
+        <location filename="../../FrmCalendar.cpp" line="245"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="243"/>
+        <location filename="../../FrmCalendar.cpp" line="245"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="252"/>
+        <location filename="../../FrmCalendar.cpp" line="254"/>
         <source>Save as ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="306"/>
+        <location filename="../../FrmCalendar.cpp" line="308"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="306"/>
+        <location filename="../../FrmCalendar.cpp" line="308"/>
         <source>Is sure delete ?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -264,25 +264,25 @@
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="28"/>
-        <location filename="../../FrmCustomActivity.cpp" line="10"/>
+        <location filename="../../FrmCustomActivity.cpp" line="12"/>
         <source>Days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="38"/>
-        <location filename="../../FrmCustomActivity.cpp" line="11"/>
+        <location filename="../../FrmCustomActivity.cpp" line="13"/>
         <source>Weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="45"/>
-        <location filename="../../FrmCustomActivity.cpp" line="12"/>
+        <location filename="../../FrmCustomActivity.cpp" line="14"/>
         <source>Months</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="52"/>
-        <location filename="../../FrmCustomActivity.cpp" line="13"/>
+        <location filename="../../FrmCustomActivity.cpp" line="15"/>
         <source>Years</source>
         <translation type="unfinished"></translation>
     </message>
@@ -395,23 +395,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.cpp" line="19"/>
-        <location filename="../../FrmStickyList.cpp" line="20"/>
         <location filename="../../FrmStickyList.cpp" line="21"/>
-        <location filename="../../FrmStickyList.cpp" line="94"/>
+        <location filename="../../FrmStickyList.cpp" line="22"/>
+        <location filename="../../FrmStickyList.cpp" line="23"/>
+        <location filename="../../FrmStickyList.cpp" line="96"/>
         <source>Open sticky</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.cpp" line="22"/>
-        <location filename="../../FrmStickyList.cpp" line="23"/>
         <location filename="../../FrmStickyList.cpp" line="24"/>
-        <location filename="../../FrmStickyList.cpp" line="132"/>
+        <location filename="../../FrmStickyList.cpp" line="25"/>
+        <location filename="../../FrmStickyList.cpp" line="26"/>
+        <location filename="../../FrmStickyList.cpp" line="134"/>
         <source>Save sticky</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyList.cpp" line="159"/>
+        <location filename="../../FrmStickyList.cpp" line="161"/>
         <source>Take notes ......</source>
         <translation type="unfinished"></translation>
     </message>
@@ -424,52 +424,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="33"/>
+        <location filename="../../FrmStickyNotes.cpp" line="35"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="34"/>
+        <location filename="../../FrmStickyNotes.cpp" line="36"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="35"/>
+        <location filename="../../FrmStickyNotes.cpp" line="37"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="36"/>
+        <location filename="../../FrmStickyNotes.cpp" line="38"/>
         <source>Strikethrough</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="38"/>
+        <location filename="../../FrmStickyNotes.cpp" line="40"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="39"/>
+        <location filename="../../FrmStickyNotes.cpp" line="41"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="40"/>
+        <location filename="../../FrmStickyNotes.cpp" line="42"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="42"/>
+        <location filename="../../FrmStickyNotes.cpp" line="44"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="43"/>
+        <location filename="../../FrmStickyNotes.cpp" line="45"/>
         <source>Priority</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmStickyNotes.cpp" line="44"/>
+        <location filename="../../FrmStickyNotes.cpp" line="46"/>
         <source>Delay</source>
         <translation type="unfinished"></translation>
     </message>
@@ -492,12 +492,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTaskPropery.cpp" line="35"/>
+        <location filename="../../FrmTaskPropery.cpp" line="37"/>
         <source>Tasks: %1; Id: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTaskPropery.cpp" line="62"/>
+        <location filename="../../FrmTaskPropery.cpp" line="64"/>
         <source>Id: %1 Title: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -511,7 +511,7 @@
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="59"/>
-        <location filename="../../FrmTasks.ui" line="246"/>
+        <location filename="../../FrmTasks.ui" line="244"/>
         <source>ID:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -524,7 +524,7 @@
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="82"/>
-        <location filename="../../FrmTasks.ui" line="269"/>
+        <location filename="../../FrmTasks.ui" line="267"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -537,7 +537,7 @@
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="130"/>
-        <location filename="../../FrmTasks.ui" line="391"/>
+        <location filename="../../FrmTasks.ui" line="389"/>
         <source>Content:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -559,129 +559,129 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="197"/>
+        <location filename="../../FrmTasks.ui" line="196"/>
         <source>Next task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="200"/>
+        <location filename="../../FrmTasks.ui" line="199"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="226"/>
-        <location filename="../../FrmTasks.ui" line="229"/>
-        <location filename="../../FrmTasks.ui" line="232"/>
+        <location filename="../../FrmTasks.ui" line="224"/>
+        <location filename="../../FrmTasks.ui" line="227"/>
+        <location filename="../../FrmTasks.ui" line="230"/>
         <source>Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="259"/>
+        <location filename="../../FrmTasks.ui" line="257"/>
         <source>Task ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="282"/>
+        <location filename="../../FrmTasks.ui" line="280"/>
         <source>Task title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="304"/>
+        <location filename="../../FrmTasks.ui" line="302"/>
         <source>Start time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="314"/>
+        <location filename="../../FrmTasks.ui" line="312"/>
         <source>Interval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="327"/>
+        <location filename="../../FrmTasks.ui" line="325"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="340"/>
+        <location filename="../../FrmTasks.ui" line="338"/>
         <source>M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="353"/>
+        <location filename="../../FrmTasks.ui" line="351"/>
         <source>PromptInterval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="366"/>
-        <location filename="../../FrmTasks.ui" line="369"/>
+        <location filename="../../FrmTasks.ui" line="364"/>
+        <location filename="../../FrmTasks.ui" line="367"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="382"/>
+        <location filename="../../FrmTasks.ui" line="380"/>
         <source>S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="404"/>
-        <location filename="../../FrmTasks.ui" line="407"/>
-        <location filename="../../FrmTasks.ui" line="410"/>
+        <location filename="../../FrmTasks.ui" line="402"/>
+        <location filename="../../FrmTasks.ui" line="405"/>
+        <location filename="../../FrmTasks.ui" line="408"/>
         <source>Task content</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="438"/>
+        <location filename="../../FrmTasks.ui" line="436"/>
         <source> New add task into tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="441"/>
+        <location filename="../../FrmTasks.ui" line="439"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="458"/>
+        <location filename="../../FrmTasks.ui" line="456"/>
         <source>Remove the task from tasks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="461"/>
+        <location filename="../../FrmTasks.ui" line="459"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="478"/>
+        <location filename="../../FrmTasks.ui" line="476"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="508"/>
+        <location filename="../../FrmTasks.ui" line="506"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="99"/>
+        <location filename="../../FrmTasks.cpp" line="101"/>
         <source>Start: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="105"/>
+        <location filename="../../FrmTasks.cpp" line="107"/>
         <source>There is current task in tasks.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="148"/>
+        <location filename="../../FrmTasks.cpp" line="150"/>
         <source>New </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="256"/>
-        <location filename="../../FrmTasks.cpp" line="266"/>
+        <location filename="../../FrmTasks.cpp" line="258"/>
+        <location filename="../../FrmTasks.cpp" line="268"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="256"/>
-        <location filename="../../FrmTasks.cpp" line="266"/>
+        <location filename="../../FrmTasks.cpp" line="258"/>
+        <location filename="../../FrmTasks.cpp" line="268"/>
         <source>png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -727,7 +727,7 @@
         <location filename="../../FrmTasksList.ui" line="69"/>
         <location filename="../../FrmTasksList.ui" line="72"/>
         <location filename="../../FrmTasksList.ui" line="75"/>
-        <location filename="../../FrmTasksList.cpp" line="144"/>
+        <location filename="../../FrmTasksList.cpp" line="146"/>
         <source>New tasks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -756,38 +756,38 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="99"/>
+        <location filename="../../FrmTasksList.cpp" line="101"/>
         <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="99"/>
+        <location filename="../../FrmTasksList.cpp" line="101"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="106"/>
+        <location filename="../../FrmTasksList.cpp" line="108"/>
         <source>Save as ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="146"/>
+        <location filename="../../FrmTasksList.cpp" line="148"/>
         <source>After 5 minutes, the prompt will show 5 minutes, repeat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="151"/>
+        <location filename="../../FrmTasksList.cpp" line="153"/>
         <source>New task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="152"/>
-        <location filename="../../FrmTasksList.cpp" line="156"/>
+        <location filename="../../FrmTasksList.cpp" line="154"/>
+        <location filename="../../FrmTasksList.cpp" line="158"/>
         <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="155"/>
+        <location filename="../../FrmTasksList.cpp" line="157"/>
         <source>New prompt task</source>
         <translation type="unfinished"></translation>
     </message>
@@ -803,23 +803,23 @@
 <context>
     <name>CFrmTopActivity</name>
     <message>
-        <location filename="../../FrmTopActivity.cpp" line="18"/>
+        <location filename="../../FrmTopActivity.cpp" line="20"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTopActivity.cpp" line="20"/>
+        <location filename="../../FrmTopActivity.cpp" line="22"/>
         <source>Delay 5 Minute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTopActivity.cpp" line="22"/>
-        <location filename="../../FrmTopActivity.cpp" line="50"/>
+        <location filename="../../FrmTopActivity.cpp" line="24"/>
+        <location filename="../../FrmTopActivity.cpp" line="51"/>
         <source>Customize delay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTopActivity.cpp" line="51"/>
+        <location filename="../../FrmTopActivity.cpp" line="52"/>
         <source>Delay minute</source>
         <translation type="unfinished"></translation>
     </message>
@@ -827,7 +827,7 @@
 <context>
     <name>CTask</name>
     <message>
-        <location filename="../../Task.cpp" line="122"/>
+        <location filename="../../Task.cpp" line="150"/>
         <source>Task is base unit. Is a minimal execution unit.
 Start with the Start function and run the Run function after the interval.
 If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</source>
@@ -837,7 +837,7 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskActivity</name>
     <message>
-        <location filename="../../TaskActivity.cpp" line="59"/>
+        <location filename="../../TaskActivity.cpp" line="61"/>
         <source>Task Activity</source>
         <translation type="unfinished"></translation>
     </message>
@@ -845,23 +845,23 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskLockScreen</name>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="35"/>
-        <location filename="../../TaskLockScreen.cpp" line="43"/>
+        <location filename="../../TaskLockScreen.cpp" line="37"/>
+        <location filename="../../TaskLockScreen.cpp" line="45"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="42"/>
+        <location filename="../../TaskLockScreen.cpp" line="44"/>
         <source>Lock screen and reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="65"/>
+        <location filename="../../TaskLockScreen.cpp" line="67"/>
         <source>Lock screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskLockScreen.cpp" line="125"/>
+        <location filename="../../TaskLockScreen.cpp" line="127"/>
         <source>Remaining: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -869,17 +869,17 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskPrompt</name>
     <message>
-        <location filename="../../TaskPrompt.h" line="16"/>
+        <location filename="../../TaskPrompt.h" line="18"/>
         <source>Prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPrompt.cpp" line="47"/>
+        <location filename="../../TaskPrompt.cpp" line="49"/>
         <source>Prompt task, Only prompt.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPrompt.cpp" line="80"/>
+        <location filename="../../TaskPrompt.cpp" line="82"/>
         <source>Remaining: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -887,33 +887,33 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskPromptDelay</name>
     <message>
-        <location filename="../../TaskPromptDelay.h" line="12"/>
+        <location filename="../../TaskPromptDelay.h" line="14"/>
         <source>PromptDelay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="30"/>
+        <location filename="../../TaskPromptDelay.cpp" line="36"/>
         <source>Delayable task. the task can be delayed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="38"/>
+        <location filename="../../TaskPromptDelay.cpp" line="44"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="40"/>
+        <location filename="../../TaskPromptDelay.cpp" line="46"/>
         <source>Delay 5 Minute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="42"/>
-        <location filename="../../TaskPromptDelay.cpp" line="59"/>
+        <location filename="../../TaskPromptDelay.cpp" line="48"/>
+        <location filename="../../TaskPromptDelay.cpp" line="65"/>
         <source>Customize delay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="60"/>
+        <location filename="../../TaskPromptDelay.cpp" line="66"/>
         <source>Delay minute</source>
         <translation type="unfinished"></translation>
     </message>
@@ -921,12 +921,12 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskTrayIconPrompt</name>
     <message>
-        <location filename="../../TaskTrayIconPrompt.h" line="20"/>
+        <location filename="../../TaskTrayIconPrompt.h" line="22"/>
         <source>Prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../TaskTrayIconPrompt.cpp" line="29"/>
+        <location filename="../../TaskTrayIconPrompt.cpp" line="31"/>
         <source>Tray icon prompt</source>
         <translation type="unfinished"></translation>
     </message>
@@ -934,12 +934,12 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CViewTaskProperty</name>
     <message>
-        <location filename="../../ViewTaskProperty.cpp" line="13"/>
+        <location filename="../../ViewTaskProperty.cpp" line="15"/>
         <source>Property</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ViewTaskProperty.cpp" line="14"/>
+        <location filename="../../ViewTaskProperty.cpp" line="16"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>

@@ -564,7 +564,7 @@
     </message>
     <message>
         <location filename="../../FrmTaskProperty.ui" line="52"/>
-        <source>Cancle</source>
+        <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>

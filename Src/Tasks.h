@@ -55,9 +55,9 @@ public:
     Q_INVOKABLE virtual int GetCurrentIndex();
     Q_INVOKABLE virtual int Length();
     
-    typedef QVector<QSharedPointer<CTask> >::iterator POSTION;
-    POSTION GetFirst();
-    QSharedPointer<CTask> GetNext(POSTION &pos);
+    typedef QVector<QSharedPointer<CTask> >::iterator POSITION;
+    POSITION GetFirst();
+    QSharedPointer<CTask> GetNext(POSITION &pos);
     
     /**
      * @brief Start: Initialize here

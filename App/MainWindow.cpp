@@ -41,7 +41,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
                                            this, SLOT(slotStartRun(bool)));
     m_pStartRun->setCheckable(true);
     m_pStartRun->setChecked(RabbitCommon::CTools::IsStartRun());
-    
+
     bool check = connect(&m_TrayIcon,
                     SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
                     this,

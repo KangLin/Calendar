@@ -112,7 +112,7 @@ int CFrmTop::SetBackgroupImage(const QString szImage)
     return 0;
 }
 
-int CFrmTop::SetPostion(POSTION pos)
+int CFrmTop::SetPostion(POSITION pos)
 {
     QRect rect = this->geometry();
     rect.setWidth(ui->lbPrompt->width());

@@ -27,9 +27,8 @@
 <context>
     <name>CFrmEyeNurse</name>
     <message>
-        <location filename="../../FrmEyeNurse.ui" line="14"/>
         <source>Eye nurse</source>
-        <translation>眼睛護士</translation>
+        <translation type="vanished">眼睛護士</translation>
     </message>
 </context>
 <context>
@@ -50,75 +49,69 @@
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="66"/>
+        <location filename="../../MainWindow.ui" line="60"/>
         <source>About(&amp;A)</source>
         <translation>關於(&amp;A)</translation>
     </message>
     <message>
+        <location filename="../../MainWindow.ui" line="63"/>
+        <location filename="../../MainWindow.ui" line="66"/>
         <location filename="../../MainWindow.ui" line="69"/>
-        <location filename="../../MainWindow.ui" line="72"/>
-        <location filename="../../MainWindow.ui" line="75"/>
-        <location filename="../../MainWindow.cpp" line="40"/>
+        <location filename="../../MainWindow.cpp" line="37"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="84"/>
+        <location filename="../../MainWindow.ui" line="78"/>
         <source>Exit(&amp;E)</source>
         <translation>退出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="93"/>
+        <location filename="../../MainWindow.ui" line="87"/>
         <source>Option(&amp;O)</source>
         <translation>選項(&amp;O)</translation>
     </message>
     <message>
+        <location filename="../../MainWindow.ui" line="90"/>
+        <location filename="../../MainWindow.ui" line="93"/>
         <location filename="../../MainWindow.ui" line="96"/>
-        <location filename="../../MainWindow.ui" line="99"/>
-        <location filename="../../MainWindow.ui" line="102"/>
         <source>Option</source>
         <translation>選項</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="116"/>
+        <location filename="../../MainWindow.ui" line="114"/>
+        <source>Style</source>
+        <translation>樣式</translation>
+    </message>
+    <message>
         <source>Default(&amp;D)</source>
-        <translation>默認(&amp;D)</translation>
+        <translation type="vanished">默認(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="121"/>
-        <source>Open</source>
-        <translation>打開</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="45"/>
-        <source>Sink(&amp;S)</source>
-        <translation>換膚(&amp;S)</translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="111"/>
+        <location filename="../../MainWindow.ui" line="105"/>
         <source>Update(&amp;U)</source>
         <translation>更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="30"/>
+        <location filename="../../MainWindow.cpp" line="28"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="34"/>
-        <location filename="../../MainWindow.cpp" line="159"/>
+        <location filename="../../MainWindow.cpp" line="32"/>
+        <location filename="../../MainWindow.cpp" line="166"/>
         <source>Hide</source>
         <translation>隱藏</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="36"/>
-        <location filename="../../MainWindow.cpp" line="163"/>
-        <location filename="../../MainWindow.cpp" line="232"/>
+        <location filename="../../MainWindow.cpp" line="34"/>
+        <location filename="../../MainWindow.cpp" line="170"/>
+        <location filename="../../MainWindow.cpp" line="239"/>
         <source>Show</source>
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="44"/>
+        <location filename="../../MainWindow.cpp" line="40"/>
         <source>Enable run from boot</source>
         <translation>允許開戶自啟動</translation>
     </message>

@@ -86,7 +86,7 @@ Function InstallVC
    ClearErrors
    ReadRegDword $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{FF66E9F6-83E7-3A3E-AF14-8DE9A809A6A4}" "Version"
 
-   ; check regist
+   ; check register
    IfErrors 0 VSRedistInstalled
    Exec "$INSTDIR\bin\vcredist_x86.exe /q /norestart"
    StrCpy $R0 "-1"
@@ -102,7 +102,7 @@ Function InstallVC64
     ClearErrors
     ReadRegDword $R0 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{FF66E9F6-83E7-3A3E-AF14-8DE9A809A6A4}" "Version"
     
-    ; check regist
+    ; check register
     IfErrors 0 VSRedistInstalled
     Exec "$INSTDIR\bin\vcredist_x64.exe /q /norestart"
     StrCpy $R0 "-1"

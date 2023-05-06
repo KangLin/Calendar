@@ -118,7 +118,7 @@ QSharedPointer<CTask> CTasks::GetIndex(int nIndex)
 int CTasks::GetCurrentIndex()
 {
     int nIndex = 0;
-    POSTION it = m_Task.begin();
+    POSITION it = m_Task.begin();
     while(it != m_Task.end())
     {
         if(m_Task.size() <= m_CurrentPostion)
@@ -131,12 +131,12 @@ int CTasks::GetCurrentIndex()
     return nIndex;
 }
 
-CTasks::POSTION CTasks::GetFirst()
+CTasks::POSITION CTasks::GetFirst()
 {
     return m_Task.begin();
 }
 
-QSharedPointer<CTask> CTasks::GetNext(POSTION &pos)
+QSharedPointer<CTask> CTasks::GetNext(POSITION &pos)
 {
     if(m_Task.end() == pos)
         return QSharedPointer<CTask>();

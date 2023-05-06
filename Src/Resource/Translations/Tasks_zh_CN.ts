@@ -477,77 +477,56 @@
 <context>
     <name>CFrmTask</name>
     <message>
-        <location filename="../../FrmTask.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmTask.ui" line="22"/>
         <source>Start time</source>
-        <translation>开始时间:</translation>
+        <translation type="vanished">开始时间:</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="32"/>
         <source>Interval:</source>
-        <translation>间隔：</translation>
+        <translation type="vanished">间隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="45"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
-        <translation>任务间隔（单位：分钟）。如果是0，则立即运行。</translation>
+        <translation type="vanished">任务间隔（单位：分钟）。如果是0，则立即运行。</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="58"/>
         <source>M</source>
-        <translation>分</translation>
+        <translation type="vanished">分</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="71"/>
         <source>PromptInterval:</source>
-        <translation>提示间隔：</translation>
+        <translation type="vanished">提示间隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="84"/>
-        <location filename="../../FrmTask.ui" line="87"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
-        <translation>提示间隔（单位：秒）。如果是0，则不提示。</translation>
+        <translation type="vanished">提示间隔（单位：秒）。如果是0，则不提示。</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="100"/>
         <source>S</source>
-        <translation>秒</translation>
+        <translation type="vanished">秒</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="111"/>
         <source>ID:</source>
-        <translation>ID：</translation>
+        <translation type="vanished">ID：</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="124"/>
         <source>Task ID</source>
-        <translation>任务ID</translation>
+        <translation type="vanished">任务ID</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="134"/>
         <source>Title:</source>
-        <translation>标题</translation>
+        <translation type="vanished">标题</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="147"/>
         <source>Task title</source>
-        <translation>任务标题</translation>
+        <translation type="vanished">任务标题</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="167"/>
         <source>Content:</source>
-        <translation>内容：</translation>
+        <translation type="vanished">内容：</translation>
     </message>
     <message>
-        <location filename="../../FrmTask.ui" line="180"/>
-        <location filename="../../FrmTask.ui" line="183"/>
-        <location filename="../../FrmTask.ui" line="186"/>
         <source>Task content</source>
-        <translation>任务内容</translation>
+        <translation type="vanished">任务内容</translation>
     </message>
 </context>
 <context>
@@ -564,7 +543,7 @@
     </message>
     <message>
         <location filename="../../FrmTaskProperty.ui" line="52"/>
-        <source>Cancle</source>
+        <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
@@ -587,7 +566,7 @@
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="59"/>
-        <location filename="../../FrmTasks.ui" line="246"/>
+        <location filename="../../FrmTasks.ui" line="244"/>
         <source>ID:</source>
         <translation></translation>
     </message>
@@ -600,7 +579,7 @@
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="82"/>
-        <location filename="../../FrmTasks.ui" line="269"/>
+        <location filename="../../FrmTasks.ui" line="267"/>
         <source>Title:</source>
         <translation>标题</translation>
     </message>
@@ -613,7 +592,7 @@
     </message>
     <message>
         <location filename="../../FrmTasks.ui" line="130"/>
-        <location filename="../../FrmTasks.ui" line="391"/>
+        <location filename="../../FrmTasks.ui" line="389"/>
         <source>Content:</source>
         <translation>内容：</translation>
     </message>
@@ -635,102 +614,102 @@
         <translation>前一个</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="197"/>
+        <location filename="../../FrmTasks.ui" line="196"/>
         <source>Next task</source>
         <translation>下一个任务</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="200"/>
+        <location filename="../../FrmTasks.ui" line="199"/>
         <source>Next</source>
         <translation>下一个</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="226"/>
-        <location filename="../../FrmTasks.ui" line="229"/>
-        <location filename="../../FrmTasks.ui" line="232"/>
+        <location filename="../../FrmTasks.ui" line="224"/>
+        <location filename="../../FrmTasks.ui" line="227"/>
+        <location filename="../../FrmTasks.ui" line="230"/>
         <source>Task</source>
         <translation>任务</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="259"/>
+        <location filename="../../FrmTasks.ui" line="257"/>
         <source>Task ID</source>
         <translation>任务ID</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="282"/>
+        <location filename="../../FrmTasks.ui" line="280"/>
         <source>Task title</source>
         <translation>任务标题</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="304"/>
+        <location filename="../../FrmTasks.ui" line="302"/>
         <source>Start time</source>
         <translation>开始时间:</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="314"/>
+        <location filename="../../FrmTasks.ui" line="312"/>
         <source>Interval:</source>
         <translation>间隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="327"/>
+        <location filename="../../FrmTasks.ui" line="325"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
         <translation>任务间隔（单位：分钟）。如果是0，则立即运行。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="340"/>
+        <location filename="../../FrmTasks.ui" line="338"/>
         <source>M</source>
         <translation>分</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="353"/>
+        <location filename="../../FrmTasks.ui" line="351"/>
         <source>PromptInterval:</source>
         <translation>提示间隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="366"/>
-        <location filename="../../FrmTasks.ui" line="369"/>
+        <location filename="../../FrmTasks.ui" line="364"/>
+        <location filename="../../FrmTasks.ui" line="367"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
         <translation>提示间隔（单位：秒）。如果是0，则不提示。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="382"/>
+        <location filename="../../FrmTasks.ui" line="380"/>
         <source>S</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="404"/>
-        <location filename="../../FrmTasks.ui" line="407"/>
-        <location filename="../../FrmTasks.ui" line="410"/>
+        <location filename="../../FrmTasks.ui" line="402"/>
+        <location filename="../../FrmTasks.ui" line="405"/>
+        <location filename="../../FrmTasks.ui" line="408"/>
         <source>Task content</source>
         <translation>任务内容</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="438"/>
+        <location filename="../../FrmTasks.ui" line="436"/>
         <source> New add task into tasks</source>
         <translation>新建任务到任务组中</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="441"/>
+        <location filename="../../FrmTasks.ui" line="439"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="458"/>
+        <location filename="../../FrmTasks.ui" line="456"/>
         <source>Remove the task from tasks</source>
         <translation>从任务组中移除此任务</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="461"/>
+        <location filename="../../FrmTasks.ui" line="459"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="478"/>
+        <location filename="../../FrmTasks.ui" line="476"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="508"/>
+        <location filename="../../FrmTasks.ui" line="506"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
@@ -890,12 +869,12 @@
     </message>
     <message>
         <location filename="../../FrmTopActivity.cpp" line="24"/>
-        <location filename="../../FrmTopActivity.cpp" line="52"/>
+        <location filename="../../FrmTopActivity.cpp" line="51"/>
         <source>Customize delay</source>
         <translation>自定义延迟时间</translation>
     </message>
     <message>
-        <location filename="../../FrmTopActivity.cpp" line="53"/>
+        <location filename="../../FrmTopActivity.cpp" line="52"/>
         <source>Delay minute</source>
         <translation>延迟分钟</translation>
     </message>
@@ -903,7 +882,7 @@
 <context>
     <name>CTask</name>
     <message>
-        <location filename="../../Task.cpp" line="124"/>
+        <location filename="../../Task.cpp" line="150"/>
         <source>Task is base unit. Is a minimal execution unit.
 Start with the Start function and run the Run function after the interval.
 If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</source>
@@ -965,28 +944,28 @@ If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</sourc
 <context>
     <name>CTaskPromptDelay</name>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="32"/>
+        <location filename="../../TaskPromptDelay.cpp" line="36"/>
         <source>Delayable task. the task can be delayed.</source>
         <translation>可延迟任务。它能够由用户推迟。</translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="40"/>
+        <location filename="../../TaskPromptDelay.cpp" line="44"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="42"/>
+        <location filename="../../TaskPromptDelay.cpp" line="46"/>
         <source>Delay 5 Minute</source>
         <translation>延迟5分钟</translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="44"/>
-        <location filename="../../TaskPromptDelay.cpp" line="61"/>
+        <location filename="../../TaskPromptDelay.cpp" line="48"/>
+        <location filename="../../TaskPromptDelay.cpp" line="65"/>
         <source>Customize delay</source>
         <translation>自定义延迟时间</translation>
     </message>
     <message>
-        <location filename="../../TaskPromptDelay.cpp" line="62"/>
+        <location filename="../../TaskPromptDelay.cpp" line="66"/>
         <source>Delay minute</source>
         <translation>延迟分钟</translation>
     </message>

@@ -86,6 +86,7 @@ if(Calendar_VERSION)
         )
 endif()
 
+include(GenerateExportHeader)
 ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEAD_FILES}
         ${SOURCE_UI_FILES} ${RCC_FILES}

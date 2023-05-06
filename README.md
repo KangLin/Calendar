@@ -153,9 +153,9 @@ please compile and test the students with the corresponding equipment.
     + RabbitCommon_DIR: RabbitCommon source directory
 + Use cmake
   + CMAKE parameter：
-    - [MUST] Qt5_DIR: qt install postion(default $QT_ROOT/lib/cmake/Qt5).
+    - [MUST] Qt5_DIR: qt install position(default $QT_ROOT/lib/cmake/Qt5).
                    See：https://doc.qt.io/qt-5/cmake-get-started.html  
-          or Qt6_DIR: qt install postion(default $QT_ROOT/lib/cmake/Qt6).
+          or Qt6_DIR: qt install position(default $QT_ROOT/lib/cmake/Qt6).
     - [MUST] RabbitCommon_DIR: RabbitCommon source directory
     - [Optional] CMAKE_INSTALL_PREFIX: install prefix
   + windows or linux
@@ -234,7 +234,7 @@ please compile and test the students with the corresponding equipment.
       + ANDROID_STL: Specifies the STL that CMake should use. 
         - c++_shared: The shared library variant of libc++.
         - c++_static: The static library variant of libc++.
-        - none: No C++ standard library suport.
+        - none: No C++ standard library support.
         - system: The system STL
     + Install apk to devices
 
@@ -264,7 +264,7 @@ please compile and test the students with the corresponding equipment.
             message("   ag:")
             message("       git clone https://github.com/KangLin/Calendar.git")
             message("2. Build the project, get library")
-            error("2. Then set value Calendar_DIR to library root dirctory")
+            error("2. Then set value Calendar_DIR to library root directory")
         }
         INCLUDEPATH *= $${Calendar_DIR}/include $${Calendar_DIR}/include/export
         LIBS *= -L$${Calendar_DIR}/lib -lLunarCalendar -lCalendar
@@ -296,7 +296,7 @@ please compile and test the students with the corresponding equipment.
                  message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon")
                  message("   ag:")
                  message("       git clone https://github.com/KangLin/RabbitCommon.git")
-                 message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root dirctory.")
+                 message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root directory.")
                  message("   ag:")
                  message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
             endif()
@@ -308,7 +308,7 @@ please compile and test the students with the corresponding equipment.
                 message("1. Please download Calendar source code from https://github.com/KangLin/Calendar")
                 message("   ag:")
                 message("       git clone https://github.com/KangLin/Calendar.git")
-                message("2. Then set cmake value or environment variable Calendar_DIR to download root dirctory.")
+                message("2. Then set cmake value or environment variable Calendar_DIR to download root directory.")
                 message("    ag:")
                 message(FATAL_ERROR "       cmake -DCalendar_DIR= ")
             endif()

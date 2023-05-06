@@ -27,7 +27,7 @@ public:
     int SetBackgroupImage(const QString szImage);
     int SetPopupMenu(QMenu* pMenu);
     
-    enum POSTION
+    enum POSITION
     {
         LeftTop,
         LeftCenter,
@@ -39,7 +39,7 @@ public:
         RightCenter,
         RightBottom
     };
-    int SetPostion(POSTION pos);
+    int SetPostion(POSITION pos);
     
 protected:
     virtual void mousePressEvent(QMouseEvent *e) override;
@@ -60,7 +60,7 @@ private:
     QImage m_bpBackgroup;
     QMenu* m_pPopupMenu;
     
-    POSTION m_Postion;
+    POSITION m_Postion;
 };
 
 #endif // FRMTOP_H
