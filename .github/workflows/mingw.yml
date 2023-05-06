@@ -1,4 +1,4 @@
-name: build_mingw
+name: mingw
 
 on:
   workflow_call:
@@ -9,11 +9,9 @@ on:
 
 jobs:
   build_mingw:
-    name: build mingw
 
     strategy:
       matrix:
-        # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
 
     defaults:
@@ -43,6 +41,7 @@ jobs:
           cmake -E make_directory ${{env.SOURCE_DIR}}
           cmake -E make_directory ${{env.TOOSL_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
+          cmake -E make_directory ${{github.workspace}}/build
 
       - name: pacman
         env:
@@ -55,6 +54,7 @@ jobs:
               mingw-w64-x86_64-qt5 ^
               mingw-w64-x86_64-qtwebkit ^
               mingw-w64-x86_64-zlib ^
+              mingw-w64-x86_64-7zip ^
               git base-devel
   
       - name: git clone RabbitCommon
@@ -62,15 +62,13 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: build LunarCalendar
-        working-directory: ${{github.workspace}}
+        working-directory: ${{github.workspace}}\build
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
           #Qt5_Dir: C:\msys64\mingw64
           MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
-          cmake -E make_directory build
-          cd build
           cmake .. -G"MinGW Makefiles" ^
               -DCMARK_SHARED=OFF ^
               -DCMARK_TESTS=OFF ^
@@ -79,13 +77,13 @@ jobs:
               -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install
           cmake --build . --config ${{ matrix.BUILD_TYPE }}
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+          7z a Calendar_mingw_${{matrix.BUILD_TYPE}}.zip .\install\*
 
-      - name: Package
-        working-directory: ${{github.workspace}}/build
-        run: |
-          move /Y install\plugins\*crypto*.dll install\bin
-          move /Y install\plugins\*ssl*.dll install\bin
-          copy /Y C:\msys64\mingw64\bin\*.dll install\bin
-          copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
-          copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
-          makensis ${{github.workspace}}/build/Install.nsi
+      - name: Update artifact
+        #if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.artifact_name }}
+          path: |
+            ${{github.workspace}}\build\Calendar_mingw_${{matrix.BUILD_TYPE}}.zip
+      

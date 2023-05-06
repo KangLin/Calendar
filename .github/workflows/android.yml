@@ -26,14 +26,13 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
-      Calendar_VERSION: v1.0.7
+      Calendar_VERSION: v0.0.25
       VCPKGGITCOMMITID: 0ba60bfef5dea4cb2599daa7ad8364e309835a68
       qt_modules: '${{matrix.qt_modules}}'
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
-        fetch-depth: 0
         submodules: 'true'
 
     - uses: snickerbockers/submodules-init@v4
@@ -114,7 +113,7 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
     
-    - name: build LunarCalendar
+    - name: build Calendar
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         QT_ROOT: ${{env.Qt5_Dir}}
@@ -165,29 +164,29 @@ jobs:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
       run: |
         APK_FILE=`find . -name "install-release-signed.apk"`
-        APK_NAME=LunarCalendar_${{matrix.ANDROID_ABI}}_${LunarCalendar_VERSION}.apk
+        APK_NAME=Calendar_${{matrix.ANDROID_ABI}}_${Calendar_VERSION}.apk
         mv -f ${APK_FILE} ${APK_NAME}
         APK_FILE=${APK_NAME}
         cp ${{github.workspace}}/Update/update_android.xml .
         md5sum ${APK_FILE} > ${APK_FILE}.md5
         MD5=`cat ${APK_FILE}.md5 | awk '{print $1}'`
         echo "MD5:${MD5}"
-        sed -i "s/<VERSION>.*</<VERSION>${LunarCalendar_VERSION}</g" update_android.xml
-        sed -i "s/<INFO>.*</<INFO>Release rabbit remote control ${LunarCalendar_VERSION}</g" update_android.xml
+        sed -i "s/<VERSION>.*</<VERSION>${Calendar_VERSION}</g" update_android.xml
+        sed -i "s/<INFO>.*</<INFO>Release rabbit remote control ${Calendar_VERSION}</g" update_android.xml
         sed -i "s/<TIME>.*</<TIME>`date`</g" update_android.xml
         sed -i "s/<ARCHITECTURE>.*</<ARCHITECTURE>${BUILD_ARCH}</g" update_android.xml
         sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
         sed -i "s/<FILENAME>.*</<FILENAME>${APK_NAME}</g" update_android.xml
-        sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/LunarCalendar/releases/download/${LunarCalendar_VERSION}/${APK_NAME}<:g" update_android.xml
-        sed -i "s/<MIN_UPDATE_VERSION>.*</<MIN_UPDATE_VERSION>${LunarCalendar_VERSION}</g" update_android.xml
+        sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Calendar/releases/download/${Calendar_VERSION}/${APK_NAME}<:g" update_android.xml
+        sed -i "s/<MIN_UPDATE_VERSION>.*</<MIN_UPDATE_VERSION>${Calendar_VERSION}</g" update_android.xml
     
     - name: update 
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        name: LunarCalendar_Android_${{matrix.ANDROID_ABI}}_${{env.LunarCalendar_VERSION}}
+        name: Calendar_Android_${{matrix.ANDROID_ABI}}_${{env.Calendar_VERSION}}
         path: |
-          ${{env.INSTALL_DIR}}/LunarCalendar_${{matrix.ANDROID_ABI}}_${{env.LunarCalendar_VERSION}}.apk
+          ${{env.INSTALL_DIR}}/Calendar_${{matrix.ANDROID_ABI}}_${{env.Calendar_VERSION}}.apk
 
     - name: Upload To Github Release
       if: ${{matrix.ANDROID_ABI=='armeabi-v7a' && matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
@@ -199,6 +198,6 @@ jobs:
         body: |
            [:cn: Change log](ChangeLog.md)
         files: |
-            ${{env.INSTALL_DIR}}/LunarCalendar_${{matrix.ANDROID_ABI}}_${{env.LunarCalendar_VERSION}}.apk
-            ${{env.INSTALL_DIR}}/LunarCalendar_${{matrix.ANDROID_ABI}}_${{env.LunarCalendar_VERSION}}.apk.md5
+            ${{env.INSTALL_DIR}}/Calendar_${{matrix.ANDROID_ABI}}_${{env.Calendar_VERSION}}.apk
+            ${{env.INSTALL_DIR}}/Calendar_${{matrix.ANDROID_ABI}}_${{env.Calendar_VERSION}}.apk.md5
             ${{env.INSTALL_DIR}}/update_android.xml

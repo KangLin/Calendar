@@ -1,3 +1,7 @@
+- v1.0.8
+  + 使用 RabbitCommon v2
+  + 删除 qmake 管理工程
+
 - v1.0.7
   + 测试更新
 

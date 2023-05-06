@@ -124,8 +124,8 @@ else()
 endif()
 
 GET_VERSION(OUT_VERSION Calendar_VERSION
-    OUT_REVISION Calendar_VERSION_REVISION)
-message("Calendar_VERSION:${Calendar_VERSION}; Calendar_VERSION_REVISION:${Calendar_VERSION_REVISION}")
+    OUT_REVISION Calendar_REVISION)
+message("Calendar_VERSION:${Calendar_VERSION}; Calendar_REVISION:${Calendar_REVISION}")
 if(NOT Calendar_VERSION)
     set(Calendar_VERSION "v1.0.7")
 endif()

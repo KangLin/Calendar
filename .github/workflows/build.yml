@@ -20,9 +20,6 @@ jobs:
   macos:
     uses: ./.github/workflows/macos.yml
 
-  qmake:
-    uses: ./.github/workflows/qmake.yml
-
   deploy:
     runs-on: ubuntu-latest
     needs: [ubuntu, msvc, macos]
@@ -53,9 +50,9 @@ jobs:
 
       - name: Make note file
         run: |
-          echo "[:cn: 修改日志](ChangeLog.md)" > NoteFile
+          echo "[:cn: 修改日志](ChangeLog_zh_CN.md) [:en: Change log](ChangeLog.md)" > NoteFile
           echo "" >> NoteFile
-          echo "文件签名:" >> NoteFile
+          echo "File signing:" >> NoteFile
           cd ${{ env.artifact_path }}
           for file in *
           do

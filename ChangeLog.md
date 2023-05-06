@@ -1,3 +1,7 @@
+- v1.0.8
+  + Use RabbitCommon v2
+  + Remove pro and pri
+
 - v1.0.7
   + Test updater
 
