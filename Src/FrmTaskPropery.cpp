@@ -11,7 +11,7 @@
 #include <QGroupBox>
 #include <QDir>
 #include <QLabel>
- 
+
 CFrmTaskProperty::CFrmTaskProperty(CTasksList *plstTasks,
                                  QWidget *parent) :
     QWidget(parent),

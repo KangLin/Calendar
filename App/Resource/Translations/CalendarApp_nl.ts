@@ -108,7 +108,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="49"/>
+        <location filename="../../main.cpp" line="53"/>
         <source>Calendar</source>
         <translation type="unfinished"></translation>
     </message>
