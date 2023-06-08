@@ -62,3 +62,13 @@ else()
         DESTINATION etc
         COMPONENT Runtime)
 endif()
+
+set(OTHER_FILES
+    ${CMAKE_SOURCE_DIR}/License.md
+    ${CMAKE_SOURCE_DIR}/Authors.md
+    ${CMAKE_SOURCE_DIR}/ChangeLog.md
+    ${CMAKE_SOURCE_DIR}/Authors_zh_CN.md
+    ${CMAKE_SOURCE_DIR}/ChangeLog_zh_CN.md)
+
+# Install other files
+INSTALL_FILE(SOURCES ${OTHER_FILES} DESTINATION "." COMPONENT Runtime)

@@ -13,9 +13,14 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release]
-        qt_arch: [android_armv7, android_x86_64]
+        qt_arch: [android_arm64_v8a, android_armv7, android_x86_64]
         qt_version: [6.5.1]
         include:
+          - BUILD_TYPE: Release
+            qt_arch: android_arm64_v8a
+            qt_version: 6.5.1
+            VCPKG_TARGET_TRIPLET: arm-android
+
           - BUILD_TYPE: Release
             qt_arch: android_armv7
             qt_version: 6.5.1
@@ -34,7 +39,7 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.BUILD_TYPE}}
       Calendar_VERSION: v0.0.25
-      VCPKGGITCOMMITID: ea222747b888b8d63df56240b262db38b095c68f
+      VCPKGGITCOMMITID: 1ba9a2591f15af5900f2ce2b3e2bf31771e3ac48
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
       qt_modules: 'qtimageformats qtmultimedia qtscxml'
@@ -71,12 +76,12 @@ jobs:
         uses: actions/cache@v1  # not v2!
         with:
           path: ${{env.TOOSL_DIR}}/qt
-          key: qt_${{matrix.qt_version}}_${{matrix.qt_arch}}
+          key: qt${{matrix.qt_version}}_${{matrix.qt_arch}}
 
       - name: Install Qt of gcc_64
         uses: jurplel/install-qt-action@v3
         with:
-          dir: '${{env.TOOSL_DIR}}' # optional
+          dir: '${{env.TOOSL_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
           #host: 'linux'
           target: 'desktop'
@@ -88,7 +93,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           # Directory to install Qt
-          dir: '${{env.TOOSL_DIR}}' # optional
+          dir: '${{env.TOOSL_DIR}}/qt' # optional
           # Version of Qt to install
           version: '${{matrix.qt_version}}'
           # Host platform

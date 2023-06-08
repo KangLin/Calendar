@@ -1,6 +1,7 @@
 - v1.0.8
   + Use RabbitCommon v2
   + Remove pro and pri
+  + CI for android
 
 - v1.0.7
   + Test updater

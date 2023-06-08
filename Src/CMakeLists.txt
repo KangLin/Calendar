@@ -114,12 +114,7 @@ install(FILES ${CMAKE_BINARY_DIR}/Tasks.pc
     DESTINATION lib/pkgconfig)
 
 # Install xml files
-if(ANDROID)
-    INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/etc/
-        DESTINATION "assets/etc/xml" COMPONENT Runtime)
-else()
-    INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/etc/
-        DESTINATION "etc/xml" COMPONENT Runtime)
-endif()
+INSTALL_DIR(SOURCES ${CMAKE_SOURCE_DIR}/etc/
+    DESTINATION "etc/xml" COMPONENT Runtime)
 
 INSTALL_ICON_THEME()
