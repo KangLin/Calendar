@@ -1,7 +1,5 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "DlgAbout/DlgAbout.h"
-#include "RabbitCommonDir.h"
 #include <QSettings>
 #include <QDebug>
 #include <QFileDialog>
@@ -11,6 +9,8 @@
 #include <QScrollBar>
 
 #ifdef RABBITCOMMON
+    #include "DlgAbout/DlgAbout.h"
+    #include "RabbitCommonDir.h"
     #include "FrmUpdater.h"
     #include "RabbitCommonTools.h"
     #include "FrmStyle.h"

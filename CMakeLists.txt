@@ -1,6 +1,6 @@
 # 作者：康林 <kl222@126.com>
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.21)
 
 project(Calendar)
 
@@ -21,15 +21,16 @@ SET(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libs")
 
 #需要的QT组件
 SET(QT_COMPONENTS Core Gui Widgets Xml Network Multimedia Sql)
-if(ANDROID)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets)
+if(ANDROID AND (QT_VERSION_MAJOR EQUAL 5))
     SET(QT_COMPONENTS ${QT_COMPONENTS} AndroidExtras)
 endif()
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QT_COMPONENTS})
 message("QT_VERSION:${Qt${QT_VERSION_MAJOR}_VERSION}")
 if(Qt${QT_VERSION_MAJOR}_VERSION VERSION_LESS 5.10.0 AND ANDROID)
     message(FATAL_ERROR "Qt must great 5.10.0")
 endif()
+
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${QT_COMPONENTS})
         SET(QT_LIBRARIES ${QT_LIBRARIES} Qt${QT_VERSION_MAJOR}::${_COMPONENT})
@@ -99,20 +100,19 @@ message("CMAKE_SYSTEM_PROCESSOR:${CMAKE_SYSTEM_PROCESSOR}")
 message("CMAKE_ANDROID_ARCH_ABI:${CMAKE_ANDROID_ARCH_ABI}")
 message("CMAKE_ANDROID_ARCH:${CMAKE_ANDROID_ARCH}")
 
-find_package(RabbitCommon)
-if(NOT RabbitCommon_FOUND)
+if(NOT RabbitCommon_DIR)
+    set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
     if(NOT RabbitCommon_DIR)
-        set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
-        if(NOT RabbitCommon_DIR)
-            set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/../RabbitCommon)
-        endif()
+        set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/../RabbitCommon)
     endif()
-    
-    if(DEFINED RabbitCommon_DIR AND EXISTS ${RabbitCommon_DIR}/Src)
-        if(NOT EXISTS ${CMAKE_BINARY_DIR}/RabbitCommon)
-            add_subdirectory(${RabbitCommon_DIR}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
-        endif()
-    else()
+endif()
+if(RabbitCommon_DIR AND EXISTS ${RabbitCommon_DIR}/Src)
+    message("Use RabbitCommon source code")
+    add_subdirectory(${RabbitCommon_DIR}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
+else()
+    find_package(RabbitCommon)
+    if(NOT RabbitCommon_FOUND)
+        message("RabbitCommon_DIR is not found. Please use one of the following ways to set it:")
         message("1. Set RabbitCommon_DIR to the install prefix of RabbitCommon.")
         message("2. Set RabbitCommon_DIR to source code root of RabbitCommon.")
         message("2.1 Please download the source code of RabbitCommon from https://github.com/KangLin/RabbitCommon")
@@ -145,28 +145,6 @@ set(OTHER_FILES
     ChangeLog.md
     Authors_zh_CN.md
     ChangeLog_zh_CN.md)
-
-# Create install runtime target
-add_custom_target(install-runtime
-  COMMAND
-     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime 
-     -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake"
-)
-# Create uninstall runtime target
-add_custom_target(uninstall-runtime
-  COMMAND
-     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime 
-     -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-)
-# Create will be delete files
-CONFIGURE_FILE(
-    "${RabbitCommon_DIR}/cmake/cmake_uninstall.cmake.in"
-    "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY)
-# Create unistall target
-ADD_CUSTOM_TARGET(uninstall
-    "${CMAKE_COMMAND}" -P "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
-    DEPENDS uninstall-runtime)
 
 if(ANDROID)
     # Install other files
