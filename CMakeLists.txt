@@ -1,6 +1,7 @@
 # 作者：康林 <kl222@126.com>
 
 cmake_minimum_required(VERSION 3.21)
+MESSAGE(STATUS "Found CMake ${CMAKE_VERSION}")
 
 project(Calendar)
 
