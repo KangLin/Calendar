@@ -30,6 +30,21 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     PRIVATE_LIBS Tasks ${QT_LIBRARIES} RabbitCommon
     VERSION ${Calendar_VERSION})
 
+find_package(OpenSSL)
+IF(OpenSSL_FOUND)
+    if(ANDROID)
+        set_property(TARGET ${PROJECT_NAME}
+            APPEND PROPERTY QT_ANDROID_EXTRA_LIBS
+            $<TARGET_FILE:OpenSSL::SSL>
+            $<TARGET_FILE:OpenSSL::Crypto>)
+    endif()
+    if(WIN32)
+        INSTALL_TARGETS(TARGETS OpenSSL::SSL OpenSSL::Crypto)
+    endif()
+else()
+    message(AUTHOR_WARNING "Don't find openssl")
+ENDIF()
+
 if(WIN32)
     INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Runtime)
 endif()
@@ -50,8 +65,7 @@ if(Log4Qt_FOUND)
             COPYONLY)
     endif()
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/Calendar_log4qt.conf
-        DESTINATION etc
-        COMPONENT Runtime)
+        DESTINATION etc COMPONENT Runtime)
 else()
     if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.conf)
         configure_file(${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.conf
@@ -59,8 +73,7 @@ else()
             COPYONLY)
     endif()
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.conf
-        DESTINATION etc
-        COMPONENT Runtime)
+        DESTINATION etc COMPONENT Runtime)
 endif()
 
 set(OTHER_FILES
