@@ -108,7 +108,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
-      - name: Build LunarCalendar
+      - name: Build Calendar
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
@@ -134,12 +134,14 @@ jobs:
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
           copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
-          7z a Calendar${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}_${{matrix.triplet}}_${{matrix.BUILD_TYPE}}.zip .\install\*
+          7z a Calendar_${{env.Calendar_VERSION}}_${{matrix.triplet}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.zip .\install\*
+          makensis Install.nsi
 
       - name: Update artifact
-        #if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
           path: |
-            ${{github.workspace}}\build\Calendar${{env.Calendar_VERSION}}_qt${{matrix.qt_version}}_${{matrix.triplet}}_${{matrix.BUILD_TYPE}}.zip
+            ${{github.workspace}}\build\Calendar_${{env.Calendar_VERSION}}_${{matrix.triplet}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.zip
+            ${{github.workspace}}\build\Calendar_*.exe
