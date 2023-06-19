@@ -6,15 +6,9 @@
 
 [:us: 英语](README.md)
 
-[![qmake](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml)
-[![qmake](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/qmake.yml)
-[![ubuntu](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml)
-[![ubuntu](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/ubuntu.yml)
-[![msvc](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml/badge.svg)](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml)
-[![msvc](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/msvc.yml)
-
+[![build](https://github.com/KangLin/Calendar/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/KangLin/Calendar/actions/workflows/build.yml)
+[![build](https://github.com/KangLin/Calendar/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/KangLin/Calendar/actions/workflows/build.yml)
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/hw8wsnwinrnohhda?svg=true)](https://ci.appveyor.com/project/KangLin/Calendar)
-[![Travis build Status](https://travis-ci.org/KangLin/Calendar.svg?branch=master)](https://travis-ci.org/KangLin/Calendar)
 
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/Calendar)](https://github.com/KangLin/Calendar/issues)
 
@@ -63,7 +57,7 @@
   + [x] Windows
   + [x] Linux、Unix
   + [x] Android
-  + [ ] Mac os
+  + [x] Mac os
   + [ ] IOS
   
 Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己编译，测试。
@@ -82,7 +76,7 @@ Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己�
 
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
- 
+
 [![捐赠](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠") 
 
 ### 下载
