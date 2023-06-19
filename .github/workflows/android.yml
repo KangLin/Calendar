@@ -35,7 +35,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.BUILD_TYPE}}
-      Calendar_VERSION: v1.0.81
+      Calendar_VERSION: v1.0.8
       VCPKGGITCOMMITID: 1ba9a2591f15af5900f2ce2b3e2bf31771e3ac48
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
