@@ -1,3 +1,7 @@
+- v1.0.9
+  + 增加：更新 xml 文件
+  + 修复: windows 资源
+
 - v1.0.8
   + 使用 RabbitCommon v2
   + 删除 qmake 管理工程

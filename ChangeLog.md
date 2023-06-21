@@ -1,3 +1,7 @@
+- v1.0.9
+  + Add update xml
+  + FIX: windows resource
+
 - v1.0.8
   + Use RabbitCommon v2
   + Remove pro and pri
