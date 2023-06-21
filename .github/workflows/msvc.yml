@@ -137,6 +137,15 @@ jobs:
           7z a Calendar_${{env.Calendar_VERSION}}_${{matrix.triplet}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.zip .\install\*
           makensis Install.nsi
 
+      - name: Update xml file
+        working-directory: ${{github.workspace}}\build
+        run: |
+          .\install\bin\CalendarApp.exe ^
+               -f "${{github.workspace}}\build\update_windows.xml" ^
+               --pf ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}.exe ^
+               -m "${{env.Calendar_VERSION}}" ^
+               -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_Setup_${{env.Calendar_VERSION}}.exe;https://sourceforge.net/projects/rabbitcalendar/files/${{env.Calendar_VERSION}}/Calendar_Setup_${{env.Calendar_VERSION}}.exe"
+
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
         uses: actions/upload-artifact@v3
@@ -144,4 +153,5 @@ jobs:
           name: ${{ env.artifact_name }}
           path: |
             ${{github.workspace}}\build\Calendar_${{env.Calendar_VERSION}}_${{matrix.triplet}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.zip
-            ${{github.workspace}}\build\Calendar_*.exe
+            ${{github.workspace}}\build\Calendar_Setup_${{env.Calendar_VERSION}}.exe
+            ${{github.workspace}}\build\update_windows.xml

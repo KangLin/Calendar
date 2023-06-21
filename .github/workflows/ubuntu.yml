@@ -79,10 +79,25 @@ jobs:
           ./build_debpackage.sh
           cp ../calendar_${{env.Calendar_VERSION}}_amd64.deb calendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb
 
+      - name: Update xml file
+        working-directory: ${{github.workspace}}
+        run: |
+          sudo Xvfb :99 -ac &
+          export DISPLAY=:99.0
+          sudo apt install ./calendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb
+          MD5=`md5sum calendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb|awk '{print $1}'`
+          echo "MD5:${MD5}"
+          /opt/Calendar/bin/Calendar.sh \
+               -f "${{github.workspace}}/update_linux.xml" \
+               --md5 ${MD5} \
+               -m "${{env.Calendar_VERSION}}" \
+               -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/calendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb;https://sourceforge.net/projects/rabbitcalendar/files/${{env.Calendar_VERSION}}/calendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb"
+
       - name:  Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
           path: |
-            ${{github.workspace}}/calendar_*.deb
+            ${{github.workspace}}/calendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb
+            ${{github.workspace}}/update_linux.xml

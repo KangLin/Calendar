@@ -272,7 +272,7 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
         MD5=`md5sum Calendar_Setup_*.exe|awk '{print $1}'`
         echo "MD5:${MD5}"
         install/bin/CalendarApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "${VERSION}" \
-            -u "https://github.com/KangLin/Calendar/releases/download/${VERSION}/Calendar_Setup_${VERSION}.exe;https://sourceforge.net/projects/rabbitcalendar/files/${VERSION}/Calendar_Setup_${VERSION}.exe" \
+            -u "https://github.com/KangLin/Calendar/releases/download/${VERSION}/Calendar_Setup_${VERSION}.exe;https://sourceforge.net/projects/rabbitcalendar/files/${VERSION}/Calendar_Setup_${VERSION}.exe" 
         #cat update_windows.xml
     fi
 fi
