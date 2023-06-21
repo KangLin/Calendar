@@ -15,7 +15,9 @@ set(SOURCE_FILES
 set(SOURCE_UI_FILES
     MainWindow.ui
     DlgOption.ui)
-
+if(WIN32)
+    set(RCC_FILES AppIcon.rc)
+endif()
 LIST(APPEND PRIVATE_DEFINITIONS
     Calendar_REVISION="${Calendar_REVISION}"
     Calendar_VERSION="${Calendar_VERSION}"
