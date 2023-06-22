@@ -147,6 +147,7 @@ jobs:
           7z a Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.zip install/*
 
       - name: Update xml file
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_arch == 'android_armv7' }}
         working-directory: ${{github.workspace}}/build
         run: |
           cp ${{github.workspace}}/Update/update_android.xml .
@@ -159,9 +160,9 @@ jobs:
           sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
           sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk<:g" update_android.xml
           sed -i "s/<MIN_UPDATE_VERSION>.*</<MIN_UPDATE_VERSION>${{env.Calendar_VERSION}}</g" update_android.xml
-          
+
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_arch == 'android_armv7' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}

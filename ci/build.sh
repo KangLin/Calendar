@@ -269,10 +269,11 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
     
     if [ -z "${STATIC}" ]; then
         "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
+        mv Calendar_Setup_${VERSION}.exe Calendar_${VERSION}_Windows_qt${QT_VERSION}_Setup.exe
         MD5=`md5sum Calendar_Setup_*.exe|awk '{print $1}'`
         echo "MD5:${MD5}"
         install/bin/CalendarApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "${VERSION}" \
-            -u "https://github.com/KangLin/Calendar/releases/download/${VERSION}/Calendar_Setup_${VERSION}.exe;https://sourceforge.net/projects/rabbitcalendar/files/${VERSION}/Calendar_Setup_${VERSION}.exe" 
+            -u "https://github.com/KangLin/Calendar/releases/download/${VERSION}/Calendar_${VERSION}_Windows_qt${QT_VERSION}_Setup.exe;https://sourceforge.net/projects/rabbitcalendar/files/${VERSION}/Calendar_${VERSION}_Windows_qt${QT_VERSION}_Setup.exe" 
         #cat update_windows.xml
     fi
 fi
