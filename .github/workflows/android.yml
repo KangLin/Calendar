@@ -162,11 +162,10 @@ jobs:
           sed -i "s/<MIN_UPDATE_VERSION>.*</<MIN_UPDATE_VERSION>${{env.Calendar_VERSION}}</g" update_android.xml
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_arch == 'android_armv7' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
           path: |
-            ${{github.workspace}}/build/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.zip
             ${{github.workspace}}/build/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
             ${{github.workspace}}/build/update_android.xml
