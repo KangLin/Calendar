@@ -36,6 +36,7 @@ jobs:
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       Calendar_VERSION: 1.0.9
       artifact_name: build_macos
+      VCPKGGITCOMMITID: 1286cac8751e13bb289061b7e3b89eb4c3f613a2
 
     # Map the job outputs to step outputs
     outputs:
@@ -61,6 +62,17 @@ jobs:
           path: |
             ${{env.INSTALL_DIR}}
           key: Cache-installed-macos
+
+      - name: run-vcpkg
+        uses: lukka/run-vcpkg@v7.4
+        with:
+          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+          vcpkgDirectory: ${{runner.workspace}}/vcpkg/
+          # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
+          # compute its hash and append this to the computed cache's key.
+          appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
+          vcpkgTriplet: '${{matrix.triplet}}'
+          vcpkgArguments: 'zlib openssl'
 
       - name: Cache Qt
         id: cache-qt
