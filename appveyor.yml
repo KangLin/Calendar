@@ -146,22 +146,22 @@ artifacts:
   
 test: off
 
-#See:https://www.appveyor.com/docs/deployment/github/
-deploy:
-  - provider: GitHub
-    #release: Tasks$(appveyor_build_version)
-    #description: 'Release Tasks $(APPVEYOR_REPO_TAG_NAME) on windows'
-    #token : https://github.com/settings/tokens
-    #password encrypt: https://ci.appveyor.com/tools/encrypt
-    auth_token:
-      secure: aPr1U6S1RtXZiK2mCWtAAIOMjuiBR0yPsD2kaYIADtx2ulIitdp336kFqmfKwM9x
-    #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
-    #draft: true
-    #prerelease: true
-    force_update: true
-    on:
-      BUILD_TARGERT: windows_msvc
-      TOOLCHAIN_VERSION: 12
-      QT_VERSION: 5.6.3
-      BUILD_ARCH: x86
-      appveyor_repo_tag: true        # deploy on tag push only
+##See:https://www.appveyor.com/docs/deployment/github/
+#deploy:
+#  - provider: GitHub
+#    #release: Tasks$(appveyor_build_version)
+#    #description: 'Release Tasks $(APPVEYOR_REPO_TAG_NAME) on windows'
+#    #token : https://github.com/settings/tokens
+#    #password encrypt: https://ci.appveyor.com/tools/encrypt
+#    auth_token:
+#      secure: aPr1U6S1RtXZiK2mCWtAAIOMjuiBR0yPsD2kaYIADtx2ulIitdp336kFqmfKwM9x
+#    #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
+#    #draft: true
+#    #prerelease: true
+#    force_update: true
+#    on:
+#      BUILD_TARGERT: windows_msvc
+#      TOOLCHAIN_VERSION: 12
+#      QT_VERSION: 5.6.3
+#      BUILD_ARCH: x86
+#      appveyor_repo_tag: true        # deploy on tag push only
