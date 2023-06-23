@@ -20,7 +20,7 @@ jobs:
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
-            qt_modules: qtscxml qtmultimedia qtwebengine qtwebchannel qtwebsockets qtwebview
+            qt_modules: qtscxml qtmultimedia qtwebengine qtwebchannel qtwebsockets qtwebview qtpositioning 
 
           - qt_version: 5.15.2
             triplet: x64-windows
@@ -45,7 +45,7 @@ jobs:
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
-      Calendar_VERSION: v1.0.9
+      Calendar_VERSION: v1.0.95
       VCPKGGITCOMMITID: 1ba9a2591f15af5900f2ce2b3e2bf31771e3ac48
       qt_modules: ${{matrix.qt_modules}}
       artifact_name: build_msvc
