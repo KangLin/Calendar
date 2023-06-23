@@ -39,10 +39,11 @@ int main(int argc, char *argv[])
                   QSettings::IniFormat);
 
     QTranslator tApp, tTasks, tLunarCalendar;
-    tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
+    bool bRet = tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
               + QDir::separator() + a.applicationName() + "App_"
               + QLocale::system().name() + ".qm");
-    a.installTranslator(&tApp);
+    if(bRet)
+        a.installTranslator(&tApp);
     qInfo() << "Language:" << QLocale::system().name();
 
     CTasksTools::Instance()->InitResource();
@@ -66,7 +67,7 @@ int main(int argc, char *argv[])
     if(!pUpdate->GenerateUpdateXml()) 
         return 0; 
 #endif
-    
+
     CMainWindow m;
 #if defined(Q_OS_ANDROID)
     m.showMaximized();
@@ -77,12 +78,13 @@ int main(int argc, char *argv[])
 #endif
 
     int nRet = a.exec();
-    
+
 #ifdef RABBITCOMMON
     RabbitCommon::CTools::Instance()->Clean();
 #endif
-    
-    a.removeTranslator(&tApp);
+
+    if(bRet)
+        a.removeTranslator(&tApp);
     CTasksTools::Instance()->CleanResource();
     return nRet;
 }
