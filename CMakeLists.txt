@@ -22,7 +22,7 @@ SET(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libs")
 
 #需要的QT组件
 SET(QT_COMPONENTS Core Gui Widgets Xml Network Multimedia Sql)
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core)
 if(ANDROID AND (QT_VERSION_MAJOR EQUAL 5))
     SET(QT_COMPONENTS ${QT_COMPONENTS} AndroidExtras)
 endif()
