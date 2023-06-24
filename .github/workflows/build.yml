@@ -7,7 +7,7 @@ env:
 
 on: 
   push:
-  
+
 jobs:
   ubuntu:
     uses: ./.github/workflows/ubuntu.yml
@@ -32,7 +32,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          submodules: true
+          submodules: false
 
       - name: Download ubuntu
         uses: actions/download-artifact@v3
