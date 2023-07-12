@@ -118,6 +118,7 @@ void CMainWindow::slotAbout()
     QPixmap p = icon.pixmap(*sizeList.begin());
     about.m_AppIcon = p.toImage();
     about.m_szHomePage = "https://github.com/KangLin/Calendar";
+    about.m_szBuildTime = QString("%1/%2").arg(__DATE__, __TIME__);
     about.m_szCopyrightStartTime = "2019";
     about.m_szVersionRevision = Calendar_REVISION;
     if(about.isHidden())

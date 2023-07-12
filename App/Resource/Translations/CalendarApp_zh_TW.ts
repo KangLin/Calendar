@@ -16,7 +16,7 @@
     <message>
         <location filename="../../DlgOption.ui" line="47"/>
         <source>Enable run from boot</source>
-        <translation>允許開戶自啟動</translation>
+        <translation>允許開機自啟動</translation>
     </message>
     <message>
         <location filename="../../DlgOption.ui" line="34"/>

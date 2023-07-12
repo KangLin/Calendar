@@ -16,7 +16,7 @@
     <message>
         <location filename="../../DlgOption.ui" line="47"/>
         <source>Enable run from boot</source>
-        <translation>允许开户自启动</translation>
+        <translation>允许开机自启动</translation>
     </message>
     <message>
         <location filename="../../DlgOption.ui" line="34"/>
