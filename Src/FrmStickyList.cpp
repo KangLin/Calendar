@@ -93,7 +93,7 @@ void CFrmStickyList::slotLoad()
                                RabbitCommon::CDir::Instance()->GetDirUserData()
                                + QDir::separator() + "Sticky").toString();
     QFileInfo fi(szFile);
-    szFile = RabbitCommon::CDir::GetOpenFileName(this, tr("Open sticky"), fi.path()); // QFileDialog::getOpenFileName();
+    szFile = QFileDialog::getOpenFileName(this, tr("Open sticky"), fi.path()); // QFileDialog::getOpenFileName();
     if(szFile.isEmpty())
         return;
     Load(szFile);
@@ -131,7 +131,7 @@ void CFrmStickyList::slotSave()
                                RabbitCommon::CDir::Instance()->GetDirUserData()
                                + QDir::separator() + "Sticky").toString();
     QFileInfo fi(szFile);
-    szFile = RabbitCommon::CDir::GetSaveFileName(this, tr("Save sticky"), fi.path());
+    szFile = QFileDialog::getSaveFileName(this, tr("Save sticky"), fi.path());
     if(szFile.isEmpty())
         return;
 }

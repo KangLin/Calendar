@@ -1,3 +1,9 @@
+- v1.0.11
+  + Replace RabbitCommon::CDir::GetOpenDirectory with QFileDialog::getExistingDirectory etc
+  
+- v1.0.10
+  + Modify CI
+
 - v1.0.9
   + Add update xml
   + FIX: windows resource

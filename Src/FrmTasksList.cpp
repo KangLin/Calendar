@@ -97,14 +97,14 @@ int CFrmTasksList::Load(QString szFile)
 
 void CFrmTasksList::slotLoad()
 {
-    QString szFile = RabbitCommon::CDir::GetOpenFileName(this,
+    QString szFile = QFileDialog::getOpenFileName(this,
                        tr("Load"), QString(), tr("xml(*.xml);;All files(*.*)"));
     Load(szFile);
 }
 
 void CFrmTasksList::slotSaveAs()
 {
-    QString szFile = RabbitCommon::CDir::GetSaveFileName(this,
+    QString szFile = QFileDialog::getSaveFileName(this,
                                          tr("Save as ..."), QString(), "*.xml");
     if(szFile.lastIndexOf(".xml") == -1)
         szFile += ".xml";

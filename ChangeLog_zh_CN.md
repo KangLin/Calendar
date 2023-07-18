@@ -1,3 +1,9 @@
+- v1.0.11
+  + 用 QFileDialog::getExistingDirectory 替换 RabbitCommon::CDir::GetOpenDirectory 等
+  
+- v1.0.10
+  + 修改自动化编译
+  
 - v1.0.9
   + 增加：更新 xml 文件
   + 修复: windows 资源
