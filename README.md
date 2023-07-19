@@ -63,7 +63,7 @@ Author: KangLin (kl222@126.com)
      Mac os and IOS, I don't have the corresponding equipment,
      please compile and test the students with the corresponding equipment.
 
-   See:  [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
+   See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
 
 ### ScreentShot
 - Unix screent shot
