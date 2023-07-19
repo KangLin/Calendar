@@ -53,15 +53,17 @@ Author: KangLin (kl222@126.com)
 - [x] Custom task
   - [x] Eye Nurse： Vision protection
 - [x] Sticky
-- [x] Cross-platform, support multiple operating systems(https://doc.qt.io/qt-5/supported-platforms.html)
+- [x] Cross-platform, support multiple operating systems
      - [x] Windows
      - [x] Linux、Unix
      - [x] Android
      - [x] Mac os
      - [ ] IOS
 
-Mac os and IOS, I don't have the corresponding equipment,
-please compile and test the students with the corresponding equipment.
+     Mac os and IOS, I don't have the corresponding equipment,
+     please compile and test the students with the corresponding equipment.
+
+   See:  [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
 
 ### ScreentShot
 - Unix screent shot

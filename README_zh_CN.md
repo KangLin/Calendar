@@ -53,14 +53,16 @@
 - [x] 自定义任务
   - [x] 眼睛护士: 保护视力
 - [x] 便签
-- 跨平台，支持多操作系统(https://doc.qt.io/qt-5/supported-platforms.html)
+- 跨平台，支持多操作系统
   + [x] Windows
   + [x] Linux、Unix
   + [x] Android
   + [x] Mac os
   + [ ] IOS
-  
-Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己编译，测试。
+
+    Mac os 和 IOS ，本人没有相应设备，请有相应设备的同学自己编译，测试。
+
+  详见：[Qt5 支持平台](https://doc.qt.io/qt-5/supported-platforms.html)、[Qt6 支持平台](https://doc.qt.io/qt-6/supported-platforms.html)。
 
 ### 屏幕截图
 
