@@ -36,7 +36,7 @@ jobs:
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       Calendar_VERSION: 1.0.11
       artifact_name: build_macos
-      VCPKGGITCOMMITID: 5ac89392d779288ec8073ebba69cf12d3537f6d7
+      VCPKGGITCOMMITID: d765306b074717dea8dc1c4723e1b025acb61c2d
 
     # Map the job outputs to step outputs
     outputs:
