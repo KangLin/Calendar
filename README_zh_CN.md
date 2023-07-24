@@ -111,9 +111,9 @@
 
 - 用 cmake
   + CMAKE 参数：
-    - [必选] Qt5_DIR: qt5 安装位置(指向Qt5Config.cmake的目录，默认为 安装目录/lib/cmake/Qt5)。  
+    - [必选] Qt5_DIR: qt5 安装位置(指向Qt5Config.cmake的目录，默认为 Qt5 安装目录/lib/cmake/Qt5)。  
                      详见：https://doc.qt.io/qt-5/cmake-get-started.html  
-             或者 Qt6_DIR: qt6 安装位置(指向Qt6Config.cmake的目录，默认为 安装目录/lib/cmake/Qt6)
+             或者 Qt6_DIR: qt6 安装位置(指向Qt6Config.cmake的目录，默认为 Qt6 安装目录/lib/cmake/Qt6)
     - [必选] RabbitCommon_DIR: 指向 RabbitCommon 源码目录
     - [可选] CMAKE_INSTALL_PREFIX: 安装前缀
   + windows 或 linux
@@ -126,6 +126,7 @@
         cmake --build . --config Release --target install
         
   + android
+    Qt版本必须大于等于6  
     - 主机是linux
       + 编译
 
@@ -135,18 +136,14 @@
                -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
                -DANDROID_ABI="armeabi-v7a with NEON" \
                -DANDROID_PLATFORM=android-18 \
-               -DQt5_DIR= \
+               -DQt6_DIR= \
                -DRabbitCommon_DIR= 
             cmake --build . --config Release
 
     　+ 安装
         - 安装库和程序
 
-              cmake --build . --config Release --target install/strip
-
-        - 生成 APK
-
-              cmake --build . --config Release --target APK
+              cmake --build . --config Release --target install
 
     - 主机是windows
       + 编译
@@ -159,17 +156,13 @@
                 -DANDROID_ABI=arm64-v8a ^
                 -DANDROID_ARM_NEON=ON ^
                 -DANDROID_PLATFORM=android-24 ^
-                -DQt5_DIR= ^
+                -DQt6_DIR= ^
                 -DRabbitCommon_DIR= 
 
       + 安装
         - 安装库和程序
 
-            cmake --build . --config Release --target install/strip
-
-        - 生成 APK
-
-            cmake --build . --config Release --target APK
+            cmake --build . --config Release --target install
 
     - 参数说明：https://developer.android.google.cn/ndk/guides/cmake
       + ANDROID_ABI: 可取下列值：
