@@ -1,3 +1,6 @@
+- v1.0.12
+  + 修复自启动错误。详见：[RabbitCommon](https://github.com/KangLin/RabbitCommon/commit/12d5686994ea8f5decb0cf211547ba548ab9f3e9)
+
 - v1.0.11
   + 用 QFileDialog::getExistingDirectory 替换 RabbitCommon::CDir::GetOpenDirectory 等
   
