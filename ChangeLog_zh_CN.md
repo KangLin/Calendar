@@ -1,3 +1,6 @@
+- v1.0.13
+  + 修复 DockDebugLog 崩溃. 详见: [RabbitCommon](https://github.com/KangLin/RabbitCommon/commit/af2e434e39af35876113436ead2a946efcf74199)
+
 - v1.0.12
   + 修复自启动错误。详见：[RabbitCommon](https://github.com/KangLin/RabbitCommon/commit/12d5686994ea8f5decb0cf211547ba548ab9f3e9)
 
