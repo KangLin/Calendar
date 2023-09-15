@@ -41,8 +41,6 @@ private Q_SLOTS:
     void on_actionSticky_list_L_triggered();
     void on_actionTasks_list_A_triggered();
     
-    void on_actionStyle_triggered();
-    
 protected:
     virtual void closeEvent(QCloseEvent *e) override;
     bool eventFilter(QObject *watched, QEvent *event) override;

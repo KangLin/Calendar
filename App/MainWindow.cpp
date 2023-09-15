@@ -22,6 +22,10 @@ CMainWindow::CMainWindow(QWidget *parent) :
     m_Table(this)
 {
     ui->setupUi(this);
+    
+    RabbitCommon::CTools::InsertStyleMenu(ui->menuTools, ui->actionExit_E, this);
+    ui->menuTools->insertMenu(ui->actionExit_E,
+                            RabbitCommon::CTools::Instance()->GetLogMenu(this));
 
     m_TrayIconMenu.addAction(
                 QIcon::fromTheme("window-close"),
@@ -302,10 +306,4 @@ bool CMainWindow::eventFilter(QObject *watched, QEvent *event)
         break;
     }
     return false;
-}
-
-void CMainWindow::on_actionStyle_triggered()
-{
-    CFrmStyle* p = new CFrmStyle();
-    p->show();
 }
