@@ -102,15 +102,6 @@
     <string>Update(&amp;U)</string>
    </property>
   </action>
-  <action name="actionStyle">
-   <property name="icon">
-    <iconset theme="style">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Style</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>
