@@ -1,6 +1,6 @@
 ## [<img src="App/AppIcon.ico" title="日历" width="16" height="16"/>日历](https://github.com/KangLin/Calendar)
 
-作者：康林（kl222@126.com)
+作者：康 林 <kl222@126.com>
 
 ------------------------------------------------
 

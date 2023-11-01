@@ -1,6 +1,6 @@
 ## [<img src="App/AppIcon.ico" alt="Calendar" title="Calendar" width="16" height="16"/>Calendar](https://github.com/KangLin/Calendar)  
 
-Author: KangLin (kl222@126.com)
+Author: Kang Lin <kl222@126.com>
 
 -----------------------------------------------
 [:cn: 中文](README_zh_CN.md)
