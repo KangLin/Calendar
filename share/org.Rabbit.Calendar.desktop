@@ -5,7 +5,8 @@ Exec=/opt/Calendar/bin/Calendar.sh
 Path=/opt/Calendar
 Terminal=false
 StartupNotify=true
-Categories=Application;Development;Tools;Qt
+Categories=Application;Development;Tools;Qt;
+MimeType=application/calendar+json;application/calendar+xml;application/octet-stream;text/calendar;text/x-vcalendar;application/vnd.sus-calendar;text/plain;
 
 Name=Calendar
 GenericName=Calendar

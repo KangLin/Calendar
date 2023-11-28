@@ -1,3 +1,6 @@
+- v1.0.14
+  + 在　org.Rabbit.Calendar.desktop　中增加 MimeType
+  
 - v1.0.13
   + 修复 DockDebugLog 崩溃. 详见: [RabbitCommon](https://github.com/KangLin/RabbitCommon/commit/af2e434e39af35876113436ead2a946efcf74199)
   + 修改菜单
