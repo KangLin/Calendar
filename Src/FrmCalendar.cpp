@@ -22,7 +22,7 @@ public:
     CTasksHandler(CFrmCalendar* pFrmCalendar);
     virtual ~CTasksHandler();
     
-    virtual int onHandle(QDate date);
+    virtual uint onHandle(/*in*/const QDate& date, /*out*/QStringList& tasks) override;
 private:
     CFrmCalendar* m_pFrmCalendar;
 };
@@ -37,9 +37,9 @@ CTasksHandler::~CTasksHandler()
 {
 }
 
-int CTasksHandler::onHandle(QDate date)
+uint CTasksHandler::onHandle(const QDate &date, QStringList &tasks)
 {
-    return m_pFrmCalendar->onHandle(date);
+    return m_pFrmCalendar->onHandle(date, tasks);
 }
 
 CFrmCalendar::CFrmCalendar(QWidget *parent) :
@@ -70,7 +70,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_TasksList.Start();
 
     m_pCalendar = new CLunarCalendar(this);
-    m_pCalendar->SetTouchUpDownFunction(CLunarCalendar::TouchChangeView);
+    m_pCalendar->SetTouchUpDownFunction(CLunarCalendar::_TOUCH_UP_DOWN_FUNCTION::TouchChangeView);
     m_pCalendar->SetTaskHandle(QSharedPointer<CTasksHandler>(
                                    new CTasksHandler(this)));
     m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
@@ -268,9 +268,9 @@ void CFrmCalendar::slotSaveAs()
 void CFrmCalendar::slotViewWeek(bool checked)
 {
     if(checked)
-        m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
+        m_pCalendar->SetViewType(CLunarCalendar::_VIEW_TYPE::ViewTypeWeek);
     else
-        m_pCalendar->SetViewType(CLunarCalendar::ViewTypeMonth);
+        m_pCalendar->SetViewType(CLunarCalendar::_VIEW_TYPE::ViewTypeMonth);
 }
 
 void CFrmCalendar::slotCalendarHead(bool checked)
@@ -373,7 +373,7 @@ void CFrmCalendar::slotViewCustomContextMenuRequested(const QPoint& pos)
     m_ListViewMenu.popup(m_listView.mapToGlobal(pos));
 }
 
-int CFrmCalendar::onHandle(QDate date)
+int CFrmCalendar::onHandle(/*in*/const QDate& date, /*out*/QStringList& t)
 {
     int nCount = 0;
     CTasksList::POSITION pos = m_TasksList.GetFirst();
@@ -391,6 +391,7 @@ int CFrmCalendar::onHandle(QDate date)
                 if(pTask->CheckDate(date) == 0)
                 {
                     nCount++;
+                    t << pTask->GetTitle();
                 }
             }
         }
@@ -402,7 +403,6 @@ int CFrmCalendar::onHandle(QDate date)
 int CFrmCalendar::Update()
 {
     m_pCalendar->Update();
-    onHandle(m_pCalendar->SelectedDate());
     slotSelectionChanged();
     //m_TasksList.Start();
     return 0;
