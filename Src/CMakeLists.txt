@@ -104,15 +104,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     VERSION ${Calendar_VERSION}
     )
 
-foreach(d ${Tasks_DEFINITIONS})
-    SET(Tasks_DEFINITIONS_PC "${Tasks_DEFINITIONS_PC} -D${d}")
-endforeach()
-# Install pc files
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/Tasks.pc.in
-    ${CMAKE_BINARY_DIR}/Tasks.pc @ONLY)
-install(FILES ${CMAKE_BINARY_DIR}/Tasks.pc
-    DESTINATION lib/pkgconfig)
-
 # Install xml files
 INSTALL_DIR(SOURCES ${CMAKE_SOURCE_DIR}/etc/
     DESTINATION "etc/xml" COMPONENT Runtime)
