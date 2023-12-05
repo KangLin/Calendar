@@ -1,5 +1,7 @@
 - v1.0.14
   + 在　org.Rabbit.Calendar.desktop　中增加 MimeType
+  + 在 RabbitCommonUtils.cmake 中产生 pkg-config 配置文件
+  + 更新 LunarCalendar 到 [v0.3.0](https://github.com/KangLin/LunarCalendar/blob/v0.3.0/ChangeLog.md)
   
 - v1.0.13
   + 修复 DockDebugLog 崩溃. 详见: [RabbitCommon](https://github.com/KangLin/RabbitCommon/commit/af2e434e39af35876113436ead2a946efcf74199)

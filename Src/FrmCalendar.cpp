@@ -16,7 +16,7 @@
 #include <QDebug>
 #include <QResizeEvent>
 
-class CTasksHandler : public CLunarCalendar::CGetTaskHandler
+class CTasksHandler : public CLunarCalendar::CTaskHandler
 {
 public:
     CTasksHandler(CFrmCalendar* pFrmCalendar);
@@ -28,7 +28,7 @@ private:
 };
 
 CTasksHandler::CTasksHandler(CFrmCalendar* pFrmCalendar)
-    : CLunarCalendar::CGetTaskHandler()
+    : CLunarCalendar::CTaskHandler()
 {
     m_pFrmCalendar = pFrmCalendar;
 }
@@ -78,9 +78,11 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     if(!QLocale::system().name().compare("zh_CN", Qt::CaseInsensitive)
             || !QLocale::system().name().compare("zh_TW", Qt::CaseInsensitive)
             || !QLocale::system().name().compare("zh_HK", Qt::CaseInsensitive))
-        m_pCalendar->SetCalendarType((CLunarCalendar::_CalendarType)(CLunarCalendar::CalendarTypeLunar|CLunarCalendar::CalendarTypeSolar));
+        m_pCalendar->SetCalendarType(
+            (CLunarCalendar::_CalendarType)(static_cast<int>(CLunarCalendar::_CalendarType::CalendarTypeLunar)
+                              |static_cast<int>(CLunarCalendar::_CalendarType::CalendarTypeSolar)));
     else
-        m_pCalendar->SetCalendarType(CLunarCalendar::CalendarTypeSolar);
+        m_pCalendar->SetCalendarType(CLunarCalendar::_CalendarType::CalendarTypeSolar);
 #if defined (Q_OS_ANDROID)
     m_pCalendar->ShowHead(false);
 #else

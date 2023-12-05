@@ -1,5 +1,7 @@
 - v1.0.14
   + Add MimeType in org.Rabbit.Calendar.desktop
+  + Generate pkg-config file in RabbitCommonUtils.cmake
+  + Update LunarCalendar to [v0.3.0](https://github.com/KangLin/LunarCalendar/blob/v0.3.0/ChangeLog.md)
 
 - v1.0.13
   + FIX: DockDebugLog core dump. See: [RabbitCommon](https://github.com/KangLin/RabbitCommon/commit/af2e434e39af35876113436ead2a946efcf74199)
