@@ -45,23 +45,13 @@ if(NOT ANDROID AND UNIX)
         DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT Runtime)
 endif()
 
-if(Log4Qt_FOUND)
-    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_log4qt.conf)
-        configure_file(${CMAKE_SOURCE_DIR}/etc/Calendar_log4qt.conf
-            ${CMAKE_BINARY_DIR}/etc/Calendar_log4qt.conf
-            COPYONLY)
-    endif()
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/Calendar_log4qt.conf
-        DESTINATION etc COMPONENT Runtime)
-else()
-    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.conf)
-        configure_file(${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.conf
-            ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.conf
-            COPYONLY)
-    endif()
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.conf
-        DESTINATION etc COMPONENT Runtime)
+if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.ini)
+    configure_file(${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.ini
+        ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.ini
+        COPYONLY)
 endif()
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.ini
+    DESTINATION etc COMPONENT Runtime)
 
 set(OTHER_FILES
     ${CMAKE_SOURCE_DIR}/License.md
