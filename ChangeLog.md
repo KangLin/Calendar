@@ -1,3 +1,7 @@
+- v1.0.15
+  + CI
+    - Add sign for android package
+
 - v1.0.14
   + Add MimeType in org.Rabbit.Calendar.desktop
   + Generate pkg-config file in RabbitCommonUtils.cmake

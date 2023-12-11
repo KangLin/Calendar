@@ -1,3 +1,7 @@
+- v1.0.15
+  + 自动化编译
+    - 为 android 包增加签名
+
 - v1.0.14
   + 在　org.Rabbit.Calendar.desktop　中增加 MimeType
   + 在 RabbitCommonUtils.cmake 中产生 pkg-config 配置文件
