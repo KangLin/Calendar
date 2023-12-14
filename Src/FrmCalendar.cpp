@@ -131,7 +131,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_ToolBar.addAction(pAction);
     m_ToolBar.addSeparator();
 #if defined (Q_OS_ANDROID)
-    pAction = new QAction(QIcon(":/image/Today"), tr("Today"), this);
+    pAction = new QAction(QIcon::fromTheme("today"), tr("Today"), this);
     pAction->setStatusTip(tr("Today"));
     check = connect(pAction, SIGNAL(triggered()),
                     m_pCalendar, SLOT(soltShowToday()));
