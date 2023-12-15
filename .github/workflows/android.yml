@@ -36,7 +36,7 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.BUILD_TYPE}}
       Calendar_VERSION: v1.0.15
-      VCPKGGITCOMMITID: 980ec0f49d81f794778386f7bd518b2cc9c092f0
+      VCPKGGITCOMMITID: 6359372f3ca1e6072e302e1d7238f31b259c5b51
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
       qt_modules: 'qtimageformats qtmultimedia qtscxml'
