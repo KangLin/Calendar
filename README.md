@@ -41,6 +41,7 @@ Author: Kang Lin <kl222@126.com>
     - https://gitlab.com/kl222/Calendar
     - https://gitee.com/kl222/Calendar
     - https://sourceforge.net/projects/rabbitcalendar/
+    - https://invent.kde.org/kanglin/Calendar
 - [Project home](https://kanglin.github.io/Calendar/)
 
 ### Features

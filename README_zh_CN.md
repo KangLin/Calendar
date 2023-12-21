@@ -41,6 +41,7 @@
     - https://gitee.com/kl222/Calendar
     - https://gitlab.com/kl222/Calendar
     - https://sourceforge.net/projects/rabbitcalendar/
+    - https://invent.kde.org/kanglin/Calendar
 - [项目主页](https://kanglin.github.io/Calendar/)
 
 ### 功能
