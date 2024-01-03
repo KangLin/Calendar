@@ -49,6 +49,10 @@ int main(int argc, char *argv[])
     CTasksTools::Instance()->InitResource();
 #ifdef RABBITCOMMON
     RabbitCommon::CTools::Instance()->Init();
+    QStringList permissions("android.permission.VIBRATE");
+    permissions << "android.permission.ACCESS_FINE_LOCATION"
+                << "android.permission.BLUETOOTH";
+    RabbitCommon::CTools::Instance()->AndroidRequestPermission(permissions);
 #endif
     
     a.setApplicationDisplayName(QObject::tr("Calendar"));
