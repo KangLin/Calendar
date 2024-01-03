@@ -1,3 +1,7 @@
+- v1.0.16
+  + 增加 android 动态权限
+  + LunarCalendar v0.3.2
+
 - v1.0.15
   + 自动化编译
     - 为 android 包增加签名

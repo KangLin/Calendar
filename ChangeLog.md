@@ -1,3 +1,7 @@
+- v1.0.16
+  + Add android permissions
+  + LunarCalendar v0.3.2
+  
 - v1.0.15
   + CI
     - Add sign for android package
