@@ -30,13 +30,10 @@ void CTasksTools::InitTranslator()
     m_Translator.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
                       + "/Tasks_" + QLocale::system().name() + ".qm");
     qApp->installTranslator(&m_Translator);
-    
-    CLunarCalendar::InitResource();
 }
 
 void CTasksTools::CLeanTranslator()
 {
-    CLunarCalendar::CLeanResource();
     qApp->removeTranslator(&m_Translator);
 }
 

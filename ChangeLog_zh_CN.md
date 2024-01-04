@@ -1,6 +1,9 @@
+- v1.0.17
+  + 使用 LunarCalendar v1.0.0
+
 - v1.0.16
   + 增加 android 动态权限
-  + LunarCalendar v0.3.2
+  + 使用 LunarCalendar v0.3.2
 
 - v1.0.15
   + 自动化编译
