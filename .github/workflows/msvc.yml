@@ -87,7 +87,6 @@ jobs:
           key: cache-installed-msvc
 
       - name: Cache vcpkg
-        #if: false
         uses: actions/cache@v2
         id: cache-vcpkg
         with:
@@ -151,7 +150,7 @@ jobs:
           copy Calendar_Setup_${{env.Calendar_VERSION}}.exe Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe
 
       - name: Update xml file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.1' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
         working-directory: ${{github.workspace}}\build
         run: |
           .\install\bin\CalendarApp.exe ^
@@ -161,7 +160,7 @@ jobs:
                -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe;https://sourceforge.net/projects/rabbitcalendar/files/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.1' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
