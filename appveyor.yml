@@ -2,9 +2,12 @@
 version: 'v1.0.17.{build}'
 
 cache:
-  - Package
+  - ..\other_source
+# Clean cached
+# https://www.appveyor.com/docs/build-cache/#cleaning-up-cache
   
 environment:
+  CalendarVersion: v0.0.26
   STOREPASS:
     secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=
   QT_USER:
@@ -88,32 +91,55 @@ install:
   #- if "%BUILD_TARGERT%"=="windows_mingw" set PATH=C:\Qt\Tools\mingw%TOOLCHAIN_VERSION%_32\bin;%PATH%
   - if "%BUILD_TARGERT%" == "windows_mingw" set MSYSTEM=MINGW32  #设置编译系统为MINGW32
 
-before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - git submodule update --init --recursive
   - git clone https://github.com/KangLin/RabbitCommon.git
   - if "%BUILD_TARGERT%" == "android" C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build-install-tools-windows.sh
 
-build_script:
+before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - mkdir Tools
-  - cd Tools
-  - set CMAKE_VERSION=3.25.0
+  - set OTHER_SOURCE=%APPVEYOR_BUILD_FOLDER%\..\other_source
+  - set INSTALL_DIR=%OTHER_SOURCE%\install_dir
+  - set VCPKG_DIR=%OTHER_SOURCE%\vcpkg
+  - if not exist "%OTHER_SOURCE%" ( mkdir "%OTHER_SOURCE%" )
+
+  - cd %OTHER_SOURCE%
+  - set CMAKE_VERSION=3.26.4
   - if not exist cmake-%CMAKE_VERSION%-windows-i386 (curl -fsSL -o cmake-%CMAKE_VERSION%-windows-i386.zip https://github.com/Kitware/CMake/releases/download/v%CMAKE_VERSION%/cmake-%CMAKE_VERSION%-windows-i386.zip && 7z x cmake-%CMAKE_VERSION%-windows-i386.zip)
   - cd cmake-%CMAKE_VERSION%-windows-i386
   - set PATH="%CD%/bin";%PATH%
-  
+
+  - cd %OTHER_SOURCE%
+  - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
+  - cd %OTHER_SOURCE%
+  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 56765209ec0e92c58a5fd91aa09c46a16d660026 56765209ec0e92c58a5fd91aa09c46a16d660026 )
+  - cd %VCPKG_DIR%
+  - bootstrap-vcpkg.bat
+  #- vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl
+
+  - cd "%OTHER_SOURCE%"
+  - if exist RabbitCommon (rmdir /s /q "RabbitCommon")
+  - if not exist RabbitCommon (git clone "https://github.com/KangLin/RabbitCommon.git")
+  - set RabbitCommon_DIR=%OTHER_SOURCE%/RabbitCommon
+
+build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build.sh
+  - mkdir build
+  - cd build
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
+
+  #- echo "xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin"
+  #- xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin
+  #- xcopy /Y %INSTALL_DIR%\bin\*.dll install\bin
+  - call "C:\Program Files (x86)\NSIS\makensis.exe" Install.nsi
 
 artifacts:
-  - path: build_${BUILD_TARGERT}/Calendar_Setup_*.exe
+  - path: Calendar_Setup_*.exe
     #name: Calendar_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
     #type: zip
-    
-  #- path: build_${BUILD_TARGERT}/update_windows.xml
-  #- path: Calendar_*.apk
-  
+
 test: off
 
 ##See:https://www.appveyor.com/docs/deployment/github/

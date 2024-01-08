@@ -13,16 +13,12 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release]
-        qt_arch: [android_arm64_v8a, android_armv7, android_x86_64]
+        qt_arch: [android_arm64_v8a, android_x86_64]
         qt_version: [6.6.1]
         include:
           - BUILD_TYPE: Release
             qt_arch: android_arm64_v8a
-            VCPKG_TARGET_TRIPLET: arm-android
-
-          - BUILD_TYPE: Release
-            qt_arch: android_armv7
-            VCPKG_TARGET_TRIPLET: arm-android
+            VCPKG_TARGET_TRIPLET: arm64-android
 
           - BUILD_TYPE: Release
             qt_arch: android_x86_64 
@@ -34,9 +30,9 @@ jobs:
       artifact_name: build_android
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}/.cache/install
       Calendar_VERSION: v1.0.17
-      VCPKGGITCOMMITID: f1c6efee2245009540dde947e0e3d008f3aa7dbb
+      VCPKGGITCOMMITID: c9919121dde6f61c0436adda94624636e041226b
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
       qt_modules: 'qtimageformats qtmultimedia qtscxml'
@@ -65,7 +61,20 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: cache-installed-android-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}
+          key: cache-installed-android-qt${{matrix.qt_version}}-${{matrix.qt_arch}}-${{matrix.BUILD_TYPE}}
+
+      - name: run-vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
+          #setupOnly: # optional
+          #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
+          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+          
+      - name: run vcpkg
+        run: |
+          vcpkg install --triplet=${{matrix.VCPKG_TARGET_TRIPLET}}
 
       - name: Install Qt of gcc_64
         uses: jurplel/install-qt-action@v3
@@ -96,30 +105,6 @@ jobs:
           modules: '${{env.qt_modules}}' # optional. See: https://ddalcino.github.io/aqt-list-server/
           cache: true
           cache-key-prefix: install-qt-action
-
-      - name: Cache vcpkg
-        if: false
-        uses: actions/cache@v2
-        id: cache-vcpkg
-        with:
-          path: |
-            ${{ runner.workspace }}/vcpkg/
-          key: cache-vcpkg
-
-      - name: run-vcpkg
-        if: false
-        uses: lukka/run-vcpkg@v11
-        with:
-          # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
-          #setupOnly: # optional
-          #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
-          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
-          
-      - name: run vcpkg
-        if: false
-        run: |
-          vcpkg install --triplet=${{matrix.triplet}}
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
