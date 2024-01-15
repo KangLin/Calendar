@@ -17,7 +17,7 @@
 #ifdef RABBITCOMMON
     #include "RabbitCommonDir.h"
     #include "RabbitCommonTools.h"
-    #include "FrmUpdater/FrmUpdater.h"
+    #include "FrmUpdater.h"
 #endif
 
 int main(int argc, char *argv[])

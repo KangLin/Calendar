@@ -106,6 +106,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
 
 # Install xml files
 INSTALL_DIR(SOURCES ${CMAKE_SOURCE_DIR}/etc/
-    DESTINATION "etc/xml" COMPONENT Runtime)
+    DESTINATION "etc/xml"
+        COMPONENT Runtime)
 
 INSTALL_ICON_THEME()

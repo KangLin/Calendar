@@ -1,3 +1,6 @@
+- v1.0.18
+  + 修改 debian 打包
+
 - v1.0.17
   + 使用 LunarCalendar v1.0.0
 

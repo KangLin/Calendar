@@ -41,8 +41,9 @@ sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.git
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
 
-sed -i "s/^\Standards-Version:.*/\Standards-Version:\"${VERSION}\"/g" ${SOURCE_DIR}/debian/control
+
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
+sed -i "s/^\Standards-Version:.*/\Standards-Version: ${SOURCE_DIR}/g" ${SOURCE_DIR}/debian/control
 sed -i "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/debian/changelog
 sed -i "s/Version=.*/Version=${DEBIAN_VERSION}/g" ${SOURCE_DIR}/share/org.Rabbit.Calendar.desktop
 sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
@@ -52,6 +53,14 @@ sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DI
 if [ -f ${SOURCE_DIR}/vcpkg.json ]; then
     sed -i "s/\"version-string\":[0-9]\+\.[0-9]\+\.[0-9]\+\".*\"/\"version-string\":\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/vcpkg.json
 fi
+
+CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
+CHANGLOG_FILE=${SOURCE_DIR}/debian/changelog
+echo "rabbitremotecontrol (${DEBIAN_VERSION}) unstable; urgency=medium" > ${CHANGLOG_FILE}
+echo "" >> ${CHANGLOG_FILE}
+echo "`git log --pretty=format:'    * %s' ${PRE_TAG}..HEAD`" >> ${CHANGLOG_FILE}
+echo "" >> ${CHANGLOG_FILE}
+echo " -- `git log --pretty=format:'%an <%ae>' HEAD^..HEAD`  `date --rfc-email`" >> ${CHANGLOG_FILE}
 
 MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
 sed -i "s/android:versionCode=.*android/android:versionCode=\"${MAJOR_VERSION}\" android/g"  ${SOURCE_DIR}/App/android/AndroidManifest.xml

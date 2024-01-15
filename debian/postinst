@@ -25,7 +25,7 @@ case "$1" in
         chmod -R a+w $INSTALL_ROOT/log
         chmod -R a+w $INSTALL_ROOT/etc
 
-        if [ ! -d $INSTALL_ROOT/bin/log ]; then
+        if [ ! -d $INSTALL_ROOT/bin/log -a -d $INSTALL_ROOT/log ]; then
             ln -s $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         fi
         

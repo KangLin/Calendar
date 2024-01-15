@@ -9,7 +9,7 @@
 #include <QScrollBar>
 
 #ifdef RABBITCOMMON
-    #include "DlgAbout/DlgAbout.h"
+    #include "DlgAbout.h"
     #include "RabbitCommonDir.h"
     #include "FrmUpdater.h"
     #include "RabbitCommonTools.h"

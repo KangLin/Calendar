@@ -23,13 +23,15 @@ LIST(APPEND PRIVATE_DEFINITIONS
     Calendar_VERSION="${Calendar_VERSION}"
     BUILD_ARCH="${BUILD_ARCH}"
     BUILD_PLATFORM="${BUILD_PLATFORM}")
-
+if(NOT TARGET RabbitCommon)
+    message(FATAL_ERROR "----------------------------------------------")
+endif()
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS
     SOURCE_FILES ${SOURCE_FILES} ${HEAD_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     PRIVATE_DEFINITIONS RABBITCOMMON ${PRIVATE_DEFINITIONS}
-    PRIVATE_LIBS Tasks ${QT_LIBRARIES} RabbitCommon
+    PRIVATE_LIBS RabbitCommon LunarCalendar Tasks ${QT_LIBRARIES}
     VERSION ${Calendar_VERSION})
 
 if(WIN32)
@@ -38,11 +40,14 @@ endif()
 
 if(NOT ANDROID AND UNIX)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/org.Rabbit.Calendar.desktop
-        DESTINATION "share/applications" COMPONENT Runtime)
+        DESTINATION "share/applications"
+            COMPONENT Runtime)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Calendar.png
-        DESTINATION "share/pixmaps" COMPONENT Runtime)
+        DESTINATION "share/pixmaps"
+            COMPONENT Runtime)
     INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/Calendar.sh
-        DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT Runtime)
+        DESTINATION ${CMAKE_INSTALL_BINDIR}
+            COMPONENT Runtime)
 endif()
 
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.ini)

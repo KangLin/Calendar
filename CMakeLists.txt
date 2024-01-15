@@ -133,7 +133,11 @@ if(NOT Calendar_VERSION)
     set(Calendar_VERSION "v1.0.17")
 endif()
 set(VERSION ${Calendar_VERSION})
-add_subdirectory(3th_libs/LunarCalendar/Src)
+
+find_package(LunarCalendar)
+if(NOT LunarCalendar_FOUND)
+    add_subdirectory(3th_libs/LunarCalendar/Src)
+endif()
 add_subdirectory(Src)
 option(BUILD_APP "Set to ON to build applaction" ON)
 if(BUILD_APP)
@@ -141,8 +145,9 @@ if(BUILD_APP)
 endif(BUILD_APP)
 
 if(WIN32)
-    INSTALL(FILES Install/Install.nsi DESTINATION "${CMAKE_BINARY_DIR}"
-        COMPONENT Runtime)
+    INSTALL(FILES Install/Install.nsi
+        DESTINATION "${CMAKE_BINARY_DIR}"
+            COMPONENT Runtime)
 endif()
 
 message("Build arch:${BUILD_ARCH}")
