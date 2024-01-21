@@ -56,10 +56,9 @@ jobs:
               cmake build-essential \
               debhelper fakeroot graphviz \
               qt6-tools-dev qt6-tools-dev-tools \
-              qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
+              qt6-base-dev qt6-base-dev-tools \
               qt6-l10n-tools qt6-translations-l10n \
               qt6-scxml-dev qt6-webengine-dev qt6-webengine-dev-tools \
-              qt6-multimedia-dev \
               libsqlite3-dev
 
       - name: Cache installed
