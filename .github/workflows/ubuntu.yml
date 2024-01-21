@@ -59,6 +59,7 @@ jobs:
               qt6-base-dev qt6-base-dev-tools \
               qt6-l10n-tools qt6-translations-l10n \
               qt6-scxml-dev qt6-webengine-dev qt6-webengine-dev-tools \
+              qt6-multimedia-dev \
               libsqlite3-dev
 
       - name: Cache installed
