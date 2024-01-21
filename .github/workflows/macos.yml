@@ -70,10 +70,6 @@ jobs:
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
           vcpkgDirectory: ${{runner.workspace}}/vcpkg/
 
-      - name: run vcpkg
-        run: |
-          vcpkg install --triplet ${{matrix.triplet}}
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:

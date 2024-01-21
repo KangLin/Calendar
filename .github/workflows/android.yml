@@ -71,10 +71,6 @@ jobs:
           #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
-          
-      - name: run vcpkg
-        run: |
-          vcpkg install --triplet=${{matrix.VCPKG_TARGET_TRIPLET}}
 
       - name: Install Qt of gcc_64
         uses: jurplel/install-qt-action@v3
