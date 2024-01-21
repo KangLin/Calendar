@@ -43,7 +43,6 @@ sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.git
 
 
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
-sed -i "s/^\Standards-Version:.*/\Standards-Version: ${SOURCE_DIR}/g" ${SOURCE_DIR}/debian/control
 sed -i "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/debian/changelog
 sed -i "s/Version=.*/Version=${DEBIAN_VERSION}/g" ${SOURCE_DIR}/share/org.Rabbit.Calendar.desktop
 sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
