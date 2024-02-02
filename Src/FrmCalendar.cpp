@@ -39,7 +39,8 @@ CTasksHandler::~CTasksHandler()
 
 uint CTasksHandler::onHandle(const QDate &date, QStringList &tasks)
 {
-    return m_pFrmCalendar->onHandle(date, tasks);
+    if(m_pFrmCalendar)
+        return m_pFrmCalendar->onHandle(date, tasks);
 }
 
 CFrmCalendar::CFrmCalendar(QWidget *parent) :
@@ -387,10 +388,10 @@ int CFrmCalendar::onHandle(/*in*/const QDate& date, /*out*/QStringList& t)
         if(task)
         {
             const QMetaObject* pObj = task->metaObject();
-            if(QString("CTaskActivity") == pObj->className())
+            if(pObj && QString("CTaskActivity") == pObj->className())
             {
                 CTaskActivity* pTask = static_cast<CTaskActivity*>(task.data());
-                if(pTask->CheckDate(date) == 0)
+                if(pTask && pTask->CheckDate(date) == 0)
                 {
                     nCount++;
                     t << pTask->GetTitle();

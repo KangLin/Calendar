@@ -68,8 +68,11 @@ int main(int argc, char *argv[])
         }
     }
     pUpdate->SetInstallAutoStartup();
-    if(!pUpdate->GenerateUpdateXml()) 
-        return 0; 
+    if(a.arguments().length() > 1) {
+        pUpdate->GenerateUpdateJson();
+        pUpdate->GenerateUpdateXml();
+        return 0;
+    }
 #endif
 
     CMainWindow m;

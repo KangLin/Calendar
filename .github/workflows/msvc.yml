@@ -142,7 +142,8 @@ jobs:
         working-directory: ${{github.workspace}}\build
         run: |
           .\install\bin\CalendarApp.exe ^
-               -f "${{github.workspace}}\build\update_windows.xml" ^
+               -f "${{github.workspace}}\build\update_windows.json" ^
+               --foc 1 ^
                --pf ${{github.workspace}}\build\Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe ^
                -m "${{env.Calendar_VERSION}}" ^
                -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe;https://sourceforge.net/projects/rabbitcalendar/files/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe"

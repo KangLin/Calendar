@@ -88,8 +88,10 @@ jobs:
           MD5=`md5sum calendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb|awk '{print $1}'`
           echo "MD5:${MD5}"
           /opt/Calendar/bin/Calendar.sh \
-               -f "${{github.workspace}}/update_linux.xml" \
+               -f "${{github.workspace}}/update_ubuntu.json" \
+               --foc 1 \
                --md5 ${MD5} \
+               -n "rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb" \
                -m "${{env.Calendar_VERSION}}" \
                -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb"
 
