@@ -49,9 +49,9 @@ jobs:
 
       - name: Install apt packages
         run: |
-          sudo apt update
-          sudo apt upgrade
-          sudo apt install xvfb xpra \
+          sudo apt update -y
+          sudo apt upgrade -y
+          sudo apt install -y xvfb xpra \
               libglu1-mesa-dev libpulse-mainloop-glib0 \
               cmake build-essential \
               debhelper fakeroot graphviz \
@@ -79,13 +79,14 @@ jobs:
           ./build_debpackage.sh
           cp ../rabbitcalendar_${{env.Calendar_VERSION}}_amd64.deb rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb
 
-      - name: Update xml file
+      - name: Update configure file
+        if: ${{ matrix.BUILD_TYPE == 'Release'}}
         working-directory: ${{github.workspace}}
         run: |
           sudo Xvfb :99 -ac &
           export DISPLAY=:99.0
           sudo apt install ./rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb
-          MD5=`md5sum calendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb|awk '{print $1}'`
+          MD5=`md5sum rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb|awk '{print $1}'`
           echo "MD5:${MD5}"
           /opt/Calendar/bin/Calendar.sh \
                -f "${{github.workspace}}/update_ubuntu.json" \
@@ -95,6 +96,16 @@ jobs:
                -m "${{env.Calendar_VERSION}}" \
                -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb"
 
+      - name: Update version configure file
+        if: ${{ matrix.BUILD_TYPE == 'Release'}}
+        working-directory: ${{github.workspace}}
+        run: |
+          sudo Xvfb :99 -ac &
+          export DISPLAY=:99.0
+          /opt/Calendar/bin/Calendar.sh \
+               -f "${{github.workspace}}/version.json" \
+               --foc 0
+
       - name:  Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
@@ -102,4 +113,6 @@ jobs:
           name: ${{ env.artifact_name }}
           path: |
             ${{github.workspace}}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu_amd64.deb
-            ${{github.workspace}}/update_linux.xml
+            ${{github.workspace}}/update_ubuntu.json.xml
+            ${{github.workspace}}/update_ubuntu.json
+            ${{github.workspace}}/version.json

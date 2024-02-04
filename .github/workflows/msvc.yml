@@ -137,12 +137,20 @@ jobs:
           makensis Install.nsi
           copy Calendar_Setup_${{env.Calendar_VERSION}}.exe Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe
 
-      - name: Update xml file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
+#      - name: Update version configure file
+#        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
+#        working-directory: ${{github.workspace}}\build
+#        run: |
+#          .\install\bin\CalendarApp.exe ^
+#             -f "${{github.workspace}}\build\version.json" ^
+#             --foc 0
+
+      - name: Update configure file
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{github.workspace}}\build
         run: |
           .\install\bin\CalendarApp.exe ^
-               -f "${{github.workspace}}\build\update_windows.json" ^
+               -f "${{github.workspace}}\build\update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json" ^
                --foc 1 ^
                --pf ${{github.workspace}}\build\Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe ^
                -m "${{env.Calendar_VERSION}}" ^
@@ -155,4 +163,5 @@ jobs:
           name: ${{ env.artifact_name }}
           path: |
             ${{github.workspace}}\build\Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.exe
-            ${{github.workspace}}\build\update_windows.xml
+            ${{github.workspace}}\build\update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json
+            ${{github.workspace}}\build\update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json.xml

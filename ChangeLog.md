@@ -1,5 +1,6 @@
 - v1.0.18
   + Modify debian package
+  + Use the new update of RabbitCommon v2.0.0 
 
 - v1.0.17
   + Use LunarCalendar v1.0.0

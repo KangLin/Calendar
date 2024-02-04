@@ -1,5 +1,6 @@
 - v1.0.18
   + 修改 debian 打包
+  + 使用 RabbitCommon v2.0.0 的新的更新功能
 
 - v1.0.17
   + 使用 LunarCalendar v1.0.0

@@ -23,9 +23,6 @@ LIST(APPEND PRIVATE_DEFINITIONS
     Calendar_VERSION="${Calendar_VERSION}"
     BUILD_ARCH="${BUILD_ARCH}"
     BUILD_PLATFORM="${BUILD_PLATFORM}")
-if(NOT TARGET RabbitCommon)
-    message(FATAL_ERROR "----------------------------------------------")
-endif()
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS
