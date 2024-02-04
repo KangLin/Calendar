@@ -35,7 +35,7 @@ if(WIN32)
     INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Runtime)
 endif()
 
-if(NOT ANDROID AND UNIX)
+if(NOT ANDROID AND (UNIX OR IOS))
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/org.Rabbit.Calendar.desktop
         DESTINATION "share/applications"
             COMPONENT Runtime)
