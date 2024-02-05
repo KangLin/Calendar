@@ -130,7 +130,7 @@ GET_VERSION(OUT_VERSION Calendar_VERSION
     OUT_REVISION Calendar_REVISION)
 message("Calendar_VERSION:${Calendar_VERSION}; Calendar_REVISION:${Calendar_REVISION}")
 if(NOT Calendar_VERSION)
-    set(Calendar_VERSION "v1.0.17")
+    set(Calendar_VERSION "v1.0.18")
 endif()
 set(VERSION ${Calendar_VERSION})
 

@@ -40,7 +40,7 @@ sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.git
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
-
+sed -i "s/          \"version\":[[:blank:]]*\"v\?[0-9]\+\.[0-9]\+\.[0-9]\+\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
 
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
 sed -i "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/debian/changelog

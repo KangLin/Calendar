@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v1.0.17.{build}'
+version: 'v1.0.18.{build}'
 
 cache:
   - ..\other_source

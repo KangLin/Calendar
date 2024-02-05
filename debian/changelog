@@ -1,5 +1,5 @@
-rabbitcalendar (1.0.17) unstable; urgency=medium
+rabbitcalendar (1.0.18) unstable; urgency=medium
 
-  * Modify debian package
 
- -- Kang Lin <kl222@126.com>  Sat, 20 Apr 2019 19:53:02 -0700
+
+ -- Kang Lin <kl222@126.com>  Mon, 05 Feb 2024 15:04:19 +0800
