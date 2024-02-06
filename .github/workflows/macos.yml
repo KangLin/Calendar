@@ -18,6 +18,7 @@ jobs:
         BUILD_TYPE: [Release, Debug]
         qt_version: [6.6.1, 5.15.2, 5.12.12]
         qt_arch: [clang_64]
+        config_arch: [x86_64]
         VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
           - qt_version: 6.6.1
@@ -103,25 +104,23 @@ jobs:
           7z a Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip ./install/*
 
       - name: Update configure file
-        if: false  # ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{github.workspace}}/build
         run: |
-          ./install/bin/Calendar.sh \
-               -f "${{github.workspace}}/update_macos.${{matrix.qt_version}}.json" \
-               --foc 1 \
-               --md5 ${MD5} \
-               -n "Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip" \
-               -m "${{env.Calendar_VERSION}}" \
-               -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip"
+          ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
+               "${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json" \
+               Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip \
+               macos ${{matrix.config_arch}} \
+               "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.1' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
           path: |
             ${{github.workspace}}/build/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip
-            ${{github.workspace}}/update_macos.${{matrix.qt_version}}.json
+            ${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json
 
 #    - name: Upload To Github Release
 #      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}

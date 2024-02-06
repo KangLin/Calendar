@@ -83,12 +83,3 @@ jobs:
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
           copy /Y C:\msys64\mingw64\bin\*.dll install\bin
           makensis Install.nsi
-
-      - name: Update artifact
-        #if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '5.12.12' }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.artifact_name }}
-          path: |
-            ${{github.workspace}}\build\Calendar_mingw_${{matrix.BUILD_TYPE}}.zip
-      

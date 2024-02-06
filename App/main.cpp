@@ -30,15 +30,15 @@ int main(int argc, char *argv[])
     && QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QtAndroid::hideSplashScreen();
 #endif
-    
+
     QApplication a(argc, argv);
     a.setApplicationVersion(Calendar_VERSION);
     a.setApplicationName("Calendar");
-    
+
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
 
-    QTranslator tApp, tTasks, tLunarCalendar;
+    QTranslator tApp;
     bool bRet = tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
               + QDir::separator() + a.applicationName() + "App_"
               + QLocale::system().name() + ".qm");
@@ -54,9 +54,9 @@ int main(int argc, char *argv[])
                 << "android.permission.BLUETOOTH";
     RabbitCommon::CTools::Instance()->AndroidRequestPermission(permissions);
 #endif
-    
+
     a.setApplicationDisplayName(QObject::tr("Calendar"));
-    
+
 #ifdef RABBITCOMMON
     CFrmUpdater *pUpdate = new CFrmUpdater();
     QIcon icon = QIcon::fromTheme("calendar");

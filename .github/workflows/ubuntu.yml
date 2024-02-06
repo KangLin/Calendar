@@ -105,7 +105,8 @@ jobs:
           export DISPLAY=:99.0
           /opt/Calendar/bin/Calendar.sh \
                -f "${{github.workspace}}/version.json" \
-               --foc 0
+               --foc 0 \
+               --pv ${{env.Calendar_VERSION}}
 
       - name:  Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
