@@ -82,6 +82,8 @@ build_script:
         -DVCPKG_APPLOCAL_DEPS=ON
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
+  - if "%BUILD_ARCH%" == "x86" (copy /Y c:\OpenSSL-Win32\bin\ssleay32.dll install\bin && copy /Y c:\OpenSSL-Win32\bin\libeay32.dll install\bin)
+  - if "%BUILD_ARCH%" == "x64" (copy /Y c:\OpenSSL-Win64\bin\ssleay32.dll install\bin && copy /Y c:\OpenSSL-Win64\bin\libeay32.dll install\bin)
   - makensis Install.nsi
   - RENAME Calendar_Setup_%CalendarVersion%.exe Calendar_%CalendarVersion%_windows_xp_%BUILD_ARCH%_Setup.exe
 
