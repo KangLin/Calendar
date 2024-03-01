@@ -49,7 +49,7 @@ sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/App/andro
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos.yml
 if [ -f ${SOURCE_DIR}/vcpkg.json ]; then
-    sed -i "s/\"version-string\":[0-9]\+\.[0-9]\+\.[0-9]\+\".*\"/\"version-string\":\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/vcpkg.json
+    sed -i "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg.json
 fi
 
 CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
