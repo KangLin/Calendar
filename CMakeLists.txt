@@ -144,12 +144,6 @@ if(BUILD_APP)
     add_subdirectory(App)
 endif(BUILD_APP)
 
-if(WIN32)
-    INSTALL(FILES Install/Install.nsi
-        DESTINATION "${CMAKE_BINARY_DIR}"
-            COMPONENT Runtime)
-endif()
-
 message("Build arch:${BUILD_ARCH}")
 message("Build app:${BUILD_APP}")
 message("Build shared library:${BUILD_SHARED_LIBS}")
