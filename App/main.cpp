@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QTranslator>
 #include <QLocale>
-#include <QDebug>
+#include <QLoggingCategory>
 #include <QSettings>
 #include <QDir>
 #if defined(Q_OS_ANDROID) \
@@ -19,6 +19,9 @@
     #include "RabbitCommonTools.h"
     #include "FrmUpdater.h"
 #endif
+#include "LunarCalendar.h"
+
+static Q_LOGGING_CATEGORY(log, "Rabbit.LunarCalendar")
 
 int main(int argc, char *argv[])
 {
@@ -44,7 +47,7 @@ int main(int argc, char *argv[])
               + QLocale::system().name() + ".qm");
     if(bRet)
         a.installTranslator(&tApp);
-    qInfo() << "Language:" << QLocale::system().name();
+    qInfo(log) << "Language:" << QLocale::system().name();
 
     CTasksTools::Instance()->InitResource();
 #ifdef RABBITCOMMON
@@ -56,6 +59,17 @@ int main(int argc, char *argv[])
 #endif
 
     a.setApplicationDisplayName(QObject::tr("Calendar"));
+    
+    qInfo(log) << QObject::tr("Calendar version: ") + Calendar_VERSION
+#ifdef Calendar_REVISION
+               + " (Revision: [" + Calendar_REVISION
+                      + "](https://github.com/KangLin/"
+                      + a.applicationName() +"/tree/"
+                      + Calendar_REVISION + "))"
+#endif
+               + "; " + QObject::tr("LunarCalendar: ") + CLunarCalendar::Version()
+               + "; " + QObject::tr("Rabbit Common: ") + RabbitCommon::CTools::Version();
+        ;
 
 #ifdef RABBITCOMMON
     CFrmUpdater *pUpdate = new CFrmUpdater();

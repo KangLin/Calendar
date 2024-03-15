@@ -15,6 +15,7 @@
     #include "RabbitCommonTools.h"
     #include "FrmStyle.h"
 #endif
+#include "LunarCalendar.h"
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -126,6 +127,8 @@ void CMainWindow::slotAbout()
     about.m_szBuildTime = QString("%1/%2").arg(__DATE__, __TIME__);
     about.m_szCopyrightStartTime = "2019";
     about.m_szVersionRevision = Calendar_REVISION;
+    about.m_szDetails = "### " + QObject::tr("LunarCalendar: ") + QString("\n")
+                        + "  - " + CLunarCalendar::Version();
     if(about.isHidden())
 #if defined (Q_OS_ANDROID)
         about.showMaximized();
