@@ -117,7 +117,7 @@ jobs:
                "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.2' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}

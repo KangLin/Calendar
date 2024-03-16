@@ -78,6 +78,7 @@ build_script:
         -DCMAKE_INSTALL_PREFIX="%cd%/install" ^
         -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" ^
         -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" ^
+        -DVCPKG_MANIFEST_DIR="%APPVEYOR_BUILD_FOLDER%/vcpkg/manifests" ^
         -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
         -DVCPKG_APPLOCAL_DEPS=ON
   - cmake --build . --config Release
@@ -95,20 +96,20 @@ artifacts:
 test: off
 
 #See:https://www.appveyor.com/docs/deployment/github/
-deploy:
-  - provider: GitHub
-    #release: Tasks$(appveyor_build_version)
-    #description: 'Release Tasks $(APPVEYOR_REPO_TAG_NAME) on windows'
-    #token : https://github.com/settings/tokens
-    #password encrypt: https://ci.appveyor.com/tools/encrypt
-    auth_token:
-      secure: aPr1U6S1RtXZiK2mCWtAAIOMjuiBR0yPsD2kaYIADtx2ulIitdp336kFqmfKwM9x
-    #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
-    #draft: true
-    #prerelease: true
-    force_update: true
-    on:
-      TOOLCHAIN_VERSION: 14
-      QT_VERSION: 5.6.3
-      BUILD_ARCH: x86
-      appveyor_repo_tag: true        # deploy on tag push only
+#deploy:
+#  - provider: GitHub
+#    #release: Tasks$(appveyor_build_version)
+#    #description: 'Release Tasks $(APPVEYOR_REPO_TAG_NAME) on windows'
+#    #token : https://github.com/settings/tokens
+#    #password encrypt: https://ci.appveyor.com/tools/encrypt
+#    auth_token:
+#      secure: aPr1U6S1RtXZiK2mCWtAAIOMjuiBR0yPsD2kaYIADtx2ulIitdp336kFqmfKwM9x
+#    #artifact: Tasks$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
+#    #draft: true
+#    #prerelease: true
+#    force_update: true
+#    on:
+#      TOOLCHAIN_VERSION: 14
+#      QT_VERSION: 5.6.3
+#      BUILD_ARCH: x86
+#      appveyor_repo_tag: true        # deploy on tag push only
