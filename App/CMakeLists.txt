@@ -32,19 +32,19 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     VERSION ${Calendar_VERSION})
 
 if(WIN32)
-    INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Runtime)
+    INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Application)
 endif()
 
 if(NOT ANDROID AND (UNIX OR IOS))
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/org.Rabbit.Calendar.desktop
         DESTINATION "share/applications"
-            COMPONENT Runtime)
+            COMPONENT Application)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Calendar.png
         DESTINATION "share/pixmaps"
-            COMPONENT Runtime)
+            COMPONENT Application)
     INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/Calendar.sh
         DESTINATION ${CMAKE_INSTALL_BINDIR}
-            COMPONENT Runtime)
+            COMPONENT Application)
 endif()
 
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.ini)
@@ -53,7 +53,7 @@ if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.ini)
         COPYONLY)
 endif()
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.ini
-    DESTINATION etc COMPONENT Runtime)
+    DESTINATION etc COMPONENT Application)
 
 set(OTHER_FILES
     ${CMAKE_SOURCE_DIR}/License.md
@@ -65,10 +65,10 @@ set(OTHER_FILES
 # Install other files
 INSTALL_FILE(SOURCES ${OTHER_FILES}
     DESTINATION ${CMAKE_INSTALL_DOCDIR}
-        COMPONENT Runtime)
+        COMPONENT Application)
 
 if(WIN32)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/Install/Install.nsi
         DESTINATION "${CMAKE_BINARY_DIR}"
-            COMPONENT Runtime)
+            COMPONENT Application)
 endif()
