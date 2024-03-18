@@ -15,16 +15,29 @@ export DH_VERBOSE = 1
 #export QT_SELECT=qt5
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+BUILD_DIR = "build_$(DEB_HOST_MULTIARCH)"
+PACKAGE_DIR = "debian/rabbitcalendar"
+PACKAGE_dev_DIR = "debian/rabbitcalendar-dev"
 
 %:
 	dh $@
 
+# Debian 维护者指南: https://www.debian.org/doc/manuals/debmake-doc/index.zh-cn.html
+# Debian 新维护者手册: https://www.debian.org/doc/manuals/maint-guide/dreq.zh-cn.html#rules
 # https://www.debian.org/doc/manuals/maint-guide/dreq.zh-cn.html#rules
 # This is example for Cmake (See https://bugs.debian.org/641051 )
 override_dh_auto_configure:
-	dh_auto_configure -- \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_INSTALL_PREFIX=/opt/Calendar
+	dh_auto_configure -B$(BUILD_DIR) -- \
+            -DCMAKE_BUILD_TYPE=Release
 
-override_dh_shlibdeps:
-	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/rabbitcalendar/opt/Calendar/lib:`pwd`/debian/rabbitcalendar/opt/Calendar/lib/`uname -m`-linux-gnu:$(LIB_PARAS)
+override_dh_auto_build:
+	cmake --build $(BUILD_DIR) --config Release --parallel $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`", `cat /proc/cpuinfo |grep 'cpu cores' |wc -l`, 1)
+
+override_dh_auto_install:
+	cmake --install $(BUILD_DIR) --config Release \
+		--component Runtime --prefix $(PACKAGE_DIR)/opt/Calendar
+	cmake --install $(BUILD_DIR) --config Release \
+		--component Application --prefix $(PACKAGE_DIR)/opt/Calendar
+
+override_dh_builddeb:
+	dh_builddeb --package=rabbitcalendar -P$(PACKAGE_DIR)

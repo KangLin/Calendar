@@ -1,3 +1,6 @@
+- v1.0.20
+  - 使用 VCPKG_MANIFEST_DIR 重载 openssl 1.1
+
 - v1.0.19
   - 修改 Change log 等文档位置，详见：RabbitCommon v2.1.0
 

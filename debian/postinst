@@ -47,10 +47,10 @@ case "$1" in
         fi
         #echo "${INSTALL_ROOT}/lib" > /etc/ld.so.conf.d/Calendar.conf
         #echo "${INSTALL_ROOT}/bin" >> /etc/ld.so.conf.d/Calendar.conf
-        export QT_VERSION_DIR=
-        if [ -n "${QT_VERSION_DIR}" ]; then
-            echo "/opt/qt${QT_VERSION_DIR}/lib" >> /etc/ld.so.conf.d/FaceRecognizer.conf
-        fi
+        #export QT_VERSION_DIR=
+        #if [ -n "${QT_VERSION_DIR}" ]; then
+        #    echo "/opt/qt${QT_VERSION_DIR}/lib" >> /etc/ld.so.conf.d/Calendar.conf
+        #fi
         ldconfig
     ;;
 
