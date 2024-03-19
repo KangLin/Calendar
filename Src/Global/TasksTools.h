@@ -3,6 +3,8 @@
 
 #include <QTranslator>
 #include <QString>
+#include <QTranslator>
+#include <QSharedPointer>
 #include "tasks_export.h"
 
 class TASKS_EXPORT CTasksTools
@@ -21,7 +23,7 @@ public:
     static int ScreenSaver(bool bSaver);
     
 private:
-    QTranslator m_Translator;
+    QSharedPointer<QTranslator> m_Translator;
         
     void InitTranslator();
     void CLeanTranslator();

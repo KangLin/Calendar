@@ -10,6 +10,7 @@
 
 #include "LunarCalendar.h"
 #include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
 
 CTasksTools::CTasksTools()
 {}
@@ -27,14 +28,12 @@ CTasksTools* CTasksTools::Instance()
 
 void CTasksTools::InitTranslator()
 {
-    m_Translator.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
-                      + "/Tasks_" + QLocale::system().name() + ".qm");
-    qApp->installTranslator(&m_Translator);
+    m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator("Tasks");
 }
 
 void CTasksTools::CLeanTranslator()
 {
-    qApp->removeTranslator(&m_Translator);
+    RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
 }
 
 void CTasksTools::InitResource()

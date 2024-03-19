@@ -14,11 +14,9 @@
 #include "FrmStickyNotes.h"
 #include "FrmStickyList.h"
 #include "Global/TasksTools.h"
-#ifdef RABBITCOMMON
-    #include "RabbitCommonDir.h"
-    #include "RabbitCommonTools.h"
-    #include "FrmUpdater.h"
-#endif
+#include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
+#include "FrmUpdater.h"
 #include "LunarCalendar.h"
 
 static Q_LOGGING_CATEGORY(log, "Rabbit.LunarCalendar")
@@ -38,25 +36,16 @@ int main(int argc, char *argv[])
     a.setApplicationVersion(Calendar_VERSION);
     a.setApplicationName("Calendar");
 
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
-                  QSettings::IniFormat);
-
-    QTranslator tApp;
-    bool bRet = tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
-              + QDir::separator() + a.applicationName() + "App_"
-              + QLocale::system().name() + ".qm");
-    if(bRet)
-        a.installTranslator(&tApp);
-    qInfo(log) << "Language:" << QLocale::system().name();
-
-    CTasksTools::Instance()->InitResource();
-#ifdef RABBITCOMMON
     RabbitCommon::CTools::Instance()->Init();
+
     QStringList permissions("android.permission.VIBRATE");
     permissions << "android.permission.ACCESS_FINE_LOCATION"
                 << "android.permission.BLUETOOTH";
     RabbitCommon::CTools::Instance()->AndroidRequestPermission(permissions);
-#endif
+    
+    RabbitCommon::CTools::Instance()->InstallTranslator("CalendarApp");
+
+    CTasksTools::Instance()->InitResource();
 
     a.setApplicationDisplayName(QObject::tr("Calendar"));
     
@@ -71,7 +60,6 @@ int main(int argc, char *argv[])
                + "; " + QObject::tr("Rabbit Common: ") + RabbitCommon::CTools::Version();
         ;
 
-#ifdef RABBITCOMMON
     CFrmUpdater *pUpdate = new CFrmUpdater();
     QIcon icon = QIcon::fromTheme("calendar");
     if(!icon.isNull()) {
@@ -87,12 +75,13 @@ int main(int argc, char *argv[])
         pUpdate->GenerateUpdateXml();
         return 0;
     }
-#endif
 
     CMainWindow m;
 #if defined(Q_OS_ANDROID)
     m.showMaximized();
 #else
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
     bool bShow = set.value("Options/MainWindow/Show", false).toBool();
     if(bShow)
         m.show();
@@ -100,12 +89,8 @@ int main(int argc, char *argv[])
 
     int nRet = a.exec();
 
-#ifdef RABBITCOMMON
     RabbitCommon::CTools::Instance()->Clean();
-#endif
 
-    if(bRet)
-        a.removeTranslator(&tApp);
     CTasksTools::Instance()->CleanResource();
     return nRet;
 }
