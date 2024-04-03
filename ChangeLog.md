@@ -1,6 +1,6 @@
 - v1.0.20
   - Use VCPKG_MANIFEST_DIR overlay openssl 1.1
-  - Use [RabbitCommon v2.2.0](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.0)
+  - Use [RabbitCommon v2.2.1](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.1)
 
 - v1.0.19
   - Modify Change log etc documents install position. See RabbitCommon v2.1.0
