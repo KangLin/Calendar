@@ -129,7 +129,9 @@ jobs:
               -DVCPKG_VERBOSE=ON ^
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
               -DVCPKG_APPLOCAL_DEPS=ON ^
-              -DINSTALL_QT=ON ^
+              -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON ^
+              -DRABBIT_ENABLE_INSTALL_QT=ON ^
+              -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=OFF
               -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
           cmake --build . --config ${{ matrix.BUILD_TYPE }}
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
