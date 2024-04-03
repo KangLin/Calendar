@@ -31,10 +31,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     PRIVATE_LIBS RabbitCommon LunarCalendar Tasks ${QT_LIBRARIES}
     VERSION ${Calendar_VERSION})
 
-if(WIN32)
-    INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Application)
-endif()
-
 if(NOT ANDROID AND (UNIX OR IOS))
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/org.Rabbit.Calendar.desktop
         DESTINATION "share/applications"
@@ -68,7 +64,8 @@ INSTALL_FILE(SOURCES ${OTHER_FILES}
         COMPONENT Application)
 
 if(WIN32)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/Install/Install.nsi
-        DESTINATION "${CMAKE_BINARY_DIR}"
-            COMPONENT Application)
+    # 替换 Install.nsi 中的 CMAKE_INSTALL_PREFIX 等
+    configure_file(${CMAKE_SOURCE_DIR}/Install/Install.nsi
+        ${CMAKE_BINARY_DIR}/Install.nsi @ONLY)
+    INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Application)
 endif()
