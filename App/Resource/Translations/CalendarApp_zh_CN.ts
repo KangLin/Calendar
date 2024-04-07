@@ -49,79 +49,98 @@
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="60"/>
+        <location filename="../../MainWindow.ui" line="57"/>
         <source>About(&amp;A)</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
+        <location filename="../../MainWindow.ui" line="60"/>
         <location filename="../../MainWindow.ui" line="63"/>
         <location filename="../../MainWindow.ui" line="66"/>
-        <location filename="../../MainWindow.ui" line="69"/>
-        <location filename="../../MainWindow.cpp" line="37"/>
+        <location filename="../../MainWindow.cpp" line="43"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="78"/>
+        <location filename="../../MainWindow.ui" line="75"/>
         <source>Exit(&amp;E)</source>
         <translation>退出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="87"/>
+        <location filename="../../MainWindow.ui" line="84"/>
         <source>Option(&amp;O)</source>
         <translation>选项(&amp;O)</translation>
     </message>
     <message>
+        <location filename="../../MainWindow.ui" line="87"/>
         <location filename="../../MainWindow.ui" line="90"/>
         <location filename="../../MainWindow.ui" line="93"/>
-        <location filename="../../MainWindow.ui" line="96"/>
         <source>Option</source>
         <translation>选项</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="114"/>
         <source>Style</source>
-        <translation>样式</translation>
+        <translation type="vanished">样式</translation>
     </message>
     <message>
         <source>Default(&amp;D)</source>
         <translation type="vanished">默认(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="105"/>
+        <location filename="../../MainWindow.ui" line="102"/>
         <source>Update(&amp;U)</source>
         <translation>更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="28"/>
+        <location filename="../../MainWindow.cpp" line="34"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="32"/>
-        <location filename="../../MainWindow.cpp" line="166"/>
+        <location filename="../../MainWindow.cpp" line="38"/>
+        <location filename="../../MainWindow.cpp" line="175"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="34"/>
-        <location filename="../../MainWindow.cpp" line="170"/>
-        <location filename="../../MainWindow.cpp" line="239"/>
+        <location filename="../../MainWindow.cpp" line="40"/>
+        <location filename="../../MainWindow.cpp" line="179"/>
+        <location filename="../../MainWindow.cpp" line="248"/>
         <source>Show</source>
         <translation>显示</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="40"/>
+        <location filename="../../MainWindow.cpp" line="46"/>
         <source>Enable run from boot</source>
         <translation>允许开户自启动</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="130"/>
+        <source>LunarCalendar: </source>
+        <translation>农历库：</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="53"/>
+        <location filename="../../main.cpp" line="50"/>
         <source>Calendar</source>
         <translation>日历</translation>
+    </message>
+    <message>
+        <location filename="../../main.cpp" line="52"/>
+        <source>Calendar version: </source>
+        <translation>日历版本：</translation>
+    </message>
+    <message>
+        <location filename="../../main.cpp" line="59"/>
+        <source>LunarCalendar: </source>
+        <translation>农历库：</translation>
+    </message>
+    <message>
+        <location filename="../../main.cpp" line="60"/>
+        <source>Rabbit Common: </source>
+        <translation>玉兔公共库</translation>
     </message>
 </context>
 </TS>

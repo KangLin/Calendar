@@ -153,99 +153,99 @@
 <context>
     <name>CFrmCalendar</name>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="52"/>
+        <location filename="../../FrmCalendar.cpp" line="53"/>
         <source>Calendar</source>
         <translation>日歷</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="97"/>
-        <location filename="../../FrmCalendar.cpp" line="98"/>
+        <location filename="../../FrmCalendar.cpp" line="100"/>
+        <location filename="../../FrmCalendar.cpp" line="101"/>
         <source>Open</source>
         <translation>打開</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="102"/>
-        <location filename="../../FrmCalendar.cpp" line="103"/>
+        <location filename="../../FrmCalendar.cpp" line="105"/>
+        <location filename="../../FrmCalendar.cpp" line="106"/>
         <source>Save As</source>
         <translation>另存為</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="109"/>
-        <location filename="../../FrmCalendar.cpp" line="110"/>
-        <location filename="../../FrmCalendar.cpp" line="364"/>
+        <location filename="../../FrmCalendar.cpp" line="112"/>
+        <location filename="../../FrmCalendar.cpp" line="113"/>
+        <location filename="../../FrmCalendar.cpp" line="367"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="114"/>
-        <location filename="../../FrmCalendar.cpp" line="115"/>
-        <location filename="../../FrmCalendar.cpp" line="367"/>
+        <location filename="../../FrmCalendar.cpp" line="117"/>
+        <location filename="../../FrmCalendar.cpp" line="118"/>
+        <location filename="../../FrmCalendar.cpp" line="370"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="119"/>
-        <location filename="../../FrmCalendar.cpp" line="120"/>
-        <location filename="../../FrmCalendar.cpp" line="126"/>
-        <location filename="../../FrmCalendar.cpp" line="370"/>
+        <location filename="../../FrmCalendar.cpp" line="122"/>
+        <location filename="../../FrmCalendar.cpp" line="123"/>
+        <location filename="../../FrmCalendar.cpp" line="129"/>
+        <location filename="../../FrmCalendar.cpp" line="373"/>
         <source>Modify</source>
         <translation>修改</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="125"/>
+        <location filename="../../FrmCalendar.cpp" line="128"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="132"/>
-        <location filename="../../FrmCalendar.cpp" line="133"/>
+        <location filename="../../FrmCalendar.cpp" line="135"/>
+        <location filename="../../FrmCalendar.cpp" line="136"/>
         <source>Today</source>
         <translation>今天</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="139"/>
-        <location filename="../../FrmCalendar.cpp" line="140"/>
+        <location filename="../../FrmCalendar.cpp" line="142"/>
+        <location filename="../../FrmCalendar.cpp" line="143"/>
         <source>Week</source>
         <translation>周</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="147"/>
-        <location filename="../../FrmCalendar.cpp" line="148"/>
+        <location filename="../../FrmCalendar.cpp" line="150"/>
+        <location filename="../../FrmCalendar.cpp" line="151"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="176"/>
+        <location filename="../../FrmCalendar.cpp" line="179"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="177"/>
+        <location filename="../../FrmCalendar.cpp" line="180"/>
         <source>The calendar is changed, is it save?</source>
         <translation>日歷改變，是否保存？</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="245"/>
+        <location filename="../../FrmCalendar.cpp" line="248"/>
         <source>Load</source>
         <translation>加載</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="245"/>
+        <location filename="../../FrmCalendar.cpp" line="248"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="254"/>
+        <location filename="../../FrmCalendar.cpp" line="257"/>
         <source>Save as ...</source>
         <translation>另存為 ……</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="308"/>
+        <location filename="../../FrmCalendar.cpp" line="311"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmCalendar.cpp" line="308"/>
+        <location filename="../../FrmCalendar.cpp" line="311"/>
         <source>Is sure delete ?</source>
         <translation>確定刪除？</translation>
     </message>
