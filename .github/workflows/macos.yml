@@ -114,7 +114,7 @@ jobs:
                "${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json" \
                Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip \
                macos ${{matrix.config_arch}} \
-               "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip"
+               "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip,https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip"
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.2' }}
