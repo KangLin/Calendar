@@ -72,7 +72,6 @@ CMainWindow::CMainWindow(QWidget *parent) :
         pScrollArea->viewport()->setAttribute(Qt::WA_AcceptTouchEvents);
         m_Table.addTab(pScrollArea, m_frmCalendar.windowIcon(),
                        m_frmCalendar.windowTitle());
-        
     }
     pScrollArea = new QScrollArea(&m_Table);
     if(pScrollArea)
@@ -225,7 +224,8 @@ void CMainWindow::on_actionOption_O_triggered()
 #if defined (Q_OS_ANDROID)
     dlg.showMaximized();
 #endif
-    dlg.exec();
+    if(QDialog::Accepted == dlg.exec())
+        m_frmCalendar.slotCalendarType();
 }
 
 void CMainWindow::on_actionSticky_list_L_triggered()

@@ -22,7 +22,10 @@ public:
     virtual ~CFrmCalendar();
 
     virtual int onHandle(const QDate &date, QStringList &t);
-
+    
+public Q_SLOTS:
+    void slotCalendarType();
+    
 private Q_SLOTS:
     void slotSelectionChanged();
     void slotLoad();

@@ -76,14 +76,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
                                    new CTasksHandler(this)));
     m_pCalendar->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     //m_pCalendar->SetViewType(CLunarCalendar::ViewTypeWeek);
-    if(!QLocale::system().name().compare("zh_CN", Qt::CaseInsensitive)
-            || !QLocale::system().name().compare("zh_TW", Qt::CaseInsensitive)
-            || !QLocale::system().name().compare("zh_HK", Qt::CaseInsensitive))
-        m_pCalendar->SetCalendarType(
-            (CLunarCalendar::_CalendarType)(static_cast<int>(CLunarCalendar::_CalendarType::CalendarTypeLunar)
-                              |static_cast<int>(CLunarCalendar::_CalendarType::CalendarTypeSolar)));
-    else
-        m_pCalendar->SetCalendarType(CLunarCalendar::_CalendarType::CalendarTypeSolar);
+    slotCalendarType();
 #if defined (Q_OS_ANDROID)
     m_pCalendar->ShowHead(false);
 #else
@@ -162,7 +155,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     pLayout->addWidget(&m_ToolBar);
     pLayout->addWidget(m_pCalendar);
     pLayout->addWidget(&m_listView);
-    
+
     Update();
 }
 
@@ -198,6 +191,26 @@ CFrmCalendar::~CFrmCalendar()
                 m_bModify = false;
             }
         }
+    }
+}
+
+void CFrmCalendar::slotCalendarType()
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), 
+                  QSettings::IniFormat);
+    int nType = set.value("Options/Calendar/Type").toInt();
+    if(nType) {
+        m_pCalendar->SetCalendarType((CLunarCalendar::_CalendarType)nType);
+    } else {
+        if(!QLocale::system().name().compare("zh_CN", Qt::CaseInsensitive)
+            || !QLocale::system().name().compare("zh_TW", Qt::CaseInsensitive)
+            || !QLocale::system().name().compare("zh_HK", Qt::CaseInsensitive))
+            m_pCalendar->SetCalendarType(
+                (CLunarCalendar::_CalendarType)(
+                    static_cast<int>(CLunarCalendar::_CalendarType::CalendarTypeLunar)
+                    | static_cast<int>(CLunarCalendar::_CalendarType::CalendarTypeSolar)));
+        else
+            m_pCalendar->SetCalendarType(CLunarCalendar::_CalendarType::CalendarTypeSolar);
     }
 }
 
