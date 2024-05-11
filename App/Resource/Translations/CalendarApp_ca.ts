@@ -9,17 +9,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="28"/>
+        <location filename="../../DlgOption.ui" line="27"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="34"/>
+        <location filename="../../DlgOption.ui" line="46"/>
         <source>Show windows in application start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="47"/>
+        <location filename="../../DlgOption.ui" line="53"/>
+        <source>Calendar Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="59"/>
+        <source>Automation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="72"/>
+        <source>Solar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="79"/>
+        <source>Lunar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="39"/>
         <source>Enable run from boot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -83,13 +103,13 @@
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="38"/>
-        <location filename="../../MainWindow.cpp" line="175"/>
+        <location filename="../../MainWindow.cpp" line="174"/>
         <source>Hide</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="40"/>
-        <location filename="../../MainWindow.cpp" line="179"/>
+        <location filename="../../MainWindow.cpp" line="178"/>
         <location filename="../../MainWindow.cpp" line="248"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
@@ -100,7 +120,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="130"/>
+        <location filename="../../MainWindow.cpp" line="129"/>
         <source>LunarCalendar: </source>
         <translation type="unfinished"></translation>
     </message>

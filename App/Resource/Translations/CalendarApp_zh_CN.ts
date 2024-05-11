@@ -9,19 +9,39 @@
         <translation>选项</translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="28"/>
+        <location filename="../../DlgOption.ui" line="27"/>
         <source>General</source>
         <translation>普通</translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="47"/>
+        <location filename="../../DlgOption.ui" line="39"/>
         <source>Enable run from boot</source>
         <translation>允许开机自启动</translation>
     </message>
     <message>
-        <location filename="../../DlgOption.ui" line="34"/>
+        <location filename="../../DlgOption.ui" line="46"/>
         <source>Show windows in application start</source>
         <translation>应用启动时，显示窗口</translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="53"/>
+        <source>Calendar Type</source>
+        <translation>日历类型</translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="59"/>
+        <source>Automation</source>
+        <translation>自动</translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="72"/>
+        <source>Solar</source>
+        <translation>阳历</translation>
+    </message>
+    <message>
+        <location filename="../../DlgOption.ui" line="79"/>
+        <source>Lunar</source>
+        <translation>农历</translation>
     </message>
 </context>
 <context>
@@ -98,13 +118,13 @@
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="38"/>
-        <location filename="../../MainWindow.cpp" line="175"/>
+        <location filename="../../MainWindow.cpp" line="174"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
         <location filename="../../MainWindow.cpp" line="40"/>
-        <location filename="../../MainWindow.cpp" line="179"/>
+        <location filename="../../MainWindow.cpp" line="178"/>
         <location filename="../../MainWindow.cpp" line="248"/>
         <source>Show</source>
         <translation>显示</translation>
@@ -115,7 +135,7 @@
         <translation>允许开户自启动</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="130"/>
+        <location filename="../../MainWindow.cpp" line="129"/>
         <source>LunarCalendar: </source>
         <translation>农历库：</translation>
     </message>
