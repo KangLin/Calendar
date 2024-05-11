@@ -1,3 +1,6 @@
+- v1.0.21
+  - 增加日历类型选项
+
 - v1.0.20
   - 使用 VCPKG_MANIFEST_DIR 重载 openssl 1.1
   - 使用 [RabbitCommon v2.2.1](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.1)

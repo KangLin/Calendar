@@ -1,3 +1,6 @@
+- v1.0.21
+  - Add calendar type option
+
 - v1.0.20
   - Use VCPKG_MANIFEST_DIR overlay openssl 1.1
   - Use [RabbitCommon v2.2.1](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.1)
