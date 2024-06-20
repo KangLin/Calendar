@@ -71,6 +71,14 @@ public:
                 if(b)
                     value = QIcon(p);
             }
+            if("backgroundImage" == szName && value.isValid())
+            {
+                QImage img;
+                QByteArray ba = QByteArray::fromBase64(value.toByteArray());
+                bool b = img.loadFromData(ba);
+                if(b)
+                    value = img;
+            }
             if(value.isValid())
                 pThis->setProperty(szName.toStdString().c_str(), value);
             /*int nIndex = pObj->indexOfProperty(szName.toStdString().c_str());
@@ -114,6 +122,16 @@ public:
                 QBuffer buf(&ba);
                 if(buf.open(QIODevice::WriteOnly))
                     p.save(&buf, "PNG");
+                if(!ba.isEmpty())
+                    value = ba.toBase64();
+            }
+            if("backgroundImage" == szName && !value.isNull())
+            {
+                QImage img = value.value<QImage>();
+                QByteArray ba;
+                QBuffer buf(&ba);
+                if(buf.open(QIODevice::WriteOnly))
+                    img.save(&buf, "PNG");
                 if(!ba.isEmpty())
                     value = ba.toBase64();
             }

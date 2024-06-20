@@ -79,13 +79,15 @@ int CFrmFullScreen::Prompt(const QString szPrompt, int nValue, int nMin, int nMa
 
 int CFrmFullScreen::SetBackgroupImage(const QString szImage)
 {
-    m_bpBackgroup.load(szImage);
+    QImage img(szImage);
+    return SetBackgroupImage(img);
+}
 
-    QPalette palette;
-    palette.setBrush(QPalette::Window, QBrush(m_bpBackgroup.scaled(this->geometry().size())));
-    setPalette(palette);
-    
+int CFrmFullScreen::SetBackgroupImage(const QImage img)
+{
     setStyleSheet("");
-    
+    QPalette palette;
+    palette.setBrush(QPalette::Window, QBrush(img.scaled(this->geometry().size())));
+    setPalette(palette);
     return 0;
 }

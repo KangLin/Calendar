@@ -216,6 +216,18 @@ QString CTask::szRemaining()
     return tm.toString("HH:mm:ss");
 }
 
+QImage CTask::GetBackground() const
+{
+    return m_imgBackground;
+}
+
+void CTask::SetBackground(const QImage &newImgBackground)
+{
+    if (m_imgBackground == newImgBackground)
+        return;
+    m_imgBackground = newImgBackground;
+}
+
 int CTask::GetPromptInterval() const
 {
     return m_nPromptInterval;

@@ -22,6 +22,7 @@ public:
     
     int Prompt(const QString szPrompt, int nValue = 0, int nMin = 0,  int nMax = 100, bool bInverted = false);
     int SetBackgroupImage(const QString szImage);
+    int SetBackgroupImage(const QImage img);
     
 protected:
     virtual void paintEvent(QPaintEvent *event);

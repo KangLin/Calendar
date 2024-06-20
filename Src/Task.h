@@ -22,6 +22,7 @@ class CTask : public QObject
     Q_PROPERTY(bool end READ End)
     Q_PROPERTY(QString description READ GetDescription)
     Q_PROPERTY(QIcon icon READ GetIcon WRITE SetIcon)
+    Q_PROPERTY(QImage backgroundImage READ GetBackground WRITE SetBackground)
     Q_PROPERTY(QString startSound READ GetStartSound WRITE SetStartSound)
     Q_PROPERTY(QString runSound READ GetRunSound WRITE SetRunSound)
     
@@ -48,6 +49,8 @@ public:
     Q_INVOKABLE virtual QString GetContent() const;
     Q_INVOKABLE virtual int SetIcon(QIcon icon);
     Q_INVOKABLE QIcon GetIcon();
+    Q_INVOKABLE QImage GetBackground() const;
+    Q_INVOKABLE void SetBackground(const QImage &newImgBackground);
     Q_INVOKABLE virtual int GetInterval() const;
     Q_INVOKABLE virtual int SetInterval(int nInterval);
     Q_INVOKABLE virtual int GetPromptInterval() const;
@@ -58,7 +61,7 @@ public:
     Q_INVOKABLE virtual QString GetRunSound();
     Q_INVOKABLE virtual int SetSound(const QString &szStartSound = QString(),
                                      const QString &szRunSound = QString());
-    
+
     Q_INVOKABLE virtual int LoadSettings(const QDomElement &e);
     Q_INVOKABLE virtual int SaveSettings(QDomElement &e);
 
@@ -80,6 +83,7 @@ public:
     virtual bool End();
 
     int Elapsed();
+
 protected Q_SLOTS:
     virtual void slotPrompt();
     
@@ -94,7 +98,6 @@ protected:
 protected:
     int Remaining();
     QString szRemaining();
-    
     //QTimer m_PromptTimer;
     QTime m_PromptTime;
     int m_nPromptInterval;
@@ -105,11 +108,12 @@ private:
     QString m_szTitle;
     QString m_szContent;
     QIcon m_Icon;
-    
+    QImage m_imgBackground;
+
     QElapsedTimer m_Time;
     int m_nInterval;
     
-    int Init();    
+    int Init();
 };
 
 Q_DECLARE_METATYPE(CTask)
