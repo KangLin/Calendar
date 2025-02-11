@@ -12,9 +12,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
-    
-    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="28"/>
-    
+
     <supports-screens android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
