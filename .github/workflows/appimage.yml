@@ -1,0 +1,142 @@
+# Author: Kang Lin <kl222@126.com>
+
+name: appimage
+
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_ubuntu.outputs.name }}
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+  build_ubuntu:
+    strategy:
+      matrix:
+        BUILD_TYPE: [Release]
+        qt_version: [6.8.2]
+        os: [ubuntu-24.04, ubuntu-24.04-arm]
+        include:
+          - os: ubuntu-24.04
+            qt_arch: "linux_gcc_64"
+            qt_host: "linux"
+          - os: ubuntu-24.04-arm
+            qt_arch: "linux_gcc_arm64"
+            qt_host: "linux_arm64"
+
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
+    runs-on: ${{matrix.os}}
+
+    env:
+      BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
+      BUILD_DIR:   ${{github.workspace}}/build
+      SOURCE_DIR:  ${{github.workspace}}/.cache/source
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.BUILD_TYPE}}
+      Calendar_VERSION: v0.0.32
+      artifact_name: build_appimage_${{matrix.os}}
+      qt_modules: 'qtscxml qtmultimedia qtimageformats qt5compat'
+
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Make directories
+        run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
+          cmake -E make_directory ${{env.SOURCE_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
+          cmake -E make_directory ${{env.INSTALL_DIR}}
+
+      - name: Cache installed
+        uses: actions/cache@v3
+        id: cache-installed
+        with:
+          path: |
+            ${{env.INSTALL_DIR}}
+            ${{env.TOOLS_DIR}}/linuxdeploy-*
+          key: install_ubuntu
+
+      - name: git clone RabbitCommon
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+            git clone https://github.com/KangLin/RabbitCommon.git
+
+      - name: Install base dependency libraries
+        run: |
+          sudo ./Script/build_depend.sh --apt_update --base \
+              --install ${{env.INSTALL_DIR}} \
+              --source ${{env.SOURCE_DIR}} \
+              --tools ${{env.TOOLS_DIR}} \
+              --build ${{env.BUILD_DIR}}
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          dir: '${{env.TOOLS_DIR}}/qt'
+          aqtversion: '==3.1.*'
+          version: ${{matrix.qt_version}}
+          target: 'desktop'
+          arch: ${{matrix.qt_arch}}
+          # See: https://ddalcino.github.io/aqt-list-server/
+          modules: ${{env.qt_modules}}
+          cache: true
+          cache-key-prefix: cached-qt
+
+      - name: Dependency libraries
+        if: false
+        run: |
+          sudo ./Script/build_depend.sh \
+              --install ${{env.INSTALL_DIR}} \
+              --source ${{env.SOURCE_DIR}} \
+              --tools ${{env.TOOLS_DIR}} \
+              --build ${{env.BUILD_DIR}}
+
+      - name: build appimage
+        env:
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
+        run: |
+          export QMAKE=$QT_ROOT_DIR/bin/qmake6
+          ${{github.workspace}}/Script/build_appimage.sh
+          md5sum Calendar_${{env.Calendar_VERSION}}_`uname -m`.AppImage > Calendar_${{env.Calendar_VERSION}}_`uname -m`.AppImage.md5sum
+
+      - name: update configure file
+        if: ${{ matrix.BUILD_TYPE == 'Release'}}
+        #continue-on-error: true
+        run: |
+          sudo Xvfb :99 -ac &
+          export DISPLAY=:99.0
+          echo "Update update_linux.json ......"
+          export QT_XCB_GL_INTEGRATION=none
+          #export QT_DEBUG_PLUGINS=1
+          ARCH=`uname -m`
+          MD5SUM=`cat Calendar_${{env.Calendar_VERSION}}_$ARCH.AppImage.md5sum|awk '{print $1}'`
+          echo "MD5SUM Calendar_${{env.Calendar_VERSION}}_$ARCH.AppImage: ${MD5SUM}"
+          echo "Generate update configure file ......"
+          ./Calendar_${{env.Calendar_VERSION}}_$ARCH.AppImage \
+            -f "${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \
+            --foc 1 \
+            --file-name Calendar_${{env.Calendar_VERSION}}_$ARCH.AppImage \
+            -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/Calendar/files/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage" \
+            --md5 "${MD5SUM}" \
+            -m "v${{env.Calendar_VERSION}}"
+
+      - name: Update artifact
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact_name }}
+          path: |
+            ${{github.workspace}}/Calendar_${{env.Calendar_VERSION}}_*.AppImage
+            ${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json

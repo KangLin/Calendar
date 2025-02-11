@@ -1,5 +1,8 @@
 - v1.0.21
   - Add calendar type option
+  - Release
+    - Add arm64
+    - App AppImage
 
 - v1.0.20
   - Use VCPKG_MANIFEST_DIR overlay openssl 1.1

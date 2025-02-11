@@ -15,6 +15,10 @@ jobs:
   ubuntu:
     uses: ./.github/workflows/ubuntu.yml
 
+  appimage:
+    uses: ./.github/workflows/appimage.yml
+    secrets: inherit
+
   msvc:
     uses: ./.github/workflows/msvc.yml
 

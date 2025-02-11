@@ -82,7 +82,7 @@ jobs:
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
-          ./build_debpackage.sh
+          ./Script/build_debpackage.sh
 
       - name: Update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
@@ -93,17 +93,17 @@ jobs:
           ls
           export ARCH=`dpkg --print-architecture`
           export OS_NAME="ubuntu-`lsb_release -s -r`"
-          cp ../rabbitcalendar_${{env.Calendar_VERSION}}_${ARCH}.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${OS_NAME}_${ARCH}.deb
-          sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${OS_NAME}_${ARCH}.deb
-          MD5=`md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${OS_NAME}_${ARCH}.deb|awk '{print $1}'`
+          cp ../rabbitcalendar_${{env.Calendar_VERSION}}_${ARCH}.deb rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb
+          sudo apt install ./rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb
+          MD5=`md5sum rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb|awk '{print $1}'`
           echo "MD5:${MD5}"
           /opt/Calendar/bin/Calendar.sh \
                -f "${{github.workspace}}/update_ubuntu.json" \
                --foc 1 \
                --md5 ${MD5} \
-               -n "rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${OS_NAME}_${ARCH}.deb" \
+               -n "rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb" \
                -m "${{env.Calendar_VERSION}}" \
-               -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${OS_NAME}_${ARCH}.deb;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${OS_NAME}_${ARCH}.deb"
+               -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb"
           mv update_ubuntu.json.xml update_linux.xml
 
       - name: Update version configure file
