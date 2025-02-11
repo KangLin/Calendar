@@ -109,18 +109,18 @@ Author: Kang Lin <kl222@126.com>
 
     ```
     cd build
-    qmake ../Calendar.pro RabbitCommon_DIR=
+    qmake ../Calendar.pro RabbitCommon_ROOT=
     make install
     ```
 
   + Parameter
-    + RabbitCommon_DIR: RabbitCommon source directory
+    + RabbitCommon_ROOT: RabbitCommon source directory
 + Use cmake
   + CMAKE parameter：
     - [MUST] Qt5_DIR: qt install position(default $QT_ROOT/lib/cmake/Qt5).
                    See：https://doc.qt.io/qt-5/cmake-get-started.html  
           or Qt6_DIR: qt install position(default $QT_ROOT/lib/cmake/Qt6).
-    - [MUST] RabbitCommon_DIR: RabbitCommon source directory
+    - [MUST] RabbitCommon_ROOT: RabbitCommon source directory
     - [Optional] CMAKE_INSTALL_PREFIX: install prefix
   + windows or linux
 
@@ -128,7 +128,7 @@ Author: Kang Lin <kl222@126.com>
         cmake .. -DCMAKE_INSTALL_PREFIX=`pwd`/install \
              -DCMAKE_BUILD_TYPE=Release \
              -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
-             -DRabbitCommon_DIR=
+             -DRabbitCommon_ROOT=
         cmake --build . --config Release --target install
         
   + android
@@ -142,7 +142,7 @@ Author: Kang Lin <kl222@126.com>
                 -DANDROID_ABI="armeabi-v7a with NEON" \
                 -DANDROID_PLATFORM=android-18 \
                 -DQt5_DIR= \
-                -DRabbitCommon_DIR= 
+                -DRabbitCommon_ROOT= 
             cmake --build . --config Release --target install
             cmake --build . --target APK   
 
@@ -168,7 +168,7 @@ Author: Kang Lin <kl222@126.com>
                 -DANDROID_ABI=arm64-v8a ^
                 -DANDROID_ARM_NEON=ON ^
                 -DQt5_DIR= ^
-                -DRabbitCommon_DIR= 
+                -DRabbitCommon_ROOT= 
             cmake --build . --config Release --target install
             cmake --build . --target APK     
       
@@ -245,24 +245,24 @@ Author: Kang Lin <kl222@126.com>
         + Non-submodule mode
 
             ```
-            # Need include ${RabbitCommon_DIR}/cmake/Translations.cmake
-            if( "${RabbitCommon_DIR}" STREQUAL "" )
-                set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
-                if( "${RabbitCommon_DIR}" STREQUAL "" )
-                    set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/../RabbitCommon)
+            # Need include ${RabbitCommon_ROOT}/cmake/Translations.cmake
+            if( "${RabbitCommon_ROOT}" STREQUAL "" )
+                set(RabbitCommon_ROOT $ENV{RabbitCommon_ROOT})
+                if( "${RabbitCommon_ROOT}" STREQUAL "" )
+                    set(RabbitCommon_ROOT ${CMAKE_SOURCE_DIR}/../RabbitCommon)
                 endif()
              endif()
 
-             if(DEFINED RabbitCommon_DIR AND EXISTS ${RabbitCommon_DIR}/Src)
-                 add_subdirectory(${RabbitCommon_DIR}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
-                 include(${RabbitCommon_DIR}/cmake/Translations.cmake)
+             if(DEFINED RabbitCommon_ROOT AND EXISTS ${RabbitCommon_ROOT}/Src)
+                 add_subdirectory(${RabbitCommon_ROOT}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
+                 include(${RabbitCommon_ROOT}/cmake/Translations.cmake)
              else()
                  message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon")
                  message("   ag:")
                  message("       git clone https://github.com/KangLin/RabbitCommon.git")
-                 message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root directory.")
+                 message("2. Then set cmake value or environment variable RabbitCommon_ROOT to download root directory.")
                  message("   ag:")
-                 message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
+                 message(FATAL_ERROR "       cmake -DRabbitCommon_ROOT= ")
             endif()
 
             set(Calendar_DIR $ENV{Calendar_DIR} CACHE PATH "Set Calendar source code root directory.")

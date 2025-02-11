@@ -104,18 +104,18 @@
 - 编译
 
         cd build
-        qmake ../Calendar.pro RabbitCommon_DIR=
+        qmake ../Calendar.pro RabbitCommon_ROOT=
         make install
 
   + 参数：
-    - RabbitCommon_DIR: 指向 RabbitCommon 源码目录
+    - RabbitCommon_ROOT: 指向 RabbitCommon 源码目录
 
 - 用 cmake
   + CMAKE 参数：
     - [必选] Qt5_DIR: qt5 安装位置(指向Qt5Config.cmake的目录，默认为 Qt5 安装目录/lib/cmake/Qt5)。  
                      详见：https://doc.qt.io/qt-5/cmake-get-started.html  
              或者 Qt6_DIR: qt6 安装位置(指向Qt6Config.cmake的目录，默认为 Qt6 安装目录/lib/cmake/Qt6)
-    - [必选] RabbitCommon_DIR: 指向 RabbitCommon 源码目录
+    - [必选] RabbitCommon_ROOT: 指向 RabbitCommon 源码目录
     - [可选] CMAKE_INSTALL_PREFIX: 安装前缀
   + windows 或 linux
   
@@ -123,7 +123,7 @@
         cmake .. -DCMAKE_INSTALL_PREFIX=`pwd`/install \
                -DCMAKE_BUILD_TYPE=Release \
                -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
-               -DRabbitCommon_DIR=
+               -DRabbitCommon_ROOT=
         cmake --build . --config Release --target install
         
   + android
@@ -138,7 +138,7 @@
                -DANDROID_ABI="armeabi-v7a with NEON" \
                -DANDROID_PLATFORM=android-18 \
                -DQt6_DIR= \
-               -DRabbitCommon_DIR= 
+               -DRabbitCommon_ROOT= 
             cmake --build . --config Release
 
     　+ 安装
@@ -158,7 +158,7 @@
                 -DANDROID_ARM_NEON=ON ^
                 -DANDROID_PLATFORM=android-24 ^
                 -DQt6_DIR= ^
-                -DRabbitCommon_DIR= 
+                -DRabbitCommon_ROOT= 
 
       + 安装
         - 安装库和程序
@@ -223,24 +223,24 @@ Qt因为版权原因，没有提供openssl动态库，所以必须自己复制op
 
         + 非子模块方式
 
-                # Need include ${RabbitCommon_DIR}/cmake/Translations.cmake
-                if( "${RabbitCommon_DIR}" STREQUAL "" )
-                    set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
-                    if( "${RabbitCommon_DIR}" STREQUAL "" )
-                        set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/../RabbitCommon)
+                # Need include ${RabbitCommon_ROOT}/cmake/Translations.cmake
+                if( "${RabbitCommon_ROOT}" STREQUAL "" )
+                    set(RabbitCommon_ROOT $ENV{RabbitCommon_ROOT})
+                    if( "${RabbitCommon_ROOT}" STREQUAL "" )
+                        set(RabbitCommon_ROOT ${CMAKE_SOURCE_DIR}/../RabbitCommon)
                     endif()
                 endif()
 
-                if(DEFINED RabbitCommon_DIR AND EXISTS ${RabbitCommon_DIR}/Src)
-                    add_subdirectory(${RabbitCommon_DIR}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
-                    include(${RabbitCommon_DIR}/cmake/Translations.cmake)
+                if(DEFINED RabbitCommon_ROOT AND EXISTS ${RabbitCommon_ROOT}/Src)
+                    add_subdirectory(${RabbitCommon_ROOT}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
+                    include(${RabbitCommon_ROOT}/cmake/Translations.cmake)
                  else()
                      message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon")
                      message("   ag:")
                      message("       git clone https://github.com/KangLin/RabbitCommon.git")
-                     message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root directory.")
+                     message("2. Then set cmake value or environment variable RabbitCommon_ROOT to download root directory.")
                      message("   ag:")
-                     message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
+                     message(FATAL_ERROR "       cmake -DRabbitCommon_ROOT= ")
                 endif()
 
                 set(Calendar_DIR $ENV{Calendar_DIR} CACHE PATH "Set Calendar source code root directory.")

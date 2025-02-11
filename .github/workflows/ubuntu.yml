@@ -80,7 +80,7 @@ jobs:
       - name: build_debpackage.sh
         working-directory: ${{github.workspace}}
         env:
-          RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
           ./Script/build_debpackage.sh
 

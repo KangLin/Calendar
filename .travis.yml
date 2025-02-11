@@ -56,7 +56,7 @@ install:
   - cd ${SOURCE_DIR}
   - git submodule update --init --recursive
   - git clone https://github.com/KangLin/RabbitCommon.git
-  - export RabbitCommon_DIR="`pwd`/RabbitCommon"
+  - export RabbitCommon_ROOT="`pwd`/RabbitCommon"
   - bash ci/build-install-tools.sh > /dev/null
 #  - |
 #    if [ "$BUILD_TARGERT"="unix" -a -z "$RABBIT_ARCH" ]; then

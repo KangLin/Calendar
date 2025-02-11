@@ -98,8 +98,8 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     PRIVATE_INCLUDE_DIRS
         ${CMAKE_CURRENT_BINARY_DIR}
         ${CMAKE_BINARY_DIR}
-        ${RabbitCommon_DIR}/Src
-        ${RabbitCommon_DIR}/Src/export
+        ${RabbitCommon_ROOR}/Src
+        ${RabbitCommon_ROOR}/Src/export
     INSTALL_HEADER_FILES "${INSTALLHEADER_FILES}"
     VERSION ${Calendar_VERSION}
     )
