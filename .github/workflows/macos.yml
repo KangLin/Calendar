@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-name: build_macos
+name: macos
 
 on:
   workflow_call:
@@ -30,8 +30,9 @@ jobs:
 
           - qt_version: 5.12.12
 
-    # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
-    # See: https://github.com/actions/runner-images/tree/main
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
     runs-on: macos-13
 
     env:

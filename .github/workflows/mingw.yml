@@ -1,3 +1,5 @@
+# Author: Kang Lin <kl222@126.com>
+
 name: mingw
 
 on:
@@ -17,10 +19,15 @@ jobs:
     defaults:
       run:
         shell: cmd
-        
+
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
     runs-on: windows-latest
+
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
@@ -41,7 +48,7 @@ jobs:
           cmake -E make_directory ${{env.SOURCE_DIR}}
           cmake -E make_directory ${{env.TOOSL_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-          cmake -E make_directory ${{github.workspace}}/build
+          cmake -E make_directory ${{env.BUILD_DIR}}
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -54,15 +61,17 @@ jobs:
       - name: pacman
         env:
           PATH: C:\msys64\usr\bin
-        run: | 
-          C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-cmake ^
+        run: |
+          C:\msys64\usr\bin\pacman.exe -Syu --noconfirm
+          C:\msys64\usr\bin\pacman.exe -S --noconfirm ^
+              mingw-w64-x86_64-cmake ^
               mingw-w64-x86_64-make ^
               mingw-w64-x86_64-nsis ^
               mingw-w64-x86_64-gcc ^
               mingw-w64-x86_64-qt5 ^
-              mingw-w64-x86_64-qtwebkit ^
               mingw-w64-x86_64-zlib ^
-              mingw-w64-x86_64-7zip ^
+              mingw-w64-x86_64-openssl ^
+              mingw-w64-x86_64-cmark ^
               git base-devel
   
       - name: git clone RabbitCommon
@@ -70,7 +79,7 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: build LunarCalendar
-        working-directory: ${{github.workspace}}\build
+        working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
           #Qt5_Dir: C:\msys64\mingw64
@@ -82,12 +91,4 @@ jobs:
               -DCMARK_TESTS=OFF ^
               -DCMARK_STATIC=ON ^
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-              -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install
-          cmake --build . --config ${{ matrix.BUILD_TYPE }}
-          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          move /Y install\plugins\*crypto*.dll install\bin
-          move /Y install\plugins\*ssl*.dll install\bin
-          copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
-          copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
-          copy /Y C:\msys64\mingw64\bin\*.dll install\bin
-          makensis Install.nsi
+              -DCMAKE_INSTALL_PREFIX=install

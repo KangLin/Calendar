@@ -1,3 +1,5 @@
+# Author: Kang Lin <kl222@126.com>
+
 name: android
 
 on:
@@ -14,33 +16,38 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.6.3]
+        qt_version: [6.8.2]
         include:
-          - BUILD_TYPE: Release
-            qt_arch: android_arm64_v8a
+          - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
             ANDROID_ABI: arm64-v8a
 
-          - BUILD_TYPE: Release
-            qt_arch: android_x86_64 
+          - qt_arch: android_x86_64
             VCPKG_TARGET_TRIPLET: x64-android
             ANDROID_ABI: x86_64
 
-    runs-on: ubuntu-latest
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
+    runs-on: ubuntu-24.04
 
     env:
       Calendar_VERSION: v1.0.20
-      VCPKGGITCOMMITID: 59aeb8fe8fe1c980de6bd5ba634cf21024522d81
+      VCPKGGITCOMMITID: 9f5925e81bbcd9c8c34cc7a8bd25e3c557b582b2
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
-      VCPKG_HOST_TRIPLET: x64-linux
-      SOURCE_DIR:  ${{github.workspace}}/.cache/source
-      TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install
+      VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
+      BUILD_DIR:     ${{github.workspace}}/build
+      SOURCE_DIR:    ${{github.workspace}}/.cache/source
+      TOOLS_DIR:     ${{github.workspace}}/.cache/tools
+      INSTALL_DIR:   ${{github.workspace}}/.cache/install
       artifact_name: build_android
-      ANDROID_PLATFORM: android-23
-      ANDROID_NATIVE_API_LEVEL: 23
+      ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/26.3.11579264
+      ANDROID_PLATFORM: android-34
+      ANDROID_NATIVE_API_LEVEL: 34
       ANDROID_ABI: ${{matrix.ANDROID_ABI}}
-      qt_modules: 'qtimageformats qtmultimedia qtscxml qtwebchannel qtpositioning'
+      qt_modules: 'qtimageformats qtmultimedia qtscxml qt5compat'
 
     # Map the job outputs to step outputs
     outputs:
@@ -55,9 +62,15 @@ jobs:
       - name: make directory
         run: |
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-          cmake -E make_directory ${{github.workspace}}/build
+          cmake -E make_directory ${{env.BUILD_DIR}}
+
+      - name: Install apt packages
+        run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt install -y -q ninja-build nasm
 
       - name: Cache installed
         #if: false
@@ -68,23 +81,21 @@ jobs:
             ${{env.INSTALL_DIR}}
           key: install_android_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
 
-      - name: run vcpkg
+      - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
         with:
-          # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
-          #setupOnly: # optional
-          #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
-          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+          vcpkgDirectory: ${{env.SOURCE_DIR}}/vcpkg
 
-      - name: Install Qt of gcc_64
+      - name: Install Qt of linux_gcc_64
         uses: jurplel/install-qt-action@v3
+        if: ${{ matrix.qt_version == '6.8.2' }}
         with:
-          dir: '${{env.TOOSL_DIR}}/qt' # optional
+          dir: '${{env.TOOLS_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
           #host: 'linux'
           target: 'desktop'
-          arch: 'gcc_64'
+          arch: 'linux_gcc_64'
           set-env: false
           cache: true
           cache-key-prefix: cached_qt
@@ -93,7 +104,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           # Directory to install Qt
-          dir: '${{env.TOOSL_DIR}}/qt' # optional
+          dir: '${{env.TOOLS_DIR}}/qt' # optional
           # Version of Qt to install
           version: '${{matrix.qt_version}}'
           # Host platform
@@ -107,13 +118,17 @@ jobs:
           cache: true
           cache-key-prefix: cached_qt
 
+      - name: chmod qt-cmake
+        run: |
+          sudo chmod 777 ${Qt6_DIR}/bin/qt-cmake
+
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: build Calendar
-        working-directory: ${{github.workspace}}/build
+        working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
           QT_ANDROID_KEYSTORE_PATH: ${{env.SOURCE_DIR}}/RabbitCommon/RabbitCommon.keystore
