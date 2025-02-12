@@ -17,6 +17,7 @@ class CTasks : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int id READ GetId WRITE SetId)
+    Q_PROPERTY(bool enable READ GetEnable WRITE SetEnable)
     Q_PROPERTY(QString title READ GetTitle WRITE SetTitle)
     Q_PROPERTY(QString content READ GetContent WRITE SetContent)
     Q_PROPERTY(bool end READ End)
@@ -31,6 +32,8 @@ public:
 
     Q_INVOKABLE int GetId();
     Q_INVOKABLE int SetId(int id);
+    Q_INVOKABLE virtual bool GetEnable() const;
+    Q_INVOKABLE virtual int SetEnable(bool bEnable);
     Q_INVOKABLE int SetTitle(const QString &szTitle);
     Q_INVOKABLE QString GetTitle();
     Q_INVOKABLE int SetContent(const QString &szContent);
@@ -78,6 +81,7 @@ private:
     QVector<QSharedPointer<CTask> > m_Task;
     int m_nIdTask;
     int m_nId;
+    bool m_bEnable;
     QString m_szTitle;
     QString m_szContent;
     QIcon m_Icon;

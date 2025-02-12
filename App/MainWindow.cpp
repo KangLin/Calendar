@@ -28,7 +28,7 @@ CMainWindow::CMainWindow(QWidget *parent) :
     ui->menuTools->insertMenu(ui->actionExit_E,
                             RabbitCommon::CTools::Instance()->GetLogMenu(this));
     ui->menuTools->insertSeparator(ui->actionExit_E);
-    
+
     m_TrayIconMenu.addAction(
                 QIcon::fromTheme("window-close"),
                 tr("Exit"),

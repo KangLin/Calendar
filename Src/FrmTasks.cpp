@@ -64,6 +64,7 @@ int CFrmTasks::SetTasks(QSharedPointer<CTasks> tasks)
     }
     ui->leTasksTitle->setText(m_Tasks->GetTitle());
     ui->leTasksID->setText(QString::number(m_Tasks->GetId()));
+    ui->cbTasksEnable->setChecked(m_Tasks->GetEnable());
     ui->teTasksContent->setText(m_Tasks->GetContent());
     
     SetSlider(0); //m_Tasks->GetCurrentIndex());
@@ -85,6 +86,7 @@ int CFrmTasks::SetTask(QSharedPointer<CTask> task)
     }
     //ui->gpTask->setTitle(tr("Task: ") + task->objectName());
     ui->leTaskID->setText(QString::number(task->GetId()));
+    ui->cbTaskEnable->setChecked(task->GetEnable());
     ui->leTaskTitle->setText(task->GetTitle());
     ui->teTaskContent->setText(task->GetContent());
     ui->spInterval->setValue(task->GetInterval() / 60000);
@@ -203,8 +205,10 @@ void CFrmTasks::on_pbApply_clicked()
     if(!task)
         return;
     m_Tasks->SetTitle(ui->leTasksTitle->text());
+    m_Tasks->SetEnable(ui->cbTasksEnable->isChecked());
     m_Tasks->SetContent(ui->teTasksContent->toPlainText());
     
+    task->SetEnable(ui->cbTaskEnable->isChecked());
     task->SetTitle(ui->leTaskTitle->text());
     task->SetContent(ui->teTaskContent->toPlainText());
     task->SetInterval(ui->spInterval->value() * 60 * 1000);

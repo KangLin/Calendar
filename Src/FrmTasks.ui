@@ -14,8 +14,7 @@
    <string>Tasks</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="task">
-  </iconset>
+   <iconset theme="task"/>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
@@ -33,7 +32,7 @@
       <bool>true</bool>
      </property>
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="invertedAppearance">
       <bool>true</bool>
@@ -42,7 +41,7 @@
       <bool>false</bool>
      </property>
      <property name="tickPosition">
-      <enum>QSlider::TicksBothSides</enum>
+      <enum>QSlider::TickPosition::TicksBothSides</enum>
      </property>
      <property name="tickInterval">
       <number>0</number>
@@ -108,8 +107,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset theme="task">
-          </iconset>
+          <iconset theme="task"/>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -119,6 +117,13 @@
          </property>
          <property name="flat">
           <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbTasksEnable">
+         <property name="text">
+          <string>Enable</string>
          </property>
         </widget>
        </item>
@@ -155,7 +160,7 @@
        <item>
         <spacer name="horizontalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -180,7 +185,7 @@
           <string>Previous</string>
          </property>
          <property name="icon">
-          <iconset theme="up"></iconset>
+          <iconset theme="up"/>
          </property>
         </widget>
        </item>
@@ -199,14 +204,14 @@
           <string>Next</string>
          </property>
          <property name="icon">
-          <iconset theme="down"></iconset>
+          <iconset theme="down"/>
          </property>
         </widget>
        </item>
        <item>
         <spacer name="horizontalSpacer_3">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -287,8 +292,14 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset theme="task">
-              </iconset>
+             <iconset theme="task"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbTaskEnable">
+            <property name="text">
+             <string>Enable</string>
             </property>
            </widget>
           </item>
@@ -325,7 +336,7 @@
              <string>Task interval(Unit: minute). If is 0, then run now.</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
             </property>
             <property name="maximum">
              <number>1440</number>
@@ -367,7 +378,7 @@
              <string>Prompt interval(Unit: second). If is 0, don't prompt</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
             </property>
             <property name="maximum">
              <number>86400</number>
@@ -439,8 +450,7 @@
           <string>Add</string>
          </property>
          <property name="icon">
-          <iconset theme="add">
-          </iconset>
+          <iconset theme="add"/>
          </property>
         </widget>
        </item>
@@ -459,8 +469,7 @@
           <string>Remove</string>
          </property>
          <property name="icon">
-          <iconset theme="subtract">
-          </iconset>
+          <iconset theme="subtract"/>
          </property>
         </widget>
        </item>
@@ -476,15 +485,14 @@
           <string>Save</string>
          </property>
          <property name="icon">
-          <iconset theme="document-save">
-          </iconset>
+          <iconset theme="document-save"/>
          </property>
         </widget>
        </item>
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -506,8 +514,7 @@
           <string>Close</string>
          </property>
          <property name="icon">
-          <iconset theme="window-close">
-          </iconset>
+          <iconset theme="window-close"/>
          </property>
         </widget>
        </item>
@@ -517,9 +524,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="Resource/ResourceTasks.qrc"/>
-  <include location="Resource/ResourceTasks.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

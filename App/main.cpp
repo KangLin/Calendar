@@ -76,15 +76,15 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    CMainWindow m;
+    CMainWindow win;
 #if defined(Q_OS_ANDROID)
-    m.showMaximized();
+    win.showMaximized();
 #else
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     bool bShow = set.value("Options/MainWindow/Show", false).toBool();
     if(bShow)
-        m.show();
+        win.show();
 #endif
 
     int nRet = a.exec();

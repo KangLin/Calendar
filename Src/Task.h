@@ -17,6 +17,7 @@ class CTask : public QObject
     Q_PROPERTY(QString title READ GetTitle WRITE SetTitle)
     Q_PROPERTY(QString content READ GetContent WRITE SetContent)
     Q_PROPERTY(int id READ GetId WRITE SetId)
+    Q_PROPERTY(bool enable READ GetEnable WRITE SetEnable)
     Q_PROPERTY(int interval READ GetInterval WRITE SetInterval)
     Q_PROPERTY(int promptInterval READ GetPromptInterval WRITE SetPromptInterval)
     Q_PROPERTY(bool end READ End)
@@ -42,6 +43,8 @@ public:
     
     Q_INVOKABLE virtual int GetId() const;
     Q_INVOKABLE virtual int SetId(int id);
+    Q_INVOKABLE virtual bool GetEnable() const;
+    Q_INVOKABLE virtual int SetEnable(bool bEnable);
     Q_INVOKABLE virtual QString GetDescription() const;
     Q_INVOKABLE virtual int SetTitle(QString szTitle);
     Q_INVOKABLE virtual QString GetTitle() const;
@@ -105,6 +108,7 @@ protected:
 
 private:
     int m_nId;
+    bool m_bEnable;
     QString m_szTitle;
     QString m_szContent;
     QIcon m_Icon;

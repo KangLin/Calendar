@@ -77,6 +77,9 @@ void CFrmTasksList::slotRefresh()
         if(!pItem) return;
         pItem->setToolTip(p->GetContent());
         pItem->setData(p->GetId());
+        pItem->setCheckable(true);
+        if(p->GetEnable())
+            pItem->setCheckState(Qt::Checked);
         m_Model.appendRow(pItem);
     }
     m_lvTasks.setCurrentIndex(m_Model.index(0, 0));

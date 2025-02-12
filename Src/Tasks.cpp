@@ -11,6 +11,7 @@ CTasks::CTasks(QObject *parent) : QObject(parent)
     m_CurrentPostion = 0;
     m_nIdTask = 0;
     m_nId = -1;
+    m_bEnable = true;
     setObjectName("Tasks");
     SetTitle(objectName());
 }
@@ -157,6 +158,17 @@ int CTasks::SetId(int id)
     return m_nId;
 }
 
+bool CTasks::GetEnable() const
+{
+    return m_bEnable;
+}
+
+int CTasks::SetEnable(bool bEnable)
+{
+    m_bEnable = bEnable;
+    return 0;
+}
+
 QString CTasks::GetTitle()
 {
     return m_szTitle;
@@ -212,6 +224,9 @@ int CTasks::Check()
         qWarning() << "CTasks::Check(): task pointer is null";
         return 0;
     }
+
+    if(!task->GetEnable())
+        return 0;
     
     nRet = task->Check();
     if(nRet)

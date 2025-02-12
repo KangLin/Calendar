@@ -43,6 +43,7 @@ CTask::CTask(int nInterval, int nPromptInterval, QObject *parent)
 int CTask::Init()
 {
     SetId(-1);
+    SetEnable(true);
     setObjectName("Task");
     SetTitle(objectName());
     SetContent(GetTitle());
@@ -143,6 +144,17 @@ int CTask::SetId(int id)
 {
     m_nId = id;
     return m_nId;
+}
+
+bool CTask::GetEnable() const
+{
+    return m_bEnable;
+}
+
+int CTask::SetEnable(bool bEnable)
+{
+    m_bEnable = bEnable;
+    return 0;
 }
 
 QString CTask::GetDescription() const

@@ -124,6 +124,8 @@ int CTasksList::Check()
     int nRet = 0;
     foreach (QSharedPointer<CTasks> task, m_Tasks)
     {
+        if(!task->GetEnable())
+            continue;
         nRet = task->Check();
         if(0 == nRet)
         {
