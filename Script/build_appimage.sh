@@ -96,10 +96,12 @@ export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
 export EXTRA_QT_MODULES="svg"
 ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
-    --deploy-deps-only=${INSTALL_APP_DIR}/plugins/Client \
-    --deploy-deps-only=${INSTALL_APP_DIR}/lib/`uname -m`-linux-gnu \
     --plugin qt \
-    --output appimage
+    --output appimage \
+    --exclude-library libqsqlmimer.so \
+    --exclude-library libqsqlmysql.so \
+    --exclude-library libqsqlodbc.so \
+    --exclude-library libqsqlpsql.so
 
 chmod a+x Calendar-`uname -m`.AppImage
 

@@ -88,7 +88,7 @@ jobs:
           vcpkgDirectory: ${{env.SOURCE_DIR}}/vcpkg
 
       - name: Install Qt of linux_gcc_64
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         if: ${{ matrix.qt_version == '6.8.2' }}
         with:
           dir: '${{env.TOOLS_DIR}}/qt' # optional

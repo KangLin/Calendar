@@ -27,7 +27,7 @@ jobs:
     env:
       BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
-      TOOSL_DIR:   ${{github.workspace}}/.cache/tools
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       Calendar_VERSION: 1.0.20
       artifact_name: build_${{matrix.os}}
@@ -45,7 +45,7 @@ jobs:
       - name: make_directory
         run: |
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
           cmake -E make_directory ${{env.BUILD_DIR}}
 
@@ -54,20 +54,16 @@ jobs:
         run: |
           git clone https://github.com/KangLin/RabbitCommon.git
 
-      - name: Install apt packages
+      - name: Install dependency libraries
         run: |
-          sudo apt update -y
-          sudo apt upgrade -y
-          sudo apt install -y xvfb xpra xserver-xorg-input-mouse xserver-xorg-input-kbd \
-              libglu1-mesa-dev libpulse-mainloop-glib0 \
-              cmake build-essential \
-              debhelper fakeroot graphviz \
-              qt6-tools-dev qt6-tools-dev-tools \
-              qt6-base-dev qt6-base-dev-tools \
-              qt6-l10n-tools qt6-translations-l10n \
-              qt6-scxml-dev qt6-webengine-dev qt6-webengine-dev-tools \
-              qt6-multimedia-dev \
-              libsqlite3-dev
+          sudo ./Script/build_depend.sh --apt_update --base --default \
+              --install ${{env.INSTALL_DIR}} \
+              --source ${{env.SOURCE_DIR}} \
+              --tools ${{env.TOOLS_DIR}} \
+              --build ${{env.BUILD_DIR}}
+          if [ "ubuntu-22.04-arm" != ${{matrix.os}} ]; then
+              sudo apt install -y -q qt6-5compat-dev
+          fi
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -88,30 +84,29 @@ jobs:
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
         working-directory: ${{github.workspace}}
         run: |
-          sudo Xvfb :99 -ac &
-          export DISPLAY=:99.0
-          ls
+          sudo Xvfb :93 -ac -screen 0 1200x900x24 &
+          export DISPLAY=:93.0
           export ARCH=`dpkg --print-architecture`
           export OS_NAME="ubuntu-`lsb_release -s -r`"
-          cp ../rabbitcalendar_${{env.Calendar_VERSION}}_${ARCH}.deb rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb
-          sudo apt install ./rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb
-          MD5=`md5sum rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb|awk '{print $1}'`
+          cp ../rabbitcalendar_${{env.Calendar_VERSION}}_${ARCH}.deb rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb
+          sudo apt install ./rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb
+          MD5=`md5sum rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb|awk '{print $1}'`
           echo "MD5:${MD5}"
           /opt/Calendar/bin/Calendar.sh \
                -f "${{github.workspace}}/update_ubuntu.json" \
                --foc 1 \
                --md5 ${MD5} \
-               -n "rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb" \
+               -n "rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb" \
                -m "${{env.Calendar_VERSION}}" \
-               -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.rabbitcalendar_VERSION}}_${OS_NAME}_${ARCH}.deb"
+               -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb"
           mv update_ubuntu.json.xml update_linux.xml
 
       - name: Update version configure file
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.ox == 'ubuntu-24.04' }}
         working-directory: ${{github.workspace}}
         run: |
-          sudo Xvfb :99 -ac &
-          export DISPLAY=:99
+          sudo Xvfb :95 -ac -screen 0 1200x900x24 &
+          export DISPLAY=:95.0
           /opt/Calendar/bin/Calendar.sh \
                -f "${{github.workspace}}/version.json" \
                --foc 0 \

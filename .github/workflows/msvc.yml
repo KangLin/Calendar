@@ -93,7 +93,7 @@ jobs:
           vcpkgDirectory: ${{runner.workspace}}/vcpkg/
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           dir: '${{env.TOOSL_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}' # optional, default is 5.15.2

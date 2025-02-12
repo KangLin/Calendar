@@ -227,21 +227,17 @@ fi
 if [ $BASE_LIBS -eq 1 ]; then
     echo "Install base libraries ......"
     apt install -y -q build-essential \
-        git cmake gcc g++ debhelper fakeroot graphviz gettext
-    # OpenGL
-    apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
-    # X11
-    apt install -y -q xvfb xpra xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
-        libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
-        libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
-        libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
-        libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev \
-        libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
-        libxkbcommon-dev
+        git cmake gcc g++ debhelper fakeroot graphviz gettext \
+        xvfb xpra xserver-xorg-input-mouse xserver-xorg-input-kbd \
+        libglu1-mesa-dev libpulse-mainloop-glib0
     # Base dependency
     apt install -y -q libssl-dev libcrypt-dev libicu-dev zlib1g-dev
     # RabbitCommon dependency
     apt install -y -q libcmark-dev cmark
+    # AppImage
+    apt install -y -q fuse
+    # Other
+    apt install -y -q libsqlite3-dev
 fi
 
 if [ $DEFAULT_LIBS -eq 1 ]; then
@@ -262,10 +258,10 @@ if [ $QT -eq 1 ]; then
     pip install aqtinstall
     export QTVERSION=6.8.2
     if [ "`uname -m`" == "x86_64" ]; then
-        aqt install-qt linux desktop ${QTVERSION} linux_gcc_64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
+        aqt install-qt linux desktop ${QTVERSION} linux_gcc_64 -m qtscxml
         mv ${QTVERSION}/gcc_64 qt
     elif [ "`uname -m`" == "aarch64" ]; then
-        aqt install-qt linux_arm64 desktop ${QTVERSION} linux_gcc_arm64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
+        aqt install-qt linux_arm64 desktop ${QTVERSION} linux_gcc_arm64 -m qtscxml
         mv ${QTVERSION}/gcc_arm64 qt
     fi
     popd
