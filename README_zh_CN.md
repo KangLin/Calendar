@@ -102,15 +102,6 @@
         mkdir build
 
 - 编译
-
-        cd build
-        qmake ../Calendar.pro RabbitCommon_ROOT=
-        make install
-
-  + 参数：
-    - RabbitCommon_ROOT: 指向 RabbitCommon 源码目录
-
-- 用 cmake
   + CMAKE 参数：
     - [必选] Qt5_DIR: qt5 安装位置(指向Qt5Config.cmake的目录，默认为 Qt5 安装目录/lib/cmake/Qt5)。  
                      详见：https://doc.qt.io/qt-5/cmake-get-started.html  

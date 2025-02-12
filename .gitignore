@@ -15,6 +15,7 @@ Makefile.Debug
 Makefile.Release
 Version.h
 Update/Update_*.xml
+build*/
 *.bak
 *~
 *.autosave

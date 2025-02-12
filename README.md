@@ -106,17 +106,8 @@ Author: Kang Lin <kl222@126.com>
     ```
 
 - Compile
-
-    ```
-    cd build
-    qmake ../Calendar.pro RabbitCommon_ROOT=
-    make install
-    ```
-
-  + Parameter
-    + RabbitCommon_ROOT: RabbitCommon source directory
-+ Use cmake
   + CMAKE parameter：
+    + [MUST] QT_ROOT: Qt install root
     - [MUST] Qt5_DIR: qt install position(default $QT_ROOT/lib/cmake/Qt5).
                    See：https://doc.qt.io/qt-5/cmake-get-started.html  
           or Qt6_DIR: qt install position(default $QT_ROOT/lib/cmake/Qt6).
@@ -141,7 +132,7 @@ Author: Kang Lin <kl222@126.com>
                 -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
                 -DANDROID_ABI="armeabi-v7a with NEON" \
                 -DANDROID_PLATFORM=android-18 \
-                -DQt5_DIR= \
+                -DQT_ROOT=... -DQt5_DIR=... \
                 -DRabbitCommon_ROOT= 
             cmake --build . --config Release --target install
             cmake --build . --target APK   
@@ -167,7 +158,7 @@ Author: Kang Lin <kl222@126.com>
                 -DANDROID_PLATFORM=android-18 ^
                 -DANDROID_ABI=arm64-v8a ^
                 -DANDROID_ARM_NEON=ON ^
-                -DQt5_DIR= ^
+                -DQT_ROOT=... -DQt5_DIR=... ^
                 -DRabbitCommon_ROOT= 
             cmake --build . --config Release --target install
             cmake --build . --target APK     
