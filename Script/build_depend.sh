@@ -14,7 +14,7 @@ QT=0
 RabbitCommon=0
 
 usage_long() {
-    echo "$0 [--install=install_dir] [--source=source_dir] [--tools=tools_dir] [--build=build_dir] [--apt='lib1 lib2 ...'] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1]] [--rabbitcommon[=0|1]]"
+    echo "$0 [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1]] [--rabbitcommon[=0|1]]"
     echo "Directory:"
     echo "  --install: Set install directory"
     echo "  --source: Set source directory"
@@ -30,7 +30,7 @@ usage_long() {
 }
 
 usage() {
-    echo "$0 [-i install_dir] [-s source_dir] [-t tools_dir] [-b build_dir] [-a 'lib1 lib2 ...'] [apt_update] [base] [default] [qt] [rabbitcommon]"
+    echo "$0 [-i <install directory>] [-s <source directory>] [-t <tools directory>] [-b <build directory>] [-a <'lib1 lib2 ...'>] [apt_update] [base] [default] [qt] [rabbitcommon]"
     echo "Directory:"
     echo "  -i: Set install directory"
     echo "  -s: Set source directory"
