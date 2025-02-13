@@ -114,7 +114,7 @@ jobs:
           echo "MD5SUM Calendar_${{env.Calendar_VERSION}}_$ARCH.AppImage: ${MD5SUM}"
           echo "Generate update configure file ......"
           ./Calendar_${{env.Calendar_VERSION}}_$ARCH.AppImage \
-            -f "${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \
+            -f "${{github.workspace}}/update_appimage_${{matrix.os}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}.json" \
             --foc 1 \
             --file-name Calendar_${{env.Calendar_VERSION}}_$ARCH.AppImage \
             -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/Calendar/files/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage" \
@@ -128,4 +128,4 @@ jobs:
           name: ${{ env.artifact_name }}
           path: |
             ${{github.workspace}}/Calendar_${{env.Calendar_VERSION}}_*.AppImage
-            ${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json
+            ${{github.workspace}}/update_appimage_${{matrix.os}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}.json

@@ -102,7 +102,7 @@ jobs:
           mv update_ubuntu.json.xml update_linux.xml
 
       - name: Update version configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.ox == 'ubuntu-24.04' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.os == 'ubuntu-24.04' }}
         working-directory: ${{github.workspace}}
         run: |
           sudo Xvfb :95 -ac -screen 0 1200x900x24 &

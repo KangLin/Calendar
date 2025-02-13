@@ -5,7 +5,7 @@ name: build
 env:
   artifact_path: artifact_path
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  Calendar_VERSION: v1.0.21
+  Calendar_VERSION: v1.0.20
 
 on: 
   push:
@@ -33,9 +33,9 @@ jobs:
     secrets: inherit
 
   deploy:
-    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    #if: ${{ startsWith(github.ref, 'refs/tags/') }}
     runs-on: ubuntu-latest
-    needs: [ubuntu, msvc, macos, android]
+    needs: [ubuntu, appimage, msvc, macos, android]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -46,6 +46,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ needs.ubuntu.outputs.name }}
+          path: ${{ env.artifact_path }}
+          merge-multiple: true
+
+      - name: Download appimage
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.appimage.outputs.name }}
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
@@ -80,26 +87,25 @@ jobs:
 
       - name: Make note file
         run: |
-          cd ${{ env.artifact_path }}
           echo "[:cn: 修改日志](https://github.com/KangLin/Calendar/blob/${{env.Calendar_VERSION}}/ChangeLog_zh_CN.md)" > ${{github.workspace}}/Note.md
           echo "[:us: Change log](https://github.com/KangLin/Calendar/blob/${{env.Calendar_VERSION}}/ChangeLog.md)" >> ${{github.workspace}}/Note.md
           echo "" >> ${{github.workspace}}/Note.md
-          echo "File signatures:" >> ${{github.workspace}}/Note.md
+          echo "File checksum:" >> ${{github.workspace}}/Note.md
+          echo "|File|Checksum(md5)|" >> ${{github.workspace}}/Note.md
+          echo "| :- |    :-       |" >> ${{github.workspace}}/Note.md
+          cd ${{ env.artifact_path }}
           for file in *
           do
               echo "$file"
               if [ -f $file ]; then
                   if [ "${file##*.}" != "xml" ] && [ "${file##*.}" != "json" ]; then
-                      md5sum $file > $file.md5sum
-                      cat $file.md5sum >> ${{github.workspace}}/Note.md
+                      md5sum $file > ${file}.md5sum
+                      awk '{print  "|", $2, "|", $1, "|"}' ${file}.md5sum >> ${{github.workspace}}/Note.md
                   fi
               else
                  rm -fr $file
               fi
           done
-          echo "" >> ${{github.workspace}}/Note.md
-#          echo "得到文件签名（在 linux 中）: md5sum file" >> ${{github.workspace}}/Note.md
-#          echo "Get file signatures in linux: md5sum file" >> ${{github.workspace}}/Note.md
 
       - name: Upload To Github Release
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
