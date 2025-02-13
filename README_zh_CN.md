@@ -103,6 +103,7 @@
 
 - 编译
   + CMAKE 参数：
+    - [必选] QT_ROOT: Qt 安装位置
     - [必选] Qt5_DIR: qt5 安装位置(指向Qt5Config.cmake的目录，默认为 Qt5 安装目录/lib/cmake/Qt5)。  
                      详见：https://doc.qt.io/qt-5/cmake-get-started.html  
              或者 Qt6_DIR: qt6 安装位置(指向Qt6Config.cmake的目录，默认为 Qt6 安装目录/lib/cmake/Qt6)
@@ -118,7 +119,7 @@
         cmake --build . --config Release --target install
         
   + android
-    Qt版本必须大于等于6  
+    Qt 版本必须大于等于 6  
     - 主机是linux
       + 编译
 

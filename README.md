@@ -132,7 +132,7 @@ Author: Kang Lin <kl222@126.com>
                 -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
                 -DANDROID_ABI="armeabi-v7a with NEON" \
                 -DANDROID_PLATFORM=android-18 \
-                -DQT_ROOT=... -DQt5_DIR=... \
+                -DQT_ROOT=... -DQt6_DIR=... \
                 -DRabbitCommon_ROOT= 
             cmake --build . --config Release --target install
             cmake --build . --target APK   
@@ -158,7 +158,7 @@ Author: Kang Lin <kl222@126.com>
                 -DANDROID_PLATFORM=android-18 ^
                 -DANDROID_ABI=arm64-v8a ^
                 -DANDROID_ARM_NEON=ON ^
-                -DQT_ROOT=... -DQt5_DIR=... ^
+                -DQT_ROOT=... -DQt6_DIR=... ^
                 -DRabbitCommon_ROOT= 
             cmake --build . --config Release --target install
             cmake --build . --target APK     
