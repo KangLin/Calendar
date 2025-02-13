@@ -28,7 +28,7 @@ jobs:
       BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.BUILD_TYPE}}
       Calendar_VERSION: 1.0.20
       artifact_name: build_${{matrix.os}}
 
@@ -71,7 +71,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: install_ubuntu_${{matrix.BUILD_TYPE}}
+          key: install_ubuntu_${{matrix.os}}_${{matrix.BUILD_TYPE}}
 
       - name: build_debpackage.sh
         working-directory: ${{github.workspace}}
