@@ -1,5 +1,7 @@
 - v1.0.21
   - Add calendar type option
+  - Add enable in CTasks and CTask
+  - Add build script
   - Release
     - Add arm64
     - App AppImage

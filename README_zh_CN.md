@@ -80,7 +80,7 @@
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
 
-[![捐赠](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠") 
+[![捐赠](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute_zh_CN.png "捐赠")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute_zh_CN.png "捐赠") 
 
 ### 下载
 
@@ -89,6 +89,90 @@
 
 ### 依赖
 - [Qt (LGPL v2.1)](http://qt.io/)
+  - Qt 官方发行版本： https://download.qt.io/official_releases/qt/
+    - 则需要设置环境变量（或者 CMAKE 参数）：
+      - QT_ROOT
+      - Qt6：Qt6_ROOT 或者 Qt6_DIR 。
+        详见：https://doc.qt.io/qt-6/cmake-get-started.html
+      - Qt5：Qt5_ROOT 或者 Qt5_DIR 。
+        详见：https://doc.qt.io/qt-5/cmake-get-started.html
+      - 环境变量
+
+            export QT_ROOT=Qt 安装位置
+            # 编译 AppImage 需要
+            export QMAKE=$QT_ROOT/bin/qmake
+
+            # 当使用 Qt6 时
+            export Qt6_ROOT=$QT_ROOT
+            # 当使用 Qt5 时
+            export Qt5_ROOT=$QT_ROOT
+
+            # 或者
+            # 当使用 Qt6 时
+            export Qt6_DIR=$QT_ROOT/lib/cmake/Qt6
+            # 当使用 Qt5 时
+            export Qt5_DIR=$QT_ROOT/lib/cmake/Qt5
+
+      - CMAKE 参数
+
+            #当使用 Qt6 时
+            cmake -DQT_ROOT=[Qt 安装位置] -DQt6_DIR=[Qt 安装位置] ......
+            #当使用 Qt5 时
+            cmake -DQT_ROOT=[Qt 安装位置] -DQt5_DIR=[Qt 安装位置] ......
+            # 编译 AppImage 需要
+            export QMAKE=$QT_ROOT/bin/qmake
+
+  - 系统自带：
+    - Qt5:
+
+          ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev
+
+    - Qt6: 详见： [Script/build_depend.sh](../../Script/build_depend.sh)
+
+          ~$ sudo apt install qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev
+
+    - 系统安装多个分发版本 Qt 时。例如：同时安装 Qt5 和 Qt6 。
+      系统使用 qtchooser 工具来选择当前的 Qt 版本。
+  
+          l@l:/home/RabbitRemoteControl$ qtchooser 
+          Usage:
+            qtchooser { -l | -list-versions | -print-env }
+            qtchooser -install [-f] [-local] <name> <path-to-qmake>
+            qtchooser -run-tool=<tool name> [-qt=<Qt version>] [program arguments]
+            <executable name> [-qt=<Qt version>] [program arguments]
+
+          Environment variables accepted:
+           QTCHOOSER_RUNTOOL  name of the tool to be run (same as the -run-tool argument)
+           QT_SELECT          version of Qt to be run (same as the -qt argument)
+  
+      - 查看当前系统安装的 Qt 版本
+
+            l@l:/home/RabbitRemoteControl$ qtchooser -l
+            4
+            5
+            default
+            qt4-x86_64-linux-gnu
+            qt4
+            qt5-x86_64-linux-gnu
+            qt5
+            qt6
+
+            # 查看当前环境的 Qt 版本
+            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+            QT_SELECT="default"
+            QTTOOLDIR="[Paths]"
+            QTLIBDIR="Prefix=/usr"
+    
+      - 设置当前环境的 Qt 版本
+
+            export QT_SELECT=qt6  #设置当前环境 Qt 版本为 6
+
+            # 查看当前环境的 Qt 版本
+            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+            QT_SELECT="qt6"
+            QTTOOLDIR="/usr/lib/qt6/bin"
+            QTLIBDIR="/usr/lib/aarch64-linux-gnu"
+  
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)
   
         git clone https://github.com/KangLin/RabbitCommon.git
@@ -103,12 +187,16 @@
 
 - 编译
   + CMAKE 参数：
-    - [必选] QT_ROOT: Qt 安装位置
-    - [必选] Qt5_DIR: qt5 安装位置(指向Qt5Config.cmake的目录，默认为 Qt5 安装目录/lib/cmake/Qt5)。  
-                     详见：https://doc.qt.io/qt-5/cmake-get-started.html  
-             或者 Qt6_DIR: qt6 安装位置(指向Qt6Config.cmake的目录，默认为 Qt6 安装目录/lib/cmake/Qt6)
-    - [必选] RabbitCommon_ROOT: 指向 RabbitCommon 源码目录
-    - [可选] CMAKE_INSTALL_PREFIX: 安装前缀
+    + Qt
+      + QT_ROOT: Qt 安装位置
+      + Qt6: 详见：https://doc.qt.io/qt-6/cmake-get-started.html
+        + Qt6_ROOT: 与 QT_ROOT 相同
+        + Qt6_DIR: $QT_ROOT/lib/cmake/Qt6
+      + Qt5: 详见：https://doc.qt.io/qt-6/cmake-get-started.html
+        + Qt5_ROOT: 与 QT_ROOT 相同
+        + Qt5_DIR: $QT_ROOT/lib/cmake/Qt5
+    + [必选] RabbitCommon_ROOT: 指向 RabbitCommon 源码目录
+    + [可选] CMAKE_INSTALL_PREFIX: 安装前缀
   + windows 或 linux
   
         cd build
@@ -118,7 +206,7 @@
                -DRabbitCommon_ROOT=
         cmake --build . --config Release --target install
         
-  + android
+  + android：
     Qt 版本必须大于等于 6  
     - 主机是linux
       + 编译

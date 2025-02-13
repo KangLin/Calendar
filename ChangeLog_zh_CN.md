@@ -1,5 +1,9 @@
 - v1.0.21
   - 增加日历类型选项
+  - 在 CTaksk 和 CTaak 增加允许
+  - 增加 AppImage
+  - 增加编译脚本
+  - 增加 arm64(aarch4)
 
 - v1.0.20
   - 使用 VCPKG_MANIFEST_DIR 重载 openssl 1.1

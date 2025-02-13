@@ -246,7 +246,7 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
     apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
         qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
         libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
-        qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
+        qt6-scxml-dev qt6-multimedia-dev
 fi
 
 if [ $QT -eq 1 ]; then

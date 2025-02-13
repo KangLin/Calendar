@@ -79,7 +79,7 @@ Author: Kang Lin <kl222@126.com>
 
 ### Donation
 
-[![donation](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
+[![donation](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute_en.png "donation")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute_en.png "donation")
 
 ### Download
 
@@ -88,6 +88,92 @@ Author: Kang Lin <kl222@126.com>
 
 ### Depend
 - [Qt (LGPL v2.1)](http://qt.io/)
+  - Qt (official release): https://download.qt.io/official_releases/qt/
+    - Set environment variable or cmake parameters:
+      - QT_ROOT
+      - Qt6: Qt6_ROOT or Qt6_DIR .
+        See: https://doc.qt.io/qt-6/cmake-get-started.html
+      - Qt5: Qt5_ROOT or Qt5_DIR .
+        See: https://doc.qt.io/qt-5/cmake-get-started.html
+      - Environment variable
+
+            export QT_ROOT=Qt install root
+            # Needed by complied AppImage
+            export QMAKE=$QT_ROOT/bin/qmake
+
+            # When Qt6
+            export Qt6_ROOT=$QT_ROOT
+            # When Qt5
+            export Qt5_ROOT=$QT_ROOT
+
+            # Or
+
+            # When Qt6
+            export Qt6_DIR=$QT_ROOT/lib/cmake/Qt6
+            # When Qt5
+            export Qt5_DIR=$QT_ROOT/lib/cmake/Qt5
+
+      - CMAKE parameters
+
+            # Qt6
+            cmake -DQT_ROOT=[Qt install root] -DQt6_DIR=[Qt install root]/lib/cmake/Qt6 ......
+            # Qt5 
+            cmake -DQT_ROOT=[Qt install root] -DQt5_DIR=[Qt install root]/lib/cmake/Qt5 ......
+            # Needed by complied AppImage
+            export QMAKE=$QT_ROOT/bin/qmake
+
+  - System built-in:  
+    - Qt5:
+    
+          ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev
+
+    - Qt6: See: [Script/build_depend.sh](../../Script/build_depend.sh)
+    
+          ~$ sudo apt install qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev
+
+    - When multiple distributions of Qt are installed on the system.
+      For example: Install Qt5 and Qt6 at the same time.
+      The system uses the qtchooser tool to select the current Qt version.
+  
+          l@l:/home/RabbitRemoteControl$ qtchooser 
+          Usage:
+            qtchooser { -l | -list-versions | -print-env }
+            qtchooser -install [-f] [-local] <name> <path-to-qmake>
+            qtchooser -run-tool=<tool name> [-qt=<Qt version>] [program arguments]
+            <executable name> [-qt=<Qt version>] [program arguments]
+
+          Environment variables accepted:
+           QTCHOOSER_RUNTOOL  name of the tool to be run (same as the -run-tool argument)
+           QT_SELECT          version of Qt to be run (same as the -qt argument)
+  
+      - List which version of Qt is currently installed on your system
+
+            l@l:/home/RabbitRemoteControl$ qtchooser -l
+            4
+            5
+            default
+            qt4-x86_64-linux-gnu
+            qt4
+            qt5-x86_64-linux-gnu
+            qt5
+            qt6
+
+            # View the Qt version of your current environment
+            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+            QT_SELECT="default"
+            QTTOOLDIR="[Paths]"
+            QTLIBDIR="Prefix=/usr"
+    
+      - Set the Qt version of your current environment
+
+            export QT_SELECT=qt6  # Set the Qt6 version of your current environment
+
+            # View the Qt version of your current environment
+            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+            QT_SELECT="qt6"
+            QTTOOLDIR="/usr/lib/qt6/bin"
+            QTLIBDIR="/usr/lib/aarch64-linux-gnu"
+  
 - [RabbitCommon](https://github.com/KangLin/RabbitCommon)
 
     ```
@@ -107,10 +193,14 @@ Author: Kang Lin <kl222@126.com>
 
 - Compile
   + CMAKE parameter：
-    + [MUST] QT_ROOT: Qt install root
-    - [MUST] Qt5_DIR: qt install position(default $QT_ROOT/lib/cmake/Qt5).
-                   See：https://doc.qt.io/qt-5/cmake-get-started.html  
-          or Qt6_DIR: qt install position(default $QT_ROOT/lib/cmake/Qt6).
+    + Qt
+      + QT_ROOT: Qt install root
+      + Qt6: See: https://doc.qt.io/qt-6/cmake-get-started.html
+        + Qt6_ROOT: Is same QT_ROOT
+        + Qt6_DIR: $QT_ROOT/lib/cmake/Qt6
+      + Qt5: See: https://doc.qt.io/qt-5/cmake-get-started.html
+        + Qt5_ROOT: Is same QT_ROOT
+        + Qt5_DIR: $QT_ROOT/lib/cmake/Qt5
     - [MUST] RabbitCommon_ROOT: RabbitCommon source directory
     - [Optional] CMAKE_INSTALL_PREFIX: install prefix
   + windows or linux
@@ -118,11 +208,11 @@ Author: Kang Lin <kl222@126.com>
         cd build
         cmake .. -DCMAKE_INSTALL_PREFIX=`pwd`/install \
              -DCMAKE_BUILD_TYPE=Release \
-             -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
+             -DQt6_DIR=${QT_ROOT}/lib/cmake/Qt6 \
              -DRabbitCommon_ROOT=
         cmake --build . --config Release --target install
         
-  + android
+  + android: version greater than 6
     - The host is linux
       + Compile
       
@@ -135,17 +225,7 @@ Author: Kang Lin <kl222@126.com>
                 -DQT_ROOT=... -DQt6_DIR=... \
                 -DRabbitCommon_ROOT= 
             cmake --build . --config Release --target install
-            cmake --build . --target APK   
-
-      + Install
-        - Install program and libraries
-        
-                cmake --build . --config Release --target install/strip
-                 
-        - Generate APK
-        
-                cmake --build . --config Release --target APK
-                 
+     
     - The host is windows
       + Compile
       
@@ -161,17 +241,7 @@ Author: Kang Lin <kl222@126.com>
                 -DQT_ROOT=... -DQt6_DIR=... ^
                 -DRabbitCommon_ROOT= 
             cmake --build . --config Release --target install
-            cmake --build . --target APK     
-      
-      + Install
-        - Install program and libraries
-          
-                cmake --build . --config Release --target install/strip
-                   
-        - Generate APK
-          
-                cmake --build . --config Release --target APK
-                   
+       
     + Parameter Description: https://developer.android.google.cn/ndk/guides/cmake
       + ANDROID_ABI: The following values can be taken:
          Goal ABI. If the target ABI is not specified, CMake uses armeabi-v7a by default.
