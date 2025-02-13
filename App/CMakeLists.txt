@@ -32,7 +32,9 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     VERSION ${Calendar_VERSION})
 
 if(NOT ANDROID AND (UNIX OR IOS))
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/org.Rabbit.Calendar.desktop
+    configure_file(${CMAKE_SOURCE_DIR}/share/applications/org.Rabbit.Calendar.desktop.in
+        ${CMAKE_BINARY_DIR}/org.Rabbit.Calendar.desktop)
+    INSTALL(FILES ${CMAKE_BINARY_DIR}/org.Rabbit.Calendar.desktop
         DESTINATION "share/applications"
             COMPONENT Application)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Calendar.png

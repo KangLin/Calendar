@@ -1,11 +1,19 @@
+# https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
+
 [Desktop Entry]
 Type=Application
 Icon=Calendar
-Exec=/opt/Calendar/bin/Calendar.sh
-Path=/opt/Calendar
+Exec=CalendarApp
+TryExec=CalendarApp
+Path=@CMAKE_INSTALL_PREFIX@/bin
 Terminal=false
 StartupNotify=true
-Categories=Application;Development;Tools;Qt;
+
+# https://specifications.freedesktop.org/menu-spec/latest/apa.html
+Categories=Calendar;Development;Utility;Qt;
+
+# https://www.freedesktop.org/wiki/Specifications/mime-apps-spec/
+# https://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec/
 MimeType=application/calendar+json;application/calendar+xml;application/octet-stream;text/calendar;text/x-vcalendar;application/vnd.sus-calendar;text/plain;
 
 Name=Calendar

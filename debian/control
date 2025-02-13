@@ -26,11 +26,11 @@ Description: Calendar using Qt
  Calendar
  .
  Include:
- - Calendar
-   - solar
-   - lunar
- - Task
- - sticky
+   - Calendar
+     - solar
+     - lunar
+   - Task
+   - sticky
  .
  Author: Kang Lin <kl222@126.com>
  .
