@@ -89,11 +89,13 @@ build_script:
   - if "%BUILD_ARCH%" == "x64" (copy /Y c:\OpenSSL-Win64\bin\ssleay32.dll install\bin && copy /Y c:\OpenSSL-Win64\bin\libeay32.dll install\bin)
   - makensis Install.nsi
   - RENAME Calendar_Setup_%CalendarVersion%.exe Calendar_%CalendarVersion%_windows_xp_%BUILD_ARCH%_Setup.exe
+  - md5sum Calendar_%CalendarVersion%_windows_xp_%BUILD_ARCH%_Setup.exe > Calendar_%CalendarVersion%_windows_xp_%BUILD_ARCH%_Setup.exe.md5sum
 
 after_build:
 
 artifacts:
   - path: build\Calendar_$(CalendarVersion)_windows_xp_$(BUILD_ARCH)_Setup.exe
+  - path: build\Calendar_%CalendarVersion%_windows_xp_%BUILD_ARCH%_Setup.exe.md5sum
 
 test: off
 

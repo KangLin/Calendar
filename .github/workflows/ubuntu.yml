@@ -93,13 +93,12 @@ jobs:
           MD5=`md5sum rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb|awk '{print $1}'`
           echo "MD5:${MD5}"
           /opt/Calendar/bin/Calendar.sh \
-               -f "${{github.workspace}}/update_ubuntu.json" \
+               -f "${{github.workspace}}/update_${OS_NAME}_${ARCH}.json" \
                --foc 1 \
                --md5 ${MD5} \
                -n "rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb" \
-               -m "${{env.Calendar_VERSION}}" \
                -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb;https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb"
-          mv update_ubuntu.json.xml update_linux.xml
+          mv update_${OS_NAME}_${ARCH}.json.xml update_linux.xml
 
       - name: Update version configure file
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.os == 'ubuntu-24.04' }}
@@ -120,5 +119,5 @@ jobs:
           path: |
             ${{github.workspace}}/rabbitcalendar_${{env.Calendar_VERSION}}_*.deb
             ${{github.workspace}}/update_linux.xml
-            ${{github.workspace}}/update_ubuntu.json
+            ${{github.workspace}}/update_*.json
             ${{github.workspace}}/version.json

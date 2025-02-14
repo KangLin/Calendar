@@ -49,6 +49,7 @@ sed -i "s/CalendarVersion:.*/CalendarVersion: \"${VERSION}\"/g" ${SOURCE_DIR}/ap
 sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/.travis.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
+sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
 sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml

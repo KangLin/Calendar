@@ -229,9 +229,19 @@ if [ $BASE_LIBS -eq 1 ]; then
     apt install -y -q build-essential \
         git cmake gcc g++ debhelper fakeroot graphviz gettext \
         xvfb xpra xserver-xorg-input-mouse xserver-xorg-input-kbd \
-        libglu1-mesa-dev libpulse-mainloop-glib0
+        libpulse-mainloop-glib0
     # Base dependency
     apt install -y -q libssl-dev libcrypt-dev libicu-dev zlib1g-dev
+    # OpenGL
+    apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
+    # X11
+    apt install -y -q xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
+        libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
+        libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
+        libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
+        libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev \
+        libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
+        libxkbcommon-dev
     # RabbitCommon dependency
     apt install -y -q libcmark-dev cmark
     # AppImage
