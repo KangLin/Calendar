@@ -76,7 +76,7 @@
     <message>
         <location filename="../../DlgTaskActivity.ui" line="47"/>
         <source>Once</source>
-        <translation>壹次</translation>
+        <translation>一次</translation>
     </message>
     <message>
         <location filename="../../DlgTaskActivity.ui" line="57"/>
@@ -289,7 +289,7 @@
     <message>
         <location filename="../../FrmCustomActivity.ui" line="111"/>
         <source>Monday</source>
-        <translation>周壹</translation>
+        <translation>周一</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="118"/>
@@ -329,7 +329,7 @@
     <message>
         <location filename="../../FrmCustomActivity.ui" line="180"/>
         <source>Always</source>
-        <translation>壹直</translation>
+        <translation>一直</translation>
     </message>
     <message>
         <location filename="../../FrmCustomActivity.ui" line="190"/>
@@ -565,178 +565,184 @@
         <translation>任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="59"/>
-        <location filename="../../FrmTasks.ui" line="244"/>
+        <location filename="../../FrmTasks.ui" line="58"/>
+        <location filename="../../FrmTasks.ui" line="249"/>
         <source>ID:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="66"/>
-        <location filename="../../FrmTasks.ui" line="69"/>
-        <location filename="../../FrmTasks.ui" line="72"/>
+        <location filename="../../FrmTasks.ui" line="65"/>
+        <location filename="../../FrmTasks.ui" line="68"/>
+        <location filename="../../FrmTasks.ui" line="71"/>
         <source>Tasks ID</source>
         <translation>任務組 ID</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="82"/>
-        <location filename="../../FrmTasks.ui" line="267"/>
+        <location filename="../../FrmTasks.ui" line="81"/>
+        <location filename="../../FrmTasks.ui" line="272"/>
         <source>Title:</source>
         <translation>標題</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="95"/>
-        <location filename="../../FrmTasks.ui" line="98"/>
-        <location filename="../../FrmTasks.ui" line="101"/>
+        <location filename="../../FrmTasks.ui" line="94"/>
+        <location filename="../../FrmTasks.ui" line="97"/>
+        <location filename="../../FrmTasks.ui" line="100"/>
         <source>Tasks title</source>
         <translation>任務組標題</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="130"/>
-        <location filename="../../FrmTasks.ui" line="389"/>
+        <location filename="../../FrmTasks.ui" line="126"/>
+        <location filename="../../FrmTasks.ui" line="302"/>
+        <source>Enable</source>
+        <translation>允許</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTasks.ui" line="135"/>
+        <location filename="../../FrmTasks.ui" line="400"/>
         <source>Content:</source>
         <translation>內容：</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="143"/>
-        <location filename="../../FrmTasks.ui" line="146"/>
-        <location filename="../../FrmTasks.ui" line="149"/>
+        <location filename="../../FrmTasks.ui" line="148"/>
+        <location filename="../../FrmTasks.ui" line="151"/>
+        <location filename="../../FrmTasks.ui" line="154"/>
         <source>Tasks content</source>
         <translation>任務組內容</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="177"/>
+        <location filename="../../FrmTasks.ui" line="182"/>
         <source>Previous task</source>
-        <translation>前壹個任務</translation>
+        <translation>前一個任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="180"/>
+        <location filename="../../FrmTasks.ui" line="185"/>
         <source>Previous</source>
-        <translation>前壹個</translation>
+        <translation>前一個</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="196"/>
+        <location filename="../../FrmTasks.ui" line="201"/>
         <source>Next task</source>
-        <translation>下壹個任務</translation>
+        <translation>下一個任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="199"/>
+        <location filename="../../FrmTasks.ui" line="204"/>
         <source>Next</source>
-        <translation>下壹個</translation>
+        <translation>下一個</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="224"/>
-        <location filename="../../FrmTasks.ui" line="227"/>
-        <location filename="../../FrmTasks.ui" line="230"/>
+        <location filename="../../FrmTasks.ui" line="229"/>
+        <location filename="../../FrmTasks.ui" line="232"/>
+        <location filename="../../FrmTasks.ui" line="235"/>
         <source>Task</source>
         <translation>任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="257"/>
+        <location filename="../../FrmTasks.ui" line="262"/>
         <source>Task ID</source>
         <translation>任務ID</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="280"/>
+        <location filename="../../FrmTasks.ui" line="285"/>
         <source>Task title</source>
         <translation>任務標題</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="302"/>
+        <location filename="../../FrmTasks.ui" line="313"/>
         <source>Start time</source>
         <translation>開始時間:</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="312"/>
+        <location filename="../../FrmTasks.ui" line="323"/>
         <source>Interval:</source>
         <translation>間隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="325"/>
+        <location filename="../../FrmTasks.ui" line="336"/>
         <source>Task interval(Unit: minute). If is 0, then run now.</source>
         <translation>任務間隔（單位：分鐘）。如果是0，則立即運行。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="338"/>
+        <location filename="../../FrmTasks.ui" line="349"/>
         <source>M</source>
         <translation>分</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="351"/>
+        <location filename="../../FrmTasks.ui" line="362"/>
         <source>PromptInterval:</source>
         <translation>提示間隔：</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="364"/>
-        <location filename="../../FrmTasks.ui" line="367"/>
+        <location filename="../../FrmTasks.ui" line="375"/>
+        <location filename="../../FrmTasks.ui" line="378"/>
         <source>Prompt interval(Unit: second). If is 0, don&apos;t prompt</source>
         <translation>提示間隔（單位：秒）。如果是0，則不提示。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="380"/>
+        <location filename="../../FrmTasks.ui" line="391"/>
         <source>S</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="402"/>
-        <location filename="../../FrmTasks.ui" line="405"/>
-        <location filename="../../FrmTasks.ui" line="408"/>
+        <location filename="../../FrmTasks.ui" line="413"/>
+        <location filename="../../FrmTasks.ui" line="416"/>
+        <location filename="../../FrmTasks.ui" line="419"/>
         <source>Task content</source>
         <translation>任務內容</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="436"/>
+        <location filename="../../FrmTasks.ui" line="447"/>
         <source> New add task into tasks</source>
         <translation>新建任務到任務組中</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="439"/>
+        <location filename="../../FrmTasks.ui" line="450"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="456"/>
+        <location filename="../../FrmTasks.ui" line="466"/>
         <source>Remove the task from tasks</source>
         <translation>從任務組中移除此任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="459"/>
+        <location filename="../../FrmTasks.ui" line="469"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="476"/>
+        <location filename="../../FrmTasks.ui" line="485"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.ui" line="506"/>
+        <location filename="../../FrmTasks.ui" line="514"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="101"/>
+        <location filename="../../FrmTasks.cpp" line="103"/>
         <source>Start: %1</source>
         <translation>開始於: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="107"/>
+        <location filename="../../FrmTasks.cpp" line="109"/>
         <source>There is current task in tasks.</source>
         <translation>這是任務組中的當前任務.</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="150"/>
+        <location filename="../../FrmTasks.cpp" line="152"/>
         <source>New </source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="258"/>
-        <location filename="../../FrmTasks.cpp" line="268"/>
+        <location filename="../../FrmTasks.cpp" line="262"/>
+        <location filename="../../FrmTasks.cpp" line="272"/>
         <source>Open file</source>
         <translation>打開文件</translation>
     </message>
     <message>
-        <location filename="../../FrmTasks.cpp" line="258"/>
-        <location filename="../../FrmTasks.cpp" line="268"/>
+        <location filename="../../FrmTasks.cpp" line="262"/>
+        <location filename="../../FrmTasks.cpp" line="272"/>
         <source>png(*.png);;icon(*.icon);;jpg(*.jpg);;bmp(*.bmp);;All files(*.*)</source>
         <translation>png(*.png);;圖標(*.icon);;jpg(*.jpg);;位圖(*.bmp);;所有文件(*.*)</translation>
     </message>
@@ -744,17 +750,17 @@
 <context>
     <name>CFrmTasksList</name>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="101"/>
+        <location filename="../../FrmTasksList.cpp" line="104"/>
         <source>Load</source>
         <translation>加載</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="101"/>
+        <location filename="../../FrmTasksList.cpp" line="104"/>
         <source>xml(*.xml);;All files(*.*)</source>
         <translation>xml(*.xml);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="108"/>
+        <location filename="../../FrmTasksList.cpp" line="111"/>
         <source>Save as ...</source>
         <translation>另存為 ……</translation>
     </message>
@@ -797,7 +803,7 @@
         <location filename="../../FrmTasksList.ui" line="69"/>
         <location filename="../../FrmTasksList.ui" line="72"/>
         <location filename="../../FrmTasksList.ui" line="75"/>
-        <location filename="../../FrmTasksList.cpp" line="146"/>
+        <location filename="../../FrmTasksList.cpp" line="149"/>
         <source>New tasks</source>
         <translation>新建任務組</translation>
     </message>
@@ -826,23 +832,23 @@
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="148"/>
+        <location filename="../../FrmTasksList.cpp" line="151"/>
         <source>After 5 minutes, the prompt will show 5 minutes, repeat</source>
         <translation>5分鐘後，開始提示，提示5分鐘，重復</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="153"/>
+        <location filename="../../FrmTasksList.cpp" line="156"/>
         <source>New task</source>
         <translation>新建任務</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="154"/>
-        <location filename="../../FrmTasksList.cpp" line="158"/>
+        <location filename="../../FrmTasksList.cpp" line="157"/>
+        <location filename="../../FrmTasksList.cpp" line="161"/>
         <source>If the task is not you need, please select a task from combox, new it, and remove the task.</source>
-        <translation>如果此任務不是妳需要的，請從下面組合框中選擇妳需要的任務建立它，並刪除此任務。</translation>
+        <translation>如果此任務不是你需要的，請從下面組合框中選擇你需要的任務建立它，並刪除此任務。</translation>
     </message>
     <message>
-        <location filename="../../FrmTasksList.cpp" line="157"/>
+        <location filename="../../FrmTasksList.cpp" line="160"/>
         <source>New prompt task</source>
         <translation>新建提示</translation>
     </message>
@@ -882,7 +888,7 @@
 <context>
     <name>CTask</name>
     <message>
-        <location filename="../../Task.cpp" line="150"/>
+        <location filename="../../Task.cpp" line="162"/>
         <source>Task is base unit. Is a minimal execution unit.
 Start with the Start function and run the Run function after the interval.
 If PromptInterval isn&apos;t 0, then interval PromptInterval time prompt.</source>

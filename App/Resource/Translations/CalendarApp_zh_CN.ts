@@ -99,14 +99,6 @@
         <translation>选项</translation>
     </message>
     <message>
-        <source>Style</source>
-        <translation type="vanished">样式</translation>
-    </message>
-    <message>
-        <source>Default(&amp;D)</source>
-        <translation type="vanished">默认(&amp;D)</translation>
-    </message>
-    <message>
         <location filename="../../MainWindow.ui" line="102"/>
         <source>Update(&amp;U)</source>
         <translation>更新(&amp;U)</translation>
