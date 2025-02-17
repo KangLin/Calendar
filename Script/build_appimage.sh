@@ -108,7 +108,7 @@ chmod a+x Calendar-`uname -m`.AppImage
 if [ -z "$Calendar_VERSION" ]; then
     cp Calendar-`uname -m`.AppImage $REPO_ROOT
 else
-    mv Calendar-`uname -m`.AppImage ../Calendar_${Calendar_VERSION}_`uname -m`.AppImage
+    mv Calendar-`uname -m`.AppImage ../Calendar_${Calendar_VERSION}_Linux_`uname -m`.AppImage
 fi
 
 popd

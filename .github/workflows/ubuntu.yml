@@ -30,7 +30,7 @@ jobs:
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.BUILD_TYPE}}
       artifact_name: build_${{matrix.os}}
-      Calendar_VERSION: 1.0.21
+      Calendar_VERSION: 1.0.22
 
     # Map the job outputs to step outputs
     outputs:

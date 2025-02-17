@@ -1,3 +1,7 @@
+- v1.0.22
+  - Modify bug
+  - Modify translations
+
 - v1.0.21
   - Add calendar type option
   - Add enable in CTasks and CTask

@@ -38,7 +38,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
       artifact_name: build_appimage_${{matrix.os}}
       qt_modules: 'qtscxml'
-      Calendar_VERSION: v1.0.21
+      Calendar_VERSION: v1.0.22
 
     # Map the job outputs to step outputs
     outputs:
@@ -98,7 +98,7 @@ jobs:
         run: |
           export QMAKE=/usr/bin/qmake6
           ${{github.workspace}}/Script/build_appimage.sh
-          md5sum Calendar_${{env.Calendar_VERSION}}_`uname -m`.AppImage > Calendar_${{env.Calendar_VERSION}}_`uname -m`.AppImage.md5sum
+          md5sum Calendar_${{env.Calendar_VERSION}}_Linux_`uname -m`.AppImage > Calendar_${{env.Calendar_VERSION}}_Linux_`uname -m`.AppImage.md5sum
 
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
@@ -110,14 +110,14 @@ jobs:
           export QT_XCB_GL_INTEGRATION=none
           #export QT_DEBUG_PLUGINS=1
           export ARCH=`uname -m`
-          export MD5SUM=`cat Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage.md5sum|awk '{print $1}'`
-          echo "MD5SUM Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage: ${MD5SUM}"
+          export MD5SUM=`cat Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage.md5sum|awk '{print $1}'`
+          echo "MD5SUM Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage: ${MD5SUM}"
           echo "Generate update configure file ......"
-          ./Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage \
+          ./Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage \
             -f "${{github.workspace}}/update_appimage_${{matrix.os}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}.json" \
             --foc 1 \
-            --file-name Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage \
-            -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/Calendar/files/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage" \
+            --file-name Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage \
+            -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage;https://sourceforge.net/projects/Calendar/files/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage" \
             --md5 "${MD5SUM}" \
             -m "v${{env.Calendar_VERSION}}"
 

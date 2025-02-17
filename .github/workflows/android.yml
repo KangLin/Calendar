@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     env:
-      Calendar_VERSION: v1.0.21
+      Calendar_VERSION: v1.0.22
       VCPKGGITCOMMITID: 9f5925e81bbcd9c8c34cc7a8bd25e3c557b582b2
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
