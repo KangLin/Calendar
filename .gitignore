@@ -1,4 +1,5 @@
 *.dsc
+*.AppImage
 *.change
 *.buildinfo
 *.changes

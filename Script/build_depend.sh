@@ -245,7 +245,7 @@ if [ $BASE_LIBS -eq 1 ]; then
     # RabbitCommon dependency
     apt install -y -q libcmark-dev cmark
     # AppImage
-    apt install -y -q fuse
+    apt install -y -q libfuse-dev libfuse3-dev
     # Other
     apt install -y -q libsqlite3-dev
 fi
