@@ -32,9 +32,9 @@ int main(int argc, char *argv[])
     QtAndroid::hideSplashScreen();
 #endif
 
-    QApplication a(argc, argv);
-    a.setApplicationVersion(Calendar_VERSION);
-    a.setApplicationName("Calendar");
+    QApplication app(argc, argv);
+    app.setApplicationVersion(Calendar_VERSION);
+    app.setApplicationName("Calendar");
 
     RabbitCommon::CTools::Instance()->Init();
 
@@ -47,13 +47,13 @@ int main(int argc, char *argv[])
 
     CTasksTools::Instance()->InitResource();
 
-    a.setApplicationDisplayName(QObject::tr("Calendar"));
+    app.setApplicationDisplayName(QObject::tr("Calendar"));
     
     qInfo(log) << QObject::tr("Calendar version: ") + Calendar_VERSION
 #ifdef Calendar_REVISION
                + " (Revision: [" + Calendar_REVISION
                       + "](https://github.com/KangLin/"
-                      + a.applicationName() +"/tree/"
+                      + app.applicationName() +"/tree/"
                       + Calendar_REVISION + "))"
 #endif
                + "; " + QObject::tr("LunarCalendar: ") + CLunarCalendar::Version()
@@ -61,19 +61,28 @@ int main(int argc, char *argv[])
         ;
 
     CFrmUpdater *pUpdate = new CFrmUpdater();
-    QIcon icon = QIcon::fromTheme("calendar");
-    if(!icon.isNull()) {
-        auto sizeList = icon.availableSizes();
-        if(!sizeList.isEmpty()) {
-            QPixmap p = icon.pixmap(*sizeList.begin());
-            pUpdate->SetTitle(p.toImage());
+    if(pUpdate) {
+        QIcon icon = QIcon::fromTheme("calendar");
+        if(!icon.isNull()) {
+            auto sizeList = icon.availableSizes();
+            if(!sizeList.isEmpty()) {
+                QPixmap p = icon.pixmap(*sizeList.begin());
+                pUpdate->SetTitle(p.toImage());
+            }
         }
-    }
-    pUpdate->SetInstallAutoStartup();
-    if(a.arguments().length() > 1) {
-        pUpdate->GenerateUpdateJson();
-        pUpdate->GenerateUpdateXml();
-        return 0;
+        pUpdate->SetInstallAutoStartup();
+        if(app.arguments().length() > 1) {
+            try{
+                pUpdate->GenerateUpdateJson();
+                pUpdate->GenerateUpdateXml();
+            } catch(...) {
+                qCritical(log) << "Generate update fail";
+            }
+
+            qInfo(log) << app.applicationName() + " " + app.applicationVersion()
+                              + " " + QObject::tr("Generate update json file End");
+            return 0;
+        }
     }
 
     CMainWindow win;
@@ -87,10 +96,13 @@ int main(int argc, char *argv[])
         win.show();
 #endif
 
-    int nRet = a.exec();
+    int nRet = app.exec();
 
     RabbitCommon::CTools::Instance()->Clean();
 
     CTasksTools::Instance()->CleanResource();
+
+    qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " " + QObject::tr("End");
+
     return nRet;
 }
