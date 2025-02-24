@@ -45,14 +45,14 @@ jobs:
       - name: Download ubuntu
         uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.ubuntu.outputs.name }}*
+          pattern: ${{ needs.ubuntu.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
       - name: Download appimage
         uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.appimage.outputs.name }}*
+          pattern: ${{ needs.appimage.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
