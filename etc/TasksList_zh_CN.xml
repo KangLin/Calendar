@@ -24,7 +24,7 @@
             <class name="CTaskPrompt">
                 <objectName value="TaskPrompt"/>
                 <title value="望远方"/>
-                <content value="眺望 100 米外的远方"/>
+                <content value="眺望 100 米外的远方 20 秒以上"/>
                 <id value="1"/>
                 <enable value="true"/>
                 <interval value="60000"/>
