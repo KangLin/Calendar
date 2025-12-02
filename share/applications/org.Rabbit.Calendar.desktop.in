@@ -9,8 +9,14 @@ Path=@CMAKE_INSTALL_PREFIX@/bin
 Terminal=false
 StartupNotify=true
 
+# Find WM_CLASS:
+# Open terminal, run `xprop WM_CLASS` .
+# Your mouse cursor will change to a crosshair. Click on any window of Calendar.
+StartupWMClass=Calendar
+
 # https://specifications.freedesktop.org/menu-spec/latest/apa.html
 Categories=Calendar;Development;Utility;Qt;
+Keywords=Calendar;LunarCalendar;日历;农历;阴历;阳历
 
 # https://www.freedesktop.org/wiki/Specifications/mime-apps-spec/
 # https://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec/
