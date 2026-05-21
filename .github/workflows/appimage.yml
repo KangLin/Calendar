@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release]
-        qt_version: [6.8.2]
+        qt_version: [6.10.3]
         os: [ubuntu-24.04, ubuntu-24.04-arm]
         include:
           - os: ubuntu-24.04
@@ -73,7 +73,7 @@ jobs:
 
       - name: Install base dependency libraries
         run: |
-          sudo ./Script/build_depend.sh --apt_update --base --default \
+          sudo ./Script/build_depend.sh --system_update --base --default \
               --install ${{env.INSTALL_DIR}} \
               --source ${{env.SOURCE_DIR}} \
               --tools ${{env.TOOLS_DIR}} \
@@ -96,7 +96,7 @@ jobs:
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
-          export QMAKE=/usr/bin/qmake6
+          export QMAKE=$(which qmake6)
           ${{github.workspace}}/Script/build_appimage.sh
           md5sum Calendar_${{env.Calendar_VERSION}}_Linux_`uname -m`.AppImage > Calendar_${{env.Calendar_VERSION}}_Linux_`uname -m`.AppImage.md5sum
 
