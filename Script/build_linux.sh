@@ -432,7 +432,7 @@ if [ $DOCKER -eq 1 ]; then
             cp \${SOURCE_CODE_DIR}/Calendar/Calendar_`uname -m`.AppImage .
             chmod a+rx Calendar_`uname -m`.AppImage
             cp \${SOURCE_CODE_DIR}/Calendar/build_appimage/AppDir/usr/share/applications/io.github.KangLin.Calendar.desktop .
-            cp \${SOURCE_CODE_DIR}/Calendar/build_appimage/AppDir/usr/share/icons/hicolor/scalable/apps/io.github.KangLin.Calendar.svg .
+            cp \${SOURCE_CODE_DIR}/Calendar/build_appimage/AppDir/usr/share/pixmaps/io.github.KangLin.Calendar.png .
             cp \${SOURCE_CODE_DIR}/Calendar/Script/install_appimage.sh install.sh
             chmod a+rx install.sh
             popd

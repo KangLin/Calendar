@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        os: [ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04-arm]
+        os: [ubuntu-24.04, ubuntu-24.04-arm]
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
@@ -92,7 +92,7 @@ jobs:
           sudo apt install ./rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb
           MD5=`md5sum rabbitcalendar_${{env.Calendar_VERSION}}_${OS_NAME}_${ARCH}.deb|awk '{print $1}'`
           echo "MD5:${MD5}"
-          /opt/Calendar/bin/Calendar.sh \
+          /opt/Calendar/bin/CalendarApp \
                -f "${{github.workspace}}/update_${OS_NAME}_${ARCH}.json" \
                --foc 1 \
                --md5 ${MD5} \
@@ -106,7 +106,7 @@ jobs:
         run: |
           sudo Xvfb :95 -ac -screen 0 1200x900x24 &
           export DISPLAY=:95.0
-          /opt/Calendar/bin/Calendar.sh \
+          /opt/Calendar/bin/CalendarApp \
                -f "${{github.workspace}}/version.json" \
                --foc 0 \
                --pv ${{env.Calendar_VERSION}}

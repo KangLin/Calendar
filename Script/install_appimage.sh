@@ -138,7 +138,7 @@ pushd $ROOT_DIR > /dev/null
 APPIMAGE_FILE=`ls Calendar_*.AppImage`
 if [ $INSTALL_DIR != $ROOT_DIR ]; then
     cp $APPIMAGE_FILE $INSTALL_DIR/$APPIMAGE_FILE
-    cp $APP_ID.svg $INSTALL_DIR/$APP_ID.svg
+    cp $APP_ID.png $INSTALL_DIR/$APP_ID.png
     cp $APP_ID.desktop $INSTALL_DIR/$APP_ID.desktop
 fi
 
@@ -150,7 +150,7 @@ if [ ! -f $DESKTOP_FILE ]; then
     CREATE_DESKTOP_FILE=1
     ln -s ${INSTALL_DIR}/$APP_ID.desktop $DESKTOP_FILE
     # ICON 使用绝对路径
-    sed -i "s#^Icon=.*#Icon=$INSTALL_DIR/$APP_ID.svg#" $INSTALL_DIR/$APP_ID.desktop
+    sed -i "s#^Icon=.*#Icon=$INSTALL_DIR/$APP_ID.png#" $INSTALL_DIR/$APP_ID.desktop
 fi
 # 修改执行权限
 chmod a+xr $INSTALL_DIR/$APP_ID.desktop

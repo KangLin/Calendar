@@ -2,7 +2,13 @@
 
 [Desktop Entry]
 Type=Application
-Icon=Calendar
+# Icon path: http://freedesktop.org/wiki/Standards/icon-theme-spec
+# The freedesktop.org standard specifies in which order and directories programs should look for icons:
+#
+#    $HOME/.icons (for backwards compatibility)
+#    $XDG_DATA_DIRS/icons
+#    /usr/share/pixmaps
+Icon=@APP_ID@
 Exec=CalendarApp
 TryExec=CalendarApp
 Path=@CMAKE_INSTALL_PREFIX@/bin

@@ -31,18 +31,17 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     PRIVATE_LIBS RabbitCommon LunarCalendar Tasks ${QT_LIBRARIES}
     VERSION ${Calendar_VERSION})
 
-if(NOT ANDROID AND (UNIX OR IOS))
-    configure_file(${CMAKE_SOURCE_DIR}/share/applications/org.Rabbit.Calendar.desktop.in
-        ${CMAKE_BINARY_DIR}/org.Rabbit.Calendar.desktop)
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/org.Rabbit.Calendar.desktop
-        DESTINATION "share/applications"
+set(APP_ID io.github.KangLin.Calendar)
+if((NOT ANDROID) AND UNIX)
+    configure_file(${CMAKE_SOURCE_DIR}/${CMAKE_INSTALL_DATADIR}/applications/${APP_ID}.desktop.in
+        ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
+    INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/applications"
             COMPONENT Application)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/Src/Resource/image/Calendar.png
-        DESTINATION "share/pixmaps"
-            COMPONENT Application)
-    INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/Calendar.sh
-        DESTINATION ${CMAKE_INSTALL_BINDIR}
-            COMPONENT Application)
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/pixmaps"
+            COMPONENT Application
+        RENAME ${APP_ID}.png)
 endif()
 
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.ini)

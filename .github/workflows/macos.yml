@@ -16,35 +16,37 @@ jobs:
   build_macos:
     strategy:
       matrix:
-        # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-        BUILD_TYPE: [Release, Debug]
-        qt_version: [6.6.3, 5.15.2, 5.12.12]
-        qt_arch: [clang_64]
-        config_arch: [x86_64]
-        VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
-          - qt_version: 6.6.3
-            qt_modules: qtscxml qtmultimedia qtwebchannel qtwebsockets qtwebview qtpositioning
+          - VCPKG_TARGET_TRIPLET: x64-osx
+            os: macos-15-intel
 
-          - qt_version: 5.15.2
+          - VCPKG_TARGET_TRIPLET: arm64-osx
+            os: macos-15
 
-          - qt_version: 5.12.12
+          - VCPKG_TARGET_TRIPLET: arm64-osx
+            os: macos-14
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: macos-13
+    runs-on: ${{matrix.os}}
+    defaults:
+      run:
+        shell: bash
 
     env:
-      BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
-      TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install
-      qt_modules: qtwebengine ${{matrix.qt_modules}}
-      VCPKGGITCOMMITID: 59aeb8fe8fe1c980de6bd5ba634cf21024522d81
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}
+      qt_modules: ${{matrix.qt_modules}}
+      VCPKGGITCOMMITID: 7213cf8135c329c37c7e2778e40774489a0583a8
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      #VCPKG_MANIFEST_FEATURES: ""
       artifact_name: build_macos
-      Calendar_VERSION: 1.0.22
+      Calendar_VERSION: v1.0.22
+      BUILD_VERBOSE: OFF
 
     # Map the job outputs to step outputs
     outputs:
@@ -54,14 +56,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
         with:
-          submodules: recursive
+          submodules: true
+          fetch-depth: 0
 
       - name: Make directories
         run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-          cmake -E make_directory ${{github.workspace}}/build
 
       - name: Cache installed
         uses: actions/cache@v5
@@ -69,76 +72,66 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: install_macos_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
+          key: install_${{matrix.os}}
 
-      - name: run vcpkg
+      - name: run-vcpkg
+        if: false
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
-          vcpkgDirectory: ${{runner.workspace}}/vcpkg/
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          dir: '${{env.TOOSL_DIR}}/qt' # optional
-          version: '${{matrix.qt_version}}' # optional, default is 5.15.2
-          arch: '${{matrix.qt_arch}}' # optional
-          modules: '${{env.qt_modules}}' # optional. See: https://ddalcino.github.io/aqt-list-server/
-          cache: true
-          cache-key-prefix: cached_qt
+          vcpkgDirectory: ${{env.SOURCE_DIR}}/vcpkg
 
       - name: git clone RabbitCommon
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
+        run: git clone https://github.com/KangLin/RabbitCommon.git
+
+      - name: Run build_macos.sh
         run: |
-          git clone https://github.com/KangLin/RabbitCommon.git
-      
-      - name: Compile
-        working-directory: ${{github.workspace}}/build
-        env:
-          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-        run: |
-          cmake ${{github.workspace}} \
-              -DCMARK_SHARED=OFF \
-              -DCMARK_TESTS=OFF \
-              -DCMARK_STATIC=ON \
-              -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-              -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install \
-              -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
-              -DVCPKG_VERBOSE=ON \
-              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
-              -DVCPKG_APPLOCAL_DEPS=ON \
-              -DINSTALL_QT=ON \
-              -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
-          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          7z a Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip ./install/*
+          # 安装 GNU getopt
+          brew install gnu-getopt
+          export PATH="/opt/homebrew/opt/gnu-getopt/bin:/usr/local/opt/gnu-getopt/bin:$PATH"
+          #export RabbitCommon_ROOT=${{env.SOURCE_DIR}}/RabbitCommon
+          # See: https://formulae.brew.sh/
+          #brew install autoconf automake libtool pkg-config freerdp libvncserver libssh zstd libpcap qt qtkeychain pcapplusplus
+          #./Script/build_macos.sh --build=${{env.BUILD_DIR}} --install=${{env.INSTALL_DIR}} --source=${{env.SOURCE_DIR}}
+          ./Script/build_linux.sh --build=${{env.BUILD_DIR}} --install=${{env.INSTALL_DIR}} --source=${{env.SOURCE_DIR}}
+          if [ -f Calendar.zip ]; then
+            mv Calendar.zip Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip
+          fi
+          if [ -f Calendar.dmg ]; then
+            mv Calendar.dmg Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg
+          fi
 
       - name: Update configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
-        working-directory: ${{github.workspace}}/build
+        if: ${{ !matrix.WITH_MACOSX_BUNDLE }}
         run: |
-          ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
-               "${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json" \
-               Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip \
-               macos ${{matrix.config_arch}} \
-               "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip,https://sourceforge.net/projects/rabbitcalendar/files/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip"
+          if [ -f Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip ]; then
+            unzip Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip
+            echo "md5 Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip"
+            md5 Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip
+            MD5SUM=`md5 Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip|awk '{print $4}'`
+            echo "Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip md5sum: ${MD5SUM}"
+            Calendar.App/Contents/MacOS/CalendarApp \
+              --file-name Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip \
+              --md5 "${MD5SUM}" \
+              -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip;https://master.dl.sourceforge.net/project/Calendar/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip?viasf=1"
+          fi
+          if [ -f Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg ]; then
+            echo "md5 Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg"
+            md5 Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg
+            MD5SUM=`md5 Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg|awk '{print $4}'`
+            echo "Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg md5sum: ${MD5SUM}"
+            Calendar.App/Contents/MacOS/CalendarApp \
+              --file-name Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg \
+              --md5 "${MD5SUM}" \
+              -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg;https://master.dl.sourceforge.net/project/Calendar/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg?viasf=1"
+          fi
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.3' }}
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}
+          name: ${{ env.artifact_name }}_${{matrix.os}}
           path: |
-            ${{github.workspace}}/build/Calendar_${{env.Calendar_VERSION}}_macos_qt${{matrix.qt_version}}.zip
-            ${{github.workspace}}/build/update_macos_${{matrix.qt_version}}.json
-
-#    - name: Upload To Github Release
-#      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
-#      uses: softprops/action-gh-release@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        prerelease: true
-#        body: |
-#           [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
-#        files: |
-#            ${{github.workspace}}/rabbitcommon_${{env.RabbitCommon_VERSION}}_amd64.deb
+            ${{github.workspace}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.zip
+            ${{github.workspace}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.os}}.dmg

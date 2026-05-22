@@ -29,21 +29,21 @@ case "$1" in
             ln -s $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         fi
         
-        if [ ! -f /usr/share/applications/org.Rabbit.Calendar.desktop ]; then
-            ln -s ${INSTALL_ROOT}/share/applications/org.Rabbit.Calendar.desktop /usr/share/applications/org.Rabbit.Calendar.desktop
+        if [ ! -f /usr/share/applications/io.github.KangLin.Calendar.desktop ]; then
+            ln -s ${INSTALL_ROOT}/share/applications/io.github.KangLin.Calendar.desktop /usr/share/applications/io.github.KangLin.Calendar.desktop
         fi
         if [ ! -d ~/.config/autostart ]; then
             mkdir -p ~/.config/autostart
             chmod 755 ~/.config/autostart
         fi
-        if [ ! -f  ~/.config/autostart/org.Rabbit.Calendar.desktop ]; then
-            ln -s ${INSTALL_ROOT}/share/applications/org.Rabbit.Calendar.desktop ~/.config/autostart/org.Rabbit.Calendar.desktop
+        if [ ! -f  ~/.config/autostart/io.github.KangLin.Calendar.desktop ]; then
+            ln -s ${INSTALL_ROOT}/share/applications/io.github.KangLin.Calendar.desktop ~/.config/autostart/io.github.KangLin.Calendar.desktop
         fi
-        if [ ! -f /usr/share/pixmaps/Calendar.png ]; then
+        if [ ! -f /usr/share/pixmaps/io.github.KangLin.Calendar.png ]; then
             if [ ! -d /usr/share/pixmaps ]; then
                 mkdir -p /usr/share/pixmaps
             fi
-            ln -s ${INSTALL_ROOT}/share/pixmaps/Calendar.png /usr/share/pixmaps/Calendar.png
+            ln -s ${INSTALL_ROOT}/share/pixmaps/io.github.KangLin.Calendar.png /usr/share/pixmaps/io.github.KangLin.Calendar.png
         fi
         #echo "${INSTALL_ROOT}/lib" > /etc/ld.so.conf.d/Calendar.conf
         #echo "${INSTALL_ROOT}/bin" >> /etc/ld.so.conf.d/Calendar.conf
@@ -55,11 +55,11 @@ case "$1" in
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
-        rm -fr ~/.config/autostart/org.Rabbit.Calendar.desktop
-        rm -fr /usr/share/applications/org.Rabbit.Calendar.desktop
+        rm -fr ~/.config/autostart/io.github.KangLin.Calendar.desktop
+        rm -fr /usr/share/applications/io.github.KangLin.Calendar.desktop
         rm -fr $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         rm -fr /etc/ld.so.conf.d/Calendar.conf
-        rm -fr /usr/share/pixmaps/Calendar.png
+        rm -fr /usr/share/pixmaps/io.github.KangLin.Calendar.png
         ldconfig
     ;;
 

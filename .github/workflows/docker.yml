@@ -19,11 +19,11 @@ jobs:
         variant:
           - PACKAGE: deb
             image: ubuntu
-            lable: "25.04"
+            lable: "24.04"
             os: ubuntu-24.04
           - PACKAGE: deb
             image: ubuntu
-            lable: "25.04"
+            lable: "24.04"
             os: ubuntu-24.04-arm
           - PACKAGE: deb
             image: ubuntu
@@ -51,16 +51,6 @@ jobs:
             lable: "13"
             os: ubuntu-24.04-arm
 
-          # - PACKAGE: deb
-          #   image: linuxdeepin/beige
-          #   lable: "latest"
-          #   os: ubuntu-24.04
-          # - PACKAGE: deb
-          #   image: linuxdeepin/beige
-          #   platform: linux/arm64
-          #   lable: "latest"
-          #   os: ubuntu-24.04-arm
-
           - PACKAGE: appimage
             image: ubuntu
             lable: "26.04"
@@ -69,14 +59,6 @@ jobs:
             image: ubuntu
             lable: "26.04"
             os: ubuntu-24.04-arm
-          # - PACKAGE: appimage
-          #   image: fedora
-          #   lable: "42"
-          #   os: ubuntu-24.04
-          # - PACKAGE: appimage
-          #   image: fedora
-          #   lable: "42"
-          #   os: ubuntu-24.04-arm
 
           # - PACKAGE: rpm
           #   image: fedora

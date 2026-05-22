@@ -36,12 +36,8 @@ jobs:
           - CMAKE_GENERATOR_PLATFORM: Win32
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
-<<<<<<< Updated upstream
-            VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
-=======
             #VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
             BUILD_TYPE: Release
->>>>>>> Stashed changes
             qt_version: 5.15.2
             qt_arch: win32_msvc2019
             os: windows-2022
@@ -49,12 +45,7 @@ jobs:
           - qt_version: 5.12.12
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
-<<<<<<< Updated upstream
-            VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
-=======
             #VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
-            BUILD_TYPE: Release
->>>>>>> Stashed changes
             qt_arch: win32_msvc2017
             CMAKE_GENERATOR_PLATFORM: Win32
             os: windows-2022
@@ -157,13 +148,9 @@ jobs:
               -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=OFF ^
               -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
           cmake --build . --config ${{ matrix.BUILD_TYPE }}
-<<<<<<< Updated upstream
-          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-=======
           cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
           cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
           cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries
->>>>>>> Stashed changes
 
       - name: Package
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
