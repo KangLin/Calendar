@@ -8,13 +8,11 @@
 #include <QSize>
 #include <QScrollBar>
 
-#ifdef RABBITCOMMON
-    #include "DlgAbout.h"
-    #include "RabbitCommonDir.h"
-    #include "FrmUpdater.h"
-    #include "RabbitCommonTools.h"
-    #include "FrmStyle.h"
-#endif
+#include "DlgAbout.h"
+#include "RabbitCommonDir.h"
+#include "FrmUpdater.h"
+#include "RabbitCommonTools.h"
+#include "FrmStyle.h"
 #include "LunarCalendar.h"
 
 CMainWindow::CMainWindow(QWidget *parent) :
@@ -114,7 +112,6 @@ CMainWindow::~CMainWindow()
 
 void CMainWindow::slotAbout()
 {
-#ifdef RABBITCOMMON
     CDlgAbout about(this);
     QIcon icon = windowIcon();
     if(icon.isNull()) return;
@@ -128,17 +125,11 @@ void CMainWindow::slotAbout()
     about.m_szVersionRevision = Calendar_REVISION;
     about.m_szDetails = "### " + tr("LunarCalendar: ") + QString("\n")
                         + "  - " + CLunarCalendar::Version();
-    if(about.isHidden())
-#if defined (Q_OS_ANDROID)
-        about.showMaximized();
-#endif
-        about.exec();
-#endif
+    RC_SHOW_WINDOW(&about);
 }
 
 void CMainWindow::on_actionUpdate_U_triggered()
 {
-#ifdef RABBITCOMMON
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
     QIcon icon = windowIcon();
     if(icon.isNull()) return;
@@ -147,12 +138,7 @@ void CMainWindow::on_actionUpdate_U_triggered()
     QPixmap p = icon.pixmap(*sizeList.begin());
     m_pfrmUpdater->SetTitle(p.toImage());
     m_pfrmUpdater->SetInstallAutoStartup();
-    #if defined (Q_OS_ANDROID)
-        m_pfrmUpdater->showMaximized();
-    #else
-        m_pfrmUpdater->show();
-    #endif
-#endif
+    RC_SHOW_WINDOW(m_pfrmUpdater);
 }
 
 void CMainWindow::slotExit()
