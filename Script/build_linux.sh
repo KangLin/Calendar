@@ -393,7 +393,7 @@ if [ $DOCKER -eq 1 ]; then
                export SOURCE_CODE_DIR=/home
            fi
            \${SOURCE_CODE_DIR}/Calendar/Script/build_linux.sh --deb --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
-           cp \${SOURCE_CODE_DIR}/calendar*.deb /home/build/
+           cp \${SOURCE_CODE_DIR}/rabbitcalendar*.deb /home/build/
            "
     fi
 
@@ -462,7 +462,7 @@ pushd $REPO_ROOT/Script
 if [ $DEB -eq 1 ]; then
     echo_status "build deb package ......"
 
-    ./build_depend.sh --system_update --base \
+    ./build_depend.sh --system_update --base --rabbitcommon \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

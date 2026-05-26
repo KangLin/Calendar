@@ -38,7 +38,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
       artifact_name: build_appimage
       qt_modules: 'qtscxml'
-      Calendar_VERSION: v1.0.22
+      Calendar_VERSION: 1.0.22
 
     # Map the job outputs to step outputs
     outputs:
@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           submodules: recursive
 
@@ -58,7 +58,7 @@ jobs:
           cmake -E make_directory ${{env.INSTALL_DIR}}
 
       - name: Cache installed
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         id: cache-installed
         with:
           path: |
@@ -98,10 +98,12 @@ jobs:
         run: |
           export QMAKE=$(which qmake6)
           ${{github.workspace}}/Script/build_appimage.sh
-          md5sum Calendar_${{env.Calendar_VERSION}}_Linux_`uname -m`.AppImage > Calendar_${{env.Calendar_VERSION}}_Linux_`uname -m`.AppImage.md5sum
+          ARCH=`uname -m`
+          sudo mv -f Calendar_${ARCH}.AppImage Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage
+          md5sum Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage > Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage.md5sum
 
       - name: update configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release'}}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && 'ubuntu-24.04' == matrix.os }}
         #continue-on-error: true
         run: |
           sudo Xvfb :94 -ac -screen 0 1200x900x24 &
@@ -123,7 +125,7 @@ jobs:
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ env.artifact_name }}_${{matrix.os}}
           path: |

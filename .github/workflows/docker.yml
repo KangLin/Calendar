@@ -109,7 +109,7 @@ jobs:
     runs-on: ${{matrix.variant.os}}
 
     env:
-      Calendar_VERSION: 0.1.0-dev
+      Calendar_VERSION: 1.0.22
       artifact_name: build_docker
       BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
@@ -125,7 +125,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
         with:
-          submodules: true
+          submodules: recursive
           fetch-depth: 0
 
       - name: Make directories
@@ -164,7 +164,7 @@ jobs:
           else
             docker_image="${{matrix.variant.image}}"
           fi
-          mv calendar_*.deb calendar_${{env.Calendar_VERSION}}_${docker_image}_`uname -m`.deb
+          mv rabbitcalendar_*.deb rabbitcalendar_${{env.Calendar_VERSION}}_${docker_image}_`uname -m`.deb
 
       - name: AppIagme update configure file
         if: ${{ matrix.variant.PACKAGE == 'appimage' && matrix.variant.image == 'ubuntu'}}
@@ -221,6 +221,6 @@ jobs:
           name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}
           path: |
             ${{env.BUILD_DIR}}/build_linux/calendar*.rpm
-            ${{env.BUILD_DIR}}/build_linux/calendar_*.deb
+            ${{env.BUILD_DIR}}/build_linux/rabbitcalendar_*.deb
             ${{env.BUILD_DIR}}/build_linux/Calendar_*_Setup.zip
             ${{env.BUILD_DIR}}/build_linux/update_appimage_*.json
