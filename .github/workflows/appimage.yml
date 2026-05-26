@@ -124,7 +124,7 @@ jobs:
             -m "v${{env.Calendar_VERSION}}"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: false #${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v5
         with:
           name: ${{ env.artifact_name }}_${{matrix.os}}

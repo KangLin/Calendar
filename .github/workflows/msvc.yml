@@ -46,6 +46,7 @@ jobs:
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
             #VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
+            BUILD_TYPE: Release
             qt_arch: win32_msvc2017
             CMAKE_GENERATOR_PLATFORM: Win32
             os: windows-2022
@@ -146,7 +147,8 @@ jobs:
               -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON ^
               -DRABBIT_ENABLE_INSTALL_QT=ON ^
               -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=OFF ^
-              -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+              -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
+              -DCMAKE_POLICY_VERSION_MINIMUM=3.5
           cmake --build . --config ${{ matrix.BUILD_TYPE }}
           cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
           cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
