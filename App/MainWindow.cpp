@@ -167,6 +167,7 @@ void CMainWindow::slotShow()
 
 void CMainWindow::slotStartRun(bool checked)
 {
+    Q_UNUSED(checked);
     if(RabbitCommon::CTools::IsStartRun())
     {
         RabbitCommon::CTools::RemoveStartRun();
