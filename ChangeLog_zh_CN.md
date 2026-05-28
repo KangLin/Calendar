@@ -1,6 +1,7 @@
 ### v1.0.23
   - 重命名　org.Rabbit.Calendar.desktop 到　io.github.KangLin.Calendar.desktop
   - 增加编译脚本
+  - 修改分发脚本
 
 ### v1.0.22
   - 修复一些错误
