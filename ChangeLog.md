@@ -1,3 +1,5 @@
+### v1.0.24-dev
+
 ### v1.0.23
   - Rename org.Rabbit.Calendar.desktop to io.github.KangLin.Calendar.desktop
   - Add build script
