@@ -5,6 +5,7 @@
   "homepage": "https://github.com/KangLin/Calendar",
 
   "dependencies": [
-    "openssl"
+    "openssl",
+    "cmark"
   ]
 }
