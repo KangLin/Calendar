@@ -36,7 +36,7 @@ jobs:
           - CMAKE_GENERATOR_PLATFORM: Win32
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
-            VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
+            #VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
             BUILD_TYPE: Release
             qt_version: 5.15.2
             qt_arch: win32_msvc2019
@@ -45,7 +45,7 @@ jobs:
           - qt_version: 5.12.12
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
-            VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
+            #VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
             BUILD_TYPE: Release
             qt_arch: win32_msvc2017
             CMAKE_GENERATOR_PLATFORM: Win32
@@ -65,7 +65,7 @@ jobs:
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
-      VCPKG_MANIFEST_DIR: "${{github.workspace}}${{matrix.VCPKG_MANIFEST_DIR}}"
+      #VCPKG_MANIFEST_DIR: "${{github.workspace}}${{matrix.VCPKG_MANIFEST_DIR}}"
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: ${{matrix.qt_modules}}
