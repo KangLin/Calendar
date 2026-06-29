@@ -3,7 +3,7 @@
 
 set -e
 
-update_verion() {
+update_version() {
 
     #sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/Update/update.xml
     sed -i "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Install/Install.nsi
@@ -415,7 +415,7 @@ create_tag
 
 echo "= Update version to $VERSION ......"
 
-update_verion
+update_version
 
 echo_success "Version updated to $VERSION successfully!"
 #echo "  Time: $DATE_TIME_UTC"
