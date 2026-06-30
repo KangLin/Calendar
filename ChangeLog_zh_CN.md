@@ -1,4 +1,7 @@
 ### v1.0.24-dev
+  - 修改资源图标
+  - Android
+    - 修复多语言错误
 
 ### v1.0.23
   - 重命名　org.Rabbit.Calendar.desktop 到　io.github.KangLin.Calendar.desktop

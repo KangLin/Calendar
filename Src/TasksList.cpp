@@ -1,13 +1,14 @@
 // 作者：康林 <kl222@126.com>
 
 #include "TasksList.h"
-#include <QDebug>
+#include <QLoggingCategory>
 #include "ObjectFactory.h"
 #include <QFile>
 #include <QDir>
 #include "RabbitCommonDir.h"
 #include <QMessageBox>
 
+static Q_LOGGING_CATEGORY(log, "TaskList")
 CTasksList::CTasksList(QObject *parent) : QObject(parent),
     m_nTimerInterval(0),
     m_nIdCount(0),
@@ -46,7 +47,7 @@ int CTasksList::Add(QSharedPointer<CTasks> tasks)
     
     if(m_Tasks.end() != m_Tasks.find(tasks->GetId()))
     {
-        qDebug() << "The tasks is exist";
+        qDebug(log) << "The tasks is exist";
         return 0;
     }
     
@@ -165,7 +166,7 @@ int CTasksList::LoadSettings(const QDomElement &e)
     int nRet = 0;
     if("class" != e.tagName())
     {
-        qCritical() << "CTasksList::LoadSettings failed: tagName:"
+        qCritical(log) << "CTasksList::LoadSettings failed: tagName:"
                     << e.tagName() << " name:" << e.attribute("name");
         return -1;
     }
@@ -179,7 +180,7 @@ int CTasksList::LoadSettings(const QDomElement &e)
                        tasks.attribute("name").toStdString().c_str())));
         if(!t.data())
         {
-            qCritical() << "CTasksList::LoadSettings fail: the pointer is null:"
+            qCritical(log) << "CTasksList::LoadSettings fail: the pointer is null:"
                         << tasks.attribute("name");
             continue;
         }
@@ -253,7 +254,7 @@ int CTasksList::LoadSettings(const QString &szFile)
     QFile f(file);
     if(!f.open(QIODevice::ReadOnly))
     {
-        qCritical() << "CTasksList::LoadSeetings open file fail: " << file;
+        qCritical(log) << "CTasksList::LoadSeetings open file fail: " << file;
         return -1;
     }
     QDomDocument doc;
@@ -286,7 +287,7 @@ int CTasksList::SaveSettings(const QString &szFile)
     QFile f(file);
     if(!f.open(QIODevice::WriteOnly))
     {
-        qCritical() << "CTasksList::SaveSettings open file fail: " << file;
+        qCritical(log) << "CTasksList::SaveSettings open file fail: " << file;
         return -1;
     }
     

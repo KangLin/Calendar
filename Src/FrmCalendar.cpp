@@ -66,7 +66,7 @@ CFrmCalendar::CFrmCalendar(QWidget *parent) :
     m_TasksList.setObjectName("TasksActivityList");
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), 
                   QSettings::IniFormat);
-    QString szFile = set.value("TasksAcitvityList").toString();
+    QString szFile = set.value("TasksActivityList").toString();
     Load(szFile);
     m_TasksList.Start();
 
@@ -165,7 +165,7 @@ CFrmCalendar::~CFrmCalendar()
     {
         QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                       QSettings::IniFormat);
-        QString szFile = set.value("TasksAcitvityList").toString();
+        QString szFile = set.value("TasksActivityList").toString();
         if(szFile.isEmpty())
         {
             QMessageBox::StandardButton n
@@ -176,7 +176,7 @@ CFrmCalendar::~CFrmCalendar()
             {
                 szFile = RabbitCommon::CDir::Instance()->GetDirUserXml()
                                 + QDir::separator()
-                                + "TasksAcitvityList.xml";
+                                + "TasksActivityList.xml";
             }
         }
 
@@ -187,7 +187,7 @@ CFrmCalendar::~CFrmCalendar()
             {
                 QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                               QSettings::IniFormat);
-                set.setValue("TasksAcitvityList", szFile);
+                set.setValue("TasksActivityList", szFile);
                 m_bModify = false;
             }
         }
@@ -275,7 +275,7 @@ void CFrmCalendar::slotSaveAs()
     {
         QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                       QSettings::IniFormat);
-        set.setValue("TasksAcitvityList", szFile);
+        set.setValue("TasksActivityList", szFile);
         m_bModify = false;
     }
 #endif
