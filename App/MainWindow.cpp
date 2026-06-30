@@ -22,6 +22,11 @@ CMainWindow::CMainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     
+#if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) && !defined(Q_OS_MACOS)
+    // gnome icon isn't support svg
+    setWindowIcon(QIcon(":/icon/App"));
+#endif
+
     RabbitCommon::CTools::InsertStyleMenu(ui->menuTools, ui->actionExit_E);
     ui->menuTools->insertMenu(ui->actionExit_E,
                             RabbitCommon::CTools::Instance()->GetLogMenu(this));
