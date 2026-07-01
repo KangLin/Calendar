@@ -31,13 +31,13 @@ public:
         int type = QMetaType::type(className);
         if(QMetaType::UnknownType == type)
         {
-            qCritical() << className << " is QMetaType::UnknownType";
+            qCritical() << className << "is QMetaType::UnknownType";
             return nullptr;
         }
         QObject *obj = (QObject*)QMetaType::create(type);
         if(nullptr == obj)
         {
-            qCritical() << "QMetaType::create fail: " << type;
+            qCritical() << "QMetaType::create fail:" << type;
             return nullptr;
         }
         //const QMetaObject* metaObj = QMetaType::metaObjectForType(type);
@@ -100,7 +100,7 @@ public:
 
         if(e.isNull())
         {
-            qCritical() << "CObjectFactory::SaveSettings e is null";
+            qCritical() << "CObjectFactory::SaveSettings parameters 'e' is null";
             return -1;  
         }
         

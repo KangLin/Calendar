@@ -1,9 +1,10 @@
 // 作者：康林 <kl222@126.com>
 
+#include <QLoggingCategory>
 #include "Tasks.h"
-#include <QDebug>
 #include "ObjectFactory.h"
 
+static Q_LOGGING_CATEGORY(log, "Tasks")
 static const int gTypeIdCTasks = qRegisterMetaType<CTasks>();
 
 CTasks::CTasks(QObject *parent) : QObject(parent)
@@ -29,9 +30,9 @@ CTasks::CTasks(const CTasks &tasks)
 
 CTasks::~CTasks()
 {
-    qDebug() << "CTasks::~CTasks()" << "id: " << m_nId
-             << " name: " << objectName()
-             << " Title: " << GetTitle();
+    qDebug(log) << "CTasks::~CTasks()" << "id:" << m_nId
+             << "name:" << objectName()
+             << "Title:" << GetTitle();
 }
 
 int CTasks::Add(QSharedPointer<CTask> task)
@@ -41,7 +42,7 @@ int CTasks::Add(QSharedPointer<CTask> task)
         return -1;
     if(m_Task.contains(task))
     {
-        qDebug() << "The task is exist";
+        qDebug(log) << "The task is exist";
         return -2;
     }
     
@@ -57,7 +58,7 @@ int CTasks::Insert(QSharedPointer<CTask> task, int nIndex)
         return -1;
     if(m_Task.contains(task))
     {
-        qDebug() << "The task is exist";
+        qDebug(log) << "The task is exist";
         return -2;
     }
     if(nIndex + 1 < 0 || m_Task.size() <= nIndex + 1)
@@ -85,7 +86,7 @@ int CTasks::Remove(QSharedPointer<CTask> task)
     
     if(!m_Task.contains(task))
     {
-        qDebug() << "The task is not exist";
+        qDebug(log) << "The task is not exist";
         return 0;
     }
     m_Task.removeAll(task);
@@ -221,7 +222,7 @@ int CTasks::Check()
     QSharedPointer<CTask> task = GetCurrent();
     if(nullptr == task.data())
     {
-        qWarning() << "CTasks::Check(): task pointer is null";
+        qWarning(log) << "Not current task";
         return 0;
     }
 
@@ -257,8 +258,7 @@ int CTasks::LoadSettings(const QDomElement &e)
                        task.attribute("name").toStdString().c_str())));
         if(!t.data())
         {
-            qCritical() << "CTasksList::LoadSettings fail: the pointer is null"
-                           << task.attribute("name");;
+            qCritical(log) << "Create object" << task.attribute("name") << "failed";
             continue;
         }
         t->LoadSettings(task);
@@ -273,7 +273,7 @@ int CTasks::SaveSettings(QDomElement &e)
     int nRet = 0;
     if(e.isNull())
     {
-        qCritical() << "CTask::SaveSettings： e is null";
+        qCritical(log) << "Parameter is null";
         return -1;
     }
     const QMetaObject* pObj = metaObject();
