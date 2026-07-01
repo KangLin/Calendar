@@ -34,7 +34,7 @@ jobs:
             os: windows-11-arm
 
           - CMAKE_GENERATOR_PLATFORM: Win32
-            VCPKG_TARGET_TRIPLET: x64-windows
+            VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
             #VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
             BUILD_TYPE: Release
@@ -61,7 +61,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      VCPKGGITCOMMITID: d015e31e90838a4c9dfa3eed45979bc70d9357fc
+      VCPKGGITCOMMITID: d741c98f42a969e69cfc57ce5155aa6df8b1d5dc
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
