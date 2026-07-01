@@ -2,7 +2,8 @@
   - Modify icons resource
   - Android:
     - Fix mulit-language
-    
+  - Use [RabbitCommon v2.4.0](https://github.com/KangLin/RabbitCommon/releases/tag/v2.4.0)
+
 ### v1.0.23
   - Rename org.Rabbit.Calendar.desktop to io.github.KangLin.Calendar.desktop
   - Add build script

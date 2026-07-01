@@ -166,6 +166,7 @@ jobs:
               -DWITH_CMARK=OFF \
               -DWITH_CMARK_GFM=ON \
               -DRABBIT_ENABLE_INSTALL_TARGETS=ON \
+              -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
               -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
