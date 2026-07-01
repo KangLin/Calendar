@@ -1,4 +1,4 @@
-### v1.0.24-dev
+### v1.0.24
   - Modify icons resource
   - Android:
     - Fix mulit-language
