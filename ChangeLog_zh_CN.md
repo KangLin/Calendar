@@ -1,3 +1,6 @@
+### v1.0.25-dev
+  - 使用 CMake 产生 AndroidManifest.xml，移除 AndroidManifest.xml 文件
+
 ### v1.0.24
   - 修改资源图标
   - Android

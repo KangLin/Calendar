@@ -23,7 +23,6 @@ update_version() {
     sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/docker.yml
     sed -i "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/debian/changelog
     sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
-    sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
     sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
     sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos.yml
     if [ -f ${SOURCE_DIR}/vcpkg.json ]; then
@@ -40,10 +39,6 @@ update_version() {
     echo "    * Full Changelog: [${PRE_TAG}..${VERSION}](https://github.com/KangLin/RabbitRemoteControl/compare/${PRE_TAG}..${VERSION})" >> ${CHANGLOG_FILE}
     echo "" >> ${CHANGLOG_FILE}
     echo " -- `git log --pretty=format:'%an <%ae>' HEAD^..HEAD`  `date --rfc-email`" >> ${CHANGLOG_FILE}
-    
-    MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
-    sed -i "s/android:versionCode=.*android/android:versionCode=\"${MAJOR_VERSION}\" android/g"  ${SOURCE_DIR}/App/android/AndroidManifest.xml
-
 }
 
 # Function to create sed-safe pattern
