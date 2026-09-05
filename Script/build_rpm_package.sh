@@ -6,11 +6,35 @@
 set -e
 #set -v
 
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
+    fi
+}
+
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(readlink -f $0))/common.sh
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
 
 usage_long() {
     echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>]"
@@ -27,7 +51,7 @@ usage_long() {
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
 # [【Linux】Shell命令 getopts/getopt用法详解](https://blog.csdn.net/arpospf/article/details/103381621)
 if command -V getopt >/dev/null; then
-    echo_error "getopt is exits"
+    #echo_error "getopt is exits"
     #echo "original parameters=[$@]"
     # -o 或 --options 选项后面是可接受的短选项，如 ab:c:: ，表示可接受的短选项为 -a -b -c ，
     # 其中 -a 选项不接参数，-b 选项后必须接参数，-c 选项的参数为可选的
@@ -129,9 +153,13 @@ pushd $REPO_ROOT
 
 if [ ! -f ~/rpmbuild/SOURCES/Calendar.tar.gz ]; then
     mkdir -p ~/rpmbuild/SOURCES/
-    git archive --format=tar.gz --prefix=Calendar/ -o ~/rpmbuild/SOURCES/Calendar.tar.gz HEAD
+    if [ -d $REPO_ROOT/.git ]; then
+        git archive --format=tar.gz --prefix=Calendar/ -o ~/rpmbuild/SOURCES/Calendar.tar.gz HEAD
+    fi
 fi
-export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+if [ -z "$RabbitCommon_ROOT" ]; then
+    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+fi
 export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 export INSTALL_DIR=${INSTALL_DIR}
 rpmbuild --nodebuginfo -bb Package/rpm/calendar.spec --define "build_time $(date '+%a %b %d %Y')"

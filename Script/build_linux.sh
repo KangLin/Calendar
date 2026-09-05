@@ -5,16 +5,38 @@
 set -e
 #set -x
 
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
+    fi
+}
+
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(readlink -f $0))/common.sh
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
 
-install_gnu_getopt
 if [ "$OS" = "macOS" ]; then
     MACOS=1
-    setup_macos
 else
     MACOS=0
 fi
@@ -259,6 +281,7 @@ show_configuration() {
         echo ""
     fi
 
+    echo "RabbitCommon_ROOT: $RabbitCommon_ROOT"
     echo "Repo folder: $REPO_ROOT"
     echo "Old folder: $OLD_CWD"
     echo "Current folder: `pwd`"
@@ -284,7 +307,7 @@ validate_parameters() {
     case "$DOCKER_IMAGE" in
         "")
             ;;
-        ubuntu*|debian*|kali*|*kylin*|*deepin*)
+        ubuntu*|debian*|kali*|*kylin*|*deepin*|linuxmint*)
             if [ $RPM -eq 1 ]; then
               echo_error "Error: Not recommended build rpm package in $DOCKER_IMAGE"
               exit 1
@@ -370,16 +393,19 @@ if [ $DOCKER -eq 1 ]; then
     chmod a+rw ${BUILD_LINUX_DIR}/Calendar.tar.gz
     popd
 
+    DOCKER_PARA="$DOCKER_PARA -e CI=${CI}"
+    if [ -d "$RabbitCommon_ROOT" ]; then
+        DOCKER_PARA="$DOCKER_PARA --volume ${RabbitCommon_ROOT}:/home/RabbitCommon -e RabbitCommon_ROOT=/home/RabbitCommon"
+    fi
     if [ $DEB -eq 1 ]; then
-        if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
-            DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+        if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian|linuxmint) ]]; then
+            DOCKER_PARA="$DOCKER_PARA -e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         fi
         echo "DOCKER_PLATFORM: $DOCKER_PLATFORM"
         if [ -n "$DOCKER_PLATFORM" ]; then
             DOCKER_PARA="$DOCKER_PARA --platform $DOCKER_PLATFORM"
         fi
         docker run --privileged ${DOCKER_PARA} \
-            -e CI=${CI} \
             --volume ${REPO_ROOT}:/home/Calendar \
             --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
@@ -402,8 +428,8 @@ if [ $DOCKER -eq 1 ]; then
         #    DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         #fi
         case "$DISTRO" in
-        ubuntu|debian)
-            DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+        ubuntu|debian|linuxmint)
+            DOCKER_PARA="$DOCKER_PARA -e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
             ;;
         fedora)
             # Install getopt
@@ -411,7 +437,6 @@ if [ $DOCKER -eq 1 ]; then
             ;;
         esac
         docker run --privileged ${DOCKER_PARA} \
-            -e CI=${CI} \
             --volume ${REPO_ROOT}:/home/Calendar \
             --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
@@ -433,14 +458,14 @@ if [ $DOCKER -eq 1 ]; then
             chmod a+rx Calendar_`uname -m`.AppImage
             cp \${SOURCE_CODE_DIR}/Calendar/build_appimage/AppDir/usr/share/applications/io.github.KangLin.Calendar.desktop .
             cp \${SOURCE_CODE_DIR}/Calendar/build_appimage/AppDir/usr/share/pixmaps/io.github.KangLin.Calendar.png .
-            cp \${SOURCE_CODE_DIR}/Calendar/Script/install_appimage.sh install.sh
+            cp \${RabbitCommon_ROOT}/Script/install_appimage.sh install.sh
             chmod a+rx install.sh
             popd
             "
     fi
 
     if [ $RPM -eq 1 ]; then
-        docker run --volume ${BUILD_LINUX_DIR}:/home/build \
+        docker run ${DOCKER_PARA} --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
             --volume ${TOOLS_DIR}:/home/tools \
             --privileged --interactive --rm ${DOCKER_IMAGE} \
@@ -462,7 +487,7 @@ pushd $REPO_ROOT/Script
 if [ $DEB -eq 1 ]; then
     echo_status "build deb package ......"
 
-    ./build_depend.sh --system_update --base --rabbitcommon \
+    ./build_depend.sh --system_update --base \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

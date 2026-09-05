@@ -9,11 +9,35 @@
 set -e
 #set -v
 
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
+    fi
+}
+
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(readlink -f $0))/common.sh
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
 
 usage_long() {
     echo "$0 [--install=<install directory>] [ [-h|--help] [-v|--verbose[=0|1]] --source=<source directory>] [--tools=<tools directory>] [--build=<build directory>]"
@@ -182,6 +206,7 @@ if [ -n "${INSTALL_DIR}" ]; then
 fi
 cmake "$REPO_ROOT" \
   -DCMAKE_INSTALL_PREFIX=/usr \
+  -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
   -DCMARK_SHARED=OFF \
   -DCMARK_TESTS=OFF \
   -DCMARK_STATIC=ON \
@@ -196,7 +221,7 @@ echo_status "Build AppImage ......"
 # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
 #export QMAKE=$QT_ROOT/bin/qmake6
 #export PATH=$QT_ROOT/libexec:$PATH
-export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so"
+export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so;libqwayland.so"
 #export DEPLOY_PLATFORM_THEMES=true
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
 # qtmodules: https://doc.qt.io/archives/qt-6.7/qtmodules.html
@@ -215,9 +240,11 @@ if [ "${BUILD_VERBOSE}" = "ON" -a -n "$QMAKE" ]; then
     $QMAKE --version
 fi
 
-if [ -n "$QMAKE" ]; then
-    if command -v qmake >/dev/null 2>&1; then
-        command -v qmake
+if [ -z "$QMAKE" ]; then
+    if command -v qmake6 >/dev/null 2>&1; then
+        export QMAKE=`command -v qmake6`
+    elif command -v qmake >/dev/null 2>&1; then
+        export QMAKE=`command -v qmake`
     else
         echo_error "Please set 'QMAKE'"
     fi

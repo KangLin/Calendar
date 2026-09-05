@@ -6,16 +6,38 @@
 set -e
 #set -v
 
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
+    fi
+}
+
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
-source $(dirname $(readlink -f $0))/common.sh
+source $(dirname $(safe_readlink ${BASH_SOURCE[0]}))/common.sh
 
-install_gnu_getopt
 if [ "$DISTRO" = "macOS" ]; then
     MACOS=1
-    setup_macos
 else
     MACOS=0
 fi
@@ -51,6 +73,7 @@ Package management options:
   --package="PKG1 PKG2 ..."         Install specified system packages
   --package-tool=TOOL               Set package manager tool (apt, dnf, brew, pacman, zypper, apk)
   --system_update[=1|0]             Update system package manager
+  --system-update[=1|0]             Update system package manager
 
 Dependency options:
   --base[=1|0]                      Install basic development libraries
@@ -67,7 +90,7 @@ Examples:
   $0 --system_update --base --default --qt=6.5.0
 
 Environment variables:
-  BUILD_VERBOSE     Set verbose mode (ON/OFF, default: OFF)
+  BUILD_VERBOSE     Set verbose mode (ON/OFF, default: $BUILD_VERBOSE)
   QT_VERSION        Set Qt version (default: $QT_VERSION)
 EOF
     exit 0
@@ -93,17 +116,18 @@ parse_with_getopt() {
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,macos::,qt::,rabbitcommon::
+    OPTS=OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,system-update::,base::,default::,macos::,qt::,rabbitcommon::
     # Parse arguments using getopt
     # -o: short options
     # -l: long options  
     # -n: script name for error messages
-    ARGS=`getopt -o h -l $OPTS -n $(basename $0) -- "$@"`
+    ARGS=$(getopt -o h,v:: -l "$OPTS" -n "$(basename "$0")" -- "$@")
     if [ $? != 0 ]; then
         echo_error "Error: Command line argument parsing failed" >&2
         usage_long
     fi
-    #echo "ARGS=[$ARGS]"
+    
+    # Set positional parameters to parsed arguments
     #将规范化后的命令行参数分配至位置参数（$1,$2,......)
     eval set -- "${ARGS}"
     #echo "formatted parameters=[$@]"
@@ -150,7 +174,7 @@ parse_with_getopt() {
             esac
             shift 2
             ;;
-        --system_update)
+        --system_update|--system-update)
             case "$2" in
                 "")
                     SYSTEM_UPDATE=1
@@ -328,17 +352,7 @@ mkdir -p $INSTALL_DIR
 show_configuration
 
 case "$DISTRO" in
-ubuntu|debian)
-    LIB_PATH="lib"
-    ;;
-fedora)
-    LIB_PATH="lib64"
-    ;;
-esac
-
-
-case "$DISTRO" in
-ubuntu|debian)
+ubuntu|debian|linuxmint)
     LIB_PATH="lib"
     ;;
 fedora)
@@ -462,13 +476,22 @@ fi
 
 if [ $RabbitCommon -eq 1 ]; then
     echo_status "Install RabbitCommon ......"
-    pushd "$SOURCE_DIR"
-    if [ ! -d RabbitCommon ]; then
-        git clone https://github.com/KangLin/RabbitCommon.git
-    else
-        pushd RabbitCommon
+    if [ -d "$RabbitCommon_ROOT" ]; then
+        pushd $RabbitCommon_ROOT
         git pull
         popd
+    else
+        pushd "$SOURCE_DIR"
+        if [ ! -d RabbitCommon ]; then
+            git clone https://github.com/KangLin/RabbitCommon.git
+        else
+            pushd RabbitCommon
+            git pull
+            popd
+        fi
+        popd
+    fi
+fi
     fi
     popd
 fi

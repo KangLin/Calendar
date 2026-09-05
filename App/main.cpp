@@ -5,9 +5,9 @@
 #include <QSettings>
 #include <QDir>
 #if defined(Q_OS_ANDROID) \
-    && QT_VERSION >= QT_VERSION_CHECK(5, 7, 0) \
-    && QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    #include <QtAndroidExtras/QtAndroid>
+&& QT_VERSION >= QT_VERSION_CHECK(5, 7, 0) \
+        && QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include <QtAndroidExtras/QtAndroid>
 #endif
 
 #include "MainWindow.h"
@@ -19,7 +19,7 @@
 #include "FrmUpdater.h"
 #include "LunarCalendar.h"
 
-static Q_LOGGING_CATEGORY(log, "Rabbit.LunarCalendar")
+    static Q_LOGGING_CATEGORY(log, "Rabbit.LunarCalendar")
 
 int main(int argc, char *argv[])
 {
@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
 #endif
 #if defined(Q_OS_ANDROID) \
     && QT_VERSION >= QT_VERSION_CHECK(5, 7, 0) \
-    && QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QtAndroid::hideSplashScreen();
+            && QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        QtAndroid::hideSplashScreen();
 #endif
 
     QApplication app(argc, argv);
@@ -51,14 +51,14 @@ int main(int argc, char *argv[])
     
     qInfo(log) << QObject::tr("Calendar version: ") + Calendar_VERSION
 #ifdef Calendar_REVISION
-               + " (Revision: [" + Calendar_REVISION
+                      + " (Revision: [" + Calendar_REVISION
                       + "](https://github.com/KangLin/"
                       + app.applicationName() +"/tree/"
                       + Calendar_REVISION + "))"
 #endif
-               + "; " + QObject::tr("LunarCalendar: ") + CLunarCalendar::Version()
-               + "; " + QObject::tr("Rabbit Common: ") + RabbitCommon::CTools::Version();
-        ;
+                      + "; " + QObject::tr("LunarCalendar: ") + CLunarCalendar::Version()
+                      + "; " + QObject::tr("Rabbit Common: ") + RabbitCommon::CTools::Version();
+    ;
 
     CFrmUpdater *pUpdate = new CFrmUpdater();
     if(pUpdate) {
@@ -71,18 +71,17 @@ int main(int argc, char *argv[])
             }
         }
         pUpdate->SetInstallAutoStartup();
-        if(app.arguments().length() > 1) {
-            try{
-                pUpdate->GenerateUpdateJson();
-                pUpdate->GenerateUpdateXml();
-            } catch(...) {
-                qCritical(log) << "Generate update fail";
-            }
-
-            qInfo(log) << app.applicationName() + " " + app.applicationVersion()
-                              + " " + QObject::tr("Generate update json file End");
-            return 0;
+        CFrmUpdater::ErrCode err = CFrmUpdater::ErrCode::Success;
+        try{
+            err = pUpdate->GenerateUpdateJson();
+            pUpdate->GenerateUpdateXml();
+        } catch(...) {
+            qCritical(log) << "Generate update fail";
         }
+        qInfo(log) << app.applicationName() + " " + app.applicationVersion()
+                          + " " + QObject::tr("Generate update json file End");
+        if(CFrmUpdater::ErrCode::Arguments == err)
+            return 0;
     }
 
     CMainWindow win;

@@ -52,6 +52,9 @@ case "$1" in
         #    echo "/opt/qt${QT_VERSION_DIR}/lib" >> /etc/ld.so.conf.d/Calendar.conf
         #fi
         ldconfig
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
@@ -61,6 +64,9 @@ case "$1" in
         rm -fr /etc/ld.so.conf.d/Calendar.conf
         rm -fr /usr/share/pixmaps/io.github.KangLin.Calendar.png
         ldconfig
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database
+        fi
     ;;
 
     *)
