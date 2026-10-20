@@ -46,6 +46,7 @@ DEB=0
 RPM=0
 APPIMAGE=0
 LINT=0
+TERMUX=0
 
 if [ -z "$QT_VERSION" ]; then
     QT_VERSION=6.10.3
@@ -64,7 +65,7 @@ Options:
 
 Directory options:
   --install=DIR         Set installation directory
-  --source=DIR          Set source code directory  
+  --source=DIR          Set source code directory
   --tools=DIR           Set tools directory
   --build=DIR           Set build directory
 
@@ -78,8 +79,9 @@ Target options:
   --rpm:                Build rpm package
   --appimage:           Build AppImage
   --macos:              Build macOS
+  --termux:             Build termux
   --lint:               Check with lint
-  
+
 Other options:
   --qt=VERSION    Install Qt (can specify version)(only --appimage)
 
@@ -91,6 +93,8 @@ Environment variables:
   BUILD_VERBOSE     Set verbose mode (ON/OFF, default: $BUILD_VERBOSE)
   QT_VERSION        Set Qt version (default: $QT_VERSION)
 EOF
+    echo ""
+    detect_os_info
     exit 0
 }
 
@@ -105,7 +109,7 @@ parse_with_getopt() {
         # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
         # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
         # -n 选项后接选项解析错误时提示的脚本名字
-        OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,docker-image:,docker-platform::,qt:,install:,source:,tools:,build:,lint::
+        OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,macos::,termux::,docker-image:,docker-platform::,qt:,install:,source:,tools:,build:,lint::
         ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
         if [ $? != 0 ]; then
             echo_error "exec getopt fail: $?"
@@ -115,7 +119,7 @@ parse_with_getopt() {
         #将规范化后的命令行参数分配至位置参数（$1,$2,......)
         eval set -- "${ARGS}"
         #echo "formatted parameters=[$@]"
-    
+
         while [ $1 ]
         do
             #echo "\$1: $1"
@@ -206,6 +210,15 @@ parse_with_getopt() {
                         MACOS=1;;
                     *)
                         MACOS=$2;;
+                esac
+                shift 2
+                ;;
+            --termux)
+                case $2 in
+                    "")
+                        TERMUX=1;;
+                    *)
+                        TERMUX=$2;;
                 esac
                 shift 2
                 ;;
@@ -405,27 +418,28 @@ if [ $DOCKER -eq 1 ]; then
         if [ -n "$DOCKER_PLATFORM" ]; then
             DOCKER_PARA="$DOCKER_PARA --platform $DOCKER_PLATFORM"
         fi
+
         docker run --privileged ${DOCKER_PARA} \
             --volume ${REPO_ROOT}:/home/Calendar \
             --volume ${BUILD_LINUX_DIR}:/home/build \
             --volume ${INSTALL_DIR}:/home/install \
             --volume ${TOOLS_DIR}:/home/tools \
             --interactive --rm ${DOCKER_IMAGE} \
-           bash -e -x -c "
-           if [ ! \$CI ]; then
-               tar -C ~ -xf /home/build/Calendar.tar.gz
-               export SOURCE_CODE_DIR=~
-           else
-               export SOURCE_CODE_DIR=/home
-           fi
-           \${SOURCE_CODE_DIR}/Calendar/Script/build_linux.sh --deb --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
-           cp \${SOURCE_CODE_DIR}/rabbitcalendar*.deb /home/build/
-           "
+            bash -e -x -c "
+            if [ ! \$CI ]; then
+                tar -C ~ -xf /home/build/Calendar.tar.gz
+                export SOURCE_CODE_DIR=~
+            else
+                export SOURCE_CODE_DIR=/home
+            fi
+            \${SOURCE_CODE_DIR}/Calendar/Script/build_linux.sh --deb --install=/home/install --tools=/home/tools --verbose=${BUILD_VERBOSE}
+            cp \${SOURCE_CODE_DIR}/rabbitcalendar*.deb /home/build/
+            "
     fi
 
     if [ $APPIMAGE -eq 1 ]; then
-        #if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian) ]]; then
-        #    DOCKER_PARA="-e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
+        #if [[ "$DOCKER_IMAGE" =~ ^(ubuntu|debian|linuxmint) ]]; then
+        #    DOCKER_PARA="$DOCKER_PARA -e DEBIAN_FRONTEND=noninteractive -e TZ=UTC"
         #fi
         case "$DISTRO" in
         ubuntu|debian|linuxmint)
@@ -498,18 +512,28 @@ if [ $DEB -eq 1 ]; then
     # Disable ci warn
     if [ $CI ]; then
         git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
     fi
 
+    ./build_depend.sh --rabbitcommon \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
     export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DRABBIT_ENABLE_INSTALL_TARGETS=ON"
     ./build_debpackage.sh --install=${INSTALL_DIR} \
-        --rabbitcommon=${SOURCE_DIR}/RabbitCommon \
         --verbose=${BUILD_VERBOSE}
 fi
 
 if [ $APPIMAGE -eq 1 ]; then
     echo_status "build AppImage ......"
+
     case "$DISTRO" in
-    ubuntu)
+    ubuntu|linuxmint)
 #        case "$DISTRO_VERSION" in
 #            "24.04"|"24.10")
 #                depend_para="--qt=${QT_VERSION}"
@@ -531,14 +555,12 @@ if [ $APPIMAGE -eq 1 ]; then
     *)
     esac
 
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-    export BUILD_FREERDP=ON
     export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
     export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 
     ./build_depend.sh --system_update --base --default \
-        --rabbitcommon ${depend_para} \
+        ${depend_para} \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -547,22 +569,50 @@ if [ $APPIMAGE -eq 1 ]; then
     # Disable ci warn
     if [ $CI ]; then
         git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
+    fi
+    ./build_depend.sh \
+        --rabbitcommon ${depend_para} \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
 
     ./build_appimage.sh --install=${INSTALL_DIR} \
         --tools=${TOOLS_DIR} \
+        --source=${SOURCE_DIR} \
         --verbose=${BUILD_VERBOSE}
 fi
 
 if [ $RPM -eq 1 ]; then
     echo_status "build rpm package ......"
+
     #dnf builddep -y ${REPO_ROOT}/Package/rpm/calendar.spec
     ./build_depend.sh --system_update --base --default --package-tool=dnf \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
+
+    # Disable ci warn
+    if [ $CI ]; then
+        git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
+    fi
+    ./build_depend.sh --package-tool=dnf \
         --rabbitcommon \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
+
+    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
 
     ./build_rpm_package.sh \
         --install=${INSTALL_DIR} \
@@ -579,13 +629,20 @@ if [ $MACOS -eq 1 ]; then
         --tools=${TOOLS_DIR} \
         --verbose=${BUILD_VERBOSE}
 
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-
     # Disable ci warn
     if [ $CI ]; then
         git config --global --add safe.directory $REPO_ROOT
+        git config --global --add safe.directory $RabbitCommon_ROOT
     fi
+    ./build_depend.sh --macos --rabbitcommon \
+        --install=${INSTALL_DIR} \
+        --source=${SOURCE_DIR} \
+        --tools=${TOOLS_DIR} \
+        --verbose=${BUILD_VERBOSE}
 
+    if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
     ./build_macos.sh --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -605,8 +662,10 @@ if [ $LINT -eq 1 ]; then
     *)
     esac
 
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-    export BUILD_FREERDP=ON
+    if [ -z "$RabbitCommon_ROOT" ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
+
     export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
     export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
@@ -619,6 +678,41 @@ if [ $LINT -eq 1 ]; then
         --verbose=${BUILD_VERBOSE}
 
     ./build_lint_check.sh
+fi
+
+if [ $TERMUX -eq 1 ]; then
+    if is_termux; then
+        echo_status "build in termux ......"
+
+        ./build_depend.sh --system_update --base \
+            --install=${INSTALL_DIR} \
+            --source=${SOURCE_DIR} \
+            --tools=${TOOLS_DIR} \
+            --verbose=${BUILD_VERBOSE}
+
+        if [ -z "$RabbitCommon_ROOT" ]; then
+            export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+        fi
+        # Disable ci warn
+        if [ $CI ]; then
+            git config --global --add safe.directory $REPO_ROOT
+            git config --global --add safe.directory $RabbitCommon_ROOT
+        fi
+
+        ./build_depend.sh ${depend_para} \
+            --rabbitcommon \
+            --install=${INSTALL_DIR} \
+            --source=${SOURCE_DIR} \
+            --tools=${TOOLS_DIR} \
+            --verbose=${BUILD_VERBOSE}
+
+        ./build_termux.sh --install=${INSTALL_DIR} \
+            --source=${SOURCE_DIR} \
+            --tools=${TOOLS_DIR} \
+            --verbose=${BUILD_VERBOSE}
+    else
+        echo_error "There are not termux"
+    fi
 fi
 
 popd

@@ -179,14 +179,14 @@ if [ "$CI" != "" ]; then
     trap cleanup EXIT
 fi
 
-echo_status "download linuxdeploy ......"
+echo_status "Download linuxdeploy ......"
 pushd "${TOOLS_DIR}"
 if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
-    wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-`uname -m`.AppImage
+    wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20240109-1/linuxdeploy-`uname -m`.AppImage
     chmod u+x linuxdeploy-`uname -m`.AppImage
 fi
 if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
-    wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-`uname -m`.AppImage
+    wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20240109-1/linuxdeploy-plugin-qt-`uname -m`.AppImage
     chmod u+x linuxdeploy-plugin-qt-`uname -m`.AppImage
 fi
 popd
@@ -221,7 +221,7 @@ echo_status "Build AppImage ......"
 # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
 #export QMAKE=$QT_ROOT/bin/qmake6
 #export PATH=$QT_ROOT/libexec:$PATH
-export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so;libqwayland.so"
+export EXTRA_PLATFORM_PLUGINS="libqxcb.so;libqvnc.so"
 #export DEPLOY_PLATFORM_THEMES=true
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
 # qtmodules: https://doc.qt.io/archives/qt-6.7/qtmodules.html
@@ -258,6 +258,8 @@ fedora)
     export NO_STRIP=true
     ;;
 esac
+
+make_apprun AppDir
 
 # [linuxdeploy user guide](https://docs.appimage.org/packaging-guide/from-source/linuxdeploy-user-guide.html)
 ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir ${DEPLOY_PARA} \

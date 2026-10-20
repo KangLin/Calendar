@@ -1,4 +1,5 @@
 # Author: Kang Lin<kl222@126.com>
+# Workflow syntax: https://docs.github.com/actions/writing-workflows/workflow-syntax-for-github-actions
 
 name: build
 
@@ -14,6 +15,7 @@ on:
 jobs:
   ubuntu:
     uses: ./.github/workflows/ubuntu.yml
+    secrets: inherit
 
   appimage:
     uses: ./.github/workflows/appimage.yml
@@ -25,12 +27,15 @@ jobs:
 
   msvc:
     uses: ./.github/workflows/msvc.yml
+    secrets: inherit
 
   mingw:
     uses: ./.github/workflows/mingw.yml
+    secrets: inherit
 
   macos:
     uses: ./.github/workflows/macos.yml
+    secrets: inherit
 
   android:
     uses: ./.github/workflows/android.yml
@@ -45,6 +50,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           submodules: false
+          fetch-depth: 1
 
       - name: clean test tag
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}
@@ -97,13 +103,15 @@ jobs:
       - name: Process configure file
         run: |
           git clone https://github.com/KangLin/RabbitCommon.git
-          ./RabbitCommon/Install/MergeJsonFile.sh \
+          ./RabbitCommon/Script/MergeJsonFile.sh \
               "${{ github.workspace }}/update.json" \
               "${{ env.artifact_path }}" "${{ env.artifact_path }}/version.json"
           rm ${{ env.artifact_path }}/*.json
 
       - name: Add change log file in Release.md file
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        env:
+          RabbitCommon_ROOT: ${{github.workspace}}/RabbitCommon
         run: |
           if [ -f ${{github.workspace}}/Script/common.sh ]; then
               source ${{github.workspace}}/Script/common.sh
@@ -137,6 +145,8 @@ jobs:
 
       - name: Add test comment in Release.md file
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+        env:
+          RabbitCommon_ROOT: ${{github.workspace}}/RabbitCommon
         run: |
           echo "**This release is for development and testing purposes only!**" >> ${{github.workspace}}/Release.md
           if [ -f ${{github.workspace}}/Script/common.sh ]; then
@@ -171,7 +181,7 @@ jobs:
           echo "|:-     | :-------------- | :-------------- | :-------------- | :------------- |:-----------|:--------|" >> ${{github.workspace}}/Release.md
           echo "|Windows|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win64_msvc2022_64_qt6.10.3.exe)|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win32_msvc2017_qt5.12.12.exe)|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win64_msvc2022_arm64_qt6.10.3.exe)| |Supported platforms:<br> [x86-32(Qt5)](https://doc.qt.io/qt-5/supported-platforms.html)<br> [x86-64(Qt6)](https://doc.qt.io/qt-6/supported-platforms.html)|支持平台：<br> [x86-32(Qt5)](https://doc.qt.io/qt-5/supported-platforms.html)<br> [x86-64(Qt6)](https://doc.qt.ac.cn/qt-6/supported-platforms.html)|" >> ${{github.workspace}}/Release.md
           echo "|Android|[APK](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_android_x86_64_qt6.10.3_Release.apk)| |[APK](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_android_arm64_v8a_qt6.10.3_Release.apk)| | | |" >> ${{github.workspace}}/Release.md
-          echo "|Linux|[zip file of install AppImage](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_${{env.Calendar_VERSION}}_Linux_x86_64_Setup.zip)| |[zip file of install AppImage](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_${{env.Calendar_VERSION}}_Linux_aarch64_Setup.zip)| |Unzip the zip file, then execute \`install.sh\` to install shortcuts for application, links, and directories in graphical user interfaces (GUIs), or execute \`Calendar_${{env.Calendar_VERSION}}_Linux_*.AppImage\` to run program in the terminal.<br>NOTE: \`GLIBC >= 2.43\` and installed \`fuse3\`|解压 zip 文件，然后执行  \`install.sh\`， 安装用于图形界面的目录、桌面快捷方式；或者在终端中执行  \`Calendar_${{env.Calendar_VERSION}}_Linux_*.AppImage\`  文件，运行程序。<br>注意：\`GLIBC >= 2.43\` 并且安装了 \`fuse3\`|" >> ${{github.workspace}}/Release.md
+          echo "|Linux|[zip file of install AppImage](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_${{env.Calendar_VERSION}}_Linux_x86_64_Setup.zip)| |[zip file of install AppImage](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_${{env.Calendar_VERSION}}_Linux_aarch64_Setup.zip)| |Unzip the zip file, then execute \`install.sh [--auto-start]\` to install shortcuts for application, links, and directories in graphical user interfaces (GUIs), or execute \`Calendar_${{env.Calendar_VERSION}}_Linux_*.AppImage\` to run program in the terminal.<br>NOTE: \`GLIBC >= 2.39\` and installed \`fuse\`|解压 zip 文件，然后执行  \`install.sh [--auto-start]\`， 安装用于图形界面的目录、桌面快捷方式；或者在终端中执行  \`Calendar_${{env.Calendar_VERSION}}_Linux_*.AppImage\`  文件，运行程序。<br>注意：\`GLIBC >= 2.39\` 并且安装了 \`fuse\`|" >> ${{github.workspace}}/Release.md
           echo "|Ubuntu 26.04 (resolute)|[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu26.04_x86_64.deb)| |[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu26.04_aarch64.deb)| | Run \`sudo apt install ./rabbitcalendar_*.deb\` to install it. | 运行命令 \`sudo apt install ./rabbitcalendar_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
           echo "|Ubuntu 24.04 (noble)|[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu24.04_x86_64.deb)| |[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu24.04_aarch64.deb)| | Run \`sudo apt install ./rabbitcalendar_*.deb\` to install it.|运行命令 \`sudo apt install ./rabbitcalendar_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
           echo "|Debian 13 (trixie)|[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_debian13_x86_64.deb)| |[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_debian13_aarch64.deb)| | Run \`sudo apt install ./rabbitcalendar_*.deb\` to install it.|运行命令 \`sudo apt install ./rabbitcalendar_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md

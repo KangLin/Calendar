@@ -154,11 +154,31 @@ pushd $REPO_ROOT
 if [ ! -f ~/rpmbuild/SOURCES/Calendar.tar.gz ]; then
     mkdir -p ~/rpmbuild/SOURCES/
     if [ -d $REPO_ROOT/.git ]; then
-        git archive --format=tar.gz --prefix=Calendar/ -o ~/rpmbuild/SOURCES/Calendar.tar.gz HEAD
+        # 打包主仓库
+        git archive --format=tar --prefix=Calendar/ -o ~/rpmbuild/SOURCES/Calendar.tar HEAD
+        # 遍历所有子模块（含嵌套子模块），逐个打包
+        git submodule foreach --recursive '
+          safe_name=$(echo "${sm_path}" | sed "s#[^A-Za-z0-9._-]#_#g")
+          git archive --format=tar --prefix="Calendar/${displaypath}/" HEAD -o "/tmp/sub-calendar-${safe_name}.tar"
+        '
+        # 将所有子模块 tar 拼接到主 tar 后面
+        for f in /tmp/sub-calendar-*.tar; do
+          tar --concatenate --file=~/rpmbuild/SOURCES/Calendar.tar "$f"
+        done
+        # 压缩为最终文件
+        gzip -c ~/rpmbuild/SOURCES/Calendar.tar > ~/rpmbuild/SOURCES/Calendar.tar.gz
+        # 清理临时文件
+        rm -f ~/rpmbuild/SOURCES/Calendar.tar /tmp/sub-calendar-*.tar
     fi
+else
+    echo_warn "~/rpmbuild/SOURCES/Calendar.tar.gz is existed. If you are in development, please delete it!"
 fi
 if [ -z "$RabbitCommon_ROOT" ]; then
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    if [ -d ${SOURCE_DIR}/RabbitCommon ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    elif [ -d ${REPO_ROOT}/../RabbitCommon ]; then
+        export RabbitCommon_ROOT=${REPO_ROOT}/../RabbitCommon
+    fi
 fi
 export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 export INSTALL_DIR=${INSTALL_DIR}

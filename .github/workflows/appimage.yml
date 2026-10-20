@@ -7,7 +7,7 @@ on:
     outputs:
       name:
         description: "The artifact name"
-        value: ${{ jobs.build_ubuntu.outputs.name }}
+        value: ${{ jobs.build_appimage.outputs.name }}
 
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -19,11 +19,6 @@ jobs:
         BUILD_TYPE: [Release]
         qt_version: [6.10.3]
         os: [ubuntu-24.04, ubuntu-24.04-arm]
-        include:
-          - os: ubuntu-24.04
-            qt_arch: "linux_gcc_64"
-          - os: ubuntu-24.04-arm
-            qt_arch: "linux_gcc_arm64"
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
@@ -49,6 +44,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           submodules: recursive
+          fetch-depth: 0
 
       - name: Make directories
         run: |
@@ -79,31 +75,17 @@ jobs:
               --tools ${{env.TOOLS_DIR}} \
               --build ${{env.BUILD_DIR}}
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        if: false
-        with:
-          dir: '${{env.TOOLS_DIR}}/qt'
-          version: ${{matrix.qt_version}}
-          target: 'desktop'
-          arch: ${{matrix.qt_arch}}
-          # See: https://ddalcino.github.io/aqt-list-server/
-          modules: ${{env.qt_modules}}
-          cache: true
-          cache-key-prefix: cached-qt_${{matrix.qt_arch}}
-
       - name: build appimage
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
-          export QMAKE=$(which qmake6)
-          ${{github.workspace}}/Script/build_appimage.sh
+          sudo ./Script/build_linux.sh --appimage --install ${{env.INSTALL_DIR}}
           ARCH=`uname -m`
           sudo mv -f Calendar_${ARCH}.AppImage Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage
           md5sum Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage > Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}.AppImage.md5sum
 
       - name: update configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && 'ubuntu-24.04' == matrix.os }}
+        if: ${{ matrix.BUILD_TYPE == 'Release'}}
         #continue-on-error: true
         run: |
           sudo Xvfb :94 -ac -screen 0 1200x900x24 &
@@ -124,8 +106,8 @@ jobs:
             -m "v${{env.Calendar_VERSION}}"
 
       - name: Update artifact
-        if: false #${{ matrix.BUILD_TYPE == 'Release' }}
-        uses: actions/upload-artifact@v5
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.artifact_name }}_${{matrix.os}}
           path: |

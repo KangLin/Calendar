@@ -19,14 +19,14 @@ jobs:
             VCPKG_TARGET_TRIPLET: arm64-android
             ANDROID_ABI: arm64-v8a
             arch: arm64
-            qt_version: 6.11.1
+            qt_version: 6.12.0
             BUILD_TYPE: Release
 
           - qt_arch: android_x86_64
             VCPKG_TARGET_TRIPLET: x64-android
             ANDROID_ABI: x86_64
             arch: x86_64
-            qt_version: 6.11.1
+            qt_version: 6.12.0
             BUILD_TYPE: Release
 
           - qt_arch: android_arm64_v8a
@@ -50,7 +50,7 @@ jobs:
 
     env:
       Calendar_VERSION: v1.0.24
-      VCPKGGITCOMMITID: d741c98f42a969e69cfc57ce5155aa6df8b1d5dc
+      VCPKGGITCOMMITID: 7213cf8135c329c37c7e2778e40774489a0583a8
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
@@ -75,6 +75,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           submodules: recursive
+          fetch-depth: 0
 
       - name: make directory
         run: |
@@ -85,8 +86,8 @@ jobs:
 
       - name: Install apt packages
         run: |
-          sudo apt-get update -y
-          sudo apt-get upgrade -y
+          #sudo apt-get update -y
+          #sudo apt-get upgrade -y
           sudo apt install -y -q ninja-build nasm
 
       - name: Cache installed
@@ -165,21 +166,26 @@ jobs:
               -DCMARK_STATIC=ON \
               -DWITH_CMARK=OFF \
               -DWITH_CMARK_GFM=ON \
-              -DRABBIT_ENABLE_INSTALL_TARGETS=ON \
-              -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+              -DCMAKE_AUTOGEN_VERBOSE=ON \
+              -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \
+              -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+              -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+              -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+              -DVCPKG_MANIFEST_FEATURES="${{env.VCPKG_MANIFEST_FEATURES}}" \
+              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+              -DVCPKG_VERBOSE=ON \
+              -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
+              -DRABBIT_ENABLE_INSTALL_QT=ON \
+              -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
+              -DCMAKE_PREFIX_PATH=${QT_ROOT_DIR}:${{env.INSTALL_DIR}} \
               -DQT_HOST_PATH=${QT_ROOT_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
-              -DQT_ENABLE_VERBOSE_DEPLOYMENT=OFF \
+              -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
+              -DVCPKG_TRACE_FIND_PACKAGE=ON \
               -DQt6LinguistTools_DIR=${QT_ROOT_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
-              -DENABLE_UPDATE_TRANSLATIONS=ON \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
-              -DVCPKG_VERBOSE=ON \
-              -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
-              -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${QT_ROOT_DIR}/lib/cmake/Qt6/qt.toolchain.cmake \
-              -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
-              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
-              -DVCPKG_APPLOCAL_DEPS=ON \
+              -DENABLE_UPDATE_TRANSLATIONS=ON \
               -DINSTALL_QT=ON
           cmake --build . --parallel $(nproc) --config ${{matrix.BUILD_TYPE}} --target all
           APK_FILE=`find . -name "android-*.apk"`
@@ -189,11 +195,11 @@ jobs:
       - name: Update configure file
         working-directory: ${{github.workspace}}/build
         run: |
-          ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
-              update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json \
-              Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk \
-              android ${{matrix.ANDROID_ABI}} \
-              "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk,https://sourceforge.net/projects/rabbitcalendar/files/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk"
+          ${{env.SOURCE_DIR}}/RabbitCommon/Script/GenerateJsonFile.sh \
+              -f update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json \
+              -p Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk \
+              -s android -a ${{matrix.ANDROID_ABI}} \
+              -u "https://github.com/KangLin/Calendar/releases/download/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk,https://sourceforge.net/projects/rabbitcalendar/files/${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk"
 
       - name: Update xml file
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_arch == 'android_armv7' }}
@@ -212,7 +218,7 @@ jobs:
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}
           path: |
