@@ -6,6 +6,7 @@
 *.xz
 obj-x86_64-linux-gnu/
 debian/
+debian
 *.user.*
 .qmake.stash
 Translations.qrc

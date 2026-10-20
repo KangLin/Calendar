@@ -5,7 +5,8 @@ Source: rabbitcalendar
 Section: main
 Priority: optional
 Maintainer: Kang Lin <kl222@126.com>
-Build-Depends: debhelper (>=13), debhelper-compat (=13), fakeroot, cmake(>=3.25),
+Build-Depends: build-essential, debhelper (>=13), debhelper-compat (=13),
+ fakeroot, cmake(>=3.25),
  libssl-dev, libcrypt-dev, libcmark-dev, qt6-tools-dev, qt6-tools-dev-tools,
  qt6-base-dev, qt6-base-dev-tools, qt6-l10n-tools, qt6-translations-l10n,
  qt6-scxml-dev, qt6-svg-dev, qt6-multimedia-dev

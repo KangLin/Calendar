@@ -73,12 +73,12 @@ jobs:
             ${{env.INSTALL_DIR}}
           key: install_ubuntu_${{matrix.os}}_${{matrix.BUILD_TYPE}}
 
-      - name: build_debpackage.sh
+      - name: build_package_deb.sh
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
-          ./Script/build_debpackage.sh
+          ./Script/build_package_deb.sh
 
       - name: Update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}

@@ -5,35 +5,39 @@ set -e
 
 update_version() {
 
-    #sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/Update/update.xml
-    sed -i "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Install/Install.nsi
-    sed -i "s/    set(Calendar_VERSION .*/    set(Calendar_VERSION \"${VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
-    #sed -i "s/^\    Calendar_VERSION=.*/\    Calendar_VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/pri/Common.pri
-    sed -i "s/^version: '.*{build}'/version: '${VERSION}.{build}'/g" ${SOURCE_DIR}/appveyor.yml
-    sed -i "s/CalendarVersion:.*/CalendarVersion: \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
-    sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/.travis.yml
-    sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
-    sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
-    sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
-    sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
-    sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
-    sed -i "s/          \"version\":[[:blank:]]*\"v\?[0-9]\+\.[0-9]\+\.[0-9]\+\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
+    #$SED_CMD "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/Update/update.xml
+    $SED_CMD "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Package/NSIS/Install.nsi
+    $SED_CMD "s/    set\(Calendar_VERSION .*/    set\(Calendar_VERSION \"${VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
+    #$SED_CMD "s/^\    Calendar_VERSION=.*/\    Calendar_VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/pri/Common.pri
+    $SED_CMD "s/^version: '.*\{build\}'/version: '${VERSION}.\{build\}'/g" ${SOURCE_DIR}/appveyor.yml
+    $SED_CMD "s/CalendarVersion:.*/CalendarVersion: \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
+    $SED_CMD "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/.travis.yml
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
+    $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
+
+    $SED_CMD "s/${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/README*.md
+    $SED_CMD "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
+    $SED_CMD "s/          \"version\":[[:blank:]]*\"${VERSION_PATTERN}\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
     
-    sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
-    sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/docker.yml
-    sed -i "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/debian/changelog
-    sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
-    sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
-    sed -i "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos.yml
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/docker.yml
+    $SED_CMD "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/Package/debian/changelog
+    $SED_CMD "s/Version:.*/Version: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/calendar.spec
+    $SED_CMD "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos.yml
     if [ -f ${SOURCE_DIR}/vcpkg.json ]; then
-        sed -i "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg.json
+        $SED_CMD "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg.json
     fi
     if [ -f ${SOURCE_DIR}/vcpkg/manifests/vcpkg.json ]; then
-        sed -i "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg/manifests/vcpkg.json
+        $SED_CMD "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg/manifests/vcpkg.json
     fi
     
-    CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
-    CHANGLOG_FILE=${SOURCE_DIR}/debian/changelog
+    CHANGLOG_TMP=${SOURCE_DIR}/Package/debian/changelog.tmp
+    CHANGLOG_FILE=${SOURCE_DIR}/Package/debian/changelog
     echo "rabbitcalendar (${DEBIAN_VERSION}) unstable; urgency=medium" > ${CHANGLOG_FILE}
     echo "" >> ${CHANGLOG_FILE}
     echo "    * Full Changelog: [${PRE_TAG}..${VERSION}](https://github.com/KangLin/RabbitRemoteControl/compare/${PRE_TAG}..${VERSION})" >> ${CHANGLOG_FILE}
@@ -313,13 +317,18 @@ check_version() {
 check_chang_log() {
     echo "  - Modified change log ?"
     local content=$(<${SOURCE_DIR}/ChangeLog.md)
-    if [[ $content =~ "$VERSION" ]]; then
+    local escaped_version="${VERSION//./\\.}"
+    #echo "Looking for version: $VERSION"
+    local pattern="$escaped_version([[:space:]]|\$|$)"
+    #echo "pattern: $pattern"
+    if [[ $content =~ $pattern ]]; then
         echo_color_success "    √ Modified in \"ChangeLog.md\""
+        #echo "匹配到的版本: ${BASH_REMATCH[0]}"
     else
         echo_color_warn "    ! Warning: Don't include \"$VERSION\" in the file \"ChangeLog.md\""
     fi
     content=$(<${SOURCE_DIR}/ChangeLog_zh_CN.md)
-    if [[ $content =~ "$VERSION" ]]; then
+    if [[ $content =~ $pattern ]]; then
         echo_color_success "    √ Modified in \"ChangeLog_zh_CN.md\""
     else
         echo_color_warn "    ! Warning: Don't include \"$VERSION\" in the file \"ChangeLog_zh_CN.md\""
@@ -389,8 +398,8 @@ push_remote_repository() {
         git tag -a "$VERSION" -m "$MESSAGE"
 
         # Push commits and tags
-        git push origin HEAD
         git push origin "$VERSION"
+        git push origin HEAD
 
         echo_success "Push to remote repository successfully!"
     fi
@@ -406,7 +415,9 @@ show_value
 
 check_version
 
-create_tag
+if [ "$DEPLOY" = "ON" ]; then
+    create_tag
+fi
 
 echo "= Update version to $VERSION ......"
 
@@ -420,4 +431,6 @@ if [ "$COMMIT" = "ON" ]; then
     commit_code
 fi
 
-push_remote_repository
+if [ "$DEPLOY" = "ON" ]; then
+    push_remote_repository
+fi

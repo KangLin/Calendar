@@ -2,6 +2,7 @@
 # Author: Kang Lin <kl222@126.com>
 
 #See: https://blog.csdn.net/alwaysbefine/article/details/114187380
+
 #set -x
 set -e
 #set -v
@@ -40,6 +41,10 @@ if [ "$DISTRO" = "macOS" ]; then
     MACOS=1
 else
     MACOS=0
+fi
+
+if [ -z "$PACKAGE_TOOL" ]; then
+    PACKAGE_TOOL=apt
 fi
 
 PACKAGE=
@@ -116,7 +121,7 @@ parse_with_getopt() {
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,system-update::,base::,default::,macos::,qt::,rabbitcommon::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,system-update::,base::,default::,macos::,qt::,rabbitcommon::
     # Parse arguments using getopt
     # -o: short options
     # -l: long options  
@@ -351,6 +356,7 @@ mkdir -p $INSTALL_DIR
 # Display configuration
 show_configuration
 
+# Set libraries install path
 case "$DISTRO" in
 ubuntu|debian|linuxmint)
     LIB_PATH="lib"
@@ -384,8 +390,16 @@ if [ -n "$PACKAGE" ]; then
     package_install $PACKAGE
 fi
 
-if [ $BASE_LIBS -eq 1 ]; then
+install_base() {
     echo_status "Install base libraries ......"
+    if is_termux; then
+        package_install wget curl git cmake build-essential
+	#package_install mesa-dev glu glew glfw libglvnd-dev libglvnd
+        package_install qt6-qttools qt6-qtbase qt6-qttranslations qt6-qt5compat qt6-qtimageformats qt6-qtmultimedia \
+            qt6-qtscxml qt6-qtsvg qt6-qtwayland qt6-qtwebchannel qt6-qtwebengine qt6-qtwebsockets qt6-qtpositioning qt6-qtbase-gtk-platformtheme
+        return 0
+    fi
+
     if [ "$PACKAGE_TOOL" = "apt" ]; then
         # Build tools
         package_install build-essential devscripts equivs debhelper \
@@ -396,19 +410,39 @@ if [ $BASE_LIBS -eq 1 ]; then
         # OpenGL
         #package_install libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
         # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
-        if [ -z "$RabbitRemoteControl_VERSION" ]; then
+        if [ -z "$Calendar_VERSION" ]; then
             package_install xvfb #xpra
         fi
+        # X11 and xcb
+        package_install xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
+            libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
+            libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
+            libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
+            libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev \
+            libxcb-* libxcb-cursor0 \
+            libxkbcommon-dev
+        # Base dependency
+        package_install liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev
         # RabbitCommon dependency
         package_install libcmark-dev cmark
-        # VNC dependency
+
         # Needed by AppImage
-        case "$DISTRO_VERSION" in
-            24.*)
-                package_install libfuse-dev fuse
+        case "$DISTRO" in
+            ubuntu)
+                case "$DISTRO_VERSION" in
+                    24.*)
+                        package_install fuse
+                        ;;
+                    26.*|25.*)
+                        package_install libfuse3-dev fuse3
+                        ;;
+                esac
+                package_install libfuse-dev
                 ;;
-            26.*|25.*)
+            linuxmint)
                 package_install libfuse3-dev fuse3
+                ;;
+            debian)
                 ;;
         esac
     fi
@@ -420,28 +454,25 @@ if [ $BASE_LIBS -eq 1 ]; then
     fi
 
     if [ $MACOS -eq 1 ]; then
-        package_install nasm autoconf automake libtool pkg-config doxygen zstd curl
+        package_install nasm autoconf automake libtool pkg-config \
+            doxygen zstd curl gnu-getopt
     fi
+}
+
+if [ $BASE_LIBS -eq 1 ]; then
+    install_base
 fi
 
 if [ $DEFAULT_LIBS -eq 1 ]; then
     echo_status "Install default dependency libraries ......"
-    if [ "$PACKAGE_TOOL" = "apt" ]; then
-        # Qt6
-        if [ $QT -ne 1 ]; then
-            package_install qmake6 qt6-tools-dev qt6-tools-dev-tools \
-                qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
-                qt6-l10n-tools qt6-translations-l10n \
-                qt6-scxml-dev libqt6sql6-sqlite qt6-svg-dev qt6-multimedia-dev
-        fi
-    fi # apt
-
-    if [ "$PACKAGE_TOOL" = "dnf" ]; then
-        if [ $QT -ne 1 ]; then
-            package_install qt6-qttools-devel qt6-qtbase-devel\
-                qt6-qt5compat-devel qt6-qtscxml-devel
-        fi
-    fi
+        case "$DISTRO" in
+    ubuntu|debian|deepin|linuxmint)
+        install_debian_depend $REPO_ROOT
+        ;;
+    fedora)
+        dnf builddep -y ${REPO_ROOT}/Package/rpm/calendar.spec
+        ;;
+    esac
 
     if [ $MACOS -eq 1 ]; then
         package_install qt
@@ -476,22 +507,18 @@ fi
 
 if [ $RabbitCommon -eq 1 ]; then
     echo_status "Install RabbitCommon ......"
+    if [ -z "$RabbitCommon_ROOT" ]; then
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+    fi
+
     if [ -d "$RabbitCommon_ROOT" ]; then
         pushd $RabbitCommon_ROOT
         git pull
         popd
     else
-        pushd "$SOURCE_DIR"
-        if [ ! -d RabbitCommon ]; then
-            git clone https://github.com/KangLin/RabbitCommon.git
-        else
-            pushd RabbitCommon
-            git pull
-            popd
-        fi
-        popd
+        git clone https://github.com/KangLin/RabbitCommon.git $RabbitCommon_ROOT
     fi
 fi
-    fi
-    popd
-fi
+
+popd #pushd "$BUILD_DEPEND_DIR"
+popd #pushd "$REPO_ROOT"

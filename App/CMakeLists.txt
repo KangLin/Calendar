@@ -112,7 +112,7 @@ INSTALL_FILE(SOURCES ${OTHER_FILES}
 
 if(WIN32)
     # 替换 Install.nsi 中的 CMAKE_INSTALL_PREFIX 等
-    configure_file(${CMAKE_SOURCE_DIR}/Install/Install.nsi
+    configure_file(${CMAKE_SOURCE_DIR}/Package/NSIS/Install.nsi
         ${CMAKE_BINARY_DIR}/Install.nsi @ONLY)
     INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Application)
 endif()
