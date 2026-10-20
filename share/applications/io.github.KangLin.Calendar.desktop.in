@@ -1,7 +1,9 @@
 # https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
 
 [Desktop Entry]
+Encoding=UTF-8
 Type=Application
+
 # Icon path: http://freedesktop.org/wiki/Standards/icon-theme-spec
 # The freedesktop.org standard specifies in which order and directories programs should look for icons:
 #
@@ -9,9 +11,11 @@ Type=Application
 #    $XDG_DATA_DIRS/icons
 #    /usr/share/pixmaps
 Icon=@APP_ID@
-Exec=CalendarApp
-TryExec=CalendarApp
-Path=@CMAKE_INSTALL_PREFIX@/bin
+
+Exec=@CMAKE_INSTALL_PREFIX@/bin/CalendarApp
+#TryExec=@CMAKE_INSTALL_PREFIX@/bin/CalendarApp
+#Path=@CMAKE_INSTALL_PREFIX@/bin
+
 Terminal=false
 StartupNotify=true
 

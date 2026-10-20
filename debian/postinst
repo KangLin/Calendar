@@ -18,6 +18,7 @@ set -e
 # the debian-policy package
 
 INSTALL_ROOT=/opt/Calendar
+USR_ROOT=/usr
 
 case "$1" in
     configure)
@@ -28,9 +29,12 @@ case "$1" in
         if [ ! -d $INSTALL_ROOT/bin/log -a -d $INSTALL_ROOT/log ]; then
             ln -s $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         fi
-        
-        if [ ! -f /usr/share/applications/io.github.KangLin.Calendar.desktop ]; then
-            ln -s ${INSTALL_ROOT}/share/applications/io.github.KangLin.Calendar.desktop /usr/share/applications/io.github.KangLin.Calendar.desktop
+        if [ -d $INSTALL_ROOT/etc ]; then
+            chmod -R a+rw $INSTALL_ROOT/etc
+        fi
+
+        if [ ! -f $USR_ROOT/share/applications/io.github.KangLin.Calendar.desktop ]; then
+            ln -s ${INSTALL_ROOT}/share/applications/io.github.KangLin.Calendar.desktop $USR_ROOT/share/applications/io.github.KangLin.Calendar.desktop
         fi
         if [ ! -d ~/.config/autostart ]; then
             mkdir -p ~/.config/autostart
@@ -39,34 +43,51 @@ case "$1" in
         if [ ! -f  ~/.config/autostart/io.github.KangLin.Calendar.desktop ]; then
             ln -s ${INSTALL_ROOT}/share/applications/io.github.KangLin.Calendar.desktop ~/.config/autostart/io.github.KangLin.Calendar.desktop
         fi
-        if [ ! -f /usr/share/pixmaps/io.github.KangLin.Calendar.png ]; then
-            if [ ! -d /usr/share/pixmaps ]; then
-                mkdir -p /usr/share/pixmaps
+        if [ ! -f $USR_ROOT/share/pixmaps/io.github.KangLin.Calendar.png ]; then
+            if [ ! -d $USR_ROOT/share/pixmaps ]; then
+                mkdir -p $USR_ROOT/share/pixmaps
             fi
-            ln -s ${INSTALL_ROOT}/share/pixmaps/io.github.KangLin.Calendar.png /usr/share/pixmaps/io.github.KangLin.Calendar.png
+            ln -s ${INSTALL_ROOT}/share/pixmaps/io.github.KangLin.Calendar.png $USR_ROOT/share/pixmaps/io.github.KangLin.Calendar.png
         fi
+        if [ ! -f $USR_ROOT/bin/rabbitcalendar ]; then
+            ln -s $INSTALL_ROOT/bin/CalendarlApp $USR_ROOT/bin/rabbitcalendar
+        fi
+
+        if command -v update-mime-database >/dev/null 2>&1; then
+            if [ -d $USR_ROOT/share/mime ]; then
+                update-mime-database $USR_ROOT/share/mime/
+            fi
+        fi
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database $USR_ROOT/share/applications/
+        fi
+
         #echo "${INSTALL_ROOT}/lib" > /etc/ld.so.conf.d/Calendar.conf
         #echo "${INSTALL_ROOT}/bin" >> /etc/ld.so.conf.d/Calendar.conf
         #export QT_VERSION_DIR=
         #if [ -n "${QT_VERSION_DIR}" ]; then
         #    echo "/opt/qt${QT_VERSION_DIR}/lib" >> /etc/ld.so.conf.d/Calendar.conf
         #fi
-        ldconfig
-        if command -v update-desktop-database >/dev/null 2>&1; then
-            update-desktop-database
-        fi
+        #ldconfig
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
         rm -fr ~/.config/autostart/io.github.KangLin.Calendar.desktop
-        rm -fr /usr/share/applications/io.github.KangLin.Calendar.desktop
+        rm -fr $USR_ROOT/share/applications/io.github.KangLin.Calendar.desktop
         rm -fr $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         rm -fr /etc/ld.so.conf.d/Calendar.conf
-        rm -fr /usr/share/pixmaps/io.github.KangLin.Calendar.png
-        ldconfig
-        if command -v update-desktop-database >/dev/null 2>&1; then
-            update-desktop-database
+        rm -fr $USR_ROOT/share/pixmaps/io.github.KangLin.Calendar.png
+        rm -fr $USR_ROOT/bin/rabbitcalendar
+
+        if command -v update-mime-database >/dev/null 2>&1; then
+            if [ -d $USR_ROOT/share/mime ]; then
+                update-mime-database $USR_ROOT/share/mime/
+            fi
         fi
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database $USR_ROOT/share/applications/
+        fi
+        #ldconfig
     ;;
 
     *)

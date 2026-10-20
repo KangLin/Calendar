@@ -19,18 +19,27 @@ set -e
 # the debian-policy package
 
 INSTALL_ROOT=/opt/Calendar
+USR_ROOT=/usr
 
 case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
         rm -fr $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         rm -fr ~/.config/autostart/io.github.KangLin.Calendar.desktop
-        rm -fr /usr/share/applications/io.github.KangLin.Calendar.desktop
+        rm -fr $USR_ROOT/share/applications/io.github.KangLin.Calendar.desktop
         rm -fr /etc/ld.so.conf.d/Calendar.conf
-        rm -fr /usr/share/pixmaps/io.github.KangLin.Calendar.png
-        ldconfig
-        if command -v update-desktop-database >/dev/null 2>&1; then
-            update-desktop-database
+        rm -fr $USR_ROOT/share/pixmaps/io.github.KangLin.Calendar.png
+        rm -fr $USR_ROOT/bin/rabbitcalendar
+
+        if command -v update-mime-database >/dev/null 2>&1; then
+            if [ -d $USR_ROOT/share/mime ]; then
+                update-mime-database $USR_ROOT/share/mime/
+            fi
         fi
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database $USR_ROOT/share/applications/
+        fi
+
+        #ldconfig
     ;;
 
     *)
