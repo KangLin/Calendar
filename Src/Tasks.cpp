@@ -256,13 +256,12 @@ int CTasks::LoadSettings(const QDomElement &e)
         QSharedPointer<CTask> t(qobject_cast<CTask*>(
                                     CObjectFactory::createObject(
                        task.attribute("name").toStdString().c_str())));
-        if(!t.data())
-        {
+        if(t.data()) {
+            t->LoadSettings(task);
+            Add(t);
+        } else {
             qCritical(log) << "Create object" << task.attribute("name") << "failed";
-            continue;
         }
-        t->LoadSettings(task);
-        Add(t);
         task = task.nextSiblingElement("class");
     }
     return nRet;
