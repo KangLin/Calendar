@@ -15,7 +15,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - CMAKE_GENERATOR_PLATFORM: x64
+          - CMAKE_GENERATOR: "Visual Studio 17 2022"
+            CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             BUILD_TYPE: Release
@@ -24,7 +25,8 @@ jobs:
             qt_modules: qtscxml qtmultimedia qt5compat 
             os: windows-2022
 
-          - CMAKE_GENERATOR_PLATFORM: arm64
+          - CMAKE_GENERATOR: "Visual Studio 18 2026"
+            CMAKE_GENERATOR_PLATFORM: arm64
             VCPKG_TARGET_TRIPLET: arm64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             BUILD_TYPE: Release
@@ -33,7 +35,8 @@ jobs:
             qt_modules: qt5compat qtmultimedia qtscxml
             os: windows-11-arm
 
-          - CMAKE_GENERATOR_PLATFORM: Win32
+          - CMAKE_GENERATOR: "Visual Studio 17 2022"
+            CMAKE_GENERATOR_PLATFORM: Win32
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
             #VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
@@ -42,7 +45,8 @@ jobs:
             qt_arch: win32_msvc2019
             os: windows-2022
 
-          - qt_version: 5.12.12
+          - CMAKE_GENERATOR: "Visual Studio 17 2022"
+            qt_version: 5.12.12
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143
             #VCPKG_MANIFEST_DIR: "\\vcpkg\\manifests"
@@ -66,7 +70,7 @@ jobs:
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       #VCPKG_MANIFEST_DIR: "${{github.workspace}}${{matrix.VCPKG_MANIFEST_DIR}}"
-      CMAKE_GENERATOR: "Visual Studio 17 2022"
+      CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: ${{matrix.qt_modules}}
       artifact_name: build_msvc
@@ -136,7 +140,7 @@ jobs:
               -DWITH_CMARK=ON ^
               -DWITH_CMARK_GFM=OFF ^
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-              -DCMAKE_INSTALL_PREFIX=${{github.workspace}}\build\install ^
+              -DCMAKE_INSTALL_PREFIX=install ^
               -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
               -DVCPKG_VERBOSE=ON ^
               -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^

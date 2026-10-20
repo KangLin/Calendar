@@ -32,6 +32,8 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
       artifact_name: build_mingw
+      MSYSTEM: CLANG64
+      MSYSTEM_PREFIX: C:\msys64\clang64
 
     # Map the job outputs to step outputs
     outputs:
@@ -64,15 +66,13 @@ jobs:
         run: |
           C:\msys64\usr\bin\pacman.exe -Syu --noconfirm
           C:\msys64\usr\bin\pacman.exe -S --noconfirm ^
-              mingw-w64-x86_64-cmake ^
-              mingw-w64-x86_64-make ^
-              mingw-w64-x86_64-nsis ^
-              mingw-w64-x86_64-gcc ^
-              mingw-w64-x86_64-qt5 ^
-              mingw-w64-x86_64-zlib ^
-              mingw-w64-x86_64-openssl ^
-              mingw-w64-x86_64-cmark ^
-              git base-devel
+            mingw-w64-clang-x86_64-cmake ^
+            mingw-w64-clang-x86_64-ninja ^
+            mingw-w64-clang-x86_64-nsis ^
+            mingw-w64-clang-x86_64-gcc ^
+            mingw-w64-clang-x86_64-qt6 ^
+            mingw-w64-clang-x86_64-cmark ^
+            mingw-w64-clang-x86_64-git base-devel
   
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
@@ -82,11 +82,9 @@ jobs:
         working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-          #Qt5_Dir: C:\msys64\mingw64
-          MSYSTEM: MINGW64
-          PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+          PATH: ${{env.MSYSTEM_PREFIX}}\bin;C:\msys64\usr\bin
         run: |
-          cmake .. -G"MinGW Makefiles" ^
+          cmake ${{github.workspace}} ^
               -DCMARK_SHARED=OFF ^
               -DCMARK_TESTS=OFF ^
               -DCMARK_STATIC=ON ^

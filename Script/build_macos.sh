@@ -6,6 +6,30 @@
 set -e
 #set -v
 
+# 安全的 readlink 函数，兼容各种系统
+safe_readlink() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        if command -v readlink >/dev/null 2>&1; then
+            if readlink -f "$path" >/dev/null 2>&1; then
+                readlink -f "$path"
+            else
+                readlink "$path"
+            fi
+        else
+            ls -l "$path" | awk '{print $NF}'
+        fi
+    elif [ -e "$path" ]; then
+        if command -v realpath >/dev/null 2>&1; then
+            realpath "$path"
+        else
+            echo "$(cd "$(dirname "$path")" && pwd)/$(basename "$path")"
+        fi
+    else
+        echo "$path"
+    fi
+}
+
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
@@ -131,7 +155,7 @@ echo "INSTALL_DIR: $INSTALL_DIR"
 pushd "$BUILD_MACOS_DIR"
 
 #echo "Install macos tools and dependency libraries ......"
-#brew install qt doxygen freerdp libvncserver libssh zstd libpcap pcapplusplus
+#brew install qt doxygen
 
 cmake "$REPO_ROOT" \
   -DCMAKE_INSTALL_PREFIX=Calendar.App/Contents \

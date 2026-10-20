@@ -1,3 +1,7 @@
+### v1.0.25-dev
+  - Fix create object bug
+  - Use CMake to generate AndroidManifest.xml, then remove the AndroidManifest.xml file
+
 ### v1.0.24
   - Modify icons resource
   - Android:
