@@ -18,13 +18,16 @@ jobs:
       matrix:
         include:
           - VCPKG_TARGET_TRIPLET: x64-osx
+            os: macos-26-intel
+
+          - VCPKG_TARGET_TRIPLET: arm64-osx
+            os: macos-26
+
+          - VCPKG_TARGET_TRIPLET: x64-osx
             os: macos-15-intel
 
           - VCPKG_TARGET_TRIPLET: arm64-osx
             os: macos-15
-
-          - VCPKG_TARGET_TRIPLET: arm64-osx
-            os: macos-14
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
