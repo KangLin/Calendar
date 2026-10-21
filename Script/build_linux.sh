@@ -555,10 +555,6 @@ if [ $APPIMAGE -eq 1 ]; then
     *)
     esac
 
-    export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
-    export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
-    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
-
     ./build_depend.sh --system_update --base --default \
         ${depend_para} \
         --install=${INSTALL_DIR} \
@@ -580,8 +576,10 @@ if [ $APPIMAGE -eq 1 ]; then
 
     if [ -z "$RabbitCommon_ROOT" -a -d ${SOURCE_DIR}/RabbitCommon ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-    fi
-
+    fi   
+    export PKG_CONFIG_PATH=${INSTALL_DIR}/${LIB_PATH}/pkgconfig:$PKG_CONFIG_PATH
+    export LD_LIBRARY_PATH=${INSTALL_DIR}/${LIB_PATH}:$LD_LIBRARY_PATH
+    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
     ./build_appimage.sh --install=${INSTALL_DIR} \
         --tools=${TOOLS_DIR} \
         --source=${SOURCE_DIR} \
@@ -623,7 +621,7 @@ fi
 
 if [ $MACOS -eq 1 ]; then
     echo_status "build macos bundle package ......"
-    ./build_depend.sh --system_update --base --default --macos --rabbitcommon \
+    ./build_depend.sh --system_update --base --default --macos \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \
@@ -690,9 +688,6 @@ if [ $TERMUX -eq 1 ]; then
             --tools=${TOOLS_DIR} \
             --verbose=${BUILD_VERBOSE}
 
-        if [ -z "$RabbitCommon_ROOT" ]; then
-            export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-        fi
         # Disable ci warn
         if [ $CI ]; then
             git config --global --add safe.directory $REPO_ROOT
@@ -706,6 +701,9 @@ if [ $TERMUX -eq 1 ]; then
             --tools=${TOOLS_DIR} \
             --verbose=${BUILD_VERBOSE}
 
+        if [ -z "$RabbitCommon_ROOT" ]; then
+            export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+        fi
         ./build_termux.sh --install=${INSTALL_DIR} \
             --source=${SOURCE_DIR} \
             --tools=${TOOLS_DIR} \
