@@ -525,7 +525,7 @@ if [ $DEB -eq 1 ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
     export CMAKE_CONFIG_PARAS="$CMAKE_CONFIG_PARAS -DRABBIT_ENABLE_INSTALL_TARGETS=ON"
-    ./build_debpackage.sh --install=${INSTALL_DIR} \
+    ./build_package_deb.sh --install=${INSTALL_DIR} \
         --verbose=${BUILD_VERBOSE}
 fi
 
@@ -612,7 +612,7 @@ if [ $RPM -eq 1 ]; then
         export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     fi
 
-    ./build_rpm_package.sh \
+    ./build_package_rpm.sh \
         --install=${INSTALL_DIR} \
         --source=${SOURCE_DIR} \
         --tools=${TOOLS_DIR} \

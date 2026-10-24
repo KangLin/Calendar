@@ -155,20 +155,23 @@ if [ ! -f ~/rpmbuild/SOURCES/Calendar.tar.gz ]; then
     mkdir -p ~/rpmbuild/SOURCES/
     if [ -d $REPO_ROOT/.git ]; then
         # 打包主仓库
-        git archive --format=tar --prefix=Calendar/ -o ~/rpmbuild/SOURCES/Calendar.tar HEAD
+        git archive --format=tar --prefix=Calendar/ -o $HOME/rpmbuild/SOURCES/Calendar.tar HEAD
         # 遍历所有子模块（含嵌套子模块），逐个打包
         git submodule foreach --recursive '
-          safe_name=$(echo "${sm_path}" | sed "s#[^A-Za-z0-9._-]#_#g")
+          safe_name=$(echo "${name}" | sed "s#[^A-Za-z0-9._-]#_#g")
+          echo "name: ${name}; sm_path: ${sm_path}; displaypath: ${displaypath}; sha1: $sha1; toplevel: $toplevel"
+          echo "safe_name: ${safe_name}; prefix=Calendar/${displaypath}/; temp file: /tmp/sub-calendar-${safe_name}.tar"
           git archive --format=tar --prefix="Calendar/${displaypath}/" HEAD -o "/tmp/sub-calendar-${safe_name}.tar"
         '
         # 将所有子模块 tar 拼接到主 tar 后面
         for f in /tmp/sub-calendar-*.tar; do
-          tar --concatenate --file=~/rpmbuild/SOURCES/Calendar.tar "$f"
+          echo "f: $f"
+          tar --concatenate --file="$HOME/rpmbuild/SOURCES/Calendar.tar" "$f"
         done
         # 压缩为最终文件
-        gzip -c ~/rpmbuild/SOURCES/Calendar.tar > ~/rpmbuild/SOURCES/Calendar.tar.gz
+        gzip -c $HOME/rpmbuild/SOURCES/Calendar.tar > $HOME/rpmbuild/SOURCES/Calendar.tar.gz
         # 清理临时文件
-        rm -f ~/rpmbuild/SOURCES/Calendar.tar /tmp/sub-calendar-*.tar
+        rm -f $HOME/rpmbuild/SOURCES/Calendar.tar /tmp/sub-calendar-*.tar
     fi
 else
     echo_warn "~/rpmbuild/SOURCES/Calendar.tar.gz is existed. If you are in development, please delete it!"
