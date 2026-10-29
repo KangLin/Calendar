@@ -1,4 +1,4 @@
-### v1.0.25-dev
+### v1.0.25
   - Fix create object bug
   - Use CMake to generate AndroidManifest.xml, then remove the AndroidManifest.xml file
 

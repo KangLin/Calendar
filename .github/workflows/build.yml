@@ -6,7 +6,7 @@ name: build
 env:
   artifact_path: artifact_path
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  Calendar_VERSION: 1.0.24
+  Calendar_VERSION: 1.0.25
 
 on: 
   push:

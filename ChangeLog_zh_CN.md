@@ -1,4 +1,4 @@
-### v1.0.25-dev
+### v1.0.25
   - 使用 CMake 产生 AndroidManifest.xml，移除 AndroidManifest.xml 文件
   - 修复建立对象错误
 

@@ -74,7 +74,7 @@ jobs:
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: ${{matrix.qt_modules}}
       artifact_name: build_msvc
-      Calendar_VERSION: v1.0.24
+      Calendar_VERSION: v1.0.25
 
     # Map the job outputs to step outputs
     outputs:

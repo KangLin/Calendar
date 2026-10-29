@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <REDIRECT>
-    <VERSION>v1.0.18</VERSION>
+    <VERSION>v1.0.25</VERSION>
     <WINDOWS>
         <URL>https://github.com/KangLin/Calendar/releases/download/v1.0.18/update_windows.xml</URL>
         <URL>https://sourceforge.net/projects/rabbitcalendar/files/v1.0.18/update_windows.xml/download</URL>
