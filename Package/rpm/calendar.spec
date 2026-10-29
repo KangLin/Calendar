@@ -3,7 +3,7 @@
 %define         INSTALL_PREFIX /opt/Calendar
 
 Name:           calendar
-Version: 1.0.25
+Version:        1.0.25
 Release:        1%{?dist}
 Summary:        Rabbit remote control is is a cross-platform, multi-protocol remote control software.
 

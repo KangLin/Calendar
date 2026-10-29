@@ -25,7 +25,7 @@ update_version() {
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/docker.yml
     $SED_CMD "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/Package/debian/changelog
-    $SED_CMD "s/Version:.*/Version: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/calendar.spec
+    $SED_CMD "s/Version:.*/Version:        ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/calendar.spec
     $SED_CMD "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos.yml
