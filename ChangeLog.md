@@ -1,3 +1,6 @@
+### v1.0.26-dev
+  - Fix rpm install script bug
+
 ### v1.0.25
   - Fix create object bug
   - Use CMake to generate AndroidManifest.xml, then remove the AndroidManifest.xml file

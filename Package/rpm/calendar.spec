@@ -1,6 +1,7 @@
 # See: https://rpm-software-management.github.io/rpm/manual/spec.html
 
 %define         INSTALL_PREFIX /opt/Calendar
+%define         USR_ROOT /user
 
 Name:           calendar
 Version:        1.0.25
@@ -134,12 +135,10 @@ cmake --install $RPM_BUILD_DIR --config Release --strip \
 
 # 安装后需要做的任务 如：自动启动的任务
 %post
-INSTALL_PREFIX=/opt/Calendar
+INSTALL_PREFIX=/opt/RabbitRemoteControl
 USR_ROOT=/usr
-
 mkdir -p $INSTALL_ROOT/log
 chmod -R a+w $INSTALL_ROOT/log
-chmod -R a+w $INSTALL_ROOT/etc
 
 if [ ! -d $INSTALL_ROOT/bin/log -a -d $INSTALL_ROOT/log ]; then
     ln -s $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
@@ -182,7 +181,7 @@ fi
 
 # 卸载后需要做的任务 如：删除用户，删除/备份业务数据
 %postun
-INSTALL_ROOT=/opt/Calendar
+INSTALL_PREFIX=/opt/RabbitRemoteControl
 USR_ROOT=/usr
 rm -fr $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
 rm -fr ~/.config/autostart/io.github.KangLin.Calendar.desktop

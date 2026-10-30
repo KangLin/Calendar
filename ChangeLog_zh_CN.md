@@ -1,3 +1,6 @@
+### v1.0.25-dev
+  - 修复 rpm 安装脚本错误
+ 
 ### v1.0.25
   - 使用 CMake 产生 AndroidManifest.xml，移除 AndroidManifest.xml 文件
   - 修复建立对象错误
