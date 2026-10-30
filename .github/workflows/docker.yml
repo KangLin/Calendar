@@ -212,7 +212,7 @@ jobs:
         with:
           name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.lable}}_${{matrix.variant.os}}
           path: |
-            ${{env.BUILD_DIR}}/build_linux/calendar*.rpm
+            ${{env.BUILD_DIR}}/build_linux/rabbitcalendar*.rpm
             ${{env.BUILD_DIR}}/build_linux/rabbitcalendar_*.deb
             ${{env.BUILD_DIR}}/build_linux/Calendar_*_Setup.zip
             ${{env.BUILD_DIR}}/build_linux/update_appimage_*.json
