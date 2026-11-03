@@ -29,7 +29,17 @@ PACKAGE_dev_DIR = "debian/rabbitcalendar-dev"
 override_dh_auto_configure:
 	dh_auto_configure -B$(BUILD_DIR) -- \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=/opt/Calendar
+		-DCMAKE_INSTALL_PREFIX=/opt/Calendar \
+		-DCMARK_SHARED=OFF \
+		-DCMARK_TESTS=OFF \
+		-DCMARK_STATIC=ON \
+		-DWITH_CMARK=OFF \
+		-DWITH_CMARK_GFM=ON \
+		-DENABLE_UPDATE_TRANSLATIONS=ON \
+		-DWITH_MEDIA_DEVICES=OFF \
+		-DWITH_FILE_TRANSFER=OFF \
+		-DWITH_WebEngineWidgets=OFF \
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 override_dh_auto_build:
 	cmake --build $(BUILD_DIR) --config Release \

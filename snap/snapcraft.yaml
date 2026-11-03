@@ -1,0 +1,158 @@
+# https://snapcraft.io/docs/the-snap-format
+# How Snapcraft builds snaps: https://snapcraft.io/docs/how-snapcraft-builds
+# Snapcraft.yaml schema: https://documentation.ubuntu.com/snapcraft/stable/reference/project-file/snapcraft-yaml
+
+name: rabbit-calendar
+title: Calendar
+version: 1.0.26
+type: app
+license: GPL-3.0+
+contact: kl222@126.com
+website: https://github.com/KangLin/Calendar
+source-code: https://github.com/KangLin/Calendar
+donation:
+  - https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
+issues: https://github.com/KangLin/Calendar/issues
+summary: Rabbit remote control # 79 char long summary
+description: |
+  Calendar
+  .
+  Include:
+    - Calendar
+      - solar
+      - lunar
+    - Task
+    - sticky
+  .
+  Author: Kang Lin <kl222@126.com>
+  .
+  Donation:
+  .
+  https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
+  .
+  https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
+  .
+  https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
+
+# See: https://snapcraft.io/docs/reference-architectures
+# See: https://snapcraft.io/docs/architectures
+base: core24 # the base snap is the execution environment for this snap
+platforms:
+  amd64:
+    build-on: [amd64]
+    build-for: [amd64]
+  arm64:
+    build-on: [arm64]
+    build-for: [arm64]
+#architectures:
+#  - build-on: amd64
+#    run-on: amd64
+#  - build-on: arm64
+#    run-on: arm64
+#base: core22
+
+# - devel
+# - stable
+grade: stable # must be 'stable' to release into candidate/stable channels
+
+# Confinement levels: https://snapcraft.io/docs/classic-confinement#heading--levels
+# Classic confinement: https://snapcraft.io/docs/classic-confinement
+# - devmode
+# - strict
+# - classic
+confinement: strict # devmode # use 'strict' once you have the right plugs and slots
+
+# lifecycle: https://snapcraft.io/docs/parts-lifecycle
+# Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
+# Part directives: https://snapcraft.io/docs/snapcraft-yaml-schema#part-directives
+parts:
+  rabbitcommon:
+    # see: https://snapcraft.io/docs/supported-plugins
+    # See 'snapcraft plugins'
+    plugin: dump # See: https://snapcraft.io/docs/dump-plugin
+    source: https://github.com/KangLin/RabbitCommon.git
+    source-type: git
+    source-branch: master
+    #source-depth: 1
+    organize:
+      '*': RabbitCommon/
+    prime:
+      - -*
+
+  Calendar:
+    # See 'snapcraft plugins'
+    # see: https://snapcraft.io/docs/supported-plugins
+    plugin: cmake # See: https://snapcraft.io/docs/cmake-plugin
+    source: .
+    after:
+      - rabbitcommon
+
+    build-packages:
+      # openssl development headers and libraries
+      - libssl-dev
+      - libcrypt-dev
+      # PulseAudio client development headers and libraries
+      - libpulse-dev
+    stage-packages:
+      - libpulse0 # PulseAudio client runtime libraries
+    cmake-parameters:
+      # See: https://snapcraft.io/docs/parts-environment-variables
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DRabbitCommon_ROOT=$CRAFT_STAGE/RabbitCommon/
+      - -DENABLE_UPDATE_TRANSLATIONS=ON
+      - -DCMAKE_VERBOSE_MAKEFILE=OFF
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/
+      - -DCMARK_SHARED=OFF
+      - -DCMARK_TESTS=OFF
+      - -DCMARK_STATIC=ON
+      - -DWITH_CMARK=OFF
+      - -DWITH_CMARK_GFM=ON
+      - -DWITH_UPDATE=OFF
+      - -DWITH_MEDIA_DEVICES=OFF
+      - -DWITH_FILE_TRANSFER=OFF
+      - -DWITH_WebEngineWidgets=OFF
+    # build-environment:
+    #   - LD_LIBRARY_PATH: "$CRAFT_STAGE/qt/lib:$LD_LIBRARY_PATH"
+    #   - CMAKE_FIND_ROOT_PATH: "$CRAFT_STAGE/qt;$CRAFT_STAGE/usr/local/lib;$CMAKE_FIND_ROOT_PATH"
+    #   - PATH: "$CRAFT_STAGE/qt/bin:$PATH"
+    override-stage: |
+      cd $CRAFT_PART_INSTALL/usr/local/bin
+      # cp $SNAPCRAFT_PART_SRC/snap/local/start.sh .
+      # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
+      sed -i 's|Icon=io\.github\.KangLin\.Calendar|Icon=/usr/local/share/pixmaps/io\.github\.KangLin\.Calendar\.png|' $CRAFT_PART_INSTALL/usr/local/share/applications/io.github.KangLin.Calendar.desktop
+      sed -i 's|Path=/usr/local/bin|Path=\$\{SNAP\}/usr/local/bin|' $CRAFT_PART_INSTALL/usr/local/share/applications/io.github.KangLin.Calendar.desktop
+      snapcraftctl stage
+    prime:
+      - -usr/bin/cmark
+      - -usr/bin/cmark-gfm
+      - -usr/local/bin/cmark
+      - -usr/local/bin/cmark-gfm
+      - -usr/local/include
+      - -usr/local/lib/cmake*
+      - -usr/local/lib/pkgconfig
+      - -usr/local/lib/*.a
+
+apps:
+ Calendar:
+   #command: usr/local/bin/start.sh
+   command: usr/local/bin/CalendarApp
+   # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
+   desktop: usr/local/share/applications/io.github.KangLin.Calendar.desktop
+   environment:
+      LD_LIBRARY_PATH: ${SNAP}/usr/local/lib::${LD_LIBRARY_PATH}
+      PATH: $SNAP/usr/local/bin:$PATH
+      # 修复 qtwebengine 沙箱权限问题
+      QTWEBENGINE_DISABLE_SANDBOX: 1
+   # List extensions, run `snapcraft extensions`
+   extensions:
+     # [KDE neon extensions](https://documentation.ubuntu.com/snapcraft/stable/reference/extensions/kde-neon-extensions/)
+     - kde-neon-6
+     #- kde-neon-qt6
+   # See: https://snapcraft.io/docs/supported-interfaces
+   # Interface:　run `snap interface -all`
+   plugs:
+     - opengl
+     - home
+     - password-manager-service
+     #- personal-files
+     #- system-files

@@ -79,7 +79,7 @@ if(ANDROID)
         NAME android.permission.READ_EXTERNAL_STORAGE
     )
 elseif(UNIX)
-    configure_file(${CMAKE_SOURCE_DIR}/${CMAKE_INSTALL_DATADIR}/applications/${APP_ID}.desktop.in
+    CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${CMAKE_INSTALL_DATADIR}/applications/${APP_ID}.desktop.in
         ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
         DESTINATION "${CMAKE_INSTALL_DATADIR}/applications"
@@ -88,10 +88,17 @@ elseif(UNIX)
         DESTINATION "${CMAKE_INSTALL_DATADIR}/pixmaps"
             COMPONENT Application
         RENAME ${APP_ID}.png)
+
+    STRING(TIMESTAMP BUILD_DATE "%Y-%m-%d")
+    CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/share/metainfo/${APP_ID}.metainfo.xml.in
+        ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml @ONLY)
+    INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/metainfo"
+            COMPONENT Application)
 endif()
 
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.ini)
-    configure_file(${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.ini
+    CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/etc/Calendar_logqt.ini
         ${CMAKE_BINARY_DIR}/etc/Calendar_logqt.ini
         COPYONLY)
 endif()
@@ -112,7 +119,7 @@ INSTALL_FILE(SOURCES ${OTHER_FILES}
 
 if(WIN32)
     # 替换 Install.nsi 中的 CMAKE_INSTALL_PREFIX 等
-    configure_file(${CMAKE_SOURCE_DIR}/Package/NSIS/Install.nsi
+    CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/Package/NSIS/Install.nsi
         ${CMAKE_BINARY_DIR}/Install.nsi @ONLY)
     INSTALL(FILES AppIcon.ico DESTINATION "." COMPONENT Application)
 endif()

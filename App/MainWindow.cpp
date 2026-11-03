@@ -10,7 +10,9 @@
 
 #include "DlgAbout.h"
 #include "RabbitCommonDir.h"
+#ifdef HAVE_UPDATE
 #include "FrmUpdater.h"
+#endif
 #include "RabbitCommonTools.h"
 #include "FrmStyle.h"
 #include "LunarCalendar.h"
@@ -135,6 +137,7 @@ void CMainWindow::slotAbout()
 
 void CMainWindow::on_actionUpdate_U_triggered()
 {
+#ifdef HAVE_UPDATE
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
     QIcon icon = windowIcon();
     if(icon.isNull()) return;
@@ -144,6 +147,7 @@ void CMainWindow::on_actionUpdate_U_triggered()
     m_pfrmUpdater->SetTitle(p.toImage());
     m_pfrmUpdater->SetInstallAutoStartup();
     RC_SHOW_WINDOW(m_pfrmUpdater);
+#endif
 }
 
 void CMainWindow::slotExit()

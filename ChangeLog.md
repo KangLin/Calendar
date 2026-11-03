@@ -1,5 +1,6 @@
-### v1.0.26-dev
+### v1.0.26
   - Fix rpm install script bug
+  - Add snap and flatpak
 
 ### v1.0.25
   - Fix create object bug

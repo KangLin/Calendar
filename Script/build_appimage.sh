@@ -211,7 +211,10 @@ cmake "$REPO_ROOT" \
   -DCMARK_TESTS=OFF \
   -DCMARK_STATIC=ON \
   -DQT_DEBUG_FIND_PACKAGE=ON \
-  -DCMAKE_BUILD_TYPE=Release
+  -DCMAKE_BUILD_TYPE=Release \
+  -DWITH_MEDIA_DEVICES=OFF \
+  -DWITH_FILE_TRANSFER=OFF \
+  -DWITH_WebEngineWidgets=OFF
 cmake --build . --parallel $(nproc)
 cmake --install . --config Release --component DependLibraries --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --component Runtime --prefix ${INSTALL_APP_DIR}

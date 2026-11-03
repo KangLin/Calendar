@@ -2,7 +2,7 @@
 %define         INSTALL_PREFIX /opt/Calendar
 
 Name:           rabbitcalendar
-Version:        1.0.25
+Version:        1.0.26
 Release:        1%{?dist}
 Summary:        Rabbit calendar is is a cross-platform calendar.
 
@@ -76,7 +76,10 @@ cmake . -B $RPM_BUILD_DIR \
     -DWITH_CMARK_GFM=ON \
     -DENABLE_UPDATE_TRANSLATIONS=ON \
     -DRABBIT_ENABLE_INSTALL_TARGETS=ON \
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+    -DWITH_MEDIA_DEVICES=OFF \
+    -DWITH_FILE_TRANSFER=OFF \
+    -DWITH_WebEngineWidgets=OFF
 cmake --build $RPM_BUILD_DIR --config Release --parallel $(nproc)
 
 %install

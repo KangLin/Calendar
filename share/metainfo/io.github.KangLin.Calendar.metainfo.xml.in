@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>io.github.KangLin.Calendar</id>
+  <launchable type="desktop-id">io.github.KangLin.Calendar.desktop</launchable>
+
+  <name>Calendar</name>
+  <name xml:lang="zh_CN">日历</name>
+  <name xml:lang="zh_TW">日曆</name>
+
+  <summary>Calendar software</summary>
+  <summary xml:lang="zh_CN">日历软件</summary>
+  <summary xml:lang="zh_TW">日曆軟件</summary>
+
+  <description>
+    <p>Calendar is a open-source, cross-platform, calendar software.</p>
+    <p xml:lang="zh_CN">日历是一个开源、跨平台、日历软件。</p>
+    <p xml:lang="zh_TW">玉兔日曆是一個開源、跨平臺、多協議的日曆軟件。</p>
+  </description>
+
+  <developer id="io.github.KangLin">
+    <name>KangLin</name>
+    <name xml:lang="zh_CN">康林</name>
+    <name xml:lang="zh_TW">康林</name>
+  </developer>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <content_rating type="oars-1.1" />
+
+  <url type="homepage">https://github.com/KangLin/Calendar</url>
+  <url type="bugtracker">https://github.com/KangLin/Calendar/issues</url>
+  <url type="contribute">https://github.com/KangLin/Calendar/pull</url>
+  <url type="help">https://github.com/KangLin/Calendar/discussions</url>
+  <url type="vcs-browser">https://github.com/KangLin/Calendar</url>
+  <url type="donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#99c1f1</color>
+    <color type="primary" scheme_preference="dark">#a599a5</color>
+  </branding>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/KangLin/Calendar/refs/heads/master/Resource/Image/Screenshot/Calendar.png</image>
+      <caption>Main Interface</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/Calendar/refs/heads/master/Resource/Image/Screenshot/Calendar_zh_CN.png</image>
+      <caption xml:lang="zh_CN">主界面</caption>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="@Calendar_VERSION@" date="@BUILD_DATE@">
+        <url type="details">https://github.com/KangLin/Calendar/blob/@Calendar_REVISION@/ChangeLog.md</url>
+    </release>
+  </releases>
+
+</component>

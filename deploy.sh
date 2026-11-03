@@ -14,20 +14,20 @@ update_version() {
     $SED_CMD "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/.travis.yml
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
-    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
-    $SED_CMD "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/appimage.yml
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/flatpak.yml
 
     $SED_CMD "s/${VERSION_PATTERN}/${VERSION}/g" ${SOURCE_DIR}/README*.md
     $SED_CMD "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
     $SED_CMD "s/          \"version\":[[:blank:]]*\"${VERSION_PATTERN}\"/          \"version\":\"${VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
-    
+
+    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/snap.yml
+    $SED_CMD "s/version:.*/version: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/snap/snapcraft.yaml
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/build.yml
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/docker.yml
     $SED_CMD "s/calendar (.*)/calendar (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/Package/debian/changelog
     $SED_CMD "s/Version:.*/Version:        ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/calendar.spec
     $SED_CMD "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
-    $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
     $SED_CMD "s/Calendar_VERSION:.*/Calendar_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/macos.yml
     if [ -f ${SOURCE_DIR}/vcpkg.json ]; then
         $SED_CMD "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg.json
@@ -35,7 +35,7 @@ update_version() {
     if [ -f ${SOURCE_DIR}/vcpkg/manifests/vcpkg.json ]; then
         $SED_CMD "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg/manifests/vcpkg.json
     fi
-    
+
     CHANGLOG_TMP=${SOURCE_DIR}/Package/debian/changelog.tmp
     CHANGLOG_FILE=${SOURCE_DIR}/Package/debian/changelog
     echo "rabbitcalendar (${DEBIAN_VERSION}) unstable; urgency=medium" > ${CHANGLOG_FILE}

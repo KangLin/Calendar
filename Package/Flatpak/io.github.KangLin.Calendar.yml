@@ -1,0 +1,107 @@
+# [flatpak manifest](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
+id: "io.github.KangLin.Calendar"
+# See: [available runtimes](https://docs.flatpak.org/en/latest/available-runtimes.html)
+# See: [flatpak kde runtime](https://invent.kde.org/packaging/flatpak-kde-runtime)
+runtime: "org.kde.Platform"
+runtime-version: "6.11"
+sdk: "org.kde.Sdk"
+command: CalendarApp
+
+build-options:
+  env:
+    V: "1"
+    # 修复 qtwebengine 沙箱权限问题
+    QTWEBENGINE_DISABLE_SANDBOX: '1'
+
+cleanup:
+  - "*.la"
+  - "*.a"
+  - "/include"
+  - "/lib/cmake"
+  - "/lib/pkgconfig"
+  - "/share/licenses"
+
+finish-args: #See: https://docs.flatpak.org/en/latest/sandbox-permissions.html
+  - --share=ipc
+  # X11 + XShm access
+  #- --socket=x11
+  - --device=all
+  - --filesystem=xdg-documents
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.secrets
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --system-talk-name=org.freedesktop.Avahi
+  # Because the file chooser somehow doesn't show the files on the host, we export some directory for reading pcap files
+  # https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15507
+  - --filesystem=xdg-public-share
+  - --filesystem=home:ro
+
+modules:
+
+  - name: RabbitCommon
+    disabled: false
+    sources:
+      - type: git
+        url: https://github.com/KangLin/RabbitCommon.git
+        branch: master
+        #tag: v2.3.3
+        #commit: d4db633bb48fc777042d6494d2f883b29779e2a2
+        #disable-shallow-clone: true
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_MimeTypeBrowser=OFF
+      - -DBUILD_APP=OFF
+      - -DBUILD_TEST=OFF
+      - -DCMARK_SHARED=OFF
+      - -DCMARK_TESTS=OFF
+      - -DCMARK_STATIC=ON
+      - -DWITH_CMARK=OFF
+      - -DWITH_CMARK_GFM=ON
+      - -DWITH_WebEngineWidgets=ON
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    cleanup:
+      - /bin
+      - /etc
+      - /share/applications
+      - /share/doc
+
+  - name: Calendar
+    disabled: false
+    sources:
+      - type: dir
+        path: ../..
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DENABLE_UPDATE_TRANSLATIONS=ON
+      - -DWITH_UPDATE=OFF
+      - -DCMARK_SHARED=OFF
+      - -DCMARK_TESTS=OFF
+      - -DCMARK_STATIC=ON
+      - -DWITH_CMARK=OFF
+      - -DWITH_CMARK_GFM=ON
+      - -DWITH_UPDATE=OFF
+      - -DWITH_MEDIA_DEVICES=OFF
+      - -DWITH_FILE_TRANSFER=OFF
+      - -DWITH_WebEngineWidgets=OFF
+    cleanup:
+      - -usr/bin/cmark
+      - -usr/bin/cmark-gfm
+      - -usr/local/bin/cmark
+      - -usr/local/bin/cmark-gfm
+      - -usr/local/include
+      - -usr/local/lib/cmake*
+      - -usr/local/lib/pkgconfig
+      - -usr/local/lib/*.a
+    post-install:
+      - desktop-file-edit --set-key=Path --set-value=/bin /app/share/applications/io.github.KangLin.Calendar.desktop
+      - install -Dm0644 io.github.KangLin.Calendar.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo/
+      # 【关键】导出 .desktop 文件到 Flatpak 导出目录
+      # 这会在 /var/lib/flatpak/exports/share/applications/ 创建符号链接
+      - mkdir -p /app/export/share/applications
+      - ln -sf /app/share/applications/io.github.KangLin.Calendar.desktop /app/export/share/applications/
+      # 更新桌面数据库（在安装时由 Flatpak 系统处理）
+      - update-desktop-database /app/share/applications

@@ -6,23 +6,13 @@ name: build
 env:
   artifact_path: artifact_path
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  Calendar_VERSION: 1.0.25
+  Calendar_VERSION: 1.0.26
 
 on: 
   push:
   pull_request:
 
 jobs:
-  ubuntu:
-    if: false
-    uses: ./.github/workflows/ubuntu.yml
-    secrets: inherit
-
-  appimage:
-    if: false
-    uses: ./.github/workflows/appimage.yml
-    secrets: inherit
-
   docker:
     uses: ./.github/workflows/docker.yml
     secrets: inherit
@@ -43,6 +33,16 @@ jobs:
     uses: ./.github/workflows/android.yml
     secrets: inherit
 
+  flatpak:
+    #if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+    uses: ./.github/workflows/flatpak.yml
+    secrets: inherit
+
+  snap:
+    #if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+    uses: ./.github/workflows/snap.yml
+    secrets: inherit
+
   deploy:
     #if: ${{ startsWith(github.ref, 'refs/tags/') }}
     runs-on: ubuntu-latest
@@ -60,26 +60,24 @@ jobs:
         run: |
           gh release delete test_${{ github.ref_name }} -y --cleanup-tag
 
-      - name: Download ubuntu
-        uses: actions/download-artifact@v7
-        if: false
-        with:
-          pattern: ${{ needs.ubuntu.outputs.name }}*
-          path: ${{ env.artifact_path }}
-          merge-multiple: true
-
-      - name: Download appimage
-        uses: actions/download-artifact@v7
-        if: false
-        with:
-          pattern: ${{ needs.appimage.outputs.name }}*
-          path: ${{ env.artifact_path }}
-          merge-multiple: true
-
       - name: Download docker
         uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.docker.outputs.name }}*
+          path: ${{ env.artifact_path }}
+          merge-multiple: true
+
+      - name: Download flatpak
+        uses: actions/download-artifact@v7
+        with:
+          pattern: Calendar_*.flatpak
+          path: ${{ env.artifact_path }}
+          merge-multiple: true
+
+      - name: Download snap
+        uses: actions/download-artifact@v7
+        with:
+          pattern: ${{ needs.snap.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
@@ -183,15 +181,35 @@ jobs:
           echo "" >> ${{github.workspace}}/Release.md
           echo "|       | x86-64 (64-bit) | x86-32 (32-bit) | AArch64 (ARM64) | ARMv7 (32-bit) |:us: Comment|:cn: 备注|" >> ${{github.workspace}}/Release.md
           echo "|:-     | :-------------- | :-------------- | :-------------- | :------------- |:-----------|:--------|" >> ${{github.workspace}}/Release.md
-          echo "|Windows|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win64_msvc2022_64_qt6.10.3.exe)|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win32_msvc2017_qt5.12.12.exe)|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win64_msvc2022_arm64_qt6.10.3.exe)| |Supported platforms:<br> [x86-32(Qt5)](https://doc.qt.io/qt-5/supported-platforms.html)<br> [x86-64(Qt6)](https://doc.qt.io/qt-6/supported-platforms.html)|支持平台：<br> [x86-32(Qt5)](https://doc.qt.io/qt-5/supported-platforms.html)<br> [x86-64(Qt6)](https://doc.qt.ac.cn/qt-6/supported-platforms.html)|" >> ${{github.workspace}}/Release.md
+          echo "|Windows|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win64_msvc2022_64_qt6.10.3.exe)|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win32_msvc2017_qt5.15.2.exe)|[EXE](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_win64_msvc2022_arm64_qt6.10.3.exe)| |Supported platforms:<br> [x86-32(Qt5)](https://doc.qt.io/qt-5/supported-platforms.html)<br> [x86-64(Qt6)](https://doc.qt.io/qt-6/supported-platforms.html)|支持平台：<br> [x86-32(Qt5)](https://doc.qt.io/qt-5/supported-platforms.html)<br> [x86-64(Qt6)](https://doc.qt.ac.cn/qt-6/supported-platforms.html)|" >> ${{github.workspace}}/Release.md
           echo "|Android|[APK](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_android_x86_64_qt6.10.3_Release.apk)| |[APK](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_android_arm64_v8a_qt6.10.3_Release.apk)| | | |" >> ${{github.workspace}}/Release.md
           echo "|Linux|[zip file of install AppImage](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_${{env.Calendar_VERSION}}_Linux_x86_64_Setup.zip)| |[zip file of install AppImage](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_${{env.Calendar_VERSION}}_Linux_aarch64_Setup.zip)| |Unzip the zip file, then execute \`install.sh [--auto-start]\` to install shortcuts for application, links, and directories in graphical user interfaces (GUIs), or execute \`Calendar_${{env.Calendar_VERSION}}_Linux_*.AppImage\` to run program in the terminal.<br>NOTE: \`GLIBC >= 2.39\` and installed \`fuse\`|解压 zip 文件，然后执行  \`install.sh [--auto-start]\`， 安装用于图形界面的目录、桌面快捷方式；或者在终端中执行  \`Calendar_${{env.Calendar_VERSION}}_Linux_*.AppImage\`  文件，运行程序。<br>注意：\`GLIBC >= 2.39\` 并且安装了 \`fuse\`|" >> ${{github.workspace}}/Release.md
           echo "|Ubuntu 26.04 (resolute)|[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu26.04_x86_64.deb)| |[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu26.04_aarch64.deb)| | Run \`sudo apt install ./rabbitcalendar_*.deb\` to install it. | 运行命令 \`sudo apt install ./rabbitcalendar_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
           echo "|Ubuntu 24.04 (noble)|[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu24.04_x86_64.deb)| |[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_ubuntu24.04_aarch64.deb)| | Run \`sudo apt install ./rabbitcalendar_*.deb\` to install it.|运行命令 \`sudo apt install ./rabbitcalendar_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
           echo "|Debian 13 (trixie)|[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_debian13_x86_64.deb)| |[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_debian13_aarch64.deb)| | Run \`sudo apt install ./rabbitcalendar_*.deb\` to install it.|运行命令 \`sudo apt install ./rabbitcalendar_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
           echo "|Debian 12 (Bookworm)|[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_debian12_x86_64.deb)| |[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar_${{env.Calendar_VERSION}}_debian12_aarch64.deb)| | Run \`sudo apt install ./rabbitcalendar_*.deb\` to install it.|运行命令 \`sudo apt install ./rabbitcalendar_*.deb\` 进行安装。 |" >> ${{github.workspace}}/Release.md
-          echo "|Fedora 41|[RPM](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar-${{env.Calendar_VERSION}}-1.fc41.x86_64.rpm)| |[DEB](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar-${{env.Calendar_VERSION}}-1.fc41.aarch64.rpm)| | Run \`sudo dnf install ./rabbitcalendar-*.rpm\` to install it.|运行命令 \`sudo dnf install ./rabbitcalendar-*.rpm\` 进行安装。 |" >> ${{github.workspace}}/Release.md
+          echo "|Fedora 41|[RPM](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar-${{env.Calendar_VERSION}}-1.fc41.x86_64.rpm)| |[RPM](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbitcalendar-${{env.Calendar_VERSION}}-1.fc41.aarch64.rpm)| | Run \`sudo dnf install ./rabbitcalendar-*.rpm\` to install it.|运行命令 \`sudo dnf install ./rabbitcalendar-*.rpm\` 进行安装。 |" >> ${{github.workspace}}/Release.md
           echo "|macOS  || |[zip](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_${{env.Calendar_VERSION}}_macos-15.zip)| | uzip file|解压zip文件 |" >> ${{github.workspace}}/Release.md
+
+      - name: Add download for test
+        #if: false # ${{ ! startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          export BRANCH_NAME=${{ github.ref_name }}
+          if [ "${{ github.ref_name }}" = "master" ]; then
+              export BRANCH_NAME=test_${{ github.ref_name }}
+          fi
+          echo "|Flatpak|[flatpak](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_x86_64.flatpak)| |[flatpak](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/Calendar_v${{env.Calendar_VERSION}}_aarch64.flatpak)| |Works on all operating systems that support Flatpak.<br>Run \`flatpak install \"flatpak File\" [--user]\` to install it.|适用所有支持 Flatpak 的操作系统。<br> 执行命令  \`flatpak install \"flatpak File\" [--user]\`  进行安装。|" >> ${{github.workspace}}/Release.md
+          echo "|Snap|[snap](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbit-calendar_${{env.Calendar_VERSION}}_amd64.snap)| |[snap](https://github.com/KangLin/Calendar/releases/download/${BRANCH_NAME}/rabbit-calendar_${{env.Calendar_VERSION}}_arm64.snap)| |Works on all operating systems that support Snap.<br>Run \`snap install \"snap File\"\` to install it.|适用所有支持 Snap 的操作系统。<br> 执行命令  \`snap install \"snap File\"\`  进行安装。|" >> ${{github.workspace}}/Release.md
+
+      - name: Add snap and flathub donwload in Release.md file
+        run: |
+          export BRANCH_NAME=${{ github.ref_name }}
+          if [ "${{ github.ref_name }}" = "master" ]; then
+            export BRANCH_NAME=test_${{ github.ref_name }}
+          fi
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "[![rabbit-calendar](https://snapcraft.io/rabbit-calendar/badge.svg)](https://snapcraft.io/rabbit-calendar)" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
 
       - name: Make note file
         run: |

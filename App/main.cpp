@@ -16,22 +16,15 @@
 #include "Global/TasksTools.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
+#ifdef HAVE_UPDATE
 #include "FrmUpdater.h"
+#endif
 #include "LunarCalendar.h"
 
     static Q_LOGGING_CATEGORY(log, "Rabbit.LunarCalendar")
 
 int main(int argc, char *argv[])
 {
-#if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
-#if defined(Q_OS_ANDROID) \
-    && QT_VERSION >= QT_VERSION_CHECK(5, 7, 0) \
-            && QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        QtAndroid::hideSplashScreen();
-#endif
-
     QApplication app(argc, argv);
     app.setApplicationVersion(Calendar_VERSION);
     app.setApplicationName("Calendar");
@@ -60,6 +53,7 @@ int main(int argc, char *argv[])
                       + "; " + QObject::tr("Rabbit Common: ") + RabbitCommon::CTools::Version();
     ;
 
+#ifdef HAVE_UPDATE
     CFrmUpdater *pUpdate = new CFrmUpdater();
     if(pUpdate) {
         QIcon icon = QIcon::fromTheme("calendar");
@@ -83,6 +77,7 @@ int main(int argc, char *argv[])
         if(CFrmUpdater::ErrCode::Arguments == err)
             return 0;
     }
+#endif
 
     CMainWindow win;
 #if defined(Q_OS_ANDROID)
