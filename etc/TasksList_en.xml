@@ -39,7 +39,7 @@
                 <content value="Work"/>
                 <id value="2"/>
                 <enable value="true"/>
-                <interval value="900000"/>
+                <interval value="840000"/>
                 <promptInterval value="1000"/>
                 <backgroundImage value=""/>
                 <startSound value=""/>
@@ -83,7 +83,7 @@
                 <content value="Work"/>
                 <id value="0"/>
                 <enable value="true"/>
-                <interval value="1200000"/>
+                <interval value="2400000"/>
                 <promptInterval value="0"/>
                 <backgroundImage value=""/>
                 <startSound value=""/>
