@@ -55,7 +55,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      VCPKGGITCOMMITID: d741c98f42a969e69cfc57ce5155aa6df8b1d5dc
+      VCPKGGITCOMMITID: ec48c11eae9448c8c6e7739d93e06fa2433aa95f
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
