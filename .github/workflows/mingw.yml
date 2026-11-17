@@ -27,7 +27,7 @@ jobs:
 
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
-      BUILD_DIR:   ${{github.workspace}}/build
+      BUILD_DIR:   ${{github.workspace}}\build
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
@@ -78,7 +78,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
-      - name: build LunarCalendar
+      - name: build Calendar
         working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -90,3 +90,5 @@ jobs:
               -DCMARK_STATIC=ON ^
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
               -DCMAKE_INSTALL_PREFIX=install
+          cmake --build . --config ${{ matrix.BUILD_TYPE }}
+          cmake --install . --config ${{ matrix.BUILD_TYPE }}
