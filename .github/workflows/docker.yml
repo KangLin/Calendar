@@ -158,20 +158,20 @@ jobs:
           sudo mv -f Calendar_${ARCH}.AppImage Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage
           popd
           pushd ${{env.BUILD_DIR}}/build_linux
-          mv install Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup
-          zip Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup.zip Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup/*
+          mv install Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup
+          zip Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup.zip Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup/*
 
           if [ "matrix.variant.lable" == "25.04" ]; then
-            md5sum Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup.zip > Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum
-            MD5SUM=`cat Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup.zip.md5sum|awk '{print $1}'`
-            echo "MD5SUM Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup.zip: ${MD5SUM}"
+            md5sum Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup.zip > Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup.zip.md5sum
+            MD5SUM=`cat Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup.zip.md5sum|awk '{print $1}'`
+            echo "MD5SUM Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup.zip: ${MD5SUM}"
             echo "Generate update configure file ......"
-            pushd Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup
+            pushd Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup
             ./Calendar_${{env.Calendar_VERSION}}_${ARCH}.AppImage \
                -f "${{github.workspace}}/update_appimage_${{matrix.variant.os}}.json" \
                --foc 1 \
-               --file-name ../Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup.zip \
-               -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup.zip;https://master.dl.sourceforge.net/project/calendar/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_Linux_${ARCH}_Setup.zip?viasf=1" \
+               --file-name ../Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup.zip \
+               -u "https://github.com/KangLin/Calendar/releases/download/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup.zip;https://master.dl.sourceforge.net/project/calendar/v${{env.Calendar_VERSION}}/Calendar_${{env.Calendar_VERSION}}_AppImage_${ARCH}_Setup.zip?viasf=1" \
                --md5 "${MD5SUM}"
             popd
           fi

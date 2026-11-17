@@ -1,7 +1,12 @@
+### v1.0.27-dev
+  - 更新 LunarCalendar
+  - 修复配置文件错误
+  - Snap: 移除 arm 平台。因为 qt6－sdk arm 不再受支持。
+
 ### v1.0.26
   - 修复 rpm 安装脚本错误
   - 增加 snap 和 flatpak
- 
+
 ### v1.0.25
   - 使用 CMake 产生 AndroidManifest.xml，移除 AndroidManifest.xml 文件
   - 修复建立对象错误

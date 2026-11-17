@@ -1,3 +1,8 @@
+### v1.0.27-dev
+  - Update LunarCalendar
+  - Fix configure files bug
+  - Snap: remove arm platform
+
 ### v1.0.26
   - Fix rpm install script bug
   - Add snap and flatpak
