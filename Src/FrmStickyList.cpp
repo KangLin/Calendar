@@ -134,6 +134,9 @@ void CFrmStickyList::slotSave()
     szFile = QFileDialog::getSaveFileName(this, tr("Save sticky"), fi.path());
     if(szFile.isEmpty())
         return;
+    int nRet = Save(szFile);
+    if(0 == nRet)
+        set.setValue("Sticky/File", szFile);
 }
 
 int CFrmStickyList::Save(const QString &szFile)

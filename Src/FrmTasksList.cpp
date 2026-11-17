@@ -102,7 +102,13 @@ void CFrmTasksList::slotLoad()
 {
     QString szFile = QFileDialog::getOpenFileName(this,
                        tr("Load"), QString(), tr("xml(*.xml);;All files(*.*)"));
-    Load(szFile);
+    int nRet = Load(szFile);
+    if(0 == nRet)
+    {
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                      QSettings::IniFormat);
+        set.setValue("TasksList", szFile);
+    }
 }
 
 void CFrmTasksList::slotSaveAs()

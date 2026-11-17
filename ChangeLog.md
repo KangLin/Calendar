@@ -2,6 +2,8 @@
   - Update LunarCalendar
   - Fix configure files bug
   - Snap: remove arm platform
+  - Fix load tasks list don't save configure file bug
+  - Fix save sticky don't save configure file bug
 
 ### v1.0.26
   - Fix rpm install script bug
